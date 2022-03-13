@@ -1,0 +1,6 @@
+data/net.felinira.warp.desktop.in.in
+data/net.felinira.warp.gschema.xml.in
+data/net.felinira.warp.metainfo.xml.in.in
+data/resources/ui/shortcuts.ui
+data/resources/ui/window.ui
+src/application.rs
