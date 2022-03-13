@@ -40,6 +40,7 @@
                     "path" : "../"
                 }
             ]
-        }
+        },
+        "python3-magic-wormhole.json"
     ]
 }

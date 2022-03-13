@@ -1,0 +1,139 @@
+{
+    "name": "python3-magic-wormhole",
+    "buildsystem": "simple",
+    "build-commands": [
+        "pip3 install --verbose --exists-action=i --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} \"magic-wormhole\" --no-build-isolation"
+    ],
+    "sources": [
+        {
+            "type": "file",
+            "url": "https://files.pythonhosted.org/packages/00/9e/92de7e1217ccc3d5f352ba21e52398372525765b2e0c4530e6eb2ba9282a/cffi-1.15.0.tar.gz",
+            "sha256": "920f0d66a896c2d99f0adbb391f990a84091179542c205fa53ce5787aff87954"
+        },
+        {
+            "type": "file",
+            "url": "https://files.pythonhosted.org/packages/45/6b/44f7f8f1e110027cf88956b59f2fad776cca7e1704396d043f89effd3a0e/typing_extensions-4.1.1-py3-none-any.whl",
+            "sha256": "21c85e0fe4b9a155d0799430b0ad741cdce7e359660ccbd8b530613e8df88ce2"
+        },
+        {
+            "type": "file",
+            "url": "https://files.pythonhosted.org/packages/b9/65/48c1909d0c0aeae6c10213340ce682db01b48ea900a7d9fce7a7910ff318/constantly-15.1.0-py2.py3-none-any.whl",
+            "sha256": "dd2fa9d6b1a51a83f0d7dd76293d734046aa176e384bf6e33b7e44880eb37c5d"
+        },
+        {
+            "type": "file",
+            "url": "https://files.pythonhosted.org/packages/89/8a/eea987b881522536af2a8fc008214a2bf1ac14b61ae483643165cedbbf35/humanize-4.0.0-py3-none-any.whl",
+            "sha256": "8d86333b8557dacffd4dce1dbe09c81c189e2caf7bb17a970b2212f0f58f10f2"
+        },
+        {
+            "type": "file",
+            "url": "https://files.pythonhosted.org/packages/d5/9f/9c0e3288b85f907a008f9d31318b0e4de31b2f67724a8745e633741f609c/pyOpenSSL-22.0.0-py2.py3-none-any.whl",
+            "sha256": "ea252b38c87425b64116f808355e8da644ef9b07e429398bfece610f893ee2e0"
+        },
+        {
+            "type": "file",
+            "url": "https://files.pythonhosted.org/packages/be/be/7abce643bfdf8ca01c48afa2ddf8308c2308b0c3b239a44e57d020afa0ef/attrs-21.4.0-py2.py3-none-any.whl",
+            "sha256": "2d27e3784d7a565d36ab851fe94887c5eccd6a463168875832a1be79c82828b4"
+        },
+        {
+            "type": "file",
+            "url": "https://files.pythonhosted.org/packages/92/b8/e1bdd53d1a865f4769769fa2473d8f410622ba21b45d062acaa0cecaa937/spake2-0.8-py2.py3-none-any.whl",
+            "sha256": "ce80705f8516c54364931f3b2c9a917ba001500d7f2fc76a0e8cf3bcaf0e30f7"
+        },
+        {
+            "type": "file",
+            "url": "https://files.pythonhosted.org/packages/04/a2/d918dcd22354d8958fe113e1a3630137e0fc8b44859ade3063982eacd2a4/idna-3.3-py3-none-any.whl",
+            "sha256": "84d9dd047ffa80596e0f246e2eab0b391788b0503584e8945f2368256d2735ff"
+        },
+        {
+            "type": "file",
+            "url": "https://files.pythonhosted.org/packages/8b/96/8aaad14bb8247c3b2840cfc132cfdcda1bd617f8796adec0751f64e0423a/txtorcon-21.1.0-py2.py3-none-any.whl",
+            "sha256": "bcc54299e5119d6a9ace889bbefc1ff93108a204824b738e9c77bdb71f61661f"
+        },
+        {
+            "type": "file",
+            "url": "https://files.pythonhosted.org/packages/c3/be/327e072850db181ce56afd51e26ec7aa5659b18466c709fa5ea2548c935f/hkdf-0.0.3.tar.gz",
+            "sha256": "622a31c634bc185581530a4b44ffb731ed208acf4614f9c795bdd70e77991dca"
+        },
+        {
+            "type": "file",
+            "url": "https://files.pythonhosted.org/packages/62/d5/5f610ebe421e85889f2e55e33b7f9a6795bd982198517d912eb1c76e1a53/pycparser-2.21-py2.py3-none-any.whl",
+            "sha256": "8ee45429555515e1f6b185e78100aea234072576aa43ab53aefcae078162fca9"
+        },
+        {
+            "type": "file",
+            "url": "https://files.pythonhosted.org/packages/f9/4b/1cf8e281f7ae4046a59e5e39dd7471d46db9f61bb564fddbff9084c4334f/cryptography-36.0.1.tar.gz",
+            "sha256": "53e5c1dc3d7a953de055d77bef2ff607ceef7a2aac0353b5d630ab67f7423638"
+        },
+        {
+            "type": "file",
+            "url": "https://files.pythonhosted.org/packages/81/1c/93a2b77b97cdba15a59c3d2d03e53d3292158d1106d37f579069abd90ece/tqdm-4.63.0-py2.py3-none-any.whl",
+            "sha256": "e643e071046f17139dea55b880dc9b33822ce21613b4a4f5ea57f202833dbc29"
+        },
+        {
+            "type": "file",
+            "url": "https://files.pythonhosted.org/packages/93/5a/5e93f280ec7be676b5a57f305350f439d31ced168bca04e6ffa64b575664/service_identity-21.1.0-py2.py3-none-any.whl",
+            "sha256": "f0b0caac3d40627c3c04d7a51b6e06721857a0e10a8775f2d1d7e72901b3a7db"
+        },
+        {
+            "type": "file",
+            "url": "https://files.pythonhosted.org/packages/4a/a8/0b2ced25639fb20cc1c9784de90a8c25f9504a7f18cd8b5397bd61696d7d/click-8.0.4-py3-none-any.whl",
+            "sha256": "6a7a62563bbfabfda3a38f3023a1db4a35978c0abd76f6c9605ecd6554d6d9b1"
+        },
+        {
+            "type": "file",
+            "url": "https://files.pythonhosted.org/packages/dd/83/5f6f3c1a562674d65efc320257bdc0873ec53147835aeef7762fe7585273/Automat-20.2.0-py2.py3-none-any.whl",
+            "sha256": "b6feb6455337df834f6c9962d6ccf771515b7d939bca142b29c20c2376bc6111"
+        },
+        {
+            "type": "file",
+            "url": "https://files.pythonhosted.org/packages/62/1e/a94a8d635fa3ce4cfc7f506003548d0a2447ae76fd5ca53932970fe3053f/pyasn1-0.4.8-py2.py3-none-any.whl",
+            "sha256": "39c7e2ec30515947ff4e87fb6f456dfc6e84857d34be479c9d4a4ba4bf46aa5d"
+        },
+        {
+            "type": "file",
+            "url": "https://files.pythonhosted.org/packages/6e/aa/8caf6a0a3e62863cbb9dab27135660acba46903b703e224f14f447e57934/hyperlink-21.0.0-py2.py3-none-any.whl",
+            "sha256": "e6b14c37ecb73e89c77d78cdb4c2cc8f3fb59a885c5b3f819ff4ed80f25af1b4"
+        },
+        {
+            "type": "file",
+            "url": "https://files.pythonhosted.org/packages/77/97/001a2b89b07d0a1b17137e0ef33277ad16747a7b8391146bfc880890322b/txaio-22.2.1-py2.py3-none-any.whl",
+            "sha256": "41223af4a9d5726e645a8ee82480f413e5e300dd257db94bc38ae12ea48fb2e5"
+        },
+        {
+            "type": "file",
+            "url": "https://files.pythonhosted.org/packages/99/3b/4f80dd10cb716f3a9e22ae88f026d25c47cc3fdf82c2747f3d59c98e4ff1/incremental-21.3.0-py2.py3-none-any.whl",
+            "sha256": "92014aebc6a20b78a8084cdd5645eeaa7f74b8933f70fa3ada2cfbd1e3b54321"
+        },
+        {
+            "type": "file",
+            "url": "https://files.pythonhosted.org/packages/a7/22/27582568be639dfe22ddb3902225f91f2f17ceff88ce80e4db396c8986da/PyNaCl-1.5.0.tar.gz",
+            "sha256": "8ac7448f09ab85811607bdd21ec2464495ac8b7c66d146bf545b0f08fb9220ba"
+        },
+        {
+            "type": "file",
+            "url": "https://files.pythonhosted.org/packages/94/a9/55fd5129c18802d334a0dd5380e08ff647a5eddea0dde1ba1360a318e1cf/magic_wormhole-0.12.0-py2.py3-none-any.whl",
+            "sha256": "7c9a8d2a6e89314878dda23efc14c78398f1b6eb80e6c86c895c001c888d086e"
+        },
+        {
+            "type": "file",
+            "url": "https://files.pythonhosted.org/packages/ae/58/e0877f58daa69126a5fb325d6df92b20b77431cd281e189c5ec42b722f58/zope.interface-5.4.0.tar.gz",
+            "sha256": "5dba5f530fec3f0988d83b78cc591b58c0b6eb8431a85edd1569a0539a8a5a0e"
+        },
+        {
+            "type": "file",
+            "url": "https://files.pythonhosted.org/packages/95/de/214830a981892a3e286c3794f41ae67a4495df1108c3da8a9f62159b9a9d/pyasn1_modules-0.2.8-py2.py3-none-any.whl",
+            "sha256": "a50b808ffeb97cb3601dd25981f6b016cbb3d31fbf57a8b8a87428e6158d0c74"
+        },
+        {
+            "type": "file",
+            "url": "https://files.pythonhosted.org/packages/03/aa/a202e547912e7b74bd01df8a156b3295ed34f50f0c9aa0438094027d0966/autobahn-22.2.2.tar.gz",
+            "sha256": "60e1f4c602aacd052ffe3d46ae40b6b75f8286b3c46922c213b523162e58c17e"
+        },
+        {
+            "type": "file",
+            "url": "https://files.pythonhosted.org/packages/2b/ba/17bff991d6f1df1d123611ef2a0e72636ae400e7e75eddbe85b944567d0a/Twisted-22.2.0-py3-none-any.whl",
+            "sha256": "5c63c149eb6b8fe1e32a0215b1cef96fabdba04f705d8efb9174b1ccf5b49d49"
+        }
+    ]
+}
