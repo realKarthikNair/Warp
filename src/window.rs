@@ -2,7 +2,7 @@ use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use gtk::{gio, glib};
 
-use crate::application::ExampleApplication;
+use crate::application::WarpApplication;
 use crate::config::{APP_ID, PROFILE};
 
 mod imp {
@@ -12,13 +12,13 @@ mod imp {
 
     #[derive(Debug, CompositeTemplate)]
     #[template(resource = "/net/felinira/warp/ui/window.ui")]
-    pub struct ExampleApplicationWindow {
+    pub struct WarpApplicationWindow {
         #[template_child]
         pub headerbar: TemplateChild<gtk::HeaderBar>,
         pub settings: gio::Settings,
     }
 
-    impl Default for ExampleApplicationWindow {
+    impl Default for WarpApplicationWindow {
         fn default() -> Self {
             Self {
                 headerbar: TemplateChild::default(),
@@ -28,9 +28,9 @@ mod imp {
     }
 
     #[glib::object_subclass]
-    impl ObjectSubclass for ExampleApplicationWindow {
-        const NAME: &'static str = "ExampleApplicationWindow";
-        type Type = super::ExampleApplicationWindow;
+    impl ObjectSubclass for WarpApplicationWindow {
+        const NAME: &'static str = "WarpApplicationWindow";
+        type Type = super::WarpApplicationWindow;
         type ParentType = gtk::ApplicationWindow;
 
         fn class_init(klass: &mut Self::Class) {
@@ -43,7 +43,7 @@ mod imp {
         }
     }
 
-    impl ObjectImpl for ExampleApplicationWindow {
+    impl ObjectImpl for WarpApplicationWindow {
         fn constructed(&self, obj: &Self::Type) {
             self.parent_constructed(obj);
 
@@ -57,8 +57,8 @@ mod imp {
         }
     }
 
-    impl WidgetImpl for ExampleApplicationWindow {}
-    impl WindowImpl for ExampleApplicationWindow {
+    impl WidgetImpl for WarpApplicationWindow {}
+    impl WindowImpl for WarpApplicationWindow {
         // Save window state on delete event
         fn close_request(&self, window: &Self::Type) -> gtk::Inhibit {
             if let Err(err) = window.save_window_size() {
@@ -70,19 +70,19 @@ mod imp {
         }
     }
 
-    impl ApplicationWindowImpl for ExampleApplicationWindow {}
+    impl ApplicationWindowImpl for WarpApplicationWindow {}
 }
 
 glib::wrapper! {
-    pub struct ExampleApplicationWindow(ObjectSubclass<imp::ExampleApplicationWindow>)
+    pub struct WarpApplicationWindow(ObjectSubclass<imp::WarpApplicationWindow>)
         @extends gtk::Widget, gtk::Window, gtk::ApplicationWindow,
         @implements gio::ActionMap, gio::ActionGroup, gtk::Root;
 }
 
-impl ExampleApplicationWindow {
-    pub fn new(app: &ExampleApplication) -> Self {
+impl WarpApplicationWindow {
+    pub fn new(app: &WarpApplication) -> Self {
         glib::Object::new(&[("application", app)])
-            .expect("Failed to create ExampleApplicationWindow")
+            .expect("Failed to create WarpApplicationWindow")
     }
 
     fn save_window_size(&self) -> Result<(), glib::BoolError> {

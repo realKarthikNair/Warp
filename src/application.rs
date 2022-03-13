@@ -4,10 +4,11 @@ use log::{debug, info};
 use glib::clone;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
+use adw::subclass::prelude::*;
 use gtk::{gdk, gio, glib};
 
 use crate::config::{APP_ID, PKGDATADIR, PROFILE, VERSION};
-use crate::window::ExampleApplicationWindow;
+use crate::window::WarpApplicationWindow;
 
 mod imp {
     use super::*;
@@ -15,22 +16,22 @@ mod imp {
     use once_cell::sync::OnceCell;
 
     #[derive(Debug, Default)]
-    pub struct ExampleApplication {
-        pub window: OnceCell<WeakRef<ExampleApplicationWindow>>,
+    pub struct WarpApplication {
+        pub window: OnceCell<WeakRef<WarpApplicationWindow>>,
     }
 
     #[glib::object_subclass]
-    impl ObjectSubclass for ExampleApplication {
-        const NAME: &'static str = "ExampleApplication";
-        type Type = super::ExampleApplication;
-        type ParentType = gtk::Application;
+    impl ObjectSubclass for WarpApplication {
+        const NAME: &'static str = "WarpApplication";
+        type Type = super::WarpApplication;
+        type ParentType = adw::Application;
     }
 
-    impl ObjectImpl for ExampleApplication {}
+    impl ObjectImpl for WarpApplication {}
 
-    impl ApplicationImpl for ExampleApplication {
+    impl ApplicationImpl for WarpApplication {
         fn activate(&self, app: &Self::Type) {
-            debug!("GtkApplication<ExampleApplication>::activate");
+            debug!("GtkApplication<WarpApplication>::activate");
             self.parent_activate(app);
 
             if let Some(window) = self.window.get() {
@@ -39,7 +40,7 @@ mod imp {
                 return;
             }
 
-            let window = ExampleApplicationWindow::new(app);
+            let window = WarpApplicationWindow::new(app);
             self.window
                 .set(window.downgrade())
                 .expect("Window already set.");
@@ -48,7 +49,7 @@ mod imp {
         }
 
         fn startup(&self, app: &Self::Type) {
-            debug!("GtkApplication<ExampleApplication>::startup");
+            debug!("GtkApplication<WarpApplication>::startup");
             self.parent_startup(app);
 
             // Set icons for shell
@@ -60,16 +61,17 @@ mod imp {
         }
     }
 
-    impl GtkApplicationImpl for ExampleApplication {}
+    impl GtkApplicationImpl for WarpApplication {}
+    impl AdwApplicationImpl for WarpApplication {}
 }
 
 glib::wrapper! {
-    pub struct ExampleApplication(ObjectSubclass<imp::ExampleApplication>)
+    pub struct WarpApplication(ObjectSubclass<imp::WarpApplication>)
         @extends gio::Application, gtk::Application,
         @implements gio::ActionMap, gio::ActionGroup;
 }
 
-impl ExampleApplication {
+impl WarpApplication {
     pub fn new() -> Self {
         glib::Object::new(&[
             ("application-id", &Some(APP_ID)),
@@ -82,7 +84,7 @@ impl ExampleApplication {
         .expect("Application initialization failed...")
     }
 
-    fn main_window(&self) -> ExampleApplicationWindow {
+    fn main_window(&self) -> WarpApplicationWindow {
         self.imp().window.get().unwrap().upgrade().unwrap()
     }
 
