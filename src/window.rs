@@ -9,20 +9,19 @@ mod imp {
     use super::*;
 
     use gtk::CompositeTemplate;
+    use crate::wormhole::Wormhole;
 
     #[derive(Debug, CompositeTemplate)]
     #[template(resource = "/net/felinira/warp/ui/window.ui")]
     pub struct WarpApplicationWindow {
         #[template_child]
         pub headerbar: TemplateChild<gtk::HeaderBar>,
-        pub settings: gio::Settings,
     }
 
     impl Default for WarpApplicationWindow {
         fn default() -> Self {
             Self {
                 headerbar: TemplateChild::default(),
-                settings: gio::Settings::new(APP_ID),
             }
         }
     }
@@ -52,8 +51,11 @@ mod imp {
                 obj.add_css_class("devel");
             }
 
-            // Load latest window state
-            obj.load_window_size();
+            log::debug!("Starting wormhole");
+            let wormhole = Wormhole::new();
+            if let Err(err) = wormhole {
+                log::error!("Wormhole error: {}", err)
+            }
         }
     }
 
@@ -61,10 +63,6 @@ mod imp {
     impl WindowImpl for WarpApplicationWindow {
         // Save window state on delete event
         fn close_request(&self, window: &Self::Type) -> gtk::Inhibit {
-            if let Err(err) = window.save_window_size() {
-                log::warn!("Failed to save window state, {}", &err);
-            }
-
             // Pass close request on to the parent
             self.parent_close_request(window)
         }
@@ -82,33 +80,5 @@ glib::wrapper! {
 impl WarpApplicationWindow {
     pub fn new(app: &WarpApplication) -> Self {
         glib::Object::new(&[("application", app)]).expect("Failed to create WarpApplicationWindow")
-    }
-
-    fn save_window_size(&self) -> Result<(), glib::BoolError> {
-        let imp = self.imp();
-
-        let (width, height) = self.default_size();
-
-        imp.settings.set_int("window-width", width)?;
-        imp.settings.set_int("window-height", height)?;
-
-        imp.settings
-            .set_boolean("is-maximized", self.is_maximized())?;
-
-        Ok(())
-    }
-
-    fn load_window_size(&self) {
-        let imp = self.imp();
-
-        let width = imp.settings.int("window-width");
-        let height = imp.settings.int("window-height");
-        let is_maximized = imp.settings.boolean("is-maximized");
-
-        self.set_default_size(width, height);
-
-        if is_maximized {
-            self.maximize();
-        }
     }
 }

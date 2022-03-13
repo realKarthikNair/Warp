@@ -1,7 +1,11 @@
+#[macro_use]
+mod macros;
+
 mod application;
 #[rustfmt::skip]
 mod config;
 mod window;
+mod wormhole;
 
 use gettextrs::{gettext, LocaleCategory};
 use gtk::{gio, glib};
@@ -19,9 +23,6 @@ fn main() {
     gettextrs::textdomain(GETTEXT_PACKAGE).expect("Unable to switch to the text domain");
 
     glib::set_application_name(&gettext("Warp"));
-
-    let res = gio::Resource::load(RESOURCES_FILE).expect("Could not load gresource file");
-    gio::resources_register(&res);
 
     let app = WarpApplication::new();
     app.run();

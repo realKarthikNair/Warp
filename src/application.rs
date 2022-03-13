@@ -55,6 +55,7 @@ mod imp {
             // Set icons for shell
             gtk::Window::set_default_icon_name(APP_ID);
 
+            app.setup_gresources();
             app.setup_css();
             app.setup_gactions();
             app.setup_accels();
@@ -83,6 +84,13 @@ impl WarpApplication {
 
     fn main_window(&self) -> WarpApplicationWindow {
         self.imp().window.get().unwrap().upgrade().unwrap()
+    }
+
+    pub fn setup_gresources(&self) {
+        let res_bytes = include_cargo_output_path_bytes!("resources.gresource");
+        let data = glib::Bytes::from(&res_bytes[..]);
+        let resource = gio::Resource::from_data(&data).expect("Error loading resource bundle");
+        gio::resources_register(&resource);
     }
 
     fn setup_gactions(&self) {
