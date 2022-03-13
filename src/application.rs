@@ -1,10 +1,10 @@
 use gettextrs::gettext;
 use log::{debug, info};
 
+use adw::subclass::prelude::*;
 use glib::clone;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
-use adw::subclass::prelude::*;
 use gtk::{gdk, gio, glib};
 
 use crate::config::{APP_ID, PKGDATADIR, PROFILE, VERSION};
@@ -76,10 +76,7 @@ impl WarpApplication {
         glib::Object::new(&[
             ("application-id", &Some(APP_ID)),
             ("flags", &gio::ApplicationFlags::empty()),
-            (
-                "resource-base-path",
-                &Some("/net/felinira/warp/"),
-            ),
+            ("resource-base-path", &Some("/net/felinira/warp/")),
         ])
         .expect("Application initialization failed...")
     }

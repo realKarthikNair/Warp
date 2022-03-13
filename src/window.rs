@@ -81,8 +81,7 @@ glib::wrapper! {
 
 impl WarpApplicationWindow {
     pub fn new(app: &WarpApplication) -> Self {
-        glib::Object::new(&[("application", app)])
-            .expect("Failed to create WarpApplicationWindow")
+        glib::Object::new(&[("application", app)]).expect("Failed to create WarpApplicationWindow")
     }
 
     fn save_window_size(&self) -> Result<(), glib::BoolError> {
