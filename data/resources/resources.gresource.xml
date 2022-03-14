@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <gresources>
   <gresource prefix="/net/felinira/warp">
+    <file>icons/inbox-symbolic.svg</file>
+    <file>icons/outbox-symbolic.svg</file>
     <file>screenshots/screenshot1.png</file>
     <file>style.css</file>
     <file>ui/shortcuts.ui</file>

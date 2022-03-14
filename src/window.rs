@@ -53,7 +53,7 @@ mod imp {
                 obj.add_css_class("devel");
             }
 
-            log::debug!("Starting wormhole");
+            /*log::debug!("Starting wormhole");
             let reactor = TwistedReactor::new();
             if let Ok(reactor) = reactor {
                 let wormhole = Wormhole::new(Arc::new(reactor));
@@ -73,7 +73,7 @@ mod imp {
                         log::error!("Wormhole error: {}", err)
                     }
                 }
-            }
+            }*/
         }
     }
 
