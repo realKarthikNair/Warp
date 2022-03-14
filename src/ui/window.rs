@@ -13,6 +13,7 @@ mod imp {
 
     use crate::glib::clone;
     use gtk::CompositeTemplate;
+    use once_cell::sync::OnceCell;
 
     #[derive(Debug, Default, CompositeTemplate)]
     #[template(resource = "/net/felinira/warp/ui/window.ui")]
@@ -26,6 +27,7 @@ mod imp {
         #[template_child]
         pub receive_button: TemplateChild<gtk::Button>,
         pub action_view: ActionView,
+        pub file_chooser: OnceCell<gtk::FileChooserNative>,
     }
 
     #[glib::object_subclass]
@@ -59,6 +61,37 @@ mod imp {
                 }));
 
             self.leaflet.append(&self.action_view);
+            let chooser = self.file_chooser.get_or_init(move || {
+                gtk::FileChooserNative::new(
+                    Some("Select files / folders to send"),
+                    Some(obj),
+                    gtk::FileChooserAction::Open,
+                    Some("Open"),
+                    Some("Cancel"),
+                )
+            });
+
+            chooser.set_modal(true);
+            chooser.set_transient_for(Some(obj));
+            chooser.connect_response(clone!(@strong obj as obj => move |chooser, response| {
+                let self_ = imp::WarpApplicationWindow::from_instance(&obj);
+                match response {
+                    ResponseType::Accept => {
+                        if let Some(file) = chooser.file() {
+                            if let Some(path) = file.path() {
+                                if let Ok(path_str) = path.into_os_string().into_string() {
+                                    log::debug!("Picked file: {}", path_str);
+                                    self_.leaflet.navigate(adw::NavigationDirection::Forward);
+                                }
+                            }
+                        }
+                    }
+                    ResponseType::Cancel => {
+                        log::debug!("File Chooser canceled");
+                    }
+                    _ => {}
+                };
+            }));
 
             /*log::debug!("Starting wormhole");
             let reactor = TwistedReactor::new();
@@ -109,40 +142,10 @@ impl WarpApplicationWindow {
     }
 
     pub fn send_select_file_button(&self) {
-        let self_ = imp::WarpApplicationWindow::from_instance(self);
-        let chooser = gtk::FileChooserDialog::new(
-            Some("Select files / folders to send"),
-            Some(self),
-            gtk::FileChooserAction::Open,
-            &[
-                ("Cancel", gtk::ResponseType::Cancel),
-                ("Open", gtk::ResponseType::Ok),
-            ],
-        );
-        chooser.set_modal(true);
-        chooser.connect_response(
-            clone!(@strong self as instance => move |chooser, response| {
-                let self_ = imp::WarpApplicationWindow::from_instance(&instance);
-                match response {
-                    ResponseType::Ok => {
-                        if let Some(file) = chooser.file() {
-                            if let Some(path) = file.path() {
-                                if let Ok(path_str) = path.into_os_string().into_string() {
-                                    log::debug!("Picked file: {}", path_str);
-                                    self_.leaflet.navigate(adw::NavigationDirection::Forward);
-                                }
-                            }
-                        }
-                    }
-                    ResponseType::Cancel => {
-                        log::debug!("File Chooser Canceled");
-                    }
-                    _ => {}
-                };
-
-                chooser.close();
-            }),
-        );
+        let chooser = &imp::WarpApplicationWindow::from_instance(self)
+            .file_chooser
+            .get()
+            .unwrap();
         chooser.show();
     }
 
