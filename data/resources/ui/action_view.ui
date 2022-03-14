@@ -21,17 +21,13 @@
             <property name="vexpand">True</property>
             <property name="title">Operation in progress</property>
             <property name="description">Waiting for connection</property>
-            <property name="icon-name">outbox-symbolic</property>
+            <property name="icon-name">arrows-questionmark-symbolic</property>
             <child>
               <object class="GtkBox">
                 <property name="orientation">vertical</property>
                 <property name="spacing">12</property>
                 <child>
                   <object class="GtkProgressBar" id="progress_bar">
-                    <style>
-                      <class name="pill"/>
-                      <class name="suggested-action"/>
-                    </style>
                   </object>
                 </child>
                 <child>
@@ -39,7 +35,6 @@
                     <property name="tooltip-text" translatable="yes">Cancel</property>
                     <property name="label">Cancel</property>
                     <style>
-                      <class name="pill"/>
                       <class name="destructive-action"/>
                     </style>
                   </object>

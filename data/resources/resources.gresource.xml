@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <gresources>
   <gresource prefix="/net/felinira/warp">
+    <file>icons/arrows-questionmark-symbolic.svg</file>
+    <file>icons/horizontal-arrows-left-symbolic.svg</file>
+    <file>icons/horizontal-arrows-one-way-symbolic.svg</file>
+    <file>icons/horizontal-arrows-right-symbolic.svg</file>
     <file>icons/inbox-symbolic.svg</file>
     <file>icons/outbox-symbolic.svg</file>
     <file>screenshots/screenshot1.png</file>

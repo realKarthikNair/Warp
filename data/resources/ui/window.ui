@@ -53,7 +53,7 @@
                       <object class="AdwViewStackPage">
                         <property name="name">send</property>
                         <property name="title">Send</property>
-                        <property name="icon-name">outbox-symbolic</property>
+                        <property name="icon-name">horizontal-arrows-right-symbolic</property>
                         <property name="child">
                           <object class="GtkBox">
                             <property name="orientation">vertical</property>
@@ -62,7 +62,7 @@
                                 <property name="vexpand">True</property>
                                 <property name="title">Send files or directories</property>
                                 <property name="description">Please select the file you want to send</property>
-                                <property name="icon-name">outbox-symbolic</property>
+                                <property name="icon-name">horizontal-arrows-right-symbolic</property>
                                 <child>
                                   <object class="GtkBox">
                                     <property name="orientation">vertical</property>
@@ -70,7 +70,6 @@
                                       <object class="GtkButton" id="send_button">
                                         <property name="label">Select file</property>
                                         <style>
-                                          <class name="pill"/>
                                           <class name="suggested-action"/>
                                         </style>
                                       </object>
@@ -87,7 +86,7 @@
                       <object class="AdwViewStackPage">
                         <property name="name">receive</property>
                         <property name="title">Receive</property>
-                        <property name="icon-name">inbox-symbolic</property>
+                        <property name="icon-name">horizontal-arrows-left-symbolic</property>
                         <property name="child">
                           <object class="GtkBox">
                             <property name="orientation">vertical</property>
@@ -96,7 +95,7 @@
                                 <property name="vexpand">True</property>
                                 <property name="title">Receive files or directories</property>
                                 <property name="description">Please enter the warp code from the sender</property>
-                                <property name="icon-name">inbox-symbolic</property>
+                                <property name="icon-name">horizontal-arrows-left-symbolic</property>
                                 <child>
                                   <object class="GtkBox">
                                     <property name="orientation">horizontal</property>
