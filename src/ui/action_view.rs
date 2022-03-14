@@ -1,7 +1,7 @@
-use crate::window::WarpApplicationWindow;
+use crate::ui::window::WarpApplicationWindow;
+use gtk::glib;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
-use gtk::{gio, glib};
 
 mod imp {
     use super::*;
@@ -39,7 +39,7 @@ mod imp {
             self.parent_constructed(obj);
 
             self.cancel_button
-                .connect_clicked(clone!(@weak obj => move |button| {
+                .connect_clicked(clone!(@weak obj => move |_| {
                     obj.back_clicked();
                 }));
 

@@ -1,20 +1,17 @@
-use crate::action_view::ActionView;
+use crate::ui::action_view::ActionView;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use gtk::{gio, glib};
 
-use crate::application::WarpApplication;
-use crate::config::{APP_ID, PROFILE};
+use crate::config::PROFILE;
+use crate::ui::application::WarpApplication;
 
 mod imp {
     use super::*;
     use adw::subclass::prelude::AdwApplicationWindowImpl;
-    use std::sync::Arc;
 
     use crate::glib::clone;
-    use crate::wormhole::{TwistedReactor, Wormhole};
     use gtk::CompositeTemplate;
-    use pyo3::PyResult;
 
     #[derive(Debug, Default, CompositeTemplate)]
     #[template(resource = "/net/felinira/warp/ui/window.ui")]
@@ -54,7 +51,7 @@ mod imp {
             }
 
             self.send_button
-                .connect_clicked(clone!(@weak obj => move |button| {
+                .connect_clicked(clone!(@weak obj => move |_| {
                     obj.send_button();
                 }));
 

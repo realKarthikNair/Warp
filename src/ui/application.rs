@@ -8,7 +8,7 @@ use gtk::subclass::prelude::*;
 use gtk::{gdk, gio, glib};
 
 use crate::config::{APP_ID, PKGDATADIR, PROFILE, VERSION};
-use crate::window::WarpApplicationWindow;
+use crate::ui::window::WarpApplicationWindow;
 
 mod imp {
     use super::*;

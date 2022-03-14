@@ -1,19 +1,17 @@
 #[macro_use]
 mod macros;
 
-mod application;
 #[rustfmt::skip]
 mod config;
-mod action_view;
 mod globals;
-mod window;
-mod wormhole;
+mod service;
+mod ui;
 
+use crate::ui::application::WarpApplication;
 use gettextrs::{gettext, LocaleCategory};
-use gtk::{gio, glib};
+use gtk::glib;
 
-use self::application::WarpApplication;
-use self::config::{GETTEXT_PACKAGE, LOCALEDIR, RESOURCES_FILE};
+use self::config::{GETTEXT_PACKAGE, LOCALEDIR};
 
 fn main() {
     // Initialize logger
