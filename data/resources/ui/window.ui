@@ -67,7 +67,7 @@
                                   <object class="GtkBox">
                                     <property name="orientation">vertical</property>
                                     <child>
-                                      <object class="GtkButton" id="send_button">
+                                      <object class="GtkButton" id="send_select_file_button">
                                         <property name="label">Select file</property>
                                         <style>
                                           <class name="suggested-action"/>
@@ -109,7 +109,7 @@
                                       </object>
                                     </child>
                                     <child>
-                                      <object class="GtkButton">
+                                      <object class="GtkButton" id="receive_button">
                                         <property name="label">Receive File</property>
                                         <style>
                                           <class name="suggested-action"/>

@@ -1,9 +1,10 @@
 use crate::ui::action_view::ActionView;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
-use gtk::{gio, glib};
+use gtk::{gio, glib, ResponseType};
 
 use crate::config::PROFILE;
+use crate::glib::clone;
 use crate::ui::application::WarpApplication;
 
 mod imp {
@@ -21,7 +22,9 @@ mod imp {
         #[template_child]
         pub leaflet: TemplateChild<adw::Leaflet>,
         #[template_child]
-        pub send_button: TemplateChild<gtk::Button>,
+        pub send_select_file_button: TemplateChild<gtk::Button>,
+        #[template_child]
+        pub receive_button: TemplateChild<gtk::Button>,
         pub action_view: ActionView,
     }
 
@@ -50,9 +53,9 @@ mod imp {
                 obj.add_css_class("devel");
             }
 
-            self.send_button
+            self.send_select_file_button
                 .connect_clicked(clone!(@weak obj => move |_| {
-                    obj.send_button();
+                    obj.send_select_file_button();
                 }));
 
             self.leaflet.append(&self.action_view);
@@ -105,9 +108,42 @@ impl WarpApplicationWindow {
         glib::Object::new(&[("application", app)]).expect("Failed to create WarpApplicationWindow")
     }
 
-    pub fn send_button(&self) {
+    pub fn send_select_file_button(&self) {
         let self_ = imp::WarpApplicationWindow::from_instance(self);
-        self_.leaflet.navigate(adw::NavigationDirection::Forward);
+        let chooser = gtk::FileChooserDialog::new(
+            Some("Select files / folders to send"),
+            Some(self),
+            gtk::FileChooserAction::Open,
+            &[
+                ("Cancel", gtk::ResponseType::Cancel),
+                ("Open", gtk::ResponseType::Ok),
+            ],
+        );
+        chooser.set_modal(true);
+        chooser.connect_response(
+            clone!(@strong self as instance => move |chooser, response| {
+                let self_ = imp::WarpApplicationWindow::from_instance(&instance);
+                match response {
+                    ResponseType::Ok => {
+                        if let Some(file) = chooser.file() {
+                            if let Some(path) = file.path() {
+                                if let Ok(path_str) = path.into_os_string().into_string() {
+                                    log::debug!("Picked file: {}", path_str);
+                                    self_.leaflet.navigate(adw::NavigationDirection::Forward);
+                                }
+                            }
+                        }
+                    }
+                    ResponseType::Cancel => {
+                        log::debug!("File Chooser Canceled");
+                    }
+                    _ => {}
+                };
+
+                chooser.close();
+            }),
+        );
+        chooser.show();
     }
 
     pub fn navigate_back(&self) {
