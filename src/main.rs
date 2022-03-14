@@ -4,6 +4,7 @@ mod macros;
 mod application;
 #[rustfmt::skip]
 mod config;
+mod globals;
 mod window;
 mod wormhole;
 

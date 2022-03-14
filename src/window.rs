@@ -7,9 +7,11 @@ use crate::config::{APP_ID, PROFILE};
 
 mod imp {
     use super::*;
+    use std::sync::Arc;
 
+    use crate::wormhole::{TwistedReactor, Wormhole};
     use gtk::CompositeTemplate;
-    use crate::wormhole::Wormhole;
+    use pyo3::PyResult;
 
     #[derive(Debug, CompositeTemplate)]
     #[template(resource = "/net/felinira/warp/ui/window.ui")]
@@ -52,9 +54,25 @@ mod imp {
             }
 
             log::debug!("Starting wormhole");
-            let wormhole = Wormhole::new();
-            if let Err(err) = wormhole {
-                log::error!("Wormhole error: {}", err)
+            let reactor = TwistedReactor::new();
+            if let Ok(reactor) = reactor {
+                let wormhole = Wormhole::new(Arc::new(reactor));
+                match wormhole {
+                    Ok(wormhole) => {
+                        wormhole.allocate_code();
+                        log::info!("Get Code: {}", wormhole.get_code());
+                        wormhole.wait_open();
+                        let res = wormhole.send_text_message("Test Message");
+                        if let Err(err) = res {
+                            log::error!("Wormhole send message error: {}", err);
+                        }
+
+                        wormhole.close();
+                    }
+                    Err(err) => {
+                        log::error!("Wormhole error: {}", err)
+                    }
+                }
             }
         }
     }
