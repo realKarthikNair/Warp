@@ -17,7 +17,7 @@
       <object class="GtkBox" id="label">
         <property name="orientation">vertical</property>
         <child>
-          <object class="AdwStatusPage">
+          <object class="AdwStatusPage" id="status_page">
             <property name="vexpand">True</property>
             <property name="title">Operation in progress</property>
             <property name="description">Waiting for connection</property>

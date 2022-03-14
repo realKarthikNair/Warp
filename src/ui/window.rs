@@ -10,10 +10,13 @@ use crate::ui::application::WarpApplication;
 mod imp {
     use super::*;
     use adw::subclass::prelude::AdwApplicationWindowImpl;
+    use std::thread;
 
     use crate::glib::clone;
+    use crate::globals::TWISTED_REACTOR;
+    use crate::service::twisted::TwistedReactor;
     use gtk::CompositeTemplate;
-    use once_cell::sync::OnceCell;
+    use once_cell::sync::{Lazy, OnceCell};
 
     #[derive(Debug, Default, CompositeTemplate)]
     #[template(resource = "/net/felinira/warp/ui/window.ui")]
@@ -79,17 +82,20 @@ mod imp {
                     ResponseType::Accept => {
                         if let Some(file) = chooser.file() {
                             if let Some(path) = file.path() {
-                                if let Ok(path_str) = path.into_os_string().into_string() {
-                                    log::debug!("Picked file: {}", path_str);
-                                    self_.leaflet.navigate(adw::NavigationDirection::Forward);
-                                }
+                                self_.action_view.send_file(path);
+                            } else {
+                                log::error!("File chooser has file but path is None")
                             }
+                        } else {
+                            log::debug!("File chooser accepted but no file selected");
                         }
                     }
                     ResponseType::Cancel => {
-                        log::debug!("File Chooser canceled");
+                        log::debug!("File chooser canceled");
                     }
-                    _ => {}
+                    _ => {
+                        log::error!("Unknown file chooser response type");
+                    }
                 };
             }));
 

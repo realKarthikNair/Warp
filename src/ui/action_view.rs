@@ -2,6 +2,7 @@ use crate::ui::window::WarpApplicationWindow;
 use gtk::glib;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
+use std::path::PathBuf;
 
 mod imp {
     use super::*;
@@ -16,6 +17,8 @@ mod imp {
         pub cancel_button: TemplateChild<gtk::Button>,
         #[template_child]
         pub progress_bar: TemplateChild<gtk::ProgressBar>,
+        #[template_child]
+        pub status_page: TemplateChild<adw::StatusPage>,
     }
 
     #[glib::object_subclass]
@@ -63,6 +66,20 @@ impl ActionView {
 
     pub fn back_clicked(&self) {
         WarpApplicationWindow::default().navigate_back();
+    }
+
+    pub fn send_file(&self, path: PathBuf) {
+        if let Ok(path_str) = path.into_os_string().into_string() {
+            log::debug!("Picked file: {}", path_str);
+            let self_ = imp::ActionView::from_instance(self);
+            self_.status_page.set_title("Waiting for code");
+            self_
+                .status_page
+                .set_description(Some("Warp code is being requested"));
+            WarpApplicationWindow::default()
+                .leaflet()
+                .navigate(adw::NavigationDirection::Forward);
+        }
     }
 }
 

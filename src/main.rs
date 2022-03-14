@@ -10,12 +10,17 @@ mod ui;
 use crate::ui::application::WarpApplication;
 use gettextrs::{gettext, LocaleCategory};
 use gtk::glib;
+use once_cell::sync::Lazy;
+use std::thread;
 
 use self::config::{GETTEXT_PACKAGE, LOCALEDIR};
 
 fn main() {
     // Initialize logger
     pretty_env_logger::init();
+
+    // Initialized Twisted in separate thread
+    thread::spawn(move || Lazy::force(&globals::TWISTED_REACTOR));
 
     // Prepare i18n
     gettextrs::setlocale(LocaleCategory::LcAll, "");

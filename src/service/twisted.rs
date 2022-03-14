@@ -6,6 +6,7 @@ use std::thread;
 use std::thread::JoinHandle;
 
 #[pyclass]
+#[derive(Debug)]
 pub struct TwistedReactor {
     py_reactor: PyObject,
     thread_handle: JoinHandle<PyResult<()>>,
@@ -13,7 +14,7 @@ pub struct TwistedReactor {
 
 impl TwistedReactor {
     pub fn new() -> PyResult<TwistedReactor> {
-        log::debug!("Creating reactor");
+        log::debug!("Creating twisted reactor");
         let (tx, rx) = mpsc::channel();
         let thread_handle: JoinHandle<PyResult<()>> = thread::spawn(clone!(@strong tx => move || {
             // We must call this on the twisted thread
@@ -34,7 +35,7 @@ impl TwistedReactor {
         }));
 
         let py_reactor = rx.recv().unwrap();
-        log::debug!("Got reactor");
+        log::debug!("Reactor initialized");
 
         Ok(Self {
             py_reactor,
