@@ -5,6 +5,7 @@
     <file>icons/outbox-symbolic.svg</file>
     <file>screenshots/screenshot1.png</file>
     <file>style.css</file>
+    <file>ui/action_view.ui</file>
     <file>ui/shortcuts.ui</file>
     <file>ui/window.ui</file>
   </gresource>

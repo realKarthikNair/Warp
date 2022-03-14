@@ -82,7 +82,7 @@ impl WarpApplication {
         .expect("Application initialization failed...")
     }
 
-    fn main_window(&self) -> WarpApplicationWindow {
+    pub fn main_window(&self) -> WarpApplicationWindow {
         self.imp().window.get().unwrap().upgrade().unwrap()
     }
 
@@ -152,5 +152,14 @@ impl WarpApplication {
         info!("Datadir: {}", PKGDATADIR);
 
         ApplicationExtManual::run(self);
+    }
+}
+
+impl Default for WarpApplication {
+    fn default() -> Self {
+        gio::Application::default()
+            .expect("Application not initialized")
+            .downcast::<WarpApplication>()
+            .expect("Application is wrong subclass")
     }
 }

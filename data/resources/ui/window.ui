@@ -16,117 +16,127 @@
       </item>
     </section>
   </menu>
-  <template class="WarpApplicationWindow" parent="GtkApplicationWindow">
+  <template class="WarpApplicationWindow" parent="AdwApplicationWindow">
     <property name="height-request">440</property>
     <property name="default-width">440</property>
-    <child type="titlebar">
-      <object class="AdwHeaderBar" id="headerbar">
-        <property name="centering-policy">strict</property>
-        <style>
-          <class name="flat"/>
-        </style>
-        <child type="title">
-          <object class="AdwViewSwitcherTitle" id="title">
-            <property name="stack">stack</property>
-          </object>
-        </child>
-        <child type="end">
-          <object class="GtkMenuButton" id="appmenu_button">
-            <property name="icon-name">open-menu-symbolic</property>
-            <property name="menu-model">primary_menu</property>
-          </object>
-        </child>
-      </object>
-    </child>
     <child>
-      <object class="GtkBox" id="label">
-        <property name="orientation">vertical</property>
+      <object class="AdwLeaflet" id="leaflet">
+        <property name="can-unfold">False</property>
         <child>
-          <object class="AdwViewStack" id="stack">
+          <object class="GtkBox">
+            <property name="orientation">vertical</property>
             <child>
-              <object class="AdwViewStackPage">
-                <property name="name">send</property>
-                <property name="title">Send</property>
-                <property name="icon-name">outbox-symbolic</property>
-                <property name="child">
-                  <object class="GtkBox">
-                    <property name="orientation">vertical</property>
+              <object class="AdwHeaderBar" id="headerbar">
+                <property name="centering-policy">strict</property>
+                <style>
+                  <class name="flat"/>
+                </style>
+                <property name="title-widget">
+                  <object class="AdwViewSwitcherTitle" id="title">
+                    <property name="stack">stack</property>
+                  </object>
+                </property>
+                <child type="end">
+                  <object class="GtkMenuButton" id="appmenu_button">
+                    <property name="icon-name">open-menu-symbolic</property>
+                    <property name="menu-model">primary_menu</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkBox" id="label">
+                <property name="orientation">vertical</property>
+                <child>
+                  <object class="AdwViewStack" id="stack">
                     <child>
-                      <object class="AdwStatusPage">
-                        <property name="vexpand">True</property>
-                        <property name="title">Send files or directories</property>
-                        <property name="description">Please select the file you want to send</property>
+                      <object class="AdwViewStackPage">
+                        <property name="name">send</property>
+                        <property name="title">Send</property>
                         <property name="icon-name">outbox-symbolic</property>
-                        <child>
+                        <property name="child">
                           <object class="GtkBox">
                             <property name="orientation">vertical</property>
                             <child>
-                              <object class="GtkButton">
-                                <property name="label">Select file</property>
-                                <style>
-                                  <class name="pill"/>
-                                  <class name="suggested-action"/>
-                                </style>
+                              <object class="AdwStatusPage">
+                                <property name="vexpand">True</property>
+                                <property name="title">Send files or directories</property>
+                                <property name="description">Please select the file you want to send</property>
+                                <property name="icon-name">outbox-symbolic</property>
+                                <child>
+                                  <object class="GtkBox">
+                                    <property name="orientation">vertical</property>
+                                    <child>
+                                      <object class="GtkButton" id="send_button">
+                                        <property name="label">Select file</property>
+                                        <style>
+                                          <class name="pill"/>
+                                          <class name="suggested-action"/>
+                                        </style>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
                               </object>
                             </child>
                           </object>
-                        </child>
+                        </property>
                       </object>
                     </child>
-                  </object>
-                </property>
-              </object>
-            </child>
-            <child>
-              <object class="AdwViewStackPage">
-                <property name="name">receive</property>
-                <property name="title">Receive</property>
-                <property name="icon-name">inbox-symbolic</property>
-                <property name="child">
-                  <object class="GtkBox">
-                    <property name="orientation">vertical</property>
                     <child>
-                      <object class="AdwStatusPage">
-                        <property name="vexpand">True</property>
-                        <property name="title">Receive files or directories</property>
-                        <property name="description">Please enter the warp code from the sender</property>
+                      <object class="AdwViewStackPage">
+                        <property name="name">receive</property>
+                        <property name="title">Receive</property>
                         <property name="icon-name">inbox-symbolic</property>
-                        <child>
+                        <property name="child">
                           <object class="GtkBox">
-                            <property name="orientation">horizontal</property>
-                            <style>
-                              <class name="linked"/>
-                            </style>
+                            <property name="orientation">vertical</property>
                             <child>
-                              <object class="GtkEntry">
-                                <property name="placeholder-text">Warp Code</property>
-                                <property name="hexpand">True</property>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="GtkButton">
-                                <property name="label">Receive File</property>
-                                <style>
-                                  <class name="suggested-action"/>
-                                </style>
+                              <object class="AdwStatusPage">
+                                <property name="vexpand">True</property>
+                                <property name="title">Receive files or directories</property>
+                                <property name="description">Please enter the warp code from the sender</property>
+                                <property name="icon-name">inbox-symbolic</property>
+                                <child>
+                                  <object class="GtkBox">
+                                    <property name="orientation">horizontal</property>
+                                    <style>
+                                      <class name="linked"/>
+                                    </style>
+                                    <child>
+                                      <object class="GtkEntry">
+                                        <property name="placeholder-text">Warp Code</property>
+                                        <property name="hexpand">True</property>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkButton">
+                                        <property name="label">Receive File</property>
+                                        <style>
+                                          <class name="suggested-action"/>
+                                        </style>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
                               </object>
                             </child>
                           </object>
-                        </child>
+                        </property>
                       </object>
                     </child>
                   </object>
-                </property>
+                </child>
+                <child>
+                  <object class="AdwViewSwitcherBar">
+                    <property name="stack">stack</property>
+                    <binding name="reveal">
+                      <lookup name="title-visible">title</lookup>
+                    </binding>
+                  </object>
+                </child>
               </object>
             </child>
-          </object>
-        </child>
-        <child>
-          <object class="AdwViewSwitcherBar">
-            <property name="stack">stack</property>
-            <binding name="reveal">
-              <lookup name="title-visible">title</lookup>
-            </binding>
           </object>
         </child>
       </object>

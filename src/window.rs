@@ -1,3 +1,4 @@
+use crate::action_view::ActionView;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use gtk::{gio, glib};
@@ -7,32 +8,31 @@ use crate::config::{APP_ID, PROFILE};
 
 mod imp {
     use super::*;
+    use adw::subclass::prelude::AdwApplicationWindowImpl;
     use std::sync::Arc;
 
+    use crate::glib::clone;
     use crate::wormhole::{TwistedReactor, Wormhole};
     use gtk::CompositeTemplate;
     use pyo3::PyResult;
 
-    #[derive(Debug, CompositeTemplate)]
+    #[derive(Debug, Default, CompositeTemplate)]
     #[template(resource = "/net/felinira/warp/ui/window.ui")]
     pub struct WarpApplicationWindow {
         #[template_child]
-        pub headerbar: TemplateChild<gtk::HeaderBar>,
-    }
-
-    impl Default for WarpApplicationWindow {
-        fn default() -> Self {
-            Self {
-                headerbar: TemplateChild::default(),
-            }
-        }
+        pub headerbar: TemplateChild<adw::HeaderBar>,
+        #[template_child]
+        pub leaflet: TemplateChild<adw::Leaflet>,
+        #[template_child]
+        pub send_button: TemplateChild<gtk::Button>,
+        pub action_view: ActionView,
     }
 
     #[glib::object_subclass]
     impl ObjectSubclass for WarpApplicationWindow {
         const NAME: &'static str = "WarpApplicationWindow";
         type Type = super::WarpApplicationWindow;
-        type ParentType = gtk::ApplicationWindow;
+        type ParentType = adw::ApplicationWindow;
 
         fn class_init(klass: &mut Self::Class) {
             Self::bind_template(klass);
@@ -52,6 +52,13 @@ mod imp {
             if PROFILE == "Devel" {
                 obj.add_css_class("devel");
             }
+
+            self.send_button
+                .connect_clicked(clone!(@weak obj => move |button| {
+                    obj.send_button();
+                }));
+
+            self.leaflet.append(&self.action_view);
 
             /*log::debug!("Starting wormhole");
             let reactor = TwistedReactor::new();
@@ -87,6 +94,7 @@ mod imp {
     }
 
     impl ApplicationWindowImpl for WarpApplicationWindow {}
+    impl AdwApplicationWindowImpl for WarpApplicationWindow {}
 }
 
 glib::wrapper! {
@@ -98,5 +106,27 @@ glib::wrapper! {
 impl WarpApplicationWindow {
     pub fn new(app: &WarpApplication) -> Self {
         glib::Object::new(&[("application", app)]).expect("Failed to create WarpApplicationWindow")
+    }
+
+    pub fn send_button(&self) {
+        let self_ = imp::WarpApplicationWindow::from_instance(self);
+        self_.leaflet.navigate(adw::NavigationDirection::Forward);
+    }
+
+    pub fn navigate_back(&self) {
+        let leaflet = WarpApplicationWindow::default().leaflet();
+        leaflet.navigate(adw::NavigationDirection::Back);
+    }
+
+    pub fn leaflet(&self) -> adw::Leaflet {
+        imp::WarpApplicationWindow::from_instance(self)
+            .leaflet
+            .clone()
+    }
+}
+
+impl Default for WarpApplicationWindow {
+    fn default() -> Self {
+        WarpApplication::default().main_window()
     }
 }
