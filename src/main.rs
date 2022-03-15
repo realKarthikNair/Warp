@@ -6,6 +6,7 @@ mod config;
 mod globals;
 mod service;
 mod ui;
+mod util;
 
 use crate::ui::application::WarpApplication;
 use gettextrs::{gettext, LocaleCategory};

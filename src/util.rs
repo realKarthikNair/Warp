@@ -83,11 +83,23 @@ impl AppError {
     }
 }
 
-pub fn do_async<F>(func: F)
+pub fn do_async_local<F>(func: F)
 where
     F: Future<Output = Result<(), AppError>> + 'static,
 {
     glib::MainContext::default().spawn_local(async move {
+        match func.await {
+            Ok(()) => (),
+            Err(app_error) => app_error.handle(),
+        }
+    });
+}
+
+pub fn do_async<F>(func: F)
+where
+    F: Future<Output = Result<(), AppError>> + Send + 'static,
+{
+    glib::MainContext::default().spawn(async move {
         match func.await {
             Ok(()) => (),
             Err(app_error) => app_error.handle(),

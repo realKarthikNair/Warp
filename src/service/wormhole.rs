@@ -1,13 +1,16 @@
+use crate::glib::clone;
 use async_channel;
+use async_channel::{Receiver, RecvError, SendError, Sender, TryRecvError};
 use pyo3::prelude::*;
 use pyo3::types::{IntoPyDict, PyDict};
 use std::cell::RefCell;
-use std::sync::mpsc::{Receiver, SendError, Sender};
 use std::sync::{mpsc, Arc};
 
-use crate::globals;
 use crate::service::twisted::TwistedReactor;
+use crate::util;
+use crate::{glib, globals};
 
+#[derive(Debug)]
 enum WormholeMessage {
     Code(String),
     Message(Vec<u8>),
@@ -35,13 +38,17 @@ impl WormholeDelegate {
         Self { tx }
     }
 
-    fn handle_send_err(error: &SendError<WormholeMessage>) {}
-
     fn send(&self, msg: WormholeMessage) {
-        let res = self.tx.send(msg);
-        if let Err(e) = res {
-            log::error!("SendError: {}", e);
-        }
+        util::do_async(clone!(@strong self.tx as tx => async move {
+            log::debug!("Sending message: {:?}", msg);
+            let res = tx.send(msg).await;
+            if let Err(e) = res {
+                log::debug!("SendError: {}", e);
+                log::debug!("This is expected if we just closed the wormhole");
+            }
+
+            Ok(())
+        }));
     }
 }
 
@@ -99,7 +106,7 @@ pub struct Wormhole {
 
 impl Wormhole {
     pub async fn new() -> PyResult<Wormhole> {
-        let (tx, rx) = mpsc::channel();
+        let (tx, rx) = async_channel::unbounded();
 
         let res: PyResult<PyObject> = Python::with_gil(|py| {
             let delegate: PyObject = WormholeDelegate::new(tx).into_py(py);
@@ -164,43 +171,57 @@ impl Wormhole {
         self.code.borrow().clone()
     }
 
-    pub fn wait_open(&self) {
-        loop {
-            let res = self.rx.recv();
-            if let Ok(msg) = res {
-                if let WormholeMessage::Versions = msg {
-                    return;
+    fn process_msg(&self, msg: WormholeMessage) -> WormholeState {
+        let old_state = self.state.borrow().clone();
+        let state = match msg {
+            WormholeMessage::Code(code) => {
+                self.code.replace(Some(code.clone()));
+                match old_state {
+                    WormholeState::Initialized => WormholeState::CodePresent,
+                    _ => old_state,
                 }
             }
-        }
+            WormholeMessage::Message(_) => match old_state {
+                WormholeState::CodePresent => WormholeState::Connected,
+                _ => old_state,
+            },
+            WormholeMessage::Versions => match old_state {
+                WormholeState::CodePresent => WormholeState::Connected,
+                _ => old_state,
+            },
+            WormholeMessage::Close => WormholeState::Closed,
+        };
+
+        self.state.replace(state.clone());
+        state
     }
 
     pub fn poll_state(&self) -> WormholeState {
-        for msg in self.rx.try_iter() {
-            let old_state = self.state.borrow().clone();
-            let state = match msg {
-                WormholeMessage::Code(code) => {
-                    self.code.replace(Some(code.clone()));
-                    match old_state {
-                        WormholeState::Initialized => WormholeState::CodePresent,
-                        _ => old_state,
+        loop {
+            let res = self.rx.try_recv();
+            match res {
+                Err(err) => match err {
+                    TryRecvError::Empty => break,
+                    TryRecvError::Closed => {
+                        self.state.replace(WormholeState::Closed);
+                        return WormholeState::Closed;
                     }
-                }
-                WormholeMessage::Message(_) => match old_state {
-                    WormholeState::CodePresent => WormholeState::Connected,
-                    _ => old_state,
                 },
-                WormholeMessage::Versions => match old_state {
-                    WormholeState::CodePresent => WormholeState::Connected,
-                    _ => old_state,
-                },
-                WormholeMessage::Close => WormholeState::Closed,
+                Ok(msg) => self.process_msg(msg),
             };
-
-            self.state.replace(state);
         }
 
         self.state.borrow().clone()
+    }
+
+    pub async fn async_state(&self) -> WormholeState {
+        let msg = self.rx.recv().await;
+        if let Err(err) = &msg {
+            self.state.replace(WormholeState::Closed);
+            WormholeState::Closed
+        } else {
+            self.process_msg(msg.unwrap())
+        }
     }
 
     pub fn send_text_message(&self, message: &str) -> PyResult<()> {
@@ -230,9 +251,9 @@ impl Wormhole {
 
     pub fn close(&self) -> PyResult<()> {
         let w = self.wormhole.clone();
+        self.rx.close();
         globals::TWISTED_REACTOR.call_from_thread(move |py| {
             w.call_method0(py, "close")?;
-
             Ok(())
         })
     }

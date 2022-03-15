@@ -1,8 +1,8 @@
 use crate::glib::clone;
 use crate::globals;
 use crate::service::wormhole::{Wormhole, WormholeState};
-use crate::ui::util;
 use crate::ui::window::WarpApplicationWindow;
+use crate::util;
 use gtk::glib;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
@@ -34,6 +34,7 @@ mod imp {
         #[template_child]
         pub code_copy_button: TemplateChild<gtk::Button>,
         pub wormhole: RefCell<Option<Wormhole>>,
+        pub progress_timeout_source_id: RefCell<Option<glib::source::SourceId>>,
     }
 
     #[glib::object_subclass]
@@ -94,7 +95,39 @@ impl ActionView {
 
     pub fn back_clicked(&self) {
         let self_ = imp::ActionView::from_instance(self);
+        self_.wormhole.borrow().iter().for_each(|w| {
+            let res = w.close();
+            if let Err(err) = res {
+                log::error!("{}", err);
+            }
+
+            ()
+        });
+        self_.wormhole.replace(None);
+        self.show_progress_indeterminate(false);
         WarpApplicationWindow::default().navigate_back();
+    }
+
+    pub fn show_progress_indeterminate(&self, pulse: bool) {
+        let self_ = imp::ActionView::from_instance(self);
+        if let Some(source_id) = self_.progress_timeout_source_id.take() {
+            source_id.remove();
+        }
+
+        if pulse {
+            // 50 ms was mainly chosen for performance of the progress bar
+            self_
+                .progress_timeout_source_id
+                .replace(Some(glib::timeout_add_local(
+                    Duration::from_millis(50),
+                    clone!(@strong self as obj => move || {
+                        let obj_ = imp::ActionView::from_instance(&obj);
+                        obj_.progress_bar.pulse();
+
+                        Continue(true)
+                    }),
+                )));
+        }
     }
 
     pub fn send_file(&self, path: PathBuf) {
@@ -110,41 +143,29 @@ impl ActionView {
             WarpApplicationWindow::default()
                 .leaflet()
                 .navigate(adw::NavigationDirection::Forward);
+            self.show_progress_indeterminate(true);
 
-            util::do_async(clone!(@strong self as obj => async move {
+            util::do_async_local(clone!(@strong self as obj => async move {
                 let obj_ = imp::ActionView::from_instance(&obj);
                 let wormhole = Wormhole::new().await?;
                 wormhole.allocate_code()?;
                 obj_.wormhole.replace(Some(wormhole));
 
-                // 50 ms was mainly chosen for performance of the progress bar
-                glib::timeout_add_local(
-                    Duration::from_millis(50),
-                    clone!(@strong obj => move|| {
-                        let obj_ = imp::ActionView::from_instance(&obj);
-
-                        if let Some(wormhole) = &*obj_.wormhole.borrow() {
-                            let state = wormhole.poll_state();
-                            match state {
-                                WormholeState::Initialized => {
-                                    obj_.progress_bar.pulse();
-                                    Continue(true)
-                                }
-                                WormholeState::CodePresent => {
-                                    obj_.status_page.set_title("Please send the code to the receiver");
-                                    obj_.status_page.set_description(None);
-                                    obj_.code_box.set_visible(true);
-                                    obj_.code_entry.set_text(&wormhole.get_code().unwrap());
-                                    obj_.progress_bar.set_visible(false);
-                                    Continue(false)
-                                }
-                                _ => Continue(false)
-                            }
-                        } else {
-                            Continue(false)
+                loop {
+                    let state = obj_.wormhole.borrow().as_ref().unwrap().async_state().await;
+                    match state {
+                        WormholeState::Initialized => continue,
+                        WormholeState::CodePresent => {
+                            obj_.status_page.set_title("Please send the code to the receiver");
+                            obj_.status_page.set_description(None);
+                            obj_.code_box.set_visible(true);
+                            obj_.code_entry.set_text(&obj_.wormhole.borrow().as_ref().unwrap().get_code().unwrap());
+                            obj_.progress_bar.set_visible(false);
+                            break;
                         }
-                    }),
-                );
+                        _ => break,
+                    }
+                }
 
                 Ok(())
             }));
