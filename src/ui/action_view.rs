@@ -8,6 +8,7 @@ use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use pyo3::{PyResult, Python};
 use std::path::PathBuf;
+use std::rc::Rc;
 use std::time::Duration;
 
 mod imp {
@@ -33,7 +34,7 @@ mod imp {
         pub code_entry: TemplateChild<gtk::Entry>,
         #[template_child]
         pub code_copy_button: TemplateChild<gtk::Button>,
-        pub wormhole: RefCell<Option<Wormhole>>,
+        pub wormhole: RefCell<Option<Rc<Wormhole>>>,
         pub progress_timeout_source_id: RefCell<Option<glib::source::SourceId>>,
         pub cancel: Cell<bool>,
     }
@@ -150,24 +151,23 @@ impl ActionView {
 
             util::do_async_local(clone!(@strong self as obj => async move {
                 let obj_ = imp::ActionView::from_instance(&obj);
-                let wormhole = Wormhole::new().await?;
+                let wormhole = Rc::new(Wormhole::new().await?);
+                obj_.wormhole.replace(Some(wormhole.clone()));
                 wormhole.allocate_code()?;
                 if obj_.cancel.get() {
                     wormhole.close();
                     return Ok(())
                 }
 
-                obj_.wormhole.replace(Some(wormhole));
-
                 loop {
-                    let state = obj_.wormhole.borrow().as_ref().unwrap().async_state().await;
+                    let state = wormhole.async_state().await;
                     match state {
                         WormholeState::Initialized => continue,
                         WormholeState::CodePresent => {
                             obj_.status_page.set_title("Please send the code to the receiver");
                             obj_.status_page.set_description(None);
                             obj_.code_box.set_visible(true);
-                            obj_.code_entry.set_text(&obj_.wormhole.borrow().as_ref().unwrap().get_code().unwrap());
+                            obj_.code_entry.set_text(&wormhole.get_code().unwrap());
                             obj_.progress_bar.set_visible(false);
                         },
                         WormholeState::Connected => {
@@ -175,7 +175,6 @@ impl ActionView {
                             obj_.status_page.set_description(Some("Preparing to send file"));
                             obj_.code_box.set_visible(false);
                             obj_.progress_bar.set_visible(true);
-                            obj_.wormhole.borrow().as_ref().unwrap().dilate().await;
                         }
                         _ => break,
                     }
