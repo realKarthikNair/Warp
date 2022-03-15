@@ -1,3 +1,4 @@
+use async_channel;
 use pyo3::prelude::*;
 use pyo3::types::{IntoPyDict, PyDict};
 use std::cell::RefCell;
@@ -79,16 +80,25 @@ impl WormholeDelegate {
     }
 }
 
+#[derive(Clone, Debug)]
+pub enum WormholeState {
+    Initialized,
+    CodePresent,
+    Connected,
+    Closed,
+}
+
+#[derive(Debug)]
 pub struct Wormhole {
-    reactor: Arc<TwistedReactor>,
     delegate: PyObject,
     wormhole: PyObject,
     code: RefCell<Option<String>>,
+    state: RefCell<WormholeState>,
     rx: Receiver<WormholeMessage>,
 }
 
 impl Wormhole {
-    pub fn new(reactor: Arc<TwistedReactor>) -> PyResult<Arc<Wormhole>> {
+    pub async fn new() -> PyResult<Wormhole> {
         let (tx, rx) = mpsc::channel();
 
         let res: PyResult<PyObject> = Python::with_gil(|py| {
@@ -96,11 +106,11 @@ impl Wormhole {
             Ok(delegate)
         });
         let delegate = res?;
-        let cloned_reactor = reactor.py_reactor().clone();
+        let cloned_reactor = globals::TWISTED_REACTOR.py_reactor().clone();
         let cloned_delegate = delegate.clone();
 
-        let (wormhole_tx, wormhole_rx) = mpsc::channel();
-        reactor.call_from_thread(move |py| {
+        let (wormhole_tx, wormhole_rx) = async_channel::bounded(1);
+        globals::TWISTED_REACTOR.call_from_thread(move |py| {
             let wormhole = py.import("wormhole")?;
             let kwargs = vec![("delegate", &cloned_delegate)];
             let w = wormhole.call_method(
@@ -113,46 +123,45 @@ impl Wormhole {
                 Some(kwargs.into_py_dict(py)),
             )?;
 
-            wormhole_tx.send(w.into()).unwrap();
+            let res = wormhole_tx.try_send(w.into());
+            if let Err(err) = res {
+                match err {
+                    async_channel::TrySendError::Full(_) => panic!("Channel full"),
+                    async_channel::TrySendError::Closed(_) => panic!("Channel closed"),
+                }
+            }
+
             Ok(())
         })?;
 
-        let wormhole = wormhole_rx.recv().unwrap();
+        let wormhole = wormhole_rx.recv().await;
+        if let Err(err) = wormhole {
+            panic!("Channel closed");
+        }
+
+        let wormhole = wormhole.unwrap();
 
         let instance = Self {
-            reactor,
             delegate,
             wormhole,
             code: RefCell::new(None),
+            state: RefCell::new(WormholeState::Initialized),
             rx,
         };
 
-        Ok(Arc::new(instance))
+        Ok(instance)
     }
 
     pub fn allocate_code(&self) -> PyResult<()> {
         let w = self.wormhole.clone();
-        self.reactor.call_from_thread(move |py| {
+        globals::TWISTED_REACTOR.call_from_thread(move |py| {
             w.call_method0(py, "allocate_code")?;
             Ok(())
         })
     }
 
-    pub fn get_code(&self) -> String {
-        let code = self.code.borrow().clone();
-        if let Some(code) = code {
-            return code.clone();
-        }
-
-        loop {
-            let res = self.rx.recv();
-            if let Ok(msg) = res {
-                if let WormholeMessage::Code(code) = msg {
-                    self.code.replace(Some(code.clone()));
-                    return code.clone();
-                }
-            }
-        }
+    pub fn get_code(&self) -> Option<String> {
+        self.code.borrow().clone()
     }
 
     pub fn wait_open(&self) {
@@ -166,11 +175,39 @@ impl Wormhole {
         }
     }
 
+    pub fn poll_state(&self) -> WormholeState {
+        for msg in self.rx.try_iter() {
+            let old_state = self.state.borrow().clone();
+            let state = match msg {
+                WormholeMessage::Code(code) => {
+                    self.code.replace(Some(code.clone()));
+                    match old_state {
+                        WormholeState::Initialized => WormholeState::CodePresent,
+                        _ => old_state,
+                    }
+                }
+                WormholeMessage::Message(_) => match old_state {
+                    WormholeState::CodePresent => WormholeState::Connected,
+                    _ => old_state,
+                },
+                WormholeMessage::Versions => match old_state {
+                    WormholeState::CodePresent => WormholeState::Connected,
+                    _ => old_state,
+                },
+                WormholeMessage::Close => WormholeState::Closed,
+            };
+
+            self.state.replace(state);
+        }
+
+        self.state.borrow().clone()
+    }
+
     pub fn send_text_message(&self, message: &str) -> PyResult<()> {
         log::debug!("Sending message: {}", message);
         let message = message.to_string();
         let w = self.wormhole.clone();
-        self.reactor.call_from_thread(move |py| {
+        globals::TWISTED_REACTOR.call_from_thread(move |py| {
             let json = py.import("json")?;
             let dict = PyDict::new(py);
             let offer = PyDict::new(py);
@@ -193,7 +230,7 @@ impl Wormhole {
 
     pub fn close(&self) -> PyResult<()> {
         let w = self.wormhole.clone();
-        self.reactor.call_from_thread(move |py| {
+        globals::TWISTED_REACTOR.call_from_thread(move |py| {
             w.call_method0(py, "close")?;
 
             Ok(())
