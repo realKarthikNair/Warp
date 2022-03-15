@@ -12,7 +12,7 @@ use std::time::Duration;
 
 mod imp {
     use super::*;
-    use std::cell::RefCell;
+    use std::cell::{Cell, RefCell};
 
     use crate::glib::clone;
     use crate::service::wormhole::Wormhole;
@@ -35,6 +35,7 @@ mod imp {
         pub code_copy_button: TemplateChild<gtk::Button>,
         pub wormhole: RefCell<Option<Wormhole>>,
         pub progress_timeout_source_id: RefCell<Option<glib::source::SourceId>>,
+        pub cancel: Cell<bool>,
     }
 
     #[glib::object_subclass]
@@ -104,6 +105,7 @@ impl ActionView {
             ()
         });
         self_.wormhole.replace(None);
+        self_.cancel.set(true);
         self.show_progress_indeterminate(false);
         WarpApplicationWindow::default().navigate_back();
     }
@@ -134,6 +136,7 @@ impl ActionView {
         if let Ok(path_str) = path.into_os_string().into_string() {
             log::debug!("Picked file: {}", path_str);
             let self_ = imp::ActionView::from_instance(self);
+            self_.cancel.set(false);
             self_.code_box.set_visible(false);
             self_.progress_bar.set_visible(true);
             self_.status_page.set_title("Waiting for code");
@@ -149,6 +152,11 @@ impl ActionView {
                 let obj_ = imp::ActionView::from_instance(&obj);
                 let wormhole = Wormhole::new().await?;
                 wormhole.allocate_code()?;
+                if obj_.cancel.get() {
+                    wormhole.close();
+                    return Ok(())
+                }
+
                 obj_.wormhole.replace(Some(wormhole));
 
                 loop {

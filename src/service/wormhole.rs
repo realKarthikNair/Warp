@@ -1,9 +1,10 @@
 use crate::glib::clone;
 use async_channel;
 use async_channel::{Receiver, RecvError, SendError, Sender, TryRecvError};
+use pyo3::exceptions::PyException;
 use pyo3::prelude::*;
-use pyo3::types::{IntoPyDict, PyDict};
-use std::cell::RefCell;
+use pyo3::types::{IntoPyDict, PyDict, PyString};
+use std::cell::{Cell, RefCell};
 use std::sync::{mpsc, Arc};
 
 use crate::service::twisted::TwistedReactor;
@@ -31,24 +32,30 @@ impl WormholeMessage {
 #[pyclass]
 struct WormholeDelegate {
     tx: Sender<WormholeMessage>,
+    closed: Cell<bool>,
 }
 
 impl WormholeDelegate {
     fn new(tx: Sender<WormholeMessage>) -> Self {
-        Self { tx }
+        Self {
+            tx,
+            closed: Cell::new(false),
+        }
     }
 
     fn send(&self, msg: WormholeMessage) {
-        util::do_async(clone!(@strong self.tx as tx => async move {
-            log::debug!("Sending message: {:?}", msg);
-            let res = tx.send(msg).await;
-            if let Err(e) = res {
-                log::debug!("SendError: {}", e);
-                log::debug!("This is expected if we just closed the wormhole");
-            }
+        if !self.closed.get() {
+            util::do_async(clone!(@strong self.tx as tx => async move {
+                log::debug!("Sending message: {:?}", msg);
+                let res = tx.send(msg).await;
+                if let Err(e) = res {
+                    log::debug!("SendError: {}", e);
+                    log::debug!("This is expected if we just closed the wormhole");
+                }
 
-            Ok(())
-        }));
+                Ok(())
+            }));
+        }
     }
 }
 
@@ -78,12 +85,21 @@ impl WormholeDelegate {
     }
 
     fn wormhole_closed(&self, result: PyObject) {
-        log::debug!("Wormhole closed: {:?}", result);
+        Python::with_gil(|py| {
+            let result = result.as_ref(py);
+            log::debug!("Wormhole closed: {:?}", result);
+        });
+
         self.send(WormholeMessage::Close);
+        self.close();
     }
 
     fn wormhole_got_welcome(&self, welcome: &PyDict) {
         log::debug!("Welcome {}", welcome);
+    }
+
+    fn close(&self) {
+        self.closed.set(true);
     }
 }
 
@@ -156,6 +172,7 @@ impl Wormhole {
             rx,
         };
 
+        log::debug!("Wormhole created");
         Ok(instance)
     }
 
@@ -251,8 +268,10 @@ impl Wormhole {
 
     pub fn close(&self) -> PyResult<()> {
         let w = self.wormhole.clone();
+        let d = self.delegate.clone();
         self.rx.close();
         globals::TWISTED_REACTOR.call_from_thread(move |py| {
+            d.call_method0(py, "close")?;
             w.call_method0(py, "close")?;
             Ok(())
         })
