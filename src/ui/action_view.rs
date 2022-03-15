@@ -169,7 +169,13 @@ impl ActionView {
                             obj_.code_box.set_visible(true);
                             obj_.code_entry.set_text(&obj_.wormhole.borrow().as_ref().unwrap().get_code().unwrap());
                             obj_.progress_bar.set_visible(false);
-                            break;
+                        },
+                        WormholeState::Connected => {
+                            obj_.status_page.set_title("Connected to peer");
+                            obj_.status_page.set_description(Some("Preparing to send file"));
+                            obj_.code_box.set_visible(false);
+                            obj_.progress_bar.set_visible(true);
+                            obj_.wormhole.borrow().as_ref().unwrap().dilate().await;
                         }
                         _ => break,
                     }

@@ -4,7 +4,7 @@ use async_channel::{Receiver, RecvError, SendError, Sender, TryRecvError};
 use pyo3::exceptions::PyException;
 use pyo3::prelude::*;
 use pyo3::types::{IntoPyDict, PyDict, PyString};
-use std::cell::{Cell, RefCell};
+use std::cell::{Cell, Ref, RefCell};
 use std::sync::{mpsc, Arc};
 
 use crate::service::twisted::TwistedReactor;
@@ -108,6 +108,7 @@ pub enum WormholeState {
     Initialized,
     CodePresent,
     Connected,
+    Dilated,
     Closed,
 }
 
@@ -115,6 +116,7 @@ pub enum WormholeState {
 pub struct Wormhole {
     delegate: PyObject,
     wormhole: PyObject,
+    endpoints: RefCell<Option<(PyObject, PyObject, PyObject)>>,
     code: RefCell<Option<String>>,
     state: RefCell<WormholeState>,
     rx: Receiver<WormholeMessage>,
@@ -167,6 +169,7 @@ impl Wormhole {
         let instance = Self {
             delegate,
             wormhole,
+            endpoints: RefCell::new(None),
             code: RefCell::new(None),
             state: RefCell::new(WormholeState::Initialized),
             rx,
@@ -186,6 +189,24 @@ impl Wormhole {
 
     pub fn get_code(&self) -> Option<String> {
         self.code.borrow().clone()
+    }
+
+    pub async fn dilate(&self) -> PyResult<()> {
+        let w = self.wormhole.clone();
+        let (tx, rx) = async_channel::unbounded();
+        globals::TWISTED_REACTOR.call_from_thread(move |py| {
+            let kwargs = vec![("transit_relay_location", &globals::WORMHOLE_TRANSIT_RELAY)];
+            let endpoints = w.call_method(py, "dilate", (), Some(kwargs.into_py_dict(py)))?;
+            let endpoints_tuple: (PyObject, PyObject, PyObject) = endpoints.extract(py)?;
+            log::debug!("Got endpoints tuple: {:?}", endpoints_tuple);
+            tx.try_send(endpoints_tuple.into()).unwrap();
+
+            Ok(())
+        })?;
+
+        self.endpoints.replace(Some(rx.recv().await.unwrap()));
+
+        Ok(())
     }
 
     fn process_msg(&self, msg: WormholeMessage) -> WormholeState {
@@ -210,6 +231,7 @@ impl Wormhole {
         };
 
         self.state.replace(state.clone());
+        log::debug!("New wormhole state: {:?}", state);
         state
     }
 
