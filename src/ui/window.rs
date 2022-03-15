@@ -22,6 +22,8 @@ mod imp {
     #[template(resource = "/net/felinira/warp/ui/window.ui")]
     pub struct WarpApplicationWindow {
         #[template_child]
+        pub toast_overlay: TemplateChild<adw::ToastOverlay>,
+        #[template_child]
         pub headerbar: TemplateChild<adw::HeaderBar>,
         #[template_child]
         pub leaflet: TemplateChild<adw::Leaflet>,
@@ -163,6 +165,12 @@ impl WarpApplicationWindow {
     pub fn leaflet(&self) -> adw::Leaflet {
         imp::WarpApplicationWindow::from_instance(self)
             .leaflet
+            .clone()
+    }
+
+    pub fn toast_overlay(&self) -> adw::ToastOverlay {
+        imp::WarpApplicationWindow::from_instance(self)
+            .toast_overlay
             .clone()
     }
 }

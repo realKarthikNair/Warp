@@ -31,6 +31,25 @@
                   </object>
                 </child>
                 <child>
+                  <object class="GtkBox" id="code_box">
+                    <property name="visible">False</property>
+                    <style>
+                      <class name="linked"/>
+                    </style>
+                    <child>
+                      <object class="GtkEntry" id="code_entry">
+                        <property name="editable">False</property>
+                        <property name="hexpand">True</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="code_copy_button">
+                        <property name="icon-name">copy-symbolic</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child>
                   <object class="GtkButton" id="cancel_button">
                     <property name="tooltip-text" translatable="yes">Cancel</property>
                     <property name="label">Cancel</property>

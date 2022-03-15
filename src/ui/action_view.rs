@@ -27,6 +27,12 @@ mod imp {
         pub progress_bar: TemplateChild<gtk::ProgressBar>,
         #[template_child]
         pub status_page: TemplateChild<adw::StatusPage>,
+        #[template_child]
+        pub code_box: TemplateChild<gtk::Box>,
+        #[template_child]
+        pub code_entry: TemplateChild<gtk::Entry>,
+        #[template_child]
+        pub code_copy_button: TemplateChild<gtk::Button>,
         pub wormhole: RefCell<Option<Wormhole>>,
     }
 
@@ -56,6 +62,19 @@ mod imp {
                 }));
 
             self.progress_bar.set_pulse_step(0.05);
+
+            self.code_copy_button
+                .connect_clicked(clone!(@weak obj => move |_| {
+                    let obj_ = imp::ActionView::from_instance(&obj);
+                    let code = obj_.code_entry.text();
+                    let window = WarpApplicationWindow::default();
+                    let clipboard = window.display().clipboard();
+                    clipboard.set_text(&code);
+                    let toast = adw::Toast::new("Copied code to clipboard");
+                    toast.set_timeout(3);
+                    toast.set_priority(adw::ToastPriority::Normal);
+                    window.toast_overlay().add_toast(&toast);
+                }));
         }
     }
 
@@ -74,6 +93,7 @@ impl ActionView {
     }
 
     pub fn back_clicked(&self) {
+        let self_ = imp::ActionView::from_instance(self);
         WarpApplicationWindow::default().navigate_back();
     }
 
@@ -81,6 +101,7 @@ impl ActionView {
         if let Ok(path_str) = path.into_os_string().into_string() {
             log::debug!("Picked file: {}", path_str);
             let self_ = imp::ActionView::from_instance(self);
+            self_.code_box.set_visible(false);
             self_.progress_bar.set_visible(true);
             self_.status_page.set_title("Waiting for code");
             self_
@@ -111,7 +132,9 @@ impl ActionView {
                                 }
                                 WormholeState::CodePresent => {
                                     obj_.status_page.set_title("Please send the code to the receiver");
-                                    obj_.status_page.set_description(Some(&wormhole.get_code().unwrap()));
+                                    obj_.status_page.set_description(None);
+                                    obj_.code_box.set_visible(true);
+                                    obj_.code_entry.set_text(&wormhole.get_code().unwrap());
                                     obj_.progress_bar.set_visible(false);
                                     Continue(false)
                                 }
