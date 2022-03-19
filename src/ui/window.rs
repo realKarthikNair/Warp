@@ -13,8 +13,6 @@ mod imp {
     use std::thread;
 
     use crate::glib::clone;
-    use crate::globals::TWISTED_REACTOR;
-    use crate::service::twisted::TwistedReactor;
     use gtk::CompositeTemplate;
     use once_cell::sync::{Lazy, OnceCell};
 
@@ -160,6 +158,9 @@ impl WarpApplicationWindow {
     pub fn navigate_back(&self) {
         let leaflet = WarpApplicationWindow::default().leaflet();
         leaflet.navigate(adw::NavigationDirection::Back);
+        imp::WarpApplicationWindow::from_instance(self)
+            .action_view
+            .show_progress_indeterminate(false);
     }
 
     pub fn leaflet(&self) -> adw::Leaflet {
@@ -171,6 +172,12 @@ impl WarpApplicationWindow {
     pub fn toast_overlay(&self) -> adw::ToastOverlay {
         imp::WarpApplicationWindow::from_instance(self)
             .toast_overlay
+            .clone()
+    }
+
+    pub fn action_view(&self) -> ActionView {
+        imp::WarpApplicationWindow::from_instance(self)
+            .action_view
             .clone()
     }
 }

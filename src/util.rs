@@ -3,6 +3,8 @@ use gtk::prelude::*;
 use gtk::{gio, glib};
 use std::future::Future;
 use std::sync::atomic::{AtomicBool, Ordering};
+use wormhole::transfer::TransferError;
+use wormhole::WormholeError;
 
 custom_error! {pub UIError {msg: String} = "{msg}"}
 
@@ -20,7 +22,9 @@ impl UIError {
 }
 
 custom_error! {pub AppError
-    PY {source: pyo3::PyErr} = "Python error: {source}",
+    URL {source: url::ParseError} = "{source}",
+    TRANSFER {source: TransferError} = "{source}",
+    WORMHOLE {source: WormholeError} = "{source}",
     UI {source: UIError} = "{source}",
 }
 

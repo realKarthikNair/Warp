@@ -4,7 +4,6 @@ mod macros;
 #[rustfmt::skip]
 mod config;
 mod globals;
-mod service;
 mod ui;
 mod util;
 
@@ -19,9 +18,6 @@ use self::config::{GETTEXT_PACKAGE, LOCALEDIR};
 fn main() {
     // Initialize logger
     pretty_env_logger::init();
-
-    // Initialized Twisted in separate thread
-    thread::spawn(move || Lazy::force(&globals::TWISTED_REACTOR));
 
     // Prepare i18n
     gettextrs::setlocale(LocaleCategory::LcAll, "");
