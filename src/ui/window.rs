@@ -4,17 +4,15 @@ use gtk::subclass::prelude::*;
 use gtk::{gio, glib, ResponseType};
 
 use crate::config::PROFILE;
-use crate::glib::clone;
 use crate::ui::application::WarpApplication;
 
 mod imp {
     use super::*;
     use adw::subclass::prelude::AdwApplicationWindowImpl;
-    use std::thread;
 
     use crate::glib::clone;
     use gtk::CompositeTemplate;
-    use once_cell::sync::{Lazy, OnceCell};
+    use once_cell::sync::OnceCell;
 
     #[derive(Debug, Default, CompositeTemplate)]
     #[template(resource = "/net/felinira/warp/ui/window.ui")]
@@ -29,6 +27,8 @@ mod imp {
         pub send_select_file_button: TemplateChild<gtk::Button>,
         #[template_child]
         pub receive_button: TemplateChild<gtk::Button>,
+        #[template_child]
+        pub code_entry: TemplateChild<gtk::Entry>,
         pub action_view: ActionView,
         pub file_chooser: OnceCell<gtk::FileChooserNative>,
     }
@@ -61,6 +61,11 @@ mod imp {
             self.send_select_file_button
                 .connect_clicked(clone!(@weak obj => move |_| {
                     obj.send_select_file_button();
+                }));
+
+            self.receive_button
+                .connect_clicked(clone!(@weak obj => move |_| {
+                    obj.receive_file_button();
                 }));
 
             self.leaflet.append(&self.action_view);
@@ -98,28 +103,6 @@ mod imp {
                     }
                 };
             }));
-
-            /*log::debug!("Starting wormhole");
-            let reactor = TwistedReactor::new();
-            if let Ok(reactor) = reactor {
-                let wormhole = Wormhole::new(Arc::new(reactor));
-                match wormhole {
-                    Ok(wormhole) => {
-                        wormhole.allocate_code();
-                        log::info!("Get Code: {}", wormhole.get_code());
-                        wormhole.wait_open();
-                        let res = wormhole.send_text_message("Test Message");
-                        if let Err(err) = res {
-                            log::error!("Wormhole send message error: {}", err);
-                        }
-
-                        wormhole.close();
-                    }
-                    Err(err) => {
-                        log::error!("Wormhole error: {}", err)
-                    }
-                }
-            }*/
         }
     }
 
@@ -153,6 +136,13 @@ impl WarpApplicationWindow {
             .get()
             .unwrap();
         chooser.show();
+    }
+
+    pub fn receive_file_button(&self) {
+        let code = &imp::WarpApplicationWindow::from_instance(self)
+            .code_entry
+            .text();
+        self.action_view().receive_file(code.to_string());
     }
 
     pub fn navigate_back(&self) {

@@ -2,7 +2,9 @@
 <gresources>
   <gresource prefix="/net/felinira/warp">
     <file>icons/arrows-questionmark-symbolic.svg</file>
+    <file>icons/checkmark-large-symbolic.svg</file>
     <file>icons/copy-symbolic.svg</file>
+    <file>icons/horizontal-arrows-disabled-symbolic.svg</file>
     <file>icons/horizontal-arrows-left-symbolic.svg</file>
     <file>icons/horizontal-arrows-one-way-symbolic.svg</file>
     <file>icons/horizontal-arrows-right-symbolic.svg</file>

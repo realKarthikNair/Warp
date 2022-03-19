@@ -2,6 +2,7 @@
 mod macros;
 
 #[rustfmt::skip]
+#[allow(dead_code)]
 mod config;
 mod globals;
 mod ui;
@@ -10,8 +11,6 @@ mod util;
 use crate::ui::application::WarpApplication;
 use gettextrs::{gettext, LocaleCategory};
 use gtk::glib;
-use once_cell::sync::Lazy;
-use std::thread;
 
 use self::config::{GETTEXT_PACKAGE, LOCALEDIR};
 

@@ -13,6 +13,7 @@ macro_rules! include_cargo_output_path_bytes {
     };
 }
 
+#[allow(unused_macros)]
 macro_rules! gresource_path {
     () => {
         "/net/felinira/warp/"

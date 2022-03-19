@@ -105,7 +105,7 @@
                                           <class name="linked"/>
                                         </style>
                                         <child>
-                                          <object class="GtkEntry">
+                                          <object class="GtkEntry" id="code_entry">
                                             <property name="placeholder-text">Warp Code</property>
                                             <property name="hexpand">True</property>
                                           </object>

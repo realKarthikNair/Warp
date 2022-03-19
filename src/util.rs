@@ -22,6 +22,7 @@ impl UIError {
 }
 
 custom_error! {pub AppError
+    IO {source: std::io::Error} = "{source}",
     URL {source: url::ParseError} = "{source}",
     TRANSFER {source: TransferError} = "{source}",
     WORMHOLE {source: WormholeError} = "{source}",
@@ -33,7 +34,7 @@ static ERROR_DIALOG_ALREADY_SHOWING: AtomicBool = AtomicBool::new(false);
 
 impl AppError {
     pub fn handle(&self) {
-        log::error!("{}", self);
+        log::error!("{:?}", self);
 
         if gtk::is_initialized() {
             let window = match gio::Application::default() {
@@ -87,23 +88,11 @@ impl AppError {
     }
 }
 
-pub fn do_async_local<F>(func: F)
+pub fn do_async<F>(func: F)
 where
     F: Future<Output = Result<(), AppError>> + 'static,
 {
     glib::MainContext::default().spawn_local(async move {
-        match func.await {
-            Ok(()) => (),
-            Err(app_error) => app_error.handle(),
-        }
-    });
-}
-
-pub fn do_async<F>(func: F)
-where
-    F: Future<Output = Result<(), AppError>> + Send + 'static,
-{
-    glib::MainContext::default().spawn(async move {
         match func.await {
             Ok(()) => (),
             Err(app_error) => app_error.handle(),
