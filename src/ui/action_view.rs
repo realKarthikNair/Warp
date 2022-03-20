@@ -3,6 +3,7 @@ use crate::glib::clone;
 use crate::globals;
 use crate::ui::window::WarpApplicationWindow;
 use crate::util::{do_async, AppError, UIError};
+use gettextrs::*;
 use gtk::glib;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
@@ -115,7 +116,7 @@ mod imp {
                     let window = WarpApplicationWindow::default();
                     let clipboard = window.display().clipboard();
                     clipboard.set_text(&code);
-                    let toast = adw::Toast::new("Copied code to clipboard");
+                    let toast = adw::Toast::new(gettext("Copied code to clipboard"));
                     toast.set_timeout(3);
                     toast.set_priority(adw::ToastPriority::Normal);
                     window.toast_overlay().add_toast(&toast);
@@ -201,10 +202,10 @@ impl ActionView {
 
                 match direction {
                     TransferDirection::Send => {
-                        self_.status_page.set_title("Waiting for code");
+                        self_.status_page.set_title(&gettext("Waiting for code"));
                         self_
                             .status_page
-                            .set_description(Some("Code is being requested"));
+                            .set_description(Some(&gettext("Code is being requested")));
                     }
                     TransferDirection::Receive => {}
                 }
@@ -213,22 +214,24 @@ impl ActionView {
                 TransferDirection::Send => {
                     self_
                         .status_page
-                        .set_title("Please send the code to the receiver");
+                        .set_title(&gettext("Please send the code to the receiver"));
                     self_.status_page.set_description(None);
                     self_.code_box.set_visible(true);
                     self_.code_entry.set_text(&code);
                     self_.progress_bar.set_visible(false);
                 }
                 TransferDirection::Receive => {
-                    self_.status_page.set_title("Waiting for connection");
                     self_
                         .status_page
-                        .set_description(Some(&format!("Connecting to peer with code {}", code)));
+                        .set_title(&gettext("Waiting for connection"));
+                    self_
+                        .status_page
+                        .set_description(Some(&gettext!("Connecting to peer with code {}", code)));
                     self_.progress_bar.set_visible(true);
                 }
             },
             UIState::Connected => {
-                self_.status_page.set_title("Connected to peer");
+                self_.status_page.set_title(&gettext("Connected to peer"));
                 self_.code_box.set_visible(false);
                 self_.progress_bar.set_visible(true);
 
@@ -236,7 +239,7 @@ impl ActionView {
                     TransferDirection::Send => {
                         self_
                             .status_page
-                            .set_description(Some("Preparing to send file"));
+                            .set_description(Some(&gettext("Preparing to send file")));
                         self_
                             .status_page
                             .set_icon_name(Some("horizontal-arrows-left-symbolic"));
@@ -244,7 +247,7 @@ impl ActionView {
                     TransferDirection::Receive => {
                         self_
                             .status_page
-                            .set_description(Some("Preparing to receive file"));
+                            .set_description(Some(&gettext("Preparing to receive file")));
                         self_
                             .status_page
                             .set_icon_name(Some("horizontal-arrows-right-symbolic"));
@@ -255,13 +258,19 @@ impl ActionView {
                 self.show_progress_indeterminate(false);
                 self_.progress_bar.set_show_text(true);
                 if direction == TransferDirection::Send {
-                    self_.status_page.set_description(Some("Sending file"));
+                    self_
+                        .status_page
+                        .set_description(Some(&gettext("Sending file")));
                 } else {
-                    self_.status_page.set_description(Some("Receiving file"));
+                    self_
+                        .status_page
+                        .set_description(Some(&gettext("Receiving file")));
                 }
             }
             UIState::Done(path) => {
-                self_.status_page.set_title("File transfer successful");
+                self_
+                    .status_page
+                    .set_title(&gettext("File transfer successful"));
                 self_.back_button.set_visible(true);
                 self_.cancel_button.set_visible(false);
                 self_
@@ -271,10 +280,10 @@ impl ActionView {
                 if direction == TransferDirection::Send {
                     self_
                         .status_page
-                        .set_description(Some("Successfully sent file"));
+                        .set_description(Some(&gettext("Successfully sent file")));
                 } else {
                     let filename = path.file_name().unwrap();
-                    self_.status_page.set_description(Some(&format!(
+                    self_.status_page.set_description(Some(&gettext!(
                         "File has been saved to the Downloads folder as {}",
                         filename.to_string_lossy()
                     )));
@@ -495,8 +504,8 @@ impl ActionView {
 
     fn save_file_dialog(filename: &Path, size: u64) -> gtk::MessageDialog {
         gtk::builders::MessageDialogBuilder::new()
-            .text("Receive file?")
-            .secondary_text(&format!(
+            .text(&gettext("Receive file?"))
+            .secondary_text(&gettext!(
                 "Filename: {}\nSize: {}",
                 filename.display(),
                 pretty_bytes::converter::convert(size as f64)
@@ -537,7 +546,10 @@ impl ActionView {
         let path = if let Some(downloads) = glib::user_special_dir(glib::UserDirectory::Downloads) {
             downloads
         } else {
-            return Err(UIError::new("Downloads dir missing. Please set XDG_DOWNLOADS_DIR").into());
+            return Err(UIError::new(&gettext(
+                "Downloads dir missing. Please set XDG_DOWNLOADS_DIR",
+            ))
+            .into());
         };
 
         self.transmit(path, Some(Code(code)), TransferDirection::Receive)

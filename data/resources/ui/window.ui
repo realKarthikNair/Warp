@@ -62,15 +62,15 @@
                                 <child>
                                   <object class="AdwStatusPage">
                                     <property name="vexpand">True</property>
-                                    <property name="title">Send files or directories</property>
-                                    <property name="description">Please select the file you want to send</property>
+                                    <property name="title" translatable="yes">Send files or directories</property>
+                                    <property name="description" translatable="yes">Please select the file you want to send</property>
                                     <property name="icon-name">horizontal-arrows-right-symbolic</property>
                                     <child>
                                       <object class="GtkBox">
                                         <property name="orientation">vertical</property>
                                         <child>
                                           <object class="GtkButton" id="send_select_file_button">
-                                            <property name="label">Select file</property>
+                                            <property name="label" translatable="yes">Select file</property>
                                             <style>
                                               <class name="suggested-action"/>
                                             </style>
@@ -87,7 +87,7 @@
                         <child>
                           <object class="AdwViewStackPage">
                             <property name="name">receive</property>
-                            <property name="title">Receive</property>
+                            <property name="title" translatable="yes">Receive</property>
                             <property name="icon-name">horizontal-arrows-left-symbolic</property>
                             <property name="child">
                               <object class="GtkBox">
@@ -95,8 +95,8 @@
                                 <child>
                                   <object class="AdwStatusPage">
                                     <property name="vexpand">True</property>
-                                    <property name="title">Receive files or directories</property>
-                                    <property name="description">Please enter the warp code from the sender</property>
+                                    <property name="title" translatable="yes">Receive files or directories</property>
+                                    <property name="description" translatable="yes">Please enter the warp code from the sender</property>
                                     <property name="icon-name">horizontal-arrows-left-symbolic</property>
                                     <child>
                                       <object class="GtkBox">
@@ -106,13 +106,13 @@
                                         </style>
                                         <child>
                                           <object class="GtkEntry" id="code_entry">
-                                            <property name="placeholder-text">Warp Code</property>
+                                            <property name="placeholder-text" translatable="yes">Warp Code</property>
                                             <property name="hexpand">True</property>
                                           </object>
                                         </child>
                                         <child>
                                           <object class="GtkButton" id="receive_button">
-                                            <property name="label">Receive File</property>
+                                            <property name="label" translatable="yes">Receive File</property>
                                             <style>
                                               <class name="suggested-action"/>
                                             </style>

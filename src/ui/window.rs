@@ -1,4 +1,5 @@
 use crate::ui::action_view::ActionView;
+use gettextrs::*;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use gtk::{gio, glib, ResponseType};
@@ -71,11 +72,11 @@ mod imp {
             self.leaflet.append(&self.action_view);
             let chooser = self.file_chooser.get_or_init(move || {
                 gtk::FileChooserNative::new(
-                    Some("Select files / folders to send"),
+                    Some(&gettext("Select files / folders to send")),
                     Some(obj),
                     gtk::FileChooserAction::Open,
-                    Some("Open"),
-                    Some("Cancel"),
+                    Some(&gettext("Open")),
+                    Some(&gettext("Cancel")),
                 )
             });
 

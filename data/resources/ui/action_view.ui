@@ -35,8 +35,8 @@
         <child>
           <object class="AdwStatusPage" id="status_page">
             <property name="vexpand">True</property>
-            <property name="title">Operation in progress</property>
-            <property name="description">Waiting for connection</property>
+            <property name="title" translatable="yes">Operation in progress</property>
+            <property name="description" translatable="yes">Waiting for connection</property>
             <property name="icon-name">arrows-questionmark-symbolic</property>
             <child>
               <object class="GtkBox">
@@ -69,7 +69,7 @@
                   <object class="GtkButton" id="open_button">
                     <property name="tooltip-text" translatable="yes">Open File</property>
                     <property name="visible">False</property>
-                    <property name="label">Open File</property>
+                    <property name="label" translatable="yes">Open File</property>
                     <style>
                       <class name="suggested-action"/>
                     </style>
