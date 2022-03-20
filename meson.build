@@ -66,6 +66,6 @@ subdir('src')
 
 gnome.post_install(
   gtk_update_icon_cache: true,
-  glib_compile_schemas: true,
+  glib_compile_schemas: false,
   update_desktop_database: true,
 )

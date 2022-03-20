@@ -1,19 +1,43 @@
+use super::util;
 use crate::glib::clone;
 use crate::globals;
 use crate::ui::window::WarpApplicationWindow;
-use crate::util;
 use crate::util::{do_async, AppError, UIError};
-use async_std::fs::OpenOptions;
 use gtk::glib;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
-use std::ffi::OsString;
 use std::future::Future;
-use std::io::ErrorKind;
 use std::path::{Path, PathBuf};
 use std::time::Duration;
 use wormhole::transfer::TransferError;
 use wormhole::{transfer, transit, Code, Wormhole};
+
+#[derive(Clone, Debug, PartialEq)]
+pub enum UIState {
+    Initial,
+    HasCode(Code),
+    Connected,
+    Transmitting,
+    Done(PathBuf),
+}
+
+impl Default for UIState {
+    fn default() -> Self {
+        Self::Initial
+    }
+}
+
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum TransferDirection {
+    Send,
+    Receive,
+}
+
+impl Default for TransferDirection {
+    fn default() -> Self {
+        Self::Send
+    }
+}
 
 mod imp {
     use super::*;
@@ -49,6 +73,8 @@ mod imp {
         pub cancel_sender: OnceCell<async_channel::Sender<bool>>,
         pub cancel_receiver: OnceCell<async_channel::Receiver<bool>>,
         pub filename: RefCell<Option<PathBuf>>,
+        pub direction: RefCell<TransferDirection>,
+        pub ui_state: RefCell<UIState>,
     }
 
     #[glib::object_subclass]
@@ -128,6 +154,139 @@ impl ActionView {
         glib::Object::new(&[]).expect("Failed to create ActionView")
     }
 
+    fn set_ui_state(&self, ui_state: UIState) {
+        imp::ActionView::from_instance(self)
+            .ui_state
+            .replace(ui_state);
+        self.update_ui();
+    }
+
+    fn ui_state(&self) -> UIState {
+        imp::ActionView::from_instance(self)
+            .ui_state
+            .borrow()
+            .clone()
+    }
+
+    fn set_direction(&self, direction: TransferDirection) {
+        imp::ActionView::from_instance(self)
+            .direction
+            .replace(direction);
+    }
+
+    fn direction(&self) -> TransferDirection {
+        imp::ActionView::from_instance(self)
+            .direction
+            .borrow()
+            .clone()
+    }
+
+    fn update_ui(&self) {
+        let self_ = imp::ActionView::from_instance(self);
+        let direction = self.direction();
+        let ui_state = self.ui_state();
+
+        match ui_state {
+            UIState::Initial => {
+                self_.filename.replace(None);
+                self_.open_button.set_visible(false);
+                self_.cancel_button.set_visible(true);
+                self_.back_button.set_visible(false);
+                self_.code_box.set_visible(false);
+                self_.cancel.set(false);
+                self_.progress_bar.set_visible(true);
+                self_.progress_bar.set_show_text(false);
+                self_
+                    .status_page
+                    .set_icon_name(Some("arrows-questionmark-symbolic"));
+                self.show_progress_indeterminate(true);
+
+                match direction {
+                    TransferDirection::Send => {
+                        self_.status_page.set_title("Waiting for code");
+                        self_
+                            .status_page
+                            .set_description(Some("Code is being requested"));
+                    }
+                    TransferDirection::Receive => {}
+                }
+            }
+            UIState::HasCode(code) => match direction {
+                TransferDirection::Send => {
+                    self_
+                        .status_page
+                        .set_title("Please send the code to the receiver");
+                    self_.status_page.set_description(None);
+                    self_.code_box.set_visible(true);
+                    self_.code_entry.set_text(&code);
+                    self_.progress_bar.set_visible(false);
+                }
+                TransferDirection::Receive => {
+                    self_.status_page.set_title("Waiting for connection");
+                    self_
+                        .status_page
+                        .set_description(Some(&format!("Connecting to peer with code {}", code)));
+                    self_.progress_bar.set_visible(true);
+                }
+            },
+            UIState::Connected => {
+                self_.status_page.set_title("Connected to peer");
+                self_.code_box.set_visible(false);
+                self_.progress_bar.set_visible(true);
+
+                match direction {
+                    TransferDirection::Send => {
+                        self_
+                            .status_page
+                            .set_description(Some("Preparing to send file"));
+                        self_
+                            .status_page
+                            .set_icon_name(Some("horizontal-arrows-left-symbolic"));
+                    }
+                    TransferDirection::Receive => {
+                        self_
+                            .status_page
+                            .set_description(Some("Preparing to receive file"));
+                        self_
+                            .status_page
+                            .set_icon_name(Some("horizontal-arrows-right-symbolic"));
+                    }
+                }
+            }
+            UIState::Transmitting => {
+                self.show_progress_indeterminate(false);
+                self_.progress_bar.set_show_text(true);
+                if direction == TransferDirection::Send {
+                    self_.status_page.set_description(Some("Sending file"));
+                } else {
+                    self_.status_page.set_description(Some("Receiving file"));
+                }
+            }
+            UIState::Done(path) => {
+                self_.status_page.set_title("File transfer successful");
+                self_.back_button.set_visible(true);
+                self_.cancel_button.set_visible(false);
+                self_
+                    .status_page
+                    .set_icon_name(Some("checkmark-large-symbolic"));
+
+                if direction == TransferDirection::Send {
+                    self_
+                        .status_page
+                        .set_description(Some("Successfully sent file"));
+                } else {
+                    let filename = path.file_name().unwrap();
+                    self_.status_page.set_description(Some(&format!(
+                        "File has been saved to the Downloads folder as {}",
+                        filename.to_string_lossy()
+                    )));
+                    self_.filename.replace(Some(path));
+                    self_.open_button.set_visible(true);
+                }
+            }
+        }
+    }
+
     pub fn cancel(&self) {
         let self_ = imp::ActionView::from_instance(self);
 
@@ -164,47 +323,35 @@ impl ActionView {
         }
     }
 
-    pub fn transmit(&self, path: Option<PathBuf>, code: Option<Code>, send: bool) {
-        let self_ = imp::ActionView::from_instance(self);
-
-        if send {
-            let path = path.as_ref().unwrap();
-            if let Ok(path_str) = path.clone().into_os_string().into_string() {
-                log::debug!("Picked file: {}", path_str);
-                self_.status_page.set_title("Waiting for code");
-                self_
-                    .status_page
-                    .set_description(Some("Code is being requested"));
-            } else {
-                log::error!("Path not convertible to string");
-                return;
-            }
-        } else {
-            log::debug!("Receiving file");
-            let code = code.as_ref().unwrap().clone();
-            self_.status_page.set_title("Waiting for connection");
-            self_
-                .status_page
-                .set_description(Some(&format!("Connecting to peer with code {}", code)));
-        }
-
-        self_.filename.replace(None);
-        self_.open_button.set_visible(false);
-        self_.cancel_button.set_visible(true);
-        self_.back_button.set_visible(false);
-        self_.code_box.set_visible(false);
-        self_.cancel.set(false);
-        self_.progress_bar.set_visible(true);
-        self_.progress_bar.set_show_text(false);
-        self_
-            .status_page
-            .set_icon_name(Some("arrows-questionmark-symbolic"));
-        self.show_progress_indeterminate(true);
+    fn transmit(
+        &self,
+        path: PathBuf,
+        code: Option<Code>,
+        direction: TransferDirection,
+    ) -> Result<(), AppError> {
+        self.set_direction(direction);
+        self.set_ui_state(UIState::Initial);
         WarpApplicationWindow::default()
             .leaflet()
             .navigate(adw::NavigationDirection::Forward);
 
-        util::do_async(
+        match direction {
+            TransferDirection::Send => {
+                if let Ok(path_str) = path.clone().into_os_string().into_string() {
+                    log::debug!("Picked file: {}", path_str);
+                } else {
+                    log::error!("Path not convertible to string");
+                    return Err(UIError::new("Path not convertible to string").into());
+                }
+            }
+            TransferDirection::Receive => {
+                log::debug!("Receiving file");
+                let code = code.as_ref().unwrap().clone();
+                self.set_ui_state(UIState::HasCode(code));
+            }
+        };
+
+        do_async(
             clone!(@strong self as obj => @default-return Ok(()), async move {
                 let obj_ = imp::ActionView::from_instance(&obj);
 
@@ -213,7 +360,7 @@ impl ActionView {
 
                 let wormhole;
 
-                if send {
+                if direction == TransferDirection::Send {
                     let res = Wormhole::connect_without_code(globals::WORMHOLE_APPCFG.clone(), 4).await;
                     let (welcome, connection)= match res {
                         Ok(tuple) => tuple,
@@ -221,26 +368,16 @@ impl ActionView {
                             return Err(err.into());
                         }
                     };
-                    obj_.status_page.set_title("Please send the code to the receiver");
-                    obj_.status_page.set_description(None);
-                    obj_.code_box.set_visible(true);
-                    obj_.code_entry.set_text(&welcome.code);
-                    obj_.progress_bar.set_visible(false);
 
+                    obj.set_ui_state(UIState::HasCode(welcome.code.clone()));
                     wormhole = connection.await?;
-                    obj_.status_page.set_title("Connected to peer");
-                    obj_.status_page.set_description(Some("Preparing to send file"));
-                    obj_.status_page.set_icon_name(Some("horizontal-arrows-left-symbolic"));
-                    obj_.code_box.set_visible(false);
-                    obj_.progress_bar.set_visible(true);
                 } else {
                     let code = code.unwrap();
                     let (_welcome, connection) = Wormhole::connect_with_code(globals::WORMHOLE_APPCFG.clone(), code).await?;
                     wormhole = connection;
-                    obj_.status_page.set_title("Connected to peer");
-                    obj_.status_page.set_description(Some("Preparing to receive file"));
-                    obj_.status_page.set_icon_name(Some("horizontal-arrows-right-symbolic"));
                 }
+
+                obj.set_ui_state(UIState::Connected);
 
                 // Handle delayed cancel that happens before wormhole creation
                 if obj_.cancel.get() {
@@ -249,29 +386,9 @@ impl ActionView {
                 }
 
                 let transit_abilities = transit::Abilities::ALL_ABILITIES;
-                let progress_handler = move |sent: u64, total: u64| {
-                    glib::MainContext::default().invoke(move ||{
-                        let obj = WarpApplicationWindow::default().action_view();
-                        let obj_ = imp::ActionView::from_instance(&obj);
-                        if sent == 0 {
-                            obj.show_progress_indeterminate(false);
-                            obj_.progress_bar.set_show_text(true);
-                            if send {
-                                obj_.status_page.set_description(Some("Sending file"));
-                            } else {
-                                obj_.status_page.set_description(Some("Receiving file"));
-                            }
-                        }
-
-                        obj_.progress_bar.set_fraction(sent as f64 / total as f64);
-                        obj_.progress_bar.set_text(Some(&format!("{} / {}", pretty_bytes::converter::convert(sent as f64), pretty_bytes::converter::convert(total as f64))));
-                    });
-                };
-
                 let transit_url = url::Url::parse(globals::WORMHOLE_TRANSIT_RELAY)?;
 
-                if send {
-                    let path = path.as_ref().unwrap().clone();
+                if direction == TransferDirection::Send {
                     let filename = PathBuf::from(&path.file_name().ok_or_else(|| UIError::new("Path error"))?);
 
                     async_std::task::spawn(async move {
@@ -280,11 +397,11 @@ impl ActionView {
                             &path,
                             &filename,
                             transit_abilities,
-                            progress_handler,
+                            Self::progress_handler,
                             Self::cancel_future()
                         ).await;
 
-                        Self::handle_transfer_result(res, &path, send);
+                        Self::handle_transfer_result(res, &path);
                     });
                 } else {
                     // receive
@@ -301,17 +418,7 @@ impl ActionView {
                         return Ok(());
                     };
 
-                    let dialog = gtk::builders::MessageDialogBuilder::new()
-                        .text("Receive file?")
-                        .secondary_text(
-                            &format!("Filename: {}\nSize: {}",
-                                request.filename.display(),
-                                pretty_bytes::converter::convert(request.filesize as f64)))
-                        .buttons(gtk::ButtonsType::OkCancel)
-                        .transient_for(&WarpApplicationWindow::default())
-                        .modal(true)
-                        .build();
-
+                    let dialog = Self::save_file_dialog(&request.filename, request.filesize);
                     let answer = dialog.run_future().await;
                     dialog.close();
 
@@ -319,19 +426,16 @@ impl ActionView {
                         async_std::task::spawn(async move {
                             let _ = request.reject().await;
                         });
+
                         obj.cancel();
                         return Ok(());
                     }
 
                     let request_filename = request.filename.clone();
-                    let path = if let Some(downloads) = glib::user_special_dir(glib::UserDirectory::Downloads) {
-                        downloads.join(&request_filename)
-                    } else {
-                        return Err(UIError::new("Downloads dir missing. Please set XDG_DOWNLOADS_DIR").into());
-                    };
+                    let path = path.join(&request_filename);
 
                     async_std::task::spawn(async move {
-                        let (file_res, path) = Self::open_file_find_new_filename_if_exists(&path).await;
+                        let (file_res, path) = util::open_file_find_new_filename_if_exists(&path).await;
                         log::info!("Downloading file to {:?}", path.to_str());
 
                         let mut file = if let Ok(file) = file_res {
@@ -341,69 +445,16 @@ impl ActionView {
                             return;
                         };
 
-                        let res = request.accept(progress_handler, &mut file, Self::cancel_future()).await;
-                        Self::handle_transfer_result(res, &path, false);
+                        let res = request.accept(Self::progress_handler, &mut file, Self::cancel_future()).await;
+                        Self::handle_transfer_result(res, &path);
                     });
                 }
 
                 Ok(())
             }),
         );
-    }
 
-    async fn open_file_find_new_filename_if_exists(
-        path: &Path,
-    ) -> (std::io::Result<async_std::fs::File>, PathBuf) {
-        let mut file_stem: String = path
-            .file_stem()
-            .unwrap_or(&OsString::new())
-            .to_string_lossy()
-            .into();
-        if file_stem.is_empty() {
-            file_stem = "Downloaded file".to_string();
-        }
-
-        let orig_file_stem = file_stem.clone();
-
-        let mut file_ext: String = path
-            .extension()
-            .unwrap_or(&OsString::new())
-            .to_string_lossy()
-            .into();
-        if file_ext.is_empty() {
-            file_ext = "bin".to_string();
-        }
-
-        let mut i = 1;
-        let mut filename;
-        let mut file_res;
-        let dir = path.parent().unwrap_or(&PathBuf::from(".")).to_path_buf();
-        let mut path;
-
-        loop {
-            filename = PathBuf::from(file_stem.clone());
-            filename.set_extension(file_ext.clone());
-
-            path = dir.join(filename);
-            file_res = OpenOptions::new()
-                .write(true)
-                .create_new(true)
-                .truncate(true)
-                .open(&path)
-                .await;
-            if let Err(err) = &file_res {
-                if err.kind() != ErrorKind::AlreadyExists {
-                    break;
-                }
-
-                file_stem = format!("{} ({})", orig_file_stem, i);
-                i += 1;
-            } else {
-                break;
-            }
-        }
-
-        (file_res, path)
+        Ok(())
     }
 
     fn cancel_future() -> impl Future<Output = ()> {
@@ -430,7 +481,39 @@ impl ActionView {
         }
     }
 
-    fn handle_transfer_result(res: Result<(), TransferError>, path: &Path, send: bool) {
+    fn progress_handler(sent: u64, total: u64) {
+        glib::MainContext::default().invoke(move || {
+            let obj = WarpApplicationWindow::default().action_view();
+            let obj_ = imp::ActionView::from_instance(&obj);
+
+            if *obj_.ui_state.borrow() != UIState::Transmitting {
+                obj.set_ui_state(UIState::Transmitting);
+            }
+
+            obj_.progress_bar.set_fraction(sent as f64 / total as f64);
+            obj_.progress_bar.set_text(Some(&format!(
+                "{} / {}",
+                pretty_bytes::converter::convert(sent as f64),
+                pretty_bytes::converter::convert(total as f64)
+            )));
+        });
+    }
+
+    fn save_file_dialog(filename: &Path, size: u64) -> gtk::MessageDialog {
+        gtk::builders::MessageDialogBuilder::new()
+            .text("Receive file?")
+            .secondary_text(&format!(
+                "Filename: {}\nSize: {}",
+                filename.display(),
+                pretty_bytes::converter::convert(size as f64)
+            ))
+            .buttons(gtk::ButtonsType::OkCancel)
+            .transient_for(&WarpApplicationWindow::default())
+            .modal(true)
+            .build()
+    }
+
+    fn handle_transfer_result(res: Result<(), TransferError>, path: &Path) {
         let path = path.to_path_buf();
 
         glib::MainContext::default().invoke(move || {
@@ -440,28 +523,8 @@ impl ActionView {
             obj_.progress_bar.set_fraction(1.0);
 
             match res {
-                Ok(_) => {
-                    obj_.status_page.set_title("File transfer successful");
-                    obj_.back_button.set_visible(true);
-                    obj_.cancel_button.set_visible(false);
-                    obj_.status_page
-                        .set_icon_name(Some("checkmark-large-symbolic"));
-
-                    if send {
-                        obj_.status_page
-                            .set_description(Some("Successfully sent file"));
-                    } else {
-                        obj_.status_page.set_description(Some(&format!(
-                            "File has been saved to {}",
-                            path.to_str().unwrap()
-                        )));
-                        obj_.filename.replace(Some(path));
-                        obj_.open_button.set_visible(true);
-                    }
-                }
+                Ok(_) => obj.set_ui_state(UIState::Done(path)),
                 Err(err) => {
-                    obj_.status_page
-                        .set_icon_name(Some("checkmark-large-symbolic"));
                     obj.cancel();
                     AppError::from(err).handle();
                 }
@@ -470,11 +533,25 @@ impl ActionView {
     }
 
     pub fn send_file(&self, path: PathBuf) {
-        self.transmit(Some(path), None, true);
+        if let Err(err) = self.transmit(path, None, TransferDirection::Send) {
+            err.handle();
+        }
+    }
+
+    fn receive_file_impl(&self, code: String) -> Result<(), AppError> {
+        let path = if let Some(downloads) = glib::user_special_dir(glib::UserDirectory::Downloads) {
+            downloads
+        } else {
+            return Err(UIError::new("Downloads dir missing. Please set XDG_DOWNLOADS_DIR").into());
+        };
+
+        self.transmit(path, Some(Code(code)), TransferDirection::Receive)
     }
 
     pub fn receive_file(&self, code: String) {
-        self.transmit(None, Some(Code(code)), false);
+        if let Err(err) = self.receive_file_impl(code) {
+            err.handle();
+        }
     }
 }
 
