@@ -26,3 +26,7 @@ Once the project is built, run the command below.
 ```
 flatpak-builder --run flatpak_app build-aux/net.felinira.warp.Devel.json warp
 ```
+
+# Attribution
+App Icon: Icon by <a href="svgrepo.com">svgrepo.com</a>
+Symbolic icon: <div>Icon made from <a href="http://www.onlinewebfonts.com/icon">Icon Fonts</a> is licensed by CC BY 3.0</div>

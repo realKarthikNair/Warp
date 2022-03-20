@@ -131,16 +131,20 @@ impl WarpApplication {
     fn show_about_dialog(&self) {
         let dialog = gtk::AboutDialog::builder()
             .logo_icon_name(APP_ID)
-            // Insert your license of choice here
-            // .license_type(gtk::License::MitX11)
-            // Insert your website here
-            // .website("https://gitlab.gnome.org/bilelmoussaoui/warp/")
+            .license_type(gtk::License::Gpl30)
+            .website("https://gitlab.gnome.org/felinira/warp/")
             .version(VERSION)
             .transient_for(&self.main_window())
             .translator_credits(&gettext("translator-credits"))
             .modal(true)
             .authors(vec!["Fina Wilke".into()])
-            .artists(vec!["Fina Wilke".into()])
+            .artists(vec![
+                "Fina Wilke".into(),
+                "App Icon by <a href=\"svgrepo.com\">svgrepo.com</a>".into(),
+                "Symbolic icon made from <a href=\"http://www.onlinewebfonts.com/icon\">Icon \
+                Fonts</a> is licensed by CC BY 3.0"
+                    .into(),
+            ])
             .build();
 
         dialog.present();
