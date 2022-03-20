@@ -87,6 +87,7 @@ mod imp {
                     ResponseType::Accept => {
                         if let Some(file) = chooser.file() {
                             if let Some(path) = file.path() {
+                                log::debug!("Picked file: {}", path.display());
                                 self_.action_view.send_file(path);
                             } else {
                                 log::error!("File chooser has file but path is None")

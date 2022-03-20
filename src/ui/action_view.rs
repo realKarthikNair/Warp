@@ -42,7 +42,7 @@ impl Default for TransferDirection {
 mod imp {
     use super::*;
     use gtk::gdk::AppLaunchContext;
-    use std::cell::{Cell, RefCell};
+    use std::cell::RefCell;
 
     use crate::glib::clone;
     use gtk::gio::AppInfo;
@@ -69,7 +69,6 @@ mod imp {
         #[template_child]
         pub code_copy_button: TemplateChild<gtk::Button>,
         pub progress_timeout_source_id: RefCell<Option<glib::source::SourceId>>,
-        pub cancel: Cell<bool>,
         pub cancel_sender: OnceCell<async_channel::Sender<bool>>,
         pub cancel_receiver: OnceCell<async_channel::Receiver<bool>>,
         pub filename: RefCell<Option<PathBuf>>,
@@ -193,7 +192,6 @@ impl ActionView {
                 self_.cancel_button.set_visible(true);
                 self_.back_button.set_visible(false);
                 self_.code_box.set_visible(false);
-                self_.cancel.set(false);
                 self_.progress_bar.set_visible(true);
                 self_.progress_bar.set_show_text(false);
                 self_
@@ -280,7 +278,6 @@ impl ActionView {
                         "File has been saved to the Downloads folder as {}",
                         filename.to_string_lossy()
                     )));
-                    self_.filename.replace(Some(path));
                     self_.open_button.set_visible(true);
                 }
             }
@@ -288,12 +285,18 @@ impl ActionView {
     }
 
     pub fn cancel(&self) {
-        let self_ = imp::ActionView::from_instance(self);
-
-        self_.cancel.set(true);
+        log::info!("Cancelling transfer");
 
         do_async(clone!(@strong self as obj => async move {
-            imp::ActionView::from_instance(&obj).cancel_sender.get().unwrap().send(true).await.unwrap();
+            let obj_ = imp::ActionView::from_instance(&obj);
+            obj_.cancel_sender.get().unwrap().send(true).await.unwrap();
+
+            if let Some(path) = obj_.filename.borrow().clone() {
+                log::info!("Removing partially downloaded file '{}'", path.display());
+                if let Err(err) = std::fs::remove_file(&path) {
+                    log::error!("Error removing {}: {}", path.display(), err);
+                }
+            }
             Ok(())
         }));
 
@@ -335,21 +338,10 @@ impl ActionView {
             .leaflet()
             .navigate(adw::NavigationDirection::Forward);
 
-        match direction {
-            TransferDirection::Send => {
-                if let Ok(path_str) = path.clone().into_os_string().into_string() {
-                    log::debug!("Picked file: {}", path_str);
-                } else {
-                    log::error!("Path not convertible to string");
-                    return Err(UIError::new("Path not convertible to string").into());
-                }
-            }
-            TransferDirection::Receive => {
-                log::debug!("Receiving file");
-                let code = code.as_ref().unwrap().clone();
-                self.set_ui_state(UIState::HasCode(code));
-            }
-        };
+        if direction == TransferDirection::Receive {
+            let code = code.as_ref().unwrap().clone();
+            self.set_ui_state(UIState::HasCode(code));
+        }
 
         do_async(
             clone!(@strong self as obj => @default-return Ok(()), async move {
@@ -358,9 +350,7 @@ impl ActionView {
                 // Drain cancel receiver from any previous transfers
                 while let Ok(_) = obj_.cancel_receiver.get().unwrap().try_recv() {}
 
-                let wormhole;
-
-                if direction == TransferDirection::Send {
+                let wormhole = if direction == TransferDirection::Send {
                     let res = Wormhole::connect_without_code(globals::WORMHOLE_APPCFG.clone(), 4).await;
                     let (welcome, connection)= match res {
                         Ok(tuple) => tuple,
@@ -370,19 +360,21 @@ impl ActionView {
                     };
 
                     obj.set_ui_state(UIState::HasCode(welcome.code.clone()));
-                    wormhole = connection.await?;
+                    connection.await?
                 } else {
                     let code = code.unwrap();
                     let (_welcome, connection) = Wormhole::connect_with_code(globals::WORMHOLE_APPCFG.clone(), code).await?;
-                    wormhole = connection;
-                }
+                    connection
+                };
 
                 obj.set_ui_state(UIState::Connected);
 
                 // Handle delayed cancel that happens before wormhole creation
-                if obj_.cancel.get() {
-                    wormhole.close().await?;
-                    return Ok(());
+                if let Ok(cancel) = obj_.cancel_receiver.get().unwrap().try_recv() {
+                    if cancel {
+                        wormhole.close().await?;
+                        return Ok(());
+                    }
                 }
 
                 let transit_abilities = transit::Abilities::ALL_ABILITIES;
@@ -434,8 +426,10 @@ impl ActionView {
                     let request_filename = request.filename.clone();
                     let path = path.join(&request_filename);
 
+                    let (file_res, path) = util::open_file_find_new_filename_if_exists(&path).await;
+                    obj_.filename.replace(Some(path.clone()));
+
                     async_std::task::spawn(async move {
-                        let (file_res, path) = util::open_file_find_new_filename_if_exists(&path).await;
                         log::info!("Downloading file to {:?}", path.to_str());
 
                         let mut file = if let Ok(file) = file_res {
@@ -533,6 +527,7 @@ impl ActionView {
     }
 
     pub fn send_file(&self, path: PathBuf) {
+        log::info!("Sending file: {}", path.display());
         if let Err(err) = self.transmit(path, None, TransferDirection::Send) {
             err.handle();
         }
@@ -549,6 +544,7 @@ impl ActionView {
     }
 
     pub fn receive_file(&self, code: String) {
+        log::info!("Receiving file with code '{}'", code);
         if let Err(err) = self.receive_file_impl(code) {
             err.handle();
         }
