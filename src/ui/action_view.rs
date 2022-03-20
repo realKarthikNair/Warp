@@ -116,7 +116,7 @@ mod imp {
                     let window = WarpApplicationWindow::default();
                     let clipboard = window.display().clipboard();
                     clipboard.set_text(&code);
-                    let toast = adw::Toast::new(gettext("Copied code to clipboard"));
+                    let toast = adw::Toast::new(&gettext("Copied code to clipboard"));
                     toast.set_timeout(3);
                     toast.set_priority(adw::ToastPriority::Normal);
                     window.toast_overlay().add_toast(&toast);

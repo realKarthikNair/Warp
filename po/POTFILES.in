@@ -1,6 +1,14 @@
 data/net.felinira.warp.desktop.in.in
-data/net.felinira.warp.gschema.xml.in
 data/net.felinira.warp.metainfo.xml.in.in
+data/resources/ui/action_view.ui
 data/resources/ui/shortcuts.ui
 data/resources/ui/window.ui
-src/application.rs
+src/globals.rs
+src/macros.rs
+src/main.rs
+src/ui.rs
+src/ui/action_view.rs
+src/ui/application.rs
+src/ui/util.rs
+src/ui/window.rs
+src/util.rs
