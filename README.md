@@ -16,7 +16,8 @@ Make sure you have `flatpak` and `flatpak-builder` installed. Then run the comma
 
 ```
 flatpak install org.gnome.Sdk//41 org.freedesktop.Sdk.Extension.rust-stable//21.08 org.gnome.Platform//41
-flatpak-builder --user flatpak_app build-aux/net.felinira.warp.Devel.json
+cd build-aux
+flatpak-builder --user app net.felinira.warp.Devel.json
 ```
 
 ## Running the project
@@ -24,9 +25,9 @@ flatpak-builder --user flatpak_app build-aux/net.felinira.warp.Devel.json
 Once the project is built, run the command below.
 
 ```
-flatpak-builder --run flatpak_app build-aux/net.felinira.warp.Devel.json warp
+flatpak-builder --run app net.felinira.warp.Devel.json warp
 ```
 
 # Attribution
-App Icon: Icon by <a href="svgrepo.com">svgrepo.com</a>
-Symbolic icon: <div>Icon made from <a href="http://www.onlinewebfonts.com/icon">Icon Fonts</a> is licensed by CC BY 3.0</div>
+<p>App icon by <a href="svgrepo.com">svgrepo.com</a></p>
+<p>Symbolic icon made from <a href="http://www.onlinewebfonts.com/icon">Icon Fonts</a> is licensed by CC BY 3.0</p>
