@@ -1,7 +1,9 @@
 use custom_error::custom_error;
+use gettextrs::gettext;
 use gtk::prelude::*;
 use gtk::{gio, glib};
 use std::future::Future;
+use std::io::ErrorKind;
 use std::sync::atomic::{AtomicBool, Ordering};
 use wormhole::transfer::TransferError;
 use wormhole::WormholeError;
@@ -49,7 +51,7 @@ impl AppError {
             };
 
             let msg1 = "An error occurred";
-            let msg2 = format!("{}", self);
+            let msg2 = self.gettext_error();
 
             if let Some(window) = window {
                 if window.is_visible() {
@@ -85,6 +87,53 @@ impl AppError {
             "An error occurred during application initialisation: {}",
             self
         );
+    }
+
+    fn gettext_error_wormhole(wormhole_error: &WormholeError) -> String {
+        match wormhole_error {
+            WormholeError::ProtocolJson(_) | WormholeError::Protocol(_) => {
+                gettext("Corrupt or unexpected message received")
+            }
+            WormholeError::ServerError(_) => gettext("Error with the rendezvous server connection"),
+            WormholeError::PakeFailed => gettext(
+                "Encryption key confirmation failed. If you or your peer didn't mistype the \
+                code, this is a sign of an attacker guessing passwords. Please try again some time \
+                later.",
+            ),
+            WormholeError::Crypto => gettext("Cannot decrypt a received message"),
+            _ => gettext("An unknown error occurred"),
+        }
+    }
+
+    fn gettext_error_io(io_error: &std::io::Error) -> String {
+        match io_error.kind() {
+            ErrorKind::NotFound => gettext("File / Directory not found"),
+            ErrorKind::PermissionDenied => gettext("Permission denied"),
+            _ => io_error.to_string(),
+        }
+    }
+
+    fn gettext_error(&self) -> String {
+        match self {
+            AppError::IO { source } => Self::gettext_error_io(source),
+            // TODO those should not appear publicly
+            AppError::URL { source } => source.to_string(),
+            AppError::TRANSFER { source } => match source {
+                TransferError::AckError => gettext("Transfer was not acknowledged by peer"),
+                TransferError::Checksum | TransferError::FilesystemSkew => gettext("The received file is corrupted"),
+                TransferError::FileSize { sent_size, file_size } => gettext!("The file contained a different amount of bytes than advertised! Sent {} bytes, but should have been {}", sent_size, file_size),
+                TransferError::PeerError(msg) => gettext(format!("Something went wrong on the other side: {}", msg)),
+                TransferError::UnsupportedOffer | TransferError::ProtocolJson(_) | TransferError::ProtocolMsgpack(_) | TransferError::Protocol(_) | TransferError::ProtocolUnexpectedMessage(_, _) => gettext("Corrupt or unexpected message received"),
+                TransferError::Wormhole(source) => Self::gettext_error_wormhole(source),
+                TransferError::TransitConnect(_) => gettext("Error while establishing file transfer connection"),
+                TransferError::Transit(_) => gettext("Unknown file transfer error"),
+                TransferError::IO(source) => Self::gettext_error_io(source),
+                _ => gettext("An unknown error occurred"),
+            },
+            AppError::WORMHOLE { source } => Self::gettext_error_wormhole(source),
+            // UIErrors are generated our code and already wrapped in gettext
+            AppError::UI { source } => source.to_string(),
+        }
     }
 }
 
