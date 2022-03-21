@@ -9,6 +9,10 @@
       <excludeFolder url="file://$MODULE_DIR$/_build" />
       <excludeFolder url="file://$MODULE_DIR$/build" />
       <excludeFolder url="file://$MODULE_DIR$/build-aux/app" />
+      <excludeFolder url="file://$MODULE_DIR$/.flatpak-builder" />
+      <excludeFolder url="file://$MODULE_DIR$/build-aux/.fenv" />
+      <excludeFolder url="file://$MODULE_DIR$/build-aux/_build" />
+      <excludeFolder url="file://$MODULE_DIR$/.fenv" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

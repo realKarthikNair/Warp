@@ -80,6 +80,11 @@ mod imp {
                 )
             });
 
+            self.code_entry.connect_has_focus_notify(|entry| {
+                // Select all text when entry is focused
+                entry.select_region(0, -1);
+            });
+
             chooser.set_modal(true);
             chooser.set_transient_for(Some(obj));
             chooser.connect_response(clone!(@strong obj as obj => move |chooser, response| {
@@ -148,11 +153,11 @@ impl WarpApplicationWindow {
     }
 
     pub fn navigate_back(&self) {
+        let self_ = imp::WarpApplicationWindow::from_instance(self);
         let leaflet = WarpApplicationWindow::default().leaflet();
         leaflet.navigate(adw::NavigationDirection::Back);
-        imp::WarpApplicationWindow::from_instance(self)
-            .action_view
-            .show_progress_indeterminate(false);
+        self_.action_view.show_progress_indeterminate(false);
+        self_.code_entry.set_text("");
     }
 
     pub fn leaflet(&self) -> adw::Leaflet {

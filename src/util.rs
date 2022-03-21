@@ -120,12 +120,32 @@ impl AppError {
             AppError::URL { source } => source.to_string(),
             AppError::TRANSFER { source } => match source {
                 TransferError::AckError => gettext("Transfer was not acknowledged by peer"),
-                TransferError::Checksum | TransferError::FilesystemSkew => gettext("The received file is corrupted"),
-                TransferError::FileSize { sent_size, file_size } => gettext!("The file contained a different amount of bytes than advertised! Sent {} bytes, but should have been {}", sent_size, file_size),
-                TransferError::PeerError(msg) => gettext(format!("Something went wrong on the other side: {}", msg)),
-                TransferError::UnsupportedOffer | TransferError::ProtocolJson(_) | TransferError::ProtocolMsgpack(_) | TransferError::Protocol(_) | TransferError::ProtocolUnexpectedMessage(_, _) => gettext("Corrupt or unexpected message received"),
+                TransferError::Checksum | TransferError::FilesystemSkew => {
+                    gettext("The received file is corrupted")
+                }
+                TransferError::FileSize {
+                    sent_size,
+                    file_size,
+                } => gettext!(
+                    "The file contained a different amount of bytes than advertised! Sent {} \
+                    bytes, but should have been {}",
+                    sent_size,
+                    file_size
+                ),
+                TransferError::PeerError(msg) => {
+                    gettext(format!("Something went wrong on the other side: {}", msg))
+                }
+                TransferError::UnsupportedOffer
+                | TransferError::ProtocolJson(_)
+                | TransferError::ProtocolMsgpack(_)
+                | TransferError::Protocol(_)
+                | TransferError::ProtocolUnexpectedMessage(_, _) => {
+                    gettext("Corrupt or unexpected message received")
+                }
                 TransferError::Wormhole(source) => Self::gettext_error_wormhole(source),
-                TransferError::TransitConnect(_) => gettext("Error while establishing file transfer connection"),
+                TransferError::TransitConnect(_) => {
+                    gettext("Error while establishing file transfer connection")
+                }
                 TransferError::Transit(_) => gettext("Unknown file transfer error"),
                 TransferError::IO(source) => Self::gettext_error_io(source),
                 _ => gettext("An unknown error occurred"),

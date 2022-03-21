@@ -13,7 +13,9 @@
         "--device=dri",
         "--env=RUST_LOG=warp=debug",
         "--env=G_MESSAGES_DEBUG=none",
-        "--env=RUST_BACKTRACE=1"
+        "--env=RUST_BACKTRACE=1",
+        "--share=network",
+        "--filesystem=xdg-download"
     ],
     "build-options" : {
         "append-path" : "/usr/lib/sdk/rust-stable/bin",

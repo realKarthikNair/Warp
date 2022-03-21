@@ -350,6 +350,9 @@ impl ActionView {
         if direction == TransferDirection::Receive {
             let code = code.as_ref().unwrap().clone();
             self.set_ui_state(UIState::HasCode(code));
+        } else {
+            // Err immediately if we can't open the file
+            let _test_open_file = std::fs::File::open(path.clone())?;
         }
 
         do_async(
