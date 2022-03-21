@@ -96,9 +96,7 @@ impl AppError {
             }
             WormholeError::ServerError(_) => gettext("Error with the rendezvous server connection"),
             WormholeError::PakeFailed => gettext(
-                "Encryption key confirmation failed. If you or your peer didn't mistype the \
-                code, this is a sign of an attacker guessing passwords. Please try again some time \
-                later.",
+                "Encryption key confirmation failed. If you or your peer didn't mistype the code, this is a sign of an attacker guessing passwords. Please try again some time later.",
             ),
             WormholeError::Crypto => gettext("Cannot decrypt a received message"),
             _ => gettext("An unknown error occurred"),

@@ -6,21 +6,24 @@
   <!-- Insert your license of choice here -->
   <!-- <project_license>MIT</project_license> -->
   <name>Warp</name>
-  <summary>Write a GTK + Rust application</summary>
+  <summary>Share files with each other effortlessly</summary>
   <description>
-    <p>A boilerplate template for GTK + Rust. It uses Meson as a build system and has flatpak support by default.</p>
+    <p>Warp is designed to make it as simple and secure as possible to get files from one place to another. An internet
+       connection is required.</p>
+    <p>The best transfer method will be determined using <a href="https://magic-wormhole.readthedocs.io/en/latest/">Magic Wormhole</a>
+    which includes local network transfer if possible. Every file transfer is encrypted.</p>
   </description>
   <screenshots>
     <screenshot type="default">
-      <image>https://gitlab.gnome.org/bilelmoussaoui/warp/raw/master/data/resources/screenshots/screenshot1.png</image>
+      <image>https://gitlab.gnome.org/felinira/warp/raw/main/data/resources/screenshots/screenshot1.png</image>
       <caption>Main window</caption>
     </screenshot>
   </screenshots>
-  <url type="homepage">https://gitlab.gnome.org/bilelmoussaoui/warp</url>
-  <url type="bugtracker">https://gitlab.gnome.org/bilelmoussaoui/warp/issues</url>
+  <url type="homepage">https://gitlab.gnome.org/felinira/warp</url>
+  <url type="bugtracker">https://gitlab.gnome.org/felinira/warp/issues</url>
   <content_rating type="oars-1.0" />
   <releases>
-    <release version="0.0.1" date="2019-07-11" />
+    <release version="0.0.1" date="2022-03-21" />
   </releases>
   <kudos>
      <!--

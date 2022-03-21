@@ -10,3 +10,4 @@ src/config.rs
 vendor
 **/.flatpak-builder
 .fenv
+po/*.pot

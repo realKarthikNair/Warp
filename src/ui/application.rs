@@ -140,10 +140,9 @@ impl WarpApplication {
             .authors(vec!["Fina Wilke".into()])
             .artists(vec![
                 "Fina Wilke".into(),
-                gettext("App Icon by <a href=\"svgrepo.com\">svgrepo.com</a>"),
+                gettext("App Icon by <a href=\"https://svgrepo.com\">svgrepo.com</a>"),
                 gettext(
-                    "Symbolic icon made from <a href=\"http://www.onlinewebfonts.com/icon\">Icon \
-                Fonts</a> is licensed by CC BY 3.0",
+                    "Symbolic icon made from <a href=\"http://www.onlinewebfonts.com/icon\">Icon Fonts</a> is licensed by CC BY 3.0",
                 ),
             ])
             .build();

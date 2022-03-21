@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=Warp
-Comment=Write a GTK + Rust application
+Comment=Share files with each other effortlessly
 Type=Application
 Exec=warp
 Terminal=false

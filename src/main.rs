@@ -11,6 +11,7 @@ mod util;
 use crate::ui::application::WarpApplication;
 use gettextrs::{gettext, LocaleCategory};
 use gtk::glib;
+use std::env;
 
 use self::config::{GETTEXT_PACKAGE, LOCALEDIR};
 
@@ -19,9 +20,17 @@ fn main() {
     pretty_env_logger::init();
 
     // Prepare i18n
-    gettextrs::setlocale(LocaleCategory::LcAll, "");
-    gettextrs::bindtextdomain(GETTEXT_PACKAGE, LOCALEDIR).expect("Unable to bind the text domain");
-    gettextrs::textdomain(GETTEXT_PACKAGE).expect("Unable to switch to the text domain");
+    let mut text_domain = gettextrs::TextDomain::new(GETTEXT_PACKAGE);
+    if let Some(localedir) = option_env!("LOCALEDIR") {
+        text_domain = text_domain.prepend(localedir);
+    }
+
+    if let Err(err) = text_domain
+        .locale_category(gettextrs::LocaleCategory::LcAll)
+        .init()
+    {
+        log::info!("{}", err);
+    }
 
     glib::set_application_name(&gettext("Warp"));
 
