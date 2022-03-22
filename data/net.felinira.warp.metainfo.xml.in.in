@@ -3,22 +3,37 @@
 <component type="desktop-application">
   <id>@app-id@</id>
   <metadata_license>CC0</metadata_license>
-  <!-- Insert your license of choice here -->
-  <!-- <project_license>MIT</project_license> -->
+  <project_license>GPL-3.0</project_license>
   <name>Warp</name>
   <summary>Share files with each other effortlessly</summary>
   <description>
-    <p>Warp is designed to make it as simple and secure as possible to get files from one place to another. An internet
-       connection is required.</p>
-    <p>The best transfer method will be determined using <a href="https://magic-wormhole.readthedocs.io/en/latest/">Magic Wormhole</a>
-    which includes local network transfer if possible. Every file transfer is encrypted.</p>
+    <p>
+        Warp is designed to make it as simple and secure as possible to get files from one place to another. An internet connection is required.
+    </p>
+    <p>
+        The best transfer method will be determined using the “Magic Wormhole” application which includes local network transfer if possible.
+    </p>
+    <p>Features</p>
+    <ul>
+      <li>Send files between multiple devices</li>
+      <li>Every file transfer is encrypted</li>
+      <li>Directly transfer files on the local network if possible</li>
+      <li>Compatibility with the “Magic Wormhole” command line client</li>
+    </ul>
   </description>
   <screenshots>
     <screenshot type="default">
-      <image>https://gitlab.gnome.org/felinira/warp/raw/main/data/resources/screenshots/screenshot1.png</image>
+      <image>https://gitlab.gnome.org/felinira/warp/raw/main/data/screenshots/screenshot1.png</image>
       <caption>Main window</caption>
     </screenshot>
+    <screenshot>
+      <image>https://gitlab.gnome.org/felinira/warp/raw/main/data/screenshots/screenshot2.png</image>
+      <caption>File transfer</caption>
+    </screenshot>
   </screenshots>
+  <provides>
+    <binary>warp</binary>
+  </provides>
   <url type="homepage">https://gitlab.gnome.org/felinira/warp</url>
   <url type="bugtracker">https://gitlab.gnome.org/felinira/warp/issues</url>
   <content_rating type="oars-1.0" />
@@ -32,9 +47,14 @@
      -->
      <kudo>ModernToolkit</kudo>
      <kudo>HiDpiIcon</kudo>
+     <kudo>HighContrast</kudo>
   </kudos>
   <developer_name>Fina Wilke</developer_name>
   <update_contact>code@felinira.net</update_contact>
   <translation type="gettext">@gettext-package@</translation>
   <launchable type="desktop-id">@app-id@.desktop</launchable>
+  <recommends>
+    <control>pointing</control>
+    <control>keyboard</control>
+  </recommends>
 </component>
