@@ -185,10 +185,7 @@ impl ActionView {
     }
 
     fn direction(&self) -> TransferDirection {
-        imp::ActionView::from_instance(self)
-            .direction
-            .borrow()
-            .clone()
+        *imp::ActionView::from_instance(self).direction.borrow()
     }
 
     fn update_ui(&self) {
@@ -373,7 +370,7 @@ impl ActionView {
         let file_path = if path.is_dir() {
             self.set_ui_state(UIState::Archive);
             is_temp = true;
-            util::compress_folder_cancelable(&path, Self::cancel_future()).await?
+            util::compress_folder_cancelable(path, Self::cancel_future()).await?
         } else if path.is_file() {
             Some(path.to_path_buf())
         } else {
@@ -425,7 +422,7 @@ impl ActionView {
                 let obj_ = imp::ActionView::from_instance(&obj);
 
                 // Drain cancel receiver from any previous transfers
-                while let Ok(_) = obj_.cancel_receiver.get().unwrap().try_recv() {}
+                while obj_.cancel_receiver.get().unwrap().try_recv().is_ok() {}
 
                 let file_tuple = if direction == TransferDirection::Send {
                     obj.prepare_and_open_file(&path).await?

@@ -14,7 +14,7 @@ pub async fn compress_folder_cancelable(
     path: &Path,
     cancel_future: impl Future<Output = ()>,
 ) -> Result<Option<PathBuf>, AppError> {
-    let (tar_path_future, tar_path) = compress_folder(&path).await?;
+    let (tar_path_future, tar_path) = compress_folder(path).await?;
     let tar_path_future = tar_path_future.fuse();
     let cancel_future = cancel_future.fuse();
 
@@ -34,7 +34,7 @@ pub async fn compress_folder_cancelable(
     if let Some(tar_res) = cancel_or_tar {
         match tar_res {
             Ok(()) => Ok(Some(tar_path)),
-            Err(err) => Err(err.into()),
+            Err(err) => Err(err),
         }
     } else {
         // Canceled. We drop the smol::Task here which aborts it
@@ -45,7 +45,7 @@ pub async fn compress_folder_cancelable(
             tar_path.display()
         );
         let _ignore = async_std::fs::remove_file(tar_path).await;
-        return Ok(None);
+        Ok(None)
     }
 }
 
@@ -59,7 +59,7 @@ pub async fn compress_folder(
 
     let outer_dir = path
         .parent()
-        .ok_or(UIError::new("Archive parent folder not found"))?;
+        .ok_or_else(|| UIError::new("Archive parent folder not found"))?;
     let dirname = path.file_name();
     if let Some(dirname) = dirname {
         let temp_dir = glib::tmp_dir();
