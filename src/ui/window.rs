@@ -10,6 +10,7 @@ use crate::ui::application::WarpApplication;
 mod imp {
     use super::*;
     use adw::subclass::prelude::AdwApplicationWindowImpl;
+    use std::cell::Cell;
 
     use crate::glib::clone;
     use gtk::CompositeTemplate;
@@ -32,6 +33,7 @@ mod imp {
         pub code_entry: TemplateChild<gtk::Entry>,
         pub action_view: ActionView,
         pub file_chooser: OnceCell<gtk::FileChooserNative>,
+        pub action_view_showing: Cell<bool>,
     }
 
     #[glib::object_subclass]
@@ -164,18 +166,30 @@ impl WarpApplicationWindow {
         self.action_view().receive_file(code.to_string());
     }
 
-    pub fn navigate_back(&self) {
-        let self_ = imp::WarpApplicationWindow::from_instance(self);
-        let leaflet = WarpApplicationWindow::default().leaflet();
-        leaflet.navigate(adw::NavigationDirection::Back);
-        self_.action_view.show_progress_indeterminate(false);
-        self_.code_entry.set_text("");
+    pub fn cancel_any_action(&self) {
+        if self.action_view_showing() {
+            self.action_view().cancel();
+        }
     }
 
-    pub fn leaflet(&self) -> adw::Leaflet {
+    pub fn action_view_showing(&self) -> bool {
         imp::WarpApplicationWindow::from_instance(self)
-            .leaflet
-            .clone()
+            .action_view_showing
+            .get()
+    }
+
+    pub fn show_action_view(&self) {
+        let self_ = imp::WarpApplicationWindow::from_instance(self);
+        self_.action_view_showing.set(true);
+        self_.leaflet.navigate(adw::NavigationDirection::Forward);
+    }
+
+    pub fn navigate_back(&self) {
+        let self_ = imp::WarpApplicationWindow::from_instance(self);
+        self_.action_view_showing.set(false);
+        self_.leaflet.navigate(adw::NavigationDirection::Back);
+        self_.action_view.show_progress_indeterminate(false);
+        self_.code_entry.set_text("");
     }
 
     pub fn toast_overlay(&self) -> adw::ToastOverlay {

@@ -1,3 +1,4 @@
+use crate::ui::window::WarpApplicationWindow;
 use custom_error::custom_error;
 use futures::FutureExt;
 use futures::{pin_mut, select};
@@ -47,11 +48,14 @@ impl AppError {
         log::error!("{:?}", self);
 
         if gtk::is_initialized() {
-            let window = match gio::Application::default() {
+            let window: Option<WarpApplicationWindow> = match gio::Application::default() {
                 Some(app) => match app.downcast::<gtk::Application>() {
                     Ok(app) => {
                         let windows = app.windows();
-                        windows.get(0).cloned()
+                        windows
+                            .get(0)
+                            .cloned()
+                            .and_then(|window| window.downcast().ok())
                     }
                     Err(_) => None,
                 },
@@ -63,6 +67,8 @@ impl AppError {
 
             if let Some(window) = window {
                 if window.is_visible() {
+                    window.cancel_any_action();
+
                     let res = ERROR_DIALOG_ALREADY_SHOWING.compare_exchange(
                         false,
                         true,

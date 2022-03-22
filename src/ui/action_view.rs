@@ -406,9 +406,7 @@ impl ActionView {
         self.set_direction(direction);
         self.set_ui_state(UIState::Initial);
 
-        WarpApplicationWindow::default()
-            .leaflet()
-            .navigate(adw::NavigationDirection::Forward);
+        WarpApplicationWindow::default().show_action_view();
 
         if direction == TransferDirection::Receive {
             let code = code.as_ref().unwrap().clone();
