@@ -2,7 +2,7 @@ use crate::ui::action_view::ActionView;
 use gettextrs::*;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
-use gtk::{gio, glib, ResponseType};
+use gtk::{gio, glib, FileChooserAction, ResponseType};
 
 use crate::config::PROFILE;
 use crate::ui::application::WarpApplication;
@@ -25,7 +25,7 @@ mod imp {
         #[template_child]
         pub leaflet: TemplateChild<adw::Leaflet>,
         #[template_child]
-        pub send_select_file_button: TemplateChild<gtk::Button>,
+        pub send_select_file_button: TemplateChild<adw::SplitButton>,
         #[template_child]
         pub receive_button: TemplateChild<gtk::Button>,
         #[template_child]
@@ -61,8 +61,14 @@ mod imp {
 
             self.send_select_file_button
                 .connect_clicked(clone!(@weak obj => move |_| {
-                    obj.send_select_file_button();
+                    obj.send_select_file_folder_button(false);
                 }));
+
+            let action_open_folder = gio::SimpleAction::new("open_folder", None);
+            action_open_folder.connect_activate(clone!(@weak obj => move |_, _| {
+                obj.send_select_file_folder_button(true);
+            }));
+            obj.add_action(&action_open_folder);
 
             self.receive_button
                 .connect_clicked(clone!(@weak obj => move |_| {
@@ -137,11 +143,17 @@ impl WarpApplicationWindow {
         glib::Object::new(&[("application", app)]).expect("Failed to create WarpApplicationWindow")
     }
 
-    pub fn send_select_file_button(&self) {
+    pub fn send_select_file_folder_button(&self, folder: bool) {
         let chooser = &imp::WarpApplicationWindow::from_instance(self)
             .file_chooser
             .get()
             .unwrap();
+        if folder {
+            chooser.set_action(FileChooserAction::SelectFolder);
+        } else {
+            chooser.set_action(FileChooserAction::Open);
+        }
+
         chooser.show();
     }
 

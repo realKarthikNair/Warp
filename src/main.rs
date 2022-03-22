@@ -9,11 +9,10 @@ mod ui;
 mod util;
 
 use crate::ui::application::WarpApplication;
-use gettextrs::{gettext, LocaleCategory};
+use gettextrs::gettext;
 use gtk::glib;
-use std::env;
 
-use self::config::{GETTEXT_PACKAGE, LOCALEDIR};
+use self::config::GETTEXT_PACKAGE;
 
 fn main() {
     // Initialize logger

@@ -16,6 +16,14 @@
       </item>
     </section>
   </menu>
+  <menu id="open_menu">
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">_Open Folder</attribute>
+        <attribute name="action">win.open_folder</attribute>
+      </item>
+    </section>
+  </menu>
   <template class="WarpApplicationWindow" parent="AdwApplicationWindow">
     <property name="height-request">440</property>
     <property name="default-width">440</property>
@@ -69,8 +77,9 @@
                                       <object class="GtkBox">
                                         <property name="orientation">vertical</property>
                                         <child>
-                                          <object class="GtkButton" id="send_select_file_button">
-                                            <property name="label" translatable="yes">Select file</property>
+                                          <object class="AdwSplitButton" id="send_select_file_button">
+                                            <property name="label" translatable="yes">Open File</property>
+                                            <property name="menu-model">open_menu</property>
                                             <style>
                                               <class name="suggested-action"/>
                                             </style>

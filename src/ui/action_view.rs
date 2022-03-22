@@ -16,6 +16,7 @@ use wormhole::{transfer, transit, Code, Wormhole};
 #[derive(Clone, Debug, PartialEq)]
 pub enum UIState {
     Initial,
+    Archive,
     HasCode(Code),
     Connected,
     Transmitting,
@@ -70,8 +71,8 @@ mod imp {
         #[template_child]
         pub code_copy_button: TemplateChild<gtk::Button>,
         pub progress_timeout_source_id: RefCell<Option<glib::source::SourceId>>,
-        pub cancel_sender: OnceCell<async_channel::Sender<bool>>,
-        pub cancel_receiver: OnceCell<async_channel::Receiver<bool>>,
+        pub cancel_sender: OnceCell<async_channel::Sender<()>>,
+        pub cancel_receiver: OnceCell<async_channel::Receiver<()>>,
         pub filename: RefCell<Option<PathBuf>>,
         pub direction: RefCell<TransferDirection>,
         pub ui_state: RefCell<UIState>,
@@ -210,8 +211,23 @@ impl ActionView {
                     TransferDirection::Receive => {}
                 }
             }
+            UIState::Archive => match direction {
+                TransferDirection::Send => {
+                    self_.status_page.set_icon_name(Some("drawer-symbolic"));
+                    self_
+                        .status_page
+                        .set_title(&gettext("Creating archive for folder"));
+                    self_
+                        .status_page
+                        .set_description(Some(&gettext("Compressing folder")));
+                }
+                TransferDirection::Receive => {
+                    // We don't create archives here
+                }
+            },
             UIState::HasCode(code) => match direction {
                 TransferDirection::Send => {
+                    self_.status_page.set_icon_name(Some("code-symbolic"));
                     self_
                         .status_page
                         .set_title(&gettext("Please send the code to the receiver"));
@@ -221,6 +237,9 @@ impl ActionView {
                     self_.progress_bar.set_visible(false);
                 }
                 TransferDirection::Receive => {
+                    self_
+                        .status_page
+                        .set_icon_name(Some("arrows-questionmark-symbolic"));
                     self_
                         .status_page
                         .set_title(&gettext("Waiting for connection"));
@@ -298,7 +317,7 @@ impl ActionView {
 
         do_async(clone!(@strong self as obj => async move {
             let obj_ = imp::ActionView::from_instance(&obj);
-            obj_.cancel_sender.get().unwrap().send(true).await.unwrap();
+            obj_.cancel_sender.get().unwrap().send(()).await.unwrap();
 
             if let Some(path) = obj_.filename.borrow().clone() {
                 log::info!("Removing partially downloaded file '{}'", path.display());
@@ -341,6 +360,7 @@ impl ActionView {
         code: Option<Code>,
         direction: TransferDirection,
     ) -> Result<(), AppError> {
+        let mut path = path;
         self.set_direction(direction);
         self.set_ui_state(UIState::Initial);
         WarpApplicationWindow::default()
@@ -350,9 +370,6 @@ impl ActionView {
         if direction == TransferDirection::Receive {
             let code = code.as_ref().unwrap().clone();
             self.set_ui_state(UIState::HasCode(code));
-        } else {
-            // Err immediately if we can't open the file
-            let _test_open_file = std::fs::File::open(path.clone())?;
         }
 
         do_async(
@@ -363,6 +380,21 @@ impl ActionView {
                 while let Ok(_) = obj_.cancel_receiver.get().unwrap().try_recv() {}
 
                 let wormhole = if direction == TransferDirection::Send {
+                    if path.is_file() {
+                        // Err immediately if we can't open the file
+                        let _test_open_file = std::fs::File::open(path.clone())?;
+                    } else if path.is_dir() {
+                        obj.set_ui_state(UIState::Archive);
+                        let path_res = util::compress_folder_cancelable(&path, Self::cancel_future()).await?;
+                        path = match path_res {
+                            Some(path) => path,
+                            // Canceled
+                            None => return Ok(())
+                        };
+                    } else {
+                        return Err(UIError::new(&gettext("Specified File / Directory does not exist")).into());
+                    }
+
                     let res = Wormhole::connect_without_code(globals::WORMHOLE_APPCFG.clone(), 4).await;
                     let (welcome, connection)= match res {
                         Ok(tuple) => tuple,
@@ -382,11 +414,9 @@ impl ActionView {
                 obj.set_ui_state(UIState::Connected);
 
                 // Handle delayed cancel that happens before wormhole creation
-                if let Ok(cancel) = obj_.cancel_receiver.get().unwrap().try_recv() {
-                    if cancel {
-                        wormhole.close().await?;
-                        return Ok(());
-                    }
+                if let Ok(()) = obj_.cancel_receiver.get().unwrap().try_recv() {
+                    wormhole.close().await?;
+                    return Ok(());
                 }
 
                 let transit_abilities = transit::Abilities::ALL_ABILITIES;
@@ -472,10 +502,8 @@ impl ActionView {
             loop {
                 let res = cancel_receiver.recv().await;
                 match res {
-                    Ok(cancel) => {
-                        if cancel {
-                            break;
-                        }
+                    Ok(()) => {
+                        break;
                     }
                     Err(err) => {
                         panic!("{:?}", err);

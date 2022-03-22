@@ -1,7 +1,104 @@
+use crate::util::{AppError, UIError};
 use async_std::fs::OpenOptions;
+use futures::FutureExt;
+use futures::{pin_mut, select};
+use gettextrs::gettext;
+use gtk::glib;
+use smol::process::Command;
 use std::ffi::OsString;
+use std::future::Future;
 use std::io::ErrorKind;
 use std::path::{Path, PathBuf};
+
+pub async fn compress_folder_cancelable(
+    path: &Path,
+    cancel_future: impl Future<Output = ()>,
+) -> Result<Option<PathBuf>, AppError> {
+    let (tar_path_future, tar_path) = compress_folder(&path).await?;
+    let tar_path_future = tar_path_future.fuse();
+    let cancel_future = cancel_future.fuse();
+
+    pin_mut!(tar_path_future, cancel_future);
+
+    let cancel_or_tar = select! {
+        res = tar_path_future => {
+            log::debug!("Created tar archive");
+            Some(res)
+        },
+        () = cancel_future => {
+            log::debug!("Tar creation canceled");
+            None
+        }
+    };
+
+    if let Some(tar_res) = cancel_or_tar {
+        match tar_res {
+            Ok(()) => Ok(Some(tar_path)),
+            Err(err) => Err(err.into()),
+        }
+    } else {
+        // Canceled. We drop the smol::Task here which aborts it
+        drop(tar_path_future);
+        // Remove file if it already exists
+        let _ignore = async_std::fs::remove_file(tar_path).await;
+        return Ok(None);
+    }
+}
+
+pub async fn compress_folder(
+    path: &Path,
+) -> Result<(impl Future<Output = Result<(), AppError>>, PathBuf), AppError> {
+    let path = path.to_path_buf();
+    if !path.is_dir() {
+        return Err(UIError::new("Wrong compress_folder invocation").into());
+    }
+
+    let outer_dir = path
+        .parent()
+        .ok_or(UIError::new("Archive parent folder not found"))?;
+    let dirname = path.file_name();
+    if let Some(dirname) = dirname {
+        let temp_dir = glib::tmp_dir();
+        let mut tar_name = dirname.to_owned();
+        tar_name.push(".tgz");
+
+        // We don't use set_extension here because it would remove any .something from dir name
+        let tar_path = temp_dir.join(PathBuf::from(tar_name));
+
+        let (_file, name) = open_file_find_new_filename_if_exists(&tar_path).await;
+        let tar_path = name;
+
+        let mut command = Command::new("tar");
+        command
+            .arg("-C")
+            .arg(outer_dir)
+            .arg("-czf")
+            .arg(tar_path.as_os_str())
+            .arg(dirname)
+            .kill_on_drop(true);
+        let future = async move {
+            let res = command.spawn()?.status().await?;
+            if let Some(code) = res.code() {
+                if code == 0 {
+                    Ok(())
+                } else {
+                    Err(UIError::new("Error creating tar archive").into())
+                }
+            } else {
+                Err(UIError::new("Error creating tar archive").into())
+            }
+        };
+
+        log::debug!("Creating tar archive: {}", tar_path.to_string_lossy());
+        Ok((future, tar_path))
+    } else {
+        Err(UIError::new(&gettext!(
+            "Path {} does not have a directory name",
+            path.display()
+        ))
+        .into())
+    }
+}
 
 pub async fn open_file_find_new_filename_if_exists(
     path: &Path,
