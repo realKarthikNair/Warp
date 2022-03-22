@@ -4,9 +4,9 @@ use crate::globals;
 use crate::ui::window::WarpApplicationWindow;
 use crate::util::{cancelable_future, do_async, spawn_async, AppError, UIError};
 use gettextrs::*;
-use gtk::glib;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
+use gtk::{glib, ResponseType};
 use scopeguard::ScopeGuard;
 use std::future::Future;
 use std::path::{Path, PathBuf};
@@ -124,6 +124,13 @@ mod imp {
                     toast.set_priority(adw::ToastPriority::Normal);
                     window.toast_overlay().add_toast(&toast);
                 }));
+
+            self.code_entry.connect_has_focus_notify(|entry| {
+                // Select all text when entry is focused
+                if entry.has_focus() {
+                    entry.select_region(0, -1);
+                }
+            });
 
             self.open_button
                 .connect_clicked(clone!(@weak obj => move |_| {
@@ -583,17 +590,23 @@ impl ActionView {
     }
 
     fn save_file_dialog(filename: &Path, size: u64) -> gtk::MessageDialog {
-        gtk::builders::MessageDialogBuilder::new()
-            .text(&gettext("Receive file?"))
+        let dialog = gtk::builders::MessageDialogBuilder::new()
+            .text(&gettext("Accept file transfer?"))
             .secondary_text(&gettext!(
-                "Filename: {}\nSize: {}",
+                "Your peer wants to send you the file “{}” (Size: {}). Do you want to download this file to your Downloads folder?",
                 filename.display(),
                 pretty_bytes::converter::convert(size as f64)
             ))
-            .buttons(gtk::ButtonsType::OkCancel)
+            .message_type(gtk::MessageType::Question)
+            .buttons(gtk::ButtonsType::None)
             .transient_for(&WarpApplicationWindow::default())
             .modal(true)
-            .build()
+            .build();
+        dialog.add_buttons(&[
+            ("Cancel", ResponseType::Cancel),
+            ("Download", ResponseType::Ok),
+        ]);
+        dialog
     }
 
     fn handle_transfer_result(res: Result<(), TransferError>, path: &Path) {
