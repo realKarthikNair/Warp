@@ -2,7 +2,7 @@ use super::util;
 use crate::glib::clone;
 use crate::globals;
 use crate::ui::window::WarpApplicationWindow;
-use crate::util::{cancelable_future, do_async, AppError, UIError};
+use crate::util::{cancelable_future, do_async, spawn_async, AppError, UIError};
 use gettextrs::*;
 use gtk::glib;
 use gtk::prelude::*;
@@ -458,26 +458,17 @@ impl ActionView {
 
                 obj.set_ui_state(UIState::Connected);
 
-                // Handle delayed cancel that happens before wormhole creation
-                if let Ok(()) = obj_.cancel_receiver.get().unwrap().try_recv() {
-                    wormhole.close().await?;
-                    return Ok(());
-                }
-
                 let transit_abilities = transit::Abilities::ALL_ABILITIES;
                 let transit_url = url::Url::parse(globals::WORMHOLE_TRANSIT_RELAY)?;
 
                 if direction == TransferDirection::Send {
-                    let filename = PathBuf::from(&path.file_name().ok_or_else(|| UIError::new("Path error"))?);
-
-                    async_std::task::spawn(async move {
+                    spawn_async(async move {
                         if let Some((mut file, path)) = file_tuple {
-                            let metadata = match file.metadata().await {
-                                Ok(metadata) => metadata,
-                                Err(err) => {
-                                    AppError::from(err).handle();
-                                    return;
-                                }
+                            let metadata = file.metadata().await?;
+                            let filename = if let Some(filename) = path.file_name() {
+                                filename
+                            } else {
+                                return Err(std::io::Error::from(std::io::ErrorKind::NotFound).into());
                             };
 
                             let res = transfer::send_file(wormhole,
@@ -492,6 +483,8 @@ impl ActionView {
 
                             Self::handle_transfer_result(res, &path);
                         }
+
+                        Ok(())
                     });
                 } else {
                     // receive
@@ -504,11 +497,18 @@ impl ActionView {
                     let request = if let Some(request) = request {
                         request
                     } else {
-                        // Canceled
-                        return Ok(());
+                        return Err(AppError::Canceled);
                     };
 
-                    let dialog = Self::save_file_dialog(&request.filename, request.filesize);
+                    // Only use the last filename component otherwise the other side can overwrite
+                    // files in different directories
+                    let filename = if let Some(file_name) = request.filename.file_name() {
+                        PathBuf::from(file_name)
+                    } else {
+                        PathBuf::from("Unknown File.bin")
+                    };
+
+                    let dialog = Self::save_file_dialog(&filename, request.filesize);
                     let answer = dialog.run_future().await;
                     dialog.close();
 
@@ -518,27 +518,22 @@ impl ActionView {
                         });
 
                         obj.cancel();
-                        return Ok(());
+                        return Err(AppError::Canceled);
                     }
 
-                    let request_filename = request.filename.clone();
-                    let path = path.join(&request_filename);
+                    let path = path.join(&filename);
 
                     let (file_res, path) = util::open_file_find_new_filename_if_exists(&path).await;
                     obj_.filename.replace(Some(path.clone()));
 
-                    async_std::task::spawn(async move {
+                    spawn_async(async move {
                         log::info!("Downloading file to {:?}", path.to_str());
 
-                        let mut file = if let Ok(file) = file_res {
-                            file
-                        } else {
-                            AppError::from(file_res.unwrap_err()).handle();
-                            return;
-                        };
+                        let mut file = file_res?;
 
                         let res = request.accept(Self::progress_handler, &mut file, Self::cancel_future()).await;
                         Self::handle_transfer_result(res, &path);
+                        Ok(())
                     });
                 }
 

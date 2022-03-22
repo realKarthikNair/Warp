@@ -164,6 +164,19 @@ impl AppError {
     }
 }
 
+pub fn spawn_async<F>(func: F)
+where
+    F: Future<Output = Result<(), AppError>> + 'static + Send,
+{
+    smol::spawn(async move {
+        match func.await {
+            Ok(()) => (),
+            Err(app_error) => app_error.handle(),
+        }
+    })
+    .detach();
+}
+
 pub fn do_async<F>(func: F)
 where
     F: Future<Output = Result<(), AppError>> + 'static,
