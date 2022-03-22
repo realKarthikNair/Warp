@@ -2,7 +2,7 @@ use crate::ui::action_view::ActionView;
 use gettextrs::*;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
-use gtk::{gio, glib, FileChooserAction, ResponseType};
+use gtk::{gio, glib, ResponseType};
 
 use crate::config::PROFILE;
 use crate::ui::application::WarpApplication;
@@ -33,6 +33,7 @@ mod imp {
         pub code_entry: TemplateChild<gtk::Entry>,
         pub action_view: ActionView,
         pub file_chooser: OnceCell<gtk::FileChooserNative>,
+        pub folder_chooser: OnceCell<gtk::FileChooserNative>,
         pub action_view_showing: Cell<bool>,
     }
 
@@ -63,12 +64,12 @@ mod imp {
 
             self.send_select_file_button
                 .connect_clicked(clone!(@weak obj => move |_| {
-                    obj.send_select_file_folder_button(false);
+                    imp::WarpApplicationWindow::from_instance(&obj).file_chooser.get().unwrap().show();
                 }));
 
             let action_open_folder = gio::SimpleAction::new("open_folder", None);
             action_open_folder.connect_activate(clone!(@weak obj => move |_, _| {
-                obj.send_select_file_folder_button(true);
+                imp::WarpApplicationWindow::from_instance(&obj).folder_chooser.get().unwrap().show();
             }));
             obj.add_action(&action_open_folder);
 
@@ -78,24 +79,8 @@ mod imp {
                 }));
 
             self.leaflet.append(&self.action_view);
-            let chooser = self.file_chooser.get_or_init(move || {
-                gtk::FileChooserNative::new(
-                    Some(&gettext("Select files / folders to send")),
-                    Some(obj),
-                    gtk::FileChooserAction::Open,
-                    Some(&gettext("Open")),
-                    Some(&gettext("Cancel")),
-                )
-            });
 
-            self.code_entry.connect_has_focus_notify(|entry| {
-                // Select all text when entry is focused
-                entry.select_region(0, -1);
-            });
-
-            chooser.set_modal(true);
-            chooser.set_transient_for(Some(obj));
-            chooser.connect_response(clone!(@strong obj as obj => move |chooser, response| {
+            let file_chooser_closure = clone!(@strong obj => move |chooser: &gtk::FileChooserNative, response: gtk::ResponseType| {
                 let self_ = imp::WarpApplicationWindow::from_instance(&obj);
                 match response {
                     ResponseType::Accept => {
@@ -117,7 +102,40 @@ mod imp {
                         log::error!("Unknown file chooser response type");
                     }
                 };
-            }));
+            });
+
+            let file_chooser = self.file_chooser.get_or_init(move || {
+                gtk::FileChooserNative::new(
+                    Some(&gettext("Select file to send")),
+                    Some(obj),
+                    gtk::FileChooserAction::Open,
+                    Some(&gettext("Open")),
+                    Some(&gettext("Cancel")),
+                )
+            });
+
+            file_chooser.set_modal(true);
+            file_chooser.set_transient_for(Some(obj));
+            file_chooser.connect_response(file_chooser_closure.clone());
+
+            let folder_chooser = self.folder_chooser.get_or_init(move || {
+                gtk::FileChooserNative::new(
+                    Some(&gettext("Select folder to send")),
+                    Some(obj),
+                    gtk::FileChooserAction::SelectFolder,
+                    Some(&gettext("Open Folder")),
+                    Some(&gettext("Cancel")),
+                )
+            });
+
+            folder_chooser.set_modal(true);
+            folder_chooser.set_transient_for(Some(obj));
+            folder_chooser.connect_response(file_chooser_closure);
+
+            self.code_entry.connect_has_focus_notify(|entry| {
+                // Select all text when entry is focused
+                entry.select_region(0, -1);
+            });
         }
     }
 
@@ -143,20 +161,6 @@ glib::wrapper! {
 impl WarpApplicationWindow {
     pub fn new(app: &WarpApplication) -> Self {
         glib::Object::new(&[("application", app)]).expect("Failed to create WarpApplicationWindow")
-    }
-
-    pub fn send_select_file_folder_button(&self, folder: bool) {
-        let chooser = &imp::WarpApplicationWindow::from_instance(self)
-            .file_chooser
-            .get()
-            .unwrap();
-        if folder {
-            chooser.set_action(FileChooserAction::SelectFolder);
-        } else {
-            chooser.set_action(FileChooserAction::Open);
-        }
-
-        chooser.show();
     }
 
     pub fn receive_file_button(&self) {
