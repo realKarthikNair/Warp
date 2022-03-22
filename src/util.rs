@@ -1,4 +1,6 @@
 use custom_error::custom_error;
+use futures::FutureExt;
+use futures::{pin_mut, select};
 use gettextrs::gettext;
 use gtk::prelude::*;
 use gtk::{gio, glib};
@@ -24,6 +26,7 @@ impl UIError {
 }
 
 custom_error! {pub AppError
+    Canceled = "canceled",
     IO {source: std::io::Error} = "{source}",
     URL {source: url::ParseError} = "{source}",
     TRANSFER {source: TransferError} = "{source}",
@@ -36,6 +39,11 @@ static ERROR_DIALOG_ALREADY_SHOWING: AtomicBool = AtomicBool::new(false);
 
 impl AppError {
     pub fn handle(&self) {
+        if let AppError::Canceled = self {
+            // Don't do anything here, the user canceled the operation
+            return;
+        }
+
         log::error!("{:?}", self);
 
         if gtk::is_initialized() {
@@ -113,6 +121,7 @@ impl AppError {
 
     fn gettext_error(&self) -> String {
         match self {
+            AppError::Canceled => "canceled".to_string(),
             AppError::IO { source } => Self::gettext_error_io(source),
             // TODO those should not appear publicly
             AppError::URL { source } => source.to_string(),
@@ -165,4 +174,25 @@ where
             Err(app_error) => app_error.handle(),
         }
     });
+}
+
+pub async fn cancelable_future<T>(
+    future: impl Future<Output = T>,
+    cancel_future: impl Future<Output = ()>,
+) -> Result<T, AppError> {
+    let future = future.fuse();
+    let cancel_future = cancel_future.fuse();
+
+    pin_mut!(future, cancel_future);
+
+    select! {
+        res = future => {
+            Ok(res)
+        },
+        () = cancel_future => {
+            drop(future);
+            log::debug!("Future canceled");
+            Err(AppError::Canceled)
+        }
+    }
 }

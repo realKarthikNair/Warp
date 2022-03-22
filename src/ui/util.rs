@@ -40,6 +40,10 @@ pub async fn compress_folder_cancelable(
         // Canceled. We drop the smol::Task here which aborts it
         drop(tar_path_future);
         // Remove file if it already exists
+        log::debug!(
+            "Removing partially created tar archive: {}",
+            tar_path.display()
+        );
         let _ignore = async_std::fs::remove_file(tar_path).await;
         return Ok(None);
     }

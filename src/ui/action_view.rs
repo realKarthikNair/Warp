@@ -2,11 +2,12 @@ use super::util;
 use crate::glib::clone;
 use crate::globals;
 use crate::ui::window::WarpApplicationWindow;
-use crate::util::{do_async, AppError, UIError};
+use crate::util::{cancelable_future, do_async, AppError, UIError};
 use gettextrs::*;
 use gtk::glib;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
+use scopeguard::ScopeGuard;
 use std::future::Future;
 use std::path::{Path, PathBuf};
 use std::time::Duration;
@@ -17,6 +18,7 @@ use wormhole::{transfer, transit, Code, Wormhole};
 pub enum UIState {
     Initial,
     Archive,
+    RequestCode,
     HasCode(Code),
     Connected,
     Transmitting,
@@ -200,16 +202,6 @@ impl ActionView {
                     .status_page
                     .set_icon_name(Some("arrows-questionmark-symbolic"));
                 self.show_progress_indeterminate(true);
-
-                match direction {
-                    TransferDirection::Send => {
-                        self_.status_page.set_title(&gettext("Waiting for code"));
-                        self_
-                            .status_page
-                            .set_description(Some(&gettext("Code is being requested")));
-                    }
-                    TransferDirection::Receive => {}
-                }
             }
             UIState::Archive => match direction {
                 TransferDirection::Send => {
@@ -224,6 +216,18 @@ impl ActionView {
                 TransferDirection::Receive => {
                     // We don't create archives here
                 }
+            },
+            UIState::RequestCode => match direction {
+                TransferDirection::Send => {
+                    self_
+                        .status_page
+                        .set_icon_name(Some("arrows-questionmark-symbolic"));
+                    self_.status_page.set_title(&gettext("Waiting for code"));
+                    self_
+                        .status_page
+                        .set_description(Some(&gettext("Code is being requested")));
+                }
+                TransferDirection::Receive => {}
             },
             UIState::HasCode(code) => match direction {
                 TransferDirection::Send => {
@@ -354,15 +358,54 @@ impl ActionView {
         }
     }
 
+    async fn prepare_and_open_file(
+        &self,
+        path: &Path,
+    ) -> Result<Option<(async_std::fs::File, ScopeGuard<PathBuf, fn(PathBuf)>)>, AppError> {
+        let mut is_temp = false;
+        let file_path = if path.is_dir() {
+            self.set_ui_state(UIState::Archive);
+            is_temp = true;
+            util::compress_folder_cancelable(&path, Self::cancel_future()).await?
+        } else if path.is_file() {
+            Some(path.to_path_buf())
+        } else {
+            return Err(UIError::new(&gettext("Specified file / directory does not exist")).into());
+        };
+
+        if let Some(file_path) = file_path {
+            let file = async_std::fs::OpenOptions::new()
+                .read(true)
+                .open(&file_path)
+                .await?;
+
+            let guard: ScopeGuard<PathBuf, fn(PathBuf)> = if is_temp {
+                scopeguard::guard(file_path, |path| {
+                    log::debug!("Removing residual temporary file {}", path.display());
+                    let _ignore = std::fs::remove_file(path);
+                })
+            } else {
+                scopeguard::guard(file_path, |path| {
+                    log::debug!("Dropping file_path {}", path.display());
+                })
+            };
+
+            Ok(Some((file, guard)))
+        } else {
+            Ok(None)
+        }
+    }
+
     fn transmit(
         &self,
         path: PathBuf,
         code: Option<Code>,
         direction: TransferDirection,
     ) -> Result<(), AppError> {
-        let mut path = path;
+        let path = path;
         self.set_direction(direction);
         self.set_ui_state(UIState::Initial);
+
         WarpApplicationWindow::default()
             .leaflet()
             .navigate(adw::NavigationDirection::Forward);
@@ -379,23 +422,16 @@ impl ActionView {
                 // Drain cancel receiver from any previous transfers
                 while let Ok(_) = obj_.cancel_receiver.get().unwrap().try_recv() {}
 
-                let wormhole = if direction == TransferDirection::Send {
-                    if path.is_file() {
-                        // Err immediately if we can't open the file
-                        let _test_open_file = std::fs::File::open(path.clone())?;
-                    } else if path.is_dir() {
-                        obj.set_ui_state(UIState::Archive);
-                        let path_res = util::compress_folder_cancelable(&path, Self::cancel_future()).await?;
-                        path = match path_res {
-                            Some(path) => path,
-                            // Canceled
-                            None => return Ok(())
-                        };
-                    } else {
-                        return Err(UIError::new(&gettext("Specified File / Directory does not exist")).into());
-                    }
+                let file_tuple = if direction == TransferDirection::Send {
+                    obj.prepare_and_open_file(&path).await?
+                } else {
+                    None
+                };
 
-                    let res = Wormhole::connect_without_code(globals::WORMHOLE_APPCFG.clone(), 4).await;
+                let wormhole = if direction == TransferDirection::Send {
+                    obj.set_ui_state(UIState::RequestCode);
+                    let res = cancelable_future(Wormhole::connect_without_code(globals::WORMHOLE_APPCFG.clone(), 4), Self::cancel_future()).await?;
+
                     let (welcome, connection)= match res {
                         Ok(tuple) => tuple,
                         Err(err) => {
@@ -404,10 +440,19 @@ impl ActionView {
                     };
 
                     obj.set_ui_state(UIState::HasCode(welcome.code.clone()));
-                    connection.await?
+                    let connection = cancelable_future(connection, Self::cancel_future()).await??;
+
+                    log::debug!("Connected to wormhole");
+                    connection
                 } else {
+                    // Method invariant
                     let code = code.unwrap();
-                    let (_welcome, connection) = Wormhole::connect_with_code(globals::WORMHOLE_APPCFG.clone(), code).await?;
+                    let (_welcome, connection) = cancelable_future(
+                        Wormhole::connect_with_code(
+                            globals::WORMHOLE_APPCFG.clone(),
+                            code
+                        ), Self::cancel_future()).await??;
+
                     connection
                 };
 
@@ -426,16 +471,27 @@ impl ActionView {
                     let filename = PathBuf::from(&path.file_name().ok_or_else(|| UIError::new("Path error"))?);
 
                     async_std::task::spawn(async move {
-                        let res = transfer::send_file_or_folder(wormhole,
-                            transit_url,
-                            &path,
-                            &filename,
-                            transit_abilities,
-                            Self::progress_handler,
-                            Self::cancel_future()
-                        ).await;
+                        if let Some((mut file, path)) = file_tuple {
+                            let metadata = match file.metadata().await {
+                                Ok(metadata) => metadata,
+                                Err(err) => {
+                                    AppError::from(err).handle();
+                                    return;
+                                }
+                            };
 
-                        Self::handle_transfer_result(res, &path);
+                            let res = transfer::send_file(wormhole,
+                                transit_url,
+                                &mut file,
+                                &filename,
+                                metadata.len(),
+                                transit_abilities,
+                                Self::progress_handler,
+                                Self::cancel_future()
+                            ).await;
+
+                            Self::handle_transfer_result(res, &path);
+                        }
                     });
                 } else {
                     // receive
