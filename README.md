@@ -15,7 +15,8 @@ which includes local network transfer if possible. Every file transfer is encryp
 Make sure you have `flatpak` and `flatpak-builder` installed. Then run the commands below.
 
 ```
-flatpak install org.gnome.Sdk//41 org.freedesktop.Sdk.Extension.rust-stable//21.08 org.gnome.Platform//41
+flatpak remote-add --user --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+flatpak install --user org.gnome.Sdk//41 org.freedesktop.Sdk.Extension.rust-stable//21.08 org.gnome.Platform//41
 cd build-aux
 flatpak-builder --user app net.felinira.warp.Devel.json
 ```
