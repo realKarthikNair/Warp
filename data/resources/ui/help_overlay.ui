@@ -23,6 +23,29 @@
             </child>
           </object>
         </child>
+        <child>
+          <object class="GtkShortcutsGroup">
+            <property name="title" translatable="yes" context="shortcut window">File Transfer</property>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="title" translatable="yes" context="shortcut window">Send File</property>
+                <property name="action-name">win.open-file</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="title" translatable="yes" context="shortcut window">Send Folder</property>
+                <property name="action-name">win.open-folder</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="title" translatable="yes" context="shortcut window">Receive File</property>
+                <property name="action-name">win.receive-file</property>
+              </object>
+            </child>
+          </object>
+        </child>
       </object>
     </child>
   </object>

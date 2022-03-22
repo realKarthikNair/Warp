@@ -20,6 +20,8 @@ mod imp {
     #[template(resource = "/net/felinira/warp/ui/window.ui")]
     pub struct WarpApplicationWindow {
         #[template_child]
+        pub stack: TemplateChild<adw::ViewStack>,
+        #[template_child]
         pub toast_overlay: TemplateChild<adw::ToastOverlay>,
         #[template_child]
         pub headerbar: TemplateChild<adw::HeaderBar>,
@@ -62,19 +64,53 @@ mod imp {
                 obj.add_css_class("devel");
             }
 
+            obj.setup_help_overlay();
+
             self.send_select_file_button
                 .connect_clicked(clone!(@weak obj => move |_| {
                     imp::WarpApplicationWindow::from_instance(&obj).file_chooser.get().unwrap().show();
                 }));
 
-            let action_open_folder = gio::SimpleAction::new("open_folder", None);
+            // Open folder
+            let action_open_folder = gio::SimpleAction::new("open-folder", None);
             action_open_folder.connect_activate(clone!(@weak obj => move |_, _| {
-                imp::WarpApplicationWindow::from_instance(&obj).folder_chooser.get().unwrap().show();
+                if !obj.action_view_showing() {
+                    let obj_ = imp::WarpApplicationWindow::from_instance(&obj);
+                    obj_.stack.set_visible_child_name("send");
+                    obj_.folder_chooser.get().unwrap().show();
+                }
             }));
             obj.add_action(&action_open_folder);
 
+            // Open (send) file
+            let action_send = gio::SimpleAction::new("open-file", None);
+            action_send.connect_activate(clone!(@weak obj => move |_, _| {
+                if !obj.action_view_showing() {
+                    let obj_ = imp::WarpApplicationWindow::from_instance(&obj);
+                    obj_.stack.set_visible_child_name("send");
+                    obj_.file_chooser.get().unwrap().show();
+                }
+            }));
+            obj.add_action(&action_send);
+
+            // Receive file
+            let action_send = gio::SimpleAction::new("receive-file", None);
+            action_send.connect_activate(clone!(@weak obj => move |_, _| {
+                if !obj.action_view_showing() {
+                    let obj_ = imp::WarpApplicationWindow::from_instance(&obj);
+                    obj_.stack.set_visible_child_name("receive");
+                    obj_.code_entry.grab_focus();
+                }
+            }));
+            obj.add_action(&action_send);
+
             self.receive_button
                 .connect_clicked(clone!(@weak obj => move |_| {
+                    obj.receive_file_button();
+                }));
+
+            self.code_entry
+                .connect_activate(clone!(@weak obj => move |_| {
                     obj.receive_file_button();
                 }));
 
@@ -161,6 +197,12 @@ glib::wrapper! {
 impl WarpApplicationWindow {
     pub fn new(app: &WarpApplication) -> Self {
         glib::Object::new(&[("application", app)]).expect("Failed to create WarpApplicationWindow")
+    }
+
+    fn setup_help_overlay(&self) {
+        let builder = gtk::Builder::from_resource("/net/felinira/warp/ui/help_overlay.ui");
+        let shortcuts: Option<gtk::ShortcutsWindow> = builder.object("help_overlay");
+        self.set_help_overlay(shortcuts.as_ref());
     }
 
     pub fn receive_file_button(&self) {

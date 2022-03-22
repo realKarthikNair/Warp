@@ -14,7 +14,7 @@
     <file>icons/outbox-symbolic.svg</file>
     <file>style.css</file>
     <file>ui/action_view.ui</file>
-    <file>ui/shortcuts.ui</file>
+    <file>ui/help_overlay.ui</file>
     <file>ui/window.ui</file>
   </gresource>
 </gresources>

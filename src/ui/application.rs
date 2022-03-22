@@ -113,7 +113,11 @@ impl WarpApplication {
 
     // Sets up keyboard shortcuts
     fn setup_accels(&self) {
+        self.set_accels_for_action("win.show-help-overlay", &["<Control>question"]);
         self.set_accels_for_action("app.quit", &["<Control>q"]);
+        self.set_accels_for_action("win.open-file", &["<Control>o"]);
+        self.set_accels_for_action("win.open-folder", &["<Control>d"]);
+        self.set_accels_for_action("win.receive-file", &["<Control>r"]);
     }
 
     fn setup_css(&self) {
