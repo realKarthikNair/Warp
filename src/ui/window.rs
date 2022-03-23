@@ -11,7 +11,7 @@ mod imp {
     use adw::subclass::prelude::AdwApplicationWindowImpl;
     use std::cell::{Cell, RefCell};
 
-    use crate::config::Config;
+    use crate::config::PersistentConfig;
     use crate::glib::clone;
     use crate::globals;
     use crate::util::UIError;
@@ -39,7 +39,7 @@ mod imp {
         pub file_chooser: OnceCell<gtk::FileChooserNative>,
         pub folder_chooser: OnceCell<gtk::FileChooserNative>,
         pub action_view_showing: Cell<bool>,
-        pub config: RefCell<Config>,
+        pub config: RefCell<PersistentConfig>,
     }
 
     #[glib::object_subclass]
@@ -67,20 +67,21 @@ mod imp {
                 obj.add_css_class("devel");
             }
 
-            self.config.replace(Config::from_file().unwrap_or_else(
+            self.config
+                .replace(PersistentConfig::from_file().unwrap_or_else(
                 clone!(@strong obj => move |err| {
                     obj.connect_visible_notify(move |window| {
                         if window.is_visible() {
                             UIError::new(&gettext!(
                                 "Error loading config file '{}', using default config.\nError: {}",
-                                Config::path().display(),
+                                PersistentConfig::path().display(),
                                 err
                             ))
                             .handle();
                         }
                     });
 
-                    Config::default()
+                    PersistentConfig::default()
                 }),
             ));
 
