@@ -156,7 +156,7 @@ impl WarpApplication {
 
     pub fn run(&self) {
         info!("Warp ({})", globals::APP_ID);
-        info!("Version: {} ({})", globals::VERSION, globals::PROFILE);
+        info!("Version: {}", globals::VERSION);
         info!("Datadir: {}", globals::PKGDATADIR);
 
         ApplicationExtManual::run(self);

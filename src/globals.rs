@@ -10,10 +10,19 @@ pub static WORMHOLE_APPCFG: Lazy<AppConfig<AppVersion>> = Lazy::new(|| AppConfig
     app_version: AppVersion {},
 });
 
-pub const APP_ID: &str = "net.felinira.warp.Devel";
+#[cfg(debug_assertions)]
+pub const DEBUG_BUILD: bool = true;
+#[cfg(not(debug_assertions))]
+pub const DEBUG_BUILD: bool = false;
+
+pub const APP_ID: &str = if DEBUG_BUILD {
+    "net.felinira.warp.Devel"
+} else {
+    "net.felinira.warp"
+};
+
 pub const GETTEXT_PACKAGE: &str = "warp";
 pub const LOCALEDIR: &str = "/app/share/locale";
 pub const PKGDATADIR: &str = "/app/share/warp";
-pub const PROFILE: &str = "Devel";
 pub const RESOURCES_FILE: &str = concat!("/app/share/warp", "/resources.gresource");
 pub const VERSION: &str = "0.0.1";

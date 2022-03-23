@@ -63,7 +63,7 @@ mod imp {
             self.parent_constructed(obj);
 
             // Devel Profile
-            if globals::PROFILE == "Devel" {
+            if globals::DEBUG_BUILD {
                 obj.add_css_class("devel");
             }
 
