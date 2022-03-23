@@ -4,7 +4,6 @@ use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use gtk::{gio, glib, ResponseType};
 
-use crate::config::PROFILE;
 use crate::ui::application::WarpApplication;
 
 mod imp {
@@ -13,6 +12,7 @@ mod imp {
     use std::cell::Cell;
 
     use crate::glib::clone;
+    use crate::globals;
     use gtk::CompositeTemplate;
     use once_cell::sync::OnceCell;
 
@@ -60,7 +60,7 @@ mod imp {
             self.parent_constructed(obj);
 
             // Devel Profile
-            if PROFILE == "Devel" {
+            if globals::PROFILE == "Devel" {
                 obj.add_css_class("devel");
             }
 

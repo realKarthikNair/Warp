@@ -7,7 +7,7 @@ use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use gtk::{gdk, gio, glib};
 
-use crate::config::{APP_ID, PKGDATADIR, PROFILE, VERSION};
+use crate::globals;
 use crate::ui::window::WarpApplicationWindow;
 
 mod imp {
@@ -53,7 +53,7 @@ mod imp {
             self.parent_startup(app);
 
             // Set icons for shell
-            gtk::Window::set_default_icon_name(APP_ID);
+            gtk::Window::set_default_icon_name(globals::APP_ID);
 
             app.setup_gresources();
             app.setup_css();
@@ -75,7 +75,7 @@ glib::wrapper! {
 impl WarpApplication {
     pub fn new() -> Self {
         glib::Object::new(&[
-            ("application-id", &Some(APP_ID)),
+            ("application-id", &Some(globals::APP_ID)),
             ("flags", &gio::ApplicationFlags::empty()),
             ("resource-base-path", &Some("/net/felinira/warp/")),
         ])
@@ -134,10 +134,10 @@ impl WarpApplication {
 
     fn show_about_dialog(&self) {
         let dialog = gtk::AboutDialog::builder()
-            .logo_icon_name(APP_ID)
+            .logo_icon_name(globals::APP_ID)
             .license_type(gtk::License::Gpl30)
             .website("https://gitlab.gnome.org/felinira/warp/")
-            .version(VERSION)
+            .version(globals::VERSION)
             .transient_for(&self.main_window())
             .translator_credits(&gettext("translator-credits"))
             .modal(true)
@@ -155,9 +155,9 @@ impl WarpApplication {
     }
 
     pub fn run(&self) {
-        info!("Warp ({})", APP_ID);
-        info!("Version: {} ({})", VERSION, PROFILE);
-        info!("Datadir: {}", PKGDATADIR);
+        info!("Warp ({})", globals::APP_ID);
+        info!("Version: {} ({})", globals::VERSION, globals::PROFILE);
+        info!("Datadir: {}", globals::PKGDATADIR);
 
         ApplicationExtManual::run(self);
     }

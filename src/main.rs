@@ -1,9 +1,7 @@
 #[macro_use]
 mod macros;
 
-#[rustfmt::skip]
-#[allow(dead_code)]
-mod config;
+mod configuration;
 mod globals;
 mod ui;
 mod util;
@@ -12,14 +10,12 @@ use crate::ui::application::WarpApplication;
 use gettextrs::gettext;
 use gtk::glib;
 
-use self::config::GETTEXT_PACKAGE;
-
 fn main() {
     // Initialize logger
     pretty_env_logger::init();
 
     // Prepare i18n
-    let mut text_domain = gettextrs::TextDomain::new(GETTEXT_PACKAGE);
+    let mut text_domain = gettextrs::TextDomain::new(globals::GETTEXT_PACKAGE);
     if let Some(localedir) = option_env!("LOCALEDIR") {
         text_domain = text_domain.prepend(localedir);
     }

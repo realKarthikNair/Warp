@@ -9,3 +9,11 @@ pub static WORMHOLE_APPCFG: Lazy<AppConfig<AppVersion>> = Lazy::new(|| AppConfig
     rendezvous_url: WORMHOLE_RENDEZVOUS_RELAY.into(),
     app_version: AppVersion {},
 });
+
+pub const APP_ID: &str = "net.felinira.warp.Devel";
+pub const GETTEXT_PACKAGE: &str = "warp";
+pub const LOCALEDIR: &str = "/app/share/locale";
+pub const PKGDATADIR: &str = "/app/share/warp";
+pub const PROFILE: &str = "Devel";
+pub const RESOURCES_FILE: &str = concat!("/app/share/warp", "/resources.gresource");
+pub const VERSION: &str = "0.0.1-6941e96";
