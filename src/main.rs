@@ -1,7 +1,7 @@
 #[macro_use]
 mod macros;
 
-mod configuration;
+mod config;
 mod globals;
 mod ui;
 mod util;

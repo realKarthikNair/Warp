@@ -2632,6 +2632,8 @@ dependencies = [
  "pretty-bytes",
  "pretty_env_logger",
  "scopeguard",
+ "serde",
+ "serde_json",
  "smol",
  "url",
  "walkdir",

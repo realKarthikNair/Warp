@@ -24,6 +24,8 @@ url = "2.2.2"
 async-std = "1.10.0"
 smol = "1.2.5"
 scopeguard = "1.1.0"
+serde = "1.0.136"
+serde_json = "1.0.79"
 
 [build-dependencies]
 xml-rs = "0.8"
