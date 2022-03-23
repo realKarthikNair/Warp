@@ -1,0 +1,25 @@
+= Commandline Application
+  [topic]
+@link[guide >index#details]
+@desc Interoperability with the Magic Wormhole Commandline Application
+
+You can use the $link[href=https://github.com/magic-wormhole/magic-wormhole](Magic Wormhole) commandline client to
+communicate with $app(Warp) directly.
+
+To receive a file that is being sent via $app(Warp) use this command:
+
+[code]
+  wormhole receive
+
+and enter the code when prompted.
+
+To send a file use
+
+[code]
+  wormhole send FILENAME
+
+Your peer can then enter the code into $app(Warp) to receive the file.
+
+== Learn more
+To learn more about the command line client you can take look at the
+$link[href=https://magic-wormhole.readthedocs.io/en/latest/](Magic Wormhole documentation).

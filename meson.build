@@ -61,6 +61,7 @@ if get_option('profile') == 'development'
 endif
 
 subdir('data')
+subdir('help')
 subdir('po')
 subdir('src')
 

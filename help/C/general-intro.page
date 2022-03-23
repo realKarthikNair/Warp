@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" type="topic" id="general-intro">
+ <info>
+  <link type="guide" xref="index#general"/>
+  <desc>Introduction to file transfer with <app>Warp</app></desc>
+ </info>
+ <title>Introduction</title>
+ <p><app>Warp</app> is an application that allows you to send files from one device to another effortlessly. <app>Warp</app> uses a secure
+ transmit code to identify and encrypt file transmissions.</p>
+ <p>To use <app>Warp</app> to transfer a file, the sender needs to open the application. Select a file using the <gui>Send</gui> tab.
+ <app>Warp</app> will now try to contact the <link xref="details-glossary#rendezvous-server"/> and generate a
+ <link xref="details-glossary#transmit-code"/>.</p>
+ <p>The transmit code then needs to be communicated to the receiver of the file. (preferably via an encrypted or otherwise
+ secure channel). After entering the transmit code at the receiver side the file transmission can begin.</p>
+ <note>
+  <p>Every transmit code can only be entered once for security reasons. If the receiver mistypes the transmit code the
+  file transfer will be aborted. The sender then needs to select the file again and generate a new code.</p>
+ </note>
+ <p>A progress bar will indicate a running file transfer. Files will either be transmitted via
+ <link xref="details-glossary#direct-transfer"/> or via the <link xref="details-glossary#transmit-relay"/>. The transfer can be aborted
+ at any time using the <gui>Cancel</gui> button.</p>
+</page>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" type="guide" id="index">
+ <info>
+  <desc>Share files with each other effortlessly.</desc>
+ </info>
+ <title>Warp</title>
+ <section id="general" style="2column">
+  <title>General</title>
+ </section>
+ <section id="details" style="2column">
+  <title>Details</title>
+ </section>
+</page>
