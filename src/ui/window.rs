@@ -9,10 +9,12 @@ use crate::ui::application::WarpApplication;
 mod imp {
     use super::*;
     use adw::subclass::prelude::AdwApplicationWindowImpl;
-    use std::cell::Cell;
+    use std::cell::{Cell, RefCell};
 
+    use crate::config::Config;
     use crate::glib::clone;
     use crate::globals;
+    use crate::util::UIError;
     use gtk::CompositeTemplate;
     use once_cell::sync::OnceCell;
 
@@ -37,6 +39,7 @@ mod imp {
         pub file_chooser: OnceCell<gtk::FileChooserNative>,
         pub folder_chooser: OnceCell<gtk::FileChooserNative>,
         pub action_view_showing: Cell<bool>,
+        pub config: RefCell<Config>,
     }
 
     #[glib::object_subclass]
@@ -64,6 +67,24 @@ mod imp {
                 obj.add_css_class("devel");
             }
 
+            self.config.replace(Config::from_file().unwrap_or_else(
+                clone!(@strong obj => move |err| {
+                    obj.connect_visible_notify(move |window| {
+                        if window.is_visible() {
+                            UIError::new(&gettext!(
+                                "Error loading config file '{}', using default config.\nError: {}",
+                                Config::path().display(),
+                                err
+                            ))
+                            .handle();
+                        }
+                    });
+
+                    Config::default()
+                }),
+            ));
+
+            obj.load_window_size();
             obj.setup_help_overlay();
 
             self.send_select_file_button
@@ -179,6 +200,11 @@ mod imp {
     impl WindowImpl for WarpApplicationWindow {
         // Save window state on delete event
         fn close_request(&self, window: &Self::Type) -> gtk::Inhibit {
+            window.save_window_size();
+            if let Err(err) = self.config.borrow().save() {
+                UIError::new(&gettext!("Error saving configuration file: {}", err)).handle();
+            }
+
             // Pass close request on to the parent
             self.parent_close_request(window)
         }
@@ -203,6 +229,24 @@ impl WarpApplicationWindow {
         let builder = gtk::Builder::from_resource("/net/felinira/warp/ui/help_overlay.ui");
         let shortcuts: Option<gtk::ShortcutsWindow> = builder.object("help_overlay");
         self.set_help_overlay(shortcuts.as_ref());
+    }
+
+    fn save_window_size(&self) {
+        let imp = self.imp();
+
+        let (width, height) = self.default_size();
+
+        imp.config.borrow_mut().window.width = width;
+        imp.config.borrow_mut().window.height = height;
+    }
+
+    fn load_window_size(&self) {
+        let imp = self.imp();
+
+        let width = imp.config.borrow().window.width;
+        let height = imp.config.borrow().window.height;
+
+        self.set_default_size(width, height);
     }
 
     pub fn receive_file_button(&self) {
