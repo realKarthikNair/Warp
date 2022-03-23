@@ -87,7 +87,7 @@ impl PersistentConfig {
 
     pub fn path() -> PathBuf {
         let mut path = glib::user_config_dir();
-        path.push(globals::APP_ID);
+        path.push(globals::APP_NAME);
         path.push("config.json");
 
         path
