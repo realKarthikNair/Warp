@@ -200,7 +200,7 @@ mod imp {
         // Save window state on delete event
         fn close_request(&self, window: &Self::Type) -> gtk::Inhibit {
             window.save_window_size();
-            if let Err(err) = self.config.borrow().save() {
+            if let Err(err) = self.config.borrow_mut().save() {
                 UIError::new(&gettext!("Error saving configuration file: {}", err)).handle();
             }
 
