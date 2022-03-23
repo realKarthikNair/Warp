@@ -4,7 +4,7 @@ use futures::FutureExt;
 use futures::{pin_mut, select};
 use gettextrs::gettext;
 use gtk::prelude::*;
-use gtk::{gio, glib};
+use gtk::{gio, glib, MessageType};
 use std::future::Future;
 use std::io::ErrorKind;
 use std::sync::atomic::{AtomicBool, Ordering};
@@ -78,6 +78,7 @@ impl AppError {
 
                     if res.is_ok() {
                         let dialog = gtk::builders::MessageDialogBuilder::new()
+                            .message_type(MessageType::Error)
                             .text(msg1)
                             .secondary_text(&msg2)
                             .buttons(gtk::ButtonsType::Close)
@@ -108,7 +109,7 @@ impl AppError {
             WormholeError::ProtocolJson(_) | WormholeError::Protocol(_) => {
                 gettext("Corrupt or unexpected message received")
             }
-            WormholeError::ServerError(_) => gettext("Error with the rendezvous server connection"),
+            WormholeError::ServerError(_) => gettext("Error connecting to the rendezvous server.\nPlease check your network connection."),
             WormholeError::PakeFailed => gettext(
                 "Encryption key confirmation failed. If you or your peer didn't mistype the code, this is a sign of an attacker guessing passwords. Please try again some time later.",
             ),
