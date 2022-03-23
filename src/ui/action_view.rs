@@ -114,8 +114,7 @@ mod imp {
 
             self.code_copy_button
                 .connect_clicked(clone!(@weak obj => move |_| {
-                    let obj_ = imp::ActionView::from_instance(&obj);
-                    let code = obj_.code_entry.text();
+                    let code = obj.imp().code_entry.text();
                     let window = WarpApplicationWindow::default();
                     let clipboard = window.display().clipboard();
                     clipboard.set_text(&code);
@@ -134,8 +133,7 @@ mod imp {
 
             self.open_button
                 .connect_clicked(clone!(@weak obj => move |_| {
-                    let obj_ = imp::ActionView::from_instance(&obj);
-                    if let Some(filename) = obj_.filename.borrow().clone() {
+                    if let Some(filename) = obj.imp().filename.borrow().clone() {
                         let uri = glib::filename_to_uri(filename, None);
                         if let Ok(uri) = uri {
                             let none: Option<&AppLaunchContext> = None;
@@ -165,56 +163,46 @@ impl ActionView {
     }
 
     fn set_ui_state(&self, ui_state: UIState) {
-        imp::ActionView::from_instance(self)
-            .ui_state
-            .replace(ui_state);
+        self.imp().ui_state.replace(ui_state);
         self.update_ui();
     }
 
     fn ui_state(&self) -> UIState {
-        imp::ActionView::from_instance(self)
-            .ui_state
-            .borrow()
-            .clone()
+        self.imp().ui_state.borrow().clone()
     }
 
     fn set_direction(&self, direction: TransferDirection) {
-        imp::ActionView::from_instance(self)
-            .direction
-            .replace(direction);
+        self.imp().direction.replace(direction);
     }
 
     fn direction(&self) -> TransferDirection {
-        *imp::ActionView::from_instance(self).direction.borrow()
+        *self.imp().direction.borrow()
     }
 
     fn update_ui(&self) {
-        let self_ = imp::ActionView::from_instance(self);
+        let imp = self.imp();
         let direction = self.direction();
         let ui_state = self.ui_state();
 
         match ui_state {
             UIState::Initial => {
-                self_.filename.replace(None);
-                self_.open_button.set_visible(false);
-                self_.cancel_button.set_visible(true);
-                self_.back_button.set_visible(false);
-                self_.code_box.set_visible(false);
-                self_.progress_bar.set_visible(true);
-                self_.progress_bar.set_show_text(false);
-                self_
-                    .status_page
+                imp.filename.replace(None);
+                imp.open_button.set_visible(false);
+                imp.cancel_button.set_visible(true);
+                imp.back_button.set_visible(false);
+                imp.code_box.set_visible(false);
+                imp.progress_bar.set_visible(true);
+                imp.progress_bar.set_show_text(false);
+                imp.status_page
                     .set_icon_name(Some("arrows-questionmark-symbolic"));
                 self.show_progress_indeterminate(true);
             }
             UIState::Archive => match direction {
                 TransferDirection::Send => {
-                    self_.status_page.set_icon_name(Some("drawer-symbolic"));
-                    self_
-                        .status_page
+                    imp.status_page.set_icon_name(Some("drawer-symbolic"));
+                    imp.status_page
                         .set_title(&gettext("Creating archive for folder"));
-                    self_
-                        .status_page
+                    imp.status_page
                         .set_description(Some(&gettext("Compressing folder")));
                 }
                 TransferDirection::Receive => {
@@ -223,98 +211,83 @@ impl ActionView {
             },
             UIState::RequestCode => match direction {
                 TransferDirection::Send => {
-                    self_
-                        .status_page
+                    imp.status_page
                         .set_icon_name(Some("arrows-questionmark-symbolic"));
-                    self_.status_page.set_title(&gettext("Waiting for code"));
-                    self_
-                        .status_page
+                    imp.status_page.set_title(&gettext("Waiting for code"));
+                    imp.status_page
                         .set_description(Some(&gettext("Code is being requested")));
                 }
                 TransferDirection::Receive => {}
             },
             UIState::HasCode(code) => match direction {
                 TransferDirection::Send => {
-                    self_.status_page.set_icon_name(Some("code-symbolic"));
-                    self_
-                        .status_page
+                    imp.status_page.set_icon_name(Some("code-symbolic"));
+                    imp.status_page
                         .set_title(&gettext("Please send the code to the receiver"));
-                    self_.status_page.set_description(None);
-                    self_.code_box.set_visible(true);
-                    self_.code_entry.set_text(&code);
-                    self_.progress_bar.set_visible(false);
+                    imp.status_page.set_description(None);
+                    imp.code_box.set_visible(true);
+                    imp.code_entry.set_text(&code);
+                    imp.progress_bar.set_visible(false);
                 }
                 TransferDirection::Receive => {
-                    self_
-                        .status_page
+                    imp.status_page
                         .set_icon_name(Some("arrows-questionmark-symbolic"));
-                    self_
-                        .status_page
+                    imp.status_page
                         .set_title(&gettext("Waiting for connection"));
-                    self_
-                        .status_page
+                    imp.status_page
                         .set_description(Some(&gettext!("Connecting to peer with code {}", code)));
-                    self_.progress_bar.set_visible(true);
+                    imp.progress_bar.set_visible(true);
                 }
             },
             UIState::Connected => {
-                self_.status_page.set_title(&gettext("Connected to peer"));
-                self_.code_box.set_visible(false);
-                self_.progress_bar.set_visible(true);
+                imp.status_page.set_title(&gettext("Connected to peer"));
+                imp.code_box.set_visible(false);
+                imp.progress_bar.set_visible(true);
 
                 match direction {
                     TransferDirection::Send => {
-                        self_
-                            .status_page
+                        imp.status_page
                             .set_description(Some(&gettext("Preparing to send file")));
-                        self_
-                            .status_page
+                        imp.status_page
                             .set_icon_name(Some("horizontal-arrows-left-symbolic"));
                     }
                     TransferDirection::Receive => {
-                        self_
-                            .status_page
+                        imp.status_page
                             .set_description(Some(&gettext("Preparing to receive file")));
-                        self_
-                            .status_page
+                        imp.status_page
                             .set_icon_name(Some("horizontal-arrows-right-symbolic"));
                     }
                 }
             }
             UIState::Transmitting => {
                 self.show_progress_indeterminate(false);
-                self_.progress_bar.set_show_text(true);
+                imp.progress_bar.set_show_text(true);
                 if direction == TransferDirection::Send {
-                    self_
-                        .status_page
+                    imp.status_page
                         .set_description(Some(&gettext("Sending file")));
                 } else {
-                    self_
-                        .status_page
+                    imp.status_page
                         .set_description(Some(&gettext("Receiving file")));
                 }
             }
             UIState::Done(path) => {
-                self_
-                    .status_page
+                imp.status_page
                     .set_title(&gettext("File transfer successful"));
-                self_.back_button.set_visible(true);
-                self_.cancel_button.set_visible(false);
-                self_
-                    .status_page
+                imp.back_button.set_visible(true);
+                imp.cancel_button.set_visible(false);
+                imp.status_page
                     .set_icon_name(Some("checkmark-large-symbolic"));
 
                 if direction == TransferDirection::Send {
-                    self_
-                        .status_page
+                    imp.status_page
                         .set_description(Some(&gettext("Successfully sent file")));
                 } else {
                     let filename = path.file_name().unwrap();
-                    self_.status_page.set_description(Some(&gettext!(
+                    imp.status_page.set_description(Some(&gettext!(
                         "File has been saved to the Downloads folder as {}",
                         filename.to_string_lossy()
                     )));
-                    self_.open_button.set_visible(true);
+                    imp.open_button.set_visible(true);
                 }
             }
         }
@@ -324,10 +297,10 @@ impl ActionView {
         log::info!("Cancelling transfer");
 
         do_async(clone!(@strong self as obj => async move {
-            let obj_ = imp::ActionView::from_instance(&obj);
-            obj_.cancel_sender.get().unwrap().send(()).await.unwrap();
+            let imp = obj.imp();
+            imp.cancel_sender.get().unwrap().send(()).await.unwrap();
 
-            if let Some(path) = obj_.filename.borrow().clone() {
+            if let Some(path) = imp.filename.borrow().clone() {
                 log::info!("Removing partially downloaded file '{}'", path.display());
                 if let Err(err) = std::fs::remove_file(&path) {
                     log::error!("Error removing {}: {}", path.display(), err);
@@ -341,20 +314,18 @@ impl ActionView {
     }
 
     pub fn show_progress_indeterminate(&self, pulse: bool) {
-        let self_ = imp::ActionView::from_instance(self);
-        if let Some(source_id) = self_.progress_timeout_source_id.take() {
+        let imp = self.imp();
+        if let Some(source_id) = imp.progress_timeout_source_id.take() {
             source_id.remove();
         }
 
         if pulse {
             // 50 ms was mainly chosen for performance of the progress bar
-            self_
-                .progress_timeout_source_id
+            imp.progress_timeout_source_id
                 .replace(Some(glib::timeout_add_local(
                     Duration::from_millis(50),
                     clone!(@strong self as obj => move || {
-                        let obj_ = imp::ActionView::from_instance(&obj);
-                        obj_.progress_bar.pulse();
+                        obj.imp().progress_bar.pulse();
 
                         Continue(true)
                     }),
@@ -419,10 +390,10 @@ impl ActionView {
 
         do_async(
             clone!(@strong self as obj => @default-return Ok(()), async move {
-                let obj_ = imp::ActionView::from_instance(&obj);
+                let imp = obj.imp();
 
                 // Drain cancel receiver from any previous transfers
-                while obj_.cancel_receiver.get().unwrap().try_recv().is_ok() {}
+                while imp.cancel_receiver.get().unwrap().try_recv().is_ok() {}
 
                 let file_tuple = if direction == TransferDirection::Send {
                     obj.prepare_and_open_file(&path).await?
@@ -526,7 +497,7 @@ impl ActionView {
                     let path = path.join(&filename);
 
                     let (file_res, path) = util::open_file_find_new_filename_if_exists(&path).await;
-                    obj_.filename.replace(Some(path.clone()));
+                    imp.filename.replace(Some(path.clone()));
 
                     spawn_async(async move {
                         log::info!("Downloading file to {:?}", path.to_str());
@@ -548,8 +519,7 @@ impl ActionView {
 
     fn cancel_future() -> impl Future<Output = ()> {
         let obj = WarpApplicationWindow::default().action_view();
-        let obj_ = imp::ActionView::from_instance(&obj);
-        let cancel_receiver = obj_.cancel_receiver.get().unwrap().clone();
+        let cancel_receiver = obj.imp().cancel_receiver.get().unwrap().clone();
 
         async move {
             loop {
@@ -571,14 +541,14 @@ impl ActionView {
     fn progress_handler(sent: u64, total: u64) {
         glib::MainContext::default().invoke(move || {
             let obj = WarpApplicationWindow::default().action_view();
-            let obj_ = imp::ActionView::from_instance(&obj);
+            let imp = obj.imp();
 
-            if *obj_.ui_state.borrow() != UIState::Transmitting {
+            if *imp.ui_state.borrow() != UIState::Transmitting {
                 obj.set_ui_state(UIState::Transmitting);
             }
 
-            obj_.progress_bar.set_fraction(sent as f64 / total as f64);
-            obj_.progress_bar.set_text(Some(&format!(
+            imp.progress_bar.set_fraction(sent as f64 / total as f64);
+            imp.progress_bar.set_text(Some(&format!(
                 "{} / {}",
                 pretty_bytes::converter::convert(sent as f64),
                 pretty_bytes::converter::convert(total as f64)
@@ -611,9 +581,8 @@ impl ActionView {
 
         glib::MainContext::default().invoke(move || {
             let obj = WarpApplicationWindow::default().action_view();
-            let obj_ = imp::ActionView::from_instance(&obj);
             obj.show_progress_indeterminate(false);
-            obj_.progress_bar.set_fraction(1.0);
+            obj.imp().progress_bar.set_fraction(1.0);
 
             match res {
                 Ok(_) => obj.set_ui_state(UIState::Done(path)),

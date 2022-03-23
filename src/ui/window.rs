@@ -89,16 +89,16 @@ mod imp {
 
             self.send_select_file_button
                 .connect_clicked(clone!(@weak obj => move |_| {
-                    imp::WarpApplicationWindow::from_instance(&obj).file_chooser.get().unwrap().show();
+                    obj.imp().file_chooser.get().unwrap().show();
                 }));
 
             // Open folder
             let action_open_folder = gio::SimpleAction::new("open-folder", None);
             action_open_folder.connect_activate(clone!(@weak obj => move |_, _| {
                 if !obj.action_view_showing() {
-                    let obj_ = imp::WarpApplicationWindow::from_instance(&obj);
-                    obj_.stack.set_visible_child_name("send");
-                    obj_.folder_chooser.get().unwrap().show();
+                    let imp = obj.imp();
+                    imp.stack.set_visible_child_name("send");
+                    imp.folder_chooser.get().unwrap().show();
                 }
             }));
             obj.add_action(&action_open_folder);
@@ -107,9 +107,9 @@ mod imp {
             let action_send = gio::SimpleAction::new("open-file", None);
             action_send.connect_activate(clone!(@weak obj => move |_, _| {
                 if !obj.action_view_showing() {
-                    let obj_ = imp::WarpApplicationWindow::from_instance(&obj);
-                    obj_.stack.set_visible_child_name("send");
-                    obj_.file_chooser.get().unwrap().show();
+                    let imp = obj.imp();
+                    imp.stack.set_visible_child_name("send");
+                    imp.file_chooser.get().unwrap().show();
                 }
             }));
             obj.add_action(&action_send);
@@ -118,9 +118,8 @@ mod imp {
             let action_send = gio::SimpleAction::new("receive-file", None);
             action_send.connect_activate(clone!(@weak obj => move |_, _| {
                 if !obj.action_view_showing() {
-                    let obj_ = imp::WarpApplicationWindow::from_instance(&obj);
-                    obj_.stack.set_visible_child_name("receive");
-                    obj_.code_entry.grab_focus();
+                    obj.imp().stack.set_visible_child_name("receive");
+                    obj.imp().code_entry.grab_focus();
                 }
             }));
             obj.add_action(&action_send);
@@ -138,13 +137,12 @@ mod imp {
             self.leaflet.append(&self.action_view);
 
             let file_chooser_closure = clone!(@strong obj => move |chooser: &gtk::FileChooserNative, response: gtk::ResponseType| {
-                let self_ = imp::WarpApplicationWindow::from_instance(&obj);
                 match response {
                     ResponseType::Accept => {
                         if let Some(file) = chooser.file() {
                             if let Some(path) = file.path() {
                                 log::debug!("Picked file: {}", path.display());
-                                self_.action_view.send_file(path);
+                                obj.imp().action_view.send_file(path);
                             } else {
                                 log::error!("File chooser has file but path is None")
                             }
@@ -250,9 +248,7 @@ impl WarpApplicationWindow {
     }
 
     pub fn receive_file_button(&self) {
-        let code = &imp::WarpApplicationWindow::from_instance(self)
-            .code_entry
-            .text();
+        let code = self.imp().code_entry.text();
         self.action_view().receive_file(code.to_string());
     }
 
@@ -263,35 +259,29 @@ impl WarpApplicationWindow {
     }
 
     pub fn action_view_showing(&self) -> bool {
-        imp::WarpApplicationWindow::from_instance(self)
-            .action_view_showing
-            .get()
+        self.imp().action_view_showing.get()
     }
 
     pub fn show_action_view(&self) {
-        let self_ = imp::WarpApplicationWindow::from_instance(self);
-        self_.action_view_showing.set(true);
-        self_.leaflet.navigate(adw::NavigationDirection::Forward);
+        let imp = self.imp();
+        imp.action_view_showing.set(true);
+        imp.leaflet.navigate(adw::NavigationDirection::Forward);
     }
 
     pub fn navigate_back(&self) {
-        let self_ = imp::WarpApplicationWindow::from_instance(self);
-        self_.action_view_showing.set(false);
-        self_.leaflet.navigate(adw::NavigationDirection::Back);
-        self_.action_view.show_progress_indeterminate(false);
-        self_.code_entry.set_text("");
+        let imp = self.imp();
+        imp.action_view_showing.set(false);
+        imp.leaflet.navigate(adw::NavigationDirection::Back);
+        imp.action_view.show_progress_indeterminate(false);
+        imp.code_entry.set_text("");
     }
 
     pub fn toast_overlay(&self) -> adw::ToastOverlay {
-        imp::WarpApplicationWindow::from_instance(self)
-            .toast_overlay
-            .clone()
+        self.imp().toast_overlay.clone()
     }
 
     pub fn action_view(&self) -> ActionView {
-        imp::WarpApplicationWindow::from_instance(self)
-            .action_view
-            .clone()
+        self.imp().action_view.clone()
     }
 }
 
