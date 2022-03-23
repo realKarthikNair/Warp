@@ -16,4 +16,4 @@ pub const LOCALEDIR: &str = "/app/share/locale";
 pub const PKGDATADIR: &str = "/app/share/warp";
 pub const PROFILE: &str = "Devel";
 pub const RESOURCES_FILE: &str = concat!("/app/share/warp", "/resources.gresource");
-pub const VERSION: &str = "0.0.1-6941e96";
+pub const VERSION: &str = "0.0.1";

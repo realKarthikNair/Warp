@@ -2,6 +2,7 @@
 mod macros;
 
 mod config;
+#[allow(dead_code)]
 mod globals;
 mod ui;
 mod util;
