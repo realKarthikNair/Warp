@@ -1,21 +1,17 @@
 use adw::prelude::*;
 use adw::subclass::prelude::*;
-use gtk::prelude::*;
+use gtk::glib;
 use gtk::subclass::prelude::*;
-use gtk::{gio, glib};
 
 use crate::globals;
 
 mod imp {
     use super::*;
-    use adw::subclass::prelude::AdwApplicationWindowImpl;
     use adw::NavigationDirection;
-    use std::cell::{Cell, RefCell};
 
     use crate::glib::clone;
     use crate::ui::window::WarpApplicationWindow;
     use gtk::CompositeTemplate;
-    use once_cell::sync::OnceCell;
 
     #[derive(Debug, Default, CompositeTemplate)]
     #[template(resource = "/net/felinira/warp/ui/welcome_window.ui")]

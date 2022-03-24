@@ -21,7 +21,7 @@ pub enum UIState {
     RequestCode,
     HasCode(Code),
     Connected,
-    Transmitting,
+    Transmitting(String),
     Done(PathBuf),
 }
 
@@ -259,15 +259,15 @@ impl ActionView {
                     }
                 }
             }
-            UIState::Transmitting => {
+            UIState::Transmitting(filename) => {
                 self.show_progress_indeterminate(false);
                 imp.progress_bar.set_show_text(true);
                 if direction == TransferDirection::Send {
                     imp.status_page
-                        .set_description(Some(&gettext("Sending file")));
+                        .set_description(Some(&gettext!("Sending file “{}”", filename)));
                 } else {
                     imp.status_page
-                        .set_description(Some(&gettext("Receiving file")));
+                        .set_description(Some(&gettext!("Receiving file “{}”", filename)));
                 }
             }
             UIState::Done(path) => {
@@ -278,14 +278,14 @@ impl ActionView {
                 imp.status_page
                     .set_icon_name(Some("checkmark-large-symbolic"));
 
+                let filename = path.file_name().unwrap().to_string_lossy();
                 if direction == TransferDirection::Send {
                     imp.status_page
-                        .set_description(Some(&gettext("Successfully sent file")));
+                        .set_description(Some(&gettext!("Successfully sent file “{}”", filename)));
                 } else {
-                    let filename = path.file_name().unwrap();
                     imp.status_page.set_description(Some(&gettext!(
-                        "File has been saved to the Downloads folder as {}",
-                        filename.to_string_lossy()
+                        "File has been saved to the Downloads folder as “{}”",
+                        filename
                     )));
                     imp.open_button.set_visible(true);
                 }
@@ -435,14 +435,16 @@ impl ActionView {
                 let transit_url = url::Url::parse(globals::WORMHOLE_TRANSIT_RELAY)?;
 
                 if direction == TransferDirection::Send {
-                    spawn_async(async move {
-                        if let Some((mut file, path)) = file_tuple {
-                            let metadata = file.metadata().await?;
+                    if let Some((mut file, path)) = file_tuple {
+                        imp.filename.replace(Some((*path).to_path_buf()));
+
+                        spawn_async(async move {
                             let filename = if let Some(filename) = path.file_name() {
                                 filename
                             } else {
                                 return Err(std::io::Error::from(std::io::ErrorKind::NotFound).into());
                             };
+                            let metadata = file.metadata().await?;
 
                             let res = transfer::send_file(wormhole,
                                 transit_url,
@@ -455,10 +457,10 @@ impl ActionView {
                             ).await;
 
                             Self::handle_transfer_result(res, &path);
-                        }
 
-                        Ok(())
-                    });
+                            Ok(())
+                        });
+                    }
                 } else {
                     // receive
                     let request = transfer::request_file(wormhole,
@@ -543,8 +545,19 @@ impl ActionView {
             let obj = WarpApplicationWindow::default().action_view();
             let imp = obj.imp();
 
-            if *imp.ui_state.borrow() != UIState::Transmitting {
-                obj.set_ui_state(UIState::Transmitting);
+            if *imp.ui_state.borrow() == UIState::Connected {
+                let name = if let Some(filename) = &*imp.filename.borrow() {
+                    let name = filename.file_name();
+                    if let Some(name) = name {
+                        name.to_string_lossy().into()
+                    } else {
+                        "".to_string()
+                    }
+                } else {
+                    "".to_string()
+                };
+
+                obj.set_ui_state(UIState::Transmitting(name.to_string()));
             }
 
             imp.progress_bar.set_fraction(sent as f64 / total as f64);

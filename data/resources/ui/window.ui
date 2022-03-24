@@ -29,7 +29,7 @@
     </section>
   </menu>
   <template class="WarpApplicationWindow" parent="AdwApplicationWindow">
-    <property name="height-request">440</property>
+    <property name="height-request">500</property>
     <property name="default-width">440</property>
     <child>
       <object class="AdwToastOverlay" id="toast_overlay">
