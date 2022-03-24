@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-21 22:53+0100\n"
+"POT-Creation-Date: 2022-03-23 22:04+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,15 +17,13 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#. Insert your license of choice here
-#. <project_license>MIT</project_license>
 #: data/net.felinira.warp.desktop.in.in:3
-#: data/net.felinira.warp.metainfo.xml.in.in:8 src/main.rs:39
+#: data/net.felinira.warp.metainfo.xml.in.in:7 src/main.rs:31
 msgid "Warp"
 msgstr "Warp"
 
 #: data/net.felinira.warp.desktop.in.in:4
-#: data/net.felinira.warp.metainfo.xml.in.in:9
+#: data/net.felinira.warp.metainfo.xml.in.in:8
 msgid "Share files with each other effortlessly"
 msgstr "Tausche Dateien untereinander ohne Aufwand"
 
@@ -33,25 +31,53 @@ msgstr "Tausche Dateien untereinander ohne Aufwand"
 msgid "Gnome;GTK;"
 msgstr ""
 
-#: data/net.felinira.warp.metainfo.xml.in.in:11
+#: data/net.felinira.warp.metainfo.xml.in.in:10
 msgid ""
 "Warp is designed to make it as simple and secure as possible to get files "
 "from one place to another. An internet connection is required."
 msgstr ""
 
 #: data/net.felinira.warp.metainfo.xml.in.in:13
-msgid "Magic Wormhole"
-msgstr "Magic Wormhole"
+msgid ""
+"The best transfer method will be determined using the “Magic Wormhole” "
+"application which includes local network transfer if possible."
+msgstr ""
+
+#: data/net.felinira.warp.metainfo.xml.in.in:16
+msgid "Features"
+msgstr ""
+
+#: data/net.felinira.warp.metainfo.xml.in.in:18
+msgid "Send files between multiple devices"
+msgstr ""
 
 #: data/net.felinira.warp.metainfo.xml.in.in:19
+msgid "Every file transfer is encrypted"
+msgstr ""
+
+#: data/net.felinira.warp.metainfo.xml.in.in:20
+msgid "Directly transfer files on the local network if possible"
+msgstr ""
+
+#: data/net.felinira.warp.metainfo.xml.in.in:21
+msgid "Compatibility with the “Magic Wormhole” command line client"
+msgstr ""
+
+#: data/net.felinira.warp.metainfo.xml.in.in:27
 msgid "Main window"
 msgstr "Hauptfenster"
 
-#: data/net.felinira.warp.metainfo.xml.in.in:36
+#: data/net.felinira.warp.metainfo.xml.in.in:31
+#, fuzzy
+msgid "File transfer"
+msgstr "Dateiübertragung erfolgreich"
+
+#: data/net.felinira.warp.metainfo.xml.in.in:52
 msgid "Fina Wilke"
 msgstr ""
 
-#: data/resources/ui/action_view.ui:16 src/ui/window.rs:79
+#: data/resources/ui/action_view.ui:16 src/ui/window.rs:169
+#: src/ui/window.rs:183
 msgid "Cancel"
 msgstr "Abbrechen"
 
@@ -63,29 +89,54 @@ msgstr "Zurück"
 msgid "Operation in progress"
 msgstr "Vorgang läuft"
 
-#: data/resources/ui/action_view.ui:39 src/ui/action_view.rs:226
+#: data/resources/ui/action_view.ui:39 src/ui/action_view.rs:236
 msgid "Waiting for connection"
 msgstr "Warte auf Verbindung"
 
 #: data/resources/ui/action_view.ui:70 data/resources/ui/action_view.ui:72
+#: data/resources/ui/window.ui:85
 #, fuzzy
 msgid "Open File"
 msgstr "Öffnen"
 
-#: data/resources/ui/shortcuts.ui:11
+#: data/resources/ui/help_overlay.ui:11
 msgctxt "shortcut window"
 msgid "General"
 msgstr "Allgemein"
 
-#: data/resources/ui/shortcuts.ui:14
+#: data/resources/ui/help_overlay.ui:14
 msgctxt "shortcut window"
 msgid "Show Shortcuts"
 msgstr "Zeige Tastenkürzel"
 
-#: data/resources/ui/shortcuts.ui:20
+#: data/resources/ui/help_overlay.ui:20
 msgctxt "shortcut window"
 msgid "Quit"
 msgstr "Beenden"
+
+#: data/resources/ui/help_overlay.ui:28
+#, fuzzy
+msgctxt "shortcut window"
+msgid "File Transfer"
+msgstr "Dateiübertragung erfolgreich"
+
+#: data/resources/ui/help_overlay.ui:31
+#, fuzzy
+msgctxt "shortcut window"
+msgid "Send File"
+msgstr "Öffnen"
+
+#: data/resources/ui/help_overlay.ui:37
+#, fuzzy
+msgctxt "shortcut window"
+msgid "Send Folder"
+msgstr "Sende Datei"
+
+#: data/resources/ui/help_overlay.ui:43
+#, fuzzy
+msgctxt "shortcut window"
+msgid "Receive File"
+msgstr "Datei empfangen?"
 
 #: data/resources/ui/window.ui:6
 msgid "_Preferences"
@@ -96,81 +147,92 @@ msgid "_Keyboard Shortcuts"
 msgstr "_Tastenkürzel"
 
 #: data/resources/ui/window.ui:14
+msgid "_Help"
+msgstr ""
+
+#: data/resources/ui/window.ui:18
 msgid "_About Warp"
 msgstr "_Über Warp"
 
-#: data/resources/ui/window.ui:65
+#: data/resources/ui/window.ui:26
+#, fuzzy
+msgid "_Open Folder"
+msgstr "Öffnen"
+
+#: data/resources/ui/window.ui:77
 msgid "Send files or directories"
 msgstr "Sende Dateien oder Verzeichnisse"
 
-#: data/resources/ui/window.ui:66
+#: data/resources/ui/window.ui:78
 msgid "Please select the file you want to send"
 msgstr "Bitte wähle die Datei aus, die du senden möchtest"
 
-#: data/resources/ui/window.ui:73
-#, fuzzy
-msgid "Select file"
-msgstr "Sende Datei"
-
-#: data/resources/ui/window.ui:90
+#: data/resources/ui/window.ui:103
 #, fuzzy
 msgid "Receive"
 msgstr "Datei empfangen?"
 
-#: data/resources/ui/window.ui:98
+#: data/resources/ui/window.ui:111
 msgid "Receive files or directories"
 msgstr "Empfange Dateien oder Verzeichnisse"
 
-#: data/resources/ui/window.ui:99
+#: data/resources/ui/window.ui:112
 msgid "Please enter the warp code from the sender"
 msgstr "Bitte sende den Code der sendenden Person"
 
-#: data/resources/ui/window.ui:109
+#: data/resources/ui/window.ui:122
 msgid "Warp Code"
 msgstr "Warp Code"
 
-#: data/resources/ui/window.ui:115
-#, fuzzy
+#: data/resources/ui/window.ui:128
 msgid "Receive File"
-msgstr "Datei empfangen?"
+msgstr "Datei empfangen"
 
-#: src/ui/action_view.rs:119
+#: src/ui/action_view.rs:121
 msgid "Copied code to clipboard"
 msgstr "Code in Zwischenablage kopiert"
 
-#: src/ui/action_view.rs:205
+#: src/ui/action_view.rs:204
+msgid "Creating archive for folder"
+msgstr "Erstelle Archiv"
+
+#: src/ui/action_view.rs:206
+msgid "Compressing folder"
+msgstr "Komprimiere Ordner"
+
+#: src/ui/action_view.rs:216
 msgid "Waiting for code"
 msgstr "Warte auf Code"
 
-#: src/ui/action_view.rs:208
+#: src/ui/action_view.rs:218
 msgid "Code is being requested"
 msgstr "Code wird angefordert"
 
-#: src/ui/action_view.rs:217
+#: src/ui/action_view.rs:226
 msgid "Please send the code to the receiver"
 msgstr "Bitte sende den Code an den*die Empfänger*in"
 
-#: src/ui/action_view.rs:234
+#: src/ui/action_view.rs:243
 msgid "Connected to peer"
 msgstr "Verbunden"
 
-#: src/ui/action_view.rs:242
+#: src/ui/action_view.rs:250
 msgid "Preparing to send file"
 msgstr "Bereite Dateiübertragung vor"
 
-#: src/ui/action_view.rs:250
+#: src/ui/action_view.rs:256
 msgid "Preparing to receive file"
 msgstr "Bereite Dateiübertragung vor"
 
-#: src/ui/action_view.rs:263
+#: src/ui/action_view.rs:267
 msgid "Sending file"
 msgstr "Sende Datei"
 
-#: src/ui/action_view.rs:267
+#: src/ui/action_view.rs:270
 msgid "Receiving file"
 msgstr "Empfange Datei"
 
-#: src/ui/action_view.rs:273
+#: src/ui/action_view.rs:275
 msgid "File transfer successful"
 msgstr "Dateiübertragung erfolgreich"
 
@@ -178,46 +240,62 @@ msgstr "Dateiübertragung erfolgreich"
 msgid "Successfully sent file"
 msgstr "Datei erfolgreich gesendet"
 
-#: src/ui/action_view.rs:510
-msgid "Receive file?"
-msgstr "Datei empfangen?"
+#: src/ui/action_view.rs:348
+msgid "Specified file / directory does not exist"
+msgstr "Angegebene(s) Datei / Verzeichnis nicht gefunden"
 
-#: src/ui/action_view.rs:553
+#: src/ui/action_view.rs:561
+msgid "Accept file transfer?"
+msgstr "Dateiübertragung akzeptieren?"
+
+#: src/ui/action_view.rs:609
 msgid "Downloads dir missing. Please set XDG_DOWNLOADS_DIR"
 msgstr "Downloads-Verzeichnis fehlt. Bitte setze XDG_DOWNLOADS_DIR"
 
-#: src/ui/application.rs:138
+#: src/ui/application.rs:150
 msgid "translator-credits"
 msgstr ""
 
-#: src/ui/application.rs:143
+#: src/ui/application.rs:155
 #, fuzzy
 msgid "App Icon by <a href=\"https://svgrepo.com\">svgrepo.com</a>"
 msgstr "App Icon von <a href=\"svgrepo.com\">svgrepo.com</a>"
 
-#: src/ui/application.rs:145
+#: src/ui/application.rs:157
 msgid ""
 "Symbolic icon made from <a href=\"http://www.onlinewebfonts.com/icon\">Icon "
 "Fonts</a> is licensed by CC BY 3.0"
 msgstr ""
 
-#: src/ui/window.rs:75
-msgid "Select files / folders to send"
-msgstr "Wähle Dateien / Ordner zum Versenden aus"
+#: src/ui/window.rs:165
+msgid "Select file to send"
+msgstr "Wähle eine Datei zum Versenden aus"
 
-#: src/ui/window.rs:78
+#: src/ui/window.rs:168
 msgid "Open"
 msgstr "Öffnen"
 
-#: src/util.rs:95 src/util.rs:141
+#: src/ui/window.rs:179
+msgid "Select folder to send"
+msgstr "Wähle einen Ordner zum Versenden aus"
+
+#: src/ui/window.rs:182
+#, fuzzy
+msgid "Open Folder"
+msgstr "Öffnen"
+
+#: src/util.rs:110 src/util.rs:157
 msgid "Corrupt or unexpected message received"
 msgstr "Korrupte oder unerwartete Nachricht erhalten"
 
-#: src/util.rs:97
-msgid "Error with the rendezvous server connection"
+#: src/util.rs:112
+#, fuzzy
+msgid ""
+"Error connecting to the rendezvous server.\n"
+"Please check your network connection."
 msgstr "Fehler bei der Verbindung mit dem Rendezvous-Server"
 
-#: src/util.rs:99
+#: src/util.rs:114
 msgid ""
 "Encryption key confirmation failed. If you or your peer didn't mistype the "
 "code, this is a sign of an attacker guessing passwords. Please try again "
@@ -228,34 +306,44 @@ msgstr ""
 "gerade, Passwörter zu erraten. Bitte probiere es ein bisschen später noch "
 "einmal."
 
-#: src/util.rs:101
+#: src/util.rs:116
 msgid "Cannot decrypt a received message"
 msgstr "Kann eine verschlüsselte Nachricht nicht entschlüsseln."
 
-#: src/util.rs:102 src/util.rs:149
+#: src/util.rs:117 src/util.rs:165
 msgid "An unknown error occurred"
 msgstr "Ein unbekannter Fehler ist aufgetreten"
 
-#: src/util.rs:108
+#: src/util.rs:123
 msgid "File / Directory not found"
 msgstr "Datei / Ordner nicht gefunden"
 
-#: src/util.rs:109
+#: src/util.rs:124
 msgid "Permission denied"
 msgstr "Zugriff verweigert"
 
-#: src/util.rs:120
+#: src/util.rs:136
 msgid "Transfer was not acknowledged by peer"
 msgstr "Übertragung wurde nicht vom Gegenüber bestätigt"
 
-#: src/util.rs:122
+#: src/util.rs:138
 msgid "The received file is corrupted"
 msgstr "Die empfangene Datei ist korrupt"
 
-#: src/util.rs:145
+#: src/util.rs:161
 msgid "Error while establishing file transfer connection"
 msgstr "Fehler beim Aufbau einer Verbindung zur Dateiübertragung"
 
-#: src/util.rs:147
+#: src/util.rs:163
 msgid "Unknown file transfer error"
 msgstr "Unbekannter Dateiübertragungsfehler"
+
+#~ msgid "Magic Wormhole"
+#~ msgstr "Magic Wormhole"
+
+#, fuzzy
+#~ msgid "Select file"
+#~ msgstr "Sende Datei"
+
+#~ msgid "Receive file?"
+#~ msgstr "Datei empfangen?"

@@ -16,16 +16,15 @@ fn main() {
     pretty_env_logger::init();
 
     // Prepare i18n
-    let mut text_domain = gettextrs::TextDomain::new(globals::GETTEXT_PACKAGE);
-    if let Some(localedir) = option_env!("LOCALEDIR") {
-        text_domain = text_domain.prepend(localedir);
+    gettextrs::setlocale(gettextrs::LocaleCategory::LcAll, "");
+    let localedir = option_env!("LOCALEDIR").unwrap_or(globals::DEFAULT_LOCALEDIR);
+    match gettextrs::bindtextdomain(globals::GETTEXT_PACKAGE, localedir) {
+        Ok(path) => log::debug!("Bound text domain for path: {}", path.display()),
+        Err(err) => log::error!("Error binding text domain: {}", err),
     }
 
-    if let Err(err) = text_domain
-        .locale_category(gettextrs::LocaleCategory::LcAll)
-        .init()
-    {
-        log::info!("{}", err);
+    if let Err(err) = gettextrs::textdomain(globals::GETTEXT_PACKAGE) {
+        log::error!("Unable to switch to the text domain: {}", err);
     }
 
     glib::set_application_name(&gettext("Warp"));

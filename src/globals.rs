@@ -23,7 +23,7 @@ pub const APP_ID: &str = if DEBUG_BUILD {
 
 pub const APP_NAME: &str = "warp";
 pub const GETTEXT_PACKAGE: &str = APP_NAME;
-pub const LOCALEDIR: &str = "/app/share/locale";
+pub const DEFAULT_LOCALEDIR: &str = "/usr/share/locale";
 pub const PKGDATADIR: &str = "/app/share/warp";
 pub const RESOURCES_FILE: &str = concat!("/app/share/warp", "/resources.gresource");
 pub const VERSION: &str = "0.0.1";
