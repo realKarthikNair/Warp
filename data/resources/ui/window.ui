@@ -109,7 +109,7 @@
                                   <object class="AdwStatusPage">
                                     <property name="vexpand">True</property>
                                     <property name="title" translatable="yes">Receive files or directories</property>
-                                    <property name="description" translatable="yes">Please enter the warp code from the sender</property>
+                                    <property name="description" translatable="yes">Please enter the transmit code from the sender</property>
                                     <property name="icon-name">horizontal-arrows-left-symbolic</property>
                                     <child>
                                       <object class="GtkBox">
