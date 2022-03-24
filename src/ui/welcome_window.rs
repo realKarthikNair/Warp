@@ -90,3 +90,9 @@ impl WelcomeWindow {
         glib::Object::new(&[]).expect("Failed to create WelcomeWindow")
     }
 }
+
+impl Default for WelcomeWindow {
+    fn default() -> Self {
+        Self::new()
+    }
+}

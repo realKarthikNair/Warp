@@ -557,7 +557,7 @@ impl ActionView {
                     "".to_string()
                 };
 
-                obj.set_ui_state(UIState::Transmitting(name.to_string()));
+                obj.set_ui_state(UIState::Transmitting(name));
             }
 
             imp.progress_bar.set_fraction(sent as f64 / total as f64);
