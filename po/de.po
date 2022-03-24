@@ -3,7 +3,6 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
@@ -73,9 +72,8 @@ msgid "Main window"
 msgstr "Hauptfenster"
 
 #: data/net.felinira.warp.metainfo.xml.in.in:31
-#, fuzzy
 msgid "File transfer"
-msgstr "Dateiübertragung erfolgreich"
+msgstr "Dateiübertragung"
 
 #: data/net.felinira.warp.metainfo.xml.in.in:52
 msgid "Fina Wilke"
@@ -119,10 +117,9 @@ msgid "Quit"
 msgstr "Beenden"
 
 #: data/resources/ui/help_overlay.ui:28
-#, fuzzy
 msgctxt "shortcut window"
 msgid "File Transfer"
-msgstr "Dateiübertragung erfolgreich"
+msgstr "Dateiübertragung"
 
 #: data/resources/ui/help_overlay.ui:31
 msgctxt "shortcut window"
@@ -168,9 +165,8 @@ msgid "Please select the file you want to send"
 msgstr "Bitte wähle die Datei aus, die du senden möchtest"
 
 #: data/resources/ui/window.ui:103
-#, fuzzy
 msgid "Receive"
-msgstr "Datei empfangen?"
+msgstr "Empfangen"
 
 #: data/resources/ui/window.ui:111
 msgid "Receive files or directories"
@@ -257,9 +253,8 @@ msgid "translator-credits"
 msgstr ""
 
 #: src/ui/application.rs:155
-#, fuzzy
 msgid "App Icon by <a href=\"https://svgrepo.com\">svgrepo.com</a>"
-msgstr "App Icon von <a href=\"svgrepo.com\">svgrepo.com</a>"
+msgstr "App Icon von <a href=\"https://svgrepo.com\">svgrepo.com</a>"
 
 #: src/ui/application.rs:157
 msgid ""
