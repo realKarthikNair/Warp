@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="WelcomeWindow" parent="AdwWindow">
+    <property name="deletable">False</property>
+    <property name="title" translatable="yes">Welcome</property>
+    <child>
+      <object class="AdwLeaflet" id="leaflet">
+        <property name="can-unfold">False</property>
+        <child>
+          <object class="GtkBox">
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="AdwHeaderBar">
+                <property name="centering-policy">strict</property>
+                <style>
+                  <class name="flat"/>
+                </style>
+                <child type="start">
+                  <object class="GtkButton" id="close_button">
+                    <property name="label" translatable="yes">Close</property>
+                  </object>
+                </child>
+                <child type="end">
+                  <object class="GtkButton" id="next_button">
+                    <property name="label" translatable="yes">Next</property>
+                    <style>
+                      <class name="suggested-action"/>
+                    </style>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="AdwStatusPage" id="status_page">
+                <property name="vexpand">True</property>
+                <property name="title" translatable="yes">Welcome to Warp</property>
+                <property name="description" translatable="yes">Share files with each other effortlessly</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkBox">
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="AdwHeaderBar">
+                <property name="centering-policy">strict</property>
+                <style>
+                  <class name="flat"/>
+                </style>
+                <property name="title-widget">
+                  <object class="GtkBox">
+                  </object>
+                </property>
+                <child type="start">
+                  <object class="GtkButton" id="back_button">
+                    <property name="label" translatable="yes">Back</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="AdwBin">
+                <child>
+                  <object class="GtkBox">
+                    <property name="margin-bottom">12</property>
+                    <property name="margin-start">12</property>
+                    <property name="margin-end">12</property>
+                    <property name="spacing">12</property>
+                    <property name="orientation">vertical</property>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="justify">left</property>
+                        <property name="label" translatable="yes">Introduction</property>
+                        <style>
+                          <class name="title-1"/>
+                        </style>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="max-width-chars">50</property>
+                        <property name="wrap">True</property>
+                        <property name="justify">left</property>
+                        <property name="label" translatable="yes">Warp makes file transfer easy. To get started, both parties need to install Warp on their devices.
+
+After selecting a file to transmit, the sender needs to tell the receiver the displayed transmission code. This is preferably done via a secure communication channel.
+
+When the receiver has entered the code, the file transfer can begin.
+
+For more information about how Warp works, open the Help pages from the menu.</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="get_started_button">
+                        <property name="label" translatable="yes">Get started using Warp</property>
+                        <style>
+                          <class name="pill"/>
+                          <class name="suggested-action"/>
+                        </style>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+</interface>

@@ -23,6 +23,7 @@ impl Default for WindowConfig {
 #[derive(Clone, Default, Debug, Serialize, Deserialize, PartialEq)]
 pub struct Config {
     pub window: WindowConfig,
+    pub welcome_window_shown: bool,
 }
 
 #[derive(Clone, Default, Debug)]

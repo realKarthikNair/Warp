@@ -5,6 +5,7 @@ use gtk::subclass::prelude::*;
 use gtk::{gio, glib, ResponseType};
 
 use crate::ui::application::WarpApplication;
+use crate::util::UIError;
 
 mod imp {
     use super::*;
@@ -14,6 +15,7 @@ mod imp {
     use crate::config::PersistentConfig;
     use crate::glib::clone;
     use crate::globals;
+    use crate::ui::welcome_window::WelcomeWindow;
     use crate::util::UIError;
     use gtk::CompositeTemplate;
     use once_cell::sync::OnceCell;
@@ -84,6 +86,13 @@ mod imp {
                     PersistentConfig::default()
                 }),
             ));
+
+            if !self.config.borrow().welcome_window_shown {
+                let welcome_window = WelcomeWindow::new();
+                welcome_window.set_transient_for(Some(obj));
+                welcome_window.set_modal(true);
+                welcome_window.show();
+            }
 
             obj.load_window_size();
             obj.setup_help_overlay();
@@ -200,9 +209,7 @@ mod imp {
         // Save window state on delete event
         fn close_request(&self, window: &Self::Type) -> gtk::Inhibit {
             window.save_window_size();
-            if let Err(err) = self.config.borrow_mut().save() {
-                UIError::new(&gettext!("Error saving configuration file: {}", err)).handle();
-            }
+            window.save_config();
 
             // Pass close request on to the parent
             self.parent_close_request(window)
@@ -215,13 +222,24 @@ mod imp {
 
 glib::wrapper! {
     pub struct WarpApplicationWindow(ObjectSubclass<imp::WarpApplicationWindow>)
-        @extends gtk::Widget, gtk::Window, gtk::ApplicationWindow,
+        @extends gtk::Widget, gtk::Window, gtk::ApplicationWindow, adw::ApplicationWindow,
         @implements gio::ActionMap, gio::ActionGroup, gtk::Root;
 }
 
 impl WarpApplicationWindow {
     pub fn new(app: &WarpApplication) -> Self {
         glib::Object::new(&[("application", app)]).expect("Failed to create WarpApplicationWindow")
+    }
+
+    fn save_config(&self) {
+        if let Err(err) = self.imp().config.borrow_mut().save() {
+            UIError::new(&gettext!("Error saving configuration file: {}", err)).handle();
+        }
+    }
+
+    pub fn set_welcome_window_shown(&self, shown: bool) {
+        self.imp().config.borrow_mut().welcome_window_shown = shown;
+        self.save_config();
     }
 
     fn setup_help_overlay(&self) {
