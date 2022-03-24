@@ -36,32 +36,37 @@ msgid ""
 "Warp is designed to make it as simple and secure as possible to get files "
 "from one place to another. An internet connection is required."
 msgstr ""
+"Warp wurde entwickelt, um es so einfach und sicher wie möglich zu machen, "
+"Dateien von einem Ort zu einem anderen zu bekommen. Eine Internetverbindung "
+"ist erforderlich."
 
 #: data/net.felinira.warp.metainfo.xml.in.in:13
 msgid ""
 "The best transfer method will be determined using the “Magic Wormhole” "
 "application which includes local network transfer if possible."
 msgstr ""
+"Die beste Dateiübertragungsmethode wird mit der „Magic Wormhole“ "
+"Anwendung ermittelt. Wenn möglich wird lokale Netzwerkübertragung benutzt"
 
 #: data/net.felinira.warp.metainfo.xml.in.in:16
 msgid "Features"
-msgstr ""
+msgstr "Funktionen"
 
 #: data/net.felinira.warp.metainfo.xml.in.in:18
 msgid "Send files between multiple devices"
-msgstr ""
+msgstr "Versende Dateien zwischen verschiedenen Geräten"
 
 #: data/net.felinira.warp.metainfo.xml.in.in:19
 msgid "Every file transfer is encrypted"
-msgstr ""
+msgstr "Jede Dateiübertragung ist verschlüsselt"
 
 #: data/net.felinira.warp.metainfo.xml.in.in:20
 msgid "Directly transfer files on the local network if possible"
-msgstr ""
+msgstr "Wenn möglich Direktübertragung über das lokale Netzwerk"
 
 #: data/net.felinira.warp.metainfo.xml.in.in:21
 msgid "Compatibility with the “Magic Wormhole” command line client"
-msgstr ""
+msgstr "Kompatibilität mit dem „Magic Wormhole“ Kommandozeilenprogramm"
 
 #: data/net.felinira.warp.metainfo.xml.in.in:27
 msgid "Main window"
@@ -95,9 +100,8 @@ msgstr "Warte auf Verbindung"
 
 #: data/resources/ui/action_view.ui:70 data/resources/ui/action_view.ui:72
 #: data/resources/ui/window.ui:85
-#, fuzzy
 msgid "Open File"
-msgstr "Öffnen"
+msgstr "Datei Öffnen"
 
 #: data/resources/ui/help_overlay.ui:11
 msgctxt "shortcut window"
@@ -121,22 +125,19 @@ msgid "File Transfer"
 msgstr "Dateiübertragung erfolgreich"
 
 #: data/resources/ui/help_overlay.ui:31
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Send File"
-msgstr "Öffnen"
+msgstr "Datei Senden"
 
 #: data/resources/ui/help_overlay.ui:37
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Send Folder"
-msgstr "Sende Datei"
+msgstr "Sende Ordner"
 
 #: data/resources/ui/help_overlay.ui:43
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Receive File"
-msgstr "Datei empfangen?"
+msgstr "Datei empfangen"
 
 #: data/resources/ui/window.ui:6
 msgid "_Preferences"
@@ -148,16 +149,15 @@ msgstr "_Tastenkürzel"
 
 #: data/resources/ui/window.ui:14
 msgid "_Help"
-msgstr ""
+msgstr "_Hilfe"
 
 #: data/resources/ui/window.ui:18
 msgid "_About Warp"
 msgstr "_Über Warp"
 
 #: data/resources/ui/window.ui:26
-#, fuzzy
 msgid "_Open Folder"
-msgstr "Öffnen"
+msgstr "_Ordner Öffnen"
 
 #: data/resources/ui/window.ui:77
 msgid "Send files or directories"
@@ -210,7 +210,7 @@ msgstr "Code wird angefordert"
 
 #: src/ui/action_view.rs:226
 msgid "Please send the code to the receiver"
-msgstr "Bitte sende den Code an den*die Empfänger*in"
+msgstr "Bitte sende den Code an die empfangende Person"
 
 #: src/ui/action_view.rs:243
 msgid "Connected to peer"
@@ -280,20 +280,20 @@ msgid "Select folder to send"
 msgstr "Wähle einen Ordner zum Versenden aus"
 
 #: src/ui/window.rs:182
-#, fuzzy
 msgid "Open Folder"
-msgstr "Öffnen"
+msgstr "Ordner Öffnen"
 
 #: src/util.rs:110 src/util.rs:157
 msgid "Corrupt or unexpected message received"
 msgstr "Korrupte oder unerwartete Nachricht erhalten"
 
 #: src/util.rs:112
-#, fuzzy
 msgid ""
 "Error connecting to the rendezvous server.\n"
 "Please check your network connection."
-msgstr "Fehler bei der Verbindung mit dem Rendezvous-Server"
+msgstr ""
+"Fehler bei der Verbindung mit dem Rendezvous-Server.\n"
+"Bitte überprüfe deine Netzwerkverbindung"
 
 #: src/util.rs:114
 msgid ""
@@ -337,13 +337,3 @@ msgstr "Fehler beim Aufbau einer Verbindung zur Dateiübertragung"
 #: src/util.rs:163
 msgid "Unknown file transfer error"
 msgstr "Unbekannter Dateiübertragungsfehler"
-
-#~ msgid "Magic Wormhole"
-#~ msgstr "Magic Wormhole"
-
-#, fuzzy
-#~ msgid "Select file"
-#~ msgstr "Sende Datei"
-
-#~ msgid "Receive file?"
-#~ msgstr "Datei empfangen?"
