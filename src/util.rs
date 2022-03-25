@@ -1,3 +1,4 @@
+use crate::gettext::gettextf;
 use crate::ui::window::WarpApplicationWindow;
 use custom_error::custom_error;
 use futures::FutureExt;
@@ -140,14 +141,17 @@ impl AppError {
                 TransferError::FileSize {
                     sent_size,
                     file_size,
-                } => gettext!(
+                } => gettextf(
                     "The file contained a different amount of bytes than advertised! Sent {} \
                     bytes, but should have been {}",
-                    sent_size,
-                    file_size
+                    &[&sent_size.to_string(), &file_size.to_string()],
                 ),
                 TransferError::PeerError(msg) => {
-                    gettext(format!("Something went wrong on the other side: {}", msg))
+                    if msg == "Task has been cancelled" {
+                        gettext("The other side has cancelled the transfer")
+                    } else {
+                        gettextf("Something went wrong on the other side: {}", &[msg])
+                    }
                 }
                 TransferError::UnsupportedOffer
                 | TransferError::ProtocolJson(_)
