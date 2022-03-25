@@ -301,9 +301,11 @@ impl ActionView {
             imp.cancel_sender.get().unwrap().send(()).await.unwrap();
 
             if let Some(path) = imp.filename.borrow().clone() {
-                log::info!("Removing partially downloaded file '{}'", path.display());
-                if let Err(err) = std::fs::remove_file(&path) {
-                    log::error!("Error removing {}: {}", path.display(), err);
+                if *imp.direction.borrow() == TransferDirection::Receive {
+                    log::info!("Removing partially downloaded file '{}'", path.display());
+                    if let Err(err) = std::fs::remove_file(&path) {
+                        log::error!("Error removing {}: {}", path.display(), err);
+                    }
                 }
             }
             Ok(())
