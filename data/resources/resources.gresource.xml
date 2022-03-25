@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <gresources>
   <gresource prefix="/net/felinira/warp">
-    <file>icons/arrows-questionmark-symbolic.svg</file>
-    <file>icons/checkmark-large-symbolic.svg</file>
-    <file>icons/code-symbolic.svg</file>
-    <file>icons/copy-symbolic.svg</file>
-    <file>icons/drawer-symbolic.svg</file>
-    <file>icons/horizontal-arrows-disabled-symbolic.svg</file>
-    <file>icons/horizontal-arrows-left-symbolic.svg</file>
-    <file>icons/horizontal-arrows-one-way-symbolic.svg</file>
-    <file>icons/horizontal-arrows-right-symbolic.svg</file>
-    <file>icons/inbox-symbolic.svg</file>
-    <file>icons/outbox-symbolic.svg</file>
+    <file>icons/scalable/actions/arrows-questionmark-symbolic.svg</file>
+    <file>icons/scalable/actions/checkmark-large-symbolic.svg</file>
+    <file>icons/scalable/actions/code-symbolic.svg</file>
+    <file>icons/scalable/actions/copy-symbolic.svg</file>
+    <file>icons/scalable/actions/drawer-symbolic.svg</file>
+    <file>icons/scalable/actions/horizontal-arrows-disabled-symbolic.svg</file>
+    <file>icons/scalable/actions/horizontal-arrows-left-symbolic.svg</file>
+    <file>icons/scalable/actions/horizontal-arrows-one-way-symbolic.svg</file>
+    <file>icons/scalable/actions/horizontal-arrows-right-symbolic.svg</file>
     <file>style.css</file>
     <file>ui/action_view.ui</file>
     <file>ui/help_overlay.ui</file>
