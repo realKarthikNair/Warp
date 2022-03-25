@@ -240,8 +240,10 @@ impl ActionView {
                         .set_icon_name(Some("arrows-questionmark-symbolic"));
                     imp.status_page
                         .set_title(&gettext("Waiting for connection"));
-                    imp.status_page
-                        .set_description(Some(&gettext!("Connecting to peer with code {}", code)));
+                    imp.status_page.set_description(Some(&gettextf(
+                        "Connecting to peer with code {}",
+                        &[&code.to_string()],
+                    )));
                     imp.progress_bar.set_visible(true);
                 }
             },
@@ -305,12 +307,14 @@ impl ActionView {
 
                 let filename = path.file_name().unwrap().to_string_lossy();
                 if direction == TransferDirection::Send {
-                    imp.status_page
-                        .set_description(Some(&gettext!("Successfully sent file “{}”", filename)));
+                    imp.status_page.set_description(Some(&gettextf(
+                        "Successfully sent file “{}”",
+                        &[&filename],
+                    )));
                 } else {
-                    imp.status_page.set_description(Some(&gettext!(
+                    imp.status_page.set_description(Some(&gettextf(
                         "File has been saved to the Downloads folder as “{}”",
-                        filename
+                        &[&filename],
                     )));
                     imp.open_button.set_visible(true);
                 }
@@ -613,10 +617,10 @@ impl ActionView {
     fn save_file_dialog(filename: &Path, size: u64) -> gtk::MessageDialog {
         let dialog = gtk::builders::MessageDialogBuilder::new()
             .text(&gettext("Accept file transfer?"))
-            .secondary_text(&gettext!(
+            .secondary_text(&gettextf(
                 "Your peer wants to send you the file “{}” (Size: {}). Do you want to download this file to your Downloads folder?",
-                filename.display(),
-                glib::format_size(size)
+                &[&filename.display().to_string(),
+                &glib::format_size(size).to_string()]
             ))
             .message_type(gtk::MessageType::Question)
             .buttons(gtk::ButtonsType::None)

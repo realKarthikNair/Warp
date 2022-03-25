@@ -1,3 +1,4 @@
+use crate::gettext::gettextf;
 use crate::ui::action_view::ActionView;
 use gettextrs::*;
 use gtk::prelude::*;
@@ -74,10 +75,10 @@ mod imp {
                 clone!(@strong obj => move |err| {
                     obj.connect_visible_notify(move |window| {
                         if window.is_visible() {
-                            UIError::new(&gettext!(
+                            UIError::new(&gettextf(
                                 "Error loading config file '{}', using default config.\nError: {}",
-                                PersistentConfig::path().display(),
-                                err
+                                &[&PersistentConfig::path().to_string_lossy(),
+                                &err.to_string()]
                             ))
                             .handle();
                         }
@@ -233,7 +234,11 @@ impl WarpApplicationWindow {
 
     fn save_config(&self) {
         if let Err(err) = self.imp().config.borrow_mut().save() {
-            UIError::new(&gettext!("Error saving configuration file: {}", err)).handle();
+            UIError::new(&gettextf(
+                "Error saving configuration file: {}",
+                &[&err.to_string()],
+            ))
+            .handle();
         }
     }
 

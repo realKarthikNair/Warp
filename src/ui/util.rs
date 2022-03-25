@@ -1,8 +1,8 @@
+use crate::gettext::gettextf;
 use crate::util::{AppError, UIError};
 use async_std::fs::OpenOptions;
 use futures::FutureExt;
 use futures::{pin_mut, select};
-use gettextrs::gettext;
 use gtk::glib;
 use smol::process::Command;
 use std::ffi::OsString;
@@ -96,9 +96,9 @@ pub async fn compress_folder(
         log::debug!("Creating tar archive: {}", tar_path.to_string_lossy());
         Ok((future, tar_path))
     } else {
-        Err(UIError::new(&gettext!(
+        Err(UIError::new(&gettextf(
             "Path {} does not have a directory name",
-            path.display()
+            &[&path.display().to_string()],
         ))
         .into())
     }
