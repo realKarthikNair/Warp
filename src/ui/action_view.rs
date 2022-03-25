@@ -578,7 +578,7 @@ impl ActionView {
                 .borrow()
                 .as_ref()
                 .and_then(|p| p.file_name().map(|f| f.to_string_lossy().into()))
-                .unwrap_or("".to_string());
+                .unwrap_or_else(|| "".to_string());
 
             obj.set_ui_state(UIState::Transmitting(filename, info, peer_ip));
         });
@@ -603,7 +603,7 @@ impl ActionView {
                     progress.set_progress(sent as usize);
                     progress.get_pretty_time_remaining()
                 })
-                .unwrap_or("".to_string());
+                .unwrap_or_else(|| "".to_string());
 
             imp.progress_bar.set_fraction(sent as f64 / total as f64);
             imp.progress_bar.set_text(Some(&progress_str));
