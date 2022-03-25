@@ -242,7 +242,7 @@ impl ActionView {
                         .set_title(&gettext("Waiting for connection"));
                     imp.status_page.set_description(Some(&gettextf(
                         "Connecting to peer with code {}",
-                        &[&code.to_string()],
+                        &[&code],
                     )));
                     imp.progress_bar.set_visible(true);
                 }
@@ -619,8 +619,8 @@ impl ActionView {
             .text(&gettext("Accept file transfer?"))
             .secondary_text(&gettextf(
                 "Your peer wants to send you the file “{}” (Size: {}). Do you want to download this file to your Downloads folder?",
-                &[&filename.display().to_string(),
-                &glib::format_size(size).to_string()]
+                &[&filename.display(),
+                &glib::format_size(size)]
             ))
             .message_type(gtk::MessageType::Question)
             .buttons(gtk::ButtonsType::None)

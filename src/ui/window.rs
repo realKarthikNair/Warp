@@ -77,8 +77,8 @@ mod imp {
                         if window.is_visible() {
                             UIError::new(&gettextf(
                                 "Error loading config file '{}', using default config.\nError: {}",
-                                &[&PersistentConfig::path().to_string_lossy(),
-                                &err.to_string()]
+                                &[&PersistentConfig::path().display(),
+                                &err]
                             ))
                             .handle();
                         }
@@ -234,11 +234,7 @@ impl WarpApplicationWindow {
 
     fn save_config(&self) {
         if let Err(err) = self.imp().config.borrow_mut().save() {
-            UIError::new(&gettextf(
-                "Error saving configuration file: {}",
-                &[&err.to_string()],
-            ))
-            .handle();
+            UIError::new(&gettextf("Error saving configuration file: {}", &[&err])).handle();
         }
     }
 

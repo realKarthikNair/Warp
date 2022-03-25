@@ -98,7 +98,7 @@ pub async fn compress_folder(
     } else {
         Err(UIError::new(&gettextf(
             "Path {} does not have a directory name",
-            &[&path.display().to_string()],
+            &[&path.display()],
         ))
         .into())
     }

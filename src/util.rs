@@ -144,7 +144,7 @@ impl AppError {
                 } => gettextf(
                     "The file contained a different amount of bytes than advertised! Sent {} \
                     bytes, but should have been {}",
-                    &[&sent_size.to_string(), &file_size.to_string()],
+                    &[sent_size, &file_size],
                 ),
                 TransferError::PeerError(msg) => {
                     if msg == "Task has been cancelled" {
