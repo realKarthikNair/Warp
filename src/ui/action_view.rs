@@ -1,3 +1,4 @@
+use super::progress::FileTransferProgress;
 use super::util;
 use crate::glib::clone;
 use crate::globals;
@@ -78,6 +79,7 @@ mod imp {
         pub filename: RefCell<Option<PathBuf>>,
         pub direction: RefCell<TransferDirection>,
         pub ui_state: RefCell<UIState>,
+        pub progress: RefCell<Option<FileTransferProgress>>,
     }
 
     #[glib::object_subclass]
@@ -548,6 +550,9 @@ impl ActionView {
             let imp = obj.imp();
 
             if *imp.ui_state.borrow() == UIState::Connected {
+                imp.progress
+                    .replace(Some(FileTransferProgress::begin(total as usize)));
+
                 let name = if let Some(filename) = &*imp.filename.borrow() {
                     let name = filename.file_name();
                     if let Some(name) = name {
@@ -562,12 +567,18 @@ impl ActionView {
                 obj.set_ui_state(UIState::Transmitting(name));
             }
 
+            let progress_str = imp
+                .progress
+                .borrow_mut()
+                .as_mut()
+                .and_then(|progress| {
+                    progress.set_progress(sent as usize);
+                    progress.get_pretty_time_remaining()
+                })
+                .unwrap_or("".to_string());
+
             imp.progress_bar.set_fraction(sent as f64 / total as f64);
-            imp.progress_bar.set_text(Some(&format!(
-                "{} / {}",
-                pretty_bytes::converter::convert(sent as f64),
-                pretty_bytes::converter::convert(total as f64)
-            )));
+            imp.progress_bar.set_text(Some(&progress_str));
         });
     }
 
@@ -577,7 +588,7 @@ impl ActionView {
             .secondary_text(&gettext!(
                 "Your peer wants to send you the file “{}” (Size: {}). Do you want to download this file to your Downloads folder?",
                 filename.display(),
-                pretty_bytes::converter::convert(size as f64)
+                glib::format_size(size)
             ))
             .message_type(gtk::MessageType::Question)
             .buttons(gtk::ButtonsType::None)

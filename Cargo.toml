@@ -18,7 +18,6 @@ adw = {version = "0.1.0", package = "libadwaita"}
 async-channel = "1.6.1"
 custom_error = "1.9.2"
 wormhole = { git = "https://github.com/magic-wormhole/magic-wormhole.rs", package = "magic-wormhole", version = "0.3.0"}
-pretty-bytes = "0.2.2"
 futures = "0.3.21"
 url = "2.2.2"
 async-std = "1.10.0"
@@ -26,6 +25,8 @@ smol = "1.2.5"
 scopeguard = "1.1.0"
 serde = "1.0.136"
 serde_json = "1.0.79"
+simple_moving_average = "0.1.2"
+chrono = "0.4.19"
 
 [build-dependencies]
 xml-rs = "0.8"

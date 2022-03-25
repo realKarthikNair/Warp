@@ -2,6 +2,7 @@
 mod macros;
 
 mod config;
+mod gettext;
 #[allow(dead_code)]
 mod globals;
 mod ui;
