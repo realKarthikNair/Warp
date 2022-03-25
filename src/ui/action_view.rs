@@ -1,5 +1,6 @@
 use super::progress::FileTransferProgress;
 use super::util;
+use crate::gettext::gettextf;
 use crate::glib::clone;
 use crate::globals;
 use crate::ui::window::WarpApplicationWindow;
@@ -10,9 +11,11 @@ use gtk::subclass::prelude::*;
 use gtk::{glib, ResponseType};
 use scopeguard::ScopeGuard;
 use std::future::Future;
+use std::net::SocketAddr;
 use std::path::{Path, PathBuf};
 use std::time::Duration;
 use wormhole::transfer::TransferError;
+use wormhole::transit::TransitInfo;
 use wormhole::{transfer, transit, Code, Wormhole};
 
 #[derive(Clone, Debug, PartialEq)]
@@ -22,7 +25,7 @@ pub enum UIState {
     RequestCode,
     HasCode(Code),
     Connected,
-    Transmitting(String),
+    Transmitting(String, TransitInfo, SocketAddr),
     Done(PathBuf),
 }
 
@@ -189,6 +192,7 @@ impl ActionView {
         match ui_state {
             UIState::Initial => {
                 imp.filename.replace(None);
+                imp.progress.replace(None);
                 imp.open_button.set_visible(false);
                 imp.cancel_button.set_visible(true);
                 imp.back_button.set_visible(false);
@@ -261,15 +265,34 @@ impl ActionView {
                     }
                 }
             }
-            UIState::Transmitting(filename) => {
+            UIState::Transmitting(filename, info, _peer_ip) => {
                 self.show_progress_indeterminate(false);
                 imp.progress_bar.set_show_text(true);
+
+                let transit_string = match info {
+                    TransitInfo::Direct => "Direct Transfer".to_string(),
+                    TransitInfo::Relay { name } => {
+                        if let Some(name) = name {
+                            gettextf("Relay {}", &[&name])
+                        } else {
+                            gettext("Relay")
+                        }
+                    }
+                    _ => gettext("Unknown connection method"),
+                };
+
                 if direction == TransferDirection::Send {
-                    imp.status_page
-                        .set_description(Some(&gettext!("Sending file “{}”", filename)));
+                    imp.status_page.set_title(&gettext("Sending file"));
+                    imp.status_page.set_description(Some(&gettextf(
+                        "Sending file “{}” via {}",
+                        &[&filename, &transit_string],
+                    )));
                 } else {
-                    imp.status_page
-                        .set_description(Some(&gettext!("Receiving file “{}”", filename)));
+                    imp.status_page.set_title(&gettext("Receiving file"));
+                    imp.status_page.set_description(Some(&gettextf(
+                        "Receiving file “{}” via {}",
+                        &[&filename, &transit_string],
+                    )));
                 }
             }
             UIState::Done(path) => {
@@ -456,6 +479,7 @@ impl ActionView {
                                 &filename,
                                 metadata.len(),
                                 transit_abilities,
+                                Self::transit_handler,
                                 Self::progress_handler,
                                 Self::cancel_future()
                             ).await;
@@ -510,7 +534,7 @@ impl ActionView {
 
                         let mut file = file_res?;
 
-                        let res = request.accept(Self::progress_handler, &mut file, Self::cancel_future()).await;
+                        let res = request.accept(Self::transit_handler, Self::progress_handler, &mut file, Self::cancel_future()).await;
                         Self::handle_transfer_result(res, &path);
                         Ok(())
                     });
@@ -544,27 +568,31 @@ impl ActionView {
         }
     }
 
+    fn transit_handler(info: TransitInfo, peer_ip: SocketAddr) {
+        glib::MainContext::default().invoke(move || {
+            let obj = WarpApplicationWindow::default().action_view();
+            let imp = obj.imp();
+
+            let filename = imp
+                .filename
+                .borrow()
+                .as_ref()
+                .and_then(|p| p.file_name().map(|f| f.to_string_lossy().into()))
+                .unwrap_or("".to_string());
+
+            obj.set_ui_state(UIState::Transmitting(filename, info, peer_ip));
+        });
+    }
+
     fn progress_handler(sent: u64, total: u64) {
         glib::MainContext::default().invoke(move || {
             let obj = WarpApplicationWindow::default().action_view();
             let imp = obj.imp();
 
-            if *imp.ui_state.borrow() == UIState::Connected {
+            if *imp.ui_state.borrow() == UIState::Connected {}
+            if imp.progress.borrow().is_none() {
                 imp.progress
                     .replace(Some(FileTransferProgress::begin(total as usize)));
-
-                let name = if let Some(filename) = &*imp.filename.borrow() {
-                    let name = filename.file_name();
-                    if let Some(name) = name {
-                        name.to_string_lossy().into()
-                    } else {
-                        "".to_string()
-                    }
-                } else {
-                    "".to_string()
-                };
-
-                obj.set_ui_state(UIState::Transmitting(name));
             }
 
             let progress_str = imp
