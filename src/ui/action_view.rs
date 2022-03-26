@@ -307,7 +307,7 @@ impl ActionView {
                     TransitInfo::Relay { name } => {
                         if let Some(name) = name {
                             // Translators: Description, During transfer
-                            gettextf("File “{}” via relay {}", &[&filename, &name])
+                            gettextf("File “{0}” via relay {1}", &[&filename, &name])
                         } else {
                             // Translators: Description, During transfer
                             gettextf("File “{}” via relay", &[&filename])
@@ -368,7 +368,7 @@ impl ActionView {
                 if *imp.direction.borrow() == TransferDirection::Receive {
                     log::info!("Removing partially downloaded file '{}'", path.display());
                     if let Err(err) = std::fs::remove_file(&path) {
-                        log::error!("Error removing {}: {}", path.display(), err);
+                        log::error!("Error removing {0}: {1}", path.display(), err);
                     }
                 }
             }
@@ -660,7 +660,7 @@ impl ActionView {
             .text(&gettext("Accept file transfer?"))
             .secondary_text(&gettextf(
                 // Translators: File receive confirmation message dialog; Filename, File size
-                "Your peer wants to send you the file “{}” (Size: {}). Do you want to download this file to your Downloads folder?",
+                "Your peer wants to send you the file “{0}” (Size: {1}). Do you want to download this file to your Downloads folder?",
                 &[&filename.display(),
                 &glib::format_size(size)]
             ))
