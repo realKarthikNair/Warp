@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-26 14:44+0100\n"
+"POT-Creation-Date: 2022-03-26 15:33+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -233,33 +233,45 @@ msgstr "Warp Code"
 msgid "Receive File"
 msgstr "Datei empfangen"
 
-#. Translators: Example: 11.3MB / 20.7MB - 3 seconds left
+#. Translators: {0} = file size transferred, {1} = total file size, Example: 17.3MB / 20.5MB
 #: src/gettext/duration.rs:12
-msgid "{0} / {1} - One second left"
-msgid_plural "{0} / {1} - {2} seconds left"
-msgstr[0] "{0} / {1} - Eine Sekunde verbleibend"
-msgstr[1] "{0} / {1} - {2} Sekunden verbleibend"
+msgctxt "File size transferred"
+msgid "{0} / {1}"
+msgstr "{0} / {1}"
 
-#. Translators: Example: 110.3MB / 200.7MB - 5 minutes left
-#: src/gettext/duration.rs:20
-msgid "{0} / {1} - One minute left"
-msgid_plural "{0} / {1} - {2} minutes left"
-msgstr[0] "{0} / {1} - Eine Minute verbleibend"
-msgstr[1] "{0} / {1} - {2} Minuten verbleibend"
+#. Translators: File transfer time left
+#: src/gettext/duration.rs:19
+msgid "One second left"
+msgid_plural "{} seconds left"
+msgstr[0] "Eine Sekunde verbleibend"
+msgstr[1] "{} Sekunden verbleibend"
 
-#. Translators: Example: 110.3GB / 200.7GB - 2 hours left
-#: src/gettext/duration.rs:28
-msgid "{0} / {1} - One hour left"
-msgid_plural "{0} / {1} - {2} hours left"
-msgstr[0] "{0} / {1} - Eine Stunde verbleibend"
-msgstr[1] "{0} / {1} - {2} Stunden verbleibend"
+#. Translators: File transfer time left
+#: src/gettext/duration.rs:27
+msgid "One minute left"
+msgid_plural "{} minutes left"
+msgstr[0] "Eine Minute verbleibend"
+msgstr[1] "{} Minuten verbleibend"
 
-#. Translators: Example: 11.3TB / 20.7TB - 2 days left
-#: src/gettext/duration.rs:36
-msgid "{0} / {1} - One day left"
-msgid_plural "{0} / {1} - {2} days left"
-msgstr[0] "{0} / {1} - Ein Tag verbleibend"
-msgstr[1] "{0} / {1} - {2} Tage verbleibend"
+#. Translators: File transfer time left
+#: src/gettext/duration.rs:35
+msgid "One hour left"
+msgid_plural "{} hours left"
+msgstr[0] "Eine Stunde verbleibend"
+msgstr[1] "{} Stunden verbleibend"
+
+#. Translators: File transfer time left
+#: src/gettext/duration.rs:43
+msgid "One day left"
+msgid_plural "{} days left"
+msgstr[0] "Ein Tag verbleibend"
+msgstr[1] "{} Tage verbleibend"
+
+#. Translators: {0} = 11.3MB / 20.7MB, {1} = 3 seconds left
+#: src/gettext/duration.rs:53
+msgctxt "Combine bytes progress {0} and time remaining {1}"
+msgid "{0} - {1}"
+msgstr "{0} - {1}"
 
 #. Translators: Notification when clicking on "Copy to clipboard" button
 #: src/ui/action_view.rs:127
@@ -409,6 +421,8 @@ msgid ""
 "Symbolic icon made from <a href=\"http://www.onlinewebfonts.com/icon\">Icon "
 "Fonts</a> is licensed by CC BY 3.0"
 msgstr ""
+"Symbolisches Icon von <a href=\"http://www.onlinewebfonts.com/icon\">Icon "
+"Fonts</a> ist lizensiert nach CC BY 3.0"
 
 #: src/ui/util.rs:99
 msgid "Path {} does not have a directory name"

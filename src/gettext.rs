@@ -15,8 +15,12 @@ fn fmt(mut format: String, args: &[&dyn Display]) -> String {
     format
 }
 
-pub fn gettextf(format: &str, args: &[&dyn Display]) -> String {
-    fmt(gettext(format), args)
+pub fn gettextf(msgid: &str, args: &[&dyn Display]) -> String {
+    fmt(gettext(msgid), args)
+}
+
+pub fn pgettextf(msgctxt: &str, msgid: &str, args: &[&dyn Display]) -> String {
+    fmt(pgettext(msgctxt, msgid), args)
 }
 
 pub fn ngettextf(msgid: &str, msgid_plural: &str, n: u32, args: &[&dyn Display]) -> String {
@@ -25,4 +29,14 @@ pub fn ngettextf(msgid: &str, msgid_plural: &str, n: u32, args: &[&dyn Display])
 
 pub fn ngettextf_(msgid: &str, msgid_plural: &str, n: u32) -> String {
     ngettextf(msgid, msgid_plural, n, &[&n])
+}
+
+pub fn npgettextf(
+    msgctxt: &str,
+    msgid: &str,
+    msgid_plural: &str,
+    n: u32,
+    args: &[&dyn Display],
+) -> String {
+    fmt(npgettext(msgctxt, msgid, msgid_plural, n), args)
 }
