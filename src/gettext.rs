@@ -3,22 +3,24 @@ use std::fmt::Display;
 
 pub mod duration;
 
-pub fn gettextf(format: &str, args: &[&dyn Display]) -> String {
-    let mut s = gettext(format);
-
+fn fmt(mut format: String, args: &[&dyn Display]) -> String {
     for arg in args {
-        s = s.replacen("{}", &arg.to_string(), 1)
+        format = format.replacen("{}", &arg.to_string(), 1)
     }
-    s
+
+    for (i, arg) in args.iter().enumerate() {
+        format = format.replace(&format!("{{{}}}", i), &arg.to_string());
+    }
+
+    format
+}
+
+pub fn gettextf(format: &str, args: &[&dyn Display]) -> String {
+    fmt(gettext(format), args)
 }
 
 pub fn ngettextf(msgid: &str, msgid_plural: &str, n: u32, args: &[&dyn Display]) -> String {
-    let mut s = ngettext(msgid, msgid_plural, n);
-
-    for arg in args {
-        s = s.replacen("{}", &arg.to_string(), 1)
-    }
-    s
+    fmt(ngettext(msgid, msgid_plural, n), args)
 }
 
 pub fn ngettextf_(msgid: &str, msgid_plural: &str, n: u32) -> String {
