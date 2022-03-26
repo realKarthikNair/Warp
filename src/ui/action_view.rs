@@ -257,13 +257,13 @@ impl ActionView {
                         imp.status_page
                             .set_description(Some(&gettext("Preparing to send file")));
                         imp.status_page
-                            .set_icon_name(Some("horizontal-arrows-left-symbolic"));
+                            .set_icon_name(Some("horizontal-arrows-right-symbolic"));
                     }
                     TransferDirection::Receive => {
                         imp.status_page
                             .set_description(Some(&gettext("Preparing to receive file")));
                         imp.status_page
-                            .set_icon_name(Some("horizontal-arrows-right-symbolic"));
+                            .set_icon_name(Some("horizontal-arrows-left-symbolic"));
                     }
                 }
             }
@@ -320,6 +320,7 @@ impl ActionView {
                 imp.status_page
                     .set_icon_name(Some("checkmark-large-symbolic"));
                 imp.progress_bar.set_text(None);
+                imp.progress_bar.set_visible(false);
 
                 let filename = path.file_name().unwrap().to_string_lossy();
                 if direction == TransferDirection::Send {
