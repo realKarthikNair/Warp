@@ -1,3 +1,9 @@
+[advisories]
+ignore = [
+    "RUSTSEC-2020-0071",
+    "RUSTSEC-2020-0159",
+]
+
 [licenses]
 unlicensed = "deny"
 copyleft = "allow"
@@ -15,6 +21,5 @@ license-files = [
 
 [sources]
 allow-git = [
-    "https://github.com/async-rs/async-std.git",
     "https://github.com/magic-wormhole/magic-wormhole.rs.git",
 ]
