@@ -5,7 +5,7 @@ language code of your translation.
 
 ```shell
 # Create pot file
-xgettext --from-code=utf-8 -o po/warp.pot `cat po/POTFILES.in` 2>/dev/null
+./build-aux/generate-potfile.sh
 
 # Create a translation file for a new language LANG
 cp po/warp.pot po/LANG.po
