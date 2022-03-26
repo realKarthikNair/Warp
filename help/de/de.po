@@ -125,10 +125,10 @@ msgstr ""
 #: help/C/details-glossary.page:13
 msgid ""
 "The rendezvous server also helps the transmitting client to generate a <link "
-"xref=\"#transmission-code\"/>"
+"xref=\"#transmit-code\"/>"
 msgstr ""
 "Der Rendezvous-Server hilft außerdem dem sendenden Client dabei, einen <link "
-"xref=\"#transmission-code\"/> zu generierten."
+"xref=\"#transmit-code\"/> zu generierten."
 
 #. (itstool) path: section/p
 #: help/C/details-glossary.page:14
@@ -152,7 +152,7 @@ msgstr ""
 
 #. (itstool) path: section/title
 #: help/C/details-glossary.page:21
-msgid "Transmission Code"
+msgid "Transmit Code"
 msgstr "Übertragungscode"
 
 #. (itstool) path: section/p
@@ -169,9 +169,9 @@ msgstr ""
 #. (itstool) path: section/p
 #: help/C/details-glossary.page:24
 msgid ""
-"To start a transmission you need a transmission code. The transmission code "
+"To start a transmission you need a transmit code. The transmit code "
 "then needs to be communicated to the receiver (preferably via an encrypted "
-"or otherwise secure channel). After entering the transmission code at the "
+"or otherwise secure channel). After entering the transmit code at the "
 "receiver side the file transmission can begin."
 msgstr ""
 "Um eine Übertragung zu starten brauchst du einen Übertragunscode. Der Code "
@@ -182,7 +182,7 @@ msgstr ""
 
 #. (itstool) path: note/p
 #: help/C/details-glossary.page:28
-msgid "Every transmission code can only be entered once for security reasons."
+msgid "Every transmit code can only be entered once for security reasons."
 msgstr ""
 "Jeder Übertragungscode kann aus Sicherheitsgründen nur einmalig eingegeben "
 "werden."
@@ -284,21 +284,21 @@ msgid ""
 "To use <app>Warp</app> to transfer a file, the sender needs to open the "
 "application. Select a file using the <gui>Send</gui> tab. <app>Warp</app> "
 "will now try to contact the <link xref=\"details-glossary#rendezvous-"
-"server\"/> and generate a <link xref=\"details-glossary#transmission-code\"/"
+"server\"/> and generate a <link xref=\"details-glossary#transmit-code\"/"
 ">."
 msgstr ""
 "Um <app>Warp</app> zu benutzen um eine Datei zu übertragen, muss die "
 "sendende Person die Anwendung öffnen. Wähle eine Datei über den "
 "<gui>Versenden</gui>-Tab aus. <app>Warp</app> wird nun versuchen, den <link "
 "xref=\"details-glossary#rendezvous-server\"/> zu kontaktieren und einen "
-"<link xref=\"details-glossary#transmission-code\"/> generieren."
+"<link xref=\"details-glossary#transmit-code\"/> generieren."
 
 #. (itstool) path: page/p
 #: help/C/general-intro.page:13
 msgid ""
-"The sender then needs to tell the receiver the transmission code of the "
+"The sender then needs to tell the receiver the transmit code of the "
 "file. (preferably via an encrypted or otherwise secure channel). After "
-"entering the transmission code at the receiver side the file transmission "
+"entering the transmit code at the receiver side the file transmission "
 "can begin."
 msgstr ""
 "Der Code muss dann an die empfangende Person kommuniziert werden "
@@ -309,8 +309,8 @@ msgstr ""
 #. (itstool) path: note/p
 #: help/C/general-intro.page:16
 msgid ""
-"Every transmission code can only be entered once for security reasons. If "
-"the receiver mistypes the transmission code the file transfer will be "
+"Every transmit code can only be entered once for security reasons. If "
+"the receiver mistypes the transmit code the file transfer will be "
 "aborted. The sender then needs to select the file again and generate a new "
 "code."
 msgstr ""

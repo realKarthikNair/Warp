@@ -126,7 +126,7 @@
                                             </style>
                                             <child>
                                               <object class="GtkEntry" id="code_entry">
-                                                <property name="placeholder-text" translatable="yes">Warp Code</property>
+                                                <property name="placeholder-text" translatable="yes">Transmit Code</property>
                                                 <property name="hexpand">False</property>
                                                 <property name="width-request">320</property>
                                               </object>

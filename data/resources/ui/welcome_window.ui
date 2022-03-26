@@ -84,7 +84,7 @@
                         <property name="justify">left</property>
                         <property name="label" translatable="yes">Warp makes file transfer easy. To get started, both parties need to install Warp on their devices.
 
-After selecting a file to transmit, the sender needs to tell the receiver the displayed transmission code. This is preferably done via a secure communication channel.
+After selecting a file to transmit, the sender needs to tell the receiver the displayed transmit code. This is preferably done via a secure communication channel.
 
 When the receiver has entered the code, the file transfer can begin.
 

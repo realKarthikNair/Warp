@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-26 15:59+0100\n"
+"POT-Creation-Date: 2022-03-26 19:03+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -81,7 +81,7 @@ msgid "Fina Wilke"
 msgstr ""
 
 #: data/resources/ui/action_view.ui:16 src/ui/action_view.rs:673
-#: src/ui/window.rs:191 src/ui/window.rs:205
+#: src/ui/window.rs:190 src/ui/window.rs:204
 msgid "Cancel"
 msgstr "Abbrechen"
 
@@ -90,7 +90,7 @@ msgid "Back"
 msgstr "Zurück"
 
 #: data/resources/ui/action_view.ui:68 data/resources/ui/action_view.ui:70
-#: data/resources/ui/window.ui:85
+#: data/resources/ui/window.ui:88
 msgid "Open File"
 msgstr "Datei Öffnen"
 
@@ -155,7 +155,7 @@ msgid ""
 "Warp on their devices.\n"
 "\n"
 "After selecting a file to transmit, the sender needs to tell the receiver "
-"the displayed transmission code. This is preferably done via a secure "
+"the displayed transmit code. This is preferably done via a secure "
 "communication channel.\n"
 "\n"
 "When the receiver has entered the code, the file transfer can begin.\n"
@@ -200,38 +200,34 @@ msgstr "_Über Warp"
 msgid "_Open Folder"
 msgstr "_Ordner Öffnen"
 
-#: data/resources/ui/window.ui:69
+#: data/resources/ui/window.ui:71
 msgid "Send"
 msgstr "Senden"
 
-#: data/resources/ui/window.ui:77
-msgid "Send files or directories"
-msgstr "Sende Dateien oder Verzeichnisse"
+#: data/resources/ui/window.ui:79
+msgid "Send File"
+msgstr "Datei Senden"
 
-#: data/resources/ui/window.ui:78
-msgid "Please select the file you want to send"
-msgstr "Bitte wähle die Datei aus, die du senden möchtest"
+#: data/resources/ui/window.ui:80
+msgid "Select the file or directory to send"
+msgstr "Wähle eine Datei oder einen Ordner zum Versenden aus"
 
-#: data/resources/ui/window.ui:103
+#: data/resources/ui/window.ui:108
 msgid "Receive"
 msgstr "Empfangen"
 
-#: data/resources/ui/window.ui:111
-msgid "Receive files or directories"
-msgstr "Empfange Dateien oder Verzeichnisse"
-
-#. Translators: Text above code input box
-#: data/resources/ui/window.ui:113
-msgid "Please enter the transmit code from the sender"
-msgstr "Bitte gebe den Übertragungscode der übertragenden Person ein"
-
-#: data/resources/ui/window.ui:123
-msgid "Warp Code"
-msgstr "Warp Code"
-
-#: data/resources/ui/window.ui:129
+#: data/resources/ui/window.ui:116 data/resources/ui/window.ui:136
 msgid "Receive File"
 msgstr "Datei empfangen"
+
+#. Translators: Text above code input box
+#: data/resources/ui/window.ui:118
+msgid "Enter the transmit code from the sender"
+msgstr "Bitte gebe den Übertragungscode der sendenden Person ein"
+
+#: data/resources/ui/window.ui:129
+msgid "Transmit Code"
+msgstr "Transmit Code"
 
 #. Translators: {0} = file size transferred, {1} = total file size, Example: 17.3MB / 20.5MB
 #: src/gettext/duration.rs:12
@@ -428,7 +424,7 @@ msgstr ""
 msgid "Path {} does not have a directory name"
 msgstr "Pfad {} hat keinen Verzeichnisnamen"
 
-#: src/ui/window.rs:82
+#: src/ui/window.rs:81
 msgid ""
 "Error loading config file '{0}', using default config.\n"
 "Error: {1}"
@@ -437,40 +433,44 @@ msgstr ""
 "Standardkonfiguration\n"
 "Fehler: {1}"
 
-#: src/ui/window.rs:187
+#: src/ui/window.rs:186
 msgid "Select file to send"
 msgstr "Wähle eine Datei zum Versenden aus"
 
-#: src/ui/window.rs:190
+#: src/ui/window.rs:189
 msgid "Open"
 msgstr "Öffnen"
 
-#: src/ui/window.rs:201
+#: src/ui/window.rs:200
 msgid "Select folder to send"
 msgstr "Wähle einen Ordner zum Versenden aus"
 
-#: src/ui/window.rs:204
+#: src/ui/window.rs:203
 msgid "Open Folder"
 msgstr "Ordner Öffnen"
 
-#: src/ui/window.rs:249
+#: src/ui/window.rs:248
 msgid "Error saving configuration file: {}"
 msgstr "Fehler beim Speichern der Konfigurationsdatei: „{}“"
 
+#: src/ui/window.rs:287
+msgid "“{}” appears to be an invalid Transmit Code. Please try again."
+msgstr ""
+
 #. Translators: Notification when code was automatically detected in clipboard and inserted into code entry on receive page
-#: src/ui/window.rs:343
+#: src/ui/window.rs:349
 msgid "Inserted code from clipboard"
 msgstr "Code aus Zwischenablage eingefügt"
 
-#: src/util.rs:66
+#: src/util.rs:67
 msgid "An error occurred"
 msgstr "Ein Fehler ist aufgetreten"
 
-#: src/util.rs:111 src/util.rs:160
+#: src/util.rs:112 src/util.rs:161
 msgid "Corrupt or unexpected message received"
 msgstr "Korrupte oder unerwartete Nachricht erhalten"
 
-#: src/util.rs:113
+#: src/util.rs:114
 msgid ""
 "Error connecting to the rendezvous server.\n"
 "Please check your network connection."
@@ -478,7 +478,7 @@ msgstr ""
 "Fehler bei der Verbindung mit dem Rendezvous-Server.\n"
 "Bitte überprüfe deine Netzwerkverbindung"
 
-#: src/util.rs:115
+#: src/util.rs:116
 msgid ""
 "Encryption key confirmation failed. If you or your peer didn't mistype the "
 "code, this is a sign of an attacker guessing passwords. Please try again "
@@ -489,31 +489,31 @@ msgstr ""
 "gerade, Passwörter zu erraten. Bitte probiere es ein bisschen später noch "
 "einmal."
 
-#: src/util.rs:117
+#: src/util.rs:118
 msgid "Cannot decrypt a received message"
 msgstr "Kann eine verschlüsselte Nachricht nicht entschlüsseln."
 
-#: src/util.rs:118 src/util.rs:168
+#: src/util.rs:119 src/util.rs:169
 msgid "An unknown error occurred"
 msgstr "Ein unbekannter Fehler ist aufgetreten"
 
-#: src/util.rs:124
+#: src/util.rs:125
 msgid "File / Directory not found"
 msgstr "Datei / Ordner nicht gefunden"
 
-#: src/util.rs:125
+#: src/util.rs:126
 msgid "Permission denied"
 msgstr "Zugriff verweigert"
 
-#: src/util.rs:137
+#: src/util.rs:138
 msgid "Transfer was not acknowledged by peer"
 msgstr "Übertragung wurde nicht vom Gegenüber bestätigt"
 
-#: src/util.rs:139
+#: src/util.rs:140
 msgid "The received file is corrupted"
 msgstr "Die empfangene Datei ist korrupt"
 
-#: src/util.rs:145
+#: src/util.rs:146
 msgid ""
 "The file contained a different amount of bytes than advertised! Sent {} "
 "bytes, but should have been {}"
@@ -521,18 +521,27 @@ msgstr ""
 "Die empfangene Datei hat eine andere Dateigröße als erwartet! Es wurden {} "
 "Bytes empfangen, aber es hätten {} sein sollen"
 
-#: src/util.rs:150
+#: src/util.rs:151
 msgid "The other side has cancelled the transfer"
 msgstr "Dein Gegenüber hat die Dateiübertragung abgebrochen"
 
-#: src/util.rs:152
+#: src/util.rs:153
 msgid "Something went wrong on the other side: {}"
 msgstr "Beim Gegenüber ist ein Fehler aufgetreten: {}"
 
-#: src/util.rs:164
+#: src/util.rs:165
 msgid "Error while establishing file transfer connection"
 msgstr "Fehler beim Aufbau einer Verbindung zur Dateiübertragung"
 
-#: src/util.rs:166
+#: src/util.rs:167
 msgid "Unknown file transfer error"
 msgstr "Unbekannter Dateiübertragungsfehler"
+
+#~ msgid "Send files or directories"
+#~ msgstr "Sende Dateien oder Verzeichnisse"
+
+#~ msgid "Please select the file you want to send"
+#~ msgstr "Bitte wähle die Datei aus, die du senden möchtest"
+
+#~ msgid "Receive files or directories"
+#~ msgstr "Empfange Dateien oder Verzeichnisse"

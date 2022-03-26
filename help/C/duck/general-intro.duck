@@ -4,17 +4,17 @@
 @desc Introduction to file transfer with $app(Warp)
 
 $app(Warp) is an application that allows you to send files from one device to another effortlessly. $app(Warp) uses a
-secure transmission code to identify and encrypt file transmissions.
+secure transmit code to identify and encrypt file transmissions.
 
 To use $app(Warp) to transfer a file, the sender needs to open the application. Select a file using the $gui(Send) tab.
 $app(Warp) will now try to contact the $link[>details-glossary#rendezvous-server] and generate a
-$link[>details-glossary#transmission-code].
+$link[>details-glossary#transmit-code].
 
-The sender then needs to tell the receiver the transmission code of the file. (preferably via an encrypted or otherwise
-secure channel). After entering the transmission code at the receiver side the file transmission can begin.
+The sender then needs to tell the receiver the transmit code of the file. (preferably via an encrypted or otherwise
+secure channel). After entering the transmit code at the receiver side the file transmission can begin.
 
 [note]
-    Every transmission code can only be entered once for security reasons. If the receiver mistypes the transmission
+    Every transmit code can only be entered once for security reasons. If the receiver mistypes the transmission
     code the file transfer will be aborted. The sender then needs to select the file again and generate a new code.
 
 A progress bar will indicate a running file transfer. Files will either be transmitted via
