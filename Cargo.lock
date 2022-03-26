@@ -2259,6 +2259,7 @@ dependencies = [
  "magic-wormhole",
  "once_cell",
  "pretty_env_logger",
+ "regex",
  "scopeguard",
  "serde",
  "serde_json",

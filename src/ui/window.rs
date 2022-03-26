@@ -17,7 +17,7 @@ mod imp {
     use crate::glib::clone;
     use crate::globals;
     use crate::ui::welcome_window::WelcomeWindow;
-    use crate::util::UIError;
+    use crate::util::{do_async, UIError};
     use gtk::CompositeTemplate;
     use once_cell::sync::OnceCell;
 
@@ -87,6 +87,27 @@ mod imp {
                     PersistentConfig::default()
                 }),
             ));
+
+            obj.connect_notify(Some("is-active"), |obj, _| {
+                let obj = obj.clone();
+                if obj.is_active() {
+                    do_async(async move {
+                        let clipboard = obj.display().clipboard();
+                        let text = clipboard.read_text_future().await;
+                        if let Ok(Some(text)) = text {
+                            if globals::TRANSIT_CODE_REGEX.is_match(&text) {
+                                obj.imp().stack.set_visible_child_name("receive");
+                                obj.imp().code_entry.set_text(&text);
+                                obj.imp().toast_overlay.add_toast(&adw::Toast::new(&gettext(
+                                    "Inserted code from clipboard",
+                                )));
+                            }
+                        }
+
+                        Ok(())
+                    });
+                }
+            });
 
             if !self.config.borrow().welcome_window_shown {
                 let welcome_window = WelcomeWindow::new();
