@@ -14,8 +14,8 @@ pub struct WindowConfig {
 impl Default for WindowConfig {
     fn default() -> Self {
         Self {
-            width: 440,
-            height: 440,
+            width: 460,
+            height: 500,
         }
     }
 }
