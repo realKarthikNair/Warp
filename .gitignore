@@ -12,3 +12,6 @@ vendor
 po/*.pot
 po/*~
 help/*.pot
+flatpak_out/
+flatpak_repo/
+*.flatpak
