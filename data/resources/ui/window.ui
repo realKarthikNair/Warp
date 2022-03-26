@@ -79,11 +79,14 @@
                                     <property name="icon-name">horizontal-arrows-right-symbolic</property>
                                     <child>
                                       <object class="GtkBox">
-                                        <property name="orientation">vertical</property>
+                                        <property name="orientation">horizontal</property>
+                                        <property name="halign">center</property>
                                         <child>
                                           <object class="AdwSplitButton" id="send_select_file_button">
                                             <property name="label" translatable="yes">Open File</property>
                                             <property name="menu-model">open_menu</property>
+                                            <property name="width-request">150</property>
+                                            <property name="hexpand">False</property>
                                             <style>
                                               <class name="suggested-action"/>
                                             </style>
