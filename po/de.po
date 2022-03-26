@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-26 14:04+0100\n"
+"POT-Creation-Date: 2022-03-26 14:44+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -235,31 +235,31 @@ msgstr "Datei empfangen"
 
 #. Translators: Example: 11.3MB / 20.7MB - 3 seconds left
 #: src/gettext/duration.rs:12
-msgid "{} / {} - One second left"
-msgid_plural "{} / {} - {} seconds left"
-msgstr[0] "{} / {} - Eine Sekunde verbleibend"
-msgstr[1] "{} / {} - {} Sekunden verbleibend"
+msgid "{0} / {1} - One second left"
+msgid_plural "{0} / {1} - {2} seconds left"
+msgstr[0] "{0} / {1} - Eine Sekunde verbleibend"
+msgstr[1] "{0} / {1} - {2} Sekunden verbleibend"
 
 #. Translators: Example: 110.3MB / 200.7MB - 5 minutes left
 #: src/gettext/duration.rs:20
-msgid "{} / {} - One minute left"
-msgid_plural "{} / {} - {} minutes left"
-msgstr[0] "{} / {} - Eine Minute verbleibend"
-msgstr[1] "{} / {} - {} Minuten verbleibend"
+msgid "{0} / {1} - One minute left"
+msgid_plural "{0} / {1} - {2} minutes left"
+msgstr[0] "{0} / {1} - Eine Minute verbleibend"
+msgstr[1] "{0} / {1} - {2} Minuten verbleibend"
 
 #. Translators: Example: 110.3GB / 200.7GB - 2 hours left
 #: src/gettext/duration.rs:28
-msgid "{} / {} - One hour left"
-msgid_plural "{} / {} - {} hours left"
-msgstr[0] "{} / {} - Eine Stunde verbleibend"
-msgstr[1] "{} / {} - {} Stunden verbleibend"
+msgid "{0} / {1} - One hour left"
+msgid_plural "{0} / {1} - {2} hours left"
+msgstr[0] "{0} / {1} - Eine Stunde verbleibend"
+msgstr[1] "{0} / {1} - {2} Stunden verbleibend"
 
 #. Translators: Example: 11.3TB / 20.7TB - 2 days left
 #: src/gettext/duration.rs:36
-msgid "{} / {} - One day left"
-msgid_plural "{} / {} - {} days left"
-msgstr[0] "{} / {} - Ein Tag verbleibend"
-msgstr[1] "{} / {} - {} Tage verbleibend"
+msgid "{0} / {1} - One day left"
+msgid_plural "{0} / {1} - {2} days left"
+msgstr[0] "{0} / {1} - Ein Tag verbleibend"
+msgstr[1] "{0} / {1} - {2} Tage verbleibend"
 
 #. Translators: Notification when clicking on "Copy to clipboard" button
 #: src/ui/action_view.rs:127
@@ -330,8 +330,8 @@ msgstr "Datei „{}“ über Direktübertragung"
 
 #. Translators: Description, During transfer
 #: src/ui/action_view.rs:310
-msgid "File “{}” via relay {}"
-msgstr "Datei „{}“ über Relay {}"
+msgid "File “{0}” via relay {1}"
+msgstr "Datei „{0}“ über Relay {1}"
 
 #. Translators: Description, During transfer
 #: src/ui/action_view.rs:313
@@ -381,10 +381,10 @@ msgstr "Dateiübertragung akzeptieren?"
 #. Translators: File receive confirmation message dialog; Filename, File size
 #: src/ui/action_view.rs:663
 msgid ""
-"Your peer wants to send you the file “{}” (Size: {}). Do you want to "
+"Your peer wants to send you the file “{0}” (Size: {1}). Do you want to "
 "download this file to your Downloads folder?"
 msgstr ""
-"Dein Gegenüber möchte dir die Datei „{}“ (Größe: {}) senden. Möchtest du "
+"Dein Gegenüber möchte dir die Datei „{0}“ (Größe: {1}) senden. Möchtest du "
 "diese Datei in deinen Downloads-Ordner herunterladen?"
 
 #. Translators: Confirm file receive confirmation message dialog
@@ -416,12 +416,12 @@ msgstr "Pfad {} hat keinen Verzeichnisnamen"
 
 #: src/ui/window.rs:82
 msgid ""
-"Error loading config file '{}', using default config.\n"
-"Error: {}"
+"Error loading config file '{0}', using default config.\n"
+"Error: {1}"
 msgstr ""
-"Fehler beim Laden der Konfigurationsdatei „{}“, benutze "
+"Fehler beim Laden der Konfigurationsdatei „{0}“, benutze "
 "Standardkonfiguration\n"
-"Fehler: {}"
+"Fehler: {1}"
 
 #: src/ui/window.rs:187
 msgid "Select file to send"
