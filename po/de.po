@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-26 13:06+0100\n"
+"POT-Creation-Date: 2022-03-26 13:34+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -80,8 +80,8 @@ msgstr "Dateiübertragung"
 msgid "Fina Wilke"
 msgstr ""
 
-#: data/resources/ui/action_view.ui:16 src/ui/window.rs:191
-#: src/ui/window.rs:205
+#: data/resources/ui/action_view.ui:16 src/ui/action_view.rs:670
+#: src/ui/window.rs:191 src/ui/window.rs:205
 msgid "Cancel"
 msgstr "Abbrechen"
 
@@ -89,15 +89,7 @@ msgstr "Abbrechen"
 msgid "Back"
 msgstr "Zurück"
 
-#: data/resources/ui/action_view.ui:38
-msgid "Operation in progress"
-msgstr "Vorgang läuft"
-
-#: data/resources/ui/action_view.ui:39
-msgid "Waiting for connection"
-msgstr "Warte auf Verbindung"
-
-#: data/resources/ui/action_view.ui:70 data/resources/ui/action_view.ui:72
+#: data/resources/ui/action_view.ui:68 data/resources/ui/action_view.ui:70
 #: data/resources/ui/window.ui:85
 msgid "Open File"
 msgstr "Datei Öffnen"
@@ -139,23 +131,23 @@ msgstr "Datei empfangen"
 
 #: data/resources/ui/welcome_window.ui:5
 msgid "Welcome"
-msgstr ""
+msgstr "Willkommen"
 
 #: data/resources/ui/welcome_window.ui:20
 msgid "Close"
-msgstr ""
+msgstr "Schließen"
 
 #: data/resources/ui/welcome_window.ui:25
 msgid "Next"
-msgstr ""
+msgstr "Weiter"
 
 #: data/resources/ui/welcome_window.ui:36
 msgid "Welcome to Warp"
-msgstr ""
+msgstr "Willkommen bei Warp"
 
 #: data/resources/ui/welcome_window.ui:74
 msgid "Introduction"
-msgstr ""
+msgstr "Einführung"
 
 #: data/resources/ui/welcome_window.ui:85
 msgid ""
@@ -170,10 +162,23 @@ msgid ""
 "\n"
 "For more information about how Warp works, open the Help pages from the menu."
 msgstr ""
+"Warp macht Dateiübertragung einfach. Um loszulegen müssen beide Parteien "
+"Warp auf ihren Geräten installieren.\n"
+"\n"
+"Nachdem eine Datei zur Übertragung ausgewählt wurde, muss die sendende "
+"Person der empfangenden Person den angezeigten Übertragunscode mitteilen. "
+"Dies geschieht bevorzugterweise über einen sicheren Kommunikationskanal.\n"
+"\n"
+"Wenn die empfangende Person den Code eingegeben hat, kann die "
+"Dateiübertragung beginnen.\n"
+"\n"
+"Um mehr darüber zu erfahren, wie Warp funktioniert, öffne die Hilfeseiten "
+"über das Menü."
 
-#: data/resources/ui/welcome_window.ui:96
+#. Translators: Big button to finish welcome screen
+#: data/resources/ui/welcome_window.ui:97
 msgid "Get started using Warp"
-msgstr ""
+msgstr "Los geht's"
 
 #: data/resources/ui/window.ui:6
 msgid "_Preferences"
@@ -211,149 +216,177 @@ msgstr "Empfangen"
 msgid "Receive files or directories"
 msgstr "Empfange Dateien oder Verzeichnisse"
 
-#: data/resources/ui/window.ui:112
-#, fuzzy
+#. Translators: Text above code input box
+#: data/resources/ui/window.ui:113
 msgid "Please enter the transmit code from the sender"
-msgstr "Bitte sende den Code der sendenden Person"
+msgstr "Bitte gebe den Übertragungscode der übertragenden Person ein"
 
-#: data/resources/ui/window.ui:122
+#: data/resources/ui/window.ui:123
 msgid "Warp Code"
 msgstr "Warp Code"
 
-#: data/resources/ui/window.ui:128
+#: data/resources/ui/window.ui:129
 msgid "Receive File"
 msgstr "Datei empfangen"
 
+#. Translators: Example: 11.3MB / 20.7MB - 3 seconds left
 #: src/gettext/duration.rs:12
 msgid "{} / {} - One second left"
 msgid_plural "{} / {} - {} seconds left"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{} / {} - Eine Sekunde verbleibend"
+msgstr[1] "{} / {} - {} Sekunden verbleibend"
 
-#: src/gettext/duration.rs:19
+#. Translators: Example: 110.3MB / 200.7MB - 5 minutes left
+#: src/gettext/duration.rs:20
 msgid "{} / {} - One minute left"
 msgid_plural "{} / {} - {} minutes left"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{} / {} - Eine Minute verbleibend"
+msgstr[1] "{} / {} - {} Minuten verbleibend"
 
-#: src/gettext/duration.rs:26
+#. Translators: Example: 110.3GB / 200.7GB - 2 hours left
+#: src/gettext/duration.rs:28
 msgid "{} / {} - One hour left"
 msgid_plural "{} / {} - {} hours left"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{} / {} - Eine Stunde verbleibend"
+msgstr[1] "{} / {} - {} Stunden verbleibend"
 
-#: src/gettext/duration.rs:33
+#. Translators: Example: 11.3TB / 20.7TB - 2 days left
+#: src/gettext/duration.rs:36
 msgid "{} / {} - One day left"
 msgid_plural "{} / {} - {} days left"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{} / {} - Ein Tag verbleibend"
+msgstr[1] "{} / {} - {} Tage verbleibend"
 
-#: src/ui/action_view.rs:126
+#. Translators: Notification when clicking on "Copy to clipboard" button
+#: src/ui/action_view.rs:127
 msgid "Copied code to clipboard"
 msgstr "Code in Zwischenablage kopiert"
 
-#: src/ui/action_view.rs:209
-#, fuzzy
+#. Translators: Title
+#: src/ui/action_view.rs:211
 msgid "Creating Archive"
 msgstr "Erstelle Archiv"
 
-#: src/ui/action_view.rs:211
+#. Translators: Description
+#: src/ui/action_view.rs:214
 msgid "Compressing folder"
 msgstr "Komprimiere Ordner"
 
-#: src/ui/action_view.rs:221 src/ui/action_view.rs:241
+#. Translators: Title
+#: src/ui/action_view.rs:225 src/ui/action_view.rs:249
 msgid "Connecting"
-msgstr ""
+msgstr "Verbinde"
 
-#: src/ui/action_view.rs:223
-#, fuzzy
+#. Translators: Description, Filename
+#: src/ui/action_view.rs:228
 msgid "Requesting file transfer"
-msgstr "Dateiübertragung akzeptieren?"
+msgstr "Fordere Dateiübertragung an"
 
-#: src/ui/action_view.rs:230
+#. Translators: Title
+#: src/ui/action_view.rs:236
 msgid "Your Transfer Code"
-msgstr ""
+msgstr "Dein Übertragungscode"
 
-#: src/ui/action_view.rs:232
+#. Translators: Description, Code in box below
+#: src/ui/action_view.rs:239
 msgid "The receiver needs to enter this code to begin the file transfer"
-msgstr ""
+msgstr "Die empfangende Person muss diesen Code eingeben, um die Übertragung zu beginnen"
 
-#: src/ui/action_view.rs:243
+#. Translators: Description, Transfer Code
+#: src/ui/action_view.rs:252
 msgid "Connecting to peer with code “{}”"
-msgstr ""
+msgstr "Verbinde zu Gegenüber mit Code „{}“"
 
-#: src/ui/action_view.rs:250
-#, fuzzy
+#. Translators: Title
+#: src/ui/action_view.rs:260
 msgid "Connected to Peer"
 msgstr "Verbunden"
 
-#: src/ui/action_view.rs:257
+#. Translators: Description
+#: src/ui/action_view.rs:268
 msgid "Preparing to send file"
 msgstr "Bereite Dateiübertragung vor"
 
-#: src/ui/action_view.rs:263
+#. Translators: Description
+#: src/ui/action_view.rs:275
 msgid "Preparing to receive file"
 msgstr "Bereite Dateiübertragung vor"
 
-#: src/ui/action_view.rs:288
+#. Translators: Description, During transfer
+#: src/ui/action_view.rs:301
 msgid "File “{}” via local network direct transfer"
-msgstr ""
+msgstr "Datei „{}“ über Direktübertragung im lokalen Netzwerk"
 
-#: src/ui/action_view.rs:290
+#. Translators: Description, During transfer
+#: src/ui/action_view.rs:304
 msgid "File “{}” via direct transfer"
-msgstr ""
+msgstr "Datei „{}“ über Direktübertragung"
 
-#: src/ui/action_view.rs:295
+#. Translators: Description, During transfer
+#: src/ui/action_view.rs:310
 msgid "File “{}” via relay {}"
-msgstr ""
+msgstr "Datei „{}“ über Relay {}"
 
-#: src/ui/action_view.rs:297
+#. Translators: Description, During transfer
+#: src/ui/action_view.rs:313
 msgid "File “{}” via relay"
-msgstr ""
+msgstr "Datei „{}“ über Relay"
 
-#: src/ui/action_view.rs:300
+#. Translators: Description, During transfer
+#: src/ui/action_view.rs:317
 msgid "File “{}” via Unknown connection method"
-msgstr ""
+msgstr "Datei „{}“ über unbekannte Verbindungsmethode"
 
-#: src/ui/action_view.rs:306
-#, fuzzy
+#. Translators: Title
+#: src/ui/action_view.rs:324
 msgid "Sending File"
 msgstr "Sende Datei"
 
-#: src/ui/action_view.rs:308
-#, fuzzy
+#. Translators: Title
+#: src/ui/action_view.rs:327
 msgid "Receiving File"
 msgstr "Empfange Datei"
 
-#: src/ui/action_view.rs:313
-#, fuzzy
+#. Translators: Title
+#: src/ui/action_view.rs:333
 msgid "File Transfer Successful"
 msgstr "Dateiübertragung erfolgreich"
 
-#: src/ui/action_view.rs:324
-#, fuzzy
+#. Translators: Description, Filename
+#: src/ui/action_view.rs:345
 msgid "Successfully sent file “{}”"
-msgstr "Datei erfolgreich gesendet"
+msgstr "Datei „{}“ erfolgreich gesendet"
 
-#: src/ui/action_view.rs:329
+#. Translators: Description, Filename
+#: src/ui/action_view.rs:351
 msgid "File has been saved to the Downloads folder as “{}”"
-msgstr ""
+msgstr "Datei wurde in den Downloads-Ordner als „{}“ gespeichert"
 
-#: src/ui/action_view.rs:392
+#. Translators: When opening a file
+#: src/ui/action_view.rs:415
 msgid "Specified file / directory does not exist"
 msgstr "Angegebene(s) Datei / Verzeichnis nicht gefunden"
 
-#: src/ui/action_view.rs:633
+#. Translators: File receive confirmation message dialog title
+#: src/ui/action_view.rs:657
 msgid "Accept file transfer?"
 msgstr "Dateiübertragung akzeptieren?"
 
-#: src/ui/action_view.rs:635
+#. Translators: File receive confirmation message dialog; Filename, File size
+#: src/ui/action_view.rs:660
 msgid ""
 "Your peer wants to send you the file “{}” (Size: {}). Do you want to "
 "download this file to your Downloads folder?"
 msgstr ""
+"Dein Gegenüber möchte dir die Datei „{}“ (Größe: {}) senden. Möchtest "
+"du diese Datei in deinen Downloads-Ordner herunterladen?"
 
-#: src/ui/action_view.rs:681
+#. Translators: Confirm file receive confirmation message dialog
+#: src/ui/action_view.rs:672
+msgid "Download"
+msgstr "Herunterladen"
+
+#: src/ui/action_view.rs:707
 msgid "Downloads dir missing. Please set XDG_DOWNLOADS_DIR"
 msgstr "Downloads-Verzeichnis fehlt. Bitte setze XDG_DOWNLOADS_DIR"
 
@@ -373,13 +406,15 @@ msgstr ""
 
 #: src/ui/util.rs:100
 msgid "Path {} does not have a directory name"
-msgstr ""
+msgstr "Pfad {} hat keinen Verzeichnisnamen"
 
 #: src/ui/window.rs:82
 msgid ""
 "Error loading config file '{}', using default config.\n"
 "Error: {}"
 msgstr ""
+"Fehler beim Laden der Konfigurationsdatei „{}“, benutze Standardkonfiguration\n"
+"Fehler: {}"
 
 #: src/ui/window.rs:187
 msgid "Select file to send"
@@ -399,10 +434,10 @@ msgstr "Ordner Öffnen"
 
 #: src/ui/window.rs:249
 msgid "Error saving configuration file: {}"
-msgstr ""
+msgstr "Fehler beim Speichern der Konfigurationsdatei: „{}“"
 
-#: src/ui/window.rs:342
-#, fuzzy
+#. Translators: Notification when code was automatically detected in clipboard and inserted into code entry on receive page
+#: src/ui/window.rs:343
 msgid "Inserted code from clipboard"
 msgstr "Code in Zwischenablage kopiert"
 
@@ -456,16 +491,18 @@ msgstr "Die empfangene Datei ist korrupt"
 #: src/util.rs:145
 msgid ""
 "The file contained a different amount of bytes than advertised! Sent "
-"{}                     bytes, but should have been {}"
+"{} bytes, but should have been {}"
 msgstr ""
+"Die empfangene Datei hat eine andere Dateigröße als erwartet! Es wurden"
+"{} bytes empfangen, aber es hätten {} sein sollen"
 
 #: src/util.rs:151
 msgid "The other side has cancelled the transfer"
-msgstr ""
+msgstr "Dein Gegenüber hat die Dateiübertragung abgebrochen"
 
 #: src/util.rs:153
 msgid "Something went wrong on the other side: {}"
-msgstr ""
+msgstr "Beim Gegenüber ist ein Fehler aufgetreten: {}"
 
 #: src/util.rs:165
 msgid "Error while establishing file transfer connection"
@@ -474,12 +511,3 @@ msgstr "Fehler beim Aufbau einer Verbindung zur Dateiübertragung"
 #: src/util.rs:167
 msgid "Unknown file transfer error"
 msgstr "Unbekannter Dateiübertragungsfehler"
-
-#~ msgid "Waiting for code"
-#~ msgstr "Warte auf Code"
-
-#~ msgid "Code is being requested"
-#~ msgstr "Code wird angefordert"
-
-#~ msgid "Please send the code to the receiver"
-#~ msgstr "Bitte sende den Code an die empfangende Person"

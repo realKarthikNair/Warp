@@ -142,8 +142,7 @@ impl AppError {
                     sent_size,
                     file_size,
                 } => gettextf(
-                    "The file contained a different amount of bytes than advertised! Sent {} \
-                    bytes, but should have been {}",
+                    "The file contained a different amount of bytes than advertised! Sent {} bytes, but should have been {}",
                     &[sent_size, &file_size],
                 ),
                 TransferError::PeerError(msg) => {
