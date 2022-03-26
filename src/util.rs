@@ -1,4 +1,5 @@
 use crate::gettext::gettextf;
+use crate::globals::TRANSMIT_CODE_FIND_REGEX;
 use crate::ui::window::WarpApplicationWindow;
 use custom_error::custom_error;
 use futures::FutureExt;
@@ -218,4 +219,10 @@ pub async fn cancelable_future<T>(
             Err(AppError::Canceled)
         }
     }
+}
+
+pub fn extract_transmit_code(str: &str) -> Option<String> {
+    TRANSMIT_CODE_FIND_REGEX
+        .find(str)
+        .map(|m| m.as_str().to_string())
 }

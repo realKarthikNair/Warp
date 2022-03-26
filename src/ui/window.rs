@@ -1,5 +1,4 @@
 use crate::gettext::gettextf;
-use crate::globals;
 use crate::ui::action_view::ActionView;
 use gettextrs::*;
 use gtk::prelude::*;
@@ -7,7 +6,7 @@ use gtk::subclass::prelude::*;
 use gtk::{gio, glib, ResponseType};
 
 use crate::ui::application::WarpApplication;
-use crate::util::{do_async, UIError};
+use crate::util::{do_async, extract_transmit_code, UIError};
 
 mod imp {
     use super::*;
@@ -280,8 +279,19 @@ impl WarpApplicationWindow {
     }
 
     pub fn receive_file_button(&self) {
-        let code = self.imp().code_entry.text();
-        self.action_view().receive_file(code.to_string());
+        let text = self.imp().code_entry.text();
+        let code = if let Some(code) = extract_transmit_code(&text) {
+            code
+        } else {
+            UIError::new(&gettextf(
+                "“{}” appears to be an invalid Transmit Code. Please try again.",
+                &[&text],
+            ))
+            .handle();
+            return;
+        };
+
+        self.action_view().receive_file(wormhole::Code(code));
     }
 
     pub fn cancel_any_action(&self) {
@@ -329,18 +339,16 @@ impl WarpApplicationWindow {
                 let clipboard = obj.display().clipboard();
                 let text = clipboard.read_text_future().await;
                 if let Ok(Some(text)) = text {
-                    if globals::TRANSIT_CODE_REGEX.is_match(&text)
-                        && imp.code_entry.text() != text
-                        && !imp
-                            .generated_transmit_codes
-                            .borrow()
-                            .contains(&text.to_string())
-                    {
-                        obj.imp().code_entry.set_text(&text);
-                        obj.imp()
-                            .toast_overlay
-                            // Translators: Notification when code was automatically detected in clipboard and inserted into code entry on receive page
-                            .add_toast(&adw::Toast::new(&gettext("Inserted code from clipboard")));
+                    if let Some(code) = extract_transmit_code(&text) {
+                        if imp.code_entry.text() != code
+                            && !imp.generated_transmit_codes.borrow().contains(&code)
+                        {
+                            obj.imp().code_entry.set_text(&code);
+                            obj.imp().toast_overlay.add_toast(&adw::Toast::new(&gettext(
+                                // Translators: Notification when code was automatically detected in clipboard and inserted into code entry on receive page
+                                "Inserted code from clipboard",
+                            )));
+                        }
                     }
                 }
 

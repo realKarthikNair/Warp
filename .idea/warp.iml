@@ -13,8 +13,11 @@
       <excludeFolder url="file://$MODULE_DIR$/build-aux/.fenv" />
       <excludeFolder url="file://$MODULE_DIR$/build-aux/_build" />
       <excludeFolder url="file://$MODULE_DIR$/.fenv" />
+      <excludeFolder url="file://$MODULE_DIR$/flatpak_out" />
+      <excludeFolder url="file://$MODULE_DIR$/flatpak_repo" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>
+

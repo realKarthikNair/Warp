@@ -10,8 +10,11 @@ pub static WORMHOLE_APPCFG: Lazy<AppConfig<AppVersion>> = Lazy::new(|| AppConfig
     rendezvous_url: WORMHOLE_RENDEZVOUS_RELAY.into(),
     app_version: AppVersion {},
 });
-pub static TRANSIT_CODE_REGEX: Lazy<Regex> =
-    Lazy::new(|| Regex::new(r"^\d+-\w+-\w+(-\w+)*$").unwrap());
+
+pub static TRANSMIT_CODE_FIND_REGEX: Lazy<Regex> =
+    Lazy::new(|| Regex::new(r"(\d+-[a-z]+(?:-[a-z]+)+)").unwrap());
+pub static TRANSMIT_CODE_MATCH_REGEX: Lazy<Regex> =
+    Lazy::new(|| Regex::new(r"^\d+-[a-z]+(?:-[a-z]+)+$").unwrap());
 
 #[cfg(debug_assertions)]
 pub const DEBUG_BUILD: bool = true;

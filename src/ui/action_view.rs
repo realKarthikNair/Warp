@@ -702,7 +702,7 @@ impl ActionView {
         }
     }
 
-    fn receive_file_impl(&self, code: String) -> Result<(), AppError> {
+    fn receive_file_impl(&self, code: Code) -> Result<(), AppError> {
         let path = if let Some(downloads) = glib::user_special_dir(glib::UserDirectory::Downloads) {
             downloads
         } else {
@@ -712,10 +712,10 @@ impl ActionView {
             .into());
         };
 
-        self.transmit(path, Some(Code(code)), TransferDirection::Receive)
+        self.transmit(path, Some(code), TransferDirection::Receive)
     }
 
-    pub fn receive_file(&self, code: String) {
+    pub fn receive_file(&self, code: Code) {
         log::info!("Receiving file with code '{}'", code);
         if let Err(err) = self.receive_file_impl(code) {
             err.handle();
