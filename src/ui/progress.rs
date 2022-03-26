@@ -90,7 +90,6 @@ impl FileTransferProgress {
             self.total_bytes.checked_sub(self.done_bytes).map_or(
                 Some(Duration::ZERO),
                 |remaining_bytes| {
-                    log::debug!("{}b/s, remaining {}b", bytes_s, remaining_bytes);
                     let secs = remaining_bytes as f64 / bytes_s as f64;
                     Some(Duration::from_secs_f64(secs))
                 },

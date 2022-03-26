@@ -8,10 +8,10 @@ use crate::util::{cancelable_future, do_async, spawn_async, AppError, UIError};
 use gettextrs::*;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
-use gtk::{glib, ResponseType};
+use gtk::{gio, glib, ResponseType};
 use scopeguard::ScopeGuard;
 use std::future::Future;
-use std::net::SocketAddr;
+use std::net::{IpAddr, SocketAddr};
 use std::path::{Path, PathBuf};
 use std::time::Duration;
 use wormhole::transfer::TransferError;
@@ -267,34 +267,49 @@ impl ActionView {
                     }
                 }
             }
-            UIState::Transmitting(filename, info, _peer_ip) => {
+            UIState::Transmitting(filename, info, peer_addr) => {
                 self.show_progress_indeterminate(false);
                 imp.progress_bar.set_show_text(true);
 
-                let transit_string = match info {
-                    TransitInfo::Direct => "Direct Transfer".to_string(),
+                let mut ip = peer_addr.ip();
+                // We convert ipv4 mapped ipv6 addresses because the gio code can't tell if they are
+                // local or not
+                if let IpAddr::V6(ipv6) = ip {
+                    if let Some(ipv4) = ipv6.to_ipv4() {
+                        ip = IpAddr::from(ipv4);
+                    }
+                }
+
+                let gio_addr = gio::InetAddress::from(ip);
+
+                log::debug!("gio ip: {}", gio_addr);
+
+                let is_site_local = gio_addr.is_site_local();
+
+                let description = match info {
+                    TransitInfo::Direct => {
+                        if is_site_local {
+                            gettextf("File “{}” via local network direct transfer", &[&filename])
+                        } else {
+                            gettextf("File “{}” via direct transfer", &[&filename])
+                        }
+                    }
                     TransitInfo::Relay { name } => {
                         if let Some(name) = name {
-                            gettextf("Relay {}", &[&name])
+                            gettextf("File “{}” via relay {}", &[&filename, &name])
                         } else {
-                            gettext("Relay")
+                            gettextf("File “{}” via relay", &[&filename])
                         }
                     }
                     _ => gettext("Unknown connection method"),
                 };
 
+                imp.status_page.set_description(Some(&description));
+
                 if direction == TransferDirection::Send {
                     imp.status_page.set_title(&gettext("Sending file"));
-                    imp.status_page.set_description(Some(&gettextf(
-                        "Sending file “{}” via {}",
-                        &[&filename, &transit_string],
-                    )));
                 } else {
                     imp.status_page.set_title(&gettext("Receiving file"));
-                    imp.status_page.set_description(Some(&gettextf(
-                        "Receiving file “{}” via {}",
-                        &[&filename, &transit_string],
-                    )));
                 }
             }
             UIState::Done(path) => {

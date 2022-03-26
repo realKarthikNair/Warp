@@ -2,7 +2,6 @@ use super::*;
 
 /// From https://gitlab.gnome.org/World/pika-backup/-/blob/main/src/ui/utils/duration.rs
 pub fn left(d: &chrono::Duration) -> String {
-    log::debug!("{}", d);
     if d.num_minutes() < 2 {
         ngettextf_(
             "One second left",
