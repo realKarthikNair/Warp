@@ -107,7 +107,18 @@ mod imp {
 
             self.cancel_button
                 .connect_clicked(clone!(@weak obj => move |_| {
-                    obj.cancel();
+                    do_async(async move {
+                        let dialog = super::ActionView::ask_abort_dialog();
+                        let answer = dialog.run_future().await;
+                        dialog.close();
+
+                        if answer == gtk::ResponseType::Cancel {
+                            obj.cancel();
+                            return Err(AppError::Canceled);
+                        } else {
+                            return Ok(())
+                        }
+                    });
                 }));
 
             self.back_button
@@ -669,11 +680,25 @@ impl ActionView {
             .transient_for(&WarpApplicationWindow::default())
             .modal(true)
             .build();
-        dialog.add_buttons(&[
-            (&gettext("Cancel"), ResponseType::Cancel),
-            // Translators: Confirm file receive confirmation message dialog
-            (&gettext("Download"), ResponseType::Ok),
-        ]);
+        let _cancel_button = dialog.add_button(&gettext("Cancel"), ResponseType::Cancel);
+        let download_button = dialog.add_button(&gettext("Download"), ResponseType::Ok);
+        download_button.add_css_class("suggested-action");
+        dialog
+    }
+
+    fn ask_abort_dialog() -> gtk::MessageDialog {
+        let dialog = gtk::builders::MessageDialogBuilder::new()
+            // Translators: File receive confirmation message dialog title
+            .text(&gettext("Abort file transfer?"))
+            .secondary_text(&gettext("Do you want to abort the current file transfer?"))
+            .message_type(gtk::MessageType::Question)
+            .buttons(gtk::ButtonsType::None)
+            .transient_for(&WarpApplicationWindow::default())
+            .modal(true)
+            .build();
+        let _continue_button = dialog.add_button(&gettext("Continue"), ResponseType::Close);
+        let abort_button = dialog.add_button(&gettext("Abort"), ResponseType::Cancel);
+        abort_button.add_css_class("destructive-action");
         dialog
     }
 
