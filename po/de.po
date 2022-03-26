@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-26 15:33+0100\n"
+"POT-Creation-Date: 2022-03-26 15:59+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -270,8 +270,8 @@ msgstr[1] "{} Tage verbleibend"
 #. Translators: {0} = 11.3MB / 20.7MB, {1} = 3 seconds left
 #: src/gettext/duration.rs:53
 msgctxt "Combine bytes progress {0} and time remaining {1}"
-msgid "{0} - {1}"
-msgstr "{0} - {1}"
+msgid "{0} — {1}"
+msgstr "{0} — {1}"
 
 #. Translators: Notification when clicking on "Copy to clipboard" button
 #: src/ui/action_view.rs:127
@@ -460,7 +460,7 @@ msgstr "Fehler beim Speichern der Konfigurationsdatei: „{}“"
 #. Translators: Notification when code was automatically detected in clipboard and inserted into code entry on receive page
 #: src/ui/window.rs:343
 msgid "Inserted code from clipboard"
-msgstr "Code in Zwischenablage kopiert"
+msgstr "Code aus Zwischenablage eingefügt"
 
 #: src/util.rs:66
 msgid "An error occurred"

@@ -50,7 +50,7 @@ pub fn left(done_bytes: usize, total_bytes: usize, d: &chrono::Duration) -> Stri
     pgettextf(
         "Combine bytes progress {0} and time remaining {1}",
         // Translators: {0} = 11.3MB / 20.7MB, {1} = 3 seconds left
-        "{0} - {1}",
+        "{0} — {1}",
         &[&progress, &time_remaining],
     )
 }
