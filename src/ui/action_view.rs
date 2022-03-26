@@ -206,8 +206,7 @@ impl ActionView {
             UIState::Archive => match direction {
                 TransferDirection::Send => {
                     imp.status_page.set_icon_name(Some("drawer-symbolic"));
-                    imp.status_page
-                        .set_title(&gettext("Creating archive for folder"));
+                    imp.status_page.set_title(&gettext("Creating Archive"));
                     imp.status_page
                         .set_description(Some(&gettext("Compressing folder")));
                 }
@@ -219,18 +218,19 @@ impl ActionView {
                 TransferDirection::Send => {
                     imp.status_page
                         .set_icon_name(Some("arrows-questionmark-symbolic"));
-                    imp.status_page.set_title(&gettext("Waiting for code"));
+                    imp.status_page.set_title(&gettext("Connecting"));
                     imp.status_page
-                        .set_description(Some(&gettext("Code is being requested")));
+                        .set_description(Some(&gettext("Requesting file transfer")));
                 }
                 TransferDirection::Receive => {}
             },
             UIState::HasCode(code) => match direction {
                 TransferDirection::Send => {
                     imp.status_page.set_icon_name(Some("code-symbolic"));
-                    imp.status_page
-                        .set_title(&gettext("Please send the code to the receiver"));
-                    imp.status_page.set_description(None);
+                    imp.status_page.set_title(&gettext("Your Transfer Code"));
+                    imp.status_page.set_description(Some(&gettext(
+                        "The receiver needs to enter this code to begin the file transfer",
+                    )));
                     imp.code_box.set_visible(true);
                     imp.code_entry.set_text(&code);
                     imp.progress_bar.set_visible(false);
@@ -238,17 +238,16 @@ impl ActionView {
                 TransferDirection::Receive => {
                     imp.status_page
                         .set_icon_name(Some("arrows-questionmark-symbolic"));
-                    imp.status_page
-                        .set_title(&gettext("Waiting for connection"));
+                    imp.status_page.set_title(&gettext("Connecting"));
                     imp.status_page.set_description(Some(&gettextf(
-                        "Connecting to peer with code {}",
+                        "Connecting to peer with code “{}”",
                         &[&code],
                     )));
                     imp.progress_bar.set_visible(true);
                 }
             },
             UIState::Connected => {
-                imp.status_page.set_title(&gettext("Connected to peer"));
+                imp.status_page.set_title(&gettext("Connected to Peer"));
                 imp.code_box.set_visible(false);
                 imp.progress_bar.set_visible(true);
 
@@ -281,9 +280,6 @@ impl ActionView {
                 }
 
                 let gio_addr = gio::InetAddress::from(ip);
-
-                log::debug!("gio ip: {}", gio_addr);
-
                 let is_site_local = gio_addr.is_site_local();
 
                 let description = match info {
@@ -301,20 +297,20 @@ impl ActionView {
                             gettextf("File “{}” via relay", &[&filename])
                         }
                     }
-                    _ => gettext("Unknown connection method"),
+                    _ => gettextf("File “{}” via Unknown connection method", &[&filename]),
                 };
 
                 imp.status_page.set_description(Some(&description));
 
                 if direction == TransferDirection::Send {
-                    imp.status_page.set_title(&gettext("Sending file"));
+                    imp.status_page.set_title(&gettext("Sending File"));
                 } else {
-                    imp.status_page.set_title(&gettext("Receiving file"));
+                    imp.status_page.set_title(&gettext("Receiving File"));
                 }
             }
             UIState::Done(path) => {
                 imp.status_page
-                    .set_title(&gettext("File transfer successful"));
+                    .set_title(&gettext("File Transfer Successful"));
                 imp.back_button.set_visible(true);
                 imp.cancel_button.set_visible(false);
                 imp.status_page
