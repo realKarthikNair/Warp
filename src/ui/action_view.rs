@@ -25,6 +25,7 @@ pub enum UIState {
     RequestCode,
     HasCode(Code),
     Connected,
+    AskConfirmation(String, u64),
     Transmitting(String, TransitInfo, SocketAddr),
     Done(PathBuf),
 }
@@ -67,6 +68,8 @@ mod imp {
         #[template_child]
         pub back_button: TemplateChild<gtk::Button>,
         #[template_child]
+        pub accept_transfer_button: TemplateChild<gtk::Button>,
+        #[template_child]
         pub progress_bar: TemplateChild<gtk::ProgressBar>,
         #[template_child]
         pub status_page: TemplateChild<adw::StatusPage>,
@@ -76,12 +79,27 @@ mod imp {
         pub code_entry: TemplateChild<gtk::Entry>,
         #[template_child]
         pub code_copy_button: TemplateChild<gtk::Button>,
+
+        // ID of the timer that runs the indeterminate progress
         pub progress_timeout_source_id: RefCell<Option<glib::source::SourceId>>,
+
+        // When sending a message to the cancel sender the whole process gets aborted
         pub cancel_sender: OnceCell<async_channel::Sender<()>>,
         pub cancel_receiver: OnceCell<async_channel::Receiver<()>>,
+
+        // Send a message to this sender to continue the process after the confirmation question
+        pub continue_sender: RefCell<Option<async_channel::Sender<()>>>,
+
+        // Full path to the received/sent file
         pub filename: RefCell<Option<PathBuf>>,
+
+        // Whether we are currently sending or receiving
         pub direction: RefCell<TransferDirection>,
+
+        // The current UI mode
         pub ui_state: RefCell<UIState>,
+
+        // Handle to the progress calculation
         pub progress: RefCell<Option<FileTransferProgress>>,
     }
 
@@ -108,15 +126,20 @@ mod imp {
             self.cancel_button
                 .connect_clicked(clone!(@weak obj => move |_| {
                     do_async(async move {
+                        if matches!(&*obj.imp().ui_state.borrow(), UIState::AskConfirmation(..)) {
+                            obj.cancel();
+                            return Err(AppError::Canceled);
+                        }
+
                         let dialog = super::ActionView::ask_abort_dialog();
                         let answer = dialog.run_future().await;
                         dialog.close();
 
                         if answer == gtk::ResponseType::Cancel {
                             obj.cancel();
-                            return Err(AppError::Canceled);
+                            Err(AppError::Canceled)
                         } else {
-                            return Ok(())
+                            Ok(())
                         }
                     });
                 }));
@@ -125,6 +148,17 @@ mod imp {
                 .connect_clicked(clone!(@weak obj => move |_| {
                     WarpApplicationWindow::default().navigate_back();
                 }));
+
+            self.accept_transfer_button
+                .connect_clicked(clone!(@weak obj => move |_|
+                    do_async(async move {
+                        if let Some(continue_sender) = &*obj.imp().continue_sender.borrow_mut() {
+                            continue_sender.send(()).await.unwrap();
+                        }
+
+                        Ok(())
+                    });
+                ));
 
             self.progress_bar.set_pulse_step(0.05);
 
@@ -203,10 +237,12 @@ impl ActionView {
 
         match ui_state {
             UIState::Initial => {
+                imp.continue_sender.replace(None);
                 imp.filename.replace(None);
                 imp.progress.replace(None);
                 imp.open_button.set_visible(false);
                 imp.cancel_button.set_visible(true);
+                imp.accept_transfer_button.set_visible(false);
                 imp.back_button.set_visible(false);
                 imp.code_box.set_visible(false);
                 imp.progress_bar.set_visible(true);
@@ -289,8 +325,24 @@ impl ActionView {
                     }
                 }
             }
+            UIState::AskConfirmation(filename, size) => {
+                self.show_progress_indeterminate(false);
+                imp.accept_transfer_button.set_visible(true);
+                imp.progress_bar.set_visible(false);
+
+                imp.status_page.set_icon_name(Some("question-symbolic"));
+                imp.status_page.set_title(&gettext("Accept File Transfer?"));
+                imp.status_page.set_description(Some(&gettextf(
+                    // Translators: File receive confirmation message dialog; Filename, File size
+                    "Your peer wants to send you “{0}” (Size: {1}).\nDo you want to download this file to your Downloads folder?",
+                    &[&filename,
+                        &glib::format_size(size)]
+                )));
+            }
             UIState::Transmitting(filename, info, peer_addr) => {
                 self.show_progress_indeterminate(false);
+                imp.accept_transfer_button.set_visible(false);
+                imp.progress_bar.set_visible(true);
                 imp.progress_bar.set_show_text(true);
 
                 let mut ip = peer_addr.ip();
@@ -333,9 +385,13 @@ impl ActionView {
                 if direction == TransferDirection::Send {
                     // Translators: Title
                     imp.status_page.set_title(&gettext("Sending File"));
+                    imp.status_page
+                        .set_icon_name(Some("horizontal-arrows-right-symbolic"));
                 } else {
                     // Translators: Title
                     imp.status_page.set_title(&gettext("Receiving File"));
+                    imp.status_page
+                        .set_icon_name(Some("horizontal-arrows-left-symbolic"));
                 }
             }
             UIState::Done(path) => {
@@ -565,11 +621,15 @@ impl ActionView {
                         PathBuf::from("Unknown File.bin")
                     };
 
-                    let dialog = Self::save_file_dialog(&filename, request.filesize);
-                    let answer = dialog.run_future().await;
-                    dialog.close();
+                    obj.set_ui_state(UIState::AskConfirmation(filename.to_string_lossy().to_string(), request.filesize));
+                    let (continue_sender, continue_receiver) = async_channel::unbounded();
+                    imp.continue_sender.replace(Some(continue_sender));
+                    let wait_future = cancelable_future(continue_receiver.recv(), Self::cancel_future());
 
-                    if answer == gtk::ResponseType::Cancel {
+                    // Continue or cancel
+                    let res = wait_future.await;
+                    log::debug!("{:?}", res);
+                    if let Err(AppError::Canceled) = res {
                         spawn_async(async move {
                             let _ = request.reject().await;
                             Ok(())
@@ -663,27 +723,6 @@ impl ActionView {
             imp.progress_bar.set_fraction(sent as f64 / total as f64);
             imp.progress_bar.set_text(Some(&progress_str));
         });
-    }
-
-    fn save_file_dialog(filename: &Path, size: u64) -> gtk::MessageDialog {
-        let dialog = gtk::builders::MessageDialogBuilder::new()
-            // Translators: File receive confirmation message dialog title
-            .text(&gettext("Accept file transfer?"))
-            .secondary_text(&gettextf(
-                // Translators: File receive confirmation message dialog; Filename, File size
-                "Your peer wants to send you the file “{0}” (Size: {1}). Do you want to download this file to your Downloads folder?",
-                &[&filename.display(),
-                &glib::format_size(size)]
-            ))
-            .message_type(gtk::MessageType::Question)
-            .buttons(gtk::ButtonsType::None)
-            .transient_for(&WarpApplicationWindow::default())
-            .modal(true)
-            .build();
-        let _cancel_button = dialog.add_button(&gettext("Cancel"), ResponseType::Cancel);
-        let download_button = dialog.add_button(&gettext("Download"), ResponseType::Ok);
-        download_button.add_css_class("suggested-action");
-        dialog
     }
 
     fn ask_abort_dialog() -> gtk::MessageDialog {

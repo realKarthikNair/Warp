@@ -73,6 +73,16 @@
                     </style>
                   </object>
                 </child>
+                <child>
+                  <object class="GtkButton" id="accept_transfer_button">
+                    <property name="tooltip-text" translatable="yes">Accept File Transfer</property>
+                    <property name="visible">False</property>
+                    <property name="label" translatable="yes">Accept</property>
+                    <style>
+                      <class name="suggested-action"/>
+                    </style>
+                  </object>
+                </child>
               </object>
             </child>
           </object>
