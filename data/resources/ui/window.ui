@@ -118,13 +118,15 @@
                                     <child>
                                       <object class="GtkBox">
                                         <property name="orientation">horizontal</property>
+                                        <property name="halign">center</property>
                                         <style>
                                           <class name="linked"/>
                                         </style>
                                         <child>
                                           <object class="GtkEntry" id="code_entry">
                                             <property name="placeholder-text" translatable="yes">Warp Code</property>
-                                            <property name="hexpand">True</property>
+                                            <property name="hexpand">False</property>
+                                            <property name="width-request">240</property>
                                           </object>
                                         </child>
                                         <child>
