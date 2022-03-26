@@ -308,7 +308,7 @@ impl WarpApplicationWindow {
         imp.code_entry.set_text("");
     }
 
-    pub fn add_generated_code(&self, code: wormhole::Code) {
+    pub fn add_code(&self, code: wormhole::Code) {
         self.imp()
             .generated_transmit_codes
             .borrow_mut()

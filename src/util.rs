@@ -63,7 +63,7 @@ impl AppError {
                 _ => None,
             };
 
-            let msg1 = "An error occurred";
+            let msg1 = &gettext("An error occurred");
             let msg2 = self.gettext_error();
 
             if let Some(window) = window {

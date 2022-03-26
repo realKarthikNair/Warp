@@ -402,7 +402,7 @@ impl ActionView {
     async fn prepare_and_open_file(
         &self,
         path: &Path,
-    ) -> Result<Option<(async_std::fs::File, ScopeGuard<PathBuf, fn(PathBuf)>)>, AppError> {
+    ) -> Result<Option<(smol::fs::File, ScopeGuard<PathBuf, fn(PathBuf)>)>, AppError> {
         let mut is_temp = false;
         let file_path = if path.is_dir() {
             self.set_ui_state(UIState::Archive);
@@ -416,7 +416,7 @@ impl ActionView {
         };
 
         if let Some(file_path) = file_path {
-            let file = async_std::fs::OpenOptions::new()
+            let file = smol::fs::OpenOptions::new()
                 .read(true)
                 .open(&file_path)
                 .await?;
@@ -479,7 +479,7 @@ impl ActionView {
                         }
                     };
 
-                    WarpApplicationWindow::default().add_generated_code(welcome.code.clone());
+                    WarpApplicationWindow::default().add_code(welcome.code.clone());
                     obj.set_ui_state(UIState::HasCode(welcome.code.clone()));
                     let connection = cancelable_future(connection, Self::cancel_future()).await??;
 
@@ -488,6 +488,8 @@ impl ActionView {
                 } else {
                     // Method invariant
                     let code = code.unwrap();
+                    WarpApplicationWindow::default().add_code(code.clone());
+
                     let (_welcome, connection) = cancelable_future(
                         Wormhole::connect_with_code(
                             globals::WORMHOLE_APPCFG.clone(),
@@ -557,8 +559,9 @@ impl ActionView {
                     dialog.close();
 
                     if answer == gtk::ResponseType::Cancel {
-                        async_std::task::spawn(async move {
+                        spawn_async(async move {
                             let _ = request.reject().await;
+                            Ok(())
                         });
 
                         obj.cancel();

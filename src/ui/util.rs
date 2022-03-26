@@ -1,6 +1,5 @@
 use crate::gettext::gettextf;
 use crate::util::{AppError, UIError};
-use async_std::fs::OpenOptions;
 use futures::FutureExt;
 use futures::{pin_mut, select};
 use gtk::glib;
@@ -44,7 +43,7 @@ pub async fn compress_folder_cancelable(
             "Removing partially created tar archive: {}",
             tar_path.display()
         );
-        let _ignore = async_std::fs::remove_file(tar_path).await;
+        let _ignore = smol::fs::remove_file(tar_path).await;
         Ok(None)
     }
 }
@@ -106,7 +105,7 @@ pub async fn compress_folder(
 
 pub async fn open_file_find_new_filename_if_exists(
     path: &Path,
-) -> (std::io::Result<async_std::fs::File>, PathBuf) {
+) -> (std::io::Result<smol::fs::File>, PathBuf) {
     let mut file_stem: String = path
         .file_stem()
         .unwrap_or(&OsString::new())
@@ -138,7 +137,7 @@ pub async fn open_file_find_new_filename_if_exists(
         filename.set_extension(file_ext.clone());
 
         path = dir.join(filename);
-        file_res = OpenOptions::new()
+        file_res = smol::fs::OpenOptions::new()
             .write(true)
             .create_new(true)
             .truncate(true)
