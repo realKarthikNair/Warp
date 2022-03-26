@@ -456,6 +456,7 @@ impl ActionView {
                         }
                     };
 
+                    WarpApplicationWindow::default().add_generated_code(welcome.code.clone());
                     obj.set_ui_state(UIState::HasCode(welcome.code.clone()));
                     let connection = cancelable_future(connection, Self::cancel_future()).await??;
 

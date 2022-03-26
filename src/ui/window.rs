@@ -1,4 +1,5 @@
 use crate::gettext::gettextf;
+use crate::globals;
 use crate::ui::action_view::ActionView;
 use gettextrs::*;
 use gtk::prelude::*;
@@ -6,12 +7,13 @@ use gtk::subclass::prelude::*;
 use gtk::{gio, glib, ResponseType};
 
 use crate::ui::application::WarpApplication;
-use crate::util::UIError;
+use crate::util::{do_async, UIError};
 
 mod imp {
     use super::*;
     use adw::subclass::prelude::AdwApplicationWindowImpl;
     use std::cell::{Cell, RefCell};
+    use std::collections::HashSet;
 
     use crate::config::PersistentConfig;
     use crate::glib::clone;
@@ -43,6 +45,7 @@ mod imp {
         pub folder_chooser: OnceCell<gtk::FileChooserNative>,
         pub action_view_showing: Cell<bool>,
         pub config: RefCell<PersistentConfig>,
+        pub generated_transmit_codes: RefCell<HashSet<String>>,
     }
 
     #[glib::object_subclass]
@@ -89,25 +92,13 @@ mod imp {
             ));
 
             obj.connect_notify(Some("is-active"), |obj, _| {
-                let obj = obj.clone();
-                if obj.is_active() {
-                    do_async(async move {
-                        let clipboard = obj.display().clipboard();
-                        let text = clipboard.read_text_future().await;
-                        if let Ok(Some(text)) = text {
-                            if globals::TRANSIT_CODE_REGEX.is_match(&text) {
-                                obj.imp().stack.set_visible_child_name("receive");
-                                obj.imp().code_entry.set_text(&text);
-                                obj.imp().toast_overlay.add_toast(&adw::Toast::new(&gettext(
-                                    "Inserted code from clipboard",
-                                )));
-                            }
-                        }
-
-                        Ok(())
-                    });
-                }
+                obj.add_code_from_clipboard();
             });
+
+            self.stack
+                .connect_visible_child_name_notify(clone!(@weak obj => move |stack| {
+                    obj.add_code_from_clipboard();
+                }));
 
             if !self.config.borrow().welcome_window_shown {
                 let welcome_window = WelcomeWindow::new();
@@ -315,6 +306,47 @@ impl WarpApplicationWindow {
         imp.leaflet.navigate(adw::NavigationDirection::Back);
         imp.action_view.show_progress_indeterminate(false);
         imp.code_entry.set_text("");
+    }
+
+    pub fn add_generated_code(&self, code: wormhole::Code) {
+        self.imp()
+            .generated_transmit_codes
+            .borrow_mut()
+            .insert(code.to_string());
+    }
+
+    pub fn add_code_from_clipboard(&self) {
+        let stack_name = if let Some(name) = self.imp().stack.visible_child_name() {
+            name
+        } else {
+            return;
+        };
+
+        if self.is_active() && !self.action_view_showing() && stack_name == "receive" {
+            let obj = self.clone();
+            do_async(async move {
+                let imp = obj.imp();
+                let clipboard = obj.display().clipboard();
+                let text = clipboard.read_text_future().await;
+                if let Ok(Some(text)) = text {
+                    if globals::TRANSIT_CODE_REGEX.is_match(&text) {
+                        if imp.code_entry.text() != text
+                            && !imp
+                                .generated_transmit_codes
+                                .borrow()
+                                .contains(&text.to_string())
+                        {
+                            obj.imp().code_entry.set_text(&text);
+                            obj.imp().toast_overlay.add_toast(&adw::Toast::new(&gettext(
+                                "Inserted code from clipboard",
+                            )));
+                        }
+                    }
+                }
+
+                Ok(())
+            });
+        }
     }
 
     pub fn toast_overlay(&self) -> adw::ToastOverlay {
