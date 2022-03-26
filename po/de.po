@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-26 13:34+0100\n"
+"POT-Creation-Date: 2022-03-26 14:04+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -80,7 +80,7 @@ msgstr "Dateiübertragung"
 msgid "Fina Wilke"
 msgstr ""
 
-#: data/resources/ui/action_view.ui:16 src/ui/action_view.rs:670
+#: data/resources/ui/action_view.ui:16 src/ui/action_view.rs:673
 #: src/ui/window.rs:191 src/ui/window.rs:205
 msgid "Cancel"
 msgstr "Abbrechen"
@@ -200,6 +200,10 @@ msgstr "_Über Warp"
 msgid "_Open Folder"
 msgstr "_Ordner Öffnen"
 
+#: data/resources/ui/window.ui:69
+msgid "Send"
+msgstr "Senden"
+
 #: data/resources/ui/window.ui:77
 msgid "Send files or directories"
 msgstr "Sende Dateien oder Verzeichnisse"
@@ -290,7 +294,9 @@ msgstr "Dein Übertragungscode"
 #. Translators: Description, Code in box below
 #: src/ui/action_view.rs:239
 msgid "The receiver needs to enter this code to begin the file transfer"
-msgstr "Die empfangende Person muss diesen Code eingeben, um die Übertragung zu beginnen"
+msgstr ""
+"Die empfangende Person muss diesen Code eingeben, um die Übertragung zu "
+"beginnen"
 
 #. Translators: Description, Transfer Code
 #: src/ui/action_view.rs:252
@@ -368,25 +374,25 @@ msgid "Specified file / directory does not exist"
 msgstr "Angegebene(s) Datei / Verzeichnis nicht gefunden"
 
 #. Translators: File receive confirmation message dialog title
-#: src/ui/action_view.rs:657
+#: src/ui/action_view.rs:660
 msgid "Accept file transfer?"
 msgstr "Dateiübertragung akzeptieren?"
 
 #. Translators: File receive confirmation message dialog; Filename, File size
-#: src/ui/action_view.rs:660
+#: src/ui/action_view.rs:663
 msgid ""
 "Your peer wants to send you the file “{}” (Size: {}). Do you want to "
 "download this file to your Downloads folder?"
 msgstr ""
-"Dein Gegenüber möchte dir die Datei „{}“ (Größe: {}) senden. Möchtest "
-"du diese Datei in deinen Downloads-Ordner herunterladen?"
+"Dein Gegenüber möchte dir die Datei „{}“ (Größe: {}) senden. Möchtest du "
+"diese Datei in deinen Downloads-Ordner herunterladen?"
 
 #. Translators: Confirm file receive confirmation message dialog
-#: src/ui/action_view.rs:672
+#: src/ui/action_view.rs:675
 msgid "Download"
 msgstr "Herunterladen"
 
-#: src/ui/action_view.rs:707
+#: src/ui/action_view.rs:710
 msgid "Downloads dir missing. Please set XDG_DOWNLOADS_DIR"
 msgstr "Downloads-Verzeichnis fehlt. Bitte setze XDG_DOWNLOADS_DIR"
 
@@ -404,7 +410,7 @@ msgid ""
 "Fonts</a> is licensed by CC BY 3.0"
 msgstr ""
 
-#: src/ui/util.rs:100
+#: src/ui/util.rs:99
 msgid "Path {} does not have a directory name"
 msgstr "Pfad {} hat keinen Verzeichnisnamen"
 
@@ -413,7 +419,8 @@ msgid ""
 "Error loading config file '{}', using default config.\n"
 "Error: {}"
 msgstr ""
-"Fehler beim Laden der Konfigurationsdatei „{}“, benutze Standardkonfiguration\n"
+"Fehler beim Laden der Konfigurationsdatei „{}“, benutze "
+"Standardkonfiguration\n"
 "Fehler: {}"
 
 #: src/ui/window.rs:187
@@ -441,7 +448,11 @@ msgstr "Fehler beim Speichern der Konfigurationsdatei: „{}“"
 msgid "Inserted code from clipboard"
 msgstr "Code in Zwischenablage kopiert"
 
-#: src/util.rs:111 src/util.rs:161
+#: src/util.rs:66
+msgid "An error occurred"
+msgstr "Ein Fehler ist aufgetreten"
+
+#: src/util.rs:111 src/util.rs:160
 msgid "Corrupt or unexpected message received"
 msgstr "Korrupte oder unerwartete Nachricht erhalten"
 
@@ -468,7 +479,7 @@ msgstr ""
 msgid "Cannot decrypt a received message"
 msgstr "Kann eine verschlüsselte Nachricht nicht entschlüsseln."
 
-#: src/util.rs:118 src/util.rs:169
+#: src/util.rs:118 src/util.rs:168
 msgid "An unknown error occurred"
 msgstr "Ein unbekannter Fehler ist aufgetreten"
 
@@ -490,24 +501,24 @@ msgstr "Die empfangene Datei ist korrupt"
 
 #: src/util.rs:145
 msgid ""
-"The file contained a different amount of bytes than advertised! Sent "
-"{} bytes, but should have been {}"
+"The file contained a different amount of bytes than advertised! Sent {} "
+"bytes, but should have been {}"
 msgstr ""
-"Die empfangene Datei hat eine andere Dateigröße als erwartet! Es wurden"
-"{} bytes empfangen, aber es hätten {} sein sollen"
+"Die empfangene Datei hat eine andere Dateigröße als erwartet! Es wurden {} "
+"Bytes empfangen, aber es hätten {} sein sollen"
 
-#: src/util.rs:151
+#: src/util.rs:150
 msgid "The other side has cancelled the transfer"
 msgstr "Dein Gegenüber hat die Dateiübertragung abgebrochen"
 
-#: src/util.rs:153
+#: src/util.rs:152
 msgid "Something went wrong on the other side: {}"
 msgstr "Beim Gegenüber ist ein Fehler aufgetreten: {}"
 
-#: src/util.rs:165
+#: src/util.rs:164
 msgid "Error while establishing file transfer connection"
 msgstr "Fehler beim Aufbau einer Verbindung zur Dateiübertragung"
 
-#: src/util.rs:167
+#: src/util.rs:166
 msgid "Unknown file transfer error"
 msgstr "Unbekannter Dateiübertragungsfehler"
