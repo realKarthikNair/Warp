@@ -319,6 +319,7 @@ impl ActionView {
                 imp.cancel_button.set_visible(false);
                 imp.status_page
                     .set_icon_name(Some("checkmark-large-symbolic"));
+                imp.progress_bar.set_text(None);
 
                 let filename = path.file_name().unwrap().to_string_lossy();
                 if direction == TransferDirection::Send {
