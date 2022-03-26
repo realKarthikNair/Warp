@@ -93,6 +93,7 @@ For more information about how Warp works, open the Help pages from the menu.</p
                     </child>
                     <child>
                       <object class="GtkButton" id="get_started_button">
+                        <!-- Translators: Big button to finish welcome screen -->
                         <property name="label" translatable="yes">Get started using Warp</property>
                         <style>
                           <class name="pill"/>

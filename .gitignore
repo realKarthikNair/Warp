@@ -10,4 +10,5 @@ vendor
 **/.flatpak-builder
 .fenv
 po/*.pot
+po/*~
 help/*.pot

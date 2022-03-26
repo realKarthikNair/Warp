@@ -123,6 +123,7 @@ mod imp {
                     let window = WarpApplicationWindow::default();
                     let clipboard = window.display().clipboard();
                     clipboard.set_text(&code);
+                    // Translators: Notification when clicking on "Copy to clipboard" button
                     let toast = adw::Toast::new(&gettext("Copied code to clipboard"));
                     toast.set_timeout(3);
                     toast.set_priority(adw::ToastPriority::Normal);
@@ -206,8 +207,10 @@ impl ActionView {
             UIState::Archive => match direction {
                 TransferDirection::Send => {
                     imp.status_page.set_icon_name(Some("drawer-symbolic"));
+                    // Translators: Title
                     imp.status_page.set_title(&gettext("Creating Archive"));
                     imp.status_page
+                        // Translators: Description
                         .set_description(Some(&gettext("Compressing folder")));
                 }
                 TransferDirection::Receive => {
@@ -218,8 +221,10 @@ impl ActionView {
                 TransferDirection::Send => {
                     imp.status_page
                         .set_icon_name(Some("arrows-questionmark-symbolic"));
+                    // Translators: Title
                     imp.status_page.set_title(&gettext("Connecting"));
                     imp.status_page
+                        // Translators: Description, Filename
                         .set_description(Some(&gettext("Requesting file transfer")));
                 }
                 TransferDirection::Receive => {}
@@ -227,8 +232,10 @@ impl ActionView {
             UIState::HasCode(code) => match direction {
                 TransferDirection::Send => {
                     imp.status_page.set_icon_name(Some("code-symbolic"));
+                    // Translators: Title
                     imp.status_page.set_title(&gettext("Your Transfer Code"));
                     imp.status_page.set_description(Some(&gettext(
+                        // Translators: Description, Code in box below
                         "The receiver needs to enter this code to begin the file transfer",
                     )));
                     imp.code_box.set_visible(true);
@@ -238,8 +245,10 @@ impl ActionView {
                 TransferDirection::Receive => {
                     imp.status_page
                         .set_icon_name(Some("arrows-questionmark-symbolic"));
+                    // Translators: Title
                     imp.status_page.set_title(&gettext("Connecting"));
                     imp.status_page.set_description(Some(&gettextf(
+                        // Translators: Description, Transfer Code
                         "Connecting to peer with code “{}”",
                         &[&code],
                     )));
@@ -247,6 +256,7 @@ impl ActionView {
                 }
             },
             UIState::Connected => {
+                // Translators: Title
                 imp.status_page.set_title(&gettext("Connected to Peer"));
                 imp.code_box.set_visible(false);
                 imp.progress_bar.set_visible(true);
@@ -254,12 +264,14 @@ impl ActionView {
                 match direction {
                     TransferDirection::Send => {
                         imp.status_page
+                            // Translators: Description
                             .set_description(Some(&gettext("Preparing to send file")));
                         imp.status_page
                             .set_icon_name(Some("horizontal-arrows-right-symbolic"));
                     }
                     TransferDirection::Receive => {
                         imp.status_page
+                            // Translators: Description
                             .set_description(Some(&gettext("Preparing to receive file")));
                         imp.status_page
                             .set_icon_name(Some("horizontal-arrows-left-symbolic"));
@@ -285,31 +297,39 @@ impl ActionView {
                 let description = match info {
                     TransitInfo::Direct => {
                         if is_site_local {
+                            // Translators: Description, During transfer
                             gettextf("File “{}” via local network direct transfer", &[&filename])
                         } else {
+                            // Translators: Description, During transfer
                             gettextf("File “{}” via direct transfer", &[&filename])
                         }
                     }
                     TransitInfo::Relay { name } => {
                         if let Some(name) = name {
+                            // Translators: Description, During transfer
                             gettextf("File “{}” via relay {}", &[&filename, &name])
                         } else {
+                            // Translators: Description, During transfer
                             gettextf("File “{}” via relay", &[&filename])
                         }
                     }
+                    // Translators: Description, During transfer
                     _ => gettextf("File “{}” via Unknown connection method", &[&filename]),
                 };
 
                 imp.status_page.set_description(Some(&description));
 
                 if direction == TransferDirection::Send {
+                    // Translators: Title
                     imp.status_page.set_title(&gettext("Sending File"));
                 } else {
+                    // Translators: Title
                     imp.status_page.set_title(&gettext("Receiving File"));
                 }
             }
             UIState::Done(path) => {
                 imp.status_page
+                    // Translators: Title
                     .set_title(&gettext("File Transfer Successful"));
                 imp.back_button.set_visible(true);
                 imp.cancel_button.set_visible(false);
@@ -321,11 +341,13 @@ impl ActionView {
                 let filename = path.file_name().unwrap().to_string_lossy();
                 if direction == TransferDirection::Send {
                     imp.status_page.set_description(Some(&gettextf(
+                        // Translators: Description, Filename
                         "Successfully sent file “{}”",
                         &[&filename],
                     )));
                 } else {
                     imp.status_page.set_description(Some(&gettextf(
+                        // Translators: Description, Filename
                         "File has been saved to the Downloads folder as “{}”",
                         &[&filename],
                     )));
@@ -389,6 +411,7 @@ impl ActionView {
         } else if path.is_file() {
             Some(path.to_path_buf())
         } else {
+            // Translators: When opening a file
             return Err(UIError::new(&gettext("Specified file / directory does not exist")).into());
         };
 
@@ -630,8 +653,10 @@ impl ActionView {
 
     fn save_file_dialog(filename: &Path, size: u64) -> gtk::MessageDialog {
         let dialog = gtk::builders::MessageDialogBuilder::new()
+            // Translators: File receive confirmation message dialog title
             .text(&gettext("Accept file transfer?"))
             .secondary_text(&gettextf(
+                // Translators: File receive confirmation message dialog; Filename, File size
                 "Your peer wants to send you the file “{}” (Size: {}). Do you want to download this file to your Downloads folder?",
                 &[&filename.display(),
                 &glib::format_size(size)]
@@ -642,8 +667,9 @@ impl ActionView {
             .modal(true)
             .build();
         dialog.add_buttons(&[
-            ("Cancel", ResponseType::Cancel),
-            ("Download", ResponseType::Ok),
+            (&gettext("Cancel"), ResponseType::Cancel),
+            // Translators: Confirm file receive confirmation message dialog
+            (&gettext("Download"), ResponseType::Ok),
         ]);
         dialog
     }

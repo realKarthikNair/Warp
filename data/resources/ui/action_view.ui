@@ -35,8 +35,6 @@
         <child>
           <object class="AdwStatusPage" id="status_page">
             <property name="vexpand">True</property>
-            <property name="title" translatable="yes">Operation in progress</property>
-            <property name="description" translatable="yes">Waiting for connection</property>
             <property name="icon-name">arrows-questionmark-symbolic</property>
             <child>
               <object class="GtkBox">

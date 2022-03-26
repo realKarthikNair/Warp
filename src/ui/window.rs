@@ -339,6 +339,7 @@ impl WarpApplicationWindow {
                         obj.imp().code_entry.set_text(&text);
                         obj.imp()
                             .toast_overlay
+                            // Translators: Notification when code was automatically detected in clipboard and inserted into code entry on receive page
                             .add_toast(&adw::Toast::new(&gettext("Inserted code from clipboard")));
                     }
                 }
