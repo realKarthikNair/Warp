@@ -100,6 +100,6 @@ impl FileTransferProgress {
     pub fn get_pretty_time_remaining(&self) -> Option<String> {
         self.get_time_remaining()
             .and_then(|duration| chrono::Duration::from_std(duration).ok())
-            .map(|d| duration::left(&d))
+            .map(|d| duration::left(self.done_bytes, self.total_bytes, &d))
     }
 }

@@ -19,7 +19,7 @@ mod imp {
     use crate::glib::clone;
     use crate::globals;
     use crate::ui::welcome_window::WelcomeWindow;
-    use crate::util::{do_async, UIError};
+    use crate::util::UIError;
     use gtk::CompositeTemplate;
     use once_cell::sync::OnceCell;
 
@@ -96,7 +96,7 @@ mod imp {
             });
 
             self.stack
-                .connect_visible_child_name_notify(clone!(@weak obj => move |stack| {
+                .connect_visible_child_name_notify(clone!(@weak obj => move |_| {
                     obj.add_code_from_clipboard();
                 }));
 
@@ -329,18 +329,17 @@ impl WarpApplicationWindow {
                 let clipboard = obj.display().clipboard();
                 let text = clipboard.read_text_future().await;
                 if let Ok(Some(text)) = text {
-                    if globals::TRANSIT_CODE_REGEX.is_match(&text) {
-                        if imp.code_entry.text() != text
-                            && !imp
-                                .generated_transmit_codes
-                                .borrow()
-                                .contains(&text.to_string())
-                        {
-                            obj.imp().code_entry.set_text(&text);
-                            obj.imp().toast_overlay.add_toast(&adw::Toast::new(&gettext(
-                                "Inserted code from clipboard",
-                            )));
-                        }
+                    if globals::TRANSIT_CODE_REGEX.is_match(&text)
+                        && imp.code_entry.text() != text
+                        && !imp
+                            .generated_transmit_codes
+                            .borrow()
+                            .contains(&text.to_string())
+                    {
+                        obj.imp().code_entry.set_text(&text);
+                        obj.imp()
+                            .toast_overlay
+                            .add_toast(&adw::Toast::new(&gettext("Inserted code from clipboard")));
                     }
                 }
 
