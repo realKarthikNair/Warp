@@ -126,21 +126,8 @@ mod imp {
             self.cancel_button
                 .connect_clicked(clone!(@weak obj => move |_| {
                     do_async(async move {
-                        if matches!(&*obj.imp().ui_state.borrow(), UIState::AskConfirmation(..)) {
-                            obj.cancel();
-                            return Err(AppError::Canceled);
-                        }
-
-                        let dialog = super::ActionView::ask_abort_dialog();
-                        let answer = dialog.run_future().await;
-                        dialog.close();
-
-                        if answer == gtk::ResponseType::Cancel {
-                            obj.cancel();
-                            Err(AppError::Canceled)
-                        } else {
-                            Ok(())
-                        }
+                        obj.cancel_request().await;
+                        Ok(())
                     });
                 }));
 
@@ -421,6 +408,24 @@ impl ActionView {
                     imp.open_button.set_visible(true);
                 }
             }
+        }
+    }
+
+    pub async fn cancel_request(&self) -> bool {
+        if matches!(&*self.imp().ui_state.borrow(), UIState::AskConfirmation(..)) {
+            self.cancel();
+            return true;
+        }
+
+        let dialog = Self::ask_abort_dialog();
+        let answer = dialog.run_future().await;
+        dialog.close();
+
+        if answer == gtk::ResponseType::Cancel {
+            self.cancel();
+            true
+        } else {
+            false
         }
     }
 

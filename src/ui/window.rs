@@ -19,7 +19,7 @@ mod imp {
     use crate::globals;
     use crate::ui::welcome_window::WelcomeWindow;
     use crate::util::UIError;
-    use gtk::CompositeTemplate;
+    use gtk::{CompositeTemplate, Inhibit};
     use once_cell::sync::OnceCell;
 
     #[derive(Debug, Default, CompositeTemplate)]
@@ -223,8 +223,21 @@ mod imp {
             window.save_window_size();
             window.save_config();
 
-            // Pass close request on to the parent
-            self.parent_close_request(window)
+            if window.action_view_showing() {
+                do_async(clone!(@strong window => async move {
+                    let canceled = window.action_view().cancel_request().await;
+                    if canceled {
+                        window.close();
+                    }
+
+                    Ok(())
+                }));
+
+                Inhibit(true)
+            } else {
+                // Pass close request on to the parent
+                self.parent_close_request(window)
+            }
         }
     }
 
