@@ -317,7 +317,8 @@ impl ActionView {
                 imp.accept_transfer_button.set_visible(true);
                 imp.progress_bar.set_visible(false);
 
-                imp.status_page.set_icon_name(Some("question-symbolic"));
+                imp.status_page
+                    .set_icon_name(Some("question-round-symbolic"));
                 imp.status_page.set_title(&gettext("Accept File Transfer?"));
                 imp.status_page.set_description(Some(&gettextf(
                     // Translators: File receive confirmation message dialog; Filename, File size
@@ -412,7 +413,10 @@ impl ActionView {
     }
 
     pub async fn cancel_request(&self) -> bool {
-        if matches!(&*self.imp().ui_state.borrow(), UIState::AskConfirmation(..)) {
+        if matches!(
+            &*self.imp().ui_state.borrow(),
+            UIState::AskConfirmation(..) | UIState::Done(..)
+        ) {
             self.cancel();
             return true;
         }
