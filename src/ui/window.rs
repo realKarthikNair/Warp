@@ -349,6 +349,7 @@ impl WarpApplicationWindow {
         imp.leaflet.navigate(adw::NavigationDirection::Back);
         imp.action_view.show_progress_indeterminate(false);
         imp.code_entry.set_text("");
+        WarpApplication::default().uninhibit_transfer();
     }
 
     pub fn add_code(&self, code: wormhole::Code) {

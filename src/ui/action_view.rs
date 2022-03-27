@@ -2,9 +2,9 @@ use super::progress::FileTransferProgress;
 use super::util;
 use crate::gettext::gettextf;
 use crate::glib::clone;
-use crate::globals;
 use crate::ui::window::WarpApplicationWindow;
 use crate::util::{cancelable_future, do_async, spawn_async, AppError, UIError};
+use crate::{globals, WarpApplication};
 use gettextrs::*;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
@@ -531,6 +531,8 @@ impl ActionView {
             self.set_ui_state(UIState::HasCode(code));
         }
 
+        WarpApplication::default().inhibit_transfer(direction);
+
         do_async(
             clone!(@strong self as obj => @default-return Ok(()), async move {
                 let imp = obj.imp();
@@ -765,6 +767,8 @@ impl ActionView {
                     AppError::from(err).handle();
                 }
             }
+
+            WarpApplication::default().uninhibit_transfer();
         });
     }
 

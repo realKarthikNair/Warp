@@ -8,16 +8,19 @@ use gtk::subclass::prelude::*;
 use gtk::{gdk, gio, glib};
 
 use crate::globals;
+use crate::ui::action_view::TransferDirection;
 use crate::ui::window::WarpApplicationWindow;
 
 mod imp {
     use super::*;
     use glib::WeakRef;
     use once_cell::sync::OnceCell;
+    use std::cell::Cell;
 
     #[derive(Debug, Default)]
     pub struct WarpApplication {
         pub window: OnceCell<WeakRef<WarpApplicationWindow>>,
+        pub inhibit_cookie: Cell<Option<u32>>,
     }
 
     #[glib::object_subclass]
@@ -168,6 +171,27 @@ impl WarpApplication {
         info!("Datadir: {}", globals::PKGDATADIR);
 
         ApplicationExtManual::run(self);
+    }
+
+    pub fn inhibit_transfer(&self, transfer_direction: TransferDirection) {
+        let inhibit_reason = match transfer_direction {
+            TransferDirection::Send => gettext("Sending a File"),
+            TransferDirection::Receive => gettext("Receiving a File"),
+        };
+
+        let inhibit = WarpApplication::default().inhibit(
+            Some(&WarpApplicationWindow::default()),
+            gtk::ApplicationInhibitFlags::LOGOUT | gtk::ApplicationInhibitFlags::SUSPEND,
+            Some(&inhibit_reason),
+        );
+
+        self.imp().inhibit_cookie.set(Some(inhibit));
+    }
+
+    pub fn uninhibit_transfer(&self) {
+        if let Some(cookie) = self.imp().inhibit_cookie.take() {
+            self.uninhibit(cookie);
+        }
     }
 }
 
