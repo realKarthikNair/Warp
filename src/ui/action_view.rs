@@ -715,7 +715,6 @@ impl ActionView {
             let obj = WarpApplicationWindow::default().action_view();
             let imp = obj.imp();
 
-            if *imp.ui_state.borrow() == UIState::Connected {}
             if imp.progress.borrow().is_none() {
                 imp.progress
                     .replace(Some(FileTransferProgress::begin(total as usize)));
