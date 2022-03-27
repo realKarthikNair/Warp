@@ -71,13 +71,16 @@
                                 <property name="title" translatable="yes">Send</property>
                                 <property name="icon-name">horizontal-arrows-right-symbolic</property>
                                 <property name="child">
-                                  <object class="GtkBox">
+                                  <object class="GtkBox" id="send_box">
                                     <property name="orientation">vertical</property>
+                                    <style>
+                                      <class name="send-box"/>
+                                    </style>
                                     <child>
                                       <object class="AdwStatusPage">
                                         <property name="vexpand">True</property>
                                         <property name="title" translatable="yes">Send File</property>
-                                        <property name="description" translatable="yes">Select the file or directory to send</property>
+                                        <property name="description" translatable="yes">Select or drop the file or directory to send</property>
                                         <property name="icon-name">horizontal-arrows-right-symbolic</property>
                                         <child>
                                           <object class="GtkBox">

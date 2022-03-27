@@ -1,4 +1,5 @@
-.title-header{
-  font-size: 36px;
-  font-weight: bold;
+/* follow window radius for drop target border */
+.send-box:drop(active) {
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
 }

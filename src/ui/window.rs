@@ -28,6 +28,8 @@ mod imp {
         #[template_child]
         pub stack: TemplateChild<adw::ViewStack>,
         #[template_child]
+        pub send_box: TemplateChild<gtk::Box>,
+        #[template_child]
         pub toast_overlay: TemplateChild<adw::ToastOverlay>,
         #[template_child]
         pub headerbar: TemplateChild<adw::HeaderBar>,
@@ -213,6 +215,24 @@ mod imp {
                 // Select all text when entry is focused
                 entry.select_region(0, -1);
             });
+
+            // Drag and Drop
+            let drop_type = gio::File::static_type();
+            let drag_action = gtk::gdk::DragAction::COPY;
+            let drop_target = gtk::DropTarget::new(drop_type, drag_action);
+            drop_target.connect_drop(
+                clone!(@weak obj => @default-return false, move |_target, value, _x, _y| {
+                    if let Ok(file) = value.get::<gio::File>() {
+                        if let Some(path) = file.path() {
+                            obj.action_view().send_file(path);
+                            return true;
+                        }
+                    }
+
+                    false
+                }),
+            );
+            self.send_box.add_controller(&drop_target);
         }
     }
 
