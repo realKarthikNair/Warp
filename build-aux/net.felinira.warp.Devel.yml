@@ -1,0 +1,33 @@
+app-id: net.felinira.warp.Devel
+build-options:
+  append-path: /usr/lib/sdk/rust-stable/bin
+  build-args:
+  - --share=network
+  env: {}
+  test-args:
+  - --socket=x11
+  - --share=network
+command: warp
+finish-args:
+- --socket=fallback-x11
+- --socket=wayland
+- --device=dri
+- --env=RUST_LOG=warp=debug
+- --env=G_MESSAGES_DEBUG=none
+- --env=RUST_BACKTRACE=1
+- --share=network
+- --filesystem=xdg-download
+modules:
+- buildsystem: meson
+  config-opts:
+  - -Dprofile=development
+  name: warp
+  run-tests: true
+  sources:
+  - path: ../
+    type: dir
+runtime: org.gnome.Platform
+runtime-version: master
+sdk: org.gnome.Sdk
+sdk-extensions:
+- org.freedesktop.Sdk.Extension.rust-stable

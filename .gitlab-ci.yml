@@ -9,7 +9,7 @@ flatpak:
     - flatpak
   variables:
     BUNDLE: "warp-nightly.flatpak"
-    MANIFEST_PATH: "build-aux/net.felinira.warp.Devel.json"
+    MANIFEST_PATH: "build-aux/net.felinira.warp.Devel.yml"
     FLATPAK_MODULE: "warp"
     APP_ID: "net.felinira.warp.Devel"
     RUNTIME_REPO: "https://nightly.gnome.org/gnome-nightly.flatpakrepo"
