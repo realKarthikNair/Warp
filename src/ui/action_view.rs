@@ -721,18 +721,21 @@ impl ActionView {
                     .replace(Some(FileTransferProgress::begin(total as usize)));
             }
 
+            let mut update_progress = false;
             let progress_str = imp
                 .progress
                 .borrow_mut()
                 .as_mut()
                 .and_then(|progress| {
-                    progress.set_progress(sent as usize);
+                    update_progress = progress.set_progress(sent as usize);
                     progress.get_pretty_time_remaining()
                 })
                 .unwrap_or_else(|| "".to_string());
 
-            imp.progress_bar.set_fraction(sent as f64 / total as f64);
-            imp.progress_bar.set_text(Some(&progress_str));
+            if update_progress {
+                imp.progress_bar.set_fraction(sent as f64 / total as f64);
+                imp.progress_bar.set_text(Some(&progress_str));
+            }
         });
     }
 
