@@ -13,17 +13,6 @@ else
   exit 1
 fi
 
-dirs="./build-aux/.flatpak-builder ./.flatpak-builder ./flatpak_out ./_build ./build"
-echo "This will run cargo clean and remove the following directories: '$dirs'"
-read -p "Do you want to continue? [y/N]" -n1 -r
-if [[ ! $REPLY =~ ^[Yy]$ ]]
-then
-    exit 1
-fi
-
-cargo clean
-rm -rf $dirs
-
 set -xe
 
 flatpak-builder \
