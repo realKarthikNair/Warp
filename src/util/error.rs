@@ -29,8 +29,8 @@ custom_error! {
         Canceled = "canceled",
         IO {source: std::io::Error} = "{source}",
         URL {source: url::ParseError} = "{source}",
-        TRANSFER {source: TransferError} = "{source}",
-        WORMHOLE {source: WormholeError} = "{source}",
+        Transfer {source: TransferError} = "{source}",
+        Wormhole {source: WormholeError} = "{source}",
         UI {source: UIError} = "{source}",
         AsyncChannelRecvError {source: async_channel::RecvError} = "{source}",
 }
@@ -133,7 +133,7 @@ impl AppError {
             AppError::IO { source } => Self::gettext_error_io(source),
             // TODO those should not appear publicly
             AppError::URL { source } => source.to_string(),
-            AppError::TRANSFER { source } => match source {
+            AppError::Transfer { source } => match source {
                 TransferError::AckError => gettext("Transfer was not acknowledged by peer"),
                 TransferError::Checksum | TransferError::FilesystemSkew => {
                     gettext("The received file is corrupted")
@@ -169,7 +169,7 @@ impl AppError {
                 TransferError::IO(source) => Self::gettext_error_io(source),
                 _ => gettext("An unknown error occurred"),
             },
-            AppError::WORMHOLE { source } => Self::gettext_error_wormhole(source),
+            AppError::Wormhole { source } => Self::gettext_error_wormhole(source),
             // UIErrors are generated our code and already wrapped in gettext
             AppError::UI { source } => source.to_string(),
             AppError::AsyncChannelRecvError { .. } => gettext("An unknown error occurred"),
