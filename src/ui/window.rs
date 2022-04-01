@@ -6,7 +6,7 @@ use gtk::subclass::prelude::*;
 use gtk::{gio, glib, ResponseType};
 
 use crate::ui::application::WarpApplication;
-use crate::util::{extract_transmit_code, main_async_local, AppError, UIError};
+use crate::util::{extract_transmit_code, main_async_local_infallible, UIError};
 
 mod imp {
     use super::*;
@@ -18,7 +18,7 @@ mod imp {
     use crate::glib::clone;
     use crate::globals;
     use crate::ui::welcome_window::WelcomeWindow;
-    use crate::util::UIError;
+    use crate::util::{main_async_local_infallible, UIError};
     use gtk::{CompositeTemplate, Inhibit};
     use once_cell::sync::OnceCell;
 
@@ -244,13 +244,11 @@ mod imp {
             window.save_config();
 
             if window.action_view_showing() {
-                main_async_local(clone!(@strong window => async move {
+                main_async_local_infallible(clone!(@strong window => async move {
                     let canceled = window.action_view().cancel_request().await;
                     if canceled {
                         window.close();
                     }
-
-                    Ok(())
                 }));
 
                 Inhibit(true)
@@ -327,15 +325,6 @@ impl WarpApplicationWindow {
         self.action_view().receive_file(wormhole::Code(code));
     }
 
-    pub fn handle_app_error(&self, error: AppError) {
-        if self.action_view_showing() && self.action_view().should_handle_error_inline() {
-            self.action_view().transmit_error(error);
-        } else {
-            self.action_view().cancel();
-            error.show_error_dialog(self);
-        }
-    }
-
     pub fn action_view_showing(&self) -> bool {
         self.imp().action_view_showing.get()
     }
@@ -371,7 +360,7 @@ impl WarpApplicationWindow {
 
         if self.is_active() && !self.action_view_showing() && stack_name == "receive" {
             let obj = self.clone();
-            main_async_local(async move {
+            main_async_local_infallible(async move {
                 let imp = obj.imp();
                 let clipboard = obj.display().clipboard();
                 let text = clipboard.read_text_future().await;
@@ -388,8 +377,6 @@ impl WarpApplicationWindow {
                         }
                     }
                 }
-
-                Ok(())
             });
         }
     }

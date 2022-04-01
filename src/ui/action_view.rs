@@ -4,7 +4,8 @@ use crate::gettext::gettextf;
 use crate::glib::clone;
 use crate::ui::window::WarpApplicationWindow;
 use crate::util::{
-    cancelable_future, main_async, main_async_local, spawn_async, AppError, UIError,
+    cancelable_future, main_async, main_async_local, main_async_local_infallible, spawn_async,
+    AppError, UIError,
 };
 use crate::{globals, WarpApplication};
 use adw::gio::NotificationPriority;
@@ -152,7 +153,7 @@ mod imp {
                     main_async_local(async move {
                         obj.cancel_request().await;
                         Ok(())
-                    });
+                    }, super::ActionView::transmit_error_handler);
                 }));
 
             self.back_button
@@ -168,7 +169,7 @@ mod imp {
                         }
 
                         Ok(())
-                    });
+                    }, super::ActionView::transmit_error_handler);
                 ));
 
             self.progress_bar.set_pulse_step(0.05);
@@ -452,7 +453,7 @@ impl ActionView {
             UIState::Error(error) => {
                 imp.status_page
                     // Translators: Title
-                    .set_title(&gettext("Error"));
+                    .set_title(&gettext("File Transfer Failed"));
                 imp.status_page
                     .set_description(Some(&error.gettext_error()));
                 imp.back_button.set_visible(true);
@@ -502,7 +503,7 @@ impl ActionView {
         log::info!("Cancelling transfer");
         self.imp().canceled.set(true);
 
-        main_async_local(clone!(@strong self as obj => async move {
+        main_async_local_infallible(clone!(@strong self as obj => async move {
             let imp = obj.imp();
             imp.cancel_sender.get().unwrap().send(()).await.unwrap();
 
@@ -514,7 +515,6 @@ impl ActionView {
                     }
                 }
             }
-            Ok(())
         }));
 
         self.transmit_cleanup();
@@ -677,10 +677,10 @@ impl ActionView {
                                 let obj = WarpApplicationWindow::default().action_view();
                                 obj.transmit_success(&path);
                                 Ok(())
-                            });
+                            }, Self::transmit_error_handler);
 
                             Ok(())
-                        });
+                        }, Self::transmit_error_handler);
                     }
                 } else {
                     // receive
@@ -724,7 +724,7 @@ impl ActionView {
                         spawn_async(async move {
                             let _ = request.reject().await;
                             Ok(())
-                        });
+                        }, Self::transmit_error_handler);
 
                         obj.cancel();
                         return Err(AppError::Canceled);
@@ -753,14 +753,15 @@ impl ActionView {
                             let obj = WarpApplicationWindow::default().action_view();
                             obj.transmit_success(&path);
                             Ok(())
-                        });
+                        }, Self::transmit_error_handler);
 
                         Ok(())
-                    });
+                    }, Self::transmit_error_handler);
                 }
 
                 Ok(())
             }),
+            Self::transmit_error_handler,
         );
 
         Ok(())
@@ -882,6 +883,12 @@ impl ActionView {
         }
 
         self.transmit_cleanup();
+    }
+
+    pub fn transmit_error_handler(error: AppError) {
+        WarpApplicationWindow::default()
+            .action_view()
+            .transmit_error(error);
     }
 
     pub fn send_file(&self, path: PathBuf) {

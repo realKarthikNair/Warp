@@ -67,7 +67,7 @@ impl AppError {
 
             if let Some(window) = window {
                 if window.is_visible() {
-                    window.handle_app_error(self);
+                    self.show_error_dialog(&window);
                     return; // DON'T PANIC
                 }
             }
@@ -177,44 +177,51 @@ impl AppError {
     }
 }
 
-pub fn spawn_async<F>(func: F)
+pub fn spawn_async<F, E>(func: F, error_handler: E)
 where
     F: Future<Output = Result<(), AppError>> + 'static + Send,
+    E: FnOnce(AppError) + 'static + Send,
 {
     smol::spawn(async move {
         match func.await {
             Ok(()) => (),
             Err(app_error) => {
-                main_async(async move {
-                    app_error.handle();
-                    Ok(())
-                });
+                main_async(async move { Err(app_error) }, error_handler);
             }
         }
     })
     .detach();
 }
 
-pub fn main_async_local<F>(func: F)
+pub fn main_async_local<F, E>(func: F, error_handler: E)
 where
     F: Future<Output = Result<(), AppError>> + 'static,
+    E: FnOnce(AppError) + 'static,
 {
     glib::MainContext::default().spawn_local(async move {
         match func.await {
             Ok(()) => (),
-            Err(app_error) => app_error.handle(),
+            Err(app_error) => error_handler(app_error),
         }
     });
 }
 
-pub fn main_async<F>(func: F)
+pub fn main_async_local_infallible<F>(func: F)
+where
+    F: Future<Output = ()> + 'static,
+{
+    glib::MainContext::default().spawn_local(async move { func.await });
+}
+
+pub fn main_async<F, E>(func: F, error_handler: E)
 where
     F: Future<Output = Result<(), AppError>> + Send + 'static,
+    E: FnOnce(AppError) + Send + 'static,
 {
     glib::MainContext::default().spawn(async move {
         match func.await {
             Ok(()) => (),
-            Err(app_error) => app_error.handle(),
+            Err(app_error) => error_handler(app_error),
         }
     });
 }
