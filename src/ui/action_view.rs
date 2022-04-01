@@ -301,7 +301,7 @@ impl ActionView {
                         "The receiver needs to enter this code to begin the file transfer",
                     )));
                     imp.code_box.set_visible(true);
-                    imp.code_entry.set_text(&code);
+                    imp.code_entry.set_text(code);
                     imp.progress_bar.set_visible(false);
                 }
                 TransferDirection::Receive => {
@@ -726,7 +726,7 @@ impl ActionView {
 
                     // Continue or cancel
                     let res = obj.ask_confirmation_future().await;
-                    if let Err(_) = res {
+                    if res.is_err() {
                         spawn_async_infallible(async move {
                             let _ = request.reject().await;
                         });
