@@ -6,7 +6,7 @@ use gtk::subclass::prelude::*;
 use gtk::{gio, glib, ResponseType};
 
 use crate::ui::application::WarpApplication;
-use crate::util::{extract_transmit_code, main_async_local, UIError};
+use crate::util::{extract_transmit_code, main_async_local, AppError, UIError};
 
 mod imp {
     use super::*;
@@ -327,9 +327,12 @@ impl WarpApplicationWindow {
         self.action_view().receive_file(wormhole::Code(code));
     }
 
-    pub fn cancel_any_action(&self) {
-        if self.action_view_showing() {
+    pub fn handle_app_error(&self, error: AppError) {
+        if self.action_view_showing() && self.action_view().should_handle_error_inline() {
+            self.action_view().transmit_error(error);
+        } else {
             self.action_view().cancel();
+            error.show_error_dialog(self);
         }
     }
 

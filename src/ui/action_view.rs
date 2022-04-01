@@ -13,6 +13,7 @@ use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use gtk::{gio, glib, ResponseType};
 use scopeguard::ScopeGuard;
+use std::cell::Ref;
 use std::future::Future;
 use std::net::{IpAddr, SocketAddr};
 use std::path::{Path, PathBuf};
@@ -20,7 +21,7 @@ use std::time::Duration;
 use wormhole::transit::TransitInfo;
 use wormhole::{transfer, transit, Code, Wormhole};
 
-#[derive(Clone, Debug, PartialEq)]
+#[derive(Debug)]
 pub enum UIState {
     Initial,
     Archive,
@@ -30,6 +31,24 @@ pub enum UIState {
     AskConfirmation(String, u64),
     Transmitting(String, TransitInfo, SocketAddr),
     Done(PathBuf),
+    Error(AppError),
+}
+
+/// We are only interested about the state, not the context information
+impl PartialEq for UIState {
+    fn eq(&self, other: &Self) -> bool {
+        match self {
+            UIState::Initial => matches!(other, UIState::Initial),
+            UIState::Archive => matches!(other, UIState::Archive),
+            UIState::RequestCode => matches!(other, UIState::RequestCode),
+            UIState::HasCode(..) => matches!(other, UIState::HasCode(..)),
+            UIState::Connected => matches!(other, UIState::Connected),
+            UIState::AskConfirmation(..) => matches!(other, UIState::AskConfirmation(..)),
+            UIState::Transmitting(..) => matches!(other, UIState::Transmitting(..)),
+            UIState::Done(_) => matches!(other, UIState::Done(..)),
+            UIState::Error(_) => matches!(other, UIState::Error(..)),
+        }
+    }
 }
 
 impl Default for UIState {
@@ -210,8 +229,8 @@ impl ActionView {
         self.update_ui();
     }
 
-    fn ui_state(&self) -> UIState {
-        self.imp().ui_state.borrow().clone()
+    fn ui_state(&self) -> Ref<UIState> {
+        self.imp().ui_state.borrow()
     }
 
     fn set_direction(&self, direction: TransferDirection) {
@@ -227,7 +246,7 @@ impl ActionView {
         let direction = self.direction();
         let ui_state = self.ui_state();
 
-        match ui_state {
+        match &*ui_state {
             UIState::Initial => {
                 imp.canceled.set(false);
                 imp.filename.replace(None);
@@ -329,7 +348,7 @@ impl ActionView {
                     // Translators: File receive confirmation message dialog; Filename, File size
                     "Your peer wants to send you “{0}” (Size: {1}).\nDo you want to download this file to your Downloads folder?",
                     &[&filename,
-                        &glib::format_size(size)]
+                        &glib::format_size(*size)]
                 )));
             }
             UIState::Transmitting(filename, info, peer_addr) => {
@@ -428,6 +447,31 @@ impl ActionView {
                 if !WarpApplicationWindow::default().is_active() {
                     WarpApplication::default()
                         .send_notification(Some("transfer-complete"), &notification);
+                }
+            }
+            UIState::Error(error) => {
+                imp.status_page
+                    // Translators: Title
+                    .set_title(&gettext("Error"));
+                imp.status_page
+                    .set_description(Some(&error.gettext_error()));
+                imp.back_button.set_visible(true);
+                imp.cancel_button.set_visible(false);
+                imp.status_page
+                    .set_icon_name(Some("horizontal-arrows-one-way-symbolic"));
+                imp.progress_bar.set_text(None);
+                imp.progress_bar.set_visible(false);
+
+                if !WarpApplicationWindow::default().is_active() {
+                    let notification = gio::Notification::new(&gettext("File Transfer Failed"));
+                    notification.set_body(Some(&gettextf(
+                        "The file transfer failed: {}",
+                        &[&error.gettext_error()],
+                    )));
+                    notification.set_priority(NotificationPriority::High);
+                    notification.set_category(Some("transfer.error"));
+                    WarpApplication::default()
+                        .send_notification(Some("transfer-error"), &notification);
                 }
             }
         }
@@ -805,6 +849,8 @@ impl ActionView {
 
     /// Any post-transfer cleanup operations that are shared between success and failure states
     fn transmit_cleanup(&self) {
+        log::debug!("Transmit cleanup");
+
         let imp = self.imp();
         WarpApplication::default().uninhibit_transfer();
         self.show_progress_indeterminate(false);
@@ -816,6 +862,8 @@ impl ActionView {
     }
 
     fn transmit_success(&self, path: &Path) {
+        log::debug!("Transmit success");
+
         let path = path.to_path_buf();
 
         self.imp().progress_bar.set_fraction(1.0);
@@ -824,15 +872,13 @@ impl ActionView {
         self.transmit_cleanup();
     }
 
-    fn transmit_error(&self, error: AppError) {
-        error.handle();
+    pub fn transmit_error(&self, error: AppError) {
+        log::debug!("Transmit error");
 
-        if !WarpApplicationWindow::default().is_active() {
-            let notification = gio::Notification::new(&gettext("File Transfer Failed"));
-            notification.set_body(Some(&gettext("The file transfer failed")));
-            notification.set_priority(NotificationPriority::High);
-            notification.set_category(Some("transfer.error"));
-            WarpApplication::default().send_notification(Some("transfer-error"), &notification);
+        if *self.ui_state() != UIState::Initial {
+            self.set_ui_state(UIState::Error(error));
+        } else {
+            error.handle();
         }
 
         self.transmit_cleanup();
@@ -863,6 +909,10 @@ impl ActionView {
         if let Err(err) = self.receive_file_impl(code) {
             self.transmit_error(err);
         }
+    }
+
+    pub fn should_handle_error_inline(&self) -> bool {
+        !matches!(&*self.ui_state(), UIState::Initial | UIState::Done(..))
     }
 }
 

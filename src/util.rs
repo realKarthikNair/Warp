@@ -28,20 +28,21 @@ impl UIError {
     }
 }
 
-custom_error! {pub AppError
-    Canceled = "canceled",
-    IO {source: std::io::Error} = "{source}",
-    URL {source: url::ParseError} = "{source}",
-    TRANSFER {source: TransferError} = "{source}",
-    WORMHOLE {source: WormholeError} = "{source}",
-    UI {source: UIError} = "{source}",
+custom_error! {
+    pub AppError
+        Canceled = "canceled",
+        IO {source: std::io::Error} = "{source}",
+        URL {source: url::ParseError} = "{source}",
+        TRANSFER {source: TransferError} = "{source}",
+        WORMHOLE {source: WormholeError} = "{source}",
+        UI {source: UIError} = "{source}",
 }
 
 // Don't show more than one error dialog at the same time, it will get very annoying
 static ERROR_DIALOG_ALREADY_SHOWING: AtomicBool = AtomicBool::new(false);
 
 impl AppError {
-    pub fn handle(&self) {
+    pub fn handle(self) {
         if let AppError::Canceled = self {
             // Don't do anything here, the user canceled the operation
             return;
@@ -64,36 +65,9 @@ impl AppError {
                 _ => None,
             };
 
-            let msg1 = &gettext("An error occurred");
-            let msg2 = self.gettext_error();
-
             if let Some(window) = window {
                 if window.is_visible() {
-                    window.cancel_any_action();
-
-                    let res = ERROR_DIALOG_ALREADY_SHOWING.compare_exchange(
-                        false,
-                        true,
-                        Ordering::SeqCst,
-                        Ordering::SeqCst,
-                    );
-
-                    if res.is_ok() {
-                        let dialog = gtk::builders::MessageDialogBuilder::new()
-                            .message_type(MessageType::Error)
-                            .text(msg1)
-                            .secondary_text(&msg2)
-                            .buttons(gtk::ButtonsType::Close)
-                            .transient_for(&window)
-                            .modal(true)
-                            .build();
-
-                        dialog.run_async(|obj, _| {
-                            obj.close();
-                            ERROR_DIALOG_ALREADY_SHOWING.store(false, Ordering::SeqCst);
-                        });
-                    }
-
+                    window.handle_app_error(self);
                     return; // DON'T PANIC
                 }
             }
@@ -104,6 +78,34 @@ impl AppError {
             "An error occurred during application initialisation: {}",
             self
         );
+    }
+
+    pub fn show_error_dialog(&self, window: &WarpApplicationWindow) {
+        let msg1 = &gettext("An error occurred");
+        let msg2 = self.gettext_error();
+
+        let res = ERROR_DIALOG_ALREADY_SHOWING.compare_exchange(
+            false,
+            true,
+            Ordering::SeqCst,
+            Ordering::SeqCst,
+        );
+
+        if res.is_ok() {
+            let dialog = gtk::builders::MessageDialogBuilder::new()
+                .message_type(MessageType::Error)
+                .text(msg1)
+                .secondary_text(&msg2)
+                .buttons(gtk::ButtonsType::Close)
+                .transient_for(window)
+                .modal(true)
+                .build();
+
+            dialog.run_async(|obj, _| {
+                obj.close();
+                ERROR_DIALOG_ALREADY_SHOWING.store(false, Ordering::SeqCst);
+            });
+        }
     }
 
     fn gettext_error_wormhole(wormhole_error: &WormholeError) -> String {
@@ -128,7 +130,7 @@ impl AppError {
         }
     }
 
-    fn gettext_error(&self) -> String {
+    pub fn gettext_error(&self) -> String {
         match self {
             AppError::Canceled => "canceled".to_string(),
             AppError::IO { source } => Self::gettext_error_io(source),
