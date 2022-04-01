@@ -3,10 +3,7 @@ use super::util;
 use crate::gettext::gettextf;
 use crate::glib::clone;
 use crate::ui::window::WarpApplicationWindow;
-use crate::util::{
-    cancelable_future, main_async, main_async_local, main_async_local_infallible, spawn_async,
-    AppError, UIError,
-};
+use crate::util::*;
 use crate::{globals, WarpApplication};
 use adw::gio::NotificationPriority;
 use gettextrs::*;
@@ -113,7 +110,8 @@ mod imp {
         pub cancel_receiver: OnceCell<async_channel::Receiver<()>>,
 
         // Send a message to this sender to continue the process after the confirmation question
-        pub continue_sender: RefCell<Option<async_channel::Sender<()>>>,
+        pub continue_sender: OnceCell<async_channel::Sender<()>>,
+        pub continue_receiver: OnceCell<async_channel::Receiver<()>>,
 
         // Full path to the received/sent file
         pub filename: RefCell<Option<PathBuf>>,
@@ -164,7 +162,7 @@ mod imp {
             self.accept_transfer_button
                 .connect_clicked(clone!(@weak obj => move |_|
                     main_async_local(async move {
-                        if let Some(continue_sender) = &*obj.imp().continue_sender.borrow_mut() {
+                        if let Some(continue_sender) = obj.imp().continue_sender.get() {
                             continue_sender.send(()).await.unwrap();
                         }
 
@@ -208,6 +206,10 @@ mod imp {
             let (cancel_sender, cancel_receiver) = async_channel::unbounded();
             self.cancel_sender.get_or_init(|| cancel_sender);
             self.cancel_receiver.get_or_init(|| cancel_receiver);
+
+            let (continue_sender, continue_receiver) = async_channel::unbounded();
+            self.continue_sender.get_or_init(|| continue_sender);
+            self.continue_receiver.get_or_init(|| continue_receiver);
         }
     }
 
@@ -351,6 +353,17 @@ impl ActionView {
                     &[&filename,
                         &glib::format_size(*size)]
                 )));
+
+                if !WarpApplicationWindow::default().is_active() {
+                    let notification = gio::Notification::new(&gettext("Ready to Receive File"));
+                    notification.set_body(Some(&gettext(
+                        "A file is ready to be transferred. The transfer needs to be acknowledged.",
+                    )));
+                    notification.set_priority(NotificationPriority::Urgent);
+                    notification.set_category(Some("transfer"));
+                    WarpApplication::default()
+                        .send_notification(Some("receive-ready"), &notification);
+                }
             }
             UIState::Transmitting(filename, info, peer_addr) => {
                 self.show_progress_indeterminate(false);
@@ -481,7 +494,7 @@ impl ActionView {
     pub async fn cancel_request(&self) -> bool {
         if matches!(
             &*self.imp().ui_state.borrow(),
-            UIState::AskConfirmation(..) | UIState::Done(..)
+            UIState::AskConfirmation(..) | UIState::Done(..) | UIState::Error(..)
         ) {
             self.cancel();
             return true;
@@ -506,15 +519,6 @@ impl ActionView {
         main_async_local_infallible(clone!(@strong self as obj => async move {
             let imp = obj.imp();
             imp.cancel_sender.get().unwrap().send(()).await.unwrap();
-
-            if let Some(path) = imp.filename.borrow().clone() {
-                if *imp.direction.borrow() == TransferDirection::Receive && !matches!(*imp.ui_state.borrow(), UIState::Done(..)) {
-                    log::info!("Removing partially downloaded file '{}'", path.display());
-                    if let Err(err) = std::fs::remove_file(&path) {
-                        log::error!("Error removing {0}: {1}", path.display(), err);
-                    }
-                }
-            }
         }));
 
         self.transmit_cleanup();
@@ -630,7 +634,6 @@ impl ActionView {
                     obj.set_ui_state(UIState::HasCode(welcome.code.clone()));
                     let connection = cancelable_future(connection, Self::cancel_future()).await??;
 
-                    log::debug!("Connected to wormhole");
                     connection
                 } else {
                     // Method invariant
@@ -680,19 +683,17 @@ impl ActionView {
                             )
                             .await?;
 
-                            let obj = WarpApplicationWindow::default().action_view();
-                            if obj.imp().canceled.get() {
+                            if WarpApplicationWindow::default()
+                                .action_view()
+                                .imp()
+                                .canceled
+                                .get()
+                            {
                                 return Err(AppError::Canceled);
                             }
 
-                            main_async(
-                                async move {
-                                    let obj = WarpApplicationWindow::default().action_view();
-                                    obj.transmit_success(&path);
-                                    Ok(())
-                                },
-                                Self::transmit_error_handler,
-                            );
+                            // We can drop the path now, we don't need the temp file anymore
+                            Self::transmit_success_main(path.clone());
 
                             Ok(())
                         },
@@ -706,13 +707,8 @@ impl ActionView {
                         transit_abilities,
                         Self::cancel_future(),
                     )
-                    .await?;
-
-                    let request = if let Some(request) = request {
-                        request
-                    } else {
-                        return Err(AppError::Canceled);
-                    };
+                    .await?
+                    .ok_or(AppError::Canceled)?;
 
                     // Only use the last filename component otherwise the other side can overwrite
                     // files in different directories
@@ -726,35 +722,15 @@ impl ActionView {
                         filename.to_string_lossy().to_string(),
                         request.filesize,
                     ));
-                    let (continue_sender, continue_receiver) = async_channel::unbounded();
-                    imp.continue_sender.replace(Some(continue_sender));
-                    let wait_future =
-                        cancelable_future(continue_receiver.recv(), Self::cancel_future());
-
-                    if !WarpApplicationWindow::default().is_active() {
-                        let notification =
-                            gio::Notification::new(&gettext("Ready to Receive File"));
-                        notification.set_body(Some(&gettext("A file is ready to be transferred. The transfer needs to be acknowledged.")));
-                        notification.set_priority(NotificationPriority::Urgent);
-                        notification.set_category(Some("transfer"));
-                        WarpApplication::default()
-                            .send_notification(Some("receive-ready"), &notification);
-                    }
 
                     // Continue or cancel
-                    let res = wait_future.await;
-                    log::debug!("{:?}", res);
-                    if let Err(AppError::Canceled) = res {
-                        spawn_async(
-                            async move {
-                                let _ = request.reject().await;
-                                Ok(())
-                            },
-                            Self::transmit_error_handler,
-                        );
+                    let res = obj.ask_confirmation_future().await;
+                    if let Err(_) = res {
+                        spawn_async_infallible(async move {
+                            let _ = request.reject().await;
+                        });
 
-                        obj.cancel();
-                        return Err(AppError::Canceled);
+                        return res;
                     }
 
                     WarpApplication::default().withdraw_notification("receive-ready");
@@ -769,7 +745,6 @@ impl ActionView {
                             log::info!("Downloading file to {:?}", path.to_str());
 
                             let mut file = file_res?;
-
                             request
                                 .accept(
                                     Self::transit_handler,
@@ -779,19 +754,16 @@ impl ActionView {
                                 )
                                 .await?;
 
-                            let obj = WarpApplicationWindow::default().action_view();
-                            if obj.imp().canceled.get() {
+                            if WarpApplicationWindow::default()
+                                .action_view()
+                                .imp()
+                                .canceled
+                                .get()
+                            {
                                 return Err(AppError::Canceled);
                             }
 
-                            main_async(
-                                async move {
-                                    let obj = WarpApplicationWindow::default().action_view();
-                                    obj.transmit_success(&path);
-                                    Ok(())
-                                },
-                                Self::transmit_error_handler,
-                            );
+                            Self::transmit_success_main(path);
 
                             Ok(())
                         },
@@ -872,6 +844,15 @@ impl ActionView {
         });
     }
 
+    async fn ask_confirmation_future(&self) -> Result<(), AppError> {
+        cancelable_future(
+            self.imp().continue_receiver.get().unwrap().recv(),
+            Self::cancel_future(),
+        )
+        .await??;
+        Ok(())
+    }
+
     fn ask_abort_dialog() -> gtk::MessageDialog {
         let dialog = gtk::builders::MessageDialogBuilder::new()
             // Translators: File receive confirmation message dialog title
@@ -896,10 +877,28 @@ impl ActionView {
         WarpApplication::default().uninhibit_transfer();
         self.show_progress_indeterminate(false);
 
-        // Drain cancel receiver from any previous transfers
+        // Drain cancel and continue receiver from any previous transfers
         while imp.cancel_receiver.get().unwrap().try_recv().is_ok() {}
+        while imp.continue_receiver.get().unwrap().try_recv().is_ok() {}
 
-        imp.continue_sender.replace(None);
+        if let Some(path) = imp.filename.borrow().clone() {
+            if *imp.direction.borrow() == TransferDirection::Receive
+                && !matches!(*imp.ui_state.borrow(), UIState::Done(..))
+            {
+                log::info!("Removing partially downloaded file '{}'", path.display());
+                if let Err(err) = std::fs::remove_file(&path) {
+                    log::error!("Error removing {0}: {1}", path.display(), err);
+                }
+            }
+        }
+    }
+
+    fn transmit_success_main(path: PathBuf) {
+        glib::MainContext::default().invoke(move || {
+            WarpApplicationWindow::default()
+                .action_view()
+                .transmit_success(&path)
+        });
     }
 
     fn transmit_success(&self, path: &Path) {

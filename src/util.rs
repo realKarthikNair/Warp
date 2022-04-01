@@ -36,6 +36,7 @@ custom_error! {
         TRANSFER {source: TransferError} = "{source}",
         WORMHOLE {source: WormholeError} = "{source}",
         UI {source: UIError} = "{source}",
+        AsyncChannelRecvError {source: async_channel::RecvError} = "{source}",
 }
 
 // Don't show more than one error dialog at the same time, it will get very annoying
@@ -151,6 +152,8 @@ impl AppError {
                 TransferError::PeerError(msg) => {
                     if msg == "Task has been cancelled" {
                         gettext("The other side has cancelled the transfer")
+                    } else if msg == "transfer rejected" {
+                        gettext("The other side has rejected the transfer")
                     } else {
                         gettextf("Something went wrong on the other side: {}", &[msg])
                     }
@@ -173,6 +176,7 @@ impl AppError {
             AppError::WORMHOLE { source } => Self::gettext_error_wormhole(source),
             // UIErrors are generated our code and already wrapped in gettext
             AppError::UI { source } => source.to_string(),
+            AppError::AsyncChannelRecvError { .. } => gettext("An unknown error occurred"),
         }
     }
 }
@@ -193,6 +197,13 @@ where
     .detach();
 }
 
+pub fn spawn_async_infallible<F>(func: F)
+where
+    F: Future<Output = ()> + 'static + Send,
+{
+    smol::spawn(func).detach();
+}
+
 pub fn main_async_local<F, E>(func: F, error_handler: E)
 where
     F: Future<Output = Result<(), AppError>> + 'static,
@@ -210,7 +221,7 @@ pub fn main_async_local_infallible<F>(func: F)
 where
     F: Future<Output = ()> + 'static,
 {
-    glib::MainContext::default().spawn_local(async move { func.await });
+    glib::MainContext::default().spawn_local(func);
 }
 
 pub fn main_async<F, E>(func: F, error_handler: E)
