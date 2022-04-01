@@ -599,8 +599,10 @@ impl ActionView {
 
         WarpApplication::default().inhibit_transfer(direction);
 
+        let obj = self.clone();
+
         main_async_local(
-            clone!(@strong self as obj => @default-return Ok(()), async move {
+            async move {
                 let imp = obj.imp();
 
                 let file_tuple = if direction == TransferDirection::Send {
@@ -611,9 +613,13 @@ impl ActionView {
 
                 let wormhole = if direction == TransferDirection::Send {
                     obj.set_ui_state(UIState::RequestCode);
-                    let res = cancelable_future(Wormhole::connect_without_code(globals::WORMHOLE_APPCFG.clone(), 4), Self::cancel_future()).await?;
+                    let res = cancelable_future(
+                        Wormhole::connect_without_code(globals::WORMHOLE_APPCFG.clone(), 4),
+                        Self::cancel_future(),
+                    )
+                    .await?;
 
-                    let (welcome, connection)= match res {
+                    let (welcome, connection) = match res {
                         Ok(tuple) => tuple,
                         Err(err) => {
                             return Err(err.into());
@@ -632,10 +638,10 @@ impl ActionView {
                     WarpApplicationWindow::default().add_code(code.clone());
 
                     let (_welcome, connection) = cancelable_future(
-                        Wormhole::connect_with_code(
-                            globals::WORMHOLE_APPCFG.clone(),
-                            code
-                        ), Self::cancel_future()).await??;
+                        Wormhole::connect_with_code(globals::WORMHOLE_APPCFG.clone(), code),
+                        Self::cancel_future(),
+                    )
+                    .await??;
 
                     connection
                 };
@@ -646,18 +652,23 @@ impl ActionView {
                 let transit_url = url::Url::parse(globals::WORMHOLE_TRANSIT_RELAY)?;
 
                 if direction == TransferDirection::Send {
-                    if let Some((mut file, path)) = file_tuple {
-                        imp.filename.replace(Some((*path).to_path_buf()));
+                    let (mut file, path) =
+                        file_tuple.expect("File tuple not found, should have been created above");
+                    imp.filename.replace(Some((*path).to_path_buf()));
 
-                        spawn_async(async move {
+                    spawn_async(
+                        async move {
                             let filename = if let Some(filename) = path.file_name() {
                                 filename
                             } else {
-                                return Err(std::io::Error::from(std::io::ErrorKind::NotFound).into());
+                                return Err(
+                                    std::io::Error::from(std::io::ErrorKind::NotFound).into()
+                                );
                             };
                             let metadata = file.metadata().await?;
 
-                            transfer::send_file(wormhole,
+                            transfer::send_file(
+                                wormhole,
                                 transit_url,
                                 &mut file,
                                 &filename,
@@ -665,30 +676,37 @@ impl ActionView {
                                 transit_abilities,
                                 Self::transit_handler,
                                 Self::progress_handler,
-                                Self::cancel_future()
-                            ).await?;
+                                Self::cancel_future(),
+                            )
+                            .await?;
 
                             let obj = WarpApplicationWindow::default().action_view();
                             if obj.imp().canceled.get() {
                                 return Err(AppError::Canceled);
                             }
 
-                            main_async(async move {
-                                let obj = WarpApplicationWindow::default().action_view();
-                                obj.transmit_success(&path);
-                                Ok(())
-                            }, Self::transmit_error_handler);
+                            main_async(
+                                async move {
+                                    let obj = WarpApplicationWindow::default().action_view();
+                                    obj.transmit_success(&path);
+                                    Ok(())
+                                },
+                                Self::transmit_error_handler,
+                            );
 
                             Ok(())
-                        }, Self::transmit_error_handler);
-                    }
+                        },
+                        Self::transmit_error_handler,
+                    );
                 } else {
                     // receive
-                    let request = transfer::request_file(wormhole,
+                    let request = transfer::request_file(
+                        wormhole,
                         transit_url,
                         transit_abilities,
-                        Self::cancel_future()
-                    ).await?;
+                        Self::cancel_future(),
+                    )
+                    .await?;
 
                     let request = if let Some(request) = request {
                         request
@@ -704,27 +722,36 @@ impl ActionView {
                         PathBuf::from("Unknown File.bin")
                     };
 
-                    obj.set_ui_state(UIState::AskConfirmation(filename.to_string_lossy().to_string(), request.filesize));
+                    obj.set_ui_state(UIState::AskConfirmation(
+                        filename.to_string_lossy().to_string(),
+                        request.filesize,
+                    ));
                     let (continue_sender, continue_receiver) = async_channel::unbounded();
                     imp.continue_sender.replace(Some(continue_sender));
-                    let wait_future = cancelable_future(continue_receiver.recv(), Self::cancel_future());
+                    let wait_future =
+                        cancelable_future(continue_receiver.recv(), Self::cancel_future());
 
                     if !WarpApplicationWindow::default().is_active() {
-                        let notification = gio::Notification::new(&gettext("Ready to Receive File"));
+                        let notification =
+                            gio::Notification::new(&gettext("Ready to Receive File"));
                         notification.set_body(Some(&gettext("A file is ready to be transferred. The transfer needs to be acknowledged.")));
                         notification.set_priority(NotificationPriority::Urgent);
                         notification.set_category(Some("transfer"));
-                        WarpApplication::default().send_notification(Some("receive-ready"), &notification);
+                        WarpApplication::default()
+                            .send_notification(Some("receive-ready"), &notification);
                     }
 
                     // Continue or cancel
                     let res = wait_future.await;
                     log::debug!("{:?}", res);
                     if let Err(AppError::Canceled) = res {
-                        spawn_async(async move {
-                            let _ = request.reject().await;
-                            Ok(())
-                        }, Self::transmit_error_handler);
+                        spawn_async(
+                            async move {
+                                let _ = request.reject().await;
+                                Ok(())
+                            },
+                            Self::transmit_error_handler,
+                        );
 
                         obj.cancel();
                         return Err(AppError::Canceled);
@@ -737,30 +764,43 @@ impl ActionView {
                     let (file_res, path) = util::open_file_find_new_filename_if_exists(&path).await;
                     imp.filename.replace(Some(path.clone()));
 
-                    spawn_async(async move {
-                        log::info!("Downloading file to {:?}", path.to_str());
+                    spawn_async(
+                        async move {
+                            log::info!("Downloading file to {:?}", path.to_str());
 
-                        let mut file = file_res?;
+                            let mut file = file_res?;
 
-                        request.accept(Self::transit_handler, Self::progress_handler, &mut file, Self::cancel_future()).await?;
+                            request
+                                .accept(
+                                    Self::transit_handler,
+                                    Self::progress_handler,
+                                    &mut file,
+                                    Self::cancel_future(),
+                                )
+                                .await?;
 
-                        let obj = WarpApplicationWindow::default().action_view();
-                        if obj.imp().canceled.get() {
-                            return Err(AppError::Canceled);
-                        }
-
-                        main_async(async move {
                             let obj = WarpApplicationWindow::default().action_view();
-                            obj.transmit_success(&path);
-                            Ok(())
-                        }, Self::transmit_error_handler);
+                            if obj.imp().canceled.get() {
+                                return Err(AppError::Canceled);
+                            }
 
-                        Ok(())
-                    }, Self::transmit_error_handler);
+                            main_async(
+                                async move {
+                                    let obj = WarpApplicationWindow::default().action_view();
+                                    obj.transmit_success(&path);
+                                    Ok(())
+                                },
+                                Self::transmit_error_handler,
+                            );
+
+                            Ok(())
+                        },
+                        Self::transmit_error_handler,
+                    );
                 }
 
                 Ok(())
-            }),
+            },
             Self::transmit_error_handler,
         );
 
