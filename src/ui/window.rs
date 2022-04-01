@@ -6,7 +6,7 @@ use gtk::subclass::prelude::*;
 use gtk::{gio, glib, ResponseType};
 
 use crate::ui::application::WarpApplication;
-use crate::util::{extract_transmit_code, main_async_local_infallible, UIError};
+use crate::util::{error::UIError, extract_transmit_code, future::main_async_local_infallible};
 
 mod imp {
     use super::*;
@@ -18,7 +18,7 @@ mod imp {
     use crate::glib::clone;
     use crate::globals;
     use crate::ui::welcome_window::WelcomeWindow;
-    use crate::util::{main_async_local_infallible, UIError};
+    use crate::util::{error::UIError, future::main_async_local_infallible};
     use gtk::{CompositeTemplate, Inhibit};
     use once_cell::sync::OnceCell;
 

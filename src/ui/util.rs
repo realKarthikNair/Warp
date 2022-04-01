@@ -1,5 +1,5 @@
 use crate::gettext::gettextf;
-use crate::util::{AppError, UIError};
+use crate::util::error::{AppError, UIError};
 use futures::FutureExt;
 use futures::{pin_mut, select};
 use gtk::glib;
