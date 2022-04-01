@@ -230,7 +230,6 @@ impl ActionView {
         match ui_state {
             UIState::Initial => {
                 imp.canceled.set(false);
-                imp.continue_sender.replace(None);
                 imp.filename.replace(None);
                 imp.progress.replace(None);
                 imp.open_button.set_visible(false);
@@ -474,7 +473,7 @@ impl ActionView {
             Ok(())
         }));
 
-        self.show_progress_indeterminate(false);
+        self.transmit_cleanup();
         WarpApplicationWindow::default().navigate_back();
     }
 
@@ -559,9 +558,6 @@ impl ActionView {
         main_async_local(
             clone!(@strong self as obj => @default-return Ok(()), async move {
                 let imp = obj.imp();
-
-                // Drain cancel receiver from any previous transfers
-                while imp.cancel_receiver.get().unwrap().try_recv().is_ok() {}
 
                 let file_tuple = if direction == TransferDirection::Send {
                     obj.prepare_and_open_file(&path).await?
@@ -807,18 +803,28 @@ impl ActionView {
         dialog
     }
 
+    /// Any post-transfer cleanup operations that are shared between success and failure states
+    fn transmit_cleanup(&self) {
+        let imp = self.imp();
+        WarpApplication::default().uninhibit_transfer();
+        self.show_progress_indeterminate(false);
+
+        // Drain cancel receiver from any previous transfers
+        while imp.cancel_receiver.get().unwrap().try_recv().is_ok() {}
+
+        imp.continue_sender.replace(None);
+    }
+
     fn transmit_success(&self, path: &Path) {
         let path = path.to_path_buf();
-        WarpApplication::default().uninhibit_transfer();
 
-        self.show_progress_indeterminate(false);
         self.imp().progress_bar.set_fraction(1.0);
 
         self.set_ui_state(UIState::Done(path));
+        self.transmit_cleanup();
     }
 
     fn transmit_error(&self, error: AppError) {
-        WarpApplication::default().uninhibit_transfer();
         error.handle();
 
         if !WarpApplicationWindow::default().is_active() {
@@ -828,6 +834,8 @@ impl ActionView {
             notification.set_category(Some("transfer.error"));
             WarpApplication::default().send_notification(Some("transfer-error"), &notification);
         }
+
+        self.transmit_cleanup();
     }
 
     pub fn send_file(&self, path: PathBuf) {
