@@ -3,8 +3,11 @@ use super::util;
 use crate::gettext::gettextf;
 use crate::glib::clone;
 use crate::ui::window::WarpApplicationWindow;
-use crate::util::{cancelable_future, do_async, spawn_async, AppError, UIError};
+use crate::util::{
+    cancelable_future, main_async, main_async_local, spawn_async, AppError, UIError,
+};
 use crate::{globals, WarpApplication};
+use adw::gio::NotificationPriority;
 use gettextrs::*;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
@@ -14,7 +17,6 @@ use std::future::Future;
 use std::net::{IpAddr, SocketAddr};
 use std::path::{Path, PathBuf};
 use std::time::Duration;
-use wormhole::transfer::TransferError;
 use wormhole::transit::TransitInfo;
 use wormhole::{transfer, transit, Code, Wormhole};
 
@@ -51,7 +53,7 @@ impl Default for TransferDirection {
 mod imp {
     use super::*;
     use gtk::gdk::AppLaunchContext;
-    use std::cell::RefCell;
+    use std::cell::{Cell, RefCell};
 
     use crate::glib::clone;
     use gtk::gio::AppInfo;
@@ -82,6 +84,9 @@ mod imp {
 
         // ID of the timer that runs the indeterminate progress
         pub progress_timeout_source_id: RefCell<Option<glib::source::SourceId>>,
+
+        // User initiated cancel
+        pub canceled: Cell<bool>,
 
         // When sending a message to the cancel sender the whole process gets aborted
         pub cancel_sender: OnceCell<async_channel::Sender<()>>,
@@ -125,7 +130,7 @@ mod imp {
 
             self.cancel_button
                 .connect_clicked(clone!(@weak obj => move |_| {
-                    do_async(async move {
+                    main_async_local(async move {
                         obj.cancel_request().await;
                         Ok(())
                     });
@@ -138,7 +143,7 @@ mod imp {
 
             self.accept_transfer_button
                 .connect_clicked(clone!(@weak obj => move |_|
-                    do_async(async move {
+                    main_async_local(async move {
                         if let Some(continue_sender) = &*obj.imp().continue_sender.borrow_mut() {
                             continue_sender.send(()).await.unwrap();
                         }
@@ -224,6 +229,7 @@ impl ActionView {
 
         match ui_state {
             UIState::Initial => {
+                imp.canceled.set(false);
                 imp.continue_sender.replace(None);
                 imp.filename.replace(None);
                 imp.progress.replace(None);
@@ -393,20 +399,36 @@ impl ActionView {
                 imp.progress_bar.set_text(None);
                 imp.progress_bar.set_visible(false);
 
+                let notification = gio::Notification::new(&gettext("File Transfer Complete"));
+
+                notification.set_priority(NotificationPriority::High);
+                notification.set_category(Some("transfer.complete"));
+
                 let filename = path.file_name().unwrap().to_string_lossy();
                 if direction == TransferDirection::Send {
-                    imp.status_page.set_description(Some(&gettextf(
+                    let description = gettextf(
                         // Translators: Description, Filename
                         "Successfully sent file “{}”",
                         &[&filename],
-                    )));
+                    );
+
+                    imp.status_page.set_description(Some(&description));
+                    notification.set_body(Some(&description));
                 } else {
-                    imp.status_page.set_description(Some(&gettextf(
+                    let description = gettextf(
                         // Translators: Description, Filename
                         "File has been saved to the Downloads folder as “{}”",
                         &[&filename],
-                    )));
+                    );
+
+                    imp.status_page.set_description(Some(&description));
                     imp.open_button.set_visible(true);
+                    notification.set_body(Some(&description));
+                }
+
+                if !WarpApplicationWindow::default().is_active() {
+                    WarpApplication::default()
+                        .send_notification(Some("transfer-complete"), &notification);
                 }
             }
         }
@@ -435,8 +457,9 @@ impl ActionView {
 
     pub fn cancel(&self) {
         log::info!("Cancelling transfer");
+        self.imp().canceled.set(true);
 
-        do_async(clone!(@strong self as obj => async move {
+        main_async_local(clone!(@strong self as obj => async move {
             let imp = obj.imp();
             imp.cancel_sender.get().unwrap().send(()).await.unwrap();
 
@@ -533,7 +556,7 @@ impl ActionView {
 
         WarpApplication::default().inhibit_transfer(direction);
 
-        do_async(
+        main_async_local(
             clone!(@strong self as obj => @default-return Ok(()), async move {
                 let imp = obj.imp();
 
@@ -594,7 +617,7 @@ impl ActionView {
                             };
                             let metadata = file.metadata().await?;
 
-                            let res = transfer::send_file(wormhole,
+                            transfer::send_file(wormhole,
                                 transit_url,
                                 &mut file,
                                 &filename,
@@ -603,9 +626,18 @@ impl ActionView {
                                 Self::transit_handler,
                                 Self::progress_handler,
                                 Self::cancel_future()
-                            ).await;
+                            ).await?;
 
-                            Self::handle_transfer_result(res, &path);
+                            let obj = WarpApplicationWindow::default().action_view();
+                            if obj.imp().canceled.get() {
+                                return Err(AppError::Canceled);
+                            }
+
+                            main_async(async move {
+                                let obj = WarpApplicationWindow::default().action_view();
+                                obj.transmit_success(&path);
+                                Ok(())
+                            });
 
                             Ok(())
                         });
@@ -637,6 +669,14 @@ impl ActionView {
                     imp.continue_sender.replace(Some(continue_sender));
                     let wait_future = cancelable_future(continue_receiver.recv(), Self::cancel_future());
 
+                    if !WarpApplicationWindow::default().is_active() {
+                        let notification = gio::Notification::new(&gettext("Ready to Receive File"));
+                        notification.set_body(Some(&gettext("A file is ready to be transferred. The transfer needs to be acknowledged.")));
+                        notification.set_priority(NotificationPriority::Urgent);
+                        notification.set_category(Some("transfer"));
+                        WarpApplication::default().send_notification(Some("receive-ready"), &notification);
+                    }
+
                     // Continue or cancel
                     let res = wait_future.await;
                     log::debug!("{:?}", res);
@@ -650,6 +690,8 @@ impl ActionView {
                         return Err(AppError::Canceled);
                     }
 
+                    WarpApplication::default().withdraw_notification("receive-ready");
+
                     let path = path.join(&filename);
 
                     let (file_res, path) = util::open_file_find_new_filename_if_exists(&path).await;
@@ -660,8 +702,19 @@ impl ActionView {
 
                         let mut file = file_res?;
 
-                        let res = request.accept(Self::transit_handler, Self::progress_handler, &mut file, Self::cancel_future()).await;
-                        Self::handle_transfer_result(res, &path);
+                        request.accept(Self::transit_handler, Self::progress_handler, &mut file, Self::cancel_future()).await?;
+
+                        let obj = WarpApplicationWindow::default().action_view();
+                        if obj.imp().canceled.get() {
+                            return Err(AppError::Canceled);
+                        }
+
+                        main_async(async move {
+                            let obj = WarpApplicationWindow::default().action_view();
+                            obj.transmit_success(&path);
+                            Ok(())
+                        });
+
                         Ok(())
                     });
                 }
@@ -754,30 +807,33 @@ impl ActionView {
         dialog
     }
 
-    fn handle_transfer_result(res: Result<(), TransferError>, path: &Path) {
+    fn transmit_success(&self, path: &Path) {
         let path = path.to_path_buf();
+        WarpApplication::default().uninhibit_transfer();
 
-        glib::MainContext::default().invoke(move || {
-            let obj = WarpApplicationWindow::default().action_view();
-            obj.show_progress_indeterminate(false);
-            obj.imp().progress_bar.set_fraction(1.0);
+        self.show_progress_indeterminate(false);
+        self.imp().progress_bar.set_fraction(1.0);
 
-            match res {
-                Ok(_) => obj.set_ui_state(UIState::Done(path)),
-                Err(err) => {
-                    obj.cancel();
-                    AppError::from(err).handle();
-                }
-            }
+        self.set_ui_state(UIState::Done(path));
+    }
 
-            WarpApplication::default().uninhibit_transfer();
-        });
+    fn transmit_error(&self, error: AppError) {
+        WarpApplication::default().uninhibit_transfer();
+        error.handle();
+
+        if !WarpApplicationWindow::default().is_active() {
+            let notification = gio::Notification::new(&gettext("File Transfer Failed"));
+            notification.set_body(Some(&gettext("The file transfer failed")));
+            notification.set_priority(NotificationPriority::High);
+            notification.set_category(Some("transfer.error"));
+            WarpApplication::default().send_notification(Some("transfer-error"), &notification);
+        }
     }
 
     pub fn send_file(&self, path: PathBuf) {
         log::info!("Sending file: {}", path.display());
         if let Err(err) = self.transmit(path, None, TransferDirection::Send) {
-            err.handle();
+            self.transmit_error(err);
         }
     }
 
@@ -797,7 +853,7 @@ impl ActionView {
     pub fn receive_file(&self, code: Code) {
         log::info!("Receiving file with code '{}'", code);
         if let Err(err) = self.receive_file_impl(code) {
-            err.handle();
+            self.transmit_error(err);
         }
     }
 }

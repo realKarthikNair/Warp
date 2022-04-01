@@ -43,6 +43,8 @@ mod imp {
                 return;
             }
 
+            log::debug!("Create window");
+
             let window = WarpApplicationWindow::new(app);
             self.window
                 .set(window.downgrade())

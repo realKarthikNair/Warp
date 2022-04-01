@@ -6,7 +6,7 @@ use gtk::subclass::prelude::*;
 use gtk::{gio, glib, ResponseType};
 
 use crate::ui::application::WarpApplication;
-use crate::util::{do_async, extract_transmit_code, UIError};
+use crate::util::{extract_transmit_code, main_async_local, UIError};
 
 mod imp {
     use super::*;
@@ -244,7 +244,7 @@ mod imp {
             window.save_config();
 
             if window.action_view_showing() {
-                do_async(clone!(@strong window => async move {
+                main_async_local(clone!(@strong window => async move {
                     let canceled = window.action_view().cancel_request().await;
                     if canceled {
                         window.close();
@@ -368,7 +368,7 @@ impl WarpApplicationWindow {
 
         if self.is_active() && !self.action_view_showing() && stack_name == "receive" {
             let obj = self.clone();
-            do_async(async move {
+            main_async_local(async move {
                 let imp = obj.imp();
                 let clipboard = obj.display().clipboard();
                 let text = clipboard.read_text_future().await;

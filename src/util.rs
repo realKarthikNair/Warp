@@ -182,17 +182,34 @@ where
     smol::spawn(async move {
         match func.await {
             Ok(()) => (),
-            Err(app_error) => app_error.handle(),
+            Err(app_error) => {
+                main_async(async move {
+                    app_error.handle();
+                    Ok(())
+                });
+            }
         }
     })
     .detach();
 }
 
-pub fn do_async<F>(func: F)
+pub fn main_async_local<F>(func: F)
 where
     F: Future<Output = Result<(), AppError>> + 'static,
 {
     glib::MainContext::default().spawn_local(async move {
+        match func.await {
+            Ok(()) => (),
+            Err(app_error) => app_error.handle(),
+        }
+    });
+}
+
+pub fn main_async<F>(func: F)
+where
+    F: Future<Output = Result<(), AppError>> + Send + 'static,
+{
+    glib::MainContext::default().spawn(async move {
         match func.await {
             Ok(()) => (),
             Err(app_error) => app_error.handle(),
