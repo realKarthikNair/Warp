@@ -12,31 +12,26 @@ use std::path::{Path, PathBuf};
 pub async fn compress_folder_cancelable(
     path: &Path,
     cancel_future: impl Future<Output = ()>,
-) -> Result<Option<PathBuf>, AppError> {
+) -> Result<PathBuf, AppError> {
     let (tar_path_future, tar_path) = compress_folder(path).await?;
     let tar_path_future = tar_path_future.fuse();
     let cancel_future = cancel_future.fuse();
 
     pin_mut!(tar_path_future, cancel_future);
 
-    let cancel_or_tar = select! {
+    let tar_res: Result<PathBuf, AppError> = select! {
         res = tar_path_future => {
             log::debug!("Created tar archive");
-            Some(res)
+            res.map(|_| tar_path.clone())
         },
         () = cancel_future => {
             log::debug!("Tar creation canceled");
-            None
+            Err(AppError::Canceled)
         }
     };
 
-    if let Some(tar_res) = cancel_or_tar {
-        match tar_res {
-            Ok(()) => Ok(Some(tar_path)),
-            Err(err) => Err(err),
-        }
-    } else {
-        // Canceled. We drop the smol::Task here which aborts it
+    if tar_res.is_err() {
+        // Canceled / Error. We drop the smol::Task here which aborts it
         drop(tar_path_future);
         // Remove file if it already exists
         log::debug!(
@@ -44,8 +39,9 @@ pub async fn compress_folder_cancelable(
             tar_path.display()
         );
         let _ignore = smol::fs::remove_file(tar_path).await;
-        Ok(None)
     }
+
+    tar_res
 }
 
 pub async fn compress_folder(
