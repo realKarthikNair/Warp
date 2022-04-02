@@ -103,6 +103,8 @@ mod imp {
         #[template_child]
         pub code_entry: TemplateChild<gtk::Entry>,
         #[template_child]
+        pub link_copy_button: TemplateChild<gtk::Button>,
+        #[template_child]
         pub code_copy_button: TemplateChild<gtk::Button>,
 
         // ID of the timer that runs the indeterminate progress
@@ -183,9 +185,27 @@ mod imp {
                     let code = obj.imp().code_entry.text();
                     let window = WarpApplicationWindow::default();
                     let clipboard = window.display().clipboard();
+
                     clipboard.set_text(&code);
-                    // Translators: Notification when clicking on "Copy to clipboard" button
-                    let toast = adw::Toast::new(&gettext("Copied code to clipboard"));
+
+                    // Translators: Notification when clicking on "Copy Code to Clipboard" button
+                    let toast = adw::Toast::new(&gettext("Copied Code to Clipboard"));
+                    toast.set_timeout(3);
+                    toast.set_priority(adw::ToastPriority::Normal);
+                    window.toast_overlay().add_toast(&toast);
+                }));
+
+            self.link_copy_button
+                .connect_clicked(clone!(@weak obj => move |_| {
+                    let code = obj.imp().code_entry.text();
+                    let window = WarpApplicationWindow::default();
+                    let clipboard = window.display().clipboard();
+
+                    let link = format!("warp://receive/{}", code);
+                    clipboard.set_text(&link);
+
+                    // Translators: Notification when clicking on "Copy Link to Clipboard" button
+                    let toast = adw::Toast::new(&gettext("Copied Link to Clipboard"));
                     toast.set_timeout(3);
                     toast.set_priority(adw::ToastPriority::Normal);
                     window.toast_overlay().add_toast(&toast);

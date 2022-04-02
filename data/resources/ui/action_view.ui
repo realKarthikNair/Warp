@@ -60,8 +60,15 @@
                       </object>
                     </child>
                     <child>
+                      <object class="GtkButton" id="link_copy_button">
+                        <property name="icon-name">chain-link-symbolic</property>
+                        <property name="tooltip-text" translatable="yes">Copy Transfer Link</property>
+                      </object>
+                    </child>
+                    <child>
                       <object class="GtkButton" id="code_copy_button">
                         <property name="icon-name">copy-symbolic</property>
+                        <property name="tooltip-text" translatable="yes">Copy Transfer Code</property>
                       </object>
                     </child>
                   </object>

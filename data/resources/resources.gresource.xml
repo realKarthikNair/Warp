@@ -2,6 +2,7 @@
 <gresources>
   <gresource prefix="/net/felinira/warp">
     <file>icons/scalable/actions/arrows-questionmark-symbolic.svg</file>
+    <file>icons/scalable/actions/chain-link-symbolic.svg</file>
     <file>icons/scalable/actions/checkmark-large-symbolic.svg</file>
     <file>icons/scalable/actions/code-symbolic.svg</file>
     <file>icons/scalable/actions/copy-symbolic.svg</file>
