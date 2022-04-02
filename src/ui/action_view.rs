@@ -360,16 +360,14 @@ impl ActionView {
                         &glib::format_size(*size)]
                 )));
 
-                if !WarpApplicationWindow::default().is_active() {
-                    let notification = gio::Notification::new(&gettext("Ready to Receive File"));
-                    notification.set_body(Some(&gettext(
-                        "A file is ready to be transferred. The transfer needs to be acknowledged.",
-                    )));
-                    notification.set_priority(NotificationPriority::Urgent);
-                    notification.set_category(Some("transfer"));
-                    WarpApplication::default()
-                        .send_notification(Some("receive-ready"), &notification);
-                }
+                let notification = gio::Notification::new(&gettext("Ready to Receive File"));
+                notification.set_body(Some(&gettext(
+                    "A file is ready to be transferred. The transfer needs to be acknowledged.",
+                )));
+                notification.set_priority(NotificationPriority::Urgent);
+                notification.set_category(Some("transfer"));
+                WarpApplication::default()
+                    .send_notification_if_background(Some("receive-ready"), &notification);
             }
             UIState::Transmitting(filename, info, peer_addr) => {
                 self.show_progress_indeterminate(false);
@@ -464,10 +462,8 @@ impl ActionView {
                     notification.set_body(Some(&description));
                 }
 
-                if !WarpApplicationWindow::default().is_active() {
-                    WarpApplication::default()
-                        .send_notification(Some("transfer-complete"), &notification);
-                }
+                WarpApplication::default()
+                    .send_notification_if_background(Some("transfer-complete"), &notification);
             }
             UIState::Error(error) => {
                 imp.status_page
@@ -482,17 +478,15 @@ impl ActionView {
                 imp.progress_bar.set_text(None);
                 imp.progress_bar.set_visible(false);
 
-                if !WarpApplicationWindow::default().is_active() {
-                    let notification = gio::Notification::new(&gettext("File Transfer Failed"));
-                    notification.set_body(Some(&gettextf(
-                        "The file transfer failed: {}",
-                        &[&error.gettext_error()],
-                    )));
-                    notification.set_priority(NotificationPriority::High);
-                    notification.set_category(Some("transfer.error"));
-                    WarpApplication::default()
-                        .send_notification(Some("transfer-error"), &notification);
-                }
+                let notification = gio::Notification::new(&gettext("File Transfer Failed"));
+                notification.set_body(Some(&gettextf(
+                    "The file transfer failed: {}",
+                    &[&error.gettext_error()],
+                )));
+                notification.set_priority(NotificationPriority::High);
+                notification.set_category(Some("transfer.error"));
+                WarpApplication::default()
+                    .send_notification_if_background(Some("transfer-error"), &notification);
             }
         }
     }
@@ -884,7 +878,7 @@ impl ActionView {
         log::debug!("Transmit error");
 
         if *self.ui_state() != UIState::Initial {
-            if error == AppError::Canceled {
+            if matches!(error, AppError::Canceled) {
                 // Canceled is initiated intentionally by the user
                 return;
             }

@@ -195,6 +195,20 @@ impl WarpApplication {
             self.uninhibit(cookie);
         }
     }
+
+    pub fn send_notification_if_background(
+        &self,
+        id: Option<&str>,
+        notification: &gio::Notification,
+    ) {
+        if let Some(window) = self.active_window() {
+            if window.is_active() {
+                return;
+            }
+        }
+
+        self.send_notification(id, notification);
+    }
 }
 
 impl Default for WarpApplication {
