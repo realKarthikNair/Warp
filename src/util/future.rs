@@ -3,7 +3,7 @@ use futures::{pin_mut, select, FutureExt};
 use gtk::glib;
 use std::future::Future;
 
-pub fn spawn_async<F, E>(func: F, error_handler: E)
+pub fn spawn_async<F, E>(error_handler: E, func: F)
 where
     F: Future<Output = Result<(), AppError>> + 'static + Send,
     E: FnOnce(AppError) + 'static + Send,
@@ -12,7 +12,7 @@ where
         match func.await {
             Ok(()) => (),
             Err(app_error) => {
-                main_async(async move { Err(app_error) }, error_handler);
+                main_async(error_handler, async move { Err(app_error) });
             }
         }
     })
@@ -26,7 +26,7 @@ where
     smol::spawn(func).detach();
 }
 
-pub fn main_async_local<F, E>(func: F, error_handler: E)
+pub fn main_async_local<F, E>(error_handler: E, func: F)
 where
     F: Future<Output = Result<(), AppError>> + 'static,
     E: FnOnce(AppError) + 'static,
@@ -46,7 +46,7 @@ where
     glib::MainContext::default().spawn_local(func);
 }
 
-pub fn main_async<F, E>(func: F, error_handler: E)
+pub fn main_async<F, E>(error_handler: E, func: F)
 where
     F: Future<Output = Result<(), AppError>> + Send + 'static,
     E: FnOnce(AppError) + Send + 'static,

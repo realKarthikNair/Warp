@@ -154,10 +154,10 @@ mod imp {
 
             self.cancel_button
                 .connect_clicked(clone!(@weak obj => move |_| {
-                    main_async_local(async move {
+                    main_async_local(super::ActionView::transmit_error_handler, async move {
                         obj.cancel_request().await;
                         Ok(())
-                    }, super::ActionView::transmit_error_handler);
+                    });
                 }));
 
             self.back_button
@@ -167,13 +167,13 @@ mod imp {
 
             self.accept_transfer_button
                 .connect_clicked(clone!(@weak obj => move |_|
-                    main_async_local(async move {
+                    main_async_local(super::ActionView::transmit_error_handler, async move {
                         if let Some(continue_sender) = obj.imp().continue_sender.get() {
                             continue_sender.send(()).await.unwrap();
                         }
 
                         Ok(())
-                    }, super::ActionView::transmit_error_handler);
+                    }, );
                 ));
 
             self.progress_bar.set_pulse_step(0.05);
@@ -640,35 +640,32 @@ impl ActionView {
         let (file_res, path) = fs::open_file_find_new_filename_if_exists(&path).await;
         self.imp().filename.replace(Some(path.clone()));
 
-        spawn_async(
-            async move {
-                log::info!("Downloading file to {:?}", path.to_str());
+        spawn_async(Self::transmit_error_handler, async move {
+            log::info!("Downloading file to {:?}", path.to_str());
 
-                let mut file = file_res?;
-                request
-                    .accept(
-                        Self::transit_handler,
-                        Self::progress_handler,
-                        &mut file,
-                        Self::cancel_future(),
-                    )
-                    .await?;
+            let mut file = file_res?;
+            request
+                .accept(
+                    Self::transit_handler,
+                    Self::progress_handler,
+                    &mut file,
+                    Self::cancel_future(),
+                )
+                .await?;
 
-                if WarpApplicationWindow::default()
-                    .action_view()
-                    .imp()
-                    .canceled
-                    .get()
-                {
-                    return Err(AppError::Canceled);
-                }
+            if WarpApplicationWindow::default()
+                .action_view()
+                .imp()
+                .canceled
+                .get()
+            {
+                return Err(AppError::Canceled);
+            }
 
-                Self::transmit_success_main(path);
+            Self::transmit_success_main(path);
 
-                Ok(())
-            },
-            Self::transmit_error_handler,
-        );
+            Ok(())
+        });
 
         Ok(())
     }
@@ -699,44 +696,41 @@ impl ActionView {
 
         self.imp().filename.replace(Some((*path).to_path_buf()));
 
-        spawn_async(
-            async move {
-                let filename = if let Some(filename) = path.file_name() {
-                    filename
-                } else {
-                    return Err(std::io::Error::from(std::io::ErrorKind::NotFound).into());
-                };
-                let metadata = file.metadata().await?;
+        spawn_async(Self::transmit_error_handler, async move {
+            let filename = if let Some(filename) = path.file_name() {
+                filename
+            } else {
+                return Err(std::io::Error::from(std::io::ErrorKind::NotFound).into());
+            };
+            let metadata = file.metadata().await?;
 
-                transfer::send_file(
-                    connection,
-                    TRANSIT_URL.clone(),
-                    &mut file,
-                    &filename,
-                    metadata.len(),
-                    TRANSIT_ABILITIES,
-                    Self::transit_handler,
-                    Self::progress_handler,
-                    Self::cancel_future(),
-                )
-                .await?;
+            transfer::send_file(
+                connection,
+                TRANSIT_URL.clone(),
+                &mut file,
+                &filename,
+                metadata.len(),
+                TRANSIT_ABILITIES,
+                Self::transit_handler,
+                Self::progress_handler,
+                Self::cancel_future(),
+            )
+            .await?;
 
-                if WarpApplicationWindow::default()
-                    .action_view()
-                    .imp()
-                    .canceled
-                    .get()
-                {
-                    return Err(AppError::Canceled);
-                }
+            if WarpApplicationWindow::default()
+                .action_view()
+                .imp()
+                .canceled
+                .get()
+            {
+                return Err(AppError::Canceled);
+            }
 
-                // We can drop the path now, we don't need the temp file anymore
-                Self::transmit_success_main(path.clone());
+            // We can drop the path now, we don't need the temp file anymore
+            Self::transmit_success_main(path.clone());
 
-                Ok(())
-            },
-            Self::transmit_error_handler,
-        );
+            Ok(())
+        });
 
         Ok(())
     }
@@ -901,13 +895,10 @@ impl ActionView {
         log::info!("Sending file: {}", path.display());
         let obj = self.clone();
 
-        main_async_local(
-            async move {
-                obj.transmit_send(path).await?;
-                Ok(())
-            },
-            Self::transmit_error_handler,
-        );
+        main_async_local(Self::transmit_error_handler, async move {
+            obj.transmit_send(path).await?;
+            Ok(())
+        });
     }
 
     fn receive_file_impl(&self, code: Code) -> Result<(), AppError> {
@@ -922,13 +913,10 @@ impl ActionView {
 
         let obj = self.clone();
 
-        main_async_local(
-            async move {
-                obj.transmit_receive(path, code).await?;
-                Ok(())
-            },
-            Self::transmit_error_handler,
-        );
+        main_async_local(Self::transmit_error_handler, async move {
+            obj.transmit_receive(path, code).await?;
+            Ok(())
+        });
 
         Ok(())
     }
