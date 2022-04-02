@@ -11,7 +11,7 @@ use gettextrs::*;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use gtk::{gio, glib, ResponseType};
-use once_cell::unsync::Lazy;
+use once_cell::sync::Lazy;
 use scopeguard::ScopeGuard;
 use std::cell::Ref;
 use std::future::Future;
@@ -69,8 +69,8 @@ impl Default for TransferDirection {
     }
 }
 
-const TRANSIT_ABILITIES: transit::Abilities = transit::Abilities::ALL_ABILITIES;
-const TRANSIT_URL: Lazy<url::Url> =
+static TRANSIT_ABILITIES: transit::Abilities = transit::Abilities::ALL_ABILITIES;
+static TRANSIT_URL: Lazy<url::Url> =
     Lazy::new(|| url::Url::parse(globals::WORMHOLE_TRANSIT_RELAY).unwrap());
 
 mod imp {

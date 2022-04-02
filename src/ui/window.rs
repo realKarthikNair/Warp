@@ -390,7 +390,7 @@ impl WarpApplicationWindow {
                             let imp = obj.imp();
                             imp.code_entry.set_text(&code);
                             imp.toast_overlay
-                                .add_toast(&imp.inserted_code_toast.get().unwrap());
+                                .add_toast(imp.inserted_code_toast.get().unwrap());
                             imp.inserted_code_toast_showing.set(true);
                         }
                     }
