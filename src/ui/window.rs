@@ -50,6 +50,7 @@ mod imp {
         pub config: RefCell<PersistentConfig>,
         pub generated_transmit_codes: RefCell<HashSet<String>>,
         pub inserted_code_toast: OnceCell<adw::Toast>,
+        pub inserted_code_toast_showing: Cell<bool>,
     }
 
     #[glib::object_subclass]
@@ -241,6 +242,9 @@ mod imp {
                     "Inserted code from clipboard",
                 ));
                 toast.set_timeout(3);
+                toast.connect_dismissed(clone!(@weak obj => move |_toast| {
+                    obj.imp().inserted_code_toast_showing.set(false);
+                }));
                 toast
             });
         }
@@ -343,7 +347,9 @@ impl WarpApplicationWindow {
         let imp = self.imp();
         imp.action_view_showing.set(true);
         imp.leaflet.navigate(adw::NavigationDirection::Forward);
-        imp.inserted_code_toast.get().unwrap().dismiss();
+        if imp.inserted_code_toast_showing.get() {
+            imp.inserted_code_toast.get().unwrap().dismiss();
+        }
     }
 
     pub fn navigate_back(&self) {
@@ -385,6 +391,7 @@ impl WarpApplicationWindow {
                             imp.code_entry.set_text(&code);
                             imp.toast_overlay
                                 .add_toast(&imp.inserted_code_toast.get().unwrap());
+                            imp.inserted_code_toast_showing.set(true);
                         }
                     }
                 }
@@ -398,6 +405,11 @@ impl WarpApplicationWindow {
 
     pub fn action_view(&self) -> ActionView {
         self.imp().action_view.clone()
+    }
+
+    pub fn open_code_from_uri(&self, code: String) {
+        self.imp().stack.set_visible_child_name("receive");
+        self.action_view().receive_file(wormhole::Code(code));
     }
 }
 

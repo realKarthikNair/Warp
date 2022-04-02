@@ -13,6 +13,8 @@ use crate::ui::window::WarpApplicationWindow;
 
 mod imp {
     use super::*;
+    use crate::util::extract_transmit_code;
+    use gio::File;
     use glib::WeakRef;
     use once_cell::sync::OnceCell;
     use std::cell::Cell;
@@ -65,6 +67,17 @@ mod imp {
             app.setup_gactions();
             app.setup_accels();
         }
+
+        fn open(&self, app: &Self::Type, files: &[File], _hint: &str) {
+            self.activate(app);
+            for file in files {
+                if let Some(code) = file.uri().strip_prefix("warp://receive/") {
+                    if let Some(code) = extract_transmit_code(code) {
+                        app.main_window().open_code_from_uri(code);
+                    }
+                }
+            }
+        }
     }
 
     impl GtkApplicationImpl for WarpApplication {}
@@ -81,7 +94,7 @@ impl WarpApplication {
     pub fn new() -> Self {
         glib::Object::new(&[
             ("application-id", &Some(globals::APP_ID)),
-            ("flags", &gio::ApplicationFlags::empty()),
+            ("flags", &gio::ApplicationFlags::HANDLES_OPEN),
             ("resource-base-path", &Some("/net/felinira/warp/")),
         ])
         .expect("Application initialization failed...")

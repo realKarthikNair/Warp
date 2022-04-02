@@ -2,10 +2,11 @@
 Name=Warp
 Comment=Share files with each other effortlessly
 Type=Application
-Exec=warp
+Exec=warp %u
 Terminal=false
 Categories=GNOME;GTK;
 Keywords=Gnome;GTK;
 # Translators: Do NOT translate or transliterate this text (this is an icon file name)!
 Icon=@icon@
 StartupNotify=true
+MimeType=x-scheme-handler/warp
