@@ -884,6 +884,11 @@ impl ActionView {
         log::debug!("Transmit error");
 
         if *self.ui_state() != UIState::Initial {
+            if error == AppError::Canceled {
+                // Canceled is initiated intentionally by the user
+                return;
+            }
+
             self.set_ui_state(UIState::Error(error));
         } else {
             error.handle();
