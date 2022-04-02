@@ -929,7 +929,10 @@ impl ActionView {
     }
 
     pub fn should_handle_error_inline(&self) -> bool {
-        !matches!(&*self.ui_state(), UIState::Initial | UIState::Done(..))
+        !matches!(
+            &*self.ui_state(),
+            UIState::Initial | UIState::Done(..) | UIState::Error(..)
+        )
     }
 }
 
