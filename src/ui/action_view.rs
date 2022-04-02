@@ -1,5 +1,5 @@
+use super::fs;
 use super::progress::FileTransferProgress;
-use super::util;
 use crate::gettext::gettextf;
 use crate::glib::clone;
 use crate::ui::window::WarpApplicationWindow;
@@ -554,7 +554,7 @@ impl ActionView {
         let file_path = if path.is_dir() {
             self.set_ui_state(UIState::Archive);
             is_temp = true;
-            util::compress_folder_cancelable(path, Self::cancel_future()).await?
+            fs::compress_folder_cancelable(path, Self::cancel_future()).await?
         } else if path.is_file() {
             Some(path.to_path_buf())
         } else {
@@ -738,7 +738,7 @@ impl ActionView {
 
                     let path = path.join(&filename);
 
-                    let (file_res, path) = util::open_file_find_new_filename_if_exists(&path).await;
+                    let (file_res, path) = fs::open_file_find_new_filename_if_exists(&path).await;
                     imp.filename.replace(Some(path.clone()));
 
                     spawn_async(
