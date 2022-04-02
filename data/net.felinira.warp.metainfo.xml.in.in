@@ -24,11 +24,27 @@
   <screenshots>
     <screenshot type="default">
       <image>https://gitlab.gnome.org/felinira/warp/raw/main/data/screenshots/screenshot1.png</image>
-      <caption>Main window</caption>
+      <caption>Main Window</caption>
     </screenshot>
     <screenshot>
       <image>https://gitlab.gnome.org/felinira/warp/raw/main/data/screenshots/screenshot2.png</image>
-      <caption>File transfer</caption>
+      <caption>Transfer Code</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://gitlab.gnome.org/felinira/warp/raw/main/data/screenshots/screenshot3.png</image>
+      <caption>Accept File Transfer</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://gitlab.gnome.org/felinira/warp/raw/main/data/screenshots/screenshot4.png</image>
+      <caption>Sending File</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://gitlab.gnome.org/felinira/warp/raw/main/data/screenshots/screenshot5.png</image>
+      <caption>Receiving File</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://gitlab.gnome.org/felinira/warp/raw/main/data/screenshots/screenshot6.png</image>
+      <caption>File Transfer Complete</caption>
     </screenshot>
   </screenshots>
   <provides>
