@@ -49,6 +49,7 @@ mod imp {
         pub action_view_showing: Cell<bool>,
         pub config: RefCell<PersistentConfig>,
         pub generated_transmit_codes: RefCell<HashSet<String>>,
+        pub inserted_code_toast: OnceCell<adw::Toast>,
     }
 
     #[glib::object_subclass]
@@ -233,6 +234,15 @@ mod imp {
                 }),
             );
             self.send_box.add_controller(&drop_target);
+
+            self.inserted_code_toast.get_or_init(|| {
+                let toast = adw::Toast::new(&gettext(
+                    // Translators: Notification when code was automatically detected in clipboard and inserted into code entry on receive page
+                    "Inserted code from clipboard",
+                ));
+                toast.set_timeout(3);
+                toast
+            });
         }
     }
 
@@ -333,6 +343,7 @@ impl WarpApplicationWindow {
         let imp = self.imp();
         imp.action_view_showing.set(true);
         imp.leaflet.navigate(adw::NavigationDirection::Forward);
+        imp.inserted_code_toast.get().unwrap().dismiss();
     }
 
     pub fn navigate_back(&self) {
@@ -342,6 +353,7 @@ impl WarpApplicationWindow {
         imp.action_view.show_progress_indeterminate(false);
         imp.code_entry.set_text("");
         WarpApplication::default().uninhibit_transfer();
+        self.add_code_from_clipboard();
     }
 
     pub fn add_code(&self, code: wormhole::Code) {
@@ -369,11 +381,10 @@ impl WarpApplicationWindow {
                         if imp.code_entry.text() != code
                             && !imp.generated_transmit_codes.borrow().contains(&code)
                         {
-                            obj.imp().code_entry.set_text(&code);
-                            obj.imp().toast_overlay.add_toast(&adw::Toast::new(&gettext(
-                                // Translators: Notification when code was automatically detected in clipboard and inserted into code entry on receive page
-                                "Inserted code from clipboard",
-                            )));
+                            let imp = obj.imp();
+                            imp.code_entry.set_text(&code);
+                            imp.toast_overlay
+                                .add_toast(&imp.inserted_code_toast.get().unwrap());
                         }
                     }
                 }
