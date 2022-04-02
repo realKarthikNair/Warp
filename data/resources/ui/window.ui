@@ -164,6 +164,9 @@
                     </child>
                   </object>
                 </child>
+                <child>
+                  <object class="ActionView" id="action_view"></object>
+                </child>
               </object>
             </child>
           </object>

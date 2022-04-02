@@ -781,7 +781,7 @@ impl ActionView {
     }
 
     fn cancel_future() -> impl Future<Output = ()> {
-        let obj = WarpApplicationWindow::default().action_view();
+        let obj = ActionView::default();
         let cancel_receiver = obj.imp().cancel_receiver.get().unwrap().clone();
 
         async move {
@@ -803,7 +803,7 @@ impl ActionView {
 
     fn transit_handler(info: TransitInfo, peer_ip: SocketAddr) {
         glib::MainContext::default().invoke(move || {
-            let obj = WarpApplicationWindow::default().action_view();
+            let obj = ActionView::default();
             let imp = obj.imp();
 
             let filename = imp
@@ -819,7 +819,7 @@ impl ActionView {
 
     fn progress_handler(sent: u64, total: u64) {
         glib::MainContext::default().invoke(move || {
-            let obj = WarpApplicationWindow::default().action_view();
+            let obj = ActionView::default();
             let imp = obj.imp();
 
             if imp.progress.borrow().is_none() {
@@ -965,6 +965,6 @@ impl ActionView {
 
 impl Default for ActionView {
     fn default() -> Self {
-        Self::new()
+        WarpApplicationWindow::default().action_view()
     }
 }

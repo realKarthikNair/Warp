@@ -41,7 +41,9 @@ mod imp {
         pub receive_button: TemplateChild<gtk::Button>,
         #[template_child]
         pub code_entry: TemplateChild<gtk::Entry>,
-        pub action_view: ActionView,
+        #[template_child]
+        pub action_view: TemplateChild<ActionView>,
+
         pub file_chooser: OnceCell<gtk::FileChooserNative>,
         pub folder_chooser: OnceCell<gtk::FileChooserNative>,
         pub action_view_showing: Cell<bool>,
@@ -157,8 +159,6 @@ mod imp {
                 .connect_activate(clone!(@weak obj => move |_| {
                     obj.receive_file_button();
                 }));
-
-            self.leaflet.append(&self.action_view);
 
             let file_chooser_closure = clone!(@strong obj => move |chooser: &gtk::FileChooserNative, response: gtk::ResponseType| {
                 match response {
