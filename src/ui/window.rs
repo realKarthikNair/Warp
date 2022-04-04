@@ -343,6 +343,10 @@ impl WarpApplicationWindow {
         self.imp().action_view_showing.get()
     }
 
+    pub fn transfer_in_progress(&self) -> bool {
+        self.action_view_showing() && self.action_view().transfer_in_progress()
+    }
+
     pub fn show_action_view(&self) {
         let imp = self.imp();
         imp.action_view_showing.set(true);

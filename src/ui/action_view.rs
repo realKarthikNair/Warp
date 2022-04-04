@@ -947,6 +947,10 @@ impl ActionView {
         }
     }
 
+    pub fn transfer_in_progress(&self) -> bool {
+        !matches!(&*self.ui_state(), UIState::Done(..) | UIState::Error(..))
+    }
+
     pub fn should_handle_error_inline(&self) -> bool {
         !matches!(
             &*self.ui_state(),

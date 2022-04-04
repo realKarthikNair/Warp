@@ -13,6 +13,7 @@ use crate::ui::window::WarpApplicationWindow;
 
 mod imp {
     use super::*;
+    use crate::util::error::{AppError, UIError};
     use crate::util::extract_transmit_code;
     use gio::File;
     use glib::WeakRef;
@@ -70,11 +71,25 @@ mod imp {
 
         fn open(&self, app: &Self::Type, files: &[File], _hint: &str) {
             self.activate(app);
-            for file in files {
-                if let Some(code) = file.uri().strip_prefix("warp://receive/") {
-                    if let Some(code) = extract_transmit_code(code) {
+
+            if !files.is_empty() {
+                if let Some(code) = files[0]
+                    .uri()
+                    .strip_prefix("warp://receive/")
+                    .and_then(extract_transmit_code)
+                {
+                    if app.main_window().transfer_in_progress() {
+                        let err: AppError = UIError::new(&gettext(
+                            "Unable to use transfer link: another transfer already in progress",
+                        ))
+                        .into();
+                        err.show_error_dialog(&app.main_window());
+                    } else {
                         app.main_window().open_code_from_uri(code);
                     }
+                } else {
+                    let err: AppError = UIError::new(&gettext("Unable to parse transfer link. The link needs to be in the format warp://receive/[code]")).into();
+                    err.show_error_dialog(&app.main_window());
                 }
             }
         }
