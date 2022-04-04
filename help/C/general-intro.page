@@ -12,6 +12,8 @@
  <link xref="details-glossary#transmit-code"/>.</p>
  <p>The sender then needs to tell the receiver the transmit code of the file. (preferably via an encrypted or otherwise
  secure channel). After entering the transmit code at the receiver side the file transmission can begin.</p>
+ <p>It is also possible to copy a <link xref="details-glossary#transmit-link">link</link> that will automatically open Warp with the
+ displayed code.</p>
  <note>
   <p>Every transmit code can only be entered once for security reasons. If the receiver mistypes the transmission
   code the file transfer will be aborted. The sender then needs to select the file again and generate a new code.</p>

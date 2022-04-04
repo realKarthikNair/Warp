@@ -29,6 +29,15 @@ side the file transmission can begin.
 [note]
     Every transmit code can only be entered once for security reasons.
 
+== Transmit Link
+  [#transmit-link]
+It is also possible to encode the $link[>#transmit-code] as a link. Clicking the link will automatically open Warp and
+start the file transmission. A $gui(Copy Transmit Link) button is available in the send screen. A transmit link looks
+like this:
+
+[code]
+  warp://recv/{code}
+
 == Transmit Relay
   [#transmit-relay]
 The transmit relay is also operated by the

@@ -28,6 +28,13 @@
    <p>Every transmit code can only be entered once for security reasons.</p>
   </note>
  </section>
+ <section id="transmit-link">
+  <title>Transmit Link</title>
+  <p>It is also possible to encode the <link xref="#transmit-code"/> as a link. Clicking the link will automatically open Warp and
+  start the file transmission. A <gui>Copy Transmit Link</gui> button is available in the send screen. A transmit link looks
+  like this:</p>
+  <code>warp://recv/{code}</code>
+ </section>
  <section id="transmit-relay">
   <title>Transmit Relay</title>
   <p>The transmit relay is also operated by the
