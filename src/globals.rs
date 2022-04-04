@@ -27,6 +27,8 @@ pub const APP_ID: &str = if DEBUG_BUILD {
     "net.felinira.warp"
 };
 
+pub const TRANSMIT_URI_PREFIX: &str = "warp://recv/";
+
 pub const APP_NAME: &str = "warp";
 pub const GETTEXT_PACKAGE: &str = APP_NAME;
 pub const DEFAULT_LOCALEDIR: &str = "/usr/share/locale";

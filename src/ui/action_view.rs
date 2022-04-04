@@ -79,6 +79,7 @@ mod imp {
     use std::cell::{Cell, RefCell};
 
     use crate::glib::clone;
+    use crate::globals::TRANSMIT_URI_PREFIX;
     use gtk::gio::AppInfo;
     use gtk::CompositeTemplate;
     use once_cell::sync::OnceCell;
@@ -201,7 +202,7 @@ mod imp {
                     let window = WarpApplicationWindow::default();
                     let clipboard = window.display().clipboard();
 
-                    let link = format!("warp://receive/{}", code);
+                    let link = format!("{}{}", TRANSMIT_URI_PREFIX, code);
                     clipboard.set_text(&link);
 
                     // Translators: Notification when clicking on "Copy Link to Clipboard" button
