@@ -77,7 +77,7 @@
                                       <class name="send-box"/>
                                     </style>
                                     <child>
-                                      <object class="AdwStatusPage">
+                                      <object class="AdwStatusPage" id="send_status_page">
                                         <property name="vexpand">True</property>
                                         <property name="title" translatable="yes">Send File</property>
                                         <property name="description" translatable="yes">Select or drop the file or directory to send</property>

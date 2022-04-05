@@ -244,6 +244,14 @@ impl WarpApplication {
 
         self.send_notification(id, notification);
     }
+
+    pub fn is_flatpak() -> bool {
+        if let Ok(var) = std::env::var("FLATPAK_ID") {
+            var == globals::APP_ID
+        } else {
+            false
+        }
+    }
 }
 
 impl Default for WarpApplication {
