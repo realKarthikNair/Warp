@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-03-24 14:05+0100\n"
+"POT-Creation-Date: 2022-04-05 17:57+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -169,10 +169,10 @@ msgstr ""
 #. (itstool) path: section/p
 #: help/C/details-glossary.page:24
 msgid ""
-"To start a transmission you need a transmit code. The transmit code "
-"then needs to be communicated to the receiver (preferably via an encrypted "
-"or otherwise secure channel). After entering the transmit code at the "
-"receiver side the file transmission can begin."
+"To start a transmission you need a transmit code. The transmit code then "
+"needs to be communicated to the receiver (preferably via an encrypted or "
+"otherwise secure channel). After entering the transmit code at the receiver "
+"side the file transmission can begin."
 msgstr ""
 "Um eine Übertragung zu starten brauchst du einen Übertragunscode. Der Code "
 "muss dann an die empfangende Person kommuniziert werden (bevorzugterweise "
@@ -189,11 +189,35 @@ msgstr ""
 
 #. (itstool) path: section/title
 #: help/C/details-glossary.page:32
+msgid "Transmit Link"
+msgstr "Übertragunglink"
+
+#. (itstool) path: section/p
+#: help/C/details-glossary.page:33
+msgid ""
+"It is also possible to encode the <link xref=\"#transmit-code\"/> as a link. "
+"Clicking the link will automatically open Warp and start the file "
+"transmission. A <gui>Copy Transmit Link</gui> button is available in the "
+"send screen. A transmit link looks like this:"
+msgstr ""
+"Es ist außerdem möglich, den <link xref=\"#transmit-code\"/> als Link zu "
+"kopieren. Wenn der Link angeklickt wird, öffnet sich Warp automatisch und "
+"beginnt die Dateiübertragung. Ein <gui>Übertragungslink Kopieren</gui> "
+"Button findet sich im Senden-Bildschirm. Ein Übertragungslink sieht so aus:"
+
+#. (itstool) path: section/code
+#: help/C/details-glossary.page:36
+#, no-wrap
+msgid "warp://recv/{code}"
+msgstr ""
+
+#. (itstool) path: section/title
+#: help/C/details-glossary.page:39
 msgid "Transmit Relay"
 msgstr "Übertragungsrelay"
 
 #. (itstool) path: section/p
-#: help/C/details-glossary.page:33
+#: help/C/details-glossary.page:40
 msgid ""
 "The transmit relay is also operated by the <link href=\"https://github.com/"
 "magic-wormhole/magic-wormhole\">Magic Wormhole project</link>"
@@ -202,7 +226,7 @@ msgstr ""
 "wormhole/magic-wormhole\">Magic Wormhole Projekt</link> betrieben."
 
 #. (itstool) path: section/p
-#: help/C/details-glossary.page:35
+#: help/C/details-glossary.page:42
 msgid ""
 "It is used if no <link xref=\"#direct-transfer\">direct communication</link> "
 "between two peers can be established. This is most commonly a problem when "
@@ -219,7 +243,7 @@ msgstr ""
 "href=\"https://de.wikipedia.org/wiki/Firewall\">Firewalls</link> befinden."
 
 #. (itstool) path: section/p
-#: help/C/details-glossary.page:39
+#: help/C/details-glossary.page:46
 msgid ""
 "The files are transmitted via the transmit relay in an encrypted fashion. "
 "The relay will only know about the file size."
@@ -228,7 +252,7 @@ msgstr ""
 "Relay weiß nur über die Dateigröße bescheid."
 
 #. (itstool) path: section/p
-#: help/C/details-glossary.page:40
+#: help/C/details-glossary.page:47
 msgid ""
 "Transfers via the transmit relay may be slower than direct transfer, "
 "depending on relay congestion."
@@ -237,12 +261,12 @@ msgstr ""
 "Direktübertragungen, je nach Relay-Überlastung."
 
 #. (itstool) path: section/title
-#: help/C/details-glossary.page:43
+#: help/C/details-glossary.page:50
 msgid "Direct Transfer"
 msgstr "Direktübertragung"
 
 #. (itstool) path: section/p
-#: help/C/details-glossary.page:44
+#: help/C/details-glossary.page:51
 msgid ""
 "If both peers can find a direct networking path between each other they will "
 "send the file directly. This is often referred to as a <link href=\"https://"
@@ -270,8 +294,8 @@ msgstr "Einführung"
 #: help/C/general-intro.page:8
 msgid ""
 "<app>Warp</app> is an application that allows you to send files from one "
-"device to another effortlessly. <app>Warp</app> uses a secure transmission "
-"code to identify and encrypt file transmissions."
+"device to another effortlessly. <app>Warp</app> uses a secure transmit code "
+"to identify and encrypt file transmissions."
 msgstr ""
 "<app>Warp</app> ist eine Anwendung, die es ermöglicht, Dateien von einem "
 "Gerät zu einem anderen ohne viel Aufwand zu übertragen. <app>Warp</app> "
@@ -284,8 +308,7 @@ msgid ""
 "To use <app>Warp</app> to transfer a file, the sender needs to open the "
 "application. Select a file using the <gui>Send</gui> tab. <app>Warp</app> "
 "will now try to contact the <link xref=\"details-glossary#rendezvous-"
-"server\"/> and generate a <link xref=\"details-glossary#transmit-code\"/"
-">."
+"server\"/> and generate a <link xref=\"details-glossary#transmit-code\"/>."
 msgstr ""
 "Um <app>Warp</app> zu benutzen um eine Datei zu übertragen, muss die "
 "sendende Person die Anwendung öffnen. Wähle eine Datei über den "
@@ -296,23 +319,28 @@ msgstr ""
 #. (itstool) path: page/p
 #: help/C/general-intro.page:13
 msgid ""
-"The sender then needs to tell the receiver the transmit code of the "
-"file. (preferably via an encrypted or otherwise secure channel). After "
-"entering the transmit code at the receiver side the file transmission "
-"can begin."
+"The sender then needs to tell the receiver the transmit code of the file. "
+"(preferably via an encrypted or otherwise secure channel). After entering "
+"the transmit code at the receiver side the file transmission can begin."
 msgstr ""
 "Der Code muss dann an die empfangende Person kommuniziert werden "
 "(bevorzugterweise über einen verschlüsselten oder anderweitig sicheren "
 "Kanal). Nachdem der Übertragungscode bei der empfangenden Seite eingegeben "
 "wurde, kann die Dateiübertragung beginnen."
 
-#. (itstool) path: note/p
-#: help/C/general-intro.page:16
+#. (itstool) path: page/p
+#: help/C/general-intro.page:15
 msgid ""
-"Every transmit code can only be entered once for security reasons. If "
-"the receiver mistypes the transmit code the file transfer will be "
-"aborted. The sender then needs to select the file again and generate a new "
-"code."
+"It is also possible to copy a <link xref=\"details-glossary#transmit-"
+"link\">link</link> that will automatically open Warp with the displayed code."
+msgstr ""
+
+#. (itstool) path: note/p
+#: help/C/general-intro.page:18
+msgid ""
+"Every transmit code can only be entered once for security reasons. If the "
+"receiver mistypes the transmission code the file transfer will be aborted. "
+"The sender then needs to select the file again and generate a new code."
 msgstr ""
 "Jeder Übertragungscode kann aus Sicherheitsgründen nur einmalig eingegeben "
 "werden. Wenn die empfangende Person sich beim Eingeben des Codes vertippt, "
@@ -320,7 +348,7 @@ msgstr ""
 "Datei erneut auswählen und einen neuen Code generieren."
 
 #. (itstool) path: page/p
-#: help/C/general-intro.page:19
+#: help/C/general-intro.page:21
 msgid ""
 "A progress bar will indicate a running file transfer. Files will either be "
 "transmitted via <link xref=\"details-glossary#direct-transfer\"/> or via the "
