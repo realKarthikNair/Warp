@@ -77,3 +77,7 @@ The log level can be adjusted by setting the `RUST_LOG` variable:
 ```shell
 RUST_LOG=debug cargo run
 ```
+
+### Screenshots
+
+Screenshots are recommended to be 16:9

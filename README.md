@@ -7,7 +7,7 @@ The best transfer method will be determined using [Magic Wormhole](https://magic
 which includes local network transfer if possible. Every file transfer is encrypted.
 
 <div align="center">
-![Main window](data/screenshots/screenshot1.png "Main window")
+![File Transfer](data/screenshots/screenshot5.png "File Transfer")
 </div>
 
 ## Flatpak
