@@ -13,8 +13,10 @@ src/main.rs
 src/ui.rs
 src/ui/action_view.rs
 src/ui/application.rs
+src/ui/fs.rs
 src/ui/progress.rs
-src/ui/fs
 src/ui/welcome_window.rs
 src/ui/window.rs
-src/fs
+src/util.rs
+src/util/error.rs
+src/util/future.rs
