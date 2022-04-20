@@ -1098,20 +1098,21 @@ dependencies = [
 [[package]]
 name = "gvdb"
 version = "0.1.0"
-source = "git+https://github.com/felinira/gvdb-rs.git#2fc026cf2faee9796a59584f3a3e3f54092abc0e"
+source = "git+https://github.com/felinira/gvdb-rs.git#137a5fe98f61b3b665e028a9f265d109c81c063f"
 dependencies = [
  "flate2",
  "json",
  "safe-transmute",
  "serde",
  "serde-xml-rs",
+ "walkdir",
  "xml-rs",
 ]
 
 [[package]]
 name = "gvdb-macros"
 version = "0.1.0"
-source = "git+https://github.com/felinira/gvdb-rs-macros#9310865e3b053b91a2964ddfcf9178914409213f"
+source = "git+https://github.com/felinira/gvdb-rs-macros#a86fd850c11dd4aede9764f447730587afeb92c4"
 dependencies = [
  "gvdb",
  "litrs",

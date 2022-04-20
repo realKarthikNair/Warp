@@ -1,4 +1,4 @@
-use gvdb_macros::include_gresource_from_xml;
+use gvdb_macros::include_gresource_from_dir;
 use once_cell::sync::Lazy;
 use regex::Regex;
 use wormhole::transfer::AppVersion;
@@ -36,4 +36,4 @@ pub const DEFAULT_LOCALEDIR: &str = "/usr/share/locale";
 pub const PKGDATADIR: &str = "/app/share/warp";
 pub const VERSION: &str = "0.0.1";
 pub const GRESOURCE_DATA: &[u8] =
-    include_gresource_from_xml!("data/resources/resources.gresource.xml");
+    include_gresource_from_dir!("/net/felinira/warp", "data/resources");
