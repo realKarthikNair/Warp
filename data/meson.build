@@ -1,5 +1,4 @@
 subdir('icons')
-subdir('resources')
 # Desktop file
 desktop_conf = configuration_data()
 desktop_conf.set('icon', application_id)

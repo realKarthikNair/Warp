@@ -127,8 +127,7 @@ impl WarpApplication {
     }
 
     pub fn setup_gresources(&self) {
-        let res_bytes = include_cargo_output_path_bytes!("resources.gresource");
-        let data = glib::Bytes::from(&res_bytes[..]);
+        let data = glib::Bytes::from(globals::GRESOURCE_DATA);
         let resource = gio::Resource::from_data(&data).expect("Error loading resource bundle");
         gio::resources_register(&resource);
     }

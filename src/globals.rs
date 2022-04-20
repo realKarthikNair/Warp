@@ -1,3 +1,4 @@
+use gvdb_macros::include_gresource_from_xml;
 use once_cell::sync::Lazy;
 use regex::Regex;
 use wormhole::transfer::AppVersion;
@@ -33,5 +34,6 @@ pub const APP_NAME: &str = "warp";
 pub const GETTEXT_PACKAGE: &str = APP_NAME;
 pub const DEFAULT_LOCALEDIR: &str = "/usr/share/locale";
 pub const PKGDATADIR: &str = "/app/share/warp";
-pub const RESOURCES_FILE: &str = concat!("/app/share/warp", "/resources.gresource");
 pub const VERSION: &str = "0.0.1";
+pub const GRESOURCE_DATA: &[u8] =
+    include_gresource_from_xml!("data/resources/resources.gresource.xml");
