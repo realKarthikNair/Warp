@@ -1098,7 +1098,8 @@ dependencies = [
 [[package]]
 name = "gvdb"
 version = "0.1.0"
-source = "git+https://github.com/felinira/gvdb-rs.git#137a5fe98f61b3b665e028a9f265d109c81c063f"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "53c24d6bb00674d1161de9c4a95ccc0370bc7b2962e8c6d576e333b77081c4f0"
 dependencies = [
  "flate2",
  "json",
@@ -1111,8 +1112,9 @@ dependencies = [
 
 [[package]]
 name = "gvdb-macros"
-version = "0.1.0"
-source = "git+https://github.com/felinira/gvdb-rs-macros#a86fd850c11dd4aede9764f447730587afeb92c4"
+version = "0.1.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "465dbca57a32ce6a4372315c761ab971cecb92047d3bce5d831eddbdb8f3dc32"
 dependencies = [
  "gvdb",
  "litrs",
