@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-05 17:49+0200\n"
+"POT-Creation-Date: 2022-05-09 01:02+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -95,7 +95,7 @@ msgstr "Empfange Datei"
 msgid "File Transfer Complete"
 msgstr "Dateiübertragung Abgeschlossen"
 
-#: data/net.felinira.warp.metainfo.xml.in.in:68
+#: data/net.felinira.warp.metainfo.xml.in.in:68 src/ui/application.rs:192
 msgid "Fina Wilke"
 msgstr ""
 
@@ -472,27 +472,19 @@ msgstr ""
 msgid "Unable to parse transfer link. The link needs to be in the format {}"
 msgstr ""
 
-#: src/ui/application.rs:190
+#: src/ui/application.rs:189
 msgid "translator-credits"
 msgstr ""
 
-#: src/ui/application.rs:195
-msgid "App Icon by <a href=\"https://svgrepo.com\">svgrepo.com</a>"
-msgstr "App Icon von <a href=\"https://svgrepo.com\">svgrepo.com</a>"
-
-#: src/ui/application.rs:197
-msgid ""
-"Symbolic icon made from <a href=\"http://www.onlinewebfonts.com/icon\">Icon "
-"Fonts</a> is licensed by CC BY 3.0"
+#: src/ui/application.rs:192
+msgid "Sophie Herold"
 msgstr ""
-"Symbolisches Icon von <a href=\"http://www.onlinewebfonts.com/icon\">Icon "
-"Fonts</a> ist lizensiert nach CC BY 3.0"
 
-#: src/ui/application.rs:215
+#: src/ui/application.rs:208
 msgid "Sending a File"
 msgstr "Sende Datei"
 
-#: src/ui/application.rs:216
+#: src/ui/application.rs:209
 msgid "Receiving a File"
 msgstr "Empfange Datei"
 
