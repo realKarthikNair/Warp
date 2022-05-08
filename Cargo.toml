@@ -18,7 +18,7 @@ gio = {version = "0.15.10", package = "gio", features = ["v2_70"]}
 adw = {version = "0.1.0", package = "libadwaita"}
 async-channel = "1.6.1"
 custom_error = "1.9.2"
-wormhole = { git = "https://github.com/magic-wormhole/magic-wormhole.rs", package = "magic-wormhole", branch = "dev", version = "0.4.0" }
+wormhole = { git = "https://github.com/magic-wormhole/magic-wormhole.rs", package = "magic-wormhole", version = "0.4.0" }
 futures = "0.3.21"
 url = "2.2.2"
 smol = "1.2.5"
