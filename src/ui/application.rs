@@ -189,13 +189,7 @@ impl WarpApplication {
             .translator_credits(&gettext("translator-credits"))
             .modal(true)
             .authors(vec!["Fina Wilke".into()])
-            .artists(vec![
-                "Fina Wilke".into(),
-                gettext("App Icon by <a href=\"https://svgrepo.com\">svgrepo.com</a>"),
-                gettext(
-                    "Symbolic icon made from <a href=\"http://www.onlinewebfonts.com/icon\">Icon Fonts</a> is licensed by CC BY 3.0",
-                ),
-            ])
+            .artists(vec![gettext("Fina Wilke"), gettext("Sophie Herold")])
             .build();
 
         dialog.present();

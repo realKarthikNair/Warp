@@ -64,7 +64,3 @@ It is required to test any big changes with flatpak before contributing any new 
 
 # Contributing
 See the [Contribution guide](./CONTRIBUTING.md) on how to contribute to the project
-
-# Attribution
-<p>App icon by <a href="https://svgrepo.com">svgrepo.com</a></p>
-<p>Symbolic icon made from <a href="http://www.onlinewebfonts.com/icon">Icon Fonts</a> is licensed by CC BY 3.0</p>
