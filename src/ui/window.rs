@@ -23,7 +23,7 @@ mod imp {
     use once_cell::sync::OnceCell;
 
     #[derive(Debug, Default, CompositeTemplate)]
-    #[template(resource = "/net/felinira/warp/ui/window.ui")]
+    #[template(resource = "/app/drey/Warp/ui/window.ui")]
     pub struct WarpApplicationWindow {
         #[template_child]
         pub stack: TemplateChild<adw::ViewStack>,
@@ -308,7 +308,7 @@ impl WarpApplicationWindow {
     }
 
     fn setup_help_overlay(&self) {
-        let builder = gtk::Builder::from_resource("/net/felinira/warp/ui/help_overlay.ui");
+        let builder = gtk::Builder::from_resource("/app/drey/Warp/ui/help_overlay.ui");
         let shortcuts: Option<gtk::ShortcutsWindow> = builder.object("help_overlay");
         self.set_help_overlay(shortcuts.as_ref());
     }

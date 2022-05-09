@@ -117,7 +117,7 @@ impl WarpApplication {
         glib::Object::new(&[
             ("application-id", &Some(globals::APP_ID)),
             ("flags", &gio::ApplicationFlags::HANDLES_OPEN),
-            ("resource-base-path", &Some("/net/felinira/warp/")),
+            ("resource-base-path", &Some("/app/drey/Warp/")),
         ])
         .expect("Application initialization failed...")
     }
@@ -169,7 +169,7 @@ impl WarpApplication {
 
     fn setup_css(&self) {
         let provider = gtk::CssProvider::new();
-        provider.load_from_resource("/net/felinira/warp/style.css");
+        provider.load_from_resource("app/drey/Warp/style.css");
         if let Some(display) = gdk::Display::default() {
             gtk::StyleContext::add_provider_for_display(
                 &display,

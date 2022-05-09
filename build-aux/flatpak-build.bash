@@ -1,6 +1,6 @@
 #!/bin/bash
 
-APP_ID=net.felinira.warp
+APP_ID=app.drey.Warp
 REPO_DIR=flatpak_repo
 
 if [[ $1 == "dev" ]]; then

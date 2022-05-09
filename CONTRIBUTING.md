@@ -19,7 +19,7 @@ To test out your translation you can need to install the application first. Then
 LANGUAGE=LANG environment variable after rebuilding.
 
 ```shell
-LANGUAGE=LANG flatpak run net.felinira.warp.Devel
+LANGUAGE=LANG flatpak run app.drey.Warp.Devel
 ```
 
 ### Updating translations

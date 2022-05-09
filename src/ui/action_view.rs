@@ -85,7 +85,7 @@ mod imp {
     use once_cell::sync::OnceCell;
 
     #[derive(Debug, Default, CompositeTemplate)]
-    #[template(resource = "/net/felinira/warp/ui/action_view.ui")]
+    #[template(resource = "/app/drey/Warp/ui/action_view.ui")]
     pub struct ActionView {
         #[template_child]
         pub cancel_button: TemplateChild<gtk::Button>,

@@ -1,4 +1,4 @@
-app-id: net.felinira.warp
+app-id: app.drey.Warp
 runtime: org.gnome.Platform
 runtime-version: 42
 sdk: org.gnome.Sdk

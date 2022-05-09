@@ -23,9 +23,9 @@ pub const DEBUG_BUILD: bool = true;
 pub const DEBUG_BUILD: bool = false;
 
 pub const APP_ID: &str = if DEBUG_BUILD {
-    "net.felinira.warp.Devel"
+    "app.drey.Warp.Devel"
 } else {
-    "net.felinira.warp"
+    "app.drey.Warp"
 };
 
 pub const TRANSMIT_URI_PREFIX: &str = "warp://recv/";
@@ -35,5 +35,4 @@ pub const GETTEXT_PACKAGE: &str = APP_NAME;
 pub const DEFAULT_LOCALEDIR: &str = "/usr/share/locale";
 pub const PKGDATADIR: &str = "/app/share/warp";
 pub const VERSION: &str = "0.0.1";
-pub const GRESOURCE_DATA: &[u8] =
-    include_gresource_from_dir!("/net/felinira/warp", "data/resources");
+pub const GRESOURCE_DATA: &[u8] = include_gresource_from_dir!("/app/drey/Warp", "data/resources");

@@ -22,7 +22,7 @@ Make sure you have `flatpak` and `flatpak-builder` installed. Then run the comma
 flatpak remote-add --user --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 flatpak install --user org.gnome.Sdk//42 org.freedesktop.Sdk.Extension.rust-stable//21.08 org.gnome.Platform//42
 cd build-aux
-flatpak-builder --user app net.felinira.warp.Devel.yml
+flatpak-builder --user app app.drey.Warp.Devel.yml
 ```
 
 ### Run
@@ -30,7 +30,7 @@ flatpak-builder --user app net.felinira.warp.Devel.yml
 Once the project is built, run the command below.
 
 ```shell
-flatpak-builder --run app net.felinira.warp.Devel.yml warp
+flatpak-builder --run app app.drey.Warp.Devel.yml warp
 ```
 
 ### Install
@@ -39,7 +39,7 @@ After installing the dependencies you can build and install with this command:
 
 ```shell
 cd build-aux
-flatpak-builder --install --user app net.felinira.warp.Devel.yml warp --force-clean 
+flatpak-builder --install --user app app.drey.Warp.Devel.yml warp --force-clean 
 ```
 
 ## Meson

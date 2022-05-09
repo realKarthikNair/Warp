@@ -1,4 +1,4 @@
-app-id: net.felinira.warp.Devel
+app-id: app.drey.Warp.Devel
 runtime: org.gnome.Platform
 runtime-version: master
 sdk: org.gnome.Sdk
@@ -36,6 +36,7 @@ modules:
           - builddir
           - build-aux/app
           - .flatpak
+          - .flatpak-builder
           - build-aux/.flatpak
           - build-aux/.flatpak-builder
           - flatpak_out
