@@ -1,7 +1,15 @@
 project(
-  'warp',
+  run_command(
+    find_program(meson.source_root() / 'build-aux/meson-cargo-manifest.py'),
+    'package', 'name',
+    check: true
+  ).stdout(),
   'rust',
-  version: '0.0.1',
+  version: run_command(
+    find_program(meson.source_root() / 'build-aux/meson-cargo-manifest.py'),
+    'package', 'version',
+    check: true
+  ).stdout(),
   meson_version: '>= 0.59',
   # license: MIT,
 )
