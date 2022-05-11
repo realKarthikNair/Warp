@@ -8,6 +8,7 @@ command: warp
 finish-args:
   - --socket=fallback-x11
   - --socket=wayland
+  - --share=ipc
   - --device=dri
   - --share=network
   - --filesystem=xdg-download
@@ -16,16 +17,11 @@ finish-args:
   - --env=RUST_BACKTRACE=1
 build-options:
   append-path: /usr/lib/sdk/rust-stable/bin
-  build-args:
-    - --share=network
-  test-args:
-    - --socket=x11
-    - --share=network
-  env: {}
 modules:
   - name: warp
     buildsystem: meson
-    run-tests: true
+    config-opts:
+      - -Dprofile=development
     sources:
       - type: dir
         path: ../
@@ -42,5 +38,4 @@ modules:
           - flatpak_out
           - flatpak_repo
           - .fenv
-    config-opts:
-      - -Dprofile=development
+    run-tests: true
