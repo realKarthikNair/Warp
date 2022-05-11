@@ -1,5 +1,5 @@
 #!/bin/sh
-# Source: https://gitlab.gnome.org/GNOME/fractal/blob/master/hooks/pre-commit.hook
+# Source: https://gitlab.gnome.org/GNOME/fractal/blob/main/hooks/pre-commit.hook
 
 install_rustfmt() {
     if ! which rustup &> /dev/null; then

@@ -38,4 +38,9 @@ modules:
           - flatpak_out
           - flatpak_repo
           - .fenv
+      - type: file
+        path: cargo-config.toml
+        dest: .cargo
+        dest-filename: config
+      - cargo-sources.json
     run-tests: true
