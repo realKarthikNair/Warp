@@ -1,4 +1,7 @@
 # Contributing
+Contributions of all kind and with all levels of experience are very welcome. Please note that the GNOME Code of Conduct
+applies to this project.
+
 ## Translation
 Warp uses gettext for translation. To generate the required pot file you need to do the following. Replace LANG with
 language code of your translation.
@@ -77,7 +80,3 @@ The log level can be adjusted by setting the `RUST_LOG` variable:
 ```shell
 RUST_LOG=debug cargo run
 ```
-
-### Screenshots
-
-Screenshots are recommended to be 16:9
