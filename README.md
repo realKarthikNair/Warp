@@ -6,9 +6,15 @@ connection is required.
 The best transfer method will be determined using [Magic Wormhole](https://magic-wormhole.readthedocs.io/en/latest/)
 which includes local network transfer if possible. Every file transfer is encrypted.
 
-<div align="center">
+[<img width='240' alt='Download on Flathub' src='https://flathub.org/assets/badges/flathub-badge-en.png' />](https://flathub.org/apps/details/app.drey.Warp)
+
 ![File Transfer](data/screenshots/screenshot5.png "File Transfer")
-</div>
+
+## Support
+
+To receive support, you can join the matrix channel at https://matrix.to/#/#app.drey.Warp:matrix.org.
+
+Please report issues and bugs in the issue tracker in Gitlab.
 
 ## Flatpak
 
