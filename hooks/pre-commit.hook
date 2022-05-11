@@ -55,3 +55,12 @@ if test $? != 0; then
 else
     echo "--Checking style pass--"
 fi
+
+echo "--Checking manifest and generated sources--"
+./build-aux/generate-manifest.sh 2> /dev/null
+git diff --exit-code build-aux/app.drey.Warp.Devel.yaml
+git diff --exit-code build-aux/cargo-sources.json
+
+echo "--Checking POTFILES--"
+./build-aux/generate-potfile.sh 2> /dev/null
+git diff --exit-code po/POTFILES.in
