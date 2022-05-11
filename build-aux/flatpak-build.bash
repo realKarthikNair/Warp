@@ -16,7 +16,7 @@ fi
 set -xe
 
 flatpak-builder \
-  --user --verbose --force-clean -y --repo=$REPO_DIR flatpak_out build-aux/$APP_ID.yml
+  --user --verbose --force-clean -y --repo=$REPO_DIR flatpak_out build-aux/$APP_ID.yaml
 flatpak build-bundle $REPO_DIR $APP_ID.flatpak $APP_ID
 flatpak --user install -y $APP_ID.flatpak
 flatpak run $APP_ID//master
