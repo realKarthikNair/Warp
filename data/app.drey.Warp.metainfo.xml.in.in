@@ -54,7 +54,11 @@
   <url type="bugtracker">https://gitlab.gnome.org/felinira/warp/issues</url>
   <content_rating type="oars-1.0" />
   <releases>
-    <release version="0.0.1" date="2022-03-21" />
+    <release version="0.1.0" date="2022-05-10">
+      <description>
+        Initial release
+      </description>
+    </release>
   </releases>
   <kudos>
      <!--
