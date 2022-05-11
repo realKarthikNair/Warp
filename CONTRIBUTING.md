@@ -18,7 +18,7 @@ Then you need to add the language code to a new line in the po/LINGUAS file.
 
 Now you can edit LANG.po with any gettext-compatible translation program or with any text editor.
 
-To test out your translation you can need to install the application first. Then you can run the it with the
+To test out your translation you can need to install the application first. Then you can run it with the
 LANGUAGE=LANG environment variable after rebuilding.
 
 ```shell
