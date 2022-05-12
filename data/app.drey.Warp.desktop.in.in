@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=Warp
-Comment=Share files with each other effortlessly
+Comment=Fast and secure file transfer
 Type=Application
 Exec=warp %u
 Terminal=false

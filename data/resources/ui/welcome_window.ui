@@ -36,7 +36,7 @@
                   <object class="AdwStatusPage" id="status_page">
                     <property name="vexpand">True</property>
                     <property name="title" translatable="yes">Welcome to Warp</property>
-                    <property name="description" translatable="yes">Share files with each other effortlessly</property>
+                    <property name="description" translatable="yes">Fast and secure file transfer</property>
                   </object>
                 </child>
               </object>
@@ -89,15 +89,13 @@
                             <property name="wrap">True</property>
                             <property name="halign">center</property>
                             <property name="justify">left</property>
-                            <property name="label" translatable="yes">Warp makes file transfer easy. To get started, both parties need to install Warp on their devices.
+                            <property name="label" translatable="yes">Warp makes file transfer simple. To get started, both parties need to install Warp on their devices.
 
 After selecting a file to transmit, the sender needs to tell the receiver the displayed transmit code. This is preferably done via a secure communication channel.
 
-It is also possible to copy a link to the clipboard which will automatically open Warp with the code when clicked.
-
 When the receiver has entered the code, the file transfer can begin.
 
-For more information about how Warp works, open the Help pages from the menu.</property>
+For more information about Warp, open the Help pages from the menu.</property>
                           </object>
                         </child>
                         <child>

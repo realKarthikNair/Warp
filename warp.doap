@@ -5,7 +5,7 @@
          xmlns="http://usefulinc.com/ns/doap#">
 
   <name xml:lang="en">Warp</name>
-  <shortdesc xml:lang="en">Share files with each other effortlessly</shortdesc>
+  <shortdesc xml:lang="en">Fast and secure file transfer</shortdesc>
   <homepage rdf:resource="https://gitlab.gnome.org/felinira/warp" />
   <bug-database rdf:resource="https://gitlab.gnome.org/felinira/warp/issues"/>
   <programming-language>Rust</programming-language>

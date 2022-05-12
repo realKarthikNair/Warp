@@ -5,19 +5,20 @@
   <metadata_license>CC0</metadata_license>
   <project_license>GPL-3.0</project_license>
   <name>Warp</name>
-  <summary>Share files with each other effortlessly</summary>
+  <summary>Fast and secure file transfer</summary>
   <description>
     <p>
-        Warp is designed to make it as simple and secure as possible to get files from one place to another. An internet connection is required.
+        Warp allows you to securely send files to each other via the internet or local network by exchanging a word-based code.
     </p>
     <p>
-        The best transfer method will be determined using the “Magic Wormhole” application which includes local network transfer if possible.
+        The best transfer method will be determined using the “Magic Wormhole” protocol which includes local network transfer if possible.
     </p>
     <p>Features</p>
     <ul>
       <li>Send files between multiple devices</li>
       <li>Every file transfer is encrypted</li>
       <li>Directly transfer files on the local network if possible</li>
+      <li>An internet connection is required</li>
       <li>Compatibility with the “Magic Wormhole” command line client</li>
     </ul>
   </description>
@@ -28,7 +29,7 @@
     </screenshot>
     <screenshot>
       <image>https://gitlab.gnome.org/felinira/warp/raw/main/data/screenshots/screenshot2.png</image>
-      <caption>Transfer Code</caption>
+      <caption>Transmit Code</caption>
     </screenshot>
     <screenshot>
       <image>https://gitlab.gnome.org/felinira/warp/raw/main/data/screenshots/screenshot3.png</image>
@@ -52,8 +53,14 @@
   </provides>
   <url type="homepage">https://gitlab.gnome.org/felinira/warp</url>
   <url type="bugtracker">https://gitlab.gnome.org/felinira/warp/issues</url>
+  <url type="contact">https://matrix.to/#/#app.drey.Warp:matrix.org</url>
   <content_rating type="oars-1.0" />
   <releases>
+    <release version="0.1.1" date="2022-05-12">
+      <description>
+        Metadata updates and bugfixes
+      </description>
+    </release>
     <release version="0.1.0" date="2022-05-10">
       <description>
         Initial release
