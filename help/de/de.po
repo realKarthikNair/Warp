@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-04-05 17:57+0200\n"
+"POT-Creation-Date: 2022-05-12 17:10+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -363,8 +363,8 @@ msgstr ""
 
 #. (itstool) path: info/desc
 #: help/C/index.page:4
-msgid "Share files with each other effortlessly."
-msgstr "Tausche Dateien untereinander ohne Aufwand."
+msgid "Fast and secure file transfer."
+msgstr "Schnelle und sichere Dateiübertragung."
 
 #. (itstool) path: page/title
 #: help/C/index.page:6

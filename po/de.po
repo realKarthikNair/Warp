@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-11 13:14+0200\n"
+"POT-Creation-Date: 2022-05-12 17:06+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,8 +23,8 @@ msgstr "Warp"
 
 #: data/app.drey.Warp.desktop.in.in:4 data/app.drey.Warp.metainfo.xml.in.in:8
 #: data/resources/ui/welcome_window.ui:39
-msgid "Share files with each other effortlessly"
-msgstr "Tausche Dateien untereinander ohne Aufwand"
+msgid "Fast and secure file transfer"
+msgstr "Schnelle und sichere Dateiübertragung"
 
 #: data/app.drey.Warp.desktop.in.in:9
 msgid "Gnome;GTK;Wormhole;Magic-Wormhole"
@@ -32,19 +32,17 @@ msgstr ""
 
 #: data/app.drey.Warp.metainfo.xml.in.in:10
 msgid ""
-"Warp is designed to make it as simple and secure as possible to get files "
-"from one place to another. An internet connection is required."
+"Warp allows you to securely send files to each other via the internet or "
+"local network by exchanging a word-based code."
 msgstr ""
-"Warp wurde entwickelt, um es so einfach und sicher wie möglich zu machen, "
-"Dateien von einem Ort zu einem anderen zu bekommen. Eine Internetverbindung "
-"ist erforderlich."
+"Warp erlaubt es, Dateien über das Internet oder lokale Netzwerk zu versenden, indem ein wortbasierter Code ausgetauscht wird."
 
 #: data/app.drey.Warp.metainfo.xml.in.in:13
 msgid ""
 "The best transfer method will be determined using the “Magic Wormhole” "
-"application which includes local network transfer if possible."
+"protocol which includes local network transfer if possible."
 msgstr ""
-"Die beste Dateiübertragungsmethode wird mit der „Magic Wormhole“ Anwendung "
+"Die beste Dateiübertragungsmethode wird mit dem „Magic Wormhole“ Protokoll "
 "ermittelt. Wenn möglich wird lokale Netzwerkübertragung benutzt"
 
 #: data/app.drey.Warp.metainfo.xml.in.in:16
@@ -64,40 +62,48 @@ msgid "Directly transfer files on the local network if possible"
 msgstr "Wenn möglich Direktübertragung über das lokale Netzwerk"
 
 #: data/app.drey.Warp.metainfo.xml.in.in:21
+msgid "An internet connection is required"
+msgstr ""
+
+#: data/app.drey.Warp.metainfo.xml.in.in:22
 msgid "Compatibility with the “Magic Wormhole” command line client"
 msgstr "Kompatibilität mit dem „Magic Wormhole“ Kommandozeilenprogramm"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:27
+#: data/app.drey.Warp.metainfo.xml.in.in:28
 msgid "Main Window"
 msgstr "Hauptfenster"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:31
-msgid "Transfer Code"
-msgstr "Übertragungscode"
+#: data/app.drey.Warp.metainfo.xml.in.in:32 data/resources/ui/window.ui:132
+msgid "Transmit Code"
+msgstr "Transmit Code"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:35 data/resources/ui/action_view.ui:90
+#: data/app.drey.Warp.metainfo.xml.in.in:36 data/resources/ui/action_view.ui:90
 msgid "Accept File Transfer"
 msgstr "Dateiübertragung akzeptieren"
 
 #. Translators: Title
-#: data/app.drey.Warp.metainfo.xml.in.in:39 src/ui/action_view.rs:437
+#: data/app.drey.Warp.metainfo.xml.in.in:40 src/ui/action_view.rs:437
 msgid "Sending File"
 msgstr "Sende Datei"
 
 #. Translators: Title
-#: data/app.drey.Warp.metainfo.xml.in.in:43 src/ui/action_view.rs:442
+#: data/app.drey.Warp.metainfo.xml.in.in:44 src/ui/action_view.rs:442
 msgid "Receiving File"
 msgstr "Empfange Datei"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:47 src/ui/action_view.rs:458
+#: data/app.drey.Warp.metainfo.xml.in.in:48 src/ui/action_view.rs:458
 msgid "File Transfer Complete"
 msgstr "Dateiübertragung Abgeschlossen"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:58
+#: data/app.drey.Warp.metainfo.xml.in.in:60
+msgid "Metadata updates and bugfixes"
+msgstr ""
+
+#: data/app.drey.Warp.metainfo.xml.in.in:65
 msgid "Initial release"
 msgstr "Erstes Release"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:72 src/ui/application.rs:192
+#: data/app.drey.Warp.metainfo.xml.in.in:79 src/ui/application.rs:192
 msgid "Fina Wilke"
 msgstr ""
 
@@ -178,25 +184,22 @@ msgstr "Weiter"
 msgid "Welcome to Warp"
 msgstr "Willkommen bei Warp"
 
-#: data/resources/ui/welcome_window.ui:80
+#: data/resources/ui/welcome_window.ui:81
 msgid "Introduction"
 msgstr "Einführung"
 
-#: data/resources/ui/welcome_window.ui:91
+#: data/resources/ui/welcome_window.ui:92
 msgid ""
-"Warp makes file transfer easy. To get started, both parties need to install "
-"Warp on their devices.\n"
+"Warp makes file transfer simple. To get started, both parties need to "
+"install Warp on their devices.\n"
 "\n"
 "After selecting a file to transmit, the sender needs to tell the receiver "
 "the displayed transmit code. This is preferably done via a secure "
 "communication channel.\n"
 "\n"
-"It is also possible to copy a link to the clipboard which will automatically "
-"open Warp with the code when clicked.\n"
-"\n"
 "When the receiver has entered the code, the file transfer can begin.\n"
 "\n"
-"For more information about how Warp works, open the Help pages from the menu."
+"For more information about Warp, open the Help pages from the menu."
 msgstr ""
 "Warp macht Dateiübertragung einfach. Um loszulegen müssen beide Parteien "
 "Warp auf ihren Geräten installieren.\n"
@@ -208,14 +211,11 @@ msgstr ""
 "Wenn die empfangende Person den Code eingegeben hat, kann die "
 "Dateiübertragung beginnen.\n"
 "\n"
-"Es ist auch möglich, einen Übertragunslink in die Zwischenablage zu "
-"kopieren. Dieser Link öffnet Warp automatisch, wenn er angeklickt wird\n"
-"\n"
 "Um mehr darüber zu erfahren, wie Warp funktioniert, öffne die Hilfeseiten "
 "über das Menü."
 
 #. Translators: Big button to finish welcome screen
-#: data/resources/ui/welcome_window.ui:105
+#: data/resources/ui/welcome_window.ui:104
 msgid "Get Started Using Warp"
 msgstr "Los Geht's"
 
@@ -261,10 +261,6 @@ msgstr "Datei empfangen"
 #: data/resources/ui/window.ui:121
 msgid "Enter the transmit code from the sender"
 msgstr "Bitte gebe den Übertragungscode der sendenden Person ein"
-
-#: data/resources/ui/window.ui:132
-msgid "Transmit Code"
-msgstr "Transmit Code"
 
 #. Translators: {0} = file size transferred, {1} = total file size, Example: 17.3MB / 20.5MB
 #: src/gettext/duration.rs:12
