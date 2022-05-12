@@ -38,9 +38,9 @@ modules:
           - flatpak_out
           - flatpak_repo
           - .fenv
-      - type: file
-        path: cargo-config.toml
-        dest: .cargo
-        dest-filename: config
       - cargo-sources.json
+      - type: shell
+        commands:
+          - mkdir .cargo
+          - cp cargo/config .cargo/
     run-tests: true

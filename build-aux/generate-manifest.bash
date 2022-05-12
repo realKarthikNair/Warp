@@ -10,5 +10,4 @@ yq -y '
 .modules |= map(if .name=="warp" then .["run-tests"] = true else . end)' \
 build-aux/app.drey.Warp.yaml > build-aux/app.drey.Warp.Devel.yaml
 
-./build-aux/flatpak-cargo-generator.py \
-    -o build-aux/generated-sources.json Cargo.lock
+./build-aux/flatpak-cargo-generator.py -o build-aux/cargo-sources.json Cargo.lock
