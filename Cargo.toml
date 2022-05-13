@@ -8,6 +8,11 @@ repository = "https://gitlab.gnome.org/felinira/warp/"
 edition = "2021"
 default-run = "warp"
 
+[profile.release]
+lto = true
+codegen-units = 1
+strip = true
+
 [dependencies]
 log = "0.4"
 pretty_env_logger = "0.4"
