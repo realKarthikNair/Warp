@@ -46,6 +46,7 @@ mod imp {
             log::debug!("Create window");
 
             let window = WarpApplicationWindow::new(&self.obj());
+            window.set_icon_name(Some(globals::APP_ID));
             self.window
                 .set(window.downgrade())
                 .expect("Window already set.");

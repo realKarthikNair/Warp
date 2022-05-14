@@ -19,6 +19,14 @@ else
   message('Building in debug mode')
 endif
 
+file_extension = ''
+if get_option('target') != ''
+  cargo_options += [ '--target', get_option('target') ]
+  if get_option('target').contains('windows')
+    file_extension = '.exe'
+  endif
+endif
+
 cargo_env = [
     'CARGO_HOME=' + meson.project_build_root() / 'cargo-home',
     'LOCALEDIR=' + get_option('prefix') / get_option('localedir')
@@ -37,7 +45,7 @@ cargo_build = custom_target(
     cargo_env,
     cargo, 'build',
     cargo_options,
-    '&&',
-    'cp', 'src' / rust_target / meson.project_name(), '@OUTPUT@',
+    # Replace with --out-dir once stable https://github.com/rust-lang/cargo/issues/6790#issuecomment-655728327=
+    '&&', 'cp', 'src/' + (get_option('target') / rust_target / meson.project_name()) + file_extension, '@OUTPUT@'
   ]
 )
