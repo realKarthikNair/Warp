@@ -1,0 +1,616 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-05-12 17:06+0200\n"
+"PO-Revision-Date: 2022-05-14 01:09+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr_FR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#: data/app.drey.Warp.desktop.in.in:3 data/app.drey.Warp.metainfo.xml.in.in:7
+#: src/main.rs:32
+msgid "Warp"
+msgstr "Warp"
+
+#: data/app.drey.Warp.desktop.in.in:4 data/app.drey.Warp.metainfo.xml.in.in:8
+#: data/resources/ui/welcome_window.ui:39
+msgid "Fast and secure file transfer"
+msgstr "Transfert de fichier rapide et sécurisé"
+
+#: data/app.drey.Warp.desktop.in.in:9
+msgid "Gnome;GTK;Wormhole;Magic-Wormhole"
+msgstr "Gnome;GTK;Wormhole;Magic-Wormhole"
+
+#: data/app.drey.Warp.metainfo.xml.in.in:10
+msgid ""
+"Warp allows you to securely send files to each other via the internet or "
+"local network by exchanging a word-based code."
+msgstr ""
+"Warp vous permet de transférer des fichiers de manière sécurisée via "
+"internet ou un réseau local en échangeant un code basé sur des mots."
+
+#: data/app.drey.Warp.metainfo.xml.in.in:13
+msgid ""
+"The best transfer method will be determined using the “Magic Wormhole” "
+"protocol which includes local network transfer if possible."
+msgstr ""
+"La meilleure méthode de transfert sera déterminée en utilisant le protocole "
+"\"Magic Wormhole\" qui inclut le transfert par réseau local si possible."
+
+#: data/app.drey.Warp.metainfo.xml.in.in:16
+msgid "Features"
+msgstr "Fonctionnalités"
+
+#: data/app.drey.Warp.metainfo.xml.in.in:18
+msgid "Send files between multiple devices"
+msgstr "Envoyer des fichiers entre divers appareils"
+
+#: data/app.drey.Warp.metainfo.xml.in.in:19
+msgid "Every file transfer is encrypted"
+msgstr "Chaque transfert de fichier est crypté"
+
+#: data/app.drey.Warp.metainfo.xml.in.in:20
+msgid "Directly transfer files on the local network if possible"
+msgstr "Transférer directement des fichiers sur le réseau local si possible"
+
+#: data/app.drey.Warp.metainfo.xml.in.in:21
+msgid "An internet connection is required"
+msgstr "Une connexion internet est requise"
+
+#: data/app.drey.Warp.metainfo.xml.in.in:22
+msgid "Compatibility with the “Magic Wormhole” command line client"
+msgstr "Compatibilité avec le client de ligne de commande \"Magic Wormhole\""
+
+#: data/app.drey.Warp.metainfo.xml.in.in:28
+msgid "Main Window"
+msgstr "Fenêtre principale"
+
+#: data/app.drey.Warp.metainfo.xml.in.in:32 data/resources/ui/window.ui:132
+msgid "Transmit Code"
+msgstr "Code de transmission"
+
+#: data/app.drey.Warp.metainfo.xml.in.in:36 data/resources/ui/action_view.ui:90
+msgid "Accept File Transfer"
+msgstr "Accepter le transfert de fichier"
+
+#. Translators: Title
+#: data/app.drey.Warp.metainfo.xml.in.in:40 src/ui/action_view.rs:437
+msgid "Sending File"
+msgstr "Envoi du fichier"
+
+#. Translators: Title
+#: data/app.drey.Warp.metainfo.xml.in.in:44 src/ui/action_view.rs:442
+msgid "Receiving File"
+msgstr "Réception du fichier"
+
+#: data/app.drey.Warp.metainfo.xml.in.in:48 src/ui/action_view.rs:458
+msgid "File Transfer Complete"
+msgstr "Transfert du fichier achevé"
+
+#: data/app.drey.Warp.metainfo.xml.in.in:60
+msgid "Metadata updates and bugfixes"
+msgstr "Mise à jour des métadonnées et correction de bogues"
+
+#: data/app.drey.Warp.metainfo.xml.in.in:65
+msgid "Initial release"
+msgstr "Première version"
+
+#: data/app.drey.Warp.metainfo.xml.in.in:79 src/ui/application.rs:192
+msgid "Fina Wilke"
+msgstr "Fina Wilke"
+
+#: data/resources/ui/action_view.ui:16 src/ui/window.rs:196
+#: src/ui/window.rs:210
+msgid "Cancel"
+msgstr "Annuler"
+
+#: data/resources/ui/action_view.ui:25 data/resources/ui/welcome_window.ui:59
+msgid "Back"
+msgstr "Retour"
+
+#: data/resources/ui/action_view.ui:65
+msgid "Copy Transmit Link"
+msgstr "Copier le lien de transfert"
+
+#: data/resources/ui/action_view.ui:71
+msgid "Copy Transmit Code"
+msgstr "Copier le code de transfert"
+
+#: data/resources/ui/action_view.ui:78 data/resources/ui/action_view.ui:80
+#: data/resources/ui/window.ui:91
+msgid "Open File"
+msgstr "Ouvrir un fichier"
+
+#: data/resources/ui/action_view.ui:92
+msgid "Accept"
+msgstr "Accepter"
+
+#: data/resources/ui/help_overlay.ui:11
+msgctxt "shortcut window"
+msgid "General"
+msgstr "Général"
+
+#: data/resources/ui/help_overlay.ui:14
+msgctxt "shortcut window"
+msgid "Show Shortcuts"
+msgstr "Montrer les raccourcis"
+
+#: data/resources/ui/help_overlay.ui:20
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr "Quitter"
+
+#: data/resources/ui/help_overlay.ui:28
+msgctxt "shortcut window"
+msgid "File Transfer"
+msgstr "Transfert de fichier"
+
+#: data/resources/ui/help_overlay.ui:31
+msgctxt "shortcut window"
+msgid "Send File"
+msgstr "Envoyer le fichier"
+
+#: data/resources/ui/help_overlay.ui:37
+msgctxt "shortcut window"
+msgid "Send Folder"
+msgstr "Envoyer le dossier"
+
+#: data/resources/ui/help_overlay.ui:43
+msgctxt "shortcut window"
+msgid "Receive File"
+msgstr "Recevoir le fichier"
+
+#: data/resources/ui/welcome_window.ui:5
+msgid "Welcome"
+msgstr "Bienvenue"
+
+#: data/resources/ui/welcome_window.ui:22
+msgid "Close"
+msgstr "Fermer"
+
+#: data/resources/ui/welcome_window.ui:27
+msgid "Next"
+msgstr "Suivant"
+
+#: data/resources/ui/welcome_window.ui:38
+msgid "Welcome to Warp"
+msgstr "Bienvenue dans Warp"
+
+#: data/resources/ui/welcome_window.ui:81
+msgid "Introduction"
+msgstr "Introduction"
+
+#: data/resources/ui/welcome_window.ui:92
+msgid ""
+"Warp makes file transfer simple. To get started, both parties need to "
+"install Warp on their devices.\n"
+"\n"
+"After selecting a file to transmit, the sender needs to tell the receiver "
+"the displayed transmit code. This is preferably done via a secure "
+"communication channel.\n"
+"\n"
+"When the receiver has entered the code, the file transfer can begin.\n"
+"\n"
+"For more information about Warp, open the Help pages from the menu."
+msgstr ""
+"Warp rend le transfert de fichiers simple. Pour commencer, les deux parties "
+"doivent installer Warp sur leur appareil.\n"
+"\n"
+"Après avoir sélectionné le fichier à transférer, l'expéditeur doit dire au "
+"récepteur le code de transmission affiché ; préférablement via un canal de "
+"communication sécurisé.\n"
+"\n"
+"Quand le récepteur a entré le code, le transfert de fichier peut commencer.\n"
+"\n"
+"Pour plus d'informations sur Warp, ouvrez la page Aide depuis le menu."
+
+#. Translators: Big button to finish welcome screen
+#: data/resources/ui/welcome_window.ui:104
+msgid "Get Started Using Warp"
+msgstr "Commencer à utiliser Warp"
+
+#: data/resources/ui/window.ui:10
+msgid "_Keyboard Shortcuts"
+msgstr "_Raccourcis Clavier"
+
+#: data/resources/ui/window.ui:14
+msgid "_Help"
+msgstr "_Aide"
+
+#: data/resources/ui/window.ui:18
+msgid "_About Warp"
+msgstr "_À propos de Warp"
+
+#: data/resources/ui/window.ui:26
+msgid "_Open Folder"
+msgstr "_Ouvrir un dossier"
+
+#: data/resources/ui/window.ui:71
+msgid "Send"
+msgstr "Envoyer"
+
+#: data/resources/ui/window.ui:82
+msgid "Send File"
+msgstr "Envoyer un fichier"
+
+#: data/resources/ui/window.ui:83
+msgid "Select or drop the file or directory to send"
+msgstr "Sélectionnez ou déposez le fichier ou répertoire à envoyer"
+
+#: data/resources/ui/window.ui:111
+msgid "Receive"
+msgstr "Recevoir"
+
+#: data/resources/ui/window.ui:119 data/resources/ui/window.ui:139
+msgid "Receive File"
+msgstr "Recevoir un fichier"
+
+#. Translators: Text above code input box
+#: data/resources/ui/window.ui:121
+msgid "Enter the transmit code from the sender"
+msgstr "Entrez le code de transmission de l'expéditeur"
+
+#. Translators: {0} = file size transferred, {1} = total file size, Example: 17.3MB / 20.5MB
+#: src/gettext/duration.rs:12
+msgctxt "File size transferred"
+msgid "{0} / {1}"
+msgstr "{0} / {1}"
+
+#. Translators: File transfer time left
+#: src/gettext/duration.rs:19
+msgid "One second left"
+msgid_plural "{} seconds left"
+msgstr[0] "Une seconde restante"
+msgstr[1] "{} secondes restantes"
+
+#. Translators: File transfer time left
+#: src/gettext/duration.rs:27
+msgid "One minute left"
+msgid_plural "{} minutes left"
+msgstr[0] "Une minute restante"
+msgstr[1] "{} minutes restantes"
+
+#. Translators: File transfer time left
+#: src/gettext/duration.rs:35
+msgid "One hour left"
+msgid_plural "{} hours left"
+msgstr[0] "Une heure restante"
+msgstr[1] "{} heures restantes"
+
+#. Translators: File transfer time left
+#: src/gettext/duration.rs:43
+msgid "One day left"
+msgid_plural "{} days left"
+msgstr[0] "Un jour restant"
+msgstr[1] "{} jours restants"
+
+#. Translators: {0} = 11.3MB / 20.7MB, {1} = 3 seconds left
+#: src/gettext/duration.rs:53
+msgctxt "Combine bytes progress {0} and time remaining {1}"
+msgid "{0} — {1}"
+msgstr "{0} — {1}"
+
+#. Translators: Notification when clicking on "Copy Code to Clipboard" button
+#: src/ui/action_view.rs:193
+msgid "Copied Code to Clipboard"
+msgstr "Code copié dans le presse-papiers"
+
+#. Translators: Notification when clicking on "Copy Link to Clipboard" button
+#: src/ui/action_view.rs:209
+msgid "Copied Link to Clipboard"
+msgstr "Lien copié dans le presse-papiers"
+
+#. Translators: Title
+#: src/ui/action_view.rs:299
+msgid "Creating Archive"
+msgstr "Création d'une archive"
+
+#. Translators: Description
+#: src/ui/action_view.rs:302
+msgid "Compressing folder"
+msgstr "Compression du dossier"
+
+#. Translators: Title
+#: src/ui/action_view.rs:313 src/ui/action_view.rs:337
+msgid "Connecting"
+msgstr "Connexion"
+
+#. Translators: Description, Filename
+#: src/ui/action_view.rs:316
+msgid "Requesting file transfer"
+msgstr "Demande de transfert de fichier"
+
+#. Translators: Title
+#: src/ui/action_view.rs:324
+msgid "Your Transfer Code"
+msgstr "Votre code de transfert"
+
+#. Translators: Description, Code in box below
+#: src/ui/action_view.rs:327
+msgid "The receiver needs to enter this code to begin the file transfer"
+msgstr ""
+"Le récepteur doit entrer ce code pour commencer le transfert de fichier"
+
+#. Translators: Description, Transfer Code
+#: src/ui/action_view.rs:340
+msgid "Connecting to peer with code “{}”"
+msgstr "Connexion au pair avec le code \"{}\""
+
+#. Translators: Title
+#: src/ui/action_view.rs:348
+msgid "Connected to Peer"
+msgstr "Connecté au pair"
+
+#. Translators: Description
+#: src/ui/action_view.rs:356
+msgid "Preparing to send file"
+msgstr "Préparation de l'envoi du fichier"
+
+#. Translators: Description
+#: src/ui/action_view.rs:363
+msgid "Preparing to receive file"
+msgstr "Préparation de la réception du fichier"
+
+#: src/ui/action_view.rs:375
+msgid "Accept File Transfer?"
+msgstr "Accepter le transfert de fichier ?"
+
+#. Translators: File receive confirmation message dialog; Filename, File size
+#: src/ui/action_view.rs:378
+msgid ""
+"Your peer wants to send you “{0}” (Size: {1}).\n"
+"Do you want to download this file to your Downloads folder?"
+msgstr ""
+"Votre pair veut vous envoyer “{0}” (Taille : {1}).\n"
+"Voulez-vous télécharger ce fichier dans votre dossier Téléchargements ?"
+
+#: src/ui/action_view.rs:383
+msgid "Ready to Receive File"
+msgstr "Prêt à recevoir le fichier"
+
+#: src/ui/action_view.rs:385
+msgid ""
+"A file is ready to be transferred. The transfer needs to be acknowledged."
+msgstr ""
+"Un fichier est prêt à être transféré. Le transfert a besoin d'être approuvé."
+
+#. Translators: Description, During transfer
+#: src/ui/action_view.rs:414
+msgid "File “{}” via local network direct transfer"
+msgstr "Fichier “{}” par transfert direct via le réseau local"
+
+#. Translators: Description, During transfer
+#: src/ui/action_view.rs:417
+msgid "File “{}” via direct transfer"
+msgstr "Fichier “{}” par transfert direct"
+
+#. Translators: Description, During transfer
+#: src/ui/action_view.rs:423
+msgid "File “{0}” via relay {1}"
+msgstr "Fichier “{0}” via le relais {1}"
+
+#. Translators: Description, During transfer
+#: src/ui/action_view.rs:426
+msgid "File “{}” via relay"
+msgstr "Fichier “{}” via relais"
+
+#. Translators: Description, During transfer
+#: src/ui/action_view.rs:430
+msgid "File “{}” via Unknown connection method"
+msgstr "Fichier “{}” par méthode de connexion inconnue"
+
+#. Translators: Title
+#: src/ui/action_view.rs:450
+msgid "File Transfer Successful"
+msgstr "Transfert du fichier réussi"
+
+#. Translators: Description, Filename
+#: src/ui/action_view.rs:467
+msgid "Successfully sent file “{}”"
+msgstr "Fichier “{}” envoyé avec succès"
+
+#. Translators: Description, Filename
+#: src/ui/action_view.rs:476
+msgid "File has been saved to the Downloads folder as “{}”"
+msgstr ""
+"Le fichier a été sauvegardé dans le dossier Téléchargements sous le nom “{}”"
+
+#. Translators: Title
+#: src/ui/action_view.rs:491 src/ui/action_view.rs:501
+msgid "File Transfer Failed"
+msgstr "Échec du transfert de fichier"
+
+#: src/ui/action_view.rs:503
+msgid "The file transfer failed: {}"
+msgstr "Le transfert de fichier a échoué : {}"
+
+#. Translators: When opening a file
+#: src/ui/action_view.rs:581
+msgid "Specified file / directory does not exist"
+msgstr "Le fichier / répertoire spécifié n'existe pas"
+
+#. Translators: File receive confirmation message dialog title
+#: src/ui/action_view.rs:835
+msgid "Abort file transfer?"
+msgstr "Abroger le transfert ?"
+
+#: src/ui/action_view.rs:836
+msgid "Do you want to abort the current file transfer?"
+msgstr "Voulez-vous abroger le transfert de fichier actuel ?"
+
+#: src/ui/action_view.rs:842
+msgid "Continue"
+msgstr "Continuer"
+
+#: src/ui/action_view.rs:843
+msgid "Abort"
+msgstr "Abroger"
+
+#: src/ui/action_view.rs:929
+msgid "Downloads dir missing. Please set XDG_DOWNLOADS_DIR"
+msgstr ""
+"Répertoire de téléchargement manquant. Merci de définir XDG_DOWNLOADS_DIR"
+
+#: src/ui/application.rs:85
+msgid "Unable to use transfer link: another transfer already in progress"
+msgstr ""
+"Impossible d'utiliser le lien de transfert : un autre transfert est déjà en "
+"cours"
+
+#: src/ui/application.rs:95
+msgid "Unable to parse transfer link. The link needs to be in the format {}"
+msgstr ""
+"Impossible d'analyser le lien de transfert. Le lien doit être au format {}"
+
+#: src/ui/application.rs:189
+msgid "translator-credits"
+msgstr "Irénée Thirion"
+
+#: src/ui/application.rs:192
+msgid "Sophie Herold"
+msgstr "Sophie Herold"
+
+#: src/ui/application.rs:208
+msgid "Sending a File"
+msgstr "Envoi d'un fichier"
+
+#: src/ui/application.rs:209
+msgid "Receiving a File"
+msgstr "Réception d'un fichier"
+
+#: src/ui/fs.rs:95
+msgid "Path {} does not have a directory name"
+msgstr "Le chemin d'accès {} n'a pas de nom de répertoire"
+
+#: src/ui/window.rs:89
+msgid ""
+"Error loading config file '{0}', using default config.\n"
+"Error: {1}"
+msgstr ""
+"Erreur lors du chargement du fichier de configuration '{0}', en utilisant la "
+"configuration par défaut.\n"
+"Erreur : {1}"
+
+#: src/ui/window.rs:192
+msgid "Select file to send"
+msgstr "Sélectionnez le fichier à envoyer"
+
+#: src/ui/window.rs:195
+msgid "Open"
+msgstr "Ouvrir"
+
+#: src/ui/window.rs:206
+msgid "Select folder to send"
+msgstr "Sélectionnez le dossier à envoyer"
+
+#: src/ui/window.rs:209
+msgid "Open Folder"
+msgstr "Ouvrir le dossier"
+
+#: src/ui/window.rs:227
+msgid "Select the file or directory to send"
+msgstr "Sélectionnez le fichier ou répertoire à envoyer"
+
+#. Translators: Notification when code was automatically detected in clipboard and inserted into code entry on receive page
+#: src/ui/window.rs:250
+msgid "Inserted code from clipboard"
+msgstr "Code inséré depuis le presse-papiers"
+
+#: src/ui/window.rs:301
+msgid "Error saving configuration file: {}"
+msgstr "Erreur lors de la sauvegarde du fichier de configuration : {}"
+
+#: src/ui/window.rs:340
+msgid "“{}” appears to be an invalid Transmit Code. Please try again."
+msgstr ""
+"“{}” apparaît être un code de transmission invalide. Merci de réessayer."
+
+#: src/util/error.rs:81
+msgid "An error occurred"
+msgstr "Une erreur s'est produite"
+
+#: src/util/error.rs:111 src/util/error.rs:162
+msgid "Corrupt or unexpected message received"
+msgstr "Corruption ou réception d'un message inattendu"
+
+#: src/util/error.rs:113
+msgid ""
+"Error connecting to the rendezvous server.\n"
+"Please check your network connection."
+msgstr ""
+"Erreur lors de la connexion au serveur de rendez-vous.\n"
+"Merci de vérifier votre connexion réseau."
+
+#: src/util/error.rs:115
+msgid ""
+"Encryption key confirmation failed. If you or your peer didn't mistype the "
+"code, this is a sign of an attacker guessing passwords. Please try again "
+"some time later."
+msgstr ""
+"La confirmation de la clé de chiffrement a échoué. Si vous ou votre collègue "
+"n'avez pas fait d'erreur de frappe, c'est le signe qu'un attaquant essaye de "
+"deviner les mots de passe. Veuillez réessayer un peu plus tard."
+
+#: src/util/error.rs:117
+msgid "Cannot decrypt a received message"
+msgstr "Impossible de décrypter un message reçu"
+
+#: src/util/error.rs:118 src/util/error.rs:170 src/util/error.rs:175
+msgid "An unknown error occurred"
+msgstr "Une erreur inconnue s'est produite"
+
+#: src/util/error.rs:124
+msgid "File / Directory not found"
+msgstr "Fichier / répertoire introuvable"
+
+#: src/util/error.rs:125
+msgid "Permission denied"
+msgstr "Permission refusée"
+
+#: src/util/error.rs:137
+msgid "Transfer was not acknowledged by peer"
+msgstr "Le transfert n'a pas été autorisé par le pair"
+
+#: src/util/error.rs:139
+msgid "The received file is corrupted"
+msgstr "Le fichier reçu est corrompu"
+
+#: src/util/error.rs:145
+msgid ""
+"The file contained a different amount of bytes than advertised! Sent {} "
+"bytes, but should have been {}"
+msgstr ""
+"Le fichier contenait une quantité d'octets différente de celle annoncée ! {} "
+"octets envoyés, mais cela aurait du être {}"
+
+#: src/util/error.rs:150
+msgid "The other side has cancelled the transfer"
+msgstr "L'autre partie a annulé le transfert"
+
+#: src/util/error.rs:152
+msgid "The other side has rejected the transfer"
+msgstr "L'autre partie a rejeté le transfert"
+
+#: src/util/error.rs:154
+msgid "Something went wrong on the other side: {}"
+msgstr "Quelque chose s'est mal passé de l'autre côté : {}"
+
+#: src/util/error.rs:166
+msgid "Error while establishing file transfer connection"
+msgstr ""
+"Erreur lors de l'établissement de la connexion pour le transfert de fichier"
+
+#: src/util/error.rs:168
+msgid "Unknown file transfer error"
+msgstr "Erreur de transfert du fichier inconnue"
