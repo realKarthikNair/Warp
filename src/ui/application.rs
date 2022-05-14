@@ -8,9 +8,9 @@ use gtk::subclass::prelude::*;
 use gtk::{gdk, gio, glib};
 
 use crate::globals;
-use crate::ui::action_view::TransferDirection;
 use crate::ui::preferences::WarpPreferencesWindow;
 use crate::ui::window::WarpApplicationWindow;
+use crate::util::TransferDirection;
 
 mod imp {
     use super::*;

@@ -3,8 +3,9 @@ use once_cell::sync::Lazy;
 use regex::Regex;
 use std::sync::Mutex;
 
-pub static WORMHOLE_RENDEZVOUS_RELAY_DEFAULT: &str = "ws://relay.magic-wormhole.io:4000/v1";
-pub static WORMHOLE_TRANSIT_RELAY_DEFAULT: &str = "tcp://transit.magic-wormhole.io:4001";
+pub const WORMHOLE_DEFAULT_RENDEZVOUS_SERVER: &str = "ws://relay.magic-wormhole.io:4000";
+pub const WORMHOLE_DEFAULT_TRANSIT_RELAY: &str = "tcp://transit.magic-wormhole.io:4001";
+pub const WORMHOLE_DEFAULT_APPID_STR: &str = "lothar.com/wormhole/text-or-file-xfer";
 
 pub static TRANSMIT_CODE_FIND_REGEX: Lazy<Regex> = Lazy::new(|| Regex::new(r"(\d+-\S+)").unwrap());
 pub static TRANSMIT_CODE_MATCH_REGEX: Lazy<Regex> =

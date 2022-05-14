@@ -110,7 +110,7 @@ impl PersistentConfig {
         if let Some(url) = &self.rendezvous_server_url {
             url
         } else {
-            &*globals::WORMHOLE_RENDEZVOUS_RELAY_DEFAULT
+            &*globals::WORMHOLE_DEFAULT_RENDEZVOUS_SERVER
         }
     }
 
@@ -118,7 +118,7 @@ impl PersistentConfig {
         if let Some(url) = &self.transit_server_url {
             url
         } else {
-            &*globals::WORMHOLE_TRANSIT_RELAY_DEFAULT
+            &*globals::WORMHOLE_DEFAULT_TRANSIT_RELAY
         }
     }
 
@@ -133,7 +133,7 @@ impl PersistentConfig {
         rendezvous_url.push_str("/v1");
 
         AppConfig {
-            id: AppID::new("lothar.com/wormhole/text-or-file-xfer"),
+            id: AppID::new(globals::WORMHOLE_DEFAULT_APPID_STR),
             rendezvous_url: rendezvous_url.into(),
             app_version: AppVersion {},
         }

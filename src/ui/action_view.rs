@@ -5,6 +5,7 @@ use crate::glib::clone;
 use crate::ui::window::WarpApplicationWindow;
 use crate::util::error::*;
 use crate::util::future::*;
+use crate::util::TransferDirection;
 use crate::WarpApplication;
 use adw::gio::NotificationPriority;
 use gettextrs::*;
@@ -53,18 +54,6 @@ impl PartialEq for UIState {
 impl Default for UIState {
     fn default() -> Self {
         Self::Initial
-    }
-}
-
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum TransferDirection {
-    Send,
-    Receive,
-}
-
-impl Default for TransferDirection {
-    fn default() -> Self {
-        Self::Send
     }
 }
 
