@@ -12,10 +12,9 @@ pub static WORMHOLE_APPCFG: Lazy<AppConfig<AppVersion>> = Lazy::new(|| AppConfig
     app_version: AppVersion {},
 });
 
-pub static TRANSMIT_CODE_FIND_REGEX: Lazy<Regex> =
-    Lazy::new(|| Regex::new(r"(\d+-[a-z]+(?:-[a-z]+)+)").unwrap());
+pub static TRANSMIT_CODE_FIND_REGEX: Lazy<Regex> = Lazy::new(|| Regex::new(r"(\d+-\S+)").unwrap());
 pub static TRANSMIT_CODE_MATCH_REGEX: Lazy<Regex> =
-    Lazy::new(|| Regex::new(r"^\d+-[a-z]+(?:-[a-z]+)+$").unwrap());
+    Lazy::new(|| Regex::new(r"(^\d+-\S+$)").unwrap());
 
 #[cfg(debug_assertions)]
 pub const DEBUG_BUILD: bool = true;

@@ -1,4 +1,5 @@
 use crate::gettext::gettextf;
+use crate::globals::TRANSMIT_CODE_MATCH_REGEX;
 use crate::ui::action_view::ActionView;
 use gettextrs::*;
 use gtk::prelude::*;
@@ -333,15 +334,19 @@ impl WarpApplicationWindow {
 
     pub fn receive_file_button(&self) {
         let text = self.imp().code_entry.text();
-        let code = if let Some(code) = extract_transmit_code(&text) {
-            code
+        let code = if !TRANSMIT_CODE_MATCH_REGEX.is_match(&text) {
+            if let Some(code) = extract_transmit_code(&text) {
+                code
+            } else {
+                UIError::new(&gettextf(
+                    "“{}” appears to be an invalid Transmit Code. Please try again.",
+                    &[&text],
+                ))
+                .handle();
+                return;
+            }
         } else {
-            UIError::new(&gettextf(
-                "“{}” appears to be an invalid Transmit Code. Please try again.",
-                &[&text],
-            ))
-            .handle();
-            return;
+            text.to_string()
         };
 
         self.action_view().receive_file(wormhole::Code(code));
