@@ -7,9 +7,15 @@ use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use gtk::{gio, glib, ResponseType};
 use std::cell::RefMut;
+use wormhole::transfer::AppVersion;
+use wormhole::AppConfig;
 
 use crate::ui::application::WarpApplication;
-use crate::util::{error::UiError, extract_transmit_code, future::main_async_local_infallible};
+use crate::util::error::AppError;
+use crate::util::{
+    error::UiError, extract_transmit_code, future::main_async_local_infallible, TransferDirection,
+    WormholeURI,
+};
 
 mod imp {
     use super::*;
@@ -24,8 +30,10 @@ mod imp {
     use crate::util::{error::UiError, future::main_async_local_infallible};
     use gtk::{CompositeTemplate, Inhibit};
     use once_cell::sync::OnceCell;
+    use wormhole::transfer::AppVersion;
+    use wormhole::AppConfig;
 
-    #[derive(Debug, Default, CompositeTemplate)]
+    #[derive(Default, CompositeTemplate)]
     #[template(resource = "/app/drey/Warp/ui/window.ui")]
     pub struct WarpApplicationWindow {
         #[template_child]
@@ -58,6 +66,7 @@ mod imp {
         pub generated_transmit_codes: RefCell<HashSet<String>>,
         pub inserted_code_toast: OnceCell<adw::Toast>,
         pub inserted_code_toast_showing: Cell<bool>,
+        pub custom_wormhole_app_cfg: RefCell<Option<AppConfig<AppVersion>>>,
     }
 
     #[glib::object_subclass]
@@ -180,7 +189,7 @@ mod imp {
                         if let Some(file) = chooser.file() {
                             if let Some(path) = file.path() {
                                 log::debug!("Picked file: {}", path.display());
-                                obj.imp().action_view.send_file(path);
+                                obj.imp().action_view.send_file(path, obj.wormhole_app_cfg());
                             } else {
                                 log::error!("File chooser has file but path is None")
                             }
@@ -243,7 +252,7 @@ mod imp {
                     clone!(@weak obj => @default-return false, move |_target, value, _x, _y| {
                         if let Ok(file) = value.get::<gio::File>() {
                             if let Some(path) = file.path() {
-                                obj.action_view().send_file(path);
+                                obj.action_view().send_file(path, obj.wormhole_app_cfg());
                                 return true;
                             }
                         }
@@ -316,6 +325,14 @@ impl WarpApplicationWindow {
         }
     }
 
+    pub(crate) fn wormhole_app_cfg(&self) -> AppConfig<AppVersion> {
+        if let Some(cfg) = &*self.imp().custom_wormhole_app_cfg.borrow() {
+            cfg.clone()
+        } else {
+            self.config().app_cfg()
+        }
+    }
+
     pub fn set_welcome_window_shown(&self, shown: bool) {
         self.imp().config.borrow_mut().welcome_window_shown = shown;
         self.save_config();
@@ -362,7 +379,8 @@ impl WarpApplicationWindow {
             text.to_string()
         };
 
-        self.action_view().receive_file(wormhole::Code(code));
+        self.action_view()
+            .receive_file(wormhole::Code(code), self.wormhole_app_cfg());
     }
 
     pub fn action_view_showing(&self) -> bool {
@@ -437,9 +455,18 @@ impl WarpApplicationWindow {
         self.imp().action_view.clone()
     }
 
-    pub fn open_code_from_uri(&self, code: String) {
-        self.imp().stack.set_visible_child_name("receive");
-        self.action_view().receive_file(wormhole::Code(code));
+    pub fn open_code_from_uri(&self, uri: WormholeURI) {
+        let app_cfg: AppConfig<AppVersion> = uri.to_app_cfg();
+        if uri.direction == TransferDirection::Receive {
+            self.imp().stack.set_visible_child_name("receive");
+            self.action_view()
+                .receive_file(wormhole::Code(uri.code), app_cfg);
+        } else {
+            let err = UiError::new(&gettext(
+                "Sending files with a preconfigured code is not yet supported",
+            ));
+            AppError::from(err).show_error_dialog(self);
+        }
     }
 }
 

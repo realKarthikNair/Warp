@@ -3,6 +3,8 @@ use crate::globals;
 use crate::globals::TRANSMIT_CODE_FIND_REGEX;
 use gettextrs::gettext;
 use std::str::FromStr;
+use wormhole::transfer::AppVersion;
+use wormhole::{AppConfig, AppID};
 
 pub mod error;
 pub mod future;
@@ -76,6 +78,14 @@ impl WormholeURI {
         }
 
         uri.to_string()
+    }
+
+    pub fn to_app_cfg(&self) -> AppConfig<AppVersion> {
+        AppConfig {
+            id: AppID::new(self.app_id.clone()),
+            rendezvous_url: format!("{}/v1", self.rendezvous_server).into(),
+            app_version: AppVersion {},
+        }
     }
 }
 

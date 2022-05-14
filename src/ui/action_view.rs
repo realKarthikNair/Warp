@@ -18,8 +18,9 @@ use std::future::Future;
 use std::net::{IpAddr, SocketAddr};
 use std::path::{Path, PathBuf};
 use std::time::Duration;
+use wormhole::transfer::AppVersion;
 use wormhole::transit::TransitInfo;
-use wormhole::{transfer, transit, Code, Wormhole};
+use wormhole::{transfer, transit, AppConfig, Code, Wormhole};
 
 #[derive(Debug)]
 pub enum UIState {
@@ -65,7 +66,7 @@ mod imp {
     use std::cell::{Cell, RefCell};
 
     use crate::glib::clone;
-    use crate::globals::TRANSMIT_URI_PREFIX;
+    use crate::util::WormholeURI;
     use gtk::gio::AppInfo;
     use gtk::CompositeTemplate;
     use once_cell::sync::OnceCell;
@@ -193,8 +194,8 @@ mod imp {
                     let window = WarpApplicationWindow::default();
                     let clipboard = window.display().clipboard();
 
-                    let link = format!("{}{}", TRANSMIT_URI_PREFIX, code);
-                    clipboard.set_text(&link);
+                    let uri = WormholeURI::new(&code);
+                    clipboard.set_text(&uri.create_uri());
 
                     // Translators: Notification when clicking on "Copy Link to Clipboard" button
                     let toast = adw::Toast::new(&gettext("Copied Link to Clipboard"));
@@ -337,7 +338,7 @@ impl ActionView {
                         "The receiver needs to enter this code to begin the file transfer",
                     )));
                     imp.code_box.set_visible(true);
-                    imp.code_entry.set_text(code);
+                    imp.code_entry.set_text(code.as_ref());
                     imp.progress_bar.set_visible(false);
                 }
                 TransferDirection::Receive => {
@@ -645,12 +646,16 @@ impl ActionView {
         Ok(())
     }
 
-    async fn transmit_receive(&self, download_path: PathBuf, code: Code) -> Result<(), AppError> {
+    async fn transmit_receive(
+        &self,
+        download_path: PathBuf,
+        code: Code,
+        app_cfg: AppConfig<AppVersion>,
+    ) -> Result<(), AppError> {
         self.prepare_transmit(TransferDirection::Receive)?;
         self.set_ui_state(UIState::HasCode(code.clone()));
 
         WarpApplicationWindow::default().add_code(code.clone());
-        let app_cfg = WarpApplicationWindow::default().config().app_cfg();
 
         let (_welcome, connection) = spawn_async(cancelable_future(
             Wormhole::connect_with_code(app_cfg, code),
@@ -736,12 +741,15 @@ impl ActionView {
         Ok(())
     }
 
-    async fn transmit_send(&self, path: PathBuf) -> Result<(), AppError> {
+    async fn transmit_send(
+        &self,
+        path: PathBuf,
+        app_cfg: AppConfig<AppVersion>,
+    ) -> Result<(), AppError> {
         self.prepare_transmit(TransferDirection::Send)?;
         self.set_ui_state(UIState::RequestCode);
 
         let (mut file, path) = self.prepare_and_open_file(&path).await?;
-        let app_cfg = WarpApplicationWindow::default().config().app_cfg();
 
         let res = spawn_async(cancelable_future(
             Wormhole::connect_without_code(app_cfg, 4),
@@ -961,17 +969,21 @@ impl ActionView {
             .transmit_error(error);
     }
 
-    pub fn send_file(&self, path: PathBuf) {
+    pub fn send_file(&self, path: PathBuf, app_cfg: AppConfig<AppVersion>) {
         log::info!("Sending file: {}", path.display());
         let obj = self.clone();
 
         main_async_local(Self::transmit_error_handler, async move {
-            obj.transmit_send(path).await?;
+            obj.transmit_send(path, app_cfg).await?;
             Ok(())
         });
     }
 
-    fn receive_file_impl(&self, code: Code) -> Result<(), AppError> {
+    fn receive_file_impl(
+        &self,
+        code: Code,
+        app_cfg: AppConfig<AppVersion>,
+    ) -> Result<(), AppError> {
         let path = if let Some(downloads) = glib::user_special_dir(glib::UserDirectory::Downloads) {
             downloads
         } else {
@@ -984,17 +996,16 @@ impl ActionView {
         let obj = self.clone();
 
         main_async_local(Self::transmit_error_handler, async move {
-            obj.transmit_receive(path, code).await?;
+            obj.transmit_receive(path, code, app_cfg).await?;
             Ok(())
         });
 
         Ok(())
     }
 
-    pub fn receive_file(&self, code: Code) {
+    pub fn receive_file(&self, code: Code, app_cfg: AppConfig<AppVersion>) {
         log::info!("Receiving file with code '{}'", code);
-
-        if let Err(err) = self.receive_file_impl(code) {
+        if let Err(err) = self.receive_file_impl(code, app_cfg) {
             self.transmit_error(err);
         }
     }

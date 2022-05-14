@@ -22,8 +22,6 @@ pub const APP_ID: &str = if DEBUG_BUILD {
     "app.drey.Warp"
 };
 
-pub const TRANSMIT_URI_PREFIX: &str = "warp://recv/";
-
 pub static PANIC_BACKTRACES: Lazy<Mutex<Vec<String>>> = Lazy::new(Default::default);
 
 pub const APP_NAME: &str = "warp";
