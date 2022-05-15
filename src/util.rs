@@ -1,10 +1,13 @@
 use crate::gettext::gettextf;
+use crate::glib::Cast;
 use crate::globals;
 use crate::globals::TRANSMIT_CODE_FIND_REGEX;
 use gettextrs::gettext;
+use gtk::gdk;
+use qrcode::QrCode;
 use std::str::FromStr;
 use wormhole::transfer::AppVersion;
-use wormhole::{AppConfig, AppID};
+use wormhole::{AppConfig, AppID, Code};
 
 pub mod error;
 pub mod future;
@@ -36,8 +39,9 @@ impl ToString for WormholeURIParseError {
     }
 }
 
+#[derive(Debug)]
 pub struct WormholeURI {
-    pub code: String,
+    pub code: Code,
     pub version: usize,
     pub app_id: String,
     pub rendezvous_server: String,
@@ -47,7 +51,7 @@ pub struct WormholeURI {
 impl WormholeURI {
     pub fn new(code: &str) -> Self {
         Self {
-            code: code.to_string(),
+            code: Code(code.to_string()),
             version: 0,
             app_id: globals::WORMHOLE_DEFAULT_APPID_STR.to_string(),
             rendezvous_server: globals::WORMHOLE_DEFAULT_RENDEZVOUS_SERVER.to_string(),
@@ -80,12 +84,43 @@ impl WormholeURI {
         uri.to_string()
     }
 
+    pub fn from_app_cfg_with_code_direction(
+        app_cfg: &AppConfig<AppVersion>,
+        code: &str,
+        direction: TransferDirection,
+    ) -> Self {
+        let rendezvous_server = app_cfg
+            .rendezvous_url
+            .rsplit_once('/')
+            .unwrap()
+            .0
+            .to_string();
+        Self {
+            code: Code(code.to_string()),
+            version: 0,
+            app_id: app_cfg.id.0.to_string(),
+            rendezvous_server,
+            direction,
+        }
+    }
+
     pub fn to_app_cfg(&self) -> AppConfig<AppVersion> {
         AppConfig {
             id: AppID::new(self.app_id.clone()),
             rendezvous_url: format!("{}/v1", self.rendezvous_server).into(),
             app_version: AppVersion {},
         }
+    }
+
+    pub fn to_paintable_qr(&self) -> gdk::Paintable {
+        let qr = QrCode::new(self.create_uri()).unwrap();
+        let svg = qr
+            .render::<qrcode::render::svg::Color>()
+            .min_dimensions(800, 800)
+            .build();
+        gdk::Texture::from_bytes(&svg.as_bytes().into())
+            .unwrap()
+            .upcast()
     }
 }
 

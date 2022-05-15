@@ -5,7 +5,7 @@ use crate::glib::clone;
 use crate::ui::window::WarpApplicationWindow;
 use crate::util::error::*;
 use crate::util::future::*;
-use crate::util::TransferDirection;
+use crate::util::{TransferDirection, WormholeURI};
 use crate::WarpApplication;
 use adw::gio::NotificationPriority;
 use gettextrs::*;
@@ -27,7 +27,7 @@ pub enum UIState {
     Initial,
     Archive,
     RequestCode,
-    HasCode(Code),
+    HasCode(WormholeURI),
     Connected,
     AskConfirmation(String, u64),
     Transmitting(String, TransitInfo, SocketAddr),
@@ -328,17 +328,19 @@ impl ActionView {
                 }
                 TransferDirection::Receive => {}
             },
-            UIState::HasCode(code) => match direction {
+            UIState::HasCode(uri) => match direction {
                 TransferDirection::Send => {
                     imp.status_page.set_icon_name(Some("code-symbolic"));
                     // Translators: Title, this is a noun
                     imp.status_page.set_title(&gettext("Your Transmit Code"));
+                    //imp.status_page.set_icon_name(Some("code-symbolic"));
+                    //imp.status_page.set_paintable(Some(&uri.to_paintable_qr()));
                     imp.status_page.set_description(Some(&gettext(
                         // Translators: Description, Code in box below
                         "The receiver needs to enter this code to begin the file transfer",
                     )));
                     imp.code_box.set_visible(true);
-                    imp.code_entry.set_text(code.as_ref());
+                    imp.code_entry.set_text(uri.code.as_ref());
                     imp.progress_bar.set_visible(false);
                 }
                 TransferDirection::Receive => {
@@ -349,7 +351,7 @@ impl ActionView {
                     imp.status_page.set_description(Some(&gettextf(
                         // Translators: Description, Transfer Code
                         "Connecting to peer with code “{}”",
-                        &[&code],
+                        &[&uri.code],
                     )));
                     imp.progress_bar.set_visible(true);
                 }
@@ -653,7 +655,9 @@ impl ActionView {
         app_cfg: AppConfig<AppVersion>,
     ) -> Result<(), AppError> {
         self.prepare_transmit(TransferDirection::Receive)?;
-        self.set_ui_state(UIState::HasCode(code.clone()));
+        let uri =
+            WormholeURI::from_app_cfg_with_code_direction(&app_cfg, &code, TransferDirection::Send);
+        self.set_ui_state(UIState::HasCode(uri));
 
         WarpApplicationWindow::default().add_code(code.clone());
 
@@ -752,7 +756,7 @@ impl ActionView {
         let (mut file, path) = self.prepare_and_open_file(&path).await?;
 
         let res = spawn_async(cancelable_future(
-            Wormhole::connect_without_code(app_cfg, 4),
+            Wormhole::connect_without_code(app_cfg.clone(), 4),
             Self::cancel_future(),
         ))
         .await?;
@@ -765,7 +769,13 @@ impl ActionView {
         };
 
         WarpApplicationWindow::default().add_code(welcome.code.clone());
-        self.set_ui_state(UIState::HasCode(welcome.code.clone()));
+        let uri = WormholeURI::from_app_cfg_with_code_direction(
+            &app_cfg,
+            &welcome.code,
+            TransferDirection::Receive,
+        );
+        self.set_ui_state(UIState::HasCode(uri));
+
         let connection =
             spawn_async(cancelable_future(connection, Self::cancel_future())).await??;
         self.set_ui_state(UIState::Connected);

@@ -459,8 +459,7 @@ impl WarpApplicationWindow {
         let app_cfg: AppConfig<AppVersion> = uri.to_app_cfg();
         if uri.direction == TransferDirection::Receive {
             self.imp().stack.set_visible_child_name("receive");
-            self.action_view()
-                .receive_file(wormhole::Code(uri.code), app_cfg);
+            self.action_view().receive_file(uri.code, app_cfg);
         } else {
             let err = UiError::new(&gettext(
                 "Sending files with a preconfigured code is not yet supported",
