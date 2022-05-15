@@ -333,8 +333,9 @@ impl ActionView {
                     imp.status_page.set_icon_name(Some("code-symbolic"));
                     // Translators: Title, this is a noun
                     imp.status_page.set_title(&gettext("Your Transmit Code"));
-                    //imp.status_page.set_icon_name(Some("code-symbolic"));
+                    imp.status_page.set_icon_name(Some("code-symbolic"));
                     //imp.status_page.set_paintable(Some(&uri.to_paintable_qr()));
+                    //imp.status_page.add_css_class("qr");
                     imp.status_page.set_description(Some(&gettext(
                         // Translators: Description, Code in box below
                         "The receiver needs to enter this code to begin the file transfer",
@@ -358,6 +359,7 @@ impl ActionView {
             },
             UIState::Connected => {
                 // Translators: Title
+                imp.status_page.remove_css_class("qr");
                 imp.status_page.set_title(&gettext("Connected to Peer"));
                 imp.code_box.set_visible(false);
                 imp.progress_bar.set_visible(true);
