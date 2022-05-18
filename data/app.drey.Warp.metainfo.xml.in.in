@@ -58,17 +58,17 @@
   <releases>
     <release version="0.1.2" date="2022-05-17">
       <description>
-        Added French translation
+        <p>Added French translation</p>
       </description>
     </release>
     <release version="0.1.1" date="2022-05-12">
       <description>
-        Metadata updates and bugfixes
+        <p>Metadata updates and bugfixes</p>
       </description>
     </release>
     <release version="0.1.0" date="2022-05-10">
       <description>
-        Initial release
+        <p>Initial release</p>
       </description>
     </release>
   </releases>
