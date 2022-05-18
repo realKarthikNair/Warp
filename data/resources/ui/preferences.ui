@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="WarpPreferencesWindow" parent="AdwPreferencesWindow">
+    <property name="modal">True</property>
+    <property name="destroy-with-parent">True</property>
+    <property name="title" translatable="yes">Preferences</property>
+    <property name="search-enabled">false</property>
+    <child>
+      <object class="AdwPreferencesPage">
+        <property name="icon-name">network-server-symbolic</property>
+        <property name="title" translatable="yes">Network</property>
+        <property name="name">network</property>
+        <child>
+          <object class="AdwPreferencesGroup">
+            <property name="title" translatable="yes">Server URLs</property>
+            <property name="description" translatable="yes">Changing the rendezvous server URL has to be done on both sides of the transfer. Only enter a server URL you can trust.
+
+Leaving these entries empty will use the application defaults.</property>
+            <child>
+              <object class="AdwActionRow">
+                <property name="title" translatable="yes">Rendezvous Server URL</property>
+                <child>
+                  <object class="GtkEntry" id="rendezvous_server_url_entry">
+                    <property name="valign">center</property>
+                    <property name="input-purpose">url</property>
+                    <property name="width-chars">30</property>
+                    <style>
+                      <class name="preferences-entry"/>
+                    </style>
+                    <property name="text" bind-source="WarpPreferencesWindow" bind-property="rendezvous-server-url" bind-flags="sync-create|bidirectional"/>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="AdwActionRow">
+                <property name="title" translatable="yes">Transit Server URL</property>
+                <child>
+                  <object class="GtkEntry" id="transit_server_url_entry">
+                    <property name="valign">center</property>
+                    <property name="input-purpose">url</property>
+                    <property name="width-chars">30</property>
+                    <style>
+                      <class name="preferences-entry"/>
+                    </style>
+                    <property name="text" bind-source="WarpPreferencesWindow" bind-property="transit-server-url" bind-flags="sync-create|bidirectional"/>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+</interface>

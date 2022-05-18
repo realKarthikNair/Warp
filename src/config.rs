@@ -4,6 +4,8 @@ use serde::{Deserialize, Serialize};
 use std::fs::File;
 use std::ops::{Deref, DerefMut};
 use std::path::PathBuf;
+use wormhole::transfer::AppVersion;
+use wormhole::{AppConfig, AppID};
 
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
 pub struct WindowConfig {
@@ -24,6 +26,8 @@ impl Default for WindowConfig {
 pub struct Config {
     pub window: WindowConfig,
     pub welcome_window_shown: bool,
+    pub rendezvous_server_url: Option<String>,
+    pub transit_server_url: Option<String>,
 }
 
 #[derive(Clone, Default, Debug)]
@@ -92,5 +96,38 @@ impl PersistentConfig {
         path.push("config.json");
 
         path
+    }
+
+    pub fn rendezvous_server_url_or_default(&self) -> &str {
+        if let Some(url) = &self.rendezvous_server_url {
+            url
+        } else {
+            &*globals::WORMHOLE_RENDEZVOUS_RELAY_DEFAULT
+        }
+    }
+
+    pub fn transit_server_url_or_default(&self) -> &str {
+        if let Some(url) = &self.transit_server_url {
+            url
+        } else {
+            &*globals::WORMHOLE_TRANSIT_RELAY_DEFAULT
+        }
+    }
+
+    pub fn app_cfg(&self) -> AppConfig<AppVersion> {
+        let mut rendezvous_url = self
+            .rendezvous_server_url_or_default()
+            .to_string()
+            .trim_end_matches("/v1")
+            .to_string();
+
+        // Make sure we have /v1 appended exactly once
+        rendezvous_url.push_str("/v1");
+
+        AppConfig {
+            id: AppID::new("lothar.com/wormhole/text-or-file-xfer"),
+            rendezvous_url: rendezvous_url.into(),
+            app_version: AppVersion {},
+        }
     }
 }

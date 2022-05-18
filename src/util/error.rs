@@ -110,7 +110,13 @@ impl AppError {
             WormholeError::ProtocolJson(_) | WormholeError::Protocol(_) => {
                 gettext("Corrupt or unexpected message received")
             }
-            WormholeError::ServerError(_) => gettext("Error connecting to the rendezvous server.\nPlease check your network connection."),
+            WormholeError::ServerError(_) => {
+                if WarpApplicationWindow::default().config().rendezvous_server_url.is_some() {
+                    gettext("Error connecting to the rendezvous server.\nYou have entered a custom rendezvous server URL in preferences. Please verify the URL is correct and the server is working.")
+                } else {
+                    gettext("Error connecting to the rendezvous server.\nPlease try again later / verify you are connected to the internet.")
+                }
+            },
             WormholeError::PakeFailed => gettext(
                 "Encryption key confirmation failed. If you or your peer didn't mistype the code, this is a sign of an attacker guessing passwords. Please try again some time later.",
             ),

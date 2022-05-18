@@ -1,34 +1,9 @@
 use gvdb_macros::include_gresource_from_dir;
 use once_cell::sync::Lazy;
 use regex::Regex;
-use wormhole::transfer::AppVersion;
-use wormhole::{AppConfig, AppID};
 
-pub static WORMHOLE_RENDEZVOUS_RELAY: Lazy<String> = Lazy::new(|| {
-    let url = if let Ok(url) = std::env::var("RENDEZVOUS_RELAY_URL") {
-        url
-    } else {
-        "ws://relay.magic-wormhole.io:4000/v1".to_string()
-    };
-
-    log::info!("Setting rendezvous relay URL to {}", url);
-    url
-});
-pub static WORMHOLE_TRANSIT_RELAY: Lazy<String> = Lazy::new(|| {
-    let url = if let Ok(url) = std::env::var("TRANSIT_RELAY_URL") {
-        url
-    } else {
-        "tcp://transit.magic-wormhole.io:4001".to_string()
-    };
-
-    log::info!("Setting rendezvous relay URL to {}", url);
-    url
-});
-pub static WORMHOLE_APPCFG: Lazy<AppConfig<AppVersion>> = Lazy::new(|| AppConfig {
-    id: AppID::new("lothar.com/wormhole/text-or-file-xfer"),
-    rendezvous_url: (&*(WORMHOLE_RENDEZVOUS_RELAY)).into(),
-    app_version: AppVersion {},
-});
+pub static WORMHOLE_RENDEZVOUS_RELAY_DEFAULT: &str = "ws://relay.magic-wormhole.io:4000/v1";
+pub static WORMHOLE_TRANSIT_RELAY_DEFAULT: &str = "tcp://transit.magic-wormhole.io:4001";
 
 pub static TRANSMIT_CODE_FIND_REGEX: Lazy<Regex> = Lazy::new(|| Regex::new(r"(\d+-\S+)").unwrap());
 pub static TRANSMIT_CODE_MATCH_REGEX: Lazy<Regex> =

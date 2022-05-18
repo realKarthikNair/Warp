@@ -9,6 +9,7 @@ use gtk::{gdk, gio, glib};
 
 use crate::globals;
 use crate::ui::action_view::TransferDirection;
+use crate::ui::preferences::WarpPreferencesWindow;
 use crate::ui::window::WarpApplicationWindow;
 
 mod imp {
@@ -139,6 +140,13 @@ impl WarpApplication {
             gtk::show_uri(Some(&WarpApplicationWindow::default()), "help:warp", gtk::gdk::CURRENT_TIME);
         }));
         self.add_action(&action_help);
+
+        // Preferences
+        let action_preferences = gio::SimpleAction::new("preferences", None);
+        action_preferences.connect_activate(clone!(@weak self as app => move |_, _| {
+            WarpPreferencesWindow::new().show();
+        }));
+        self.add_action(&action_preferences);
 
         // Quit
         let action_quit = gio::SimpleAction::new("quit", None);

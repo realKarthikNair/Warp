@@ -1,3 +1,4 @@
+use crate::config::PersistentConfig;
 use crate::gettext::gettextf;
 use crate::globals::TRANSMIT_CODE_MATCH_REGEX;
 use crate::ui::action_view::ActionView;
@@ -5,6 +6,7 @@ use gettextrs::*;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use gtk::{gio, glib, ResponseType};
+use std::cell::RefMut;
 
 use crate::ui::application::WarpApplication;
 use crate::util::{error::UIError, extract_transmit_code, future::main_async_local_infallible};
@@ -297,7 +299,11 @@ impl WarpApplicationWindow {
         glib::Object::new(&[("application", app)]).expect("Failed to create WarpApplicationWindow")
     }
 
-    fn save_config(&self) {
+    pub fn config(&self) -> RefMut<PersistentConfig> {
+        self.imp().config.borrow_mut()
+    }
+
+    pub fn save_config(&self) {
         if let Err(err) = self.imp().config.borrow_mut().save() {
             UIError::new(&gettextf("Error saving configuration file: {}", &[&err])).handle();
         }

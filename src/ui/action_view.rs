@@ -5,13 +5,12 @@ use crate::glib::clone;
 use crate::ui::window::WarpApplicationWindow;
 use crate::util::error::*;
 use crate::util::future::*;
-use crate::{globals, WarpApplication};
+use crate::WarpApplication;
 use adw::gio::NotificationPriority;
 use gettextrs::*;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use gtk::{gio, glib, ResponseType};
-use once_cell::sync::Lazy;
 use scopeguard::ScopeGuard;
 use std::cell::Ref;
 use std::future::Future;
@@ -70,8 +69,6 @@ impl Default for TransferDirection {
 }
 
 static TRANSIT_ABILITIES: transit::Abilities = transit::Abilities::ALL_ABILITIES;
-static TRANSIT_URL: Lazy<url::Url> =
-    Lazy::new(|| url::Url::parse(&*globals::WORMHOLE_TRANSIT_RELAY).unwrap());
 
 mod imp {
     use super::*;
@@ -133,6 +130,9 @@ mod imp {
 
         // Handle to the progress calculation
         pub progress: RefCell<Option<FileTransferProgress>>,
+
+        // The transit url in use
+        pub transit_url: RefCell<Option<url::Url>>,
     }
 
     #[glib::object_subclass]
@@ -600,22 +600,47 @@ impl ActionView {
         Ok((file, guard))
     }
 
-    fn prepare_transmit(&self, direction: TransferDirection) {
+    fn prepare_transmit(&self, direction: TransferDirection) -> Result<(), AppError> {
         WarpApplication::default().inhibit_transfer(direction);
         self.set_direction(direction);
         self.set_ui_state(UIState::Initial);
 
+        let _rendezvous_url = url::Url::parse(
+            WarpApplicationWindow::default()
+                .config()
+                .rendezvous_server_url_or_default(),
+        )
+        .map_err(|_| {
+            UIError::new(&gettext(
+                "Error parsing rendezvous server URL. An invalid URL was entered in the settings.",
+            ))
+        })?;
+
+        let transit_url = url::Url::parse(
+            WarpApplicationWindow::default()
+                .config()
+                .transit_server_url_or_default(),
+        )
+        .map_err(|_| {
+            UIError::new(&gettext(
+                "Error parsing transit URL. An invalid URL was entered in the settings.",
+            ))
+        })?;
+        self.imp().transit_url.replace(Some(transit_url));
+
         WarpApplicationWindow::default().show_action_view();
+        Ok(())
     }
 
     async fn transmit_receive(&self, download_path: PathBuf, code: Code) -> Result<(), AppError> {
-        self.prepare_transmit(TransferDirection::Receive);
+        self.prepare_transmit(TransferDirection::Receive)?;
         self.set_ui_state(UIState::HasCode(code.clone()));
 
         WarpApplicationWindow::default().add_code(code.clone());
+        let app_cfg = WarpApplicationWindow::default().config().app_cfg();
 
         let (_welcome, connection) = cancelable_future(
-            Wormhole::connect_with_code(globals::WORMHOLE_APPCFG.clone(), code),
+            Wormhole::connect_with_code(app_cfg, code),
             Self::cancel_future(),
         )
         .await??;
@@ -623,7 +648,7 @@ impl ActionView {
 
         let request = transfer::request_file(
             connection,
-            TRANSIT_URL.clone(),
+            self.imp().transit_url.borrow().clone().unwrap(),
             TRANSIT_ABILITIES,
             Self::cancel_future(),
         )
@@ -691,13 +716,14 @@ impl ActionView {
     }
 
     async fn transmit_send(&self, path: PathBuf) -> Result<(), AppError> {
-        self.prepare_transmit(TransferDirection::Send);
+        self.prepare_transmit(TransferDirection::Send)?;
         self.set_ui_state(UIState::RequestCode);
 
         let (mut file, path) = self.prepare_and_open_file(&path).await?;
+        let app_cfg = WarpApplicationWindow::default().config().app_cfg();
 
         let res = cancelable_future(
-            Wormhole::connect_without_code(globals::WORMHOLE_APPCFG.clone(), 4),
+            Wormhole::connect_without_code(app_cfg, 4),
             Self::cancel_future(),
         )
         .await?;
@@ -715,6 +741,7 @@ impl ActionView {
         self.set_ui_state(UIState::Connected);
 
         self.imp().filename.replace(Some((*path).to_path_buf()));
+        let transit_url = self.imp().transit_url.borrow().clone().unwrap();
 
         spawn_async(Self::transmit_error_handler, async move {
             let filename = if let Some(filename) = path.file_name() {
@@ -726,7 +753,7 @@ impl ActionView {
 
             transfer::send_file(
                 connection,
-                TRANSIT_URL.clone(),
+                transit_url,
                 &mut file,
                 &filename,
                 metadata.len(),

@@ -4,4 +4,5 @@ pub mod welcome_window;
 pub mod window;
 
 mod fs;
+mod preferences;
 mod progress;
