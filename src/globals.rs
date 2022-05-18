@@ -6,7 +6,7 @@ use wormhole::{AppConfig, AppID};
 
 pub static WORMHOLE_RENDEZVOUS_RELAY: Lazy<String> = Lazy::new(|| {
     let url = if let Ok(url) = std::env::var("RENDEZVOUS_RELAY_URL") {
-        url.to_string()
+        url
     } else {
         "ws://relay.magic-wormhole.io:4000/v1".to_string()
     };
@@ -16,7 +16,7 @@ pub static WORMHOLE_RENDEZVOUS_RELAY: Lazy<String> = Lazy::new(|| {
 });
 pub static WORMHOLE_TRANSIT_RELAY: Lazy<String> = Lazy::new(|| {
     let url = if let Ok(url) = std::env::var("TRANSIT_RELAY_URL") {
-        url.to_string()
+        url
     } else {
         "tcp://transit.magic-wormhole.io:4001".to_string()
     };
