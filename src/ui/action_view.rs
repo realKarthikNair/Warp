@@ -71,7 +71,7 @@ impl Default for TransferDirection {
 
 static TRANSIT_ABILITIES: transit::Abilities = transit::Abilities::ALL_ABILITIES;
 static TRANSIT_URL: Lazy<url::Url> =
-    Lazy::new(|| url::Url::parse(globals::WORMHOLE_TRANSIT_RELAY).unwrap());
+    Lazy::new(|| url::Url::parse(&*globals::WORMHOLE_TRANSIT_RELAY).unwrap());
 
 mod imp {
     use super::*;

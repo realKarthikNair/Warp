@@ -5,13 +5,19 @@ use wormhole::transfer::AppVersion;
 use wormhole::{AppConfig, AppID};
 
 pub static WORMHOLE_RENDEZVOUS_RELAY: Lazy<String> = Lazy::new(|| {
-    if let Some(url) = option_env!("RELAY_URL") {
+    if let Some(url) = option_env!("RENDEZVOUS_RELAY_URL") {
         url.to_string()
     } else {
         "ws://relay.magic-wormhole.io:4000/v1".to_string()
     }
 });
-pub const WORMHOLE_TRANSIT_RELAY: &str = "tcp://transit.magic-wormhole.io:4001";
+pub const WORMHOLE_TRANSIT_RELAY: Lazy<String> = Lazy::new(|| {
+    if let Some(url) = option_env!("TRANSIT_RELAY_URL") {
+        url.to_string()
+    } else {
+        "tcp://transit.magic-wormhole.io:4001".to_string()
+    }
+});
 pub static WORMHOLE_APPCFG: Lazy<AppConfig<AppVersion>> = Lazy::new(|| AppConfig {
     id: AppID::new("lothar.com/wormhole/text-or-file-xfer"),
     rendezvous_url: (&*(WORMHOLE_RENDEZVOUS_RELAY)).into(),
