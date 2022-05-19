@@ -78,23 +78,31 @@ impl PersistentConfig {
             log::info!("Not saving config, no values have changed");
             Ok(())
         } else {
-            let path = Self::path();
-            std::fs::create_dir_all(&path.parent().unwrap())?;
-            log::info!("Saving config file to: '{}'", path.display());
+            let dir = Self::dir();
+            std::fs::create_dir_all(&dir)?;
 
-            let file = File::create(&path)?;
-            serde_json::ser::to_writer_pretty(&file, &self.config)?;
+            let temp = tempfile::NamedTempFile::new_in(dir)?;
+            serde_json::ser::to_writer_pretty(&temp, &self.config)?;
+
+            let path = Self::path();
+            log::info!("Saving config file to: '{}'", path.display());
+            temp.persist(&path)?;
+
             self.persisted_config = self.config.clone();
 
             Ok(())
         }
     }
 
-    pub fn path() -> PathBuf {
+    pub fn dir() -> PathBuf {
         let mut path = glib::user_config_dir();
         path.push(globals::APP_NAME);
-        path.push("config.json");
+        path
+    }
 
+    pub fn path() -> PathBuf {
+        let mut path = Self::dir();
+        path.push("config.json");
         path
     }
 

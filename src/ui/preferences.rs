@@ -118,21 +118,23 @@ mod imp {
     impl WidgetImpl for WarpPreferencesWindow {}
     impl WindowImpl for WarpPreferencesWindow {
         fn close_request(&self, _window: &Self::Type) -> Inhibit {
+            let window = WarpApplicationWindow::default();
+
             let rendezvous_url = &*self.rendezvous_server_url.borrow();
-            WarpApplicationWindow::default()
-                .config()
-                .rendezvous_server_url = if rendezvous_url != "" {
+            window.config().rendezvous_server_url = if rendezvous_url != "" {
                 Some(rendezvous_url.clone())
             } else {
                 None
             };
 
             let transit_url = &*self.transit_server_url.borrow();
-            WarpApplicationWindow::default().config().transit_server_url = if transit_url != "" {
+            window.config().transit_server_url = if transit_url != "" {
                 Some(transit_url.clone())
             } else {
                 None
             };
+
+            window.save_config();
 
             Inhibit(false)
         }
