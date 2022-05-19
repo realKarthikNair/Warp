@@ -5,6 +5,8 @@ Warp allows you to securely send files to each other via the internet or local n
 The best transfer method will be determined using the “Magic Wormhole” protocol which includes local network transfer if possible. File transfers are encrypted.
 
 [<img width='240' alt='Download on Flathub' src='https://flathub.org/assets/badges/flathub-badge-en.png' />](https://flathub.org/apps/details/app.drey.Warp)
+[<img width='240' alt='View on apps.gnome.org' src='https://gitlab.gnome.org/felinira/warp/-/blob/main/data/icons/app.drey.Warp.Badge.svg' />](https://apps.gnome.org/app/app.drey.Warp/)
+[<img width='240' alt='Part of GNOME Circle' src='https://gitlab.gnome.org/Teams/Circle/-/raw/91de93edbb3e75eb0882d56bd466e58b525135d5/assets/button/circle-button-fullcolor.svg' />](https://circle.gnome.org/)
 
 ![File Transfer](data/screenshots/screenshot5.png "File Transfer")
 
