@@ -480,12 +480,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "custom_error"
-version = "1.9.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4f8a51dd197fa6ba5b4dc98a990a43cc13693c23eb0089ebb0fcc1f04152bca6"
-
-[[package]]
 name = "darling"
 version = "0.10.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2362,7 +2356,6 @@ version = "0.1.2"
 dependencies = [
  "async-channel",
  "chrono",
- "custom_error",
  "futures",
  "gettext-rs",
  "gio",
@@ -2379,6 +2372,7 @@ dependencies = [
  "serde_json",
  "simple_moving_average",
  "smol",
+ "thiserror",
  "url",
  "walkdir",
  "xml-rs",

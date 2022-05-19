@@ -1,19 +1,23 @@
 use crate::gettext::gettextf;
 use crate::ui::window::WarpApplicationWindow;
-use custom_error::custom_error;
 use gettextrs::gettext;
 use gtk::prelude::*;
 use gtk::{gio, MessageType};
+use std::fmt::{Display, Formatter};
 use std::io::ErrorKind;
 use std::sync::atomic::{AtomicBool, Ordering};
+use thiserror::Error;
 use wormhole::transfer::TransferError;
 use wormhole::WormholeError;
 
-custom_error! {pub UIError {msg: String} = "{msg}"}
+#[derive(Error, Debug)]
+pub struct UIError {
+    msg: String,
+}
 
 #[allow(dead_code)]
 impl UIError {
-    pub fn new(msg: &str) -> Self {
+    pub fn new(msg: impl ToString) -> Self {
         Self {
             msg: msg.to_string(),
         }
@@ -24,15 +28,45 @@ impl UIError {
     }
 }
 
-custom_error! {
-    pub AppError
-        Canceled = "canceled",
-        IO {source: std::io::Error} = "{source}",
-        URL {source: url::ParseError} = "{source}",
-        Transfer {source: TransferError} = "{source}",
-        Wormhole {source: WormholeError} = "{source}",
-        UI {source: UIError} = "{source}",
-        AsyncChannelRecvError {source: async_channel::RecvError} = "{source}",
+impl Display for UIError {
+    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
+        write!(f, "{}", self.msg)
+    }
+}
+
+#[derive(Error, Debug)]
+pub enum AppError {
+    Canceled,
+    IO {
+        #[from]
+        source: std::io::Error,
+    },
+    URL {
+        #[from]
+        source: url::ParseError,
+    },
+    Transfer {
+        #[from]
+        source: TransferError,
+    },
+    Wormhole {
+        #[from]
+        source: WormholeError,
+    },
+    UI {
+        #[from]
+        source: UIError,
+    },
+    AsyncChannelRecvError {
+        #[from]
+        source: async_channel::RecvError,
+    },
+}
+
+impl Display for AppError {
+    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
+        write!(f, "{}", self.gettext_error())
+    }
 }
 
 // Don't show more than one error dialog at the same time, it will get very annoying
@@ -167,7 +201,10 @@ impl AppError {
                 | TransferError::ProtocolUnexpectedMessage(_, _) => {
                     gettext("Corrupt or unexpected message received")
                 }
-                TransferError::Wormhole(source) => Self::gettext_error_wormhole(source),
+                TransferError::Wormhole(source) => {
+                    log::error!("Wormhole error: {:?}", source);
+                    Self::gettext_error_wormhole(source)
+                },
                 TransferError::TransitConnect(_) => {
                     gettext("Error while establishing file transfer connection")
                 }
