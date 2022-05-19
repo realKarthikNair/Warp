@@ -104,6 +104,8 @@ mod imp {
         pub link_copy_button: TemplateChild<gtk::Button>,
         #[template_child]
         pub code_copy_button: TemplateChild<gtk::Button>,
+        #[template_child]
+        pub copy_error_button: TemplateChild<gtk::Button>,
 
         // ID of the timer that runs the indeterminate progress
         pub progress_timeout_source_id: RefCell<Option<glib::source::SourceId>>,
@@ -212,6 +214,24 @@ mod imp {
                     window.toast_overlay().add_toast(&toast);
                 }));
 
+            self.copy_error_button
+                .connect_clicked(clone!(@weak obj => move |_| {
+                    let window = WarpApplicationWindow::default();
+
+                    let toast = if let UIState::Error(error) = &*obj.ui_state() {
+                        let msg = format!("{:?}", error);
+                        window.display().clipboard().set_text(&msg);
+
+                        adw::Toast::new("Copied Error to Clipboard")
+                    } else {
+                        adw::Toast::new(&gettext("No error available"))
+                    };
+
+                    toast.set_timeout(3);
+                    toast.set_priority(adw::ToastPriority::Normal);
+                    window.toast_overlay().add_toast(&toast);
+                }));
+
             self.code_entry.connect_has_focus_notify(|entry| {
                 // Select all text when entry is focused
                 if entry.has_focus() {
@@ -288,6 +308,7 @@ impl ActionView {
                 imp.code_box.set_visible(false);
                 imp.progress_bar.set_visible(true);
                 imp.progress_bar.set_show_text(false);
+                imp.copy_error_button.set_visible(false);
                 imp.status_page
                     .set_icon_name(Some("arrows-questionmark-symbolic"));
                 self.show_progress_indeterminate(true);
@@ -507,6 +528,10 @@ impl ActionView {
                 notification.set_category(Some("transfer.error"));
                 WarpApplication::default()
                     .send_notification_if_background(Some("transfer-error"), &notification);
+
+                if !matches!(error, AppError::Canceled) {
+                    imp.copy_error_button.set_visible(true);
+                }
             }
         }
     }

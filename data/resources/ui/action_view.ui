@@ -97,6 +97,17 @@
                     </style>
                   </object>
                 </child>
+                <child>
+                  <object class="GtkButton" id="copy_error_button">
+                    <property name="tooltip-text" translatable="yes">Copy detailed message for reporting an issue</property>
+                    <property name="visible">False</property>
+                    <property name="label" translatable="yes">Copy Error Message</property>
+                    <property name="hexpand">False</property>
+                    <style>
+                      <class name="pill"/>
+                    </style>
+                  </object>
+                </child>
               </object>
             </child>
           </object>
