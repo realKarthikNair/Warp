@@ -10,6 +10,14 @@ The best transfer method will be determined using the “Magic Wormhole” proto
 
 [<img width='240' alt='Part of GNOME Circle' src='https://gitlab.gnome.org/Teams/Circle/-/raw/91de93edbb3e75eb0882d56bd466e58b525135d5/assets/button/circle-button-fullcolor.svg' />](https://circle.gnome.org/)
 
+## Features
+
+* Send files between multiple devices
+* Every file transfer is encrypted
+* Directly transfer files on the local network if possible
+* An internet connection is required
+* Compatibility with the “Magic Wormhole” command line client
+
 ![File Transfer](data/screenshots/screenshot5.png "File Transfer")
 
 ## Support
