@@ -30,8 +30,6 @@ mod imp {
     use crate::util::{error::UiError, future::main_async_local_infallible};
     use gtk::{CompositeTemplate, Inhibit};
     use once_cell::sync::OnceCell;
-    use wormhole::transfer::AppVersion;
-    use wormhole::AppConfig;
 
     #[derive(Default, CompositeTemplate)]
     #[template(resource = "/app/drey/Warp/ui/window.ui")]
@@ -66,7 +64,6 @@ mod imp {
         pub generated_transmit_codes: RefCell<HashSet<String>>,
         pub inserted_code_toast: OnceCell<adw::Toast>,
         pub inserted_code_toast_showing: Cell<bool>,
-        pub custom_wormhole_app_cfg: RefCell<Option<AppConfig<AppVersion>>>,
     }
 
     #[glib::object_subclass]
@@ -189,7 +186,7 @@ mod imp {
                         if let Some(file) = chooser.file() {
                             if let Some(path) = file.path() {
                                 log::debug!("Picked file: {}", path.display());
-                                obj.imp().action_view.send_file(path, obj.wormhole_app_cfg());
+                                obj.imp().action_view.send_file(path, obj.config().app_cfg());
                             } else {
                                 log::error!("File chooser has file but path is None")
                             }
@@ -252,7 +249,7 @@ mod imp {
                     clone!(@weak obj => @default-return false, move |_target, value, _x, _y| {
                         if let Ok(file) = value.get::<gio::File>() {
                             if let Some(path) = file.path() {
-                                obj.action_view().send_file(path, obj.wormhole_app_cfg());
+                                obj.action_view().send_file(path, obj.config().app_cfg());
                                 return true;
                             }
                         }
@@ -325,14 +322,6 @@ impl WarpApplicationWindow {
         }
     }
 
-    pub(crate) fn wormhole_app_cfg(&self) -> AppConfig<AppVersion> {
-        if let Some(cfg) = &*self.imp().custom_wormhole_app_cfg.borrow() {
-            cfg.clone()
-        } else {
-            self.config().app_cfg()
-        }
-    }
-
     pub fn set_welcome_window_shown(&self, shown: bool) {
         self.imp().config.borrow_mut().welcome_window_shown = shown;
         self.save_config();
@@ -380,7 +369,7 @@ impl WarpApplicationWindow {
         };
 
         self.action_view()
-            .receive_file(wormhole::Code(code), self.wormhole_app_cfg());
+            .receive_file(wormhole::Code(code), self.config().app_cfg());
     }
 
     pub fn action_view_showing(&self) -> bool {

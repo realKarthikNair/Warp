@@ -88,7 +88,7 @@ mod imp {
                 {
                     app.main_window()
                         .action_view()
-                        .receive_file(wormhole::Code(code), app.main_window().wormhole_app_cfg());
+                        .receive_file(wormhole::Code(code), app.main_window().config().app_cfg());
                 } else {
                     match files[0].uri().parse::<WormholeURI>() {
                         Ok(uri) => {
