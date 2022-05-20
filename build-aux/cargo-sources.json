@@ -632,19 +632,6 @@
     {
         "type": "archive",
         "archive-type": "tar-gzip",
-        "url": "https://static.crates.io/crates/custom_error/custom_error-1.9.2.crate",
-        "sha256": "4f8a51dd197fa6ba5b4dc98a990a43cc13693c23eb0089ebb0fcc1f04152bca6",
-        "dest": "cargo/vendor/custom_error-1.9.2"
-    },
-    {
-        "type": "inline",
-        "contents": "{\"package\": \"4f8a51dd197fa6ba5b4dc98a990a43cc13693c23eb0089ebb0fcc1f04152bca6\", \"files\": {}}",
-        "dest": "cargo/vendor/custom_error-1.9.2",
-        "dest-filename": ".cargo-checksum.json"
-    },
-    {
-        "type": "archive",
-        "archive-type": "tar-gzip",
         "url": "https://static.crates.io/crates/darling/darling-0.10.2.crate",
         "sha256": "0d706e75d87e35569db781a9b5e2416cff1236a47ed380831f959382ccd5f858",
         "dest": "cargo/vendor/darling-0.10.2"
@@ -2217,6 +2204,19 @@
     {
         "type": "archive",
         "archive-type": "tar-gzip",
+        "url": "https://static.crates.io/crates/remove_dir_all/remove_dir_all-0.5.3.crate",
+        "sha256": "3acd125665422973a33ac9d3dd2df85edad0f4ae9b00dafb1a05e43a9f5ef8e7",
+        "dest": "cargo/vendor/remove_dir_all-0.5.3"
+    },
+    {
+        "type": "inline",
+        "contents": "{\"package\": \"3acd125665422973a33ac9d3dd2df85edad0f4ae9b00dafb1a05e43a9f5ef8e7\", \"files\": {}}",
+        "dest": "cargo/vendor/remove_dir_all-0.5.3",
+        "dest-filename": ".cargo-checksum.json"
+    },
+    {
+        "type": "archive",
+        "archive-type": "tar-gzip",
         "url": "https://static.crates.io/crates/ring/ring-0.16.20.crate",
         "sha256": "3053cf52e236a3ed746dfc745aa9cacf1b791d846bdaf412f60a8d7d6e17c8fc",
         "dest": "cargo/vendor/ring-0.16.20"
@@ -2719,6 +2719,19 @@
         "type": "inline",
         "contents": "{\"package\": \"af547b166dd1ea4b472165569fc456cfb6818116f854690b0ff205e636523dab\", \"files\": {}}",
         "dest": "cargo/vendor/temp-dir-0.1.11",
+        "dest-filename": ".cargo-checksum.json"
+    },
+    {
+        "type": "archive",
+        "archive-type": "tar-gzip",
+        "url": "https://static.crates.io/crates/tempfile/tempfile-3.3.0.crate",
+        "sha256": "5cdb1ef4eaeeaddc8fbd371e5017057064af0911902ef36b39801f67cc6d79e4",
+        "dest": "cargo/vendor/tempfile-3.3.0"
+    },
+    {
+        "type": "inline",
+        "contents": "{\"package\": \"5cdb1ef4eaeeaddc8fbd371e5017057064af0911902ef36b39801f67cc6d79e4\", \"files\": {}}",
+        "dest": "cargo/vendor/tempfile-3.3.0",
         "dest-filename": ".cargo-checksum.json"
     },
     {
