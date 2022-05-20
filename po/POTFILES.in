@@ -2,6 +2,7 @@ data/app.drey.Warp.desktop.in.in
 data/app.drey.Warp.metainfo.xml.in.in
 data/resources/ui/action_view.ui
 data/resources/ui/help_overlay.ui
+data/resources/ui/preferences.ui
 data/resources/ui/welcome_window.ui
 data/resources/ui/window.ui
 src/config.rs
@@ -14,6 +15,7 @@ src/ui.rs
 src/ui/action_view.rs
 src/ui/application.rs
 src/ui/fs.rs
+src/ui/preferences.rs
 src/ui/progress.rs
 src/ui/welcome_window.rs
 src/ui/window.rs

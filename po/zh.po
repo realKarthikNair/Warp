@@ -586,7 +586,7 @@ msgid ""
 "You have entered a custom rendezvous server URL in preferences. Please "
 "verify the URL is correct and the server is working."
 msgstr "连接至集合服务时出错。你在参数设置中自定义了集合服务器链接。\n"
-"请确保链接有效或服务运行正常。\n"
+"请确保链接有效或服务运行正常。"
 
 #: src/util/error.rs:151
 msgid ""
