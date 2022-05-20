@@ -671,9 +671,11 @@ impl ActionView {
         .await??;
         self.set_ui_state(UIState::Connected);
 
+        let relay_url = self.imp().transit_url.borrow().clone().unwrap();
+
         let request = transfer::request_file(
             connection,
-            self.imp().transit_url.borrow().clone().unwrap(),
+            relay_url,
             TRANSIT_ABILITIES,
             Self::cancel_future(),
         )
