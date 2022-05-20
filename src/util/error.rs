@@ -37,11 +37,11 @@ impl Display for UIError {
 #[derive(Error, Debug)]
 pub enum AppError {
     Canceled,
-    IO {
+    Io {
         #[from]
         source: std::io::Error,
     },
-    URL {
+    Url {
         #[from]
         source: url::ParseError,
     },
@@ -53,7 +53,7 @@ pub enum AppError {
         #[from]
         source: WormholeError,
     },
-    UI {
+    Ui {
         #[from]
         source: UIError,
     },
@@ -170,9 +170,9 @@ impl AppError {
     pub fn gettext_error(&self) -> String {
         match self {
             AppError::Canceled => "canceled".to_string(),
-            AppError::IO { source } => Self::gettext_error_io(source),
+            AppError::Io { source } => Self::gettext_error_io(source),
             // TODO those should not appear publicly
-            AppError::URL { source } => source.to_string(),
+            AppError::Url { source } => source.to_string(),
             AppError::Transfer { source } => match source {
                 TransferError::AckError => gettext("Transfer was not acknowledged by peer"),
                 TransferError::Checksum | TransferError::FilesystemSkew => {
@@ -214,7 +214,7 @@ impl AppError {
             },
             AppError::Wormhole { source } => Self::gettext_error_wormhole(source),
             // UIErrors are generated our code and already wrapped in gettext
-            AppError::UI { source } => source.to_string(),
+            AppError::Ui { source } => source.to_string(),
             AppError::AsyncChannelRecvError { .. } => gettext("An unknown error occurred"),
         }
     }

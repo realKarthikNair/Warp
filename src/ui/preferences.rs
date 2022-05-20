@@ -121,14 +121,14 @@ mod imp {
             let window = WarpApplicationWindow::default();
 
             let rendezvous_url = &*self.rendezvous_server_url.borrow();
-            window.config().rendezvous_server_url = if rendezvous_url != "" {
+            window.config().rendezvous_server_url = if !rendezvous_url.is_empty() {
                 Some(rendezvous_url.clone())
             } else {
                 None
             };
 
             let transit_url = &*self.transit_server_url.borrow();
-            window.config().transit_server_url = if transit_url != "" {
+            window.config().transit_server_url = if !transit_url.is_empty() {
                 Some(transit_url.clone())
             } else {
                 None
@@ -154,7 +154,7 @@ impl WarpPreferencesWindow {
     }
 
     pub fn set_rendezvous_server_url(&self, url: String) {
-        self.imp().rendezvous_server_url.replace(url.clone());
+        self.imp().rendezvous_server_url.replace(url);
         self.notify("rendezvous-server-url");
     }
 
@@ -163,7 +163,7 @@ impl WarpPreferencesWindow {
     }
 
     pub fn set_transit_server_url(&self, url: String) {
-        self.imp().transit_server_url.replace(url.clone());
+        self.imp().transit_server_url.replace(url);
         self.notify("transit-server-url");
     }
 
