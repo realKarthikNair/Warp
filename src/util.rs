@@ -2,6 +2,7 @@ use crate::gettext::gettextf;
 use crate::glib::Cast;
 use crate::globals;
 use crate::globals::TRANSMIT_CODE_FIND_REGEX;
+use crate::ui::window::WarpApplicationWindow;
 use gettextrs::gettext;
 use gtk::gdk;
 use qrcode::QrCode;
@@ -50,11 +51,16 @@ pub struct WormholeURI {
 
 impl WormholeURI {
     pub fn new(code: &str) -> Self {
+        let rendezvous_server = WarpApplicationWindow::default()
+            .config()
+            .rendezvous_server_url_or_default()
+            .to_string();
+
         Self {
             code: Code(code.to_string()),
             version: 0,
             app_id: globals::WORMHOLE_DEFAULT_APPID_STR.to_string(),
-            rendezvous_server: globals::WORMHOLE_DEFAULT_RENDEZVOUS_SERVER.to_string(),
+            rendezvous_server,
             direction: TransferDirection::Receive,
         }
     }
@@ -72,6 +78,7 @@ impl WormholeURI {
             uri.query_pairs_mut().append_pair("appid", &self.app_id);
         }
 
+        // We take the default here, not the current config. Any non-default should be in the uri.
         if self.rendezvous_server != globals::WORMHOLE_DEFAULT_RENDEZVOUS_SERVER {
             uri.query_pairs_mut()
                 .append_pair("rendezvous", &self.rendezvous_server);
@@ -89,12 +96,7 @@ impl WormholeURI {
         code: &str,
         direction: TransferDirection,
     ) -> Self {
-        let rendezvous_server = app_cfg
-            .rendezvous_url
-            .rsplit_once('/')
-            .unwrap()
-            .0
-            .to_string();
+        let rendezvous_server = app_cfg.rendezvous_url.trim_end_matches("/v1").to_string();
         Self {
             code: Code(code.to_string()),
             version: 0,

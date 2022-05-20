@@ -123,18 +123,15 @@ impl PersistentConfig {
     }
 
     pub fn app_cfg(&self) -> AppConfig<AppVersion> {
-        let mut rendezvous_url = self
+        let rendezvous_url = self
             .rendezvous_server_url_or_default()
-            .to_string()
             .trim_end_matches("/v1")
             .to_string();
 
         // Make sure we have /v1 appended exactly once
-        rendezvous_url.push_str("/v1");
-
         AppConfig {
             id: AppID::new(globals::WORMHOLE_DEFAULT_APPID_STR),
-            rendezvous_url: rendezvous_url.into(),
+            rendezvous_url: format!("{}/v1", rendezvous_url).into(),
             app_version: AppVersion {},
         }
     }
