@@ -41,7 +41,9 @@ mod imp {
         #[template_child]
         pub leaflet: TemplateChild<adw::Leaflet>,
         #[template_child]
-        pub send_select_file_button: TemplateChild<adw::SplitButton>,
+        pub send_select_file_button: TemplateChild<gtk::Button>,
+        #[template_child]
+        pub send_select_folder_button: TemplateChild<gtk::Button>,
         #[template_child]
         pub receive_button: TemplateChild<gtk::Button>,
         #[template_child]
@@ -123,6 +125,11 @@ mod imp {
             self.send_select_file_button
                 .connect_clicked(clone!(@weak obj => move |_| {
                     obj.imp().file_chooser.get().unwrap().show();
+                }));
+
+            self.send_select_folder_button
+                .connect_clicked(clone!(@weak obj => move |_| {
+                    obj.imp().folder_chooser.get().unwrap().show();
                 }));
 
             // Open folder

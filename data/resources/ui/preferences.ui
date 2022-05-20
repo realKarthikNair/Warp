@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
+  <object class="AdwClampLayout" id="clamp_layout">
+    <property name="tightening-threshold">260</property>
+  </object>
+  <object class="AdwClampLayout" id="clamp_layout2">
+    <property name="tightening-threshold">260</property>
+  </object>
   <template class="WarpPreferencesWindow" parent="AdwPreferencesWindow">
     <property name="modal">True</property>
     <property name="destroy-with-parent">True</property>
@@ -23,7 +29,7 @@ Leaving these entries empty will use the application defaults.</property>
                   <object class="GtkEntry" id="rendezvous_server_url_entry">
                     <property name="valign">center</property>
                     <property name="input-purpose">url</property>
-                    <property name="width-chars">30</property>
+                    <property name="layout-manager">clamp_layout</property>
                     <style>
                       <class name="preferences-entry"/>
                     </style>
@@ -39,7 +45,7 @@ Leaving these entries empty will use the application defaults.</property>
                   <object class="GtkEntry" id="transit_server_url_entry">
                     <property name="valign">center</property>
                     <property name="input-purpose">url</property>
-                    <property name="width-chars">30</property>
+                    <property name="layout-manager">clamp_layout2</property>
                     <style>
                       <class name="preferences-entry"/>
                     </style>

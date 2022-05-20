@@ -375,15 +375,14 @@ impl ActionView {
                         imp.status_page
                             // Translators: Description
                             .set_description(Some(&gettext("Preparing to send file")));
-                        imp.status_page
-                            .set_icon_name(Some("horizontal-arrows-right-symbolic"));
+                        imp.status_page.set_icon_name(Some("send-to-symbolic"));
                     }
                     TransferDirection::Receive => {
                         imp.status_page
                             // Translators: Description
                             .set_description(Some(&gettext("Preparing to receive file")));
                         imp.status_page
-                            .set_icon_name(Some("horizontal-arrows-left-symbolic"));
+                            .set_icon_name(Some("folder-download-symbolic"));
                     }
                 }
             }
@@ -456,13 +455,12 @@ impl ActionView {
                 if direction == TransferDirection::Send {
                     // Translators: Title
                     imp.status_page.set_title(&gettext("Sending File"));
-                    imp.status_page
-                        .set_icon_name(Some("horizontal-arrows-right-symbolic"));
+                    imp.status_page.set_icon_name(Some("send-to-symbolic"));
                 } else {
                     // Translators: Title
                     imp.status_page.set_title(&gettext("Receiving File"));
                     imp.status_page
-                        .set_icon_name(Some("horizontal-arrows-left-symbolic"));
+                        .set_icon_name(Some("folder-download-symbolic"));
                 }
             }
             UIState::Done(path) => {
