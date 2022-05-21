@@ -20,16 +20,9 @@
       </item>
     </section>
   </menu>
-  <menu id="open_menu">
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">_Open Folder</attribute>
-        <attribute name="action">win.open-folder</attribute>
-      </item>
-    </section>
-  </menu>
   <template class="WarpApplicationWindow" parent="AdwApplicationWindow">
-    <property name="height-request">500</property>
+    <property name="height-request">520</property>
+    <property name="width-request">280</property>
     <property name="default-width">460</property>
     <child>
       <object class="GtkWindowHandle">
@@ -69,7 +62,7 @@
                               <object class="AdwViewStackPage">
                                 <property name="name">send</property>
                                 <property name="title" translatable="yes">Send</property>
-                                <property name="icon-name">horizontal-arrows-right-symbolic</property>
+                                <property name="icon-name">send-to-symbolic</property>
                                 <property name="child">
                                   <object class="GtkBox" id="send_box">
                                     <property name="orientation">vertical</property>
@@ -81,19 +74,30 @@
                                         <property name="vexpand">True</property>
                                         <property name="title" translatable="yes">Send File</property>
                                         <property name="description" translatable="yes">Select or drop the file or directory to send</property>
-                                        <property name="icon-name">horizontal-arrows-right-symbolic</property>
+                                        <property name="icon-name">send-to-symbolic</property>
                                         <child>
                                           <object class="GtkBox">
-                                            <property name="orientation">horizontal</property>
+                                            <property name="orientation">vertical</property>
                                             <property name="halign">center</property>
+                                            <property name="spacing">12</property>
                                             <child>
-                                              <object class="AdwSplitButton" id="send_select_file_button">
-                                                <property name="label" translatable="yes">Open File</property>
-                                                <property name="menu-model">open_menu</property>
+                                              <object class="GtkButton" id="send_select_file_button">
+                                                <property name="label" translatable="yes">Select File</property>
                                                 <property name="width-request">150</property>
                                                 <property name="hexpand">False</property>
                                                 <style>
                                                   <class name="suggested-action"/>
+                                                  <class name="pill"/>
+                                                </style>
+                                              </object>
+                                            </child>
+                                            <child>
+                                              <object class="GtkButton" id="send_select_folder_button">
+                                                <property name="label" translatable="yes">Select Folder</property>
+                                                <property name="width-request">150</property>
+                                                <property name="hexpand">False</property>
+                                                <style>
+                                                  <class name="pill"/>
                                                 </style>
                                               </object>
                                             </child>
@@ -109,7 +113,7 @@
                               <object class="AdwViewStackPage">
                                 <property name="name">receive</property>
                                 <property name="title" translatable="yes">Receive</property>
-                                <property name="icon-name">horizontal-arrows-left-symbolic</property>
+                                <property name="icon-name">folder-download-symbolic</property>
                                 <property name="child">
                                   <object class="GtkBox">
                                     <property name="orientation">vertical</property>
@@ -119,26 +123,30 @@
                                         <property name="title" translatable="yes">Receive File</property>
                                         <!-- Translators: Text above code input box -->
                                         <property name="description" translatable="yes">Enter the transmit code from the sender</property>
-                                        <property name="icon-name">horizontal-arrows-left-symbolic</property>
+                                        <property name="icon-name">folder-download-symbolic</property>
                                         <child>
                                           <object class="GtkBox">
-                                            <property name="orientation">horizontal</property>
+                                            <property name="orientation">vertical</property>
                                             <property name="halign">center</property>
-                                            <style>
-                                              <class name="linked"/>
-                                            </style>
+                                            <property name="spacing">12</property>
                                             <child>
-                                              <object class="GtkEntry" id="code_entry">
-                                                <property name="placeholder-text" translatable="yes">Transmit Code</property>
-                                                <property name="hexpand">False</property>
-                                                <property name="width-request">320</property>
+                                              <object class="AdwClamp">
+                                                <child>
+                                                  <object class="GtkEntry" id="code_entry">
+                                                    <property name="placeholder-text" translatable="yes">Transmit Code</property>
+                                                    <property name="hexpand">False</property>
+                                                  </object>
+                                                </child>
                                               </object>
                                             </child>
                                             <child>
                                               <object class="GtkButton" id="receive_button">
+                                                <property name="halign">center</property>
+                                                <property name="width-request">150</property>
                                                 <property name="label" translatable="yes">Receive File</property>
                                                 <style>
                                                   <class name="suggested-action"/>
+                                                  <class name="pill"/>
                                                 </style>
                                               </object>
                                             </child>
