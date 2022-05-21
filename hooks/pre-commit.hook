@@ -58,7 +58,7 @@ fi
 
 echo "--Checking manifest and generated sources--"
 ./build-aux/generate-manifest.sh 2> /dev/null
-git diff --exit-code build-aux/app.drey.Warp.Devel.yaml
+git diff --exit-code build-aux/app.drey.Warp.Devel.json
 git diff --exit-code build-aux/cargo-sources.json
 
 echo "--Checking POTFILES--"
