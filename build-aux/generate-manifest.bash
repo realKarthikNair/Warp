@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-yq -y '
+yq '
 .["app-id"] += ".Devel" |
 .["finish-args"] += ["--env=RUST_LOG=warp=debug", "--env=G_MESSAGES_DEBUG=none", "--env=RUST_BACKTRACE=1"] |
 .["runtime-version"] = "master" |
@@ -8,6 +8,6 @@ yq -y '
 .modules |= map(if .name=="warp" then .["config-opts"] += ["-Dprofile=development"] else . end) |
 .modules |= map(if .name=="warp" then .["config-opts"] -= ["-Dprofile=default"] else . end) |
 .modules |= map(if .name=="warp" then .["run-tests"] = true else . end)' \
-build-aux/app.drey.Warp.yaml > build-aux/app.drey.Warp.Devel.yaml
+build-aux/app.drey.Warp.yaml > build-aux/app.drey.Warp.Devel.json
 
 ./build-aux/flatpak-cargo-generator.py -o build-aux/cargo-sources.json Cargo.lock
