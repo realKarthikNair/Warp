@@ -663,21 +663,25 @@ impl ActionView {
         WarpApplicationWindow::default().add_code(code.clone());
         let app_cfg = WarpApplicationWindow::default().config().app_cfg();
 
-        let (_welcome, connection) = cancelable_future(
+        let (_welcome, connection) = spawn_async(cancelable_future(
             Wormhole::connect_with_code(app_cfg, code),
             Self::cancel_future(),
-        )
+        ))
         .await??;
+
         self.set_ui_state(UIState::Connected);
 
         let relay_url = self.imp().transit_url.borrow().clone().unwrap();
 
-        let request = transfer::request_file(
-            connection,
-            relay_url,
-            TRANSIT_ABILITIES,
-            Self::cancel_future(),
-        )
+        let request = spawn_async(async move {
+            Ok(transfer::request_file(
+                connection,
+                relay_url,
+                TRANSIT_ABILITIES,
+                Self::cancel_future(),
+            )
+            .await?)
+        })
         .await?
         .ok_or(AppError::Canceled)?;
 
@@ -750,10 +754,10 @@ impl ActionView {
         let (mut file, path) = self.prepare_and_open_file(&path).await?;
         let app_cfg = WarpApplicationWindow::default().config().app_cfg();
 
-        let res = cancelable_future(
+        let res = spawn_async(cancelable_future(
             Wormhole::connect_without_code(app_cfg, 4),
             Self::cancel_future(),
-        )
+        ))
         .await?;
 
         let (welcome, connection) = match res {
@@ -765,7 +769,8 @@ impl ActionView {
 
         WarpApplicationWindow::default().add_code(welcome.code.clone());
         self.set_ui_state(UIState::HasCode(welcome.code.clone()));
-        let connection = cancelable_future(connection, Self::cancel_future()).await??;
+        let connection =
+            spawn_async(cancelable_future(connection, Self::cancel_future())).await??;
         self.set_ui_state(UIState::Connected);
 
         self.imp().filename.replace(Some((*path).to_path_buf()));
@@ -999,7 +1004,15 @@ impl ActionView {
 
     pub fn receive_file(&self, code: Code) {
         log::info!("Receiving file with code '{}'", code);
-        if let Err(err) = self.receive_file_impl(code) {
+
+        let res = std::panic::catch_unwind(|| {
+            if let Err(err) = self.receive_file_impl(code) {
+                self.transmit_error(err);
+            }
+        });
+
+        if let Err(_) = res {
+            let err = error_for_panic();
             self.transmit_error(err);
         }
     }

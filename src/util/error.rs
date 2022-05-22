@@ -258,3 +258,20 @@ pub fn install_panic_hook() {
         default_hook(panic_info)
     }));
 }
+
+pub fn error_for_panic() -> AppError {
+    let mut msg = String::new();
+
+    let mut backtrace_info = globals::PANIC_BACKTRACES.lock().unwrap();
+    for backtrace_msg in backtrace_info.iter() {
+        msg.push_str(&format!("{}\n", backtrace_msg));
+    }
+
+    backtrace_info.clear();
+
+    if msg.is_empty() {
+        msg = "Unknown panic cause".to_string();
+    }
+
+    AppError::Panic { msg }
+}

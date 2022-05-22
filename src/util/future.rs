@@ -1,30 +1,18 @@
-use crate::globals;
+use crate::error;
 use crate::util::error::AppError;
 use futures::{pin_mut, select, FutureExt};
 use gtk::glib;
 use std::future::Future;
 
-pub async fn spawn_async<F>(func: F) -> Result<(), AppError>
+pub async fn spawn_async<F, T>(func: F) -> Result<T, AppError>
 where
-    F: Future<Output = Result<(), AppError>> + 'static + Send,
+    F: Future<Output = Result<T, AppError>> + 'static + Send,
+    T: 'static + Send,
 {
     let task = smol::spawn(async move { func.await });
-    task.catch_unwind().await.map_err(|_| {
-        let mut msg = String::new();
-
-        let mut backtrace_info = globals::PANIC_BACKTRACES.lock().unwrap();
-        for backtrace_msg in backtrace_info.iter() {
-            msg.push_str(&format!("{}\n", backtrace_msg));
-        }
-
-        backtrace_info.clear();
-
-        if msg.is_empty() {
-            msg = "Unknown panic cause".to_string();
-        }
-
-        AppError::Panic { msg }
-    })?
+    task.catch_unwind()
+        .await
+        .map_err(|_| error::error_for_panic())?
 }
 
 pub fn main_async_local<F, E>(error_handler: E, func: F)
