@@ -8,6 +8,9 @@
         <property name="title-widget">
           <object class="GtkBox"/>
         </property>
+        <style>
+          <class name="flat"/>
+        </style>
         <child type="start">
           <object class="GtkButton" id="cancel_button">
             <property name="tooltip-text" translatable="yes">Cancel</property>
