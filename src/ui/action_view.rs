@@ -696,9 +696,10 @@ impl ActionView {
         // Continue or cancel
         let res = self.ask_confirmation_future().await;
         if res.is_err() {
-            spawn_async_infallible(async move {
+            smol::spawn(async move {
                 let _ = request.reject().await;
-            });
+            })
+            .await;
 
             return res;
         }
@@ -710,7 +711,7 @@ impl ActionView {
         let (file_res, path) = fs::open_file_find_new_filename_if_exists(&path).await;
         self.imp().filename.replace(Some(path.clone()));
 
-        spawn_async(Self::transmit_error_handler, async move {
+        spawn_async(async move {
             log::info!("Downloading file to {:?}", path.to_str());
 
             let mut file = file_res?;
@@ -735,7 +736,8 @@ impl ActionView {
             Self::transmit_success_main(path);
 
             Ok(())
-        });
+        })
+        .await?;
 
         Ok(())
     }
@@ -768,7 +770,7 @@ impl ActionView {
         self.imp().filename.replace(Some((*path).to_path_buf()));
         let transit_url = self.imp().transit_url.borrow().clone().unwrap();
 
-        spawn_async(Self::transmit_error_handler, async move {
+        spawn_async(async move {
             let filename = if let Some(filename) = path.file_name() {
                 filename
             } else {
@@ -802,7 +804,8 @@ impl ActionView {
             Self::transmit_success_main(path.clone());
 
             Ok(())
-        });
+        })
+        .await?;
 
         Ok(())
     }

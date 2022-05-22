@@ -3,27 +3,12 @@ use futures::{pin_mut, select, FutureExt};
 use gtk::glib;
 use std::future::Future;
 
-pub fn spawn_async<F, E>(error_handler: E, func: F)
+pub async fn spawn_async<F>(func: F) -> Result<(), AppError>
 where
     F: Future<Output = Result<(), AppError>> + 'static + Send,
-    E: FnOnce(AppError) + 'static + Send,
 {
-    smol::spawn(async move {
-        match func.await {
-            Ok(()) => (),
-            Err(app_error) => {
-                main_async(error_handler, async move { Err(app_error) });
-            }
-        }
-    })
-    .detach();
-}
-
-pub fn spawn_async_infallible<F>(func: F)
-where
-    F: Future<Output = ()> + 'static + Send,
-{
-    smol::spawn(func).detach();
+    let task = smol::spawn(async move { func.await });
+    task.await
 }
 
 pub fn main_async_local<F, E>(error_handler: E, func: F)
@@ -44,19 +29,6 @@ where
     F: Future<Output = ()> + 'static,
 {
     glib::MainContext::default().spawn_local(func);
-}
-
-pub fn main_async<F, E>(error_handler: E, func: F)
-where
-    F: Future<Output = Result<(), AppError>> + Send + 'static,
-    E: FnOnce(AppError) + Send + 'static,
-{
-    glib::MainContext::default().spawn(async move {
-        match func.await {
-            Ok(()) => (),
-            Err(app_error) => error_handler(app_error),
-        }
-    });
 }
 
 pub async fn cancelable_future<T>(

@@ -61,6 +61,9 @@ pub enum AppError {
         #[from]
         source: async_channel::RecvError,
     },
+    Panic {
+        msg: String,
+    },
 }
 
 impl Display for AppError {
@@ -216,6 +219,7 @@ impl AppError {
             // UIErrors are generated our code and already wrapped in gettext
             AppError::Ui { source } => source.to_string(),
             AppError::AsyncChannelRecvError { .. } => gettext("An unknown error occurred"),
+            AppError::Panic { .. } => gettext("An unexpected error occurred. Please report an issue with the error message."),
         }
     }
 }
