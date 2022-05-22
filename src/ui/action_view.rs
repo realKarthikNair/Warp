@@ -1005,14 +1005,7 @@ impl ActionView {
     pub fn receive_file(&self, code: Code) {
         log::info!("Receiving file with code '{}'", code);
 
-        let res = std::panic::catch_unwind(|| {
-            if let Err(err) = self.receive_file_impl(code) {
-                self.transmit_error(err);
-            }
-        });
-
-        if let Err(_) = res {
-            let err = error_for_panic();
+        if let Err(err) = self.receive_file_impl(code) {
             self.transmit_error(err);
         }
     }
