@@ -341,7 +341,7 @@ impl ActionView {
             UIState::HasCode(code) => match direction {
                 TransferDirection::Send => {
                     imp.status_page.set_icon_name(Some("code-symbolic"));
-                    // Translators: Title
+                    // Translators: Title, this is a noun
                     imp.status_page.set_title(&gettext("Your Transmit Code"));
                     imp.status_page.set_description(Some(&gettext(
                         // Translators: Description, Code in box below

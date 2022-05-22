@@ -3,18 +3,22 @@
   <menu id="primary_menu">
     <section>
       <item>
+        <!-- Translators: menu item -->
         <attribute name="label" translatable="yes">_Preferences</attribute>
         <attribute name="action">app.preferences</attribute>
       </item>
       <item>
+        <!-- Translators: menu item -->
         <attribute name="label" translatable="yes">_Keyboard Shortcuts</attribute>
         <attribute name="action">win.show-help-overlay</attribute>
       </item>
       <item>
+        <!-- Translators: menu item -->
         <attribute name="label" translatable="yes">_Help</attribute>
         <attribute name="action">app.help</attribute>
       </item>
       <item>
+        <!-- Translators: menu item -->
         <attribute name="label" translatable="yes">_About Warp</attribute>
         <attribute name="action">app.about</attribute>
       </item>
@@ -83,6 +87,7 @@
                                             <property name="spacing">12</property>
                                             <child>
                                               <object class="GtkButton" id="send_select_file_button">
+                                                <!-- Translators: Button -->
                                                 <property name="label" translatable="yes">Select File</property>
                                                 <property name="width-request">150</property>
                                                 <property name="hexpand">False</property>
@@ -94,6 +99,7 @@
                                             </child>
                                             <child>
                                               <object class="GtkButton" id="send_select_folder_button">
+                                                <!-- Translators: Button -->
                                                 <property name="label" translatable="yes">Select Folder</property>
                                                 <property name="width-request">150</property>
                                                 <property name="hexpand">False</property>
@@ -122,7 +128,7 @@
                                       <object class="AdwStatusPage">
                                         <property name="vexpand">True</property>
                                         <property name="title" translatable="yes">Receive File</property>
-                                        <!-- Translators: Text above code input box -->
+                                        <!-- Translators: Text above code input box, transmit code is a noun -->
                                         <property name="description" translatable="yes">Enter the transmit code from the sender</property>
                                         <property name="icon-name">folder-download-symbolic</property>
                                         <child>
@@ -134,6 +140,7 @@
                                               <object class="AdwClamp">
                                                 <child>
                                                   <object class="GtkEntry" id="code_entry">
+                                                    <!-- Translators: Entry placeholder; This is a noun -->
                                                     <property name="placeholder-text" translatable="yes">Transmit Code</property>
                                                     <property name="hexpand">False</property>
                                                   </object>
@@ -144,6 +151,7 @@
                                               <object class="GtkButton" id="receive_button">
                                                 <property name="halign">center</property>
                                                 <property name="width-request">150</property>
+                                                <!-- Translators: Button -->
                                                 <property name="label" translatable="yes">Receive File</property>
                                                 <style>
                                                   <class name="suggested-action"/>
@@ -174,7 +182,7 @@
                   </object>
                 </child>
                 <child>
-                  <object class="ActionView" id="action_view"></object>
+                  <object class="ActionView" id="action_view"/>
                 </child>
               </object>
             </child>
