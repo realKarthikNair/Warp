@@ -1,8 +1,7 @@
-use backtrace::Backtrace;
 use gvdb_macros::include_gresource_from_dir;
 use once_cell::sync::Lazy;
 use regex::Regex;
-use std::cell::RefCell;
+use std::sync::Mutex;
 
 pub static WORMHOLE_RENDEZVOUS_RELAY_DEFAULT: &str = "ws://relay.magic-wormhole.io:4000/v1";
 pub static WORMHOLE_TRANSIT_RELAY_DEFAULT: &str = "tcp://transit.magic-wormhole.io:4001";
@@ -24,9 +23,7 @@ pub const APP_ID: &str = if DEBUG_BUILD {
 
 pub const TRANSMIT_URI_PREFIX: &str = "warp://recv/";
 
-thread_local! {
-    pub static PANIC_BACKTRACE: RefCell<Option<Backtrace>> = Default::default();
-}
+pub static PANIC_BACKTRACES: Lazy<Mutex<Vec<String>>> = Lazy::new(Default::default);
 
 pub const APP_NAME: &str = "warp";
 pub const GETTEXT_PACKAGE: &str = APP_NAME;

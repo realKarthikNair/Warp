@@ -1,5 +1,5 @@
 use crate::gettext::gettextf;
-use crate::util::error::{AppError, UIError};
+use crate::util::error::{AppError, UiError};
 use futures::FutureExt;
 use futures::{pin_mut, select};
 use gtk::glib;
@@ -49,12 +49,12 @@ pub async fn compress_folder(
 ) -> Result<(impl Future<Output = Result<(), AppError>>, PathBuf), AppError> {
     let path = path.to_path_buf();
     if !path.is_dir() {
-        return Err(UIError::new("Wrong compress_folder invocation").into());
+        return Err(UiError::new("Wrong compress_folder invocation").into());
     }
 
     let outer_dir = path
         .parent()
-        .ok_or_else(|| UIError::new("Archive parent folder not found"))?;
+        .ok_or_else(|| UiError::new("Archive parent folder not found"))?;
     let dirname = path.file_name();
     if let Some(dirname) = dirname {
         let temp_dir = glib::tmp_dir();
@@ -81,17 +81,17 @@ pub async fn compress_folder(
                 if code == 0 {
                     Ok(())
                 } else {
-                    Err(UIError::new("Error creating tar archive").into())
+                    Err(UiError::new("Error creating tar archive").into())
                 }
             } else {
-                Err(UIError::new("Error creating tar archive").into())
+                Err(UiError::new("Error creating tar archive").into())
             }
         };
 
         log::debug!("Creating tar archive: {}", tar_path.to_string_lossy());
         Ok((future, tar_path))
     } else {
-        Err(UIError::new(&gettextf(
+        Err(UiError::new(&gettextf(
             "Path {} does not have a directory name",
             &[&path.display()],
         ))

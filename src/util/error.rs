@@ -1,9 +1,10 @@
 use crate::gettext::gettextf;
+use crate::globals;
 use crate::ui::window::WarpApplicationWindow;
 use gettextrs::gettext;
 use gtk::prelude::*;
 use gtk::{gio, MessageType};
-use std::fmt::{Display, Formatter};
+use std::fmt::{Debug, Display, Formatter};
 use std::io::ErrorKind;
 use std::sync::atomic::{AtomicBool, Ordering};
 use thiserror::Error;
@@ -11,12 +12,12 @@ use wormhole::transfer::TransferError;
 use wormhole::WormholeError;
 
 #[derive(Error, Debug)]
-pub struct UIError {
+pub struct UiError {
     msg: String,
 }
 
 #[allow(dead_code)]
-impl UIError {
+impl UiError {
     pub fn new(msg: impl ToString) -> Self {
         Self {
             msg: msg.to_string(),
@@ -28,13 +29,13 @@ impl UIError {
     }
 }
 
-impl Display for UIError {
+impl Display for UiError {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
         write!(f, "{}", self.msg)
     }
 }
 
-#[derive(Error, Debug)]
+#[derive(Debug, Error)]
 pub enum AppError {
     Canceled,
     Io {
@@ -55,7 +56,7 @@ pub enum AppError {
     },
     Ui {
         #[from]
-        source: UIError,
+        source: UiError,
     },
     AsyncChannelRecvError {
         #[from]
@@ -68,7 +69,18 @@ pub enum AppError {
 
 impl Display for AppError {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-        write!(f, "{}", self.gettext_error())
+        match self {
+            AppError::Canceled => write!(f, "Operation was canceled by the user"),
+            AppError::Io { source } => write!(f, "I/O Error: {}", source),
+            AppError::Url { source } => write!(f, "URL ParseError: {}", source),
+            AppError::Transfer { source } => write!(f, "TransferError: {}", source),
+            AppError::Wormhole { source } => write!(f, "WormholeError: {}", source),
+            AppError::Ui { source } => write!(f, "UiError: {}", source),
+            AppError::AsyncChannelRecvError { source } => {
+                write!(f, "AsyncChannelRecvError: {}", source)
+            }
+            AppError::Panic { msg } => write!(f, "Panic: {}", msg),
+        }
     }
 }
 
@@ -222,4 +234,27 @@ impl AppError {
             AppError::Panic { .. } => gettext("An unexpected error occurred. Please report an issue with the error message."),
         }
     }
+}
+
+pub fn install_panic_hook() {
+    let default_hook = std::panic::take_hook();
+    std::panic::set_hook(Box::new(move |panic_info| {
+        let thread = std::thread::current();
+        let name = thread.name().unwrap_or("<unnamed>");
+        let location = panic_info.location().unwrap();
+        let msg = match panic_info.payload().downcast_ref::<&'static str>() {
+            Some(s) => *s,
+            None => match panic_info.payload().downcast_ref::<String>() {
+                Some(s) => &s[..],
+                None => "Box<dyn Any>",
+            },
+        }
+        .to_string();
+
+        let backtrace = backtrace::Backtrace::new();
+        let info_msg = format!("thread '{name}' panicked at '{msg}', {location}\n{backtrace:?}");
+
+        globals::PANIC_BACKTRACES.lock().unwrap().push(info_msg);
+        default_hook(panic_info)
+    }));
 }

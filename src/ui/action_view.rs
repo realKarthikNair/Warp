@@ -219,7 +219,7 @@ mod imp {
                     let window = WarpApplicationWindow::default();
 
                     let toast = if let UIState::Error(error) = &*obj.ui_state() {
-                        let msg = format!("{:?}", error);
+                        let msg = format!("{}", error);
                         window.display().clipboard().set_text(&msg);
 
                         adw::Toast::new("Copied Error to Clipboard")
@@ -516,6 +516,7 @@ impl ActionView {
                     .set_icon_name(Some("horizontal-arrows-one-way-symbolic"));
                 imp.progress_bar.set_text(None);
                 imp.progress_bar.set_visible(false);
+                imp.accept_transfer_button.set_visible(false);
 
                 let notification = gio::Notification::new(&gettext("File Transfer Failed"));
                 notification.set_body(Some(&gettextf(
@@ -601,7 +602,7 @@ impl ActionView {
             path.to_path_buf()
         } else {
             // Translators: When opening a file
-            return Err(UIError::new(&gettext("Specified file / directory does not exist")).into());
+            return Err(UiError::new(&gettext("Specified file / directory does not exist")).into());
         };
 
         let file = smol::fs::OpenOptions::new()
@@ -634,7 +635,7 @@ impl ActionView {
                 .rendezvous_server_url_or_default(),
         )
         .map_err(|_| {
-            UIError::new(&gettext(
+            UiError::new(&gettext(
                 "Error parsing rendezvous server URL. An invalid URL was entered in the settings.",
             ))
         })?;
@@ -645,7 +646,7 @@ impl ActionView {
                 .transit_server_url_or_default(),
         )
         .map_err(|_| {
-            UIError::new(&gettext(
+            UiError::new(&gettext(
                 "Error parsing transit URL. An invalid URL was entered in the settings.",
             ))
         })?;
@@ -980,7 +981,7 @@ impl ActionView {
         let path = if let Some(downloads) = glib::user_special_dir(glib::UserDirectory::Downloads) {
             downloads
         } else {
-            return Err(UIError::new(&gettext(
+            return Err(UiError::new(&gettext(
                 "Downloads dir missing. Please set XDG_DOWNLOADS_DIR",
             ))
             .into());

@@ -9,7 +9,7 @@ use gtk::{gio, glib, ResponseType};
 use std::cell::RefMut;
 
 use crate::ui::application::WarpApplication;
-use crate::util::{error::UIError, extract_transmit_code, future::main_async_local_infallible};
+use crate::util::{error::UiError, extract_transmit_code, future::main_async_local_infallible};
 
 mod imp {
     use super::*;
@@ -21,7 +21,7 @@ mod imp {
     use crate::glib::clone;
     use crate::globals;
     use crate::ui::welcome_window::WelcomeWindow;
-    use crate::util::{error::UIError, future::main_async_local_infallible};
+    use crate::util::{error::UiError, future::main_async_local_infallible};
     use gtk::{CompositeTemplate, Inhibit};
     use once_cell::sync::OnceCell;
 
@@ -90,7 +90,7 @@ mod imp {
                 clone!(@strong obj => move |err| {
                     obj.connect_visible_notify(move |window| {
                         if window.is_visible() {
-                            UIError::new(&gettextf(
+                            UiError::new(&gettextf(
                                 "Error loading config file '{0}', using default config.\nError: {1}",
                                 &[&PersistentConfig::path().display(),
                                 &err]
@@ -312,7 +312,7 @@ impl WarpApplicationWindow {
 
     pub fn save_config(&self) {
         if let Err(err) = self.imp().config.borrow_mut().save() {
-            UIError::new(&gettextf("Error saving configuration file: {}", &[&err])).handle();
+            UiError::new(&gettextf("Error saving configuration file: {}", &[&err])).handle();
         }
     }
 
@@ -351,7 +351,7 @@ impl WarpApplicationWindow {
             if let Some(code) = extract_transmit_code(&text) {
                 code
             } else {
-                UIError::new(&gettextf(
+                UiError::new(&gettextf(
                     "“{}” appears to be an invalid Transmit Code. Please try again.",
                     &[&text],
                 ))

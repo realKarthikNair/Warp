@@ -9,19 +9,18 @@ where
     F: Future<Output = Result<(), AppError>> + 'static + Send,
 {
     let task = smol::spawn(async move { func.await });
-    task.catch_unwind().await.map_err(|any| {
-        let mut msg = if let Some(msg) = any.downcast_ref::<&str>() {
-            msg.to_string()
-        } else if let Some(msg) = any.downcast_ref::<String>() {
-            msg.to_string()
-        } else {
-            "Unknown panic cause".to_string()
-        };
+    task.catch_unwind().await.map_err(|_| {
+        let mut msg = String::new();
 
-        let backtrace = globals::PANIC_BACKTRACE.with(|b| b.take());
+        let mut backtrace_info = globals::PANIC_BACKTRACES.lock().unwrap();
+        for backtrace_msg in backtrace_info.iter() {
+            msg.push_str(&format!("{}\n", backtrace_msg));
+        }
 
-        if let Some(mut backtrace) = backtrace {
-            msg = format!("{}\n{:?}", msg, backtrace);
+        backtrace_info.clear();
+
+        if msg.is_empty() {
+            msg = "Unknown panic cause".to_string();
         }
 
         AppError::Panic { msg }

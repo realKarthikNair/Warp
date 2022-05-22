@@ -16,7 +16,7 @@ mod imp {
     use super::*;
     use crate::gettext::gettextf;
     use crate::globals::TRANSMIT_URI_PREFIX;
-    use crate::util::error::{AppError, UIError};
+    use crate::util::error::{AppError, UiError};
     use crate::util::extract_transmit_code;
     use gio::File;
     use glib::WeakRef;
@@ -82,7 +82,7 @@ mod imp {
                     .and_then(extract_transmit_code)
                 {
                     if app.main_window().transfer_in_progress() {
-                        let err: AppError = UIError::new(&gettext(
+                        let err: AppError = UiError::new(&gettext(
                             "Unable to use transfer link: another transfer already in progress",
                         ))
                         .into();
@@ -92,7 +92,7 @@ mod imp {
                     }
                 } else {
                     let fmt = format!("{}{{code}}", TRANSMIT_URI_PREFIX);
-                    let err: AppError = UIError::new(&gettextf(
+                    let err: AppError = UiError::new(&gettextf(
                         "Unable to parse transfer link. The link needs to be in the format {}",
                         &[&fmt],
                     ))
