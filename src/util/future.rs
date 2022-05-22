@@ -1,3 +1,4 @@
+use crate::globals;
 use crate::util::error::AppError;
 use futures::{pin_mut, select, FutureExt};
 use gtk::glib;
@@ -8,7 +9,23 @@ where
     F: Future<Output = Result<(), AppError>> + 'static + Send,
 {
     let task = smol::spawn(async move { func.await });
-    task.await
+    task.catch_unwind().await.map_err(|any| {
+        let mut msg = if let Some(msg) = any.downcast_ref::<&str>() {
+            msg.to_string()
+        } else if let Some(msg) = any.downcast_ref::<String>() {
+            msg.to_string()
+        } else {
+            "Unknown panic cause".to_string()
+        };
+
+        let backtrace = globals::PANIC_BACKTRACE.with(|b| b.take());
+
+        if let Some(mut backtrace) = backtrace {
+            msg = format!("{}\n{:?}", msg, backtrace);
+        }
+
+        AppError::Panic { msg }
+    })?
 }
 
 pub fn main_async_local<F, E>(error_handler: E, func: F)

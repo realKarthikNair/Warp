@@ -12,10 +12,18 @@ mod util;
 use crate::ui::application::WarpApplication;
 use gettextrs::gettext;
 use gtk::glib;
+use std::borrow::BorrowMut;
 
 fn main() {
     // Initialize logger
     pretty_env_logger::init();
+
+    let hook = std::panic::take_hook();
+    std::panic::set_hook(Box::new(move |panic_info| {
+        let backtrace = backtrace::Backtrace::new();
+        globals::PANIC_BACKTRACE.with(|b| b.borrow_mut().replace(backtrace));
+        hook(panic_info)
+    }));
 
     // Prepare i18n
     gettextrs::setlocale(gettextrs::LocaleCategory::LcAll, "");
