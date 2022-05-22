@@ -5,9 +5,6 @@
     <child>
       <object class="AdwHeaderBar" id="headerbar">
         <property name="centering-policy">strict</property>
-        <style>
-          <class name="flat"/>
-        </style>
         <property name="title-widget">
           <object class="GtkBox"/>
         </property>
@@ -86,6 +83,7 @@
                     <property name="width-request">150</property>
                     <property name="hexpand">False</property>
                     <style>
+                      <class name="pill"/>
                       <class name="suggested-action"/>
                     </style>
                   </object>
@@ -98,6 +96,7 @@
                     <property name="width-request">150</property>
                     <property name="hexpand">False</property>
                     <style>
+                      <class name="pill"/>
                       <class name="suggested-action"/>
                     </style>
                   </object>

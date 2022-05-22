@@ -342,7 +342,7 @@ impl ActionView {
                 TransferDirection::Send => {
                     imp.status_page.set_icon_name(Some("code-symbolic"));
                     // Translators: Title
-                    imp.status_page.set_title(&gettext("Your Transfer Code"));
+                    imp.status_page.set_title(&gettext("Your Transmit Code"));
                     imp.status_page.set_description(Some(&gettext(
                         // Translators: Description, Code in box below
                         "The receiver needs to enter this code to begin the file transfer",
