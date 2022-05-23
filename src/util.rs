@@ -181,7 +181,7 @@ impl TryFrom<url::Url> for WormholeTransferURI {
                 "rendezvous" => {
                     this.rendezvous_server = url::Url::parse(&value).map_err(|_| {
                         WormholeURIParseError(gettextf(
-                            "The URI parameter 'rendezvous' contains an invalid URL: '{}'",
+                            "The URI parameter “rendezvous“ contains an invalid URL: '{}'",
                             &[&value],
                         ))
                     })?
@@ -193,14 +193,14 @@ impl TryFrom<url::Url> for WormholeTransferURI {
                         TransferDirection::Send
                     } else {
                         return Err(WormholeURIParseError(gettextf(
-                            "The URI parameter 'role' must be 'follower' or 'leader' (was: {})",
+                            "The URI parameter “role“ must be “follower“ or “leader“ (was: {})",
                             &[&value],
                         )));
                     }
                 }
                 _ => {
                     return Err(WormholeURIParseError(gettextf(
-                        "Unknown URI parameter '{}'",
+                        "Unknown URI parameter “{}“",
                         &[&field],
                     )))
                 }

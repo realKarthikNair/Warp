@@ -98,7 +98,7 @@ mod imp {
                     obj.connect_visible_notify(move |window| {
                         if window.is_visible() {
                             UiError::new(&gettextf(
-                                "Error loading config file '{0}', using default config.\nError: {1}",
+                                "Error loading config file “{0}“, using default config.\nError: {1}",
                                 &[&PersistentConfig::path().display(),
                                 &err]
                             ))
