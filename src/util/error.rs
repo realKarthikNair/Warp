@@ -8,6 +8,7 @@ use std::fmt::{Debug, Display, Formatter};
 use std::io::ErrorKind;
 use std::sync::atomic::{AtomicBool, Ordering};
 use thiserror::Error;
+use wormhole::rendezvous::RendezvousError;
 use wormhole::transfer::TransferError;
 use wormhole::WormholeError;
 
@@ -73,8 +74,8 @@ impl Display for AppError {
             AppError::Canceled => write!(f, "Operation was canceled by the user"),
             AppError::Io { source } => write!(f, "I/O Error: {}", source),
             AppError::Url { source } => write!(f, "URL ParseError: {}", source),
-            AppError::Transfer { source } => write!(f, "TransferError: {}", source),
-            AppError::Wormhole { source } => write!(f, "WormholeError: {}", source),
+            AppError::Transfer { source } => write!(f, "TransferError: {:?}", source),
+            AppError::Wormhole { source } => write!(f, "WormholeError: {:?}", source),
             AppError::Ui { source } => write!(f, "UiError: {}", source),
             AppError::AsyncChannelRecvError { source } => {
                 write!(f, "AsyncChannelRecvError: {}", source)
@@ -159,11 +160,21 @@ impl AppError {
             WormholeError::ProtocolJson(_) | WormholeError::Protocol(_) => {
                 gettext("Corrupt or unexpected message received")
             }
-            WormholeError::ServerError(_) => {
-                if WarpApplicationWindow::default().config().rendezvous_server_url.is_some() {
-                    gettext("Error connecting to the rendezvous server.\nYou have entered a custom rendezvous server URL in preferences. Please verify the URL is correct and the server is working.")
+            WormholeError::ServerError(err) => {
+                if let RendezvousError::Server(msg) = err {
+                    if &**msg == "crowded" {
+                        gettext("The rendezvous server will not allow further connections for this code. A new code needs to be generated.")
+                    } else if &**msg == "pruney" {
+                        gettext("The rendezvous server removed the code due to inactivity. A new code needs to be generated.")
+                    } else {
+                        gettextf("The rendezvous server responded with an unknown message: {}", &[msg])
+                    }
                 } else {
-                    gettext("Error connecting to the rendezvous server.\nPlease try again later / verify you are connected to the internet.")
+                    if WarpApplicationWindow::default().config().rendezvous_server_url.is_some() {
+                        gettext("Error connecting to the rendezvous server.\nYou have entered a custom rendezvous server URL in preferences. Please verify the URL is correct and the server is working.")
+                    } else {
+                        gettext("Error connecting to the rendezvous server.\nPlease try again later / verify you are connected to the internet.")
+                    }
                 }
             },
             WormholeError::PakeFailed => gettext(
