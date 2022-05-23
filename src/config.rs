@@ -106,35 +106,33 @@ impl PersistentConfig {
         path
     }
 
-    pub fn rendezvous_server_url_or_default(&self) -> &str {
+    pub fn rendezvous_server_url_or_default(&self) -> String {
         if let Some(url) = &self.rendezvous_server_url {
-            url
+            url.to_string()
         } else {
-            &*globals::WORMHOLE_RENDEZVOUS_RELAY_DEFAULT
+            globals::WORMHOLE_DEFAULT_RENDEZVOUS_SERVER.to_string()
         }
     }
 
-    pub fn transit_server_url_or_default(&self) -> &str {
+    pub fn transit_server_url_or_default(&self) -> String {
         if let Some(url) = &self.transit_server_url {
-            url
+            url.to_string()
         } else {
-            &*globals::WORMHOLE_TRANSIT_RELAY_DEFAULT
+            globals::WORMHOLE_DEFAULT_TRANSIT_RELAY.to_string()
         }
     }
 
     pub fn app_cfg(&self) -> AppConfig<AppVersion> {
-        let mut rendezvous_url = self
+        let rendezvous_url = self
             .rendezvous_server_url_or_default()
-            .to_string()
             .trim_end_matches("/v1")
+            .trim_end_matches('/')
             .to_string();
 
         // Make sure we have /v1 appended exactly once
-        rendezvous_url.push_str("/v1");
-
         AppConfig {
-            id: AppID::new("lothar.com/wormhole/text-or-file-xfer"),
-            rendezvous_url: rendezvous_url.into(),
+            id: AppID::new(globals::WORMHOLE_DEFAULT_APPID_STR),
+            rendezvous_url: format!("{}/v1", rendezvous_url).into(),
             app_version: AppVersion {},
         }
     }

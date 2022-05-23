@@ -19,12 +19,14 @@ pretty_env_logger = "0.4"
 gettext-rs = { version = "0.7", features = ["gettext-system"] }
 once_cell = "1.9"
 gtk = {version = "0.4", package = "gtk4"}
+gdk = {version = "0.4.7", package = "gdk4", features = ["v4_6"]}
 gio = {version = "0.15.10", package = "gio", features = ["v2_70"]}
 adw = {version = "0.1.0", package = "libadwaita"}
 async-channel = "1.6.1"
 wormhole = { git = "https://github.com/magic-wormhole/magic-wormhole.rs", package = "magic-wormhole", branch = "dev", version = "0.4.0" }
 futures = "0.3.21"
 url = "2.2.2"
+urlencoding = "2.1.0"
 smol = "1.2.5"
 scopeguard = "1.1.0"
 serde = "1.0.136"
@@ -36,6 +38,7 @@ gvdb-macros = "0.1.3"
 thiserror = "1.0.31"
 tempfile = "3.3.0"
 backtrace = "0.3.65"
+qrcode = "0.12.0"
 
 [build-dependencies]
 xml-rs = "0.8"

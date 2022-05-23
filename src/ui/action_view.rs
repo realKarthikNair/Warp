@@ -5,6 +5,7 @@ use crate::glib::clone;
 use crate::ui::window::WarpApplicationWindow;
 use crate::util::error::*;
 use crate::util::future::*;
+use crate::util::{TransferDirection, WormholeTransferURI};
 use crate::WarpApplication;
 use adw::gio::NotificationPriority;
 use gettextrs::*;
@@ -17,15 +18,16 @@ use std::future::Future;
 use std::net::{IpAddr, SocketAddr};
 use std::path::{Path, PathBuf};
 use std::time::Duration;
+use wormhole::transfer::AppVersion;
 use wormhole::transit::TransitInfo;
-use wormhole::{transfer, transit, Code, Wormhole};
+use wormhole::{transfer, transit, AppConfig, Code, Wormhole};
 
 #[derive(Debug)]
 pub enum UIState {
     Initial,
     Archive,
     RequestCode,
-    HasCode(Code),
+    HasCode(WormholeTransferURI),
     Connected,
     AskConfirmation(String, u64),
     Transmitting(String, TransitInfo, SocketAddr),
@@ -56,18 +58,6 @@ impl Default for UIState {
     }
 }
 
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum TransferDirection {
-    Send,
-    Receive,
-}
-
-impl Default for TransferDirection {
-    fn default() -> Self {
-        Self::Send
-    }
-}
-
 static TRANSIT_ABILITIES: transit::Abilities = transit::Abilities::ALL_ABILITIES;
 
 mod imp {
@@ -76,7 +66,7 @@ mod imp {
     use std::cell::{Cell, RefCell};
 
     use crate::glib::clone;
-    use crate::globals::TRANSMIT_URI_PREFIX;
+    //use crate::util::WormholeTransferURI;
     use gtk::gio::AppInfo;
     use gtk::CompositeTemplate;
     use once_cell::sync::OnceCell;
@@ -132,6 +122,9 @@ mod imp {
 
         // Handle to the progress calculation
         pub progress: RefCell<Option<FileTransferProgress>>,
+
+        // The rendezvous url in use
+        pub rendezvous_url: RefCell<Option<url::Url>>,
 
         // The transit url in use
         pub transit_url: RefCell<Option<url::Url>>,
@@ -204,7 +197,14 @@ mod imp {
                     let window = WarpApplicationWindow::default();
                     let clipboard = window.display().clipboard();
 
-                    let link = format!("{}{}", TRANSMIT_URI_PREFIX, code);
+                    /*let uri = WormholeTransferURI {
+                        code: Code(code.to_string()),
+                        version: 0,
+                        rendezvous_server: obj.imp().rendezvous_url.borrow().clone().unwrap(),
+                        direction: TransferDirection::Receive,
+                    };
+                    clipboard.set_text(&uri.create_uri());*/
+                    let link = format!("warp://recv/{}", code);
                     clipboard.set_text(&link);
 
                     // Translators: Notification when clicking on "Copy Link to Clipboard" button
@@ -338,17 +338,19 @@ impl ActionView {
                 }
                 TransferDirection::Receive => {}
             },
-            UIState::HasCode(code) => match direction {
+            UIState::HasCode(uri) => match direction {
                 TransferDirection::Send => {
                     imp.status_page.set_icon_name(Some("code-symbolic"));
                     // Translators: Title, this is a noun
                     imp.status_page.set_title(&gettext("Your Transmit Code"));
+                    //imp.status_page.set_paintable(Some(&uri.to_paintable_qr()));
+                    //imp.status_page.add_css_class("qr");
                     imp.status_page.set_description(Some(&gettext(
                         // Translators: Description, Code in box below
                         "The receiver needs to enter this code to begin the file transfer",
                     )));
                     imp.code_box.set_visible(true);
-                    imp.code_entry.set_text(code);
+                    imp.code_entry.set_text(uri.code.as_ref());
                     imp.progress_bar.set_visible(false);
                 }
                 TransferDirection::Receive => {
@@ -359,13 +361,14 @@ impl ActionView {
                     imp.status_page.set_description(Some(&gettextf(
                         // Translators: Description, Transfer Code
                         "Connecting to peer with code “{}”",
-                        &[&code],
+                        &[&uri.code],
                     )));
                     imp.progress_bar.set_visible(true);
                 }
             },
             UIState::Connected => {
                 // Translators: Title
+                imp.status_page.remove_css_class("qr");
                 imp.status_page.set_title(&gettext("Connected to Peer"));
                 imp.code_box.set_visible(false);
                 imp.progress_bar.set_visible(true);
@@ -629,8 +632,8 @@ impl ActionView {
         self.set_direction(direction);
         self.set_ui_state(UIState::Initial);
 
-        let _rendezvous_url = url::Url::parse(
-            WarpApplicationWindow::default()
+        let rendezvous_url = url::Url::parse(
+            &WarpApplicationWindow::default()
                 .config()
                 .rendezvous_server_url_or_default(),
         )
@@ -639,9 +642,10 @@ impl ActionView {
                 "Error parsing rendezvous server URL. An invalid URL was entered in the settings.",
             ))
         })?;
+        self.imp().rendezvous_url.replace(Some(rendezvous_url));
 
         let transit_url = url::Url::parse(
-            WarpApplicationWindow::default()
+            &WarpApplicationWindow::default()
                 .config()
                 .transit_server_url_or_default(),
         )
@@ -656,12 +660,21 @@ impl ActionView {
         Ok(())
     }
 
-    async fn transmit_receive(&self, download_path: PathBuf, code: Code) -> Result<(), AppError> {
+    async fn transmit_receive(
+        &self,
+        download_path: PathBuf,
+        code: Code,
+        app_cfg: AppConfig<AppVersion>,
+    ) -> Result<(), AppError> {
         self.prepare_transmit(TransferDirection::Receive)?;
-        self.set_ui_state(UIState::HasCode(code.clone()));
+        let uri = WormholeTransferURI::from_app_cfg_with_code_direction(
+            &app_cfg,
+            &code,
+            TransferDirection::Send,
+        );
+        self.set_ui_state(UIState::HasCode(uri));
 
         WarpApplicationWindow::default().add_code(code.clone());
-        let app_cfg = WarpApplicationWindow::default().config().app_cfg();
 
         let (_welcome, connection) = spawn_async(cancelable_future(
             Wormhole::connect_with_code(app_cfg, code),
@@ -747,15 +760,18 @@ impl ActionView {
         Ok(())
     }
 
-    async fn transmit_send(&self, path: PathBuf) -> Result<(), AppError> {
+    async fn transmit_send(
+        &self,
+        path: PathBuf,
+        app_cfg: AppConfig<AppVersion>,
+    ) -> Result<(), AppError> {
         self.prepare_transmit(TransferDirection::Send)?;
         self.set_ui_state(UIState::RequestCode);
 
         let (mut file, path) = self.prepare_and_open_file(&path).await?;
-        let app_cfg = WarpApplicationWindow::default().config().app_cfg();
 
         let res = spawn_async(cancelable_future(
-            Wormhole::connect_without_code(app_cfg, 4),
+            Wormhole::connect_without_code(app_cfg.clone(), 4),
             Self::cancel_future(),
         ))
         .await?;
@@ -768,7 +784,13 @@ impl ActionView {
         };
 
         WarpApplicationWindow::default().add_code(welcome.code.clone());
-        self.set_ui_state(UIState::HasCode(welcome.code.clone()));
+        let uri = WormholeTransferURI::from_app_cfg_with_code_direction(
+            &app_cfg,
+            &welcome.code,
+            TransferDirection::Receive,
+        );
+        self.set_ui_state(UIState::HasCode(uri));
+
         let connection =
             spawn_async(cancelable_future(connection, Self::cancel_future())).await??;
         self.set_ui_state(UIState::Connected);
@@ -972,17 +994,21 @@ impl ActionView {
             .transmit_error(error);
     }
 
-    pub fn send_file(&self, path: PathBuf) {
+    pub fn send_file(&self, path: PathBuf, app_cfg: AppConfig<AppVersion>) {
         log::info!("Sending file: {}", path.display());
         let obj = self.clone();
 
         main_async_local(Self::transmit_error_handler, async move {
-            obj.transmit_send(path).await?;
+            obj.transmit_send(path, app_cfg).await?;
             Ok(())
         });
     }
 
-    fn receive_file_impl(&self, code: Code) -> Result<(), AppError> {
+    fn receive_file_impl(
+        &self,
+        code: Code,
+        app_cfg: AppConfig<AppVersion>,
+    ) -> Result<(), AppError> {
         let path = if let Some(downloads) = glib::user_special_dir(glib::UserDirectory::Downloads) {
             downloads
         } else {
@@ -995,17 +1021,16 @@ impl ActionView {
         let obj = self.clone();
 
         main_async_local(Self::transmit_error_handler, async move {
-            obj.transmit_receive(path, code).await?;
+            obj.transmit_receive(path, code, app_cfg).await?;
             Ok(())
         });
 
         Ok(())
     }
 
-    pub fn receive_file(&self, code: Code) {
+    pub fn receive_file(&self, code: Code, app_cfg: AppConfig<AppVersion>) {
         log::info!("Receiving file with code '{}'", code);
-
-        if let Err(err) = self.receive_file_impl(code) {
+        if let Err(err) = self.receive_file_impl(code, app_cfg) {
             self.transmit_error(err);
         }
     }

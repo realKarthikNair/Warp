@@ -3,3 +3,7 @@
   border-bottom-left-radius: 12px;
   border-bottom-right-radius: 12px;
 }
+
+statuspage.qr .icon {
+  -gtk-icon-size: 192px;
+}

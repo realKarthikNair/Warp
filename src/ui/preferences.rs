@@ -109,9 +109,9 @@ mod imp {
             );
 
             self.rendezvous_server_url_entry
-                .set_placeholder_text(Some(globals::WORMHOLE_RENDEZVOUS_RELAY_DEFAULT));
+                .set_placeholder_text(Some(globals::WORMHOLE_DEFAULT_RENDEZVOUS_SERVER.as_str()));
             self.transit_server_url_entry
-                .set_placeholder_text(Some(globals::WORMHOLE_TRANSIT_RELAY_DEFAULT));
+                .set_placeholder_text(Some(globals::WORMHOLE_DEFAULT_TRANSIT_RELAY.as_str()));
         }
     }
 

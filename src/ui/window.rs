@@ -7,9 +7,16 @@ use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use gtk::{gio, glib, ResponseType};
 use std::cell::RefMut;
+use std::str::FromStr;
+use wormhole::transfer::AppVersion;
+use wormhole::AppConfig;
 
 use crate::ui::application::WarpApplication;
-use crate::util::{error::UiError, extract_transmit_code, future::main_async_local_infallible};
+use crate::util::error::AppError;
+use crate::util::{
+    error::UiError, extract_transmit_code, extract_transmit_uri,
+    future::main_async_local_infallible, TransferDirection, WormholeTransferURI,
+};
 
 mod imp {
     use super::*;
@@ -25,7 +32,7 @@ mod imp {
     use gtk::{CompositeTemplate, Inhibit};
     use once_cell::sync::OnceCell;
 
-    #[derive(Debug, Default, CompositeTemplate)]
+    #[derive(Default, CompositeTemplate)]
     #[template(resource = "/app/drey/Warp/ui/window.ui")]
     pub struct WarpApplicationWindow {
         #[template_child]
@@ -180,7 +187,7 @@ mod imp {
                         if let Some(file) = chooser.file() {
                             if let Some(path) = file.path() {
                                 log::debug!("Picked file: {}", path.display());
-                                obj.imp().action_view.send_file(path);
+                                obj.imp().action_view.send_file(path, obj.config().app_cfg());
                             } else {
                                 log::error!("File chooser has file but path is None")
                             }
@@ -243,7 +250,7 @@ mod imp {
                     clone!(@weak obj => @default-return false, move |_target, value, _x, _y| {
                         if let Ok(file) = value.get::<gio::File>() {
                             if let Some(path) = file.path() {
-                                obj.action_view().send_file(path);
+                                obj.action_view().send_file(path, obj.config().app_cfg());
                                 return true;
                             }
                         }
@@ -347,9 +354,12 @@ impl WarpApplicationWindow {
 
     pub fn receive_file_button(&self) {
         let text = self.imp().code_entry.text();
+        let uri = extract_transmit_uri(&text).and_then(|s| WormholeTransferURI::from_str(&s).ok());
         let code = if !TRANSMIT_CODE_MATCH_REGEX.is_match(&text) {
-            if let Some(code) = extract_transmit_code(&text) {
-                code
+            if let Some(uri) = &uri {
+                uri.code.clone()
+            } else if let Some(code) = extract_transmit_code(&text) {
+                wormhole::Code(code)
             } else {
                 UiError::new(&gettextf(
                     "“{}” appears to be an invalid Transmit Code. Please try again.",
@@ -359,10 +369,16 @@ impl WarpApplicationWindow {
                 return;
             }
         } else {
-            text.to_string()
+            wormhole::Code(text.to_string())
         };
 
-        self.action_view().receive_file(wormhole::Code(code));
+        let app_cfg = if let Some(uri) = uri {
+            uri.to_app_cfg()
+        } else {
+            self.config().app_cfg()
+        };
+
+        self.action_view().receive_file(code, app_cfg);
     }
 
     pub fn action_view_showing(&self) -> bool {
@@ -413,12 +429,22 @@ impl WarpApplicationWindow {
                 let clipboard = obj.display().clipboard();
                 let text = clipboard.read_text_future().await;
                 if let Ok(Some(text)) = text {
-                    if let Some(code) = extract_transmit_code(&text) {
-                        if imp.code_entry.text() != code
+                    let extracted_data = if let Some(uri_str) = extract_transmit_uri(&text) {
+                        if let Ok(uri) = WormholeTransferURI::from_str(&uri_str) {
+                            Some((uri_str, uri.code.0))
+                        } else {
+                            None
+                        }
+                    } else {
+                        extract_transmit_code(&text).map(|text| (text.clone(), text))
+                    };
+
+                    if let Some((extracted_text, code)) = extracted_data {
+                        if imp.code_entry.text() != extracted_text
                             && !imp.generated_transmit_codes.borrow().contains(&code)
                         {
                             let imp = obj.imp();
-                            imp.code_entry.set_text(&code);
+                            imp.code_entry.set_text(&extracted_text);
                             imp.toast_overlay
                                 .add_toast(imp.inserted_code_toast.get().unwrap());
                             imp.inserted_code_toast_showing.set(true);
@@ -437,9 +463,17 @@ impl WarpApplicationWindow {
         self.imp().action_view.clone()
     }
 
-    pub fn open_code_from_uri(&self, code: String) {
-        self.imp().stack.set_visible_child_name("receive");
-        self.action_view().receive_file(wormhole::Code(code));
+    pub fn open_code_from_uri(&self, uri: WormholeTransferURI) {
+        let app_cfg: AppConfig<AppVersion> = uri.to_app_cfg();
+        if uri.direction == TransferDirection::Receive {
+            self.imp().stack.set_visible_child_name("receive");
+            self.action_view().receive_file(uri.code, app_cfg);
+        } else {
+            let err = UiError::new(&gettext(
+                "Sending files with a preconfigured code is not yet supported",
+            ));
+            AppError::from(err).show_error_dialog(self);
+        }
     }
 }
 
