@@ -123,6 +123,9 @@ mod imp {
         // Handle to the progress calculation
         pub progress: RefCell<Option<FileTransferProgress>>,
 
+        // The rendezvous url in use
+        pub rendezvous_url: RefCell<Option<url::Url>>,
+
         // The transit url in use
         pub transit_url: RefCell<Option<url::Url>>,
     }
@@ -194,7 +197,12 @@ mod imp {
                     let window = WarpApplicationWindow::default();
                     let clipboard = window.display().clipboard();
 
-                    let uri = WormholeTransferURI::new(&code);
+                    let uri = WormholeTransferURI {
+                        code: Code(code.to_string()),
+                        version: 0,
+                        rendezvous_server: obj.imp().rendezvous_url.borrow().clone().unwrap(),
+                        direction: TransferDirection::Receive,
+                    };
                     clipboard.set_text(&uri.create_uri());
 
                     // Translators: Notification when clicking on "Copy Link to Clipboard" button
@@ -622,8 +630,8 @@ impl ActionView {
         self.set_direction(direction);
         self.set_ui_state(UIState::Initial);
 
-        let _rendezvous_url = url::Url::parse(
-            WarpApplicationWindow::default()
+        let rendezvous_url = url::Url::parse(
+            &WarpApplicationWindow::default()
                 .config()
                 .rendezvous_server_url_or_default(),
         )
@@ -632,9 +640,10 @@ impl ActionView {
                 "Error parsing rendezvous server URL. An invalid URL was entered in the settings.",
             ))
         })?;
+        self.imp().rendezvous_url.replace(Some(rendezvous_url));
 
         let transit_url = url::Url::parse(
-            WarpApplicationWindow::default()
+            &WarpApplicationWindow::default()
                 .config()
                 .transit_server_url_or_default(),
         )

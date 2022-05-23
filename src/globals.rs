@@ -3,13 +3,16 @@ use once_cell::sync::Lazy;
 use regex::Regex;
 use std::sync::Mutex;
 
-pub const WORMHOLE_DEFAULT_RENDEZVOUS_SERVER: &str = "ws://relay.magic-wormhole.io:4000";
-pub const WORMHOLE_DEFAULT_TRANSIT_RELAY: &str = "tcp://transit.magic-wormhole.io:4001";
+pub const WORMHOLE_DEFAULT_RENDEZVOUS_SERVER: Lazy<url::Url> =
+    Lazy::new(|| url::Url::parse("ws://relay.magic-wormhole.io:4000").unwrap());
+pub const WORMHOLE_DEFAULT_TRANSIT_RELAY: Lazy<url::Url> =
+    Lazy::new(|| url::Url::parse("tcp://transit.magic-wormhole.io:4001").unwrap());
 pub const WORMHOLE_DEFAULT_APPID_STR: &str = "lothar.com/wormhole/text-or-file-xfer";
 
-pub static TRANSMIT_CODE_FIND_REGEX: Lazy<Regex> = Lazy::new(|| Regex::new(r"(\d+-\S+)").unwrap());
-pub static TRANSMIT_CODE_MATCH_REGEX: Lazy<Regex> =
-    Lazy::new(|| Regex::new(r"(^\d+-\S+$)").unwrap());
+pub static TRANSMIT_URI_FIND_REGEX: Lazy<Regex> =
+    Lazy::new(|| Regex::new(r"wormhole-transfer:\d+-\S+").unwrap());
+pub static TRANSMIT_CODE_FIND_REGEX: Lazy<Regex> = Lazy::new(|| Regex::new(r"\d+-\S+").unwrap());
+pub static TRANSMIT_CODE_MATCH_REGEX: Lazy<Regex> = Lazy::new(|| Regex::new(r"^\d+-\S+$").unwrap());
 
 #[cfg(debug_assertions)]
 pub const DEBUG_BUILD: bool = true;

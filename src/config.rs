@@ -106,19 +106,19 @@ impl PersistentConfig {
         path
     }
 
-    pub fn rendezvous_server_url_or_default(&self) -> &str {
+    pub fn rendezvous_server_url_or_default(&self) -> String {
         if let Some(url) = &self.rendezvous_server_url {
-            url
+            url.to_string()
         } else {
-            &*globals::WORMHOLE_DEFAULT_RENDEZVOUS_SERVER
+            (*globals::WORMHOLE_DEFAULT_RENDEZVOUS_SERVER).to_string()
         }
     }
 
-    pub fn transit_server_url_or_default(&self) -> &str {
+    pub fn transit_server_url_or_default(&self) -> String {
         if let Some(url) = &self.transit_server_url {
-            url
+            url.to_string()
         } else {
-            &*globals::WORMHOLE_DEFAULT_TRANSIT_RELAY
+            (*globals::WORMHOLE_DEFAULT_TRANSIT_RELAY).to_string()
         }
     }
 
@@ -126,6 +126,7 @@ impl PersistentConfig {
         let rendezvous_url = self
             .rendezvous_server_url_or_default()
             .trim_end_matches("/v1")
+            .trim_end_matches('/')
             .to_string();
 
         // Make sure we have /v1 appended exactly once

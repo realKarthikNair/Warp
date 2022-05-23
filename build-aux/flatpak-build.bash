@@ -5,7 +5,8 @@ REPO_DIR=flatpak_repo
 
 if [[ $1 == "dev" ]]; then
   echo "Using devel manifest"
-  MANIFEST="$APP_ID.Devel.json"
+  APP_ID="$APP_ID.Devel"
+  MANIFEST="$APP_ID.json"
 elif [[ $1 == "release" ]]; then
   echo "Using release manifest"
   MANIFEST="$APP_ID.yaml"

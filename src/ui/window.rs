@@ -7,14 +7,15 @@ use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use gtk::{gio, glib, ResponseType};
 use std::cell::RefMut;
+use std::str::FromStr;
 use wormhole::transfer::AppVersion;
 use wormhole::AppConfig;
 
 use crate::ui::application::WarpApplication;
 use crate::util::error::AppError;
 use crate::util::{
-    error::UiError, extract_transmit_code, future::main_async_local_infallible, TransferDirection,
-    WormholeTransferURI,
+    error::UiError, extract_transmit_code, extract_transmit_uri,
+    future::main_async_local_infallible, TransferDirection, WormholeTransferURI,
 };
 
 mod imp {
@@ -353,9 +354,14 @@ impl WarpApplicationWindow {
 
     pub fn receive_file_button(&self) {
         let text = self.imp().code_entry.text();
+        let uri = extract_transmit_uri(&text)
+            .map(|s| WormholeTransferURI::from_str(&s).ok())
+            .flatten();
         let code = if !TRANSMIT_CODE_MATCH_REGEX.is_match(&text) {
-            if let Some(code) = extract_transmit_code(&text) {
-                code
+            if let Some(uri) = &uri {
+                uri.code.clone()
+            } else if let Some(code) = extract_transmit_code(&text) {
+                wormhole::Code(code)
             } else {
                 UiError::new(&gettextf(
                     "“{}” appears to be an invalid Transmit Code. Please try again.",
@@ -365,11 +371,16 @@ impl WarpApplicationWindow {
                 return;
             }
         } else {
-            text.to_string()
+            wormhole::Code(text.to_string())
         };
 
-        self.action_view()
-            .receive_file(wormhole::Code(code), self.config().app_cfg());
+        let app_cfg = if let Some(uri) = uri {
+            uri.to_app_cfg()
+        } else {
+            self.config().app_cfg()
+        };
+
+        self.action_view().receive_file(code, app_cfg);
     }
 
     pub fn action_view_showing(&self) -> bool {
@@ -420,12 +431,20 @@ impl WarpApplicationWindow {
                 let clipboard = obj.display().clipboard();
                 let text = clipboard.read_text_future().await;
                 if let Ok(Some(text)) = text {
-                    if let Some(code) = extract_transmit_code(&text) {
-                        if imp.code_entry.text() != code
-                            && !imp.generated_transmit_codes.borrow().contains(&code)
+                    let extracted_text = if let Some(uri) = extract_transmit_uri(&text) {
+                        Some(uri)
+                    } else if let Some(text) = extract_transmit_code(&text) {
+                        Some(text)
+                    } else {
+                        None
+                    };
+
+                    if let Some(uri) = extracted_text {
+                        if imp.code_entry.text() != uri
+                            && !imp.generated_transmit_codes.borrow().contains(&uri)
                         {
                             let imp = obj.imp();
-                            imp.code_entry.set_text(&code);
+                            imp.code_entry.set_text(&uri);
                             imp.toast_overlay
                                 .add_toast(imp.inserted_code_toast.get().unwrap());
                             imp.inserted_code_toast_showing.set(true);
