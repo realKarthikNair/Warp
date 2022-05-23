@@ -431,20 +431,24 @@ impl WarpApplicationWindow {
                 let clipboard = obj.display().clipboard();
                 let text = clipboard.read_text_future().await;
                 if let Ok(Some(text)) = text {
-                    let extracted_text = if let Some(uri) = extract_transmit_uri(&text) {
-                        Some(uri)
+                    let extracted_data = if let Some(uri_str) = extract_transmit_uri(&text) {
+                        if let Ok(uri) = WormholeTransferURI::from_str(&uri_str) {
+                            Some((uri_str, uri.code.0))
+                        } else {
+                            None
+                        }
                     } else if let Some(text) = extract_transmit_code(&text) {
-                        Some(text)
+                        Some((text.clone(), text))
                     } else {
                         None
                     };
 
-                    if let Some(uri) = extracted_text {
-                        if imp.code_entry.text() != uri
-                            && !imp.generated_transmit_codes.borrow().contains(&uri)
+                    if let Some((extracted_text, code)) = extracted_data {
+                        if imp.code_entry.text() != extracted_text
+                            && !imp.generated_transmit_codes.borrow().contains(&code)
                         {
                             let imp = obj.imp();
-                            imp.code_entry.set_text(&uri);
+                            imp.code_entry.set_text(&extracted_text);
                             imp.toast_overlay
                                 .add_toast(imp.inserted_code_toast.get().unwrap());
                             imp.inserted_code_toast_showing.set(true);
