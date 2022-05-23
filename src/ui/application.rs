@@ -191,7 +191,7 @@ impl WarpApplication {
         let dialog = gtk::AboutDialog::builder()
             .logo_icon_name(globals::APP_ID)
             .license_type(gtk::License::Gpl30)
-            .website("https://gitlab.gnome.org/felinira/warp/")
+            .website("https://gitlab.gnome.org/World/warp/")
             .version(globals::VERSION)
             .transient_for(&self.main_window())
             .translator_credits(&gettext("translator-credits"))

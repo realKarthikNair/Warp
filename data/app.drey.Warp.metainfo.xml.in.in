@@ -24,36 +24,37 @@
   </description>
   <screenshots>
     <screenshot>
-      <image>https://gitlab.gnome.org/felinira/warp/raw/main/data/screenshots/screenshot1.png</image>
+      <image>https://gitlab.gnome.org/World/warp/raw/main/data/screenshots/screenshot1.png</image>
       <caption>Main Window</caption>
     </screenshot>
     <screenshot>
-      <image>https://gitlab.gnome.org/felinira/warp/raw/main/data/screenshots/screenshot2.png</image>
+      <image>https://gitlab.gnome.org/World/warp/raw/main/data/screenshots/screenshot2.png</image>
       <caption>Transmit Code</caption>
     </screenshot>
     <screenshot>
-      <image>https://gitlab.gnome.org/felinira/warp/raw/main/data/screenshots/screenshot3.png</image>
+      <image>https://gitlab.gnome.org/World/warp/raw/main/data/screenshots/screenshot3.png</image>
       <caption>Accept File Transfer</caption>
     </screenshot>
     <screenshot>
-      <image>https://gitlab.gnome.org/felinira/warp/raw/main/data/screenshots/screenshot4.png</image>
+      <image>https://gitlab.gnome.org/World/warp/raw/main/data/screenshots/screenshot4.png</image>
       <caption>Sending File</caption>
     </screenshot>
     <screenshot type="default">
-      <image>https://gitlab.gnome.org/felinira/warp/raw/main/data/screenshots/screenshot5.png</image>
+      <image>https://gitlab.gnome.org/World/warp/raw/main/data/screenshots/screenshot5.png</image>
       <caption>Receiving File</caption>
     </screenshot>
     <screenshot>
-      <image>https://gitlab.gnome.org/felinira/warp/raw/main/data/screenshots/screenshot6.png</image>
+      <image>https://gitlab.gnome.org/World/warp/raw/main/data/screenshots/screenshot6.png</image>
       <caption>File Transfer Complete</caption>
     </screenshot>
   </screenshots>
   <provides>
     <binary>warp</binary>
   </provides>
-  <url type="homepage">https://gitlab.gnome.org/felinira/warp</url>
-  <url type="bugtracker">https://gitlab.gnome.org/felinira/warp/issues</url>
+  <url type="homepage">https://apps.gnome.org/app/app.drey.Warp/</url>
+  <url type="bugtracker">https://gitlab.gnome.org/World/warp/issues</url>
   <url type="contact">https://matrix.to/#/#app.drey.Warp:matrix.org</url>
+  <url type="contribute">https://gitlab.gnome.org/World/warp/-/blob/main/CONTRIBUTING.md</url>
   <content_rating type="oars-1.0" />
   <releases>
     <release version="0.1.2" date="2022-05-17">

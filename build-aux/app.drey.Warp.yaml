@@ -26,7 +26,7 @@ modules:
       - -Dprofile=default
     sources:
       - type: git
-        url: https://gitlab.gnome.org/felinira/warp.git
+        url: https://gitlab.gnome.org/World/warp.git
         tag: v0.1.0
         commit: 808ad21eb6832d29fe3233ba08d72b079952c08d
         x-checker-data:

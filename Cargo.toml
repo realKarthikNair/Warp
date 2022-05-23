@@ -3,8 +3,8 @@ name = "warp"
 license = "GPL-3.0"
 version = "0.1.2"
 authors = ["Fina Wilke <code@felinira.net>"]
-homepage = "https://gitlab.gnome.org/felinira/warp/"
-repository = "https://gitlab.gnome.org/felinira/warp/"
+homepage = "https://apps.gnome.org/"
+repository = "https://gitlab.gnome.org/World/warp/"
 edition = "2021"
 default-run = "warp"
 

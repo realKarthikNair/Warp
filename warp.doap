@@ -6,8 +6,8 @@
 
   <name xml:lang="en">Warp</name>
   <shortdesc xml:lang="en">Fast and secure file transfer</shortdesc>
-  <homepage rdf:resource="https://gitlab.gnome.org/felinira/warp" />
-  <bug-database rdf:resource="https://gitlab.gnome.org/felinira/warp/issues"/>
+  <homepage rdf:resource="https://gitlab.gnome.org/World/warp" />
+  <bug-database rdf:resource="https://gitlab.gnome.org/World/warp/issues"/>
   <programming-language>Rust</programming-language>
 
   <maintainer>
