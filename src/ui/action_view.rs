@@ -6,7 +6,7 @@ use crate::ui::window::WarpApplicationWindow;
 use crate::util::error::*;
 use crate::util::future::*;
 use crate::util::{TransferDirection, WormholeTransferURI};
-use crate::WarpApplication;
+use crate::{globals, WarpApplication};
 use adw::gio::NotificationPriority;
 use gettextrs::*;
 use gtk::prelude::*;
@@ -345,10 +345,20 @@ impl ActionView {
                     imp.status_page.set_title(&gettext("Your Transmit Code"));
                     //imp.status_page.set_paintable(Some(&uri.to_paintable_qr()));
                     //imp.status_page.add_css_class("qr");
-                    imp.status_page.set_description(Some(&gettext(
-                        // Translators: Description, Code in box below
-                        "The receiver needs to enter this code to begin the file transfer",
-                    )));
+
+                    if imp.rendezvous_url.borrow().as_ref().unwrap()
+                        != &*globals::WORMHOLE_DEFAULT_RENDEZVOUS_SERVER
+                    {
+                        imp.status_page.set_description(Some(&gettext(
+                            // Translators: Description, Code in box below
+                            "The receiver needs to enter this code to begin the file transfer.\n\nYou have entered a custom rendezvous server URL in preferences. Please verify the receiver also uses the same rendezvous server.",
+                        )));
+                    } else {
+                        imp.status_page.set_description(Some(&gettext(
+                            // Translators: Description, Code in box below
+                            "The receiver needs to enter this code to begin the file transfer.",
+                        )));
+                    }
                     imp.code_box.set_visible(true);
                     imp.code_entry.set_text(uri.code.as_ref());
                     imp.progress_bar.set_visible(false);
