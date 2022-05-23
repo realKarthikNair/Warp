@@ -66,7 +66,7 @@ mod imp {
     use std::cell::{Cell, RefCell};
 
     use crate::glib::clone;
-    use crate::util::WormholeTransferURI;
+    //use crate::util::WormholeTransferURI;
     use gtk::gio::AppInfo;
     use gtk::CompositeTemplate;
     use once_cell::sync::OnceCell;
@@ -197,13 +197,15 @@ mod imp {
                     let window = WarpApplicationWindow::default();
                     let clipboard = window.display().clipboard();
 
-                    let uri = WormholeTransferURI {
+                    /*let uri = WormholeTransferURI {
                         code: Code(code.to_string()),
                         version: 0,
                         rendezvous_server: obj.imp().rendezvous_url.borrow().clone().unwrap(),
                         direction: TransferDirection::Receive,
                     };
-                    clipboard.set_text(&uri.create_uri());
+                    clipboard.set_text(&uri.create_uri());*/
+                    let link = format!("warp://recv/{}", code);
+                    clipboard.set_text(&link);
 
                     // Translators: Notification when clicking on "Copy Link to Clipboard" button
                     let toast = adw::Toast::new(&gettext("Copied Link to Clipboard"));
