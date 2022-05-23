@@ -36,7 +36,7 @@ start the file transmission. A $gui(Copy Transmit Link) button is available in t
 like this:
 
 [code]
-  warp://recv/{code}
+  wormhole-transfer:{code}
 
 == Transmit Relay
   [#transmit-relay]
