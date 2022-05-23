@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-05-24 01:11+0200\n"
+"POT-Creation-Date: 2022-05-12 17:10+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -208,7 +208,7 @@ msgstr ""
 #. (itstool) path: section/code
 #: help/C/details-glossary.page:36
 #, no-wrap
-msgid "wormhole-transfer:{code}"
+msgid "warp://recv/{code}"
 msgstr ""
 
 #. (itstool) path: section/title
