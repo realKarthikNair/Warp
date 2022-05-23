@@ -54,7 +54,6 @@
   <url type="homepage">https://apps.gnome.org/app/app.drey.Warp/</url>
   <url type="bugtracker">https://gitlab.gnome.org/World/warp/issues</url>
   <url type="contact">https://matrix.to/#/#app.drey.Warp:matrix.org</url>
-  <url type="contribute">https://gitlab.gnome.org/World/warp/-/blob/main/CONTRIBUTING.md</url>
   <content_rating type="oars-1.0" />
   <releases>
     <release version="0.1.2" date="2022-05-17">
