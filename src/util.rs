@@ -41,15 +41,14 @@ impl ToString for WormholeURIParseError {
 }
 
 #[derive(Debug)]
-pub struct WormholeURI {
+pub struct WormholeTransferURI {
     pub code: Code,
     pub version: usize,
-    pub app_id: String,
     pub rendezvous_server: String,
     pub direction: TransferDirection,
 }
 
-impl WormholeURI {
+impl WormholeTransferURI {
     pub fn new(code: &str) -> Self {
         let rendezvous_server = WarpApplicationWindow::default()
             .config()
@@ -59,23 +58,21 @@ impl WormholeURI {
         Self {
             code: Code(code.to_string()),
             version: 0,
-            app_id: globals::WORMHOLE_DEFAULT_APPID_STR.to_string(),
             rendezvous_server,
             direction: TransferDirection::Receive,
         }
     }
 
     pub fn create_uri(&self) -> String {
-        let mut uri =
-            url::Url::parse(&format!("wormhole:{}", urlencoding::encode(&self.code))).unwrap();
+        let mut uri = url::Url::parse(&format!(
+            "wormhole-transfer:{}",
+            urlencoding::encode(&self.code)
+        ))
+        .unwrap();
 
         if self.version != 0 {
             uri.query_pairs_mut()
                 .append_pair("version", &self.version.to_string());
-        }
-
-        if self.app_id != globals::WORMHOLE_DEFAULT_APPID_STR {
-            uri.query_pairs_mut().append_pair("appid", &self.app_id);
         }
 
         // We take the default here, not the current config. Any non-default should be in the uri.
@@ -85,7 +82,7 @@ impl WormholeURI {
         }
 
         if self.direction != TransferDirection::Receive {
-            uri.query_pairs_mut().append_pair("type", "send");
+            uri.query_pairs_mut().append_pair("role", "leader");
         }
 
         uri.to_string()
@@ -100,7 +97,6 @@ impl WormholeURI {
         Self {
             code: Code(code.to_string()),
             version: 0,
-            app_id: app_cfg.id.0.to_string(),
             rendezvous_server,
             direction,
         }
@@ -108,7 +104,7 @@ impl WormholeURI {
 
     pub fn to_app_cfg(&self) -> AppConfig<AppVersion> {
         AppConfig {
-            id: AppID::new(self.app_id.clone()),
+            id: AppID::new(globals::WORMHOLE_DEFAULT_APPID_STR),
             rendezvous_url: format!("{}/v1", self.rendezvous_server).into(),
             app_version: AppVersion {},
         }
@@ -126,12 +122,16 @@ impl WormholeURI {
     }
 }
 
-impl TryFrom<url::Url> for WormholeURI {
+impl TryFrom<url::Url> for WormholeTransferURI {
     type Error = WormholeURIParseError;
 
     fn try_from(uri: url::Url) -> Result<Self, Self::Error> {
         // Basic validation
-        if uri.scheme() != "wormhole" || uri.has_host() || uri.has_authority() || uri.path() == "" {
+        if uri.scheme() != "wormhole-transfer"
+            || uri.has_host()
+            || uri.has_authority()
+            || uri.path() == ""
+        {
             return Err(WormholeURIParseError(gettext("The URI format is invalid")));
         }
 
@@ -144,7 +144,7 @@ impl TryFrom<url::Url> for WormholeURI {
             )));
         }
 
-        let mut this = WormholeURI::new(&code);
+        let mut this = WormholeTransferURI::new(&code);
 
         for (field, value) in uri.query_pairs() {
             match &*field {
@@ -163,16 +163,15 @@ impl TryFrom<url::Url> for WormholeURI {
                         }
                     }
                 }
-                "appid" => this.app_id = value.to_string(),
                 "rendezvous" => this.rendezvous_server = value.to_string(),
-                "type" => {
-                    this.direction = if value == "recv" {
+                "role" => {
+                    this.direction = if value == "follower" {
                         TransferDirection::Receive
-                    } else if value == "send" {
+                    } else if value == "leader" {
                         TransferDirection::Send
                     } else {
                         return Err(WormholeURIParseError(gettextf(
-                            "The URI parameter 'type' must be 'recv' or 'send' (was: {})",
+                            "The URI parameter 'role' must be 'follower' or 'leader' (was: {})",
                             &[&value],
                         )));
                     }
@@ -190,7 +189,7 @@ impl TryFrom<url::Url> for WormholeURI {
     }
 }
 
-impl FromStr for WormholeURI {
+impl FromStr for WormholeTransferURI {
     type Err = WormholeURIParseError;
 
     fn from_str(uri_str: &str) -> Result<Self, Self::Err> {
@@ -202,20 +201,20 @@ impl FromStr for WormholeURI {
 
 #[cfg(test)]
 mod test {
-    use crate::util::{TransferDirection, WormholeURI};
+    use crate::util::{TransferDirection, WormholeTransferURI};
 
     #[test]
     fn test_create_uri() {
-        let params1 = WormholeURI::new("4-hurricane-equipment");
+        let params1 = WormholeTransferURI::new("4-hurricane-equipment");
         assert_eq!(params1.create_uri(), "wormhole:4-hurricane-equipment");
 
-        let params2 = WormholeURI::new("8-🙈-🙉-🙊");
+        let params2 = WormholeTransferURI::new("8-🙈-🙉-🙊");
         assert_eq!(
             params2.create_uri(),
             "wormhole:8-%F0%9F%99%88-%F0%9F%99%89-%F0%9F%99%8A"
         );
 
-        let mut params3 = WormholeURI::new("8-🙈-🙉-🙊");
+        let mut params3 = WormholeTransferURI::new("8-🙈-🙉-🙊");
         params3.app_id = "test-appid".to_string();
         params3.rendezvous_server = "ws://localhost:4000".to_string();
         params3.version = 1;
@@ -229,7 +228,7 @@ mod test {
         // Version != 0 would result in parse error
         params3.version = 0;
 
-        let parsed_params3 = params3.create_uri().parse::<WormholeURI>().unwrap();
+        let parsed_params3 = params3.create_uri().parse::<WormholeTransferURI>().unwrap();
         assert_eq!(params3.app_id, parsed_params3.app_id);
         assert_eq!(params3.rendezvous_server, parsed_params3.rendezvous_server);
         assert_eq!(params3.version, parsed_params3.version);

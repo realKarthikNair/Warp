@@ -5,7 +5,7 @@ use crate::glib::clone;
 use crate::ui::window::WarpApplicationWindow;
 use crate::util::error::*;
 use crate::util::future::*;
-use crate::util::{TransferDirection, WormholeURI};
+use crate::util::{TransferDirection, WormholeTransferURI};
 use crate::WarpApplication;
 use adw::gio::NotificationPriority;
 use gettextrs::*;
@@ -27,7 +27,7 @@ pub enum UIState {
     Initial,
     Archive,
     RequestCode,
-    HasCode(WormholeURI),
+    HasCode(WormholeTransferURI),
     Connected,
     AskConfirmation(String, u64),
     Transmitting(String, TransitInfo, SocketAddr),
@@ -66,7 +66,7 @@ mod imp {
     use std::cell::{Cell, RefCell};
 
     use crate::glib::clone;
-    use crate::util::WormholeURI;
+    use crate::util::WormholeTransferURI;
     use gtk::gio::AppInfo;
     use gtk::CompositeTemplate;
     use once_cell::sync::OnceCell;
@@ -194,7 +194,7 @@ mod imp {
                     let window = WarpApplicationWindow::default();
                     let clipboard = window.display().clipboard();
 
-                    let uri = WormholeURI::new(&code);
+                    let uri = WormholeTransferURI::new(&code);
                     clipboard.set_text(&uri.create_uri());
 
                     // Translators: Notification when clicking on "Copy Link to Clipboard" button
@@ -333,7 +333,6 @@ impl ActionView {
                     imp.status_page.set_icon_name(Some("code-symbolic"));
                     // Translators: Title, this is a noun
                     imp.status_page.set_title(&gettext("Your Transmit Code"));
-                    imp.status_page.set_icon_name(Some("code-symbolic"));
                     //imp.status_page.set_paintable(Some(&uri.to_paintable_qr()));
                     //imp.status_page.add_css_class("qr");
                     imp.status_page.set_description(Some(&gettext(
@@ -657,8 +656,11 @@ impl ActionView {
         app_cfg: AppConfig<AppVersion>,
     ) -> Result<(), AppError> {
         self.prepare_transmit(TransferDirection::Receive)?;
-        let uri =
-            WormholeURI::from_app_cfg_with_code_direction(&app_cfg, &code, TransferDirection::Send);
+        let uri = WormholeTransferURI::from_app_cfg_with_code_direction(
+            &app_cfg,
+            &code,
+            TransferDirection::Send,
+        );
         self.set_ui_state(UIState::HasCode(uri));
 
         WarpApplicationWindow::default().add_code(code.clone());
@@ -771,7 +773,7 @@ impl ActionView {
         };
 
         WarpApplicationWindow::default().add_code(welcome.code.clone());
-        let uri = WormholeURI::from_app_cfg_with_code_direction(
+        let uri = WormholeTransferURI::from_app_cfg_with_code_direction(
             &app_cfg,
             &welcome.code,
             TransferDirection::Receive,

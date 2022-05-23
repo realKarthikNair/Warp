@@ -16,7 +16,7 @@ mod imp {
     use super::*;
     use crate::util::error::{AppError, UiError};
     use crate::util::extract_transmit_code;
-    use crate::util::WormholeURI;
+    use crate::util::WormholeTransferURI;
     use gio::File;
     use glib::WeakRef;
     use once_cell::sync::OnceCell;
@@ -90,7 +90,7 @@ mod imp {
                         .action_view()
                         .receive_file(wormhole::Code(code), app.main_window().config().app_cfg());
                 } else {
-                    match files[0].uri().parse::<WormholeURI>() {
+                    match files[0].uri().parse::<WormholeTransferURI>() {
                         Ok(uri) => {
                             app.main_window().open_code_from_uri(uri);
                         }

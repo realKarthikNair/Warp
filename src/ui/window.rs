@@ -14,7 +14,7 @@ use crate::ui::application::WarpApplication;
 use crate::util::error::AppError;
 use crate::util::{
     error::UiError, extract_transmit_code, future::main_async_local_infallible, TransferDirection,
-    WormholeURI,
+    WormholeTransferURI,
 };
 
 mod imp {
@@ -444,7 +444,7 @@ impl WarpApplicationWindow {
         self.imp().action_view.clone()
     }
 
-    pub fn open_code_from_uri(&self, uri: WormholeURI) {
+    pub fn open_code_from_uri(&self, uri: WormholeTransferURI) {
         let app_cfg: AppConfig<AppVersion> = uri.to_app_cfg();
         if uri.direction == TransferDirection::Receive {
             self.imp().stack.set_visible_child_name("receive");
