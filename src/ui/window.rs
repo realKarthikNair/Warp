@@ -354,9 +354,7 @@ impl WarpApplicationWindow {
 
     pub fn receive_file_button(&self) {
         let text = self.imp().code_entry.text();
-        let uri = extract_transmit_uri(&text)
-            .map(|s| WormholeTransferURI::from_str(&s).ok())
-            .flatten();
+        let uri = extract_transmit_uri(&text).and_then(|s| WormholeTransferURI::from_str(&s).ok());
         let code = if !TRANSMIT_CODE_MATCH_REGEX.is_match(&text) {
             if let Some(uri) = &uri {
                 uri.code.clone()
@@ -437,10 +435,8 @@ impl WarpApplicationWindow {
                         } else {
                             None
                         }
-                    } else if let Some(text) = extract_transmit_code(&text) {
-                        Some((text.clone(), text))
                     } else {
-                        None
+                        extract_transmit_code(&text).map(|text| (text.clone(), text))
                     };
 
                     if let Some((extracted_text, code)) = extracted_data {

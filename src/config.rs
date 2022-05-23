@@ -110,7 +110,7 @@ impl PersistentConfig {
         if let Some(url) = &self.rendezvous_server_url {
             url.to_string()
         } else {
-            (*globals::WORMHOLE_DEFAULT_RENDEZVOUS_SERVER).to_string()
+            globals::WORMHOLE_DEFAULT_RENDEZVOUS_SERVER.to_string()
         }
     }
 
@@ -118,7 +118,7 @@ impl PersistentConfig {
         if let Some(url) = &self.transit_server_url {
             url.to_string()
         } else {
-            (*globals::WORMHOLE_DEFAULT_TRANSIT_RELAY).to_string()
+            globals::WORMHOLE_DEFAULT_TRANSIT_RELAY.to_string()
         }
     }
 

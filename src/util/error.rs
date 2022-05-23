@@ -169,12 +169,10 @@ impl AppError {
                     } else {
                         gettextf("The rendezvous server responded with an unknown message: {}", &[msg])
                     }
+                } else if WarpApplicationWindow::default().config().rendezvous_server_url.is_some() {
+                    gettext("Error connecting to the rendezvous server.\nYou have entered a custom rendezvous server URL in preferences. Please verify the URL is correct and the server is working.")
                 } else {
-                    if WarpApplicationWindow::default().config().rendezvous_server_url.is_some() {
-                        gettext("Error connecting to the rendezvous server.\nYou have entered a custom rendezvous server URL in preferences. Please verify the URL is correct and the server is working.")
-                    } else {
-                        gettext("Error connecting to the rendezvous server.\nPlease try again later / verify you are connected to the internet.")
-                    }
+                    gettext("Error connecting to the rendezvous server.\nPlease try again later / verify you are connected to the internet.")
                 }
             },
             WormholeError::PakeFailed => gettext(
