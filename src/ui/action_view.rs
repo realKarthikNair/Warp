@@ -1023,7 +1023,7 @@ impl ActionView {
             downloads
         } else {
             return Err(UiError::new(&gettext(
-                "Downloads dir missing. Please set XDG_DOWNLOADS_DIR",
+                "Downloads dir missing. Please set XDG_DOWNLOAD_DIR",
             ))
             .into());
         };
