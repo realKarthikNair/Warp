@@ -2508,6 +2508,7 @@ dependencies = [
  "gettext-rs",
  "gio",
  "gtk4",
+ "gvdb",
  "gvdb-macros",
  "libadwaita",
  "log",

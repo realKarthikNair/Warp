@@ -129,7 +129,27 @@ impl WarpApplication {
     }
 
     pub fn setup_gresources(&self) {
-        let data = glib::Bytes::from(globals::GRESOURCE_DATA);
+        #[cfg(all(debug_assertions, not(feature = "meson")))]
+        let data = {
+            log::info!("Loading GResource data from directory 'data/resources'");
+            gvdb::gresource::GResourceBuilder::from_directory(
+                "/app/drey/Warp",
+                &std::path::PathBuf::from("data/resources"),
+                true,
+                true,
+            )
+            .map(|builder| glib::Bytes::from(&builder.build().unwrap()))
+            .unwrap_or_else(|_| {
+                log::warn!("Loading fallback precompiled GResource data because the directory does not exist");
+                glib::Bytes::from(globals::GRESOURCE_DATA)
+            })
+        };
+        #[cfg(any(not(debug_assertions), feature = "meson"))]
+        let data = {
+            log::debug!("Loading precompiled GResource data");
+            glib::Bytes::from(globals::GRESOURCE_DATA)
+        };
+
         let resource = gio::Resource::from_data(&data).expect("Error loading resource bundle");
         gio::resources_register(&resource);
     }

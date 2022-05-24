@@ -8,6 +8,7 @@ global_conf.set_quoted('LOCALEDIR', localedir)
 
 cargo_options = [ '--manifest-path', meson.project_source_root() / 'Cargo.toml' ]
 cargo_options += [ '--target-dir', meson.project_build_root() / 'src' ]
+cargo_options += [ '--features', 'meson' ]
 
 if get_option('profile') == 'default' or get_option('profile') == 'release'
   cargo_options += [ '--release' ]
