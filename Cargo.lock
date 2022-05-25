@@ -1404,8 +1404,8 @@ dependencies = [
 
 [[package]]
 name = "magic-wormhole"
-version = "0.4.0"
-source = "git+https://github.com/magic-wormhole/magic-wormhole.rs?branch=dev#e6be77882bbecd1c6b8ad291188239ac2551cd23"
+version = "0.5.0"
+source = "git+https://github.com/magic-wormhole/magic-wormhole.rs?branch=dev#2a61fc08ff0e3f7f589da9c66a15a13b68cdf024"
 dependencies = [
  "async-io",
  "async-std",

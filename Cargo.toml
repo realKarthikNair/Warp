@@ -23,7 +23,7 @@ gdk = {version = "0.4.7", package = "gdk4", features = ["v4_6"]}
 gio = {version = "0.15.10", package = "gio", features = ["v2_70"]}
 adw = {version = "0.1.0", package = "libadwaita"}
 async-channel = "1.6.1"
-wormhole = { git = "https://github.com/magic-wormhole/magic-wormhole.rs", package = "magic-wormhole", branch = "dev", version = "0.4.0" }
+wormhole = { git = "https://github.com/magic-wormhole/magic-wormhole.rs", package = "magic-wormhole", branch = "dev", version = "0.5.0" }
 futures = "0.3.21"
 url = "2.2.2"
 urlencoding = "2.1.0"
