@@ -2,7 +2,7 @@
 
 Warp allows you to securely send files to each other via the internet or local network by exchanging a word-based code.
 
-The best transfer method will be determined using the “Magic Wormhole” protocol which includes local network transfer if possible. File transfers are encrypted.
+The best transfer method will be determined using the [Magic Wormhole](https://github.com/magic-wormhole/magic-wormhole#magic-wormhole) protocol which includes local network transfer if possible. File transfers are encrypted.
 
 [<img width='240' alt='Download on Flathub' src='https://flathub.org/assets/badges/flathub-badge-en.png' />](https://flathub.org/apps/details/app.drey.Warp)
 
