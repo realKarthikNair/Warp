@@ -56,21 +56,26 @@ else
     echo "--Checking style pass--"
 fi
 
+echo "--Checking clippy--"
+cargo clippy -q -- -D warnings
+if test $? != 0; then
+    echo "--Checking clippy fail--"
+    echo "Please fix the above issues, either manually or by running: cargo fix"
+
+    exit -1
+fi
+
 echo "--Checking manifest and generated sources--"
 ./build-aux/generate-manifest.bash 2> /dev/null
 git diff --exit-code build-aux/app.drey.Warp.Devel.json
 if test $? != 0; then
     echo "--Checking manifest fail--"
-    git diff build-aux/app.drey.Warp.Devel.json
-
     exit -1
 fi
 
 git diff --exit-code build-aux/cargo-sources.json
 if test $? != 0; then
     echo "--Checking cargo sources fail--"
-    git diff build-aux/cargo-sources.json
-
     exit -1
 fi
 
@@ -79,7 +84,5 @@ echo "--Checking POTFILES--"
 git diff --exit-code po/POTFILES.in
 if test $? != 0; then
     echo "--Checking POTFILES fail--"
-    git diff po/POTFILES.in
-
     exit -1
 fi
