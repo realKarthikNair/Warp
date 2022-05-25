@@ -2,8 +2,8 @@
     {
         "type": "git",
         "url": "https://github.com/magic-wormhole/magic-wormhole.rs",
-        "commit": "e6be77882bbecd1c6b8ad291188239ac2551cd23",
-        "dest": "flatpak-cargo/git/magic-wormhole.rs-e6be778"
+        "commit": "2a61fc08ff0e3f7f589da9c66a15a13b68cdf024",
+        "dest": "flatpak-cargo/git/magic-wormhole.rs-2a61fc0"
     },
     {
         "type": "archive",
@@ -1724,7 +1724,7 @@
     {
         "type": "shell",
         "commands": [
-            "cp -r --reflink=auto \"flatpak-cargo/git/magic-wormhole.rs-e6be778/.\" \"cargo/vendor/magic-wormhole\""
+            "cp -r --reflink=auto \"flatpak-cargo/git/magic-wormhole.rs-2a61fc0/.\" \"cargo/vendor/magic-wormhole\""
         ]
     },
     {
