@@ -1,11 +1,5 @@
 [
     {
-        "type": "git",
-        "url": "https://github.com/magic-wormhole/magic-wormhole.rs",
-        "commit": "2a61fc08ff0e3f7f589da9c66a15a13b68cdf024",
-        "dest": "flatpak-cargo/git/magic-wormhole.rs-2a61fc0"
-    },
-    {
         "type": "archive",
         "archive-type": "tar-gzip",
         "url": "https://static.crates.io/crates/addr2line/addr2line-0.17.0.crate",
@@ -1722,15 +1716,16 @@
         "dest-filename": ".cargo-checksum.json"
     },
     {
-        "type": "shell",
-        "commands": [
-            "cp -r --reflink=auto \"flatpak-cargo/git/magic-wormhole.rs-2a61fc0/.\" \"cargo/vendor/magic-wormhole\""
-        ]
+        "type": "archive",
+        "archive-type": "tar-gzip",
+        "url": "https://static.crates.io/crates/magic-wormhole/magic-wormhole-0.5.0.crate",
+        "sha256": "761a0fd7d0581d9e55923eeb9b6c772c73b72fb13b154c3699cccc5b41d78f80",
+        "dest": "cargo/vendor/magic-wormhole-0.5.0"
     },
     {
         "type": "inline",
-        "contents": "{\"package\": null, \"files\": {}}",
-        "dest": "cargo/vendor/magic-wormhole",
+        "contents": "{\"package\": \"761a0fd7d0581d9e55923eeb9b6c772c73b72fb13b154c3699cccc5b41d78f80\", \"files\": {}}",
+        "dest": "cargo/vendor/magic-wormhole-0.5.0",
         "dest-filename": ".cargo-checksum.json"
     },
     {
@@ -3555,7 +3550,7 @@
     },
     {
         "type": "inline",
-        "contents": "[source.vendored-sources]\ndirectory = \"cargo/vendor\"\n\n[source.crates-io]\nreplace-with = \"vendored-sources\"\n\n[source.\"https://github.com/magic-wormhole/magic-wormhole.rs\"]\ngit = \"https://github.com/magic-wormhole/magic-wormhole.rs\"\nreplace-with = \"vendored-sources\"\nbranch = \"dev\"\n",
+        "contents": "[source.vendored-sources]\ndirectory = \"cargo/vendor\"\n\n[source.crates-io]\nreplace-with = \"vendored-sources\"\n",
         "dest": "cargo",
         "dest-filename": "config"
     }

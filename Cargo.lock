@@ -1405,7 +1405,8 @@ dependencies = [
 [[package]]
 name = "magic-wormhole"
 version = "0.5.0"
-source = "git+https://github.com/magic-wormhole/magic-wormhole.rs?branch=dev#2a61fc08ff0e3f7f589da9c66a15a13b68cdf024"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "761a0fd7d0581d9e55923eeb9b6c772c73b72fb13b154c3699cccc5b41d78f80"
 dependencies = [
  "async-io",
  "async-std",
