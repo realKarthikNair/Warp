@@ -552,7 +552,16 @@ impl ActionView {
                 WarpApplication::default()
                     .send_notification_if_background(Some("transfer-error"), &notification);
 
-                if !matches!(error, AppError::Canceled) {
+                let peer_canceled = if let AppError::Transfer {
+                    source: wormhole::transfer::TransferError::PeerError(msg),
+                } = error
+                {
+                    msg == "Task has been cancelled"
+                } else {
+                    false
+                };
+
+                if !matches!(error, AppError::Canceled) && !peer_canceled {
                     imp.copy_error_button.set_visible(true);
                 }
             }
@@ -587,8 +596,6 @@ impl ActionView {
         main_async_local_infallible(clone!(@strong self as obj => async move {
             let imp = obj.imp();
             imp.cancel_sender.get().unwrap().send(()).await.unwrap();
-
-            obj.transmit_cleanup();
             WarpApplicationWindow::default().navigate_back();
         }));
     }
@@ -865,6 +872,7 @@ impl ActionView {
                 let res = cancel_receiver.recv().await;
                 match res {
                     Ok(()) => {
+                        log::debug!("Canceled transfer");
                         break;
                     }
                     Err(err) => {
@@ -872,8 +880,6 @@ impl ActionView {
                     }
                 }
             }
-
-            log::debug!("Canceled transfer");
         }
     }
 
@@ -997,12 +1003,9 @@ impl ActionView {
         log::debug!("Transmit error");
 
         if *self.ui_state() != UIState::Initial {
-            if matches!(error, AppError::Canceled) {
-                // Canceled is initiated intentionally by the user
-                return;
-            }
-
-            self.set_ui_state(UIState::Error(error));
+            if !matches!(error, AppError::Canceled) {
+                self.set_ui_state(UIState::Error(error));
+            } // Canceled is initiated intentionally by the user
         } else {
             error.handle();
         }
