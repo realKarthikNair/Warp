@@ -3,7 +3,9 @@ Contributions of all kind and with all levels of experience are very welcome. Pl
 applies to this project.
 
 ## Translation
-As this application was recently approved to GNOME Circle, translations will soon be handled via [l10n.gnome.org](l10n.gnome.org). Please be patient while this is ongoing. A string freeze will be announced before the next release as well.
+The translation of Warp is managed by the GNOME Translation Project and the respective language teams. The translation status is available on the module page.
+
+[Translation status](https://l10n.gnome.org/module/warp/)
 
 ## Development
 ### Cargo
