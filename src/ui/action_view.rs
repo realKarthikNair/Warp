@@ -12,8 +12,8 @@ use gettextrs::*;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use gtk::{gio, glib, ResponseType};
-use scopeguard::ScopeGuard;
 use std::cell::Ref;
+use std::ffi::OsString;
 use std::future::Future;
 use std::net::{IpAddr, SocketAddr};
 use std::path::{Path, PathBuf};
@@ -25,13 +25,13 @@ use wormhole::{transfer, transit, AppConfig, Code, Wormhole};
 #[derive(Debug)]
 pub enum UIState {
     Initial,
-    Archive,
+    Archive(OsString),
     RequestCode,
     HasCode(WormholeTransferURI),
     Connected,
     AskConfirmation(String, u64),
     Transmitting(String, TransitInfo, SocketAddr),
-    Done(PathBuf),
+    Done(OsString),
     Error(AppError),
 }
 
@@ -40,7 +40,7 @@ impl PartialEq for UIState {
     fn eq(&self, other: &Self) -> bool {
         match self {
             UIState::Initial => matches!(other, UIState::Initial),
-            UIState::Archive => matches!(other, UIState::Archive),
+            UIState::Archive(_) => matches!(other, UIState::Archive(..)),
             UIState::RequestCode => matches!(other, UIState::RequestCode),
             UIState::HasCode(..) => matches!(other, UIState::HasCode(..)),
             UIState::Connected => matches!(other, UIState::Connected),
@@ -111,8 +111,11 @@ mod imp {
         pub continue_sender: OnceCell<async_channel::Sender<()>>,
         pub continue_receiver: OnceCell<async_channel::Receiver<()>>,
 
-        // Full path to the received/sent file
-        pub filename: RefCell<Option<PathBuf>>,
+        // Full path to the received / sent file
+        pub file_path: RefCell<Option<PathBuf>>,
+
+        // The user facing name of the file being received / send
+        pub file_name: RefCell<Option<OsString>>,
 
         // Whether we are currently sending or receiving
         pub direction: RefCell<TransferDirection>,
@@ -241,7 +244,7 @@ mod imp {
 
             self.open_button
                 .connect_clicked(clone!(@weak obj => move |_| {
-                    if let Some(filename) = obj.imp().filename.borrow().clone() {
+                    if let Some(filename) = obj.imp().file_path.borrow().clone() {
                         let uri = glib::filename_to_uri(filename, None);
                         if let Ok(uri) = uri {
                             let none: Option<&AppLaunchContext> = None;
@@ -299,7 +302,8 @@ impl ActionView {
         match &*ui_state {
             UIState::Initial => {
                 imp.canceled.set(false);
-                imp.filename.replace(None);
+                imp.file_path.replace(None);
+                imp.file_name.replace(None);
                 imp.progress.replace(None);
                 imp.open_button.set_visible(false);
                 imp.cancel_button.set_visible(true);
@@ -313,14 +317,17 @@ impl ActionView {
                     .set_icon_name(Some("arrows-questionmark-symbolic"));
                 self.show_progress_indeterminate(true);
             }
-            UIState::Archive => match direction {
+            UIState::Archive(filename) => match direction {
                 TransferDirection::Send => {
                     imp.status_page.set_icon_name(Some("drawer-symbolic"));
                     // Translators: Title
                     imp.status_page.set_title(&gettext("Creating Archive"));
                     imp.status_page
                         // Translators: Description
-                        .set_description(Some(&gettext("Compressing folder")));
+                        .set_description(Some(&gettextf(
+                            "Compressing folder “{}”",
+                            &[&filename.to_string_lossy()],
+                        )));
                 }
                 TransferDirection::Receive => {
                     // We don't create archives here
@@ -346,17 +353,21 @@ impl ActionView {
                     //imp.status_page.set_paintable(Some(&uri.to_paintable_qr()));
                     //imp.status_page.add_css_class("qr");
 
+                    let filename = imp.file_name.borrow().clone().unwrap_or_else(|| "?".into());
+
                     if imp.rendezvous_url.borrow().as_ref().unwrap()
                         != &*globals::WORMHOLE_DEFAULT_RENDEZVOUS_SERVER
                     {
-                        imp.status_page.set_description(Some(&gettext(
-                            // Translators: Description, Code in box below
-                            "The receiver needs to enter this code to begin the file transfer.\n\nYou have entered a custom rendezvous server URL in preferences. Please verify the receiver also uses the same rendezvous server.",
+                        imp.status_page.set_description(Some(&gettextf(
+                            // Translators: Description, Code in box below, argument is filename
+                            "Ready to send “{}”\nThe receiver needs to enter this code to begin the file transfer.\n\nYou have entered a custom rendezvous server URL in preferences. Please verify the receiver also uses the same rendezvous server.",
+                            &[&filename.to_string_lossy()]
                         )));
                     } else {
-                        imp.status_page.set_description(Some(&gettext(
-                            // Translators: Description, Code in box below
-                            "The receiver needs to enter this code to begin the file transfer.",
+                        imp.status_page.set_description(Some(&gettextf(
+                            // Translators: Description, Code in box below, argument is filename
+                            "Ready to send “{}”\nThe receiver needs to enter this code to begin the file transfer.",
+                            &[&filename.to_string_lossy()]
                         )));
                     }
                     imp.code_box.set_visible(true);
@@ -381,6 +392,7 @@ impl ActionView {
                 imp.status_page.remove_css_class("qr");
                 imp.status_page.set_title(&gettext("Connected to Peer"));
                 imp.code_box.set_visible(false);
+                imp.accept_transfer_button.set_visible(false);
                 imp.progress_bar.set_visible(true);
 
                 match direction {
@@ -476,7 +488,7 @@ impl ActionView {
                         .set_icon_name(Some("folder-download-symbolic"));
                 }
             }
-            UIState::Done(path) => {
+            UIState::Done(filename) => {
                 imp.status_page
                     // Translators: Title
                     .set_title(&gettext("File Transfer Successful"));
@@ -492,12 +504,11 @@ impl ActionView {
                 notification.set_priority(NotificationPriority::High);
                 notification.set_category(Some("transfer.complete"));
 
-                let filename = path.file_name().unwrap().to_string_lossy();
                 if direction == TransferDirection::Send {
                     let description = gettextf(
                         // Translators: Description, Filename
                         "Successfully sent file “{}”",
-                        &[&filename],
+                        &[&filename.to_string_lossy()],
                     );
 
                     imp.status_page.set_description(Some(&description));
@@ -506,7 +517,7 @@ impl ActionView {
                     let description = gettextf(
                         // Translators: Description, Filename
                         "File has been saved to the Downloads folder as “{}”",
-                        &[&filename],
+                        &[&filename.to_string_lossy()],
                     );
 
                     imp.status_page.set_description(Some(&description));
@@ -576,10 +587,10 @@ impl ActionView {
         main_async_local_infallible(clone!(@strong self as obj => async move {
             let imp = obj.imp();
             imp.cancel_sender.get().unwrap().send(()).await.unwrap();
-        }));
 
-        self.transmit_cleanup();
-        WarpApplicationWindow::default().navigate_back();
+            obj.transmit_cleanup();
+            WarpApplicationWindow::default().navigate_back();
+        }));
     }
 
     pub fn show_progress_indeterminate(&self, pulse: bool) {
@@ -605,14 +616,19 @@ impl ActionView {
     async fn prepare_and_open_file(
         &self,
         path: &Path,
-    ) -> Result<(smol::fs::File, ScopeGuard<PathBuf, fn(PathBuf)>), AppError> {
-        let mut is_temp = false;
-        let file_path = if path.is_dir() {
-            self.set_ui_state(UIState::Archive);
-            is_temp = true;
-            fs::compress_folder_cancelable(path, Self::cancel_future()).await?
+    ) -> Result<(smol::fs::File, PathBuf, OsString), AppError> {
+        let mut filename = if let Some(filename) = path.file_name() {
+            filename.to_os_string()
+        } else {
+            return Err(std::io::Error::from(std::io::ErrorKind::NotFound).into());
+        };
+
+        let file_path: Box<dyn AsRef<Path>> = if path.is_dir() {
+            self.set_ui_state(UIState::Archive(filename.clone()));
+            filename.push(".tgz");
+            Box::new(fs::compress_folder_cancelable(path, Self::cancel_future()).await?)
         } else if path.is_file() {
-            path.to_path_buf()
+            Box::new(path.to_path_buf())
         } else {
             // Translators: When opening a file
             return Err(UiError::new(&gettext("Specified file / directory does not exist")).into());
@@ -620,21 +636,12 @@ impl ActionView {
 
         let file = smol::fs::OpenOptions::new()
             .read(true)
-            .open(&file_path)
+            .open(&*file_path)
             .await?;
 
-        let guard: ScopeGuard<PathBuf, fn(PathBuf)> = if is_temp {
-            scopeguard::guard(file_path, |path| {
-                log::debug!("Removing residual temporary file {}", path.display());
-                let _ignore = std::fs::remove_file(path);
-            })
-        } else {
-            scopeguard::guard(file_path, |path| {
-                log::debug!("Dropping file_path {}", path.display());
-            })
-        };
-
-        Ok((file, guard))
+        // The temp path will be dropped here. This means the created tar file will be deleted. As
+        // there is still an open file handle to the file it will still be available for usage.
+        Ok((file, (*file_path).as_ref().to_path_buf(), filename))
     }
 
     fn prepare_transmit(&self, direction: TransferDirection) -> Result<(), AppError> {
@@ -713,7 +720,8 @@ impl ActionView {
         let filename = if let Some(file_name) = request.filename.file_name() {
             PathBuf::from(file_name)
         } else {
-            PathBuf::from("Unknown File.bin")
+            // This shouldn't happen realistically
+            PathBuf::from("Unknown Filename.bin")
         };
 
         self.set_ui_state(UIState::AskConfirmation(
@@ -732,12 +740,17 @@ impl ActionView {
             return res;
         }
 
+        self.set_ui_state(UIState::Connected);
+
         WarpApplication::default().withdraw_notification("receive-ready");
 
         let path = download_path.join(&filename);
 
         let (file_res, path) = fs::open_file_find_new_filename_if_exists(&path).await;
-        self.imp().filename.replace(Some(path.clone()));
+        self.imp().file_path.replace(Some(path.clone()));
+        self.imp()
+            .file_name
+            .replace(Some(path.clone().file_name().unwrap().to_os_string()));
 
         spawn_async(async move {
             log::info!("Downloading file to {:?}", path.to_str());
@@ -761,7 +774,7 @@ impl ActionView {
                 return Err(AppError::Canceled);
             }
 
-            Self::transmit_success_main(path);
+            Self::transmit_success_main();
 
             Ok(())
         })
@@ -778,7 +791,8 @@ impl ActionView {
         self.prepare_transmit(TransferDirection::Send)?;
         self.set_ui_state(UIState::RequestCode);
 
-        let (mut file, path) = self.prepare_and_open_file(&path).await?;
+        let (mut file, path, filename) = self.prepare_and_open_file(&path).await?;
+        self.imp().file_name.replace(Some(filename.clone()));
 
         let res = spawn_async(cancelable_future(
             Wormhole::connect_without_code(app_cfg.clone(), 4),
@@ -805,15 +819,10 @@ impl ActionView {
             spawn_async(cancelable_future(connection, Self::cancel_future())).await??;
         self.set_ui_state(UIState::Connected);
 
-        self.imp().filename.replace(Some((*path).to_path_buf()));
+        self.imp().file_path.replace(Some((*path).to_path_buf()));
         let transit_url = self.imp().transit_url.borrow().clone().unwrap();
 
         spawn_async(async move {
-            let filename = if let Some(filename) = path.file_name() {
-                filename
-            } else {
-                return Err(std::io::Error::from(std::io::ErrorKind::NotFound).into());
-            };
             let metadata = file.metadata().await?;
 
             transfer::send_file(
@@ -838,8 +847,7 @@ impl ActionView {
                 return Err(AppError::Canceled);
             }
 
-            // We can drop the path now, we don't need the temp file anymore
-            Self::transmit_success_main(path.clone());
+            Self::transmit_success_main();
 
             Ok(())
         })
@@ -875,11 +883,11 @@ impl ActionView {
             let imp = obj.imp();
 
             let filename = imp
-                .filename
+                .file_name
                 .borrow()
                 .as_ref()
-                .and_then(|p| p.file_name().map(|f| f.to_string_lossy().into()))
-                .unwrap_or_else(|| "".to_string());
+                .map(|s| s.to_string_lossy().to_string())
+                .unwrap_or_else(|| "?".to_string());
 
             obj.set_ui_state(UIState::Transmitting(filename, info, peer_ip));
         });
@@ -950,7 +958,7 @@ impl ActionView {
         while imp.cancel_receiver.get().unwrap().try_recv().is_ok() {}
         while imp.continue_receiver.get().unwrap().try_recv().is_ok() {}
 
-        if let Some(path) = imp.filename.borrow().clone() {
+        if let Some(path) = imp.file_path.borrow().clone() {
             if *imp.direction.borrow() == TransferDirection::Receive
                 && !matches!(*imp.ui_state.borrow(), UIState::Done(..))
             {
@@ -962,22 +970,26 @@ impl ActionView {
         }
     }
 
-    fn transmit_success_main(path: PathBuf) {
+    fn transmit_success_main() {
         glib::MainContext::default().invoke(move || {
             WarpApplicationWindow::default()
                 .action_view()
-                .transmit_success(&path)
+                .transmit_success()
         });
     }
 
-    fn transmit_success(&self, path: &Path) {
+    fn transmit_success(&self) {
         log::debug!("Transmit success");
-
-        let path = path.to_path_buf();
 
         self.imp().progress_bar.set_fraction(1.0);
 
-        self.set_ui_state(UIState::Done(path));
+        self.set_ui_state(UIState::Done(
+            self.imp()
+                .file_name
+                .borrow()
+                .clone()
+                .unwrap_or_else(|| OsString::from("?")),
+        ));
         self.transmit_cleanup();
     }
 

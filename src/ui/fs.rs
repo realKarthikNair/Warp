@@ -12,60 +12,45 @@ use std::path::{Path, PathBuf};
 pub async fn compress_folder_cancelable(
     path: &Path,
     cancel_future: impl Future<Output = ()>,
-) -> Result<PathBuf, AppError> {
-    let (tar_path_future, tar_path) = compress_folder(path).await?;
+) -> Result<tempfile::TempPath, AppError> {
+    let tar_path_future = compress_folder(path)?;
     let tar_path_future = tar_path_future.fuse();
     let cancel_future = cancel_future.fuse();
 
     pin_mut!(tar_path_future, cancel_future);
 
-    let tar_res: Result<PathBuf, AppError> = select! {
+    select! {
         res = tar_path_future => {
-            log::debug!("Created tar archive");
-            res.map(|_| tar_path.clone())
+            if res.is_ok() {
+                log::debug!("Created tar archive");
+            }
+
+            res
         },
         () = cancel_future => {
             log::debug!("Tar creation canceled");
+            // Canceled / Error: We drop the smol::Task at the end of this function which aborts it
+            // The dropped TempPath will be deleted as well
             Err(AppError::Canceled)
         }
-    };
-
-    if tar_res.is_err() {
-        // Canceled / Error. We drop the smol::Task here which aborts it
-        drop(tar_path_future);
-        // Remove file if it already exists
-        log::debug!(
-            "Removing partially created tar archive: {}",
-            tar_path.display()
-        );
-        let _ignore = smol::fs::remove_file(tar_path).await;
     }
-
-    tar_res
 }
 
-pub async fn compress_folder(
+pub fn compress_folder(
     path: &Path,
-) -> Result<(impl Future<Output = Result<(), AppError>>, PathBuf), AppError> {
+) -> Result<impl Future<Output = Result<tempfile::TempPath, AppError>>, AppError> {
     let path = path.to_path_buf();
     if !path.is_dir() {
-        return Err(UiError::new("Wrong compress_folder invocation").into());
+        panic!("Wrong compress_folder invocation");
     }
 
-    let outer_dir = path
-        .parent()
-        .ok_or_else(|| UiError::new("Archive parent folder not found"))?;
+    let tmp_dir = glib::tmp_dir();
+    let outer_dir = path.parent().unwrap_or(&tmp_dir);
+
     let dirname = path.file_name();
     if let Some(dirname) = dirname {
         let temp_dir = glib::tmp_dir();
-        let mut tar_name = dirname.to_owned();
-        tar_name.push(".tgz");
-
-        // We don't use set_extension here because it would remove any .something from dir name
-        let tar_path = temp_dir.join(PathBuf::from(tar_name));
-
-        let (_file, name) = open_file_find_new_filename_if_exists(&tar_path).await;
-        let tar_path = name;
+        let tar_path = tempfile::NamedTempFile::new_in(temp_dir)?.into_temp_path();
 
         let mut command = Command::new("tar");
         command
@@ -75,11 +60,13 @@ pub async fn compress_folder(
             .arg(tar_path.as_os_str())
             .arg(dirname)
             .kill_on_drop(true);
+
+        log::debug!("Creating tar archive: {}", tar_path.to_string_lossy());
         let future = async move {
             let res = command.spawn()?.status().await?;
             if let Some(code) = res.code() {
                 if code == 0 {
-                    Ok(())
+                    Ok(tar_path)
                 } else {
                     Err(UiError::new("Error creating tar archive").into())
                 }
@@ -88,8 +75,7 @@ pub async fn compress_folder(
             }
         };
 
-        log::debug!("Creating tar archive: {}", tar_path.to_string_lossy());
-        Ok((future, tar_path))
+        Ok(future)
     } else {
         Err(UiError::new(&gettextf(
             "Path {} does not have a directory name",
@@ -129,10 +115,12 @@ pub async fn open_file_find_new_filename_if_exists(
     let mut path;
 
     loop {
-        filename = PathBuf::from(file_stem.clone());
-        filename.set_extension(file_ext.clone());
+        let mut filename_str = file_stem.clone();
+        filename_str.push('.');
+        filename_str.push_str(&file_ext);
+        filename = PathBuf::from(filename_str);
 
-        path = dir.join(filename);
+        path = dir.join(filename.clone());
         file_res = smol::fs::OpenOptions::new()
             .write(true)
             .create_new(true)
