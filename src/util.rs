@@ -193,7 +193,7 @@ impl TryFrom<url::Url> for WormholeTransferURI {
                         TransferDirection::Send
                     } else {
                         return Err(WormholeURIParseError(gettextf(
-                            "The URI parameter “role” must be “follower” or “leader” (was: {})",
+                            "The URI parameter “role” must be “follower” or “leader” (was: “{}”)",
                             &[&value],
                         )));
                     }

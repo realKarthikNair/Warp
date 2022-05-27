@@ -2,6 +2,7 @@ use super::fs;
 use super::progress::FileTransferProgress;
 use crate::gettext::gettextf;
 use crate::glib::clone;
+use crate::ui::fs::safe_persist_tempfile;
 use crate::ui::window::WarpApplicationWindow;
 use crate::util::error::*;
 use crate::util::future::*;
@@ -751,18 +752,22 @@ impl ActionView {
 
         WarpApplication::default().withdraw_notification("receive-ready");
 
-        let path = download_path.join(&filename);
+        let temp_path = tempfile::NamedTempFile::new_in(download_path)?.into_temp_path();
+        let temp_file = smol::fs::OpenOptions::new()
+            .write(true)
+            .create(false)
+            .truncate(true)
+            .open(&temp_path)
+            .await?;
 
-        let (file_res, path) = fs::open_file_find_new_filename_if_exists(&path).await;
-        self.imp().file_path.replace(Some(path.clone()));
         self.imp()
             .file_name
-            .replace(Some(path.clone().file_name().unwrap().to_os_string()));
+            .replace(Some(filename.as_os_str().to_os_string()));
 
         spawn_async(async move {
-            log::info!("Downloading file to {:?}", path.to_str());
+            log::info!("Downloading file to {:?}", temp_path.to_str());
 
-            let mut file = file_res?;
+            let mut file = temp_file;
             request
                 .accept(
                     Self::transit_handler,
@@ -780,6 +785,13 @@ impl ActionView {
             {
                 return Err(AppError::Canceled);
             }
+
+            let path = safe_persist_tempfile(temp_path, &filename).await?;
+            let obj = WarpApplicationWindow::default().action_view();
+            obj.imp().file_path.replace(Some(path.clone()));
+            obj.imp()
+                .file_name
+                .replace(Some(path.file_name().unwrap().to_os_string()));
 
             Self::transmit_success_main();
 
@@ -963,17 +975,6 @@ impl ActionView {
         // Drain cancel and continue receiver from any previous transfers
         while imp.cancel_receiver.get().unwrap().try_recv().is_ok() {}
         while imp.continue_receiver.get().unwrap().try_recv().is_ok() {}
-
-        if let Some(path) = imp.file_path.borrow().clone() {
-            if *imp.direction.borrow() == TransferDirection::Receive
-                && !matches!(*imp.ui_state.borrow(), UIState::Done(..))
-            {
-                log::info!("Removing partially downloaded file '{}'", path.display());
-                if let Err(err) = std::fs::remove_file(&path) {
-                    log::error!("Error removing {0}: {1}", path.display(), err);
-                }
-            }
-        }
     }
 
     fn transmit_success_main() {

@@ -85,10 +85,11 @@ pub fn compress_folder(
     }
 }
 
-pub async fn open_file_find_new_filename_if_exists(
-    path: &Path,
-) -> (std::io::Result<smol::fs::File>, PathBuf) {
-    let mut file_stem: String = path
+pub async fn safe_persist_tempfile(
+    temp_path: tempfile::TempPath,
+    filename: &Path,
+) -> std::io::Result<PathBuf> {
+    let mut file_stem: String = filename
         .file_stem()
         .unwrap_or(&OsString::new())
         .to_string_lossy()
@@ -99,7 +100,7 @@ pub async fn open_file_find_new_filename_if_exists(
 
     let orig_file_stem = file_stem.clone();
 
-    let mut file_ext: String = path
+    let mut file_ext: String = filename
         .extension()
         .unwrap_or(&OsString::new())
         .to_string_lossy()
@@ -111,7 +112,10 @@ pub async fn open_file_find_new_filename_if_exists(
     let mut i = 1;
     let mut filename;
     let mut file_res;
-    let dir = path.parent().unwrap_or(&PathBuf::from(".")).to_path_buf();
+    let dir = temp_path
+        .parent()
+        .unwrap_or(&PathBuf::from("."))
+        .to_path_buf();
     let mut path;
 
     loop {
@@ -139,5 +143,7 @@ pub async fn open_file_find_new_filename_if_exists(
         }
     }
 
-    (file_res, path)
+    temp_path.persist(&path)?;
+
+    Ok(path)
 }
