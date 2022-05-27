@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+set -e
+
+builtin type -P yq &> /dev/null
 
 yq '
 .["app-id"] += ".Devel" |

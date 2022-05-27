@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # Source: https://gitlab.gnome.org/GNOME/fractal/blob/main/hooks/pre-commit.hook
 
 install_rustfmt() {
@@ -65,8 +65,14 @@ if test $? != 0; then
     exit -1
 fi
 
-echo "--Checking manifest and generated sources--"
+echo -n "--Checking manifest and generated sources--"
 ./build-aux/generate-manifest.bash 2> /dev/null
+if test $? != 0; then
+  echo " (skipped)"
+else
+  echo ""
+fi
+
 git diff --exit-code build-aux/app.drey.Warp.Devel.json
 if test $? != 0; then
     echo "--Checking manifest fail--"
