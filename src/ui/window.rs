@@ -119,13 +119,6 @@ mod imp {
                     obj.add_code_from_clipboard();
                 }));
 
-            if !self.config.borrow().welcome_window_shown {
-                let welcome_window = WelcomeWindow::new();
-                welcome_window.set_transient_for(Some(obj));
-                welcome_window.set_modal(true);
-                welcome_window.show();
-            }
-
             obj.load_window_size();
             obj.setup_help_overlay();
 
@@ -275,7 +268,18 @@ mod imp {
         }
     }
 
-    impl WidgetImpl for WarpApplicationWindow {}
+    impl WidgetImpl for WarpApplicationWindow {
+        fn show(&self, widget: &Self::Type) {
+            self.parent_show(widget);
+
+            if !self.config.borrow().welcome_window_shown {
+                let welcome_window = WelcomeWindow::new();
+                welcome_window.set_modal(true);
+                welcome_window.set_transient_for(Some(widget));
+                welcome_window.show();
+            }
+        }
+    }
     impl WindowImpl for WarpApplicationWindow {
         // Save window state on delete event
         fn close_request(&self, window: &Self::Type) -> gtk::Inhibit {
