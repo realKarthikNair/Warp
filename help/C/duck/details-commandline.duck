@@ -21,5 +21,5 @@ To send a file use
 Your peer can then enter the code into $app(Warp) to receive the file.
 
 == Learn more
-To learn more about the command line client you can take look at the
+To learn more about the command line client you can take a look at the
 $link[href=https://magic-wormhole.readthedocs.io/en/latest/](Magic Wormhole documentation).
