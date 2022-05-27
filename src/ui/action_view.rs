@@ -15,6 +15,7 @@ use gtk::subclass::prelude::*;
 use gtk::{gio, glib, ResponseType};
 use std::cell::Ref;
 use std::ffi::OsString;
+use std::fmt::Debug;
 use std::future::Future;
 use std::net::{IpAddr, SocketAddr};
 use std::path::{Path, PathBuf};
@@ -60,6 +61,9 @@ impl Default for UIState {
 }
 
 static TRANSIT_ABILITIES: transit::Abilities = transit::Abilities::ALL_ABILITIES;
+
+pub trait MaybeTempFilePath: AsRef<Path> + Debug {}
+impl<T> MaybeTempFilePath for T where T: AsRef<Path> + Debug {}
 
 mod imp {
     use super::*;
@@ -113,7 +117,7 @@ mod imp {
         pub continue_receiver: OnceCell<async_channel::Receiver<()>>,
 
         // Full path to the received / sent file
-        pub file_path: RefCell<Option<PathBuf>>,
+        pub file_path: RefCell<Option<Box<dyn MaybeTempFilePath>>>,
 
         // The user facing name of the file being received / send
         pub file_name: RefCell<Option<OsString>>,
@@ -245,8 +249,8 @@ mod imp {
 
             self.open_button
                 .connect_clicked(clone!(@weak obj => move |_| {
-                    if let Some(filename) = obj.imp().file_path.borrow().clone() {
-                        let uri = glib::filename_to_uri(filename, None);
+                    if let Some(filename) = obj.imp().file_path.borrow().as_ref() {
+                        let uri = glib::filename_to_uri(filename.as_ref(), None);
                         if let Ok(uri) = uri {
                             let none: Option<&AppLaunchContext> = None;
                             let _ = AppInfo::launch_default_for_uri(&uri.to_string(), none);
@@ -624,14 +628,14 @@ impl ActionView {
     async fn prepare_and_open_file(
         &self,
         path: &Path,
-    ) -> Result<(smol::fs::File, PathBuf, OsString), AppError> {
+    ) -> Result<(smol::fs::File, Box<dyn MaybeTempFilePath>, OsString), AppError> {
         let mut filename = if let Some(filename) = path.file_name() {
             filename.to_os_string()
         } else {
             return Err(std::io::Error::from(std::io::ErrorKind::NotFound).into());
         };
 
-        let file_path: Box<dyn AsRef<Path>> = if path.is_dir() {
+        let file_path: Box<dyn MaybeTempFilePath> = if path.is_dir() {
             self.set_ui_state(UIState::Archive(filename.clone()));
             filename.push(".tgz");
             Box::new(fs::compress_folder_cancelable(path, Self::cancel_future()).await?)
@@ -647,9 +651,7 @@ impl ActionView {
             .open(&*file_path)
             .await?;
 
-        // The temp path will be dropped here. This means the created tar file will be deleted. As
-        // there is still an open file handle to the file it will still be available for usage.
-        Ok((file, (*file_path).as_ref().to_path_buf(), filename))
+        Ok((file, file_path, filename))
     }
 
     fn prepare_transmit(&self, direction: TransferDirection) -> Result<(), AppError> {
@@ -788,10 +790,10 @@ impl ActionView {
 
             let path = safe_persist_tempfile(temp_path, &filename).await?;
             let obj = WarpApplicationWindow::default().action_view();
-            obj.imp().file_path.replace(Some(path.clone()));
             obj.imp()
                 .file_name
                 .replace(Some(path.file_name().unwrap().to_os_string()));
+            obj.imp().file_path.replace(Some(Box::new(path)));
 
             Self::transmit_success_main();
 
@@ -838,7 +840,7 @@ impl ActionView {
             spawn_async(cancelable_future(connection, Self::cancel_future())).await??;
         self.set_ui_state(UIState::Connected);
 
-        self.imp().file_path.replace(Some((*path).to_path_buf()));
+        self.imp().file_path.replace(Some(path));
         let transit_url = self.imp().transit_url.borrow().clone().unwrap();
 
         spawn_async(async move {
@@ -975,6 +977,9 @@ impl ActionView {
         // Drain cancel and continue receiver from any previous transfers
         while imp.cancel_receiver.get().unwrap().try_recv().is_ok() {}
         while imp.continue_receiver.get().unwrap().try_recv().is_ok() {}
+
+        // Deletes any temporary files if required
+        imp.file_path.replace(None);
     }
 
     fn transmit_success_main() {
