@@ -1,5 +1,7 @@
+use adw::glib;
 use once_cell::sync::Lazy;
 use regex::Regex;
+use std::path::PathBuf;
 use std::sync::Mutex;
 
 pub static WORMHOLE_DEFAULT_RENDEZVOUS_SERVER: Lazy<url::Url> =
@@ -31,6 +33,11 @@ pub const GETTEXT_PACKAGE: &str = APP_NAME;
 pub const DEFAULT_LOCALEDIR: &str = "/usr/share/locale";
 pub const PKGDATADIR: &str = "/app/share/warp";
 pub const VERSION: &str = env!("CARGO_PKG_VERSION");
+pub static CACHE_DIR: Lazy<PathBuf> = Lazy::new(|| {
+    let mut path = glib::user_cache_dir();
+    path.push(APP_ID);
+    path
+});
 
 pub static GRESOURCE_DATA: &[u8] =
     gvdb_macros::include_gresource_from_dir!("/app/drey/Warp", "data/resources");

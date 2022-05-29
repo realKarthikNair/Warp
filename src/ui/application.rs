@@ -1,5 +1,4 @@
 use gettextrs::gettext;
-use log::{debug, info};
 
 use adw::subclass::prelude::*;
 use glib::clone;
@@ -39,7 +38,7 @@ mod imp {
 
     impl ApplicationImpl for WarpApplication {
         fn activate(&self, app: &Self::Type) {
-            debug!("GtkApplication<WarpApplication>::activate");
+            log::debug!("GtkApplication<WarpApplication>::activate");
             self.parent_activate(app);
 
             if let Some(window) = self.window.get() {
@@ -59,12 +58,13 @@ mod imp {
         }
 
         fn startup(&self, app: &Self::Type) {
-            debug!("GtkApplication<WarpApplication>::startup");
+            log::debug!("GtkApplication<WarpApplication>::startup");
             self.parent_startup(app);
 
             // Set icons for shell
             gtk::Window::set_default_icon_name(globals::APP_ID);
 
+            app.cleanup_cache();
             app.setup_gresources();
             app.setup_css();
             app.setup_gactions();
@@ -126,6 +126,20 @@ impl WarpApplication {
 
     pub fn main_window(&self) -> WarpApplicationWindow {
         self.imp().window.get().unwrap().upgrade().unwrap()
+    }
+
+    pub fn cleanup_cache(&self) {
+        log::debug!("Cleaning up cache dir: {}", globals::CACHE_DIR.display());
+        let res = std::fs::remove_dir_all(&*globals::CACHE_DIR);
+        if let Err(err) = res {
+            if err.kind() != std::io::ErrorKind::NotFound {
+                log::error!(
+                    "Error cleaning cache dir '{}': {}",
+                    globals::CACHE_DIR.display(),
+                    err
+                );
+            }
+        }
     }
 
     pub fn setup_gresources(&self) {
@@ -225,9 +239,9 @@ impl WarpApplication {
     }
 
     pub fn run(&self) {
-        info!("Warp ({})", globals::APP_ID);
-        info!("Version: {}", globals::VERSION);
-        info!("Datadir: {}", globals::PKGDATADIR);
+        log::info!("Warp ({})", globals::APP_ID);
+        log::info!("Version: {}", globals::VERSION);
+        log::info!("Datadir: {}", globals::PKGDATADIR);
 
         ApplicationExtManual::run(self);
     }

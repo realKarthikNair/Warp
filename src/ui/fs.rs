@@ -1,8 +1,8 @@
 use crate::gettext::gettextf;
+use crate::globals;
 use crate::util::error::{AppError, UiError};
 use futures::FutureExt;
 use futures::{pin_mut, select};
-use gtk::glib;
 use smol::process::Command;
 use std::ffi::OsString;
 use std::future::Future;
@@ -44,13 +44,23 @@ pub fn compress_folder(
         panic!("Wrong compress_folder invocation");
     }
 
-    let tmp_dir = glib::tmp_dir();
-    let outer_dir = path.parent().unwrap_or(&tmp_dir);
+    let tmp_dir = &*globals::CACHE_DIR;
+    std::fs::create_dir_all(tmp_dir)?;
+
+    let outer_dir = path.parent().ok_or_else(|| {
+        AppError::from(UiError::new(&gettextf(
+            "Path {} does not have a parent directory",
+            &[&path.display()],
+        )))
+    })?;
 
     let dirname = path.file_name();
     if let Some(dirname) = dirname {
-        let temp_dir = glib::tmp_dir();
-        let tar_path = tempfile::NamedTempFile::new_in(temp_dir)?.into_temp_path();
+        let tar_path = tempfile::Builder::new()
+            .prefix("warp_archive_")
+            .suffix(".tgz")
+            .tempfile_in(&tmp_dir)?
+            .into_temp_path();
 
         let mut command = Command::new("tar");
         command
