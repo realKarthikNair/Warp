@@ -1,19 +1,19 @@
-use crate::gettext::gettextf;
 use crate::globals;
-use crate::util::error::{AppError, UiError};
+use crate::util::error::AppError;
 use futures::FutureExt;
 use futures::{pin_mut, select};
-use smol::process::Command;
 use std::ffi::OsString;
 use std::future::Future;
 use std::io::ErrorKind;
 use std::path::{Path, PathBuf};
+use zip::ZipWriter;
+use zip_extensions::write::ZipWriterExtensions;
 
 pub async fn compress_folder_cancelable(
     path: &Path,
     cancel_future: impl Future<Output = ()>,
 ) -> Result<tempfile::TempPath, AppError> {
-    let tar_path_future = compress_folder(path)?;
+    let tar_path_future = compress_folder(path);
     let tar_path_future = tar_path_future.fuse();
     let cancel_future = cancel_future.fuse();
 
@@ -22,13 +22,13 @@ pub async fn compress_folder_cancelable(
     select! {
         res = tar_path_future => {
             if res.is_ok() {
-                log::debug!("Created tar archive");
+                log::debug!("Created archive");
             }
 
-            res
+            res.map(|f| f.into_temp_path())
         },
         () = cancel_future => {
-            log::debug!("Tar creation canceled");
+            log::debug!("Archive creation canceled");
             // Canceled / Error: We drop the smol::Task at the end of this function which aborts it
             // The dropped TempPath will be deleted as well
             Err(AppError::Canceled)
@@ -36,9 +36,7 @@ pub async fn compress_folder_cancelable(
     }
 }
 
-pub fn compress_folder(
-    path: &Path,
-) -> Result<impl Future<Output = Result<tempfile::TempPath, AppError>>, AppError> {
+pub async fn compress_folder(path: &Path) -> Result<tempfile::NamedTempFile, AppError> {
     let path = path.to_path_buf();
     if !path.is_dir() {
         panic!("Wrong compress_folder invocation");
@@ -47,52 +45,19 @@ pub fn compress_folder(
     let tmp_dir = &*globals::CACHE_DIR;
     std::fs::create_dir_all(tmp_dir)?;
 
-    let outer_dir = path.parent().ok_or_else(|| {
-        AppError::from(UiError::new(&gettextf(
-            "Path {} does not have a parent directory",
-            &[&path.display()],
-        )))
-    })?;
+    let mut zip_file = tempfile::Builder::new()
+        .prefix("warp_archive_")
+        .suffix(".zip")
+        .tempfile_in(&tmp_dir)?;
 
-    let dirname = path.file_name();
-    if let Some(dirname) = dirname {
-        let tar_path = tempfile::Builder::new()
-            .prefix("warp_archive_")
-            .suffix(".tgz")
-            .tempfile_in(&tmp_dir)?
-            .into_temp_path();
-
-        let mut command = Command::new("tar");
-        command
-            .arg("-C")
-            .arg(outer_dir)
-            .arg("-czf")
-            .arg(tar_path.as_os_str())
-            .arg(dirname)
-            .kill_on_drop(true);
-
-        log::debug!("Creating tar archive: {}", tar_path.to_string_lossy());
-        let future = async move {
-            let res = command.spawn()?.status().await?;
-            if let Some(code) = res.code() {
-                if code == 0 {
-                    Ok(tar_path)
-                } else {
-                    Err(UiError::new("Error creating tar archive").into())
-                }
-            } else {
-                Err(UiError::new("Error creating tar archive").into())
-            }
-        };
-
-        Ok(future)
-    } else {
-        Err(UiError::new(&gettextf(
-            "Path {} does not have a directory name",
-            &[&path.display()],
-        ))
-        .into())
-    }
+    log::debug!("Creating archive: {}", zip_file.path().display());
+    smol::spawn(async move {
+        let mut zip = ZipWriter::new(&mut zip_file);
+        zip.create_from_directory(&path)?;
+        drop(zip);
+        Ok(zip_file)
+    })
+    .await
 }
 
 pub async fn safe_persist_tempfile(

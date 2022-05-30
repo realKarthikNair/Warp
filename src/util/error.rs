@@ -11,6 +11,7 @@ use thiserror::Error;
 use wormhole::rendezvous::RendezvousError;
 use wormhole::transfer::TransferError;
 use wormhole::WormholeError;
+use zip::result::ZipError;
 
 #[derive(Error, Debug)]
 pub struct UiError {
@@ -63,6 +64,10 @@ pub enum AppError {
         #[from]
         source: async_channel::RecvError,
     },
+    Zip {
+        #[from]
+        source: zip::result::ZipError,
+    },
     Panic {
         msg: String,
     },
@@ -80,6 +85,7 @@ impl Display for AppError {
             AppError::AsyncChannelRecvError { source } => {
                 write!(f, "AsyncChannelRecvError: {}", source)
             }
+            AppError::Zip { source } => write!(f, "ZipError: {}", source),
             AppError::Panic { msg } => write!(f, "Panic: {}", msg),
         }
     }
@@ -240,6 +246,10 @@ impl AppError {
             // UIErrors are generated our code and already wrapped in gettext
             AppError::Ui { source } => source.to_string(),
             AppError::AsyncChannelRecvError { .. } => gettext("An unknown error occurred"),
+            AppError::Zip { source } => match source {
+                ZipError::Io(err) => Self::gettext_error_io(err),
+                _ => gettext("An unknown error occurred"),
+            },
             AppError::Panic { .. } => gettext("An unexpected error occurred. Please report an issue with the error message."),
         }
     }
