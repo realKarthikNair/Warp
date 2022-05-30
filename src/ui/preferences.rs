@@ -179,7 +179,18 @@ impl WarpPreferencesWindow {
     }
 
     pub fn set_rendezvous_server_url(&self, url: String) {
-        self.imp().rendezvous_server_url.replace(url);
+        if url.is_empty() || url::Url::parse(&url).is_ok() {
+            self.imp()
+                .rendezvous_server_url_entry
+                .remove_css_class("error");
+            self.imp().rendezvous_server_url.replace(url);
+        } else {
+            self.imp()
+                .rendezvous_server_url_entry
+                .add_css_class("error");
+            self.imp().rendezvous_server_url.replace("".to_string());
+        }
+
         self.notify("rendezvous-server-url");
     }
 
@@ -188,7 +199,16 @@ impl WarpPreferencesWindow {
     }
 
     pub fn set_transit_server_url(&self, url: String) {
-        self.imp().transit_server_url.replace(url);
+        if url.is_empty() || url::Url::parse(&url).is_ok() {
+            self.imp()
+                .transit_server_url_entry
+                .remove_css_class("error");
+            self.imp().transit_server_url.replace(url);
+        } else {
+            self.imp().transit_server_url_entry.add_css_class("error");
+            self.imp().transit_server_url.replace("".to_string());
+        }
+
         self.notify("transit-server-url");
     }
 
