@@ -56,6 +56,25 @@ Leaving these entries empty will use the application defaults.</property>
             </child>
           </object>
         </child>
+        <child>
+          <object class="AdwPreferencesGroup">
+            <property name="title" translatable="yes">Code Words</property>
+            <property name="description" translatable="yes">The code word count determines the security of the transfer.
+
+A short code is easy to remember but increases the risk of someone else guessing the code. As a code may only be guessed once, the risk is very small even with short codes. A length of 4 is very secure.</property>
+            <child>
+              <object class="AdwActionRow">
+                <property name="title" translatable="yes">Code Word Count</property>
+                <child>
+                  <object class="GtkSpinButton" id="code_length_spin_button">
+                    <property name="valign">center</property>
+                    <property name="value" bind-source="WarpPreferencesWindow" bind-property="code-length" bind-flags="sync-create|bidirectional"/>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
       </object>
     </child>
   </template>

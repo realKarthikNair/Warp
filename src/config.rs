@@ -26,8 +26,11 @@ impl Default for WindowConfig {
 pub struct Config {
     pub window: WindowConfig,
     pub welcome_window_shown: bool,
+
     pub rendezvous_server_url: Option<String>,
     pub transit_server_url: Option<String>,
+
+    pub code_length: Option<usize>,
 }
 
 #[derive(Clone, Default, Debug)]
@@ -120,6 +123,10 @@ impl PersistentConfig {
         } else {
             globals::WORMHOLE_DEFAULT_TRANSIT_RELAY.to_string()
         }
+    }
+
+    pub fn code_length_or_default(&self) -> usize {
+        self.code_length.unwrap_or(4)
     }
 
     pub fn app_cfg(&self) -> AppConfig<AppVersion> {

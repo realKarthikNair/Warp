@@ -5,9 +5,12 @@ use gtk::subclass::prelude::*;
 
 use crate::ui::window::WarpApplicationWindow;
 
+const CODE_LENGTH_MIN: i32 = 2;
+const CODE_LENGTH_MAX: i32 = 8;
+
 mod imp {
     use super::*;
-    use std::cell::RefCell;
+    use std::cell::{Cell, RefCell};
 
     use crate::glib::signal::Inhibit;
     use crate::glib::Value;
@@ -23,8 +26,12 @@ mod imp {
         #[template_child]
         pub transit_server_url_entry: TemplateChild<gtk::Entry>,
 
+        #[template_child]
+        pub code_length_spin_button: TemplateChild<gtk::SpinButton>,
+
         pub rendezvous_server_url: RefCell<String>,
         pub transit_server_url: RefCell<String>,
+        pub code_length: Cell<i32>,
     }
 
     #[glib::object_subclass]
@@ -62,6 +69,15 @@ mod imp {
                         None,
                         glib::ParamFlags::READWRITE | glib::ParamFlags::EXPLICIT_NOTIFY,
                     ),
+                    glib::ParamSpecInt::new(
+                        "code-length",
+                        "",
+                        "",
+                        CODE_LENGTH_MIN,
+                        CODE_LENGTH_MAX,
+                        4,
+                        glib::ParamFlags::READWRITE | glib::ParamFlags::EXPLICIT_NOTIFY,
+                    ),
                 ]
             });
             PROPERTIES.as_ref()
@@ -77,6 +93,7 @@ mod imp {
             match pspec.name() {
                 "rendezvous-server-url" => obj.set_rendezvous_server_url(value.get().unwrap()),
                 "transit-server-url" => obj.set_transit_server_url(value.get().unwrap()),
+                "code-length" => obj.set_code_length(value.get().unwrap()),
                 _ => unimplemented!(),
             }
         }
@@ -85,6 +102,7 @@ mod imp {
             match pspec.name() {
                 "rendezvous-server-url" => obj.rendezvous_server_url().to_value(),
                 "transit-server-url" => obj.transit_server_url().to_value(),
+                "code-length" => obj.code_length().to_value(),
                 _ => unimplemented!(),
             }
         }
@@ -112,6 +130,10 @@ mod imp {
                 .set_placeholder_text(Some(globals::WORMHOLE_DEFAULT_RENDEZVOUS_SERVER.as_str()));
             self.transit_server_url_entry
                 .set_placeholder_text(Some(globals::WORMHOLE_DEFAULT_TRANSIT_RELAY.as_str()));
+            self.code_length_spin_button
+                .set_adjustment(&gtk::Adjustment::new(4f64, 2f64, 8f64, 1f64, 0f64, 0f64));
+
+            obj.set_code_length(window.config().code_length_or_default() as i32);
         }
     }
 
@@ -133,6 +155,9 @@ mod imp {
             } else {
                 None
             };
+
+            let code_length = self.code_length.get();
+            window.config().code_length = Some(code_length as usize);
 
             window.save_config();
 
@@ -169,6 +194,15 @@ impl WarpPreferencesWindow {
 
     pub fn transit_server_url(&self) -> String {
         self.imp().transit_server_url.borrow().to_string()
+    }
+
+    pub fn set_code_length(&self, length: i32) {
+        self.imp().code_length.set(length);
+        self.notify("code-length");
+    }
+
+    pub fn code_length(&self) -> i32 {
+        self.imp().code_length.get()
     }
 }
 

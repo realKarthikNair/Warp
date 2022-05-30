@@ -818,11 +818,14 @@ impl ActionView {
         self.prepare_transmit(TransferDirection::Send)?;
         self.set_ui_state(UIState::RequestCode);
 
+        let window = WarpApplicationWindow::default();
+
         let (mut file, path, filename) = self.prepare_and_open_file(&path).await?;
         self.imp().file_name.replace(Some(filename.clone()));
+        let code_length = window.config().code_length_or_default();
 
         let res = spawn_async(cancelable_future(
-            Wormhole::connect_without_code(app_cfg.clone(), 4),
+            Wormhole::connect_without_code(app_cfg.clone(), code_length),
             Self::cancel_future(),
         ))
         .await?;
@@ -834,7 +837,7 @@ impl ActionView {
             }
         };
 
-        WarpApplicationWindow::default().add_code(welcome.code.clone());
+        window.add_code(welcome.code.clone());
         let uri = WormholeTransferURI::from_app_cfg_with_code_direction(
             &app_cfg,
             &welcome.code,
