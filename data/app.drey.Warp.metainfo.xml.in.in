@@ -56,6 +56,19 @@
   <url type="contact">https://matrix.to/#/#app.drey.Warp:matrix.org</url>
   <content_rating type="oars-1.0" />
   <releases>
+    <release version="0.2.0-rc.1" date="2022-05-31">
+      <description>
+        <p>This release includes the following updates:</p>
+        <ul>
+          <li>Design improvements</li>
+          <li>Many new translations</li>
+          <li>Support for mobile devices</li>
+          <li>Improved error handling</li>
+          <li>Improved temporary file handling</li>
+          <li>Add preferences screen for server URLs</li>
+        </ul>
+      </description>
+    </release>
     <release version="0.1.2" date="2022-05-17">
       <description>
         <p>Added French translation</p>
