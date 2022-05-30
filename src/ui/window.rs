@@ -119,7 +119,6 @@ mod imp {
                     obj.add_code_from_clipboard();
                 }));
 
-            obj.load_window_size();
             obj.setup_help_overlay();
 
             self.send_select_file_button
@@ -271,6 +270,7 @@ mod imp {
     impl WidgetImpl for WarpApplicationWindow {
         fn show(&self, widget: &Self::Type) {
             self.parent_show(widget);
+            widget.load_window_size();
 
             if !self.config.borrow().welcome_window_shown {
                 let welcome_window = WelcomeWindow::new();
