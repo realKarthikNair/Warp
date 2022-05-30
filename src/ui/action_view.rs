@@ -637,7 +637,7 @@ impl ActionView {
 
         let file_path: Box<dyn MaybeTempFilePath> = if path.is_dir() {
             self.set_ui_state(UIState::Archive(filename.clone()));
-            filename.push(".tgz");
+            filename.push(".zip");
             Box::new(fs::compress_folder_cancelable(path, Self::cancel_future()).await?)
         } else if path.is_file() {
             Box::new(path.to_path_buf())
@@ -754,7 +754,13 @@ impl ActionView {
 
         WarpApplication::default().withdraw_notification("receive-ready");
 
-        let temp_path = tempfile::NamedTempFile::new_in(download_path)?.into_temp_path();
+        let mut tempfile_prefix = filename.as_os_str().to_os_string();
+        tempfile_prefix.push(".warpdownload.");
+
+        let temp_path = tempfile::Builder::new()
+            .prefix(&tempfile_prefix)
+            .tempfile_in(download_path)?
+            .into_temp_path();
         let temp_file = smol::fs::OpenOptions::new()
             .write(true)
             .create(false)
