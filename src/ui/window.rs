@@ -360,8 +360,9 @@ impl WarpApplicationWindow {
         let text = self.imp().code_entry.text();
         let uri = extract_transmit_uri(&text).and_then(|s| WormholeTransferURI::from_str(&s).ok());
         let code = if !TRANSMIT_CODE_MATCH_REGEX.is_match(&text) {
-            if let Some(uri) = &uri {
-                uri.code.clone()
+            if let Some(uri) = uri {
+                self.open_code_from_uri(uri);
+                return;
             } else if let Some(code) = extract_transmit_code(&text) {
                 wormhole::Code(code)
             } else {
