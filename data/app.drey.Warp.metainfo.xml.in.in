@@ -56,7 +56,7 @@
   <url type="contact">https://matrix.to/#/#app.drey.Warp:matrix.org</url>
   <content_rating type="oars-1.0" />
   <releases>
-    <release version="0.2.0-rc.1" date="2022-05-31">
+    <release version="0.2.0-rc.1" date="2022-06-03">
       <description>
         <p>This release includes the following updates:</p>
         <ul>
