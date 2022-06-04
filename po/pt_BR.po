@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: warp main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
-"POT-Creation-Date: 2022-06-02 17:34+0000\n"
-"PO-Revision-Date: 2022-06-02 23:30-0300\n"
+"POT-Creation-Date: 2022-06-03 02:33+0000\n"
+"PO-Revision-Date: 2022-06-04 14:56-0300\n"
 "Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "Language: pt_BR\n"
@@ -26,7 +26,7 @@ msgstr "Warp"
 #: data/app.drey.Warp.desktop.in.in:4 data/app.drey.Warp.metainfo.xml.in.in:8
 #: data/resources/ui/welcome_window.ui:40
 msgid "Fast and secure file transfer"
-msgstr "Transferência de arquivos rápida e segura"
+msgstr "Transferência de arquivo rápida e segura"
 
 #: data/app.drey.Warp.desktop.in.in:9
 msgid "Gnome;GTK;Wormhole;Magic-Wormhole;"
@@ -198,15 +198,15 @@ msgid ""
 "\n"
 "Leaving these entries empty will use the application defaults."
 msgstr ""
-"A alteração da URL do servidor de rendezvous deve ser feita em ambos os "
-"lados da transferência. Insira apenas uma URL de servidor em que você possa "
+"A alteração da URL do servidor de encontro deve ser feita em ambos os lados "
+"da transferência. Insira apenas uma URL de servidor em que você possa "
 "confiar.\n"
 "\n"
 "Deixar essas entradas vazias usará os padrões do aplicativo."
 
 #: data/resources/ui/preferences.ui:27
 msgid "Rendezvous Server URL"
-msgstr "URL do servidor de rendezvous"
+msgstr "URL do servidor de encontro"
 
 #: data/resources/ui/preferences.ui:43
 msgid "Transit Server URL"
@@ -433,9 +433,8 @@ msgstr ""
 "O receptor precisa inserir este código para iniciar a transferência do "
 "arquivo.\n"
 "\n"
-"Você inseriu uma URL de servidor de rendezvous personalizado nas "
-"preferências. Verifique se o receptor também usa o mesmo servidor de "
-"rendezvous."
+"Você inseriu uma URL de servidor de encontro personalizado nas preferências. "
+"Verifique se o receptor também usa o mesmo servidor de encontro."
 
 #. Translators: Description, Code in box below, argument is filename
 #: src/ui/action_view.rs:374
@@ -503,12 +502,12 @@ msgstr "Arquivo “{}” por transferência direta"
 #. Translators: Description, During transfer
 #: src/ui/action_view.rs:473
 msgid "File “{0}” via relay {1}"
-msgstr "Arquivo “{}” por {1} como retransmissão"
+msgstr "Arquivo “{}” pelo retransmissor {1}"
 
 #. Translators: Description, During transfer
 #: src/ui/action_view.rs:476
 msgid "File “{}” via relay"
-msgstr "Arquivo “{}” por retransmissão"
+msgstr "Arquivo “{}” por retransmissor"
 
 #. Translators: Description, During transfer
 #: src/ui/action_view.rs:480
@@ -549,8 +548,8 @@ msgid ""
 "Error parsing rendezvous server URL. An invalid URL was entered in the "
 "settings."
 msgstr ""
-"Erro ao analisar a URL do servidor de rendezvous. Um URL inválido foi "
-"inserido nas configurações."
+"Erro ao analisar a URL do servidor de encontro. Um URL inválido foi inserido "
+"nas configurações."
 
 #: src/ui/action_view.rs:681
 msgid "Error parsing transit URL. An invalid URL was entered in the settings."
@@ -688,20 +687,20 @@ msgid ""
 "The rendezvous server will not allow further connections for this code. A "
 "new code needs to be generated."
 msgstr ""
-"O servidor de rendezvous não permitirá mais conexões para este código. Um "
-"novo código precisa ser gerado."
+"O servidor de encontro não permitirá mais conexões para este código. Um novo "
+"código precisa ser gerado."
 
 #: src/util/error.rs:174
 msgid ""
 "The rendezvous server removed the code due to inactivity. A new code needs "
 "to be generated."
 msgstr ""
-"O servidor de rendezvous removeu o código devido à inatividade. Um novo "
-"código precisa ser gerado."
+"O servidor de encontro removeu o código devido à inatividade. Um novo código "
+"precisa ser gerado."
 
 #: src/util/error.rs:176
 msgid "The rendezvous server responded with an unknown message: {}"
-msgstr "O servidor de rendezvous respondeu com uma mensagem desconhecida: {}"
+msgstr "O servidor de encontro respondeu com uma mensagem desconhecida: {}"
 
 #: src/util/error.rs:179
 msgid ""
@@ -709,17 +708,16 @@ msgid ""
 "You have entered a custom rendezvous server URL in preferences. Please "
 "verify the URL is correct and the server is working."
 msgstr ""
-"Erro ao conectar-se ao servidor de rendezvous.\n"
-"Você inseriu um URL de servidor de rendezvous personalizado nas "
-"preferências. Verifique se o URL está correto e se o servidor está "
-"funcionando."
+"Erro ao conectar-se ao servidor de encontro.\n"
+"Você inseriu um URL de servidor de encontro personalizado nas preferências. "
+"Verifique se o URL está correto e se o servidor está funcionando."
 
 #: src/util/error.rs:181
 msgid ""
 "Error connecting to the rendezvous server.\n"
 "Please try again later / verify you are connected to the internet."
 msgstr ""
-"Erro ao conectar-se ao servidor de rendezvous.\n"
+"Erro ao conectar-se ao servidor de encontro.\n"
 "Tente novamente mais tarde / verifique se você está conectado à Internet."
 
 #: src/util/error.rs:185
