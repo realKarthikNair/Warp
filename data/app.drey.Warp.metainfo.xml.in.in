@@ -54,6 +54,9 @@
   <url type="homepage">https://apps.gnome.org/app/app.drey.Warp/</url>
   <url type="bugtracker">https://gitlab.gnome.org/World/warp/issues</url>
   <url type="contact">https://matrix.to/#/#app.drey.Warp:matrix.org</url>
+  <custom>
+    <value key="GnomeSoftware::key-colors">[(136, 101, 247), (198, 130, 255)]</value>
+  </custom>
   <content_rating type="oars-1.0" />
   <releases>
     <release version="0.2.0-rc.1" date="2022-06-03">
