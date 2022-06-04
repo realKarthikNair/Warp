@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
-"POT-Creation-Date: 2022-05-30 20:16+0000\n"
-"PO-Revision-Date: 2022-06-02 19:32+0200\n"
+"POT-Creation-Date: 2022-06-02 17:34+0000\n"
+"PO-Revision-Date: 2022-06-04 14:12+0200\n"
 "Last-Translator: Quentin PAGÈS\n"
 "Language-Team: \n"
 "Language: oc\n"
@@ -214,7 +214,7 @@ msgstr "Url del servidor de transferiment"
 
 #: data/resources/ui/preferences.ui:61
 msgid "Code Words"
-msgstr ""
+msgstr "Mots de còdi"
 
 #: data/resources/ui/preferences.ui:62
 msgid ""
@@ -227,7 +227,7 @@ msgstr ""
 
 #: data/resources/ui/preferences.ui:67
 msgid "Code Word Count"
-msgstr ""
+msgstr "Compte de mots de còdis"
 
 #: data/resources/ui/welcome_window.ui:5
 msgid "Welcome"
@@ -427,13 +427,11 @@ msgstr ""
 
 #. Translators: Description, Code in box below, argument is filename
 #: src/ui/action_view.rs:374
-#, fuzzy
-#| msgid "The receiver needs to enter this code to begin the file transfer"
 msgid ""
 "Ready to send “{}”\n"
 "The receiver needs to enter this code to begin the file transfer."
 msgstr ""
-"Lo recebeire deu picar aqueste còdi per començar lo transferiment de fichièr"
+"Lo recebeire deu picar aqueste còdi per començar lo transferiment de fichièr."
 
 #. Translators: Description, Transfer Code
 #: src/ui/action_view.rs:389
@@ -561,7 +559,7 @@ msgstr "Abandonar"
 
 #: src/ui/action_view.rs:1056
 msgid "Downloads dir missing. Please set XDG_DOWNLOAD_DIR"
-msgstr ""
+msgstr "Dossièr de telecargament absent. Mercés de definir XDG_DOWNLOAD_DIR"
 
 #: src/ui/application.rs:80
 msgid "Unable to use transfer link: another transfer already in progress"
@@ -588,6 +586,9 @@ msgid ""
 "Error loading config file “{0}”, using default config.\n"
 "Error: {1}"
 msgstr ""
+"Error en cargant lo fichièr de configuracion « {0} », utilizacion de la "
+"configuracion per defaut.\n"
+"Error : {1}"
 
 #: src/ui/window.rs:201
 msgid "Select file to send"
@@ -621,22 +622,25 @@ msgstr "Error en enregistrant lo fichièr de configuracion : {}"
 #: src/ui/window.rs:369
 msgid "“{}” appears to be an invalid Transmit Code. Please try again."
 msgstr ""
+"« {} » sembla pas èsser un còdi de transferiment valid. Mercés de tornar "
+"ensajar."
 
 #: src/ui/window.rs:477
 msgid "Sending files with a preconfigured code is not yet supported"
 msgstr ""
+"Lo mandadís de fichièr amb un còdi preconfigurat es pas encara pres en carga"
 
 #: src/util.rs:146 src/util.rs:219
 msgid "The URI format is invalid"
-msgstr ""
+msgstr "Lo format d’URI es invalid"
 
 #: src/util.rs:150 src/util.rs:154
 msgid "The code does not match the required format"
-msgstr ""
+msgstr "Lo còdi correspond pas al format requerit"
 
 #: src/util.rs:169 src/util.rs:175
 msgid "Unknown URI version: {}"
-msgstr ""
+msgstr "Version d’URI desconeguda : {}"
 
 #: src/util.rs:184
 msgid "The URI parameter “rendezvous” contains an invalid URL: “{}”"
@@ -648,7 +652,7 @@ msgstr ""
 
 #: src/util.rs:203
 msgid "Unknown URI parameter “{}”"
-msgstr ""
+msgstr "Paramètres d’URI desconegut « {} »"
 
 #: src/util/error.rs:137
 msgid "An error occurred"
@@ -749,6 +753,8 @@ msgstr "Error de transferiment de fichièr desconeguda"
 msgid ""
 "An unexpected error occurred. Please report an issue with the error message."
 msgstr ""
+"Una error inesperada s’es producha. Mercés de senhalar l’avaria amb lo "
+"messatge d’error."
 
 #~ msgid "@icon@"
 #~ msgstr "@icon@"
