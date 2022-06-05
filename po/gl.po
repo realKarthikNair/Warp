@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: warp main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
 "POT-Creation-Date: 2022-06-04 17:59+0000\n"
-"PO-Revision-Date: 2022-06-05 13:01+0200\n"
+"PO-Revision-Date: 2022-06-05 17:30+0200\n"
 "Last-Translator: Fran Dieguez <frandieguez@gnome.org>\n"
 "Language-Team: Galician <gnome-gl-list@gnome.org>\n"
 "Language: gl\n"
@@ -430,6 +430,12 @@ msgid ""
 "You have entered a custom rendezvous server URL in preferences. Please "
 "verify the receiver also uses the same rendezvous server."
 msgstr ""
+"Preparado para enviar «{}»\n"
+"O receptor precisa escribir este código para comezar a transferencia do "
+"ficheiro.\n"
+"\n"
+"Escribiu unha URL de servidor rendezvous personalizada nas preferencias. "
+"Comprobe que o receptor tamén usa o mesmo servidor rendezvous."
 
 #. Translators: Description, Code in box below, argument is filename
 #: src/ui/action_view.rs:374
@@ -437,6 +443,9 @@ msgid ""
 "Ready to send “{}”\n"
 "The receiver needs to enter this code to begin the file transfer."
 msgstr ""
+"Preparado para enviar «{}»\n"
+"O receptor precisa escribir este código para comezar a transferencia de "
+"ficheiro."
 
 #. Translators: Description, Transfer Code
 #: src/ui/action_view.rs:389
@@ -467,6 +476,8 @@ msgid ""
 "Your peer wants to send you “{0}” (Size: {1}).\n"
 "Do you want to download this file to your Downloads folder?"
 msgstr ""
+"O seu par envioulle «{0}» (Tamaño: {1}).\n"
+"Desexa descargar este ficheiro no seu cartafol de Descargas?"
 
 #: src/ui/action_view.rs:433
 msgid "Ready to Receive File"
@@ -476,6 +487,8 @@ msgstr "Listo para recibir o ficheiro"
 msgid ""
 "A file is ready to be transferred. The transfer needs to be acknowledged."
 msgstr ""
+"Un ficheiro esta listo para ser transferido. A transferencia debería "
+"recoñecerse."
 
 #. Translators: Description, During transfer
 #: src/ui/action_view.rs:464
@@ -515,7 +528,7 @@ msgstr "Ficheiro «{}» enviado con éxio"
 #. Translators: Description, Filename
 #: src/ui/action_view.rs:524
 msgid "File has been saved to the Downloads folder as “{}”"
-msgstr ""
+msgstr "O ficheiro foi gardado no cartafol de Descargas como «{}»"
 
 #. Translators: Title
 #: src/ui/action_view.rs:539 src/ui/action_view.rs:550
@@ -536,10 +549,14 @@ msgid ""
 "Error parsing rendezvous server URL. An invalid URL was entered in the "
 "settings."
 msgstr ""
+"Produciuse un erro analizando a URL do servidor rendezvous. Escribiuse unha "
+"URL non válida nas preferencias."
 
 #: src/ui/action_view.rs:681
 msgid "Error parsing transit URL. An invalid URL was entered in the settings."
 msgstr ""
+"Produciuse un erro ao analizar a URL de transferencia. Escribiuse unha URL "
+"non válida nas preferencias."
 
 #. Translators: File receive confirmation message dialog title
 #: src/ui/action_view.rs:965
@@ -565,6 +582,8 @@ msgstr "Falta o directorio de Descargas. Estabeleza XDG_DOWNLOAD_DIR"
 #: src/ui/application.rs:80
 msgid "Unable to use transfer link: another transfer already in progress"
 msgstr ""
+"Non foi posíbel usar a ligazón de transferencia: xa hai outra transferencia "
+"en curso"
 
 #: src/ui/application.rs:232
 msgid "translator-credits"
@@ -587,6 +606,9 @@ msgid ""
 "Error loading config file “{0}”, using default config.\n"
 "Error: {1}"
 msgstr ""
+"Prodiciuse un erro ao cargar o ficheiro de configuración «{0}», usando as "
+"preferencias predeterminadas.\n"
+"Erro: {1}"
 
 #: src/ui/window.rs:201
 msgid "Select file to send"
@@ -623,7 +645,7 @@ msgstr "«{}» semella ser un código de transmisión non válido. Tente de novo
 
 #: src/ui/window.rs:478
 msgid "Sending files with a preconfigured code is not yet supported"
-msgstr ""
+msgstr "Aínda non é compatíbel enviar ficheiros con un código preconfigurado"
 
 #: src/util.rs:146 src/util.rs:219
 msgid "The URI format is invalid"
@@ -643,7 +665,7 @@ msgstr "O parámetro de URI «rendezvous» contén una URL non válida: «{}»"
 
 #: src/util.rs:196
 msgid "The URI parameter “role” must be “follower” or “leader” (was: “{}”)"
-msgstr ""
+msgstr "O parámetro «role» da URI debe ser «follower» ou «leader» (foi: «{}»)"
 
 #: src/util.rs:203
 msgid "Unknown URI parameter “{}”"
@@ -662,12 +684,16 @@ msgid ""
 "The rendezvous server will not allow further connections for this code. A "
 "new code needs to be generated."
 msgstr ""
+"O servidor rendezvous non permite máis conexión para este código. Debe "
+"xerar un novo código."
 
 #: src/util/error.rs:174
 msgid ""
 "The rendezvous server removed the code due to inactivity. A new code needs "
 "to be generated."
 msgstr ""
+"O servidor rendezvous eliminou o código debido á inactividade. Debe xerar "
+"un novo código."
 
 #: src/util/error.rs:176
 msgid "The rendezvous server responded with an unknown message: {}"
@@ -688,6 +714,8 @@ msgid ""
 "Error connecting to the rendezvous server.\n"
 "Please try again later / verify you are connected to the internet."
 msgstr ""
+"Produciuse un erro conectándose ao servidor rendezvous.\n"
+"Tente de novo / verifique que está conectado a internet."
 
 #: src/util/error.rs:185
 msgid ""
@@ -695,6 +723,9 @@ msgid ""
 "code, this is a sign of an attacker guessing passwords. Please try again "
 "some time later."
 msgstr ""
+"Fallou a confirmación da chave de cifrado. Se vostede ou o seu par non "
+"escribiu mal o código, isto é un sinal dun atacante adivinando "
+"contrasinais. Tente de novo máis tarde."
 
 #: src/util/error.rs:187
 msgid "Cannot decrypt a received message"
@@ -726,6 +757,8 @@ msgid ""
 "The file contained a different amount of bytes than advertised! Sent {} "
 "bytes, but should have been {}"
 msgstr ""
+"O ficheiro contiña unha cantidade distinta de bytes publicitados! Enviados "
+"{} bytes, pero deberían ser {}"
 
 #: src/util/error.rs:220
 msgid "The other side has cancelled the transfer"
@@ -737,7 +770,7 @@ msgstr "O outro lado rexeitou a transferencia"
 
 #: src/util/error.rs:224
 msgid "Something went wrong on the other side: {}"
-msgstr ""
+msgstr "Algo foi mal no outro lado: {}"
 
 #: src/util/error.rs:239
 msgid "Error while establishing file transfer connection"
