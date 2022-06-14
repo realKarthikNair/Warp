@@ -181,6 +181,7 @@ impl WarpApplication {
         self.set_accels_for_action("win.open-file", &["<Control>o"]);
         self.set_accels_for_action("win.open-folder", &["<Control>d"]);
         self.set_accels_for_action("win.receive-file", &["<Control>r"]);
+        self.set_accels_for_action("app.preferences", &["<Control>comma"]);
     }
 
     fn setup_css(&self) {
