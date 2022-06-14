@@ -407,7 +407,7 @@ impl WarpApplicationWindow {
         let imp = self.imp();
         imp.action_view_showing.set(false);
         imp.leaflet.navigate(adw::NavigationDirection::Back);
-        imp.action_view.show_progress_indeterminate(false);
+        imp.action_view.reset();
         imp.code_entry.set_text("");
         WarpApplication::default().uninhibit_transfer();
         self.add_code_from_clipboard();

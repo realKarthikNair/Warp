@@ -116,8 +116,11 @@ mod imp {
         pub continue_sender: OnceCell<async_channel::Sender<()>>,
         pub continue_receiver: OnceCell<async_channel::Receiver<()>>,
 
-        // Full path to the received / sent file
+        // Full path to the currently being received / sent file
         pub file_path: RefCell<Option<Box<dyn MaybeTempFilePath>>>,
+
+        // File path to the last file that was received successfully
+        pub file_path_received_successfully: RefCell<Option<PathBuf>>,
 
         // The user facing name of the file being received / send
         pub file_name: RefCell<Option<OsString>>,
@@ -249,12 +252,20 @@ mod imp {
 
             self.open_button
                 .connect_clicked(clone!(@weak obj => move |_| {
-                    if let Some(filename) = obj.imp().file_path.borrow().as_ref() {
-                        let uri = glib::filename_to_uri(filename.as_ref(), None);
+                    if let Some(filename) = obj.imp().file_path_received_successfully.borrow().as_ref() {
+                        let uri = glib::filename_to_uri(filename, None);
                         if let Ok(uri) = uri {
+                            log::debug!("Opening file with uri '{}'", uri);
                             let none: Option<&AppLaunchContext> = None;
-                            let _ = AppInfo::launch_default_for_uri(&uri.to_string(), none);
+                            let res = AppInfo::launch_default_for_uri(&uri.to_string(), none);
+                            if let Err(err) = res {
+                                log::error!("Error opening file: {}", err);
+                            }
+                        } else {
+                            log::error!("Filename to open is not a valid uri")
                         }
+                    } else {
+                        log::error!("Open button clicked but no filename set");
                     };
                 }));
 
@@ -605,7 +616,7 @@ impl ActionView {
         }));
     }
 
-    pub fn show_progress_indeterminate(&self, pulse: bool) {
+    fn show_progress_indeterminate(&self, pulse: bool) {
         let imp = self.imp();
         if let Some(source_id) = imp.progress_timeout_source_id.take() {
             source_id.remove();
@@ -794,12 +805,19 @@ impl ActionView {
                 return Err(AppError::Canceled);
             }
 
+            // Windows requires the file to be closed before renaming it
+            file.sync_all().await?;
+            drop(file);
+
+            // Rename the file to its final name
             let path = safe_persist_tempfile(temp_path, &filename).await?;
             let obj = WarpApplicationWindow::default().action_view();
             obj.imp()
                 .file_name
                 .replace(Some(path.file_name().unwrap().to_os_string()));
-            obj.imp().file_path.replace(Some(Box::new(path)));
+            obj.imp()
+                .file_path_received_successfully
+                .replace(Some(path));
 
             Self::transmit_success_main();
 
@@ -976,19 +994,24 @@ impl ActionView {
     }
 
     /// Any post-transfer cleanup operations that are shared between success and failure states
-    fn transmit_cleanup(&self) {
+    pub fn transmit_cleanup(&self) {
         log::debug!("Transmit cleanup");
 
         let imp = self.imp();
         WarpApplication::default().uninhibit_transfer();
-        self.show_progress_indeterminate(false);
 
         // Drain cancel and continue receiver from any previous transfers
         while imp.cancel_receiver.get().unwrap().try_recv().is_ok() {}
         while imp.continue_receiver.get().unwrap().try_recv().is_ok() {}
 
+        self.reset();
+    }
+
+    pub fn reset(&self) {
+        self.show_progress_indeterminate(false);
+
         // Deletes any temporary files if required
-        imp.file_path.replace(None);
+        self.imp().file_path.replace(None);
     }
 
     fn transmit_success_main() {
@@ -1011,6 +1034,7 @@ impl ActionView {
                 .clone()
                 .unwrap_or_else(|| OsString::from("?")),
         ));
+
         self.transmit_cleanup();
     }
 

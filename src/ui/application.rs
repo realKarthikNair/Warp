@@ -101,6 +101,14 @@ mod imp {
                 }
             }
         }
+
+        fn shutdown(&self, application: &Self::Type) {
+            if let Some(window) = self.window.get().and_then(|w| w.upgrade()) {
+                window.action_view().reset();
+            }
+
+            self.parent_shutdown(application)
+        }
     }
 
     impl GtkApplicationImpl for WarpApplication {}
