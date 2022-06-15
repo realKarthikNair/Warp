@@ -8,6 +8,10 @@ repository = "https://gitlab.gnome.org/World/warp/"
 edition = "2021"
 default-run = "warp"
 
+[package.metadata.urls]
+issuetracker = "https://gitlab.gnome.org/World/warp/issues"
+contact = "https://matrix.to/#/#app.drey.Warp:matrix.org"
+
 [profile.release]
 lto = true
 codegen-units = 1

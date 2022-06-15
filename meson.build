@@ -11,8 +11,28 @@ project(
     check: true
   ).stdout(),
   meson_version: '>= 0.59',
-  # license: MIT,
+  license: run_command(
+    find_program(meson.source_root() / 'build-aux/meson-cargo-manifest.py'),
+    'package', 'license',
+    check: true
+  ).stdout(),
 )
+
+homepage = run_command(
+    find_program(meson.source_root() / 'build-aux/meson-cargo-manifest.py'),
+    'package', 'homepage',
+    check: true
+).stdout()
+issuetracker = run_command(
+    find_program(meson.source_root() / 'build-aux/meson-cargo-manifest.py'),
+    'package.metadata.urls', 'issuetracker',
+    check: true
+).stdout()
+contact = run_command(
+    find_program(meson.source_root() / 'build-aux/meson-cargo-manifest.py'),
+    'package.metadata.urls', 'contact',
+    check: true
+).stdout()
 
 i18n = import('i18n')
 gnome = import('gnome')

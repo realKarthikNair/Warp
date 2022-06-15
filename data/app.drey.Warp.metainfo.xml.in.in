@@ -3,7 +3,7 @@
 <component type="desktop-application">
   <id>@app-id@</id>
   <metadata_license>CC0</metadata_license>
-  <project_license>GPL-3.0</project_license>
+  <project_license>@license@</project_license>
   <name>Warp</name>
   <summary>Fast and secure file transfer</summary>
   <description>
@@ -51,9 +51,9 @@
   <provides>
     <binary>warp</binary>
   </provides>
-  <url type="homepage">https://apps.gnome.org/app/app.drey.Warp/</url>
-  <url type="bugtracker">https://gitlab.gnome.org/World/warp/issues</url>
-  <url type="contact">https://matrix.to/#/#app.drey.Warp:matrix.org</url>
+  <url type="homepage">@homepage@</url>
+  <url type="bugtracker">@issuetracker@</url>
+  <url type="contact">@contact@</url>
   <custom>
     <value key="GnomeSoftware::key-colors">[(136, 101, 247), (198, 130, 255)]</value>
   </custom>
