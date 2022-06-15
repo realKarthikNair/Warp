@@ -12,7 +12,7 @@ use zip_extensions::write::ZipWriterExtensions;
 pub async fn compress_folder_cancelable(
     path: &Path,
     cancel_future: impl Future<Output = ()>,
-) -> Result<tempfile::TempPath, AppError> {
+) -> Result<tempfile::NamedTempFile, AppError> {
     let tar_path_future = compress_folder(path);
     let tar_path_future = tar_path_future.fuse();
     let cancel_future = cancel_future.fuse();
@@ -25,12 +25,12 @@ pub async fn compress_folder_cancelable(
                 log::debug!("Created archive");
             }
 
-            res.map(|f| f.into_temp_path())
+            res
         },
         () = cancel_future => {
             log::debug!("Archive creation canceled");
             // Canceled / Error: We drop the smol::Task at the end of this function which aborts it
-            // The dropped TempPath will be deleted as well
+            // The dropped NamedTempFile will be deleted as well
             Err(AppError::Canceled)
         }
     }
@@ -61,7 +61,7 @@ pub async fn compress_folder(path: &Path) -> Result<tempfile::NamedTempFile, App
 }
 
 pub async fn safe_persist_tempfile(
-    temp_path: tempfile::TempPath,
+    temp_file: tempfile::NamedTempFile,
     filename: &Path,
 ) -> std::io::Result<PathBuf> {
     let mut file_stem: String = filename
@@ -87,7 +87,8 @@ pub async fn safe_persist_tempfile(
     let mut i = 1;
     let mut filename;
     let mut file_res;
-    let dir = temp_path
+    let dir = temp_file
+        .path()
         .parent()
         .unwrap_or(&PathBuf::from("."))
         .to_path_buf();
@@ -118,7 +119,7 @@ pub async fn safe_persist_tempfile(
         }
     }
 
-    temp_path.persist(&path)?;
+    temp_file.persist(&path)?;
 
     Ok(path)
 }

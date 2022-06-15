@@ -117,7 +117,7 @@ mod imp {
         pub continue_receiver: OnceCell<async_channel::Receiver<()>>,
 
         // Full path to the currently being received / sent file
-        pub file_path: RefCell<Option<Box<dyn MaybeTempFilePath>>>,
+        pub file_path: RefCell<Option<PathBuf>>,
 
         // File path to the last file that was received successfully
         pub file_path_received_successfully: RefCell<Option<PathBuf>>,
@@ -639,30 +639,33 @@ impl ActionView {
     async fn prepare_and_open_file(
         &self,
         path: &Path,
-    ) -> Result<(smol::fs::File, Box<dyn MaybeTempFilePath>, OsString), AppError> {
+    ) -> Result<(smol::fs::File, PathBuf, OsString), AppError> {
         let mut filename = if let Some(filename) = path.file_name() {
             filename.to_os_string()
         } else {
             return Err(std::io::Error::from(std::io::ErrorKind::NotFound).into());
         };
 
-        let file_path: Box<dyn MaybeTempFilePath> = if path.is_dir() {
+        let (file, path) = if path.is_dir() {
             self.set_ui_state(UIState::Archive(filename.clone()));
             filename.push(".zip");
-            Box::new(fs::compress_folder_cancelable(path, Self::cancel_future()).await?)
+
+            let temp_file = fs::compress_folder_cancelable(path, Self::cancel_future()).await?;
+            (
+                smol::fs::File::from(temp_file.reopen()?),
+                temp_file.path().to_path_buf(),
+            )
         } else if path.is_file() {
-            Box::new(path.to_path_buf())
+            (
+                smol::fs::OpenOptions::new().read(true).open(&*path).await?,
+                path.to_path_buf(),
+            )
         } else {
             // Translators: When opening a file
             return Err(UiError::new(&gettext("Specified file / directory does not exist")).into());
         };
 
-        let file = smol::fs::OpenOptions::new()
-            .read(true)
-            .open(&*file_path)
-            .await?;
-
-        Ok((file, file_path, filename))
+        Ok((file, path, filename))
     }
 
     fn prepare_transmit(&self, direction: TransferDirection) -> Result<(), AppError> {
@@ -766,27 +769,25 @@ impl ActionView {
         WarpApplication::default().withdraw_notification("receive-ready");
 
         let mut tempfile_prefix = filename.as_os_str().to_os_string();
-        tempfile_prefix.push(".warpdownload.");
+        tempfile_prefix.push(".");
 
-        let temp_path = tempfile::Builder::new()
+        let temp_file = tempfile::Builder::new()
             .prefix(&tempfile_prefix)
-            .tempfile_in(download_path)?
-            .into_temp_path();
-        let temp_file = smol::fs::OpenOptions::new()
-            .write(true)
-            .create(false)
-            .truncate(true)
-            .open(&temp_path)
-            .await?;
+            .suffix(&".warpdownload")
+            .tempfile_in(download_path)?;
+        let file = smol::fs::File::from(temp_file.reopen()?);
 
         self.imp()
             .file_name
             .replace(Some(filename.as_os_str().to_os_string()));
 
         spawn_async(async move {
-            log::info!("Downloading file to {:?}", temp_path.to_str());
+            log::info!(
+                "Downloading file to {:?}",
+                temp_file.path().to_string_lossy()
+            );
 
-            let mut file = temp_file;
+            let mut file = file;
             request
                 .accept(
                     Self::transit_handler,
@@ -810,7 +811,7 @@ impl ActionView {
             drop(file);
 
             // Rename the file to its final name
-            let path = safe_persist_tempfile(temp_path, &filename).await?;
+            let path = safe_persist_tempfile(temp_file, &filename).await?;
             let obj = WarpApplicationWindow::default().action_view();
             obj.imp()
                 .file_name
