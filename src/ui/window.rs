@@ -286,10 +286,9 @@ mod imp {
             window.save_window_size();
             window.save_config();
 
-            if window.action_view_showing() {
+            if window.action_view_showing() && window.action_view().transfer_in_progress() {
                 main_async_local_infallible(clone!(@strong window => async move {
-                    let canceled = window.action_view().cancel_request().await;
-                    if canceled {
+                    if window.action_view().cancel_request().await {
                         window.close();
                     }
                 }));
