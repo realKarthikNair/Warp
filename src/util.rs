@@ -41,7 +41,7 @@ pub struct WormholeURIParseError(String);
 
 impl ToString for WormholeURIParseError {
     fn to_string(&self) -> String {
-        self.0.to_string()
+        self.0.clone()
     }
 }
 

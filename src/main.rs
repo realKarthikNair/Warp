@@ -8,7 +8,15 @@
     clippy::needless_pass_by_value,
     clippy::get_unwrap,
     clippy::if_then_some_else_none,
-    clippy::str_to_string
+    clippy::let_underscore_must_use,
+    clippy::mem_forget,
+    clippy::print_stderr,
+    clippy::print_stdout,
+    clippy::rc_buffer,
+    clippy::rc_mutex,
+    clippy::separated_literal_suffix,
+    clippy::str_to_string,
+    clippy::string_to_string
 )]
 
 #[macro_use]
