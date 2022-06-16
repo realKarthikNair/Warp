@@ -21,7 +21,6 @@
     clippy::cast_possible_wrap,
     clippy::cast_precision_loss,
     clippy::cast_sign_loss,
-    clippy::if_not_else,
     clippy::let_underscore_drop,
     clippy::module_name_repetitions,
     clippy::too_many_lines,

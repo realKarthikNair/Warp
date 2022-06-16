@@ -372,17 +372,17 @@ impl ActionView {
                     let filename = imp.file_name.borrow().clone().unwrap_or_else(|| "?".into());
 
                     if imp.rendezvous_url.borrow().as_ref().unwrap()
-                        != &*globals::WORMHOLE_DEFAULT_RENDEZVOUS_SERVER
+                        == &*globals::WORMHOLE_DEFAULT_RENDEZVOUS_SERVER
                     {
                         imp.status_page.set_description(Some(&gettextf(
                             // Translators: Description, Code in box below, argument is filename
-                            "Ready to send “{}”\nThe receiver needs to enter this code to begin the file transfer.\n\nYou have entered a custom rendezvous server URL in preferences. Please verify the receiver also uses the same rendezvous server.",
+                            "Ready to send “{}”\nThe receiver needs to enter this code to begin the file transfer.",
                             &[&filename.to_string_lossy()]
                         )));
                     } else {
                         imp.status_page.set_description(Some(&gettextf(
                             // Translators: Description, Code in box below, argument is filename
-                            "Ready to send “{}”\nThe receiver needs to enter this code to begin the file transfer.",
+                            "Ready to send “{}”\nThe receiver needs to enter this code to begin the file transfer.\n\nYou have entered a custom rendezvous server URL in preferences. Please verify the receiver also uses the same rendezvous server.",
                             &[&filename.to_string_lossy()]
                         )));
                     }
@@ -1041,12 +1041,10 @@ impl ActionView {
     pub fn transmit_error(&self, error: AppError) {
         log::debug!("Transmit error");
 
-        if *self.ui_state() != UIState::Initial {
-            if !matches!(error, AppError::Canceled) {
-                self.set_ui_state(UIState::Error(error));
-            } // Canceled is initiated intentionally by the user
-        } else {
+        if *self.ui_state() == UIState::Initial {
             error.handle();
+        } else if !matches!(error, AppError::Canceled) {
+            self.set_ui_state(UIState::Error(error));
         }
 
         self.transmit_cleanup();

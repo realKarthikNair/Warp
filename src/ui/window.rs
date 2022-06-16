@@ -358,22 +358,20 @@ impl WarpApplicationWindow {
     pub fn receive_file_button(&self) {
         let text = self.imp().code_entry.text();
         let uri = extract_transmit_uri(&text).and_then(|s| WormholeTransferURI::from_str(&s).ok());
-        let code = if !TRANSMIT_CODE_MATCH_REGEX.is_match(&text) {
-            if let Some(uri) = uri {
-                self.open_code_from_uri(uri);
-                return;
-            } else if let Some(code) = extract_transmit_code(&text) {
-                wormhole::Code(code)
-            } else {
-                UiError::new(&gettextf(
-                    "“{}” appears to be an invalid Transmit Code. Please try again.",
-                    &[&text],
-                ))
-                .handle();
-                return;
-            }
-        } else {
+        let code = if TRANSMIT_CODE_MATCH_REGEX.is_match(&text) {
             wormhole::Code(text.to_string())
+        } else if let Some(uri) = uri {
+            self.open_code_from_uri(uri);
+            return;
+        } else if let Some(code) = extract_transmit_code(&text) {
+            wormhole::Code(code)
+        } else {
+            UiError::new(&gettextf(
+                "“{}” appears to be an invalid Transmit Code. Please try again.",
+                &[&text],
+            ))
+            .handle();
+            return;
         };
 
         let app_cfg = if let Some(uri) = uri {
