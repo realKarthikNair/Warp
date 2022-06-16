@@ -29,7 +29,7 @@ endif
 # Appdata
 appdata_conf = configuration_data()
 appdata_conf.set('app-id', application_id)
-appdata_conf.set('license', meson.project_license())
+appdata_conf.set('license', meson.project_license()[0])
 appdata_conf.set('gettext-package', gettext_package)
 appdata_conf.set('homepage', homepage)
 appdata_conf.set('issuetracker', issuetracker)
