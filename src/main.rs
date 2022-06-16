@@ -1,22 +1,26 @@
 #![warn(
-    clippy::redundant_else,
     clippy::default_trait_access,
     clippy::doc_markdown,
-    clippy::semicolon_if_nothing_returned,
-    clippy::map_unwrap_or,
-    clippy::redundant_closure_for_method_calls,
-    clippy::needless_pass_by_value,
     clippy::get_unwrap,
     clippy::if_then_some_else_none,
     clippy::let_underscore_must_use,
+    clippy::map_unwrap_or,
     clippy::mem_forget,
+    clippy::needless_pass_by_value,
     clippy::print_stderr,
     clippy::print_stdout,
     clippy::rc_buffer,
     clippy::rc_mutex,
+    clippy::redundant_closure_for_method_calls,
+    clippy::redundant_else,
+    clippy::semicolon_if_nothing_returned,
     clippy::separated_literal_suffix,
+    clippy::string_to_string,
     clippy::str_to_string,
-    clippy::string_to_string
+    clippy::todo,
+    clippy::try_err,
+    clippy::undocumented_unsafe_blocks,
+    clippy::unneeded_field_pattern
 )]
 
 #[macro_use]
