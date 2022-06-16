@@ -111,6 +111,7 @@ mod imp {
             self.parent_constructed(obj);
 
             let window = WarpApplicationWindow::default();
+            obj.set_transient_for(Some(&window));
             obj.set_rendezvous_server_url(
                 window
                     .config()
