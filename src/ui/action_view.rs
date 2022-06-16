@@ -262,7 +262,7 @@ mod imp {
                                 log::error!("Error opening file: {}", err);
                             }
                         } else {
-                            log::error!("Filename to open is not a valid uri")
+                            log::error!("Filename to open is not a valid uri");
                         }
                     } else {
                         log::error!("Open button clicked but no filename set");
@@ -372,17 +372,17 @@ impl ActionView {
                     let filename = imp.file_name.borrow().clone().unwrap_or_else(|| "?".into());
 
                     if imp.rendezvous_url.borrow().as_ref().unwrap()
-                        != &*globals::WORMHOLE_DEFAULT_RENDEZVOUS_SERVER
+                        == &*globals::WORMHOLE_DEFAULT_RENDEZVOUS_SERVER
                     {
                         imp.status_page.set_description(Some(&gettextf(
                             // Translators: Description, Code in box below, argument is filename
-                            "Ready to send “{}”\nThe receiver needs to enter this code to begin the file transfer.\n\nYou have entered a custom rendezvous server URL in preferences. Please verify the receiver also uses the same rendezvous server.",
+                            "Ready to send “{}”\nThe receiver needs to enter this code to begin the file transfer.",
                             &[&filename.to_string_lossy()]
                         )));
                     } else {
                         imp.status_page.set_description(Some(&gettextf(
                             // Translators: Description, Code in box below, argument is filename
-                            "Ready to send “{}”\nThe receiver needs to enter this code to begin the file transfer.",
+                            "Ready to send “{}”\nThe receiver needs to enter this code to begin the file transfer.\n\nYou have entered a custom rendezvous server URL in preferences. Please verify the receiver also uses the same rendezvous server.",
                             &[&filename.to_string_lossy()]
                         )));
                     }
@@ -715,7 +715,7 @@ impl ActionView {
         );
         self.set_ui_state(UIState::HasCode(uri));
 
-        WarpApplicationWindow::default().add_code(code.clone());
+        WarpApplicationWindow::default().add_code(&code);
 
         let (_welcome, connection) = spawn_async(cancelable_future(
             Wormhole::connect_with_code(app_cfg, code),
@@ -856,7 +856,7 @@ impl ActionView {
             }
         };
 
-        window.add_code(welcome.code.clone());
+        window.add_code(&welcome.code);
         let uri = WormholeTransferURI::from_app_cfg_with_code_direction(
             &app_cfg,
             &welcome.code,
@@ -934,8 +934,7 @@ impl ActionView {
                 .file_name
                 .borrow()
                 .as_ref()
-                .map(|s| s.to_string_lossy().to_string())
-                .unwrap_or_else(|| "?".to_string());
+                .map_or_else(|| "?".to_owned(), |s| s.to_string_lossy().to_string());
 
             obj.set_ui_state(UIState::Transmitting(filename, info, peer_ip));
         });
@@ -960,7 +959,7 @@ impl ActionView {
                     update_progress = progress.set_progress(sent as usize);
                     progress.get_pretty_time_remaining()
                 })
-                .unwrap_or_else(|| "".to_string());
+                .unwrap_or_else(|| "".to_owned());
 
             if update_progress {
                 imp.progress_bar.set_fraction(sent as f64 / total as f64);
@@ -1019,7 +1018,7 @@ impl ActionView {
         glib::MainContext::default().invoke(move || {
             WarpApplicationWindow::default()
                 .action_view()
-                .transmit_success()
+                .transmit_success();
         });
     }
 
@@ -1042,12 +1041,10 @@ impl ActionView {
     pub fn transmit_error(&self, error: AppError) {
         log::debug!("Transmit error");
 
-        if *self.ui_state() != UIState::Initial {
-            if !matches!(error, AppError::Canceled) {
-                self.set_ui_state(UIState::Error(error));
-            } // Canceled is initiated intentionally by the user
-        } else {
+        if *self.ui_state() == UIState::Initial {
             error.handle();
+        } else if !matches!(error, AppError::Canceled) {
+            self.set_ui_state(UIState::Error(error));
         }
 
         self.transmit_cleanup();

@@ -1,6 +1,35 @@
+#![warn(
+    clippy::get_unwrap,
+    clippy::if_then_some_else_none,
+    clippy::let_underscore_must_use,
+    clippy::mem_forget,
+    clippy::print_stderr,
+    clippy::print_stdout,
+    clippy::rc_buffer,
+    clippy::rc_mutex,
+    clippy::separated_literal_suffix,
+    clippy::string_to_string,
+    clippy::str_to_string,
+    clippy::todo,
+    clippy::try_err,
+    clippy::undocumented_unsafe_blocks,
+    clippy::unneeded_field_pattern
+)]
+#![warn(clippy::pedantic)]
+#![allow(
+    clippy::cast_possible_truncation,
+    clippy::cast_possible_wrap,
+    clippy::cast_precision_loss,
+    clippy::cast_sign_loss,
+    clippy::let_underscore_drop,
+    clippy::module_name_repetitions,
+    clippy::too_many_lines,
+    clippy::unused_self,
+    clippy::wildcard_imports
+)]
+
 #[macro_use]
 mod macros;
-
 mod config;
 #[allow(dead_code)]
 mod gettext;
@@ -24,13 +53,15 @@ fn setup_gresources() {
             true,
             true,
         )
-        .map(|builder| glib::Bytes::from(&builder.build().unwrap()))
-        .unwrap_or_else(|_| {
-            log::warn!(
+        .map_or_else(
+            |_| {
+                log::warn!(
                 "Loading fallback precompiled GResource data because the directory does not exist"
             );
-            glib::Bytes::from(globals::GRESOURCE_DATA)
-        })
+                glib::Bytes::from(globals::GRESOURCE_DATA)
+            },
+            |builder| glib::Bytes::from(&builder.build().unwrap()),
+        )
     };
     #[cfg(any(not(debug_assertions), feature = "meson"))]
     let data = {

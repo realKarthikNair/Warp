@@ -20,7 +20,7 @@ pub struct UiError {
 
 #[allow(dead_code)]
 impl UiError {
-    pub fn new(msg: impl ToString) -> Self {
+    pub fn new(msg: &impl ToString) -> Self {
         Self {
             msg: msg.to_string(),
         }
@@ -199,7 +199,7 @@ impl AppError {
 
     pub fn gettext_error(&self) -> String {
         match self {
-            AppError::Canceled => "canceled".to_string(),
+            AppError::Canceled => "canceled".to_owned(),
             AppError::Io { source } => Self::gettext_error_io(source),
             // TODO those should not appear publicly
             AppError::Url { source } => source.to_string(),
@@ -268,13 +268,13 @@ pub fn install_panic_hook() {
                 None => "Box<dyn Any>",
             },
         }
-        .to_string();
+        .to_owned();
 
         let backtrace = backtrace::Backtrace::new();
         let info_msg = format!("thread '{name}' panicked at '{msg}', {location}\n{backtrace:?}");
 
         globals::PANIC_BACKTRACES.lock().unwrap().push(info_msg);
-        default_hook(panic_info)
+        default_hook(panic_info);
     }));
 }
 
@@ -289,7 +289,7 @@ pub fn error_for_panic() -> AppError {
     backtrace_info.clear();
 
     if msg.is_empty() {
-        msg = "Unknown panic cause".to_string();
+        msg = "Unknown panic cause".to_owned();
     }
 
     AppError::Panic { msg }

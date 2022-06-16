@@ -5,7 +5,7 @@ pub mod duration;
 
 fn fmt(mut format: String, args: &[&dyn Display]) -> String {
     for arg in args {
-        format = format.replacen("{}", &arg.to_string(), 1)
+        format = format.replacen("{}", &arg.to_string(), 1);
     }
 
     for (i, arg) in args.iter().enumerate() {

@@ -62,10 +62,10 @@ impl PersistentConfig {
         if let Err(err) = &file {
             if matches!(err.kind(), std::io::ErrorKind::NotFound) {
                 log::info!("Config file not found. Using default values");
-                return Ok(Default::default());
-            } else {
-                log::error!("Unable to load config file: {:?}", err.kind());
+                return Ok(PersistentConfig::default());
             }
+
+            log::error!("Unable to load config file: {:?}", err.kind());
         }
 
         let cfg: Config = serde_json::de::from_reader(file?)?;
@@ -134,7 +134,7 @@ impl PersistentConfig {
             .rendezvous_server_url_or_default()
             .trim_end_matches("/v1")
             .trim_end_matches('/')
-            .to_string();
+            .to_owned();
 
         // Make sure we have /v1 appended exactly once
         AppConfig {
