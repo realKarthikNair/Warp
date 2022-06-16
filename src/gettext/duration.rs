@@ -1,7 +1,7 @@
 use super::*;
 use gtk::glib;
 
-/// From https://gitlab.gnome.org/World/pika-backup/-/blob/main/src/ui/utils/duration.rs
+/// From <https://gitlab.gnome.org/World/pika-backup/-/blob/main/src/ui/utils/duration.rs>
 pub fn left(done_bytes: usize, total_bytes: usize, d: &chrono::Duration) -> String {
     let bytes_str = glib::format_size(done_bytes as u64);
     let total_str = glib::format_size(total_bytes as u64);

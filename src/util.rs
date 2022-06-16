@@ -95,7 +95,7 @@ impl WormholeTransferURI {
         uri.to_string()
     }
 
-    /// This assumes the rendezvous server URI inside the AppConfig is a valid URI
+    /// This assumes the rendezvous server URI inside the `AppConfig` is a valid URI
     pub fn from_app_cfg_with_code_direction(
         app_cfg: &AppConfig<AppVersion>,
         code: &str,

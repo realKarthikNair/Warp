@@ -1,4 +1,8 @@
-#![warn(clippy::redundant_else, clippy::default_trait_access)]
+#![warn(
+    clippy::redundant_else,
+    clippy::default_trait_access,
+    clippy::doc_markdown
+)]
 
 #[macro_use]
 mod macros;
