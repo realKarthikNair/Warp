@@ -65,11 +65,7 @@ impl FileTransferProgress {
     }
 
     fn bytes_per_sample_size(&self) -> Option<usize> {
-        if self.avg.get_num_samples() >= SAMPLES_PER_SECOND {
-            Some(self.avg.get_average())
-        } else {
-            None
-        }
+        (self.avg.get_num_samples() >= SAMPLES_PER_SECOND).then(|| self.avg.get_average())
     }
 
     pub fn get_bytes_s(&self) -> Option<usize> {

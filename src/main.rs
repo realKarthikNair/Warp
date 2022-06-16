@@ -5,7 +5,9 @@
     clippy::semicolon_if_nothing_returned,
     clippy::map_unwrap_or,
     clippy::redundant_closure_for_method_calls,
-    clippy::needless_pass_by_value
+    clippy::needless_pass_by_value,
+    clippy::get_unwrap,
+    clippy::if_then_some_else_none
 )]
 
 #[macro_use]
