@@ -715,7 +715,7 @@ impl ActionView {
         );
         self.set_ui_state(UIState::HasCode(uri));
 
-        WarpApplicationWindow::default().add_code(code.clone());
+        WarpApplicationWindow::default().add_code(&code);
 
         let (_welcome, connection) = spawn_async(cancelable_future(
             Wormhole::connect_with_code(app_cfg, code),
@@ -856,7 +856,7 @@ impl ActionView {
             }
         };
 
-        window.add_code(welcome.code.clone());
+        window.add_code(&welcome.code);
         let uri = WormholeTransferURI::from_app_cfg_with_code_direction(
             &app_cfg,
             &welcome.code,

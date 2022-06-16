@@ -20,7 +20,7 @@ pub struct UiError {
 
 #[allow(dead_code)]
 impl UiError {
-    pub fn new(msg: impl ToString) -> Self {
+    pub fn new(msg: &impl ToString) -> Self {
         Self {
             msg: msg.to_string(),
         }

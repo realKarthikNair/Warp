@@ -4,7 +4,8 @@
     clippy::doc_markdown,
     clippy::semicolon_if_nothing_returned,
     clippy::map_unwrap_or,
-    clippy::redundant_closure_for_method_calls
+    clippy::redundant_closure_for_method_calls,
+    clippy::needless_pass_by_value
 )]
 
 #[macro_use]
