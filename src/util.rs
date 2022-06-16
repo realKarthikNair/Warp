@@ -229,7 +229,7 @@ mod test {
     #[test]
     fn test_create_uri() {
         let params1 = WormholeTransferURI::new(
-            wormhole::Code("4-hurricane-equipment".to_string()),
+            wormhole::Code("4-hurricane-equipment".to_owned()),
             globals::WORMHOLE_DEFAULT_RENDEZVOUS_SERVER.clone(),
             TransferDirection::Receive,
         );
@@ -239,7 +239,7 @@ mod test {
         );
 
         let params2 = WormholeTransferURI::new(
-            wormhole::Code("8-🙈-🙉-🙊".to_string()),
+            wormhole::Code("8-🙈-🙉-🙊".to_owned()),
             globals::WORMHOLE_DEFAULT_RENDEZVOUS_SERVER.clone(),
             TransferDirection::Receive,
         );
@@ -249,7 +249,7 @@ mod test {
         );
 
         let mut params3 = WormholeTransferURI::new(
-            wormhole::Code("8-🙈-🙉-🙊".to_string()),
+            wormhole::Code("8-🙈-🙉-🙊".to_owned()),
             url::Url::parse("ws://localhost:4000").unwrap(),
             TransferDirection::Send,
         );
