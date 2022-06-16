@@ -3,7 +3,8 @@
     clippy::default_trait_access,
     clippy::doc_markdown,
     clippy::semicolon_if_nothing_returned,
-    clippy::map_unwrap_or
+    clippy::map_unwrap_or,
+    clippy::redundant_closure_for_method_calls
 )]
 
 #[macro_use]

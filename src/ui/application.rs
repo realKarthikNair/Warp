@@ -103,7 +103,7 @@ mod imp {
         }
 
         fn shutdown(&self, application: &Self::Type) {
-            if let Some(window) = self.window.get().and_then(|w| w.upgrade()) {
+            if let Some(window) = self.window.get().and_then(WeakRef::upgrade) {
                 window.action_view().reset();
             }
 
