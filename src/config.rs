@@ -134,7 +134,7 @@ impl PersistentConfig {
             .rendezvous_server_url_or_default()
             .trim_end_matches("/v1")
             .trim_end_matches('/')
-            .to_string();
+            .to_owned();
 
         // Make sure we have /v1 appended exactly once
         AppConfig {

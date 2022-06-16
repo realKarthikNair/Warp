@@ -934,7 +934,7 @@ impl ActionView {
                 .file_name
                 .borrow()
                 .as_ref()
-                .map_or_else(|| "?".to_string(), |s| s.to_string_lossy().to_string());
+                .map_or_else(|| "?".to_owned(), |s| s.to_string_lossy().to_string());
 
             obj.set_ui_state(UIState::Transmitting(filename, info, peer_ip));
         });
@@ -959,7 +959,7 @@ impl ActionView {
                     update_progress = progress.set_progress(sent as usize);
                     progress.get_pretty_time_remaining()
                 })
-                .unwrap_or_else(|| "".to_string());
+                .unwrap_or_else(|| "".to_owned());
 
             if update_progress {
                 imp.progress_bar.set_fraction(sent as f64 / total as f64);

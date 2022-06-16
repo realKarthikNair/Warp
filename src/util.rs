@@ -15,13 +15,13 @@ pub mod future;
 pub fn extract_transmit_uri(str: &str) -> Option<String> {
     TRANSMIT_URI_FIND_REGEX
         .find(str)
-        .map(|m| m.as_str().to_string())
+        .map(|m| m.as_str().to_owned())
 }
 
 pub fn extract_transmit_code(str: &str) -> Option<String> {
     TRANSMIT_CODE_FIND_REGEX
         .find(str)
-        .map(|m| m.as_str().to_string())
+        .map(|m| m.as_str().to_owned())
 }
 
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -103,7 +103,7 @@ impl WormholeTransferURI {
     ) -> Self {
         let rendezvous_server = url::Url::parse(&*app_cfg.rendezvous_url).unwrap();
         Self {
-            code: Code(code.to_string()),
+            code: Code(code.to_owned()),
             version: 0,
             rendezvous_server,
             direction,

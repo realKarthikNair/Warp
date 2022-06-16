@@ -71,7 +71,7 @@ pub fn safe_persist_tempfile(
         .to_string_lossy()
         .into();
     if file_stem.is_empty() {
-        file_stem = "Downloaded file".to_string();
+        file_stem = "Downloaded file".to_owned();
     }
 
     let orig_file_stem = file_stem.clone();
@@ -82,7 +82,7 @@ pub fn safe_persist_tempfile(
         .to_string_lossy()
         .into();
     if file_ext.is_empty() {
-        file_ext = "bin".to_string();
+        file_ext = "bin".to_owned();
     }
 
     let mut i = 1;

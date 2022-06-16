@@ -117,14 +117,14 @@ mod imp {
                     .config()
                     .rendezvous_server_url
                     .clone()
-                    .unwrap_or_else(|| "".to_string()),
+                    .unwrap_or_else(|| "".to_owned()),
             );
             obj.set_transit_server_url(
                 window
                     .config()
                     .transit_server_url
                     .clone()
-                    .unwrap_or_else(|| "".to_string()),
+                    .unwrap_or_else(|| "".to_owned()),
             );
 
             self.rendezvous_server_url_entry
@@ -183,7 +183,7 @@ impl WarpPreferencesWindow {
             self.imp()
                 .rendezvous_server_url_entry
                 .add_css_class("error");
-            self.imp().rendezvous_server_url.replace("".to_string());
+            self.imp().rendezvous_server_url.replace("".to_owned());
         }
 
         self.notify("rendezvous-server-url");
@@ -201,7 +201,7 @@ impl WarpPreferencesWindow {
             self.imp().transit_server_url.replace(url);
         } else {
             self.imp().transit_server_url_entry.add_css_class("error");
-            self.imp().transit_server_url.replace("".to_string());
+            self.imp().transit_server_url.replace("".to_owned());
         }
 
         self.notify("transit-server-url");

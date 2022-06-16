@@ -7,7 +7,8 @@
     clippy::redundant_closure_for_method_calls,
     clippy::needless_pass_by_value,
     clippy::get_unwrap,
-    clippy::if_then_some_else_none
+    clippy::if_then_some_else_none,
+    clippy::str_to_string
 )]
 
 #[macro_use]
