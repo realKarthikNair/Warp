@@ -262,7 +262,7 @@ mod imp {
                                 log::error!("Error opening file: {}", err);
                             }
                         } else {
-                            log::error!("Filename to open is not a valid uri")
+                            log::error!("Filename to open is not a valid uri");
                         }
                     } else {
                         log::error!("Open button clicked but no filename set");
@@ -1019,7 +1019,7 @@ impl ActionView {
         glib::MainContext::default().invoke(move || {
             WarpApplicationWindow::default()
                 .action_view()
-                .transmit_success()
+                .transmit_success();
         });
     }
 

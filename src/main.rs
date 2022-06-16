@@ -1,7 +1,8 @@
 #![warn(
     clippy::redundant_else,
     clippy::default_trait_access,
-    clippy::doc_markdown
+    clippy::doc_markdown,
+    clippy::semicolon_if_nothing_returned
 )]
 
 #[macro_use]

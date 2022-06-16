@@ -107,7 +107,7 @@ mod imp {
                 window.action_view().reset();
             }
 
-            self.parent_shutdown(application)
+            self.parent_shutdown(application);
         }
     }
 

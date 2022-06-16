@@ -181,7 +181,7 @@ mod imp {
                                 log::debug!("Picked file: {}", path.display());
                                 obj.imp().action_view.send_file(path, obj.config().app_cfg());
                             } else {
-                                log::error!("File chooser has file but path is None")
+                                log::error!("File chooser has file but path is None");
                             }
                         } else {
                             log::debug!("File chooser accepted but no file selected");

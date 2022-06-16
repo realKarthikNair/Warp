@@ -184,7 +184,7 @@ impl TryFrom<url::Url> for WormholeTransferURI {
                             "The URI parameter “rendezvous” contains an invalid URL: “{}”",
                             &[&value],
                         ))
-                    })?
+                    })?;
                 }
                 "role" => {
                     this.direction = if value == "follower" {

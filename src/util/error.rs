@@ -274,7 +274,7 @@ pub fn install_panic_hook() {
         let info_msg = format!("thread '{name}' panicked at '{msg}', {location}\n{backtrace:?}");
 
         globals::PANIC_BACKTRACES.lock().unwrap().push(info_msg);
-        default_hook(panic_info)
+        default_hook(panic_info);
     }));
 }
 
