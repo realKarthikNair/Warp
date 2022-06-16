@@ -62,7 +62,7 @@ impl PersistentConfig {
         if let Err(err) = &file {
             if matches!(err.kind(), std::io::ErrorKind::NotFound) {
                 log::info!("Config file not found. Using default values");
-                return Ok(Default::default());
+                return Ok(PersistentConfig::default());
             }
 
             log::error!("Unable to load config file: {:?}", err.kind());

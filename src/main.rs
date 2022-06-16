@@ -1,4 +1,4 @@
-#![warn(clippy::redundant_else)]
+#![warn(clippy::redundant_else, clippy::default_trait_access)]
 
 #[macro_use]
 mod macros;
