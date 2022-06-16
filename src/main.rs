@@ -2,7 +2,8 @@
     clippy::redundant_else,
     clippy::default_trait_access,
     clippy::doc_markdown,
-    clippy::semicolon_if_nothing_returned
+    clippy::semicolon_if_nothing_returned,
+    clippy::map_unwrap_or
 )]
 
 #[macro_use]
@@ -30,13 +31,15 @@ fn setup_gresources() {
             true,
             true,
         )
-        .map(|builder| glib::Bytes::from(&builder.build().unwrap()))
-        .unwrap_or_else(|_| {
-            log::warn!(
+        .map_or_else(
+            |_| {
+                log::warn!(
                 "Loading fallback precompiled GResource data because the directory does not exist"
             );
-            glib::Bytes::from(globals::GRESOURCE_DATA)
-        })
+                glib::Bytes::from(globals::GRESOURCE_DATA)
+            },
+            |builder| glib::Bytes::from(&builder.build().unwrap()),
+        )
     };
     #[cfg(any(not(debug_assertions), feature = "meson"))]
     let data = {

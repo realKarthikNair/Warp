@@ -934,8 +934,7 @@ impl ActionView {
                 .file_name
                 .borrow()
                 .as_ref()
-                .map(|s| s.to_string_lossy().to_string())
-                .unwrap_or_else(|| "?".to_string());
+                .map_or_else(|| "?".to_string(), |s| s.to_string_lossy().to_string());
 
             obj.set_ui_state(UIState::Transmitting(filename, info, peer_ip));
         });
