@@ -811,7 +811,7 @@ impl ActionView {
             drop(file);
 
             // Rename the file to its final name
-            let path = safe_persist_tempfile(temp_file, &filename).await?;
+            let path = safe_persist_tempfile(temp_file, &filename)?;
             let obj = WarpApplicationWindow::default().action_view();
             obj.imp()
                 .file_name

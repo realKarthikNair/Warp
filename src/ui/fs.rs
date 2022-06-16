@@ -60,10 +60,11 @@ pub async fn compress_folder(path: &Path) -> Result<tempfile::NamedTempFile, App
     .await
 }
 
-pub async fn safe_persist_tempfile(
+pub fn safe_persist_tempfile(
     temp_file: tempfile::NamedTempFile,
     filename: &Path,
 ) -> std::io::Result<PathBuf> {
+    let mut temp_path = temp_file.into_temp_path();
     let mut file_stem: String = filename
         .file_stem()
         .unwrap_or(&OsString::new())
@@ -86,9 +87,7 @@ pub async fn safe_persist_tempfile(
 
     let mut i = 1;
     let mut filename;
-    let mut file_res;
-    let dir = temp_file
-        .path()
+    let dir = temp_path
         .parent()
         .unwrap_or(&PathBuf::from("."))
         .to_path_buf();
@@ -101,25 +100,19 @@ pub async fn safe_persist_tempfile(
         filename = PathBuf::from(filename_str);
 
         path = dir.join(filename.clone());
-        file_res = smol::fs::OpenOptions::new()
-            .write(true)
-            .create_new(true)
-            .truncate(true)
-            .open(&path)
-            .await;
-        if let Err(err) = &file_res {
-            if err.kind() != ErrorKind::AlreadyExists {
-                break;
+        let persist_res = temp_path.persist_noclobber(&path);
+        if let Err(err) = persist_res {
+            if err.error.kind() != ErrorKind::AlreadyExists {
+                log::error!("Error creating file '{}': {}", path.display(), err);
+                return Err(err.error);
             }
 
             file_stem = format!("{} ({})", orig_file_stem, i);
             i += 1;
+
+            temp_path = err.path;
         } else {
-            break;
+            return Ok(path);
         }
     }
-
-    temp_file.persist(&path)?;
-
-    Ok(path)
 }
