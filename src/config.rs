@@ -63,9 +63,9 @@ impl PersistentConfig {
             if matches!(err.kind(), std::io::ErrorKind::NotFound) {
                 log::info!("Config file not found. Using default values");
                 return Ok(Default::default());
-            } else {
-                log::error!("Unable to load config file: {:?}", err.kind());
             }
+
+            log::error!("Unable to load config file: {:?}", err.kind());
         }
 
         let cfg: Config = serde_json::de::from_reader(file?)?;

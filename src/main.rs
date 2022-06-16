@@ -1,6 +1,7 @@
+#![warn(clippy::redundant_else)]
+
 #[macro_use]
 mod macros;
-
 mod config;
 #[allow(dead_code)]
 mod gettext;
