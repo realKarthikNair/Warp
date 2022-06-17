@@ -612,7 +612,9 @@ impl ActionView {
             .borrow()
             .clone()
             .unwrap();
-        let _ = channel.recv().await;
+        if let Err(err) = channel.recv().await {
+            log::error!("Error when waiting for cancellation future {:?}", err);
+        }
     }
 
     pub async fn cancel(&self) {
@@ -956,7 +958,9 @@ impl ActionView {
             // Then do a timeout
             glib::timeout_add_once(Duration::from_millis(timeout_ms), move || {
                 log::debug!("Cancellation timeout");
-                let _ = sender.try_send(());
+                if let Err(err) = sender.try_send(()) {
+                    log::error!("Error when sending cancellation timeout message: {:?}", err);
+                }
             });
 
             Self::receiver_future(receiver).await;
@@ -1037,13 +1041,16 @@ impl ActionView {
 
         if self.imp().canceled.get() {
             // Send the cancellation complete message
-            let _ = self
+            if let Err(err) = self
                 .imp()
                 .cancellation_complete_sender
                 .borrow()
                 .as_ref()
                 .unwrap()
-                .try_send(());
+                .try_send(())
+            {
+                log::error!("Error sending cancellation complete message: {:?}", err);
+            }
         }
 
         self.reset();
