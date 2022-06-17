@@ -301,17 +301,17 @@ impl ActionView {
         self.imp().ui_state.borrow()
     }
 
-    fn set_direction(&self, direction: TransferDirection) {
+    fn set_transfer_direction(&self, direction: TransferDirection) {
         self.imp().direction.replace(direction);
     }
 
-    fn direction(&self) -> TransferDirection {
+    fn transfer_direction(&self) -> TransferDirection {
         *self.imp().direction.borrow()
     }
 
     fn update_ui(&self) {
         let imp = self.imp();
-        let direction = self.direction();
+        let direction = self.transfer_direction();
         let ui_state = self.ui_state();
 
         match &*ui_state {
@@ -684,7 +684,7 @@ impl ActionView {
     fn prepare_transmit(&self, direction: TransferDirection) -> Result<(), AppError> {
         self.reset();
         WarpApplication::default().inhibit_transfer(direction);
-        self.set_direction(direction);
+        self.set_transfer_direction(direction);
         self.set_ui_state(UIState::Initial);
 
         let rendezvous_url = url::Url::parse(
