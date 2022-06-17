@@ -24,6 +24,9 @@ use wormhole::transfer::AppVersion;
 use wormhole::transit::TransitInfo;
 use wormhole::{transfer, transit, AppConfig, Code, Wormhole};
 
+// 5 seconds timeout
+const TIMEOUT_MS: u64 = 5000;
+
 #[derive(Debug)]
 pub enum UIState {
     Initial,
@@ -74,7 +77,6 @@ mod imp {
     //use crate::util::WormholeTransferURI;
     use gtk::gio::AppInfo;
     use gtk::CompositeTemplate;
-    use once_cell::sync::OnceCell;
 
     #[derive(Debug, Default, CompositeTemplate)]
     #[template(resource = "/app/drey/Warp/ui/action_view.ui")]
@@ -109,12 +111,16 @@ mod imp {
         pub canceled: Cell<bool>,
 
         // When sending a message to the cancel sender the whole process gets aborted
-        pub cancel_sender: OnceCell<async_channel::Sender<()>>,
-        pub cancel_receiver: OnceCell<async_channel::Receiver<()>>,
+        pub cancel_sender: RefCell<Option<async_channel::Sender<()>>>,
+        pub cancel_receiver: RefCell<Option<async_channel::Receiver<()>>>,
+
+        // We will send a message to this channel when the transfer was cancelled successfully
+        pub cancellation_complete_sender: RefCell<Option<async_channel::Sender<()>>>,
+        pub cancellation_complete_receiver: RefCell<Option<async_channel::Receiver<()>>>,
 
         // Send a message to this sender to continue the process after the confirmation question
-        pub continue_sender: OnceCell<async_channel::Sender<()>>,
-        pub continue_receiver: OnceCell<async_channel::Receiver<()>>,
+        pub continue_sender: RefCell<Option<async_channel::Sender<()>>>,
+        pub continue_receiver: RefCell<Option<async_channel::Receiver<()>>>,
 
         // Full path to the currently being received / sent file
         pub file_path: RefCell<Option<PathBuf>>,
@@ -177,12 +183,13 @@ mod imp {
             self.accept_transfer_button
                 .connect_clicked(clone!(@weak obj => move |_|
                     main_async_local(super::ActionView::transmit_error_handler, async move {
-                        if let Some(continue_sender) = obj.imp().continue_sender.get() {
+                        let continue_sender = obj.imp().continue_sender.borrow().clone();
+                        if let Some(continue_sender) = continue_sender {
                             continue_sender.send(()).await.unwrap();
                         }
 
                         Ok(())
-                    }, );
+                    });
                 ));
 
             self.progress_bar.set_pulse_step(0.05);
@@ -268,14 +275,6 @@ mod imp {
                         log::error!("Open button clicked but no filename set");
                     };
                 }));
-
-            let (cancel_sender, cancel_receiver) = async_channel::unbounded();
-            self.cancel_sender.get_or_init(|| cancel_sender);
-            self.cancel_receiver.get_or_init(|| cancel_receiver);
-
-            let (continue_sender, continue_receiver) = async_channel::unbounded();
-            self.continue_sender.get_or_init(|| continue_sender);
-            self.continue_receiver.get_or_init(|| continue_receiver);
         }
     }
 
@@ -584,12 +583,13 @@ impl ActionView {
         }
     }
 
+    /// This will ask whether the transfer should be cancelled. If
     pub async fn cancel_request(&self) -> bool {
         if matches!(
             &*self.imp().ui_state.borrow(),
             UIState::AskConfirmation(..) | UIState::Done(..) | UIState::Error(..)
         ) {
-            self.cancel();
+            self.cancel().await;
             return true;
         }
 
@@ -598,22 +598,33 @@ impl ActionView {
         dialog.close();
 
         if answer == gtk::ResponseType::Cancel {
-            self.cancel();
+            self.cancel().await;
             true
         } else {
             false
         }
     }
 
-    pub fn cancel(&self) {
+    async fn wait_for_cancellation_future(&self) {
+        let channel = self
+            .imp()
+            .cancellation_complete_receiver
+            .borrow()
+            .clone()
+            .unwrap();
+        let _ = channel.recv().await;
+    }
+
+    pub async fn cancel(&self) {
         log::info!("Cancelling transfer");
         self.imp().canceled.set(true);
 
-        main_async_local_infallible(clone!(@strong self as obj => async move {
-            let imp = obj.imp();
-            imp.cancel_sender.get().unwrap().send(()).await.unwrap();
-            WarpApplicationWindow::default().navigate_back();
-        }));
+        let imp = self.imp();
+        log::debug!("Sending cancel signal");
+        let cancel_sender = imp.cancel_sender.borrow().clone().unwrap();
+        cancel_sender.send(()).await.unwrap();
+        self.wait_for_cancellation_future().await;
+        WarpApplicationWindow::default().navigate_back();
     }
 
     fn show_progress_indeterminate(&self, pulse: bool) {
@@ -669,6 +680,7 @@ impl ActionView {
     }
 
     fn prepare_transmit(&self, direction: TransferDirection) -> Result<(), AppError> {
+        self.reset();
         WarpApplication::default().inhibit_transfer(direction);
         self.set_direction(direction);
         self.set_ui_state(UIState::Initial);
@@ -788,14 +800,16 @@ impl ActionView {
             );
 
             let mut file = file;
-            request
-                .accept(
+            cancelable_future(
+                request.accept(
                     Self::transit_handler,
                     Self::progress_handler,
                     &mut file,
                     Self::cancel_future(),
-                )
-                .await?;
+                ),
+                Self::cancel_timeout_future(TIMEOUT_MS),
+            )
+            .await??;
 
             if WarpApplicationWindow::default()
                 .action_view()
@@ -874,18 +888,21 @@ impl ActionView {
         spawn_async(async move {
             let metadata = file.metadata().await?;
 
-            transfer::send_file(
-                connection,
-                transit_url,
-                &mut file,
-                &filename,
-                metadata.len(),
-                TRANSIT_ABILITIES,
-                Self::transit_handler,
-                Self::progress_handler,
-                Self::cancel_future(),
+            cancelable_future(
+                transfer::send_file(
+                    connection,
+                    transit_url,
+                    &mut file,
+                    &filename,
+                    metadata.len(),
+                    TRANSIT_ABILITIES,
+                    Self::transit_handler,
+                    Self::progress_handler,
+                    Self::cancel_future(),
+                ),
+                Self::cancel_timeout_future(TIMEOUT_MS),
             )
-            .await?;
+            .await??;
 
             if WarpApplicationWindow::default()
                 .action_view()
@@ -905,26 +922,48 @@ impl ActionView {
         Ok(())
     }
 
-    fn cancel_future() -> impl Future<Output = ()> {
-        let obj = ActionView::default();
-        let cancel_receiver = obj.imp().cancel_receiver.get().unwrap().clone();
-
-        async move {
-            loop {
-                let res = cancel_receiver.recv().await;
-                match res {
-                    Ok(()) => {
-                        log::debug!("Canceled transfer");
-                        break;
-                    }
-                    Err(err) => {
-                        panic!("{:?}", err);
-                    }
-                }
+    /// Wrapper to handle waiting on a channel that receives ()
+    async fn receiver_future(receiver: async_channel::Receiver<()>) {
+        let res = receiver.recv().await;
+        match res {
+            Ok(()) => {
+                log::debug!("Canceled transfer");
+            }
+            Err(err) => {
+                panic!("{:?}", err);
             }
         }
     }
 
+    /// This future will finish when a message is received in the cancellation channel
+    fn cancel_future() -> impl Future<Output = ()> {
+        let obj = ActionView::default();
+        let cancel_receiver = obj.imp().cancel_receiver.borrow().as_ref().unwrap().clone();
+        Self::receiver_future(cancel_receiver)
+    }
+
+    /// This future is for any wormhole calls that have proper cancellation but no timeout handling
+    ///
+    /// We will wait until a cancellation event is received. Then we give the wormhole code
+    /// `timeout_ms` milliseconds to properly respond. When there is no response the future will
+    /// be finished
+    fn cancel_timeout_future(timeout_ms: u64) -> impl Future<Output = ()> {
+        let (sender, receiver) = async_channel::unbounded();
+        async move {
+            // Wait for a cancellation event
+            Self::cancel_future().await;
+
+            // Then do a timeout
+            glib::timeout_add_once(Duration::from_millis(timeout_ms), move || {
+                log::debug!("Cancellation timeout");
+                let _ = sender.try_send(());
+            });
+
+            Self::receiver_future(receiver).await;
+        }
+    }
+
+    /// Callback with information about the currently running transfer
     fn transit_handler(info: TransitInfo, peer_ip: SocketAddr) {
         glib::MainContext::default().invoke(move || {
             let obj = ActionView::default();
@@ -940,6 +979,7 @@ impl ActionView {
         });
     }
 
+    /// Handles progress information updates
     fn progress_handler(sent: u64, total: u64) {
         glib::MainContext::default().invoke(move || {
             let obj = ActionView::default();
@@ -969,11 +1009,8 @@ impl ActionView {
     }
 
     async fn ask_confirmation_future(&self) -> Result<(), AppError> {
-        cancelable_future(
-            self.imp().continue_receiver.get().unwrap().recv(),
-            Self::cancel_future(),
-        )
-        .await??;
+        let continue_receiver = self.imp().continue_receiver.borrow().clone().unwrap();
+        cancelable_future(continue_receiver.recv(), Self::cancel_future()).await??;
         Ok(())
     }
 
@@ -996,19 +1033,41 @@ impl ActionView {
     /// Any post-transfer cleanup operations that are shared between success and failure states
     pub fn transmit_cleanup(&self) {
         log::debug!("Transmit cleanup");
-
-        let imp = self.imp();
         WarpApplication::default().uninhibit_transfer();
 
-        // Drain cancel and continue receiver from any previous transfers
-        while imp.cancel_receiver.get().unwrap().try_recv().is_ok() {}
-        while imp.continue_receiver.get().unwrap().try_recv().is_ok() {}
+        if self.imp().canceled.get() {
+            // Send the cancellation complete message
+            let _ = self
+                .imp()
+                .cancellation_complete_sender
+                .borrow()
+                .as_ref()
+                .unwrap()
+                .try_send(());
+        }
 
         self.reset();
     }
 
+    /// Resets the view to be ready for the next transfer
     pub fn reset(&self) {
+        log::debug!("Reset");
+        let imp = self.imp();
         self.show_progress_indeterminate(false);
+
+        let (cancel_sender, cancel_receiver) = async_channel::unbounded();
+        imp.cancel_sender.replace(Some(cancel_sender));
+        imp.cancel_receiver.replace(Some(cancel_receiver));
+
+        let (continue_sender, continue_receiver) = async_channel::unbounded();
+        imp.cancellation_complete_sender
+            .replace(Some(continue_sender));
+        imp.cancellation_complete_receiver
+            .replace(Some(continue_receiver));
+
+        let (continue_sender, continue_receiver) = async_channel::unbounded();
+        imp.continue_sender.replace(Some(continue_sender));
+        imp.continue_receiver.replace(Some(continue_receiver));
 
         // Deletes any temporary files if required
         self.imp().file_path.replace(None);

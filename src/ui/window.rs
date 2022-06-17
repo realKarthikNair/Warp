@@ -65,6 +65,7 @@ mod imp {
         pub generated_transmit_codes: RefCell<HashSet<String>>,
         pub inserted_code_toast: OnceCell<adw::Toast>,
         pub inserted_code_toast_showing: Cell<bool>,
+        pub close_in_progress: Cell<bool>,
     }
 
     #[glib::object_subclass]
@@ -286,13 +287,20 @@ mod imp {
             window.save_window_size();
             window.save_config();
 
-            if window.action_view_showing() && window.action_view().transfer_in_progress() {
+            if window.action_view_showing()
+                && window.action_view().transfer_in_progress()
+                && !self.close_in_progress.get()
+            {
                 main_async_local_infallible(clone!(@strong window => async move {
                     if window.action_view().cancel_request().await {
                         window.close();
-                    }
+                    } else {
+                        window.imp().close_in_progress.set(false);
+                    };
                 }));
 
+                // When close button is clicked a second time we will just close the window
+                self.close_in_progress.set(true);
                 Inhibit(true)
             } else {
                 // Pass close request on to the parent
@@ -404,7 +412,6 @@ impl WarpApplicationWindow {
         let imp = self.imp();
         imp.action_view_showing.set(false);
         imp.leaflet.navigate(adw::NavigationDirection::Back);
-        imp.action_view.reset();
         imp.code_entry.set_text("");
         WarpApplication::default().uninhibit_transfer();
         self.add_code_from_clipboard();
