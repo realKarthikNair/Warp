@@ -26,8 +26,6 @@ flatpak:
     when: 'always'
     paths:
       - "${BUNDLE}"
-      - '.flatpak-builder/build/${FLATPAK_MODULE}/_flatpak_build/meson-logs/meson-log.txt'
-      - '.flatpak-builder/build/${FLATPAK_MODULE}/_flatpak_build/meson-logs/testlog.txt'
     expire_in: 14 days
 
 # Configure and run rustfmt
