@@ -30,6 +30,15 @@ Please report issues and bugs in the issue tracker in Gitlab.
 
 Flatpak is the recommended way to build and run Warp.
 
+## Nightly
+
+Download and install the latest flatpak build from gitlab
+
+```shell
+wget "https://gitlab.gnome.org/api/v4/projects/19921/jobs/artifacts/main/raw/warp-nightly.flatpak?job=flatpak" -O warp-nightly.flatpak
+flatpak install warp-nightly.flatpak
+```
+
 ### Build
 
 Make sure you have `flatpak` and `flatpak-builder` installed. Then run the commands below.
