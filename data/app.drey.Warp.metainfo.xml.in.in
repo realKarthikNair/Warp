@@ -56,6 +56,8 @@
   <url type="contact">@contact@</url>
   <custom>
     <value key="GnomeSoftware::key-colors">[(136, 101, 247), (198, 130, 255)]</value>
+    <value key="Purism::form_factor">workstation</value>
+    <value key="Purism::form_factor">mobile</value>
   </custom>
   <content_rating type="oars-1.0" />
   <releases>
@@ -97,10 +99,6 @@
      <kudo>HiDpiIcon</kudo>
      <kudo>HighContrast</kudo>
   </kudos>
-  <custom>
-    <value key="Purism::form_factor">workstation</value>
-    <value key="Purism::form_factor">mobile</value>
-  </custom>
   <developer_name>Fina Wilke</developer_name>
   <update_contact>code@felinira.net</update_contact>
   <translation type="gettext">@gettext-package@</translation>
