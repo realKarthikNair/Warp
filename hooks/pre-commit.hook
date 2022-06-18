@@ -92,3 +92,12 @@ if test $? != 0; then
     echo "--Checking POTFILES fail--"
     exit -1
 fi
+
+echo "--Validating appstream metadata--"
+meson build --reconfigure >/dev/null
+output=$(appstreamcli validate build/data/app.drey.Warp.metainfo.xml.in)
+if test $? != 0; then
+    echo "--Checking appstream metadata fail--"
+    echo "$output"
+    exit -1
+fi
