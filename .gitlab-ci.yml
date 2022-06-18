@@ -17,6 +17,7 @@ flatpak:
     - >
       xvfb-run -a -s "-screen 0 1024x768x24"
       flatpak-builder --keep-build-dirs --user --disable-rofiles-fuse flatpak_app --repo=repo ${BRANCH:+--default-branch=$BRANCH} ${MANIFEST_PATH}
+      appstreamcli validate flatpak_app/files/share/appdata/${APP_ID}.appdata.xml
     - flatpak build-bundle repo ${BUNDLE} --runtime-repo=${RUNTIME_REPO} ${APP_ID} ${BRANCH}
   artifacts:
     name: 'Flatpak artifacts'
