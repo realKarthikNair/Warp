@@ -14,9 +14,11 @@ flatpak:
     APP_ID: "app.drey.Warp.Devel"
     RUNTIME_REPO: "https://nightly.gnome.org/gnome-nightly.flatpakrepo"
   script:
+    - flatpak install --user --noninteractive org.freedesktop.appstream.cli
     - >
       xvfb-run -a -s "-screen 0 1024x768x24"
       flatpak-builder --keep-build-dirs --user --disable-rofiles-fuse flatpak_app --repo=repo ${BRANCH:+--default-branch=$BRANCH} ${MANIFEST_PATH}
+    - flatpak run org.freedesktop.appstream.cli validate --no-color --no-net flatpak_app/files/share/appdata/${APP_ID}.appdata.xml
     - flatpak build-bundle repo ${BUNDLE} --runtime-repo=${RUNTIME_REPO} ${APP_ID} ${BRANCH}
   artifacts:
     name: 'Flatpak artifacts'
