@@ -86,6 +86,7 @@ fn main() {
             .unwrap_or(globals::DEFAULT_LOCALEDIR)
             .into()
     } else {
+        /* Try to find exe, use current dir otherwise */
         let mut base_dir = std::env::current_exe().map_or_else(
             |_| ".".into(),
             |mut exe| {
