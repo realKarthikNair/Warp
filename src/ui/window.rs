@@ -109,7 +109,10 @@ mod imp {
                         }
                     });
 
-                    PersistentConfig::default()
+                    let mut config = PersistentConfig::default();
+                    // Prevent the welcome window from obscuring the error message
+                    config.config.welcome_window_shown = true;
+                    config
                 }),
             ));
 

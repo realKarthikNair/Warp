@@ -716,28 +716,24 @@ impl ActionView {
         self.set_transfer_direction(direction);
         self.set_ui_state(UIState::Initial);
 
-        let rendezvous_url = url::Url::parse(
-            &WarpApplicationWindow::default()
-                .config()
-                .rendezvous_server_url_or_default(),
-        )
-        .map_err(|_| {
-            UiError::new(&gettext(
+        let rendezvous_url = WarpApplicationWindow::default()
+            .config()
+            .rendezvous_server_url()
+            .map_err(|_| {
+                UiError::new(&gettext(
                 "Error parsing rendezvous server URL. An invalid URL was entered in the settings.",
             ))
-        })?;
+            })?;
         self.imp().context.borrow_mut().rendezvous_url = rendezvous_url;
 
-        let transit_url = url::Url::parse(
-            &WarpApplicationWindow::default()
-                .config()
-                .transit_server_url_or_default(),
-        )
-        .map_err(|_| {
-            UiError::new(&gettext(
-                "Error parsing transit URL. An invalid URL was entered in the settings.",
-            ))
-        })?;
+        let transit_url = WarpApplicationWindow::default()
+            .config()
+            .transit_server_url()
+            .map_err(|_| {
+                UiError::new(&gettext(
+                    "Error parsing transit URL. An invalid URL was entered in the settings.",
+                ))
+            })?;
         self.imp().context.borrow_mut().transit_url = transit_url;
 
         WarpApplicationWindow::default().show_action_view();

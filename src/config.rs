@@ -109,19 +109,19 @@ impl PersistentConfig {
         path
     }
 
-    pub fn rendezvous_server_url_or_default(&self) -> String {
+    pub fn rendezvous_server_url(&self) -> Result<url::Url, url::ParseError> {
         if let Some(url) = &self.rendezvous_server_url {
-            url.to_string()
+            url.parse()
         } else {
-            globals::WORMHOLE_DEFAULT_RENDEZVOUS_SERVER.to_string()
+            Ok(globals::WORMHOLE_DEFAULT_RENDEZVOUS_SERVER.clone())
         }
     }
 
-    pub fn transit_server_url_or_default(&self) -> String {
+    pub fn transit_server_url(&self) -> Result<url::Url, url::ParseError> {
         if let Some(url) = &self.transit_server_url {
-            url.to_string()
+            url.parse()
         } else {
-            globals::WORMHOLE_DEFAULT_TRANSIT_RELAY.to_string()
+            Ok(globals::WORMHOLE_DEFAULT_TRANSIT_RELAY.clone())
         }
     }
 
@@ -130,16 +130,17 @@ impl PersistentConfig {
     }
 
     pub fn app_cfg(&self) -> AppConfig<AppVersion> {
-        let rendezvous_url = self
-            .rendezvous_server_url_or_default()
-            .trim_end_matches("/v1")
-            .trim_end_matches('/')
-            .to_owned();
+        let mut rendezvous_url = self
+            .rendezvous_server_url()
+            .unwrap_or_else(|_| globals::WORMHOLE_DEFAULT_RENDEZVOUS_SERVER.clone());
 
         // Make sure we have /v1 appended exactly once
+        rendezvous_url.set_path("v1");
+        log::debug!("Creating AppConfig with server url '{}'", rendezvous_url);
+
         AppConfig {
             id: AppID::new(globals::WORMHOLE_DEFAULT_APPID_STR),
-            rendezvous_url: format!("{}/v1", rendezvous_url).into(),
+            rendezvous_url: rendezvous_url.to_string().into(),
             app_version: AppVersion {},
         }
     }
