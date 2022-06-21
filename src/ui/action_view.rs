@@ -345,10 +345,6 @@ impl ActionView {
 
         match &*ui_state {
             UIState::Initial => {
-                imp.context.borrow_mut().canceled = false;
-                imp.context.borrow_mut().file_path = None;
-                imp.context.borrow_mut().file_name = None;
-                imp.context.borrow_mut().progress = None;
                 imp.open_button.set_visible(false);
                 imp.cancel_button.set_visible(true);
                 imp.accept_transfer_button.set_visible(false);
