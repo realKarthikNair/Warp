@@ -63,6 +63,7 @@ impl Default for UIState {
     }
 }
 
+/// Mutable state for the `ActionView`
 #[derive(Debug)]
 pub struct UIContext {
     /// ID of the timer that runs the indeterminate progress
@@ -133,17 +134,6 @@ impl Default for UIContext {
             transit_url: globals::WORMHOLE_DEFAULT_TRANSIT_RELAY.clone(),
             rendezvous_url: globals::WORMHOLE_DEFAULT_RENDEZVOUS_SERVER.clone(),
         }
-    }
-}
-
-impl UIContext {
-    fn recreate_channels(&mut self) {
-        (self.cancel_sender, self.cancel_receiver) = async_channel::unbounded();
-        (self.continue_sender, self.continue_receiver) = async_channel::unbounded();
-        (
-            self.cancellation_complete_sender,
-            self.cancellation_complete_receiver,
-        ) = async_channel::unbounded();
     }
 }
 
@@ -1096,8 +1086,6 @@ impl ActionView {
                 log::error!("Error sending cancellation complete message: {:?}", err);
             }
         }
-
-        self.reset();
     }
 
     /// Resets the view to be ready for the next transfer
@@ -1106,7 +1094,7 @@ impl ActionView {
         let imp = self.imp();
         self.show_progress_indeterminate(false);
 
-        imp.context.borrow_mut().recreate_channels();
+        imp.context.replace(UIContext::default());
 
         // Deletes any temporary files if required
         imp.context.borrow_mut().file_path = None;
