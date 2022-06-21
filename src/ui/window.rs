@@ -30,7 +30,6 @@ mod imp {
     use crate::ui::welcome_window::WelcomeWindow;
     use crate::util::{error::UiError, future::main_async_local_infallible};
     use gtk::{CompositeTemplate, Inhibit};
-    use once_cell::sync::OnceCell;
 
     #[derive(Default, CompositeTemplate)]
     #[template(resource = "/app/drey/Warp/ui/window.ui")]
@@ -57,13 +56,16 @@ mod imp {
         pub code_entry: TemplateChild<gtk::Entry>,
         #[template_child]
         pub action_view: TemplateChild<ActionView>,
+        #[template_child]
+        pub file_chooser: TemplateChild<gtk::FileChooserNative>,
+        #[template_child]
+        pub folder_chooser: TemplateChild<gtk::FileChooserNative>,
+        #[template_child]
+        pub inserted_code_toast: TemplateChild<adw::Toast>,
 
-        pub file_chooser: OnceCell<gtk::FileChooserNative>,
-        pub folder_chooser: OnceCell<gtk::FileChooserNative>,
         pub action_view_showing: Cell<bool>,
         pub config: RefCell<PersistentConfig>,
         pub generated_transmit_codes: RefCell<HashSet<String>>,
-        pub inserted_code_toast: OnceCell<adw::Toast>,
         pub inserted_code_toast_showing: Cell<bool>,
         pub close_in_progress: Cell<bool>,
     }
@@ -124,12 +126,12 @@ mod imp {
 
             self.send_select_file_button
                 .connect_clicked(clone!(@weak obj => move |_| {
-                    obj.imp().file_chooser.get().unwrap().show();
+                    obj.imp().file_chooser.get().show();
                 }));
 
             self.send_select_folder_button
                 .connect_clicked(clone!(@weak obj => move |_| {
-                    obj.imp().folder_chooser.get().unwrap().show();
+                    obj.imp().folder_chooser.get().show();
                 }));
 
             // Open folder
@@ -138,7 +140,7 @@ mod imp {
                 if !obj.action_view_showing() {
                     let imp = obj.imp();
                     imp.stack.set_visible_child_name("send");
-                    imp.folder_chooser.get().unwrap().show();
+                    imp.folder_chooser.get().show();
                 }
             }));
             obj.add_action(&action_open_folder);
@@ -149,7 +151,7 @@ mod imp {
                 if !obj.action_view_showing() {
                     let imp = obj.imp();
                     imp.stack.set_visible_child_name("send");
-                    imp.file_chooser.get().unwrap().show();
+                    imp.file_chooser.get().show();
                 }
             }));
             obj.add_action(&action_send);
@@ -197,33 +199,14 @@ mod imp {
                 };
             });
 
-            let file_chooser = self.file_chooser.get_or_init(move || {
-                gtk::FileChooserNative::new(
-                    Some(&gettext("Select file to send")),
-                    Some(obj),
-                    gtk::FileChooserAction::Open,
-                    Some(&gettext("Open")),
-                    Some(&gettext("Cancel")),
-                )
-            });
+            self.file_chooser.set_modal(true);
+            self.file_chooser.set_transient_for(Some(obj));
+            self.file_chooser
+                .connect_response(file_chooser_closure.clone());
 
-            file_chooser.set_modal(true);
-            file_chooser.set_transient_for(Some(obj));
-            file_chooser.connect_response(file_chooser_closure.clone());
-
-            let folder_chooser = self.folder_chooser.get_or_init(move || {
-                gtk::FileChooserNative::new(
-                    Some(&gettext("Select folder to send")),
-                    Some(obj),
-                    gtk::FileChooserAction::SelectFolder,
-                    Some(&gettext("Open Folder")),
-                    Some(&gettext("Cancel")),
-                )
-            });
-
-            folder_chooser.set_modal(true);
-            folder_chooser.set_transient_for(Some(obj));
-            folder_chooser.connect_response(file_chooser_closure);
+            self.folder_chooser.set_modal(true);
+            self.folder_chooser.set_transient_for(Some(obj));
+            self.folder_chooser.connect_response(file_chooser_closure);
 
             self.code_entry.connect_has_focus_notify(|entry| {
                 // Select all text when entry is focused
@@ -254,17 +237,10 @@ mod imp {
                 self.send_box.add_controller(&drop_target);
             }
 
-            self.inserted_code_toast.get_or_init(|| {
-                let toast = adw::Toast::new(&gettext(
-                    // Translators: Notification when code was automatically detected in clipboard and inserted into code entry on receive page
-                    "Inserted code from clipboard",
-                ));
-                toast.set_timeout(3);
-                toast.connect_dismissed(clone!(@weak obj => move |_toast| {
+            self.inserted_code_toast
+                .connect_dismissed(clone!(@weak obj => move |_toast| {
                     obj.imp().inserted_code_toast_showing.set(false);
                 }));
-                toast
-            });
         }
     }
 
@@ -404,7 +380,7 @@ impl WarpApplicationWindow {
         imp.action_view_showing.set(true);
         imp.leaflet.navigate(adw::NavigationDirection::Forward);
         if imp.inserted_code_toast_showing.get() {
-            imp.inserted_code_toast.get().unwrap().dismiss();
+            imp.inserted_code_toast.get().dismiss();
         }
     }
 
@@ -454,8 +430,7 @@ impl WarpApplicationWindow {
                         {
                             let imp = obj.imp();
                             imp.code_entry.set_text(&extracted_text);
-                            imp.toast_overlay
-                                .add_toast(imp.inserted_code_toast.get().unwrap());
+                            imp.toast_overlay.add_toast(&imp.inserted_code_toast);
                             imp.inserted_code_toast_showing.set(true);
                         }
                     }
