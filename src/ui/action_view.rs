@@ -13,12 +13,12 @@ use gettextrs::*;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use gtk::{gio, glib, ResponseType};
-use std::cell::Ref;
 use std::ffi::OsString;
 use std::fmt::Debug;
 use std::future::Future;
 use std::net::{IpAddr, SocketAddr};
 use std::path::{Path, PathBuf};
+use std::rc::Rc;
 use std::time::Duration;
 use wormhole::transfer::AppVersion;
 use wormhole::transit::TransitInfo;
@@ -63,15 +63,96 @@ impl Default for UIState {
     }
 }
 
-static TRANSIT_ABILITIES: transit::Abilities = transit::Abilities::ALL_ABILITIES;
+#[derive(Debug)]
+pub struct UIContext {
+    /// ID of the timer that runs the indeterminate progress
+    pub progress_timeout_source_id: Option<glib::source::SourceId>,
 
-pub trait MaybeTempFilePath: AsRef<Path> + Debug {}
-impl<T> MaybeTempFilePath for T where T: AsRef<Path> + Debug {}
+    /// When sending a message to the cancel sender the whole process gets aborted
+    pub cancel_sender: async_channel::Sender<()>,
+    pub cancel_receiver: async_channel::Receiver<()>,
+
+    /// We will send a message to this channel when the transfer was cancelled successfully
+    pub cancellation_complete_sender: async_channel::Sender<()>,
+    pub cancellation_complete_receiver: async_channel::Receiver<()>,
+
+    /// Send a message to this sender to continue the process after the confirmation question
+    pub continue_sender: async_channel::Sender<()>,
+    pub continue_receiver: async_channel::Receiver<()>,
+
+    /// User initiated cancel
+    pub canceled: bool,
+
+    /// Full path to the currently being received / sent file
+    pub file_path: Option<PathBuf>,
+
+    /// File path to the last file that was received successfully
+    pub file_path_received_successfully: Option<PathBuf>,
+
+    /// The user facing name of the file being received / send
+    pub file_name: Option<OsString>,
+
+    /// Whether we are currently sending or receiving
+    pub direction: TransferDirection,
+
+    /// The current UI mode
+    pub ui_state: Rc<UIState>,
+
+    /// Handle to the progress calculation
+    pub progress: Option<FileTransferProgress>,
+
+    /// The rendezvous url in use
+    pub rendezvous_url: url::Url,
+
+    /// The transit url in use
+    pub transit_url: url::Url,
+}
+
+impl Default for UIContext {
+    fn default() -> Self {
+        let (cancel_sender, cancel_receiver) = async_channel::unbounded();
+        let (continue_sender, continue_receiver) = async_channel::unbounded();
+        let (cancellation_complete_sender, cancellation_complete_receiver) =
+            async_channel::unbounded();
+
+        Self {
+            progress_timeout_source_id: None,
+            cancel_sender,
+            cancel_receiver,
+            cancellation_complete_sender,
+            cancellation_complete_receiver,
+            continue_sender,
+            continue_receiver,
+            canceled: false,
+            file_path: None,
+            file_path_received_successfully: None,
+            file_name: None,
+            direction: TransferDirection::default(),
+            ui_state: Rc::default(),
+            progress: None,
+            transit_url: globals::WORMHOLE_DEFAULT_TRANSIT_RELAY.clone(),
+            rendezvous_url: globals::WORMHOLE_DEFAULT_RENDEZVOUS_SERVER.clone(),
+        }
+    }
+}
+
+impl UIContext {
+    fn recreate_channels(&mut self) {
+        (self.cancel_sender, self.cancel_receiver) = async_channel::unbounded();
+        (self.continue_sender, self.continue_receiver) = async_channel::unbounded();
+        (
+            self.cancellation_complete_sender,
+            self.cancellation_complete_receiver,
+        ) = async_channel::unbounded();
+    }
+}
+
+static TRANSIT_ABILITIES: transit::Abilities = transit::Abilities::ALL_ABILITIES;
 
 mod imp {
     use super::*;
     use gtk::gdk::AppLaunchContext;
-    use std::cell::{Cell, RefCell};
+    use std::cell::RefCell;
 
     use crate::glib::clone;
     //use crate::util::WormholeTransferURI;
@@ -104,47 +185,7 @@ mod imp {
         #[template_child]
         pub copy_error_button: TemplateChild<gtk::Button>,
 
-        // ID of the timer that runs the indeterminate progress
-        pub progress_timeout_source_id: RefCell<Option<glib::source::SourceId>>,
-
-        // User initiated cancel
-        pub canceled: Cell<bool>,
-
-        // When sending a message to the cancel sender the whole process gets aborted
-        pub cancel_sender: RefCell<Option<async_channel::Sender<()>>>,
-        pub cancel_receiver: RefCell<Option<async_channel::Receiver<()>>>,
-
-        // We will send a message to this channel when the transfer was cancelled successfully
-        pub cancellation_complete_sender: RefCell<Option<async_channel::Sender<()>>>,
-        pub cancellation_complete_receiver: RefCell<Option<async_channel::Receiver<()>>>,
-
-        // Send a message to this sender to continue the process after the confirmation question
-        pub continue_sender: RefCell<Option<async_channel::Sender<()>>>,
-        pub continue_receiver: RefCell<Option<async_channel::Receiver<()>>>,
-
-        // Full path to the currently being received / sent file
-        pub file_path: RefCell<Option<PathBuf>>,
-
-        // File path to the last file that was received successfully
-        pub file_path_received_successfully: RefCell<Option<PathBuf>>,
-
-        // The user facing name of the file being received / send
-        pub file_name: RefCell<Option<OsString>>,
-
-        // Whether we are currently sending or receiving
-        pub direction: RefCell<TransferDirection>,
-
-        // The current UI mode
-        pub ui_state: RefCell<UIState>,
-
-        // Handle to the progress calculation
-        pub progress: RefCell<Option<FileTransferProgress>>,
-
-        // The rendezvous url in use
-        pub rendezvous_url: RefCell<Option<url::Url>>,
-
-        // The transit url in use
-        pub transit_url: RefCell<Option<url::Url>>,
+        pub context: RefCell<UIContext>,
     }
 
     #[glib::object_subclass]
@@ -183,10 +224,8 @@ mod imp {
             self.accept_transfer_button
                 .connect_clicked(clone!(@weak obj => move |_|
                     main_async_local(super::ActionView::transmit_error_handler, async move {
-                        let continue_sender = obj.imp().continue_sender.borrow().clone();
-                        if let Some(continue_sender) = continue_sender {
-                            continue_sender.send(()).await.unwrap();
-                        }
+                        let continue_sender = obj.imp().context.borrow().continue_sender.clone();
+                        continue_sender.send(()).await.unwrap();
 
                         Ok(())
                     });
@@ -259,7 +298,7 @@ mod imp {
 
             self.open_button
                 .connect_clicked(clone!(@weak obj => move |_| {
-                    if let Some(filename) = obj.imp().file_path_received_successfully.borrow().as_ref() {
+                    if let Some(filename) = obj.imp().context.borrow_mut().file_path_received_successfully.clone() {
                         let uri = glib::filename_to_uri(filename, None);
                         if let Ok(uri) = uri {
                             log::debug!("Opening file with uri '{}'", uri);
@@ -293,20 +332,20 @@ impl ActionView {
     }
 
     fn set_ui_state(&self, ui_state: UIState) {
-        self.imp().ui_state.replace(ui_state);
+        self.imp().context.borrow_mut().ui_state = Rc::new(ui_state);
         self.update_ui();
     }
 
-    fn ui_state(&self) -> Ref<UIState> {
-        self.imp().ui_state.borrow()
+    fn ui_state(&self) -> Rc<UIState> {
+        self.imp().context.borrow().ui_state.clone()
     }
 
     fn set_transfer_direction(&self, direction: TransferDirection) {
-        self.imp().direction.replace(direction);
+        self.imp().context.borrow_mut().direction = direction;
     }
 
     fn transfer_direction(&self) -> TransferDirection {
-        *self.imp().direction.borrow()
+        self.imp().context.borrow().direction
     }
 
     fn update_ui(&self) {
@@ -316,10 +355,10 @@ impl ActionView {
 
         match &*ui_state {
             UIState::Initial => {
-                imp.canceled.set(false);
-                imp.file_path.replace(None);
-                imp.file_name.replace(None);
-                imp.progress.replace(None);
+                imp.context.borrow_mut().canceled = false;
+                imp.context.borrow_mut().file_path = None;
+                imp.context.borrow_mut().file_name = None;
+                imp.context.borrow_mut().progress = None;
                 imp.open_button.set_visible(false);
                 imp.cancel_button.set_visible(true);
                 imp.accept_transfer_button.set_visible(false);
@@ -368,10 +407,15 @@ impl ActionView {
                     //imp.status_page.set_paintable(Some(&uri.to_paintable_qr()));
                     //imp.status_page.add_css_class("qr");
 
-                    let filename = imp.file_name.borrow().clone().unwrap_or_else(|| "?".into());
+                    let filename = imp
+                        .context
+                        .borrow()
+                        .file_name
+                        .clone()
+                        .unwrap_or_else(|| "?".into());
 
-                    if imp.rendezvous_url.borrow().as_ref().unwrap()
-                        == &*globals::WORMHOLE_DEFAULT_RENDEZVOUS_SERVER
+                    if imp.context.borrow().rendezvous_url
+                        == *globals::WORMHOLE_DEFAULT_RENDEZVOUS_SERVER
                     {
                         imp.status_page.set_description(Some(&gettextf(
                             // Translators: Description, Code in box below, argument is filename
@@ -586,7 +630,7 @@ impl ActionView {
     /// This will ask whether the transfer should be cancelled. If
     pub async fn cancel_request(&self) -> bool {
         if matches!(
-            &*self.imp().ui_state.borrow(),
+            &*self.imp().context.borrow().ui_state,
             UIState::AskConfirmation(..) | UIState::Done(..) | UIState::Error(..)
         ) {
             self.cancel().await;
@@ -608,10 +652,10 @@ impl ActionView {
     async fn wait_for_cancellation_future(&self) {
         let channel = self
             .imp()
-            .cancellation_complete_receiver
+            .context
             .borrow()
-            .clone()
-            .unwrap();
+            .cancellation_complete_receiver
+            .clone();
         if let Err(err) = channel.recv().await {
             log::error!("Error when waiting for cancellation future {:?}", err);
         }
@@ -619,11 +663,11 @@ impl ActionView {
 
     pub async fn cancel(&self) {
         log::info!("Cancelling transfer");
-        self.imp().canceled.set(true);
+        self.imp().context.borrow_mut().canceled = true;
 
         let imp = self.imp();
         log::debug!("Sending cancel signal");
-        let cancel_sender = imp.cancel_sender.borrow().clone().unwrap();
+        let cancel_sender = imp.context.borrow().cancel_sender.clone();
         cancel_sender.send(()).await.unwrap();
         self.wait_for_cancellation_future().await;
         WarpApplicationWindow::default().navigate_back();
@@ -631,21 +675,20 @@ impl ActionView {
 
     fn show_progress_indeterminate(&self, pulse: bool) {
         let imp = self.imp();
-        if let Some(source_id) = imp.progress_timeout_source_id.take() {
+        if let Some(source_id) = imp.context.borrow_mut().progress_timeout_source_id.take() {
             source_id.remove();
         }
 
         if pulse {
             // 50 ms was mainly chosen for performance of the progress bar
-            imp.progress_timeout_source_id
-                .replace(Some(glib::timeout_add_local(
-                    Duration::from_millis(50),
-                    clone!(@strong self as obj => move || {
-                        obj.imp().progress_bar.pulse();
+            imp.context.borrow_mut().progress_timeout_source_id = Some(glib::timeout_add_local(
+                Duration::from_millis(50),
+                clone!(@strong self as obj => move || {
+                    obj.imp().progress_bar.pulse();
 
-                        Continue(true)
-                    }),
-                )));
+                    Continue(true)
+                }),
+            ));
         }
     }
 
@@ -697,7 +740,7 @@ impl ActionView {
                 "Error parsing rendezvous server URL. An invalid URL was entered in the settings.",
             ))
         })?;
-        self.imp().rendezvous_url.replace(Some(rendezvous_url));
+        self.imp().context.borrow_mut().rendezvous_url = rendezvous_url;
 
         let transit_url = url::Url::parse(
             &WarpApplicationWindow::default()
@@ -709,7 +752,7 @@ impl ActionView {
                 "Error parsing transit URL. An invalid URL was entered in the settings.",
             ))
         })?;
-        self.imp().transit_url.replace(Some(transit_url));
+        self.imp().context.borrow_mut().transit_url = transit_url;
 
         WarpApplicationWindow::default().show_action_view();
         Ok(())
@@ -739,7 +782,7 @@ impl ActionView {
 
         self.set_ui_state(UIState::Connected);
 
-        let relay_url = self.imp().transit_url.borrow().clone().unwrap();
+        let relay_url = self.imp().context.borrow().transit_url.clone();
 
         let request = spawn_async(async move {
             Ok(transfer::request_file(
@@ -791,9 +834,7 @@ impl ActionView {
             .tempfile_in(download_path)?;
         let file = smol::fs::File::from(temp_file.reopen()?);
 
-        self.imp()
-            .file_name
-            .replace(Some(filename.as_os_str().to_os_string()));
+        self.imp().context.borrow_mut().file_name = Some(filename.as_os_str().to_os_string());
 
         spawn_async(async move {
             log::info!(
@@ -816,8 +857,9 @@ impl ActionView {
             if WarpApplicationWindow::default()
                 .action_view()
                 .imp()
+                .context
+                .borrow()
                 .canceled
-                .get()
             {
                 return Err(AppError::Canceled);
             }
@@ -829,12 +871,12 @@ impl ActionView {
             // Rename the file to its final name
             let path = safe_persist_tempfile(temp_file, &filename)?;
             let obj = WarpApplicationWindow::default().action_view();
+            obj.imp().context.borrow_mut().file_name =
+                Some(path.file_name().unwrap().to_os_string());
             obj.imp()
-                .file_name
-                .replace(Some(path.file_name().unwrap().to_os_string()));
-            obj.imp()
-                .file_path_received_successfully
-                .replace(Some(path));
+                .context
+                .borrow_mut()
+                .file_path_received_successfully = Some(path);
 
             Self::transmit_success_main();
 
@@ -856,7 +898,7 @@ impl ActionView {
         let window = WarpApplicationWindow::default();
 
         let (mut file, path, filename) = self.prepare_and_open_file(&path).await?;
-        self.imp().file_name.replace(Some(filename.clone()));
+        self.imp().context.borrow_mut().file_name = Some(filename.clone());
         let code_length = window.config().code_length_or_default();
 
         let res = spawn_async(cancelable_future(
@@ -884,8 +926,8 @@ impl ActionView {
             spawn_async(cancelable_future(connection, Self::cancel_future())).await??;
         self.set_ui_state(UIState::Connected);
 
-        self.imp().file_path.replace(Some(path));
-        let transit_url = self.imp().transit_url.borrow().clone().unwrap();
+        self.imp().context.borrow_mut().file_path = Some(path);
+        let transit_url = self.imp().context.borrow().transit_url.clone();
 
         spawn_async(async move {
             let metadata = file.metadata().await?;
@@ -909,8 +951,9 @@ impl ActionView {
             if WarpApplicationWindow::default()
                 .action_view()
                 .imp()
+                .context
+                .borrow()
                 .canceled
-                .get()
             {
                 return Err(AppError::Canceled);
             }
@@ -940,7 +983,7 @@ impl ActionView {
     /// This future will finish when a message is received in the cancellation channel
     fn cancel_future() -> impl Future<Output = ()> {
         let obj = ActionView::default();
-        let cancel_receiver = obj.imp().cancel_receiver.borrow().as_ref().unwrap().clone();
+        let cancel_receiver = obj.imp().context.borrow().cancel_receiver.clone();
         Self::receiver_future(cancel_receiver)
     }
 
@@ -974,8 +1017,9 @@ impl ActionView {
             let imp = obj.imp();
 
             let filename = imp
-                .file_name
+                .context
                 .borrow()
+                .file_name
                 .as_ref()
                 .map_or_else(|| "?".to_owned(), |s| s.to_string_lossy().to_string());
 
@@ -989,15 +1033,16 @@ impl ActionView {
             let obj = ActionView::default();
             let imp = obj.imp();
 
-            if imp.progress.borrow().is_none() {
-                imp.progress
-                    .replace(Some(FileTransferProgress::begin(total as usize)));
+            if imp.context.borrow().progress.is_none() {
+                imp.context.borrow_mut().progress =
+                    Some(FileTransferProgress::begin(total as usize));
             }
 
             let mut update_progress = false;
             let progress_str = imp
-                .progress
+                .context
                 .borrow_mut()
+                .progress
                 .as_mut()
                 .and_then(|progress| {
                     update_progress = progress.set_progress(sent as usize);
@@ -1013,7 +1058,7 @@ impl ActionView {
     }
 
     async fn ask_confirmation_future(&self) -> Result<(), AppError> {
-        let continue_receiver = self.imp().continue_receiver.borrow().clone().unwrap();
+        let continue_receiver = self.imp().context.borrow().continue_receiver.clone();
         cancelable_future(continue_receiver.recv(), Self::cancel_future()).await??;
         Ok(())
     }
@@ -1039,14 +1084,13 @@ impl ActionView {
         log::debug!("Transmit cleanup");
         WarpApplication::default().uninhibit_transfer();
 
-        if self.imp().canceled.get() {
+        if self.imp().context.borrow().canceled {
             // Send the cancellation complete message
             if let Err(err) = self
                 .imp()
-                .cancellation_complete_sender
+                .context
                 .borrow()
-                .as_ref()
-                .unwrap()
+                .cancellation_complete_sender
                 .try_send(())
             {
                 log::error!("Error sending cancellation complete message: {:?}", err);
@@ -1062,22 +1106,10 @@ impl ActionView {
         let imp = self.imp();
         self.show_progress_indeterminate(false);
 
-        let (cancel_sender, cancel_receiver) = async_channel::unbounded();
-        imp.cancel_sender.replace(Some(cancel_sender));
-        imp.cancel_receiver.replace(Some(cancel_receiver));
-
-        let (continue_sender, continue_receiver) = async_channel::unbounded();
-        imp.cancellation_complete_sender
-            .replace(Some(continue_sender));
-        imp.cancellation_complete_receiver
-            .replace(Some(continue_receiver));
-
-        let (continue_sender, continue_receiver) = async_channel::unbounded();
-        imp.continue_sender.replace(Some(continue_sender));
-        imp.continue_receiver.replace(Some(continue_receiver));
+        imp.context.borrow_mut().recreate_channels();
 
         // Deletes any temporary files if required
-        self.imp().file_path.replace(None);
+        imp.context.borrow_mut().file_path = None;
     }
 
     fn transmit_success_main() {
@@ -1093,13 +1125,15 @@ impl ActionView {
 
         self.imp().progress_bar.set_fraction(1.0);
 
-        self.set_ui_state(UIState::Done(
-            self.imp()
-                .file_name
-                .borrow()
-                .clone()
-                .unwrap_or_else(|| OsString::from("?")),
-        ));
+        let file_name = self
+            .imp()
+            .context
+            .borrow()
+            .file_name
+            .clone()
+            .unwrap_or_else(|| OsString::from("?"));
+
+        self.set_ui_state(UIState::Done(file_name));
 
         self.transmit_cleanup();
     }
@@ -1164,7 +1198,7 @@ impl ActionView {
     }
 
     pub fn transfer_in_progress(&self) -> bool {
-        !self.imp().canceled.get()
+        !self.imp().context.borrow().canceled
             && !matches!(&*self.ui_state(), UIState::Done(..) | UIState::Error(..))
     }
 
