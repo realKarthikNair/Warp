@@ -24,6 +24,23 @@
       </item>
     </section>
   </menu>
+  <object class="GtkFileChooserNative" id="file_chooser">
+    <property name="title" translatable="yes">Select file to send</property>
+    <property name="action">open</property>
+    <property name="accept-label" translatable="yes">Open</property>
+    <property name="cancel-label" translatable="yes">Cancel</property>
+  </object>
+  <object class="GtkFileChooserNative" id="folder_chooser">
+    <property name="title" translatable="yes">Select folder to send</property>
+    <property name="action">open</property>
+    <property name="accept-label" translatable="yes">Open Folder</property>
+    <property name="cancel-label" translatable="yes">Cancel</property>
+  </object>
+  <object class="AdwToast" id="inserted_code_toast">
+    <!-- Translators: Notification when code was automatically detected in clipboard and inserted into code entry on receive page -->
+    <property name="title" translatable="yes">Inserted code from clipboard</property>
+    <property name="timeout">3</property>
+  </object>
   <template class="WarpApplicationWindow" parent="AdwApplicationWindow">
     <property name="width-request">360</property>
     <property name="height-request">530</property>
