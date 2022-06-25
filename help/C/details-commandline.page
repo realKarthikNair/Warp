@@ -2,10 +2,10 @@
 <page xmlns="http://projectmallard.org/1.0/" type="topic" id="details-commandline">
  <info>
   <link type="guide" xref="index#details"/>
-  <desc>Interoperability with the Magic Wormhole Command-Line Application</desc>
+  <desc>Interoperability with the Magic Wormhole Commandline Application</desc>
  </info>
- <title>Command-Line Application</title>
- <p>You can use the <link href="https://github.com/magic-wormhole/magic-wormhole">Magic Wormhole</link> command-line client to
+ <title>Commandline Application</title>
+ <p>You can use the <link href="https://github.com/magic-wormhole/magic-wormhole">Magic Wormhole</link> commandline client to
  communicate with <app>Warp</app> directly.</p>
  <p>To receive a file that is being sent via <app>Warp</app> use this command:</p>
  <code>wormhole receive</code>
