@@ -843,53 +843,54 @@ impl ActionView {
 
         self.imp().context.borrow_mut().file_name = Some(filename.as_os_str().to_os_string());
 
-        spawn_async(async move {
-            log::info!(
-                "Downloading file to {:?}",
-                temp_file.path().to_string_lossy()
-            );
+        cancelable_future(
+            spawn_async(async move {
+                log::info!(
+                    "Downloading file to {:?}",
+                    temp_file.path().to_string_lossy()
+                );
 
-            let mut file = file;
-            cancelable_future(
-                request.accept(
-                    Self::transit_handler,
-                    Self::progress_handler,
-                    &mut file,
-                    Self::cancel_future(),
-                ),
-                Self::cancel_timeout_future(TIMEOUT_MS),
-            )
-            .await??;
+                let mut file = file;
+                request
+                    .accept(
+                        Self::transit_handler,
+                        Self::progress_handler,
+                        &mut file,
+                        Self::cancel_future(),
+                    )
+                    .await?;
 
-            if WarpApplicationWindow::default()
-                .action_view()
-                .imp()
-                .context
-                .borrow()
-                .canceled
-            {
-                return Err(AppError::Canceled);
-            }
+                if WarpApplicationWindow::default()
+                    .action_view()
+                    .imp()
+                    .context
+                    .borrow()
+                    .canceled
+                {
+                    return Err(AppError::Canceled);
+                }
 
-            // Windows requires the file to be closed before renaming it
-            file.sync_all().await?;
-            drop(file);
+                // Windows requires the file to be closed before renaming it
+                file.sync_all().await?;
+                drop(file);
 
-            // Rename the file to its final name
-            let path = safe_persist_tempfile(temp_file, &filename)?;
-            let obj = WarpApplicationWindow::default().action_view();
-            obj.imp().context.borrow_mut().file_name =
-                Some(path.file_name().unwrap().to_os_string());
-            obj.imp()
-                .context
-                .borrow_mut()
-                .file_path_received_successfully = Some(path);
+                // Rename the file to its final name
+                let path = safe_persist_tempfile(temp_file, &filename)?;
+                let obj = WarpApplicationWindow::default().action_view();
+                obj.imp().context.borrow_mut().file_name =
+                    Some(path.file_name().unwrap().to_os_string());
+                obj.imp()
+                    .context
+                    .borrow_mut()
+                    .file_path_received_successfully = Some(path);
 
-            Self::transmit_success_main();
+                Self::transmit_success_main();
 
-            Ok(())
-        })
-        .await?;
+                Ok(())
+            }),
+            Self::cancel_timeout_future(TIMEOUT_MS),
+        )
+        .await??;
 
         Ok(())
     }
@@ -936,10 +937,10 @@ impl ActionView {
         self.imp().context.borrow_mut().file_path = Some(path);
         let transit_url = self.imp().context.borrow().transit_url.clone();
 
-        spawn_async(async move {
-            let metadata = file.metadata().await?;
+        cancelable_future(
+            spawn_async(async move {
+                let metadata = file.metadata().await?;
 
-            cancelable_future(
                 transfer::send_file(
                     connection,
                     transit_url,
@@ -950,26 +951,26 @@ impl ActionView {
                     Self::transit_handler,
                     Self::progress_handler,
                     Self::cancel_future(),
-                ),
-                Self::cancel_timeout_future(TIMEOUT_MS),
-            )
-            .await??;
+                )
+                .await?;
 
-            if WarpApplicationWindow::default()
-                .action_view()
-                .imp()
-                .context
-                .borrow()
-                .canceled
-            {
-                return Err(AppError::Canceled);
-            }
+                if WarpApplicationWindow::default()
+                    .action_view()
+                    .imp()
+                    .context
+                    .borrow()
+                    .canceled
+                {
+                    return Err(AppError::Canceled);
+                }
 
-            Self::transmit_success_main();
+                Self::transmit_success_main();
 
-            Ok(())
-        })
-        .await?;
+                Ok(())
+            }),
+            Self::cancel_timeout_future(TIMEOUT_MS),
+        )
+        .await??;
 
         Ok(())
     }
