@@ -206,7 +206,7 @@ impl WarpApplication {
             .translator_credits(&gettext("translator-credits"))
             .modal(true)
             .authors(vec!["Fina Wilke".into()])
-            .artists(vec![gettext("Fina Wilke"), gettext("Sophie Herold")])
+            .artists(vec![gettext("Tobias Bernard"), gettext("Sophie Herold")])
             .build();
 
         dialog.present();
