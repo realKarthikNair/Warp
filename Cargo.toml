@@ -46,6 +46,7 @@ backtrace = "0.3.65"
 qrcode = "0.12.0"
 zip = "0.5.13"
 zip-extensions = "0.6.1"
+zbus = "2.3.2"
 
 [build-dependencies]
 xml-rs = "0.8"

@@ -83,17 +83,35 @@
                   </object>
                 </child>
                 <child>
-                  <object class="GtkButton" id="open_button">
-                    <property name="tooltip-text" translatable="yes">Open File</property>
+                  <object class="GtkBox" id="open_box">
+                    <property name="orientation">vertical</property>
                     <property name="visible">False</property>
-                    <!-- Translators: Button -->
-                    <property name="label" translatable="yes">Open File</property>
-                    <property name="width-request">150</property>
-                    <property name="hexpand">False</property>
-                    <style>
-                      <class name="pill"/>
-                      <class name="suggested-action"/>
-                    </style>
+                    <property name="spacing">12</property>
+                    <child>
+                      <object class="GtkButton" id="open_button">
+                        <property name="tooltip-text" translatable="yes">Open File</property>
+                        <!-- Translators: Button -->
+                        <property name="label" translatable="yes">Open File</property>
+                        <property name="width-request">150</property>
+                        <property name="hexpand">False</property>
+                        <style>
+                          <class name="pill"/>
+                          <class name="suggested-action"/>
+                        </style>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="open_dir_button">
+                        <property name="tooltip-text" translatable="yes">Show in Folder</property>
+                        <!-- Translators: Button -->
+                        <property name="label" translatable="yes">Show in Folder</property>
+                        <property name="width-request">150</property>
+                        <property name="hexpand">False</property>
+                        <style>
+                          <class name="pill"/>
+                        </style>
+                      </object>
+                    </child>
                   </object>
                 </child>
                 <child>

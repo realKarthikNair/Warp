@@ -1,8 +1,10 @@
+use crate::error::{AppError, UiError};
 use crate::gettext::gettextf;
 use crate::glib::Cast;
 use crate::globals;
 use crate::globals::{TRANSMIT_CODE_FIND_REGEX, TRANSMIT_URI_FIND_REGEX};
 use gettextrs::gettext;
+use gio::prelude::*;
 use gtk::gdk;
 use qrcode::QrCode;
 use std::str::FromStr;
@@ -11,6 +13,26 @@ use wormhole::{AppConfig, AppID, Code};
 
 pub mod error;
 pub mod future;
+
+/// From [Pika Backup](https://gitlab.gnome.org/World/pika-backup/-/blob/main/src/ui/page_archives/display.rs#L63)
+pub fn show_dir(path: &std::path::Path) -> Result<(), AppError> {
+    let uri = gio::File::for_path(&path).uri();
+
+    let show_folder = || -> std::result::Result<(), _> {
+        let conn = zbus::blocking::Connection::session()?;
+        let proxy = zbus::blocking::Proxy::new(
+            &conn,
+            "org.freedesktop.FileManager1",
+            "/org/freedesktop/FileManager1",
+            "org.freedesktop.FileManager1",
+        )?;
+        proxy.call("ShowFolders", &(vec![uri.as_str()], ""))
+    };
+
+    show_folder().map_err(|_| UiError::new(&gettext("Failed to open downloads folder.")))?;
+
+    Ok(())
+}
 
 pub fn extract_transmit_uri(str: &str) -> Option<String> {
     TRANSMIT_URI_FIND_REGEX

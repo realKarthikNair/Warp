@@ -6,7 +6,7 @@ use crate::ui::fs::safe_persist_tempfile;
 use crate::ui::window::WarpApplicationWindow;
 use crate::util::error::*;
 use crate::util::future::*;
-use crate::util::{TransferDirection, WormholeTransferURI};
+use crate::util::{show_dir, TransferDirection, WormholeTransferURI};
 use crate::{globals, WarpApplication};
 use adw::gio::NotificationPriority;
 use gettextrs::*;
@@ -155,7 +155,11 @@ mod imp {
         #[template_child]
         pub cancel_button: TemplateChild<gtk::Button>,
         #[template_child]
+        pub open_box: TemplateChild<gtk::Box>,
+        #[template_child]
         pub open_button: TemplateChild<gtk::Button>,
+        #[template_child]
+        pub open_dir_button: TemplateChild<gtk::Button>,
         #[template_child]
         pub back_button: TemplateChild<gtk::Button>,
         #[template_child]
@@ -305,6 +309,16 @@ mod imp {
                         log::error!("Open button clicked but no filename set");
                     };
                 }));
+
+            self.open_dir_button
+                .connect_clicked(clone!(@weak obj => move |_| {
+                    if let Some(filename) = obj.imp().context.borrow_mut().file_path_received_successfully.clone() {
+                        if let Err(err) = show_dir(&filename) {
+                            log::error!("Error opening file: {}", err);
+                            AppError::from(err).handle();
+                        }
+                    };
+                }));
         }
     }
 
@@ -346,7 +360,7 @@ impl ActionView {
 
         match &*ui_state {
             UIState::Initial => {
-                imp.open_button.set_visible(false);
+                imp.open_box.set_visible(false);
                 imp.cancel_button.set_visible(true);
                 imp.accept_transfer_button.set_visible(false);
                 imp.back_button.set_visible(false);
@@ -567,7 +581,7 @@ impl ActionView {
                     );
 
                     imp.status_page.set_description(Some(&description));
-                    imp.open_button.set_visible(true);
+                    imp.open_box.set_visible(true);
                     notification.set_body(Some(&description));
                 }
 
