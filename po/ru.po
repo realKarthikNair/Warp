@@ -605,7 +605,7 @@ msgstr "Прервать"
 
 #. Translators: File receive confirmation message dialog title
 #: src/ui/action_view.rs:1093
-msgid "Can't Open File"
+msgid "Unable to Open File"
 msgstr "Невозможно открыть файл"
 
 #: src/ui/action_view.rs:1199

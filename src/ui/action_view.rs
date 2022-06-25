@@ -1090,7 +1090,7 @@ impl ActionView {
     fn no_registered_application_error_dialog(msg: &str) -> gtk::MessageDialog {
         let dialog = gtk::builders::MessageDialogBuilder::new()
             // Translators: File receive confirmation message dialog title
-            .text(&gettext("Can't Open File"))
+            .text(&gettext("Unable to Open File"))
             .secondary_text(msg)
             .message_type(gtk::MessageType::Question)
             .buttons(gtk::ButtonsType::None)
