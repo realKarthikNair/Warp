@@ -17,6 +17,8 @@ finish-args:
   - --share=network
   # Save files in the Downloads directory
   - --filesystem=xdg-download
+  # Inhibit shutdown and sleep
+  - --system-talk-name=org.freedesktop.login1
   # Open folder in filebrowser
   - --talk-name=org.freedesktop.FileManager1
 build-options:
