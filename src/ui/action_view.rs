@@ -296,6 +296,7 @@ mod imp {
                             let res = AppInfo::launch_default_for_uri(&uri.to_string(), none);
                             if let Err(err) = res {
                                 log::error!("Error opening file: {}", err);
+                                AppError::from(err).handle();
                             }
                         } else {
                             log::error!("Filename to open is not a valid uri");

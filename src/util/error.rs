@@ -1,6 +1,6 @@
 use crate::gettext::gettextf;
-use crate::globals;
 use crate::ui::window::WarpApplicationWindow;
+use crate::{glib, globals};
 use gettextrs::gettext;
 use gtk::prelude::*;
 use gtk::{gio, MessageType};
@@ -71,6 +71,10 @@ pub enum AppError {
     Panic {
         msg: String,
     },
+    Glib {
+        #[from]
+        source: glib::Error,
+    },
 }
 
 impl Display for AppError {
@@ -87,6 +91,7 @@ impl Display for AppError {
             }
             AppError::Zip { source } => write!(f, "ZipError: {}", source),
             AppError::Panic { msg } => write!(f, "Panic: {}", msg),
+            AppError::Glib { source } => write!(f, "Glib: {}", source),
         }
     }
 }
@@ -251,6 +256,7 @@ impl AppError {
                 _ => gettext("An unknown error occurred"),
             },
             AppError::Panic { .. } => gettext("An unexpected error occurred. Please report an issue with the error message."),
+            AppError::Glib { source } => source.to_string(),
         }
     }
 }
