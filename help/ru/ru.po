@@ -6,9 +6,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: warp main\n"
-"POT-Creation-Date: 2022-06-03 13:28+0000\n"
-"PO-Revision-Date: 2022-06-03 23:50+1000\n"
-"Last-Translator: Ser82-png <sw@atrus.ru>\n"
+"POT-Creation-Date: 2022-06-05 12:32+0000\n"
+"PO-Revision-Date: 2022-06-25 01:11+1000\n"
+"Last-Translator: Ser82-png <asvmail.as@gmail.com>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -110,7 +110,7 @@ msgstr "Глоссарий"
 #. (itstool) path: section/title
 #: C/details-glossary.page:9
 msgid "Rendezvous Server"
-msgstr "Rendezvous-сервер"
+msgstr "Сервер рандеву"
 
 #. (itstool) path: section/p
 #: C/details-glossary.page:10
@@ -124,8 +124,8 @@ msgstr ""
 "Этот сервер находится в Интернете и управляется проектом <link href="
 "\"https://github.com/magic-wormhole/magic-wormhole\">Magic Wormhole</link>. "
 "Он используется для поиска одноранговых узлов для обмена файлами. При "
-"запуске передачи обе стороны свяжутся с rendezvous-сервером, чтобы найти "
-"друг друга."
+"запуске передачи обе стороны свяжутся с сервером рандеву, чтобы найти друг "
+"друга."
 
 #. (itstool) path: section/p
 #: C/details-glossary.page:13
@@ -133,7 +133,7 @@ msgid ""
 "The rendezvous server also helps the transmitting client to generate a <link "
 "xref=\"#transmit-code\"/>"
 msgstr ""
-"Rendezvous-сервер также помогает передающему клиенту генерировать <link xref="
+"Сервер рандеву также помогает передающему клиенту генерировать <link xref="
 "\"#transmit-code\"/>"
 
 #. (itstool) path: section/p
@@ -195,7 +195,7 @@ msgstr ""
 #. (itstool) path: section/title
 #: C/details-glossary.page:32
 msgid "Transmit Link"
-msgstr "Ссылка для передачи"
+msgstr "Ссылка передачи"
 
 #. (itstool) path: section/p
 #: C/details-glossary.page:33
@@ -207,8 +207,8 @@ msgid ""
 msgstr ""
 "Кроме того, можно использовать <link xref=\"#transmit-code\"/> как ссылку. "
 "При нажатии на ссылку автоматически откроется Warp и начнётся передача "
-"файла. На экране отправки будет доступна кнопка <gui>Копировать ссылку для "
-"передачи</gui>. Сама ссылка для передачи выглядит следующим образом:"
+"файла. На экране отправки будет доступна кнопка <gui>Копировать ссылку "
+"передачи</gui>. Сама ссылка передачи выглядит следующим образом:"
 
 #. (itstool) path: section/code
 #: C/details-glossary.page:36
