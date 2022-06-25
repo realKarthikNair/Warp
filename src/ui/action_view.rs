@@ -293,14 +293,25 @@ mod imp {
             self.open_button
                 .connect_clicked(clone!(@weak obj => move |_| {
                     if let Some(filename) = obj.imp().context.borrow_mut().file_path_received_successfully.clone() {
-                        let uri = glib::filename_to_uri(filename, None);
+                        let uri = glib::filename_to_uri(filename.clone(), None);
                         if let Ok(uri) = uri {
                             log::debug!("Opening file with uri '{}'", uri);
                             let none: Option<&AppLaunchContext> = None;
                             let res = AppInfo::launch_default_for_uri(&uri.to_string(), none);
                             if let Err(err) = res {
                                 log::error!("Error opening file: {}", err);
-                                AppError::from(err).handle();
+                                main_async_local_infallible(async move {
+                                    let dialog = super::ActionView::no_registered_application_error_dialog(err.message());
+                                    let answer = dialog.run_future().await;
+                                    dialog.close();
+
+                                    if answer == gtk::ResponseType::Ok {
+                                        if let Err(err) = show_dir(&filename) {
+                                            log::error!("Error opening file: {}", err);
+                                            AppError::from(err).handle();
+                                        }
+                                    }
+                                })
                             }
                         } else {
                             log::error!("Filename to open is not a valid uri");
@@ -1073,6 +1084,21 @@ impl ActionView {
         let _continue_button = dialog.add_button(&gettext("Continue"), ResponseType::Close);
         let abort_button = dialog.add_button(&gettext("Abort"), ResponseType::Cancel);
         abort_button.add_css_class("destructive-action");
+        dialog
+    }
+
+    fn no_registered_application_error_dialog(msg: &str) -> gtk::MessageDialog {
+        let dialog = gtk::builders::MessageDialogBuilder::new()
+            // Translators: File receive confirmation message dialog title
+            .text(&gettext("Can't Open File"))
+            .secondary_text(msg)
+            .message_type(gtk::MessageType::Question)
+            .buttons(gtk::ButtonsType::None)
+            .transient_for(&WarpApplicationWindow::default())
+            .modal(true)
+            .build();
+        let _close_button = dialog.add_button(&gettext("Close"), ResponseType::Close);
+        let _open_in_dir_button = dialog.add_button(&gettext("Show in Folder"), ResponseType::Ok);
         dialog
     }
 
