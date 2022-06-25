@@ -308,10 +308,10 @@ mod imp {
                                     if answer == gtk::ResponseType::Ok {
                                         if let Err(err) = show_dir(&filename) {
                                             log::error!("Error opening file: {}", err);
-                                            AppError::from(err).handle();
+                                            err.handle();
                                         }
                                     }
-                                })
+                                });
                             }
                         } else {
                             log::error!("Filename to open is not a valid uri");
@@ -326,7 +326,7 @@ mod imp {
                     if let Some(filename) = obj.imp().context.borrow_mut().file_path_received_successfully.clone() {
                         if let Err(err) = show_dir(&filename) {
                             log::error!("Error opening file: {}", err);
-                            AppError::from(err).handle();
+                            err.handle();
                         }
                     };
                 }));
