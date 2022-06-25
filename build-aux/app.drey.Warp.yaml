@@ -17,6 +17,8 @@ finish-args:
   - --share=network
   # Save files in the Downloads directory
   - --filesystem=xdg-download
+  # Open folder in filebrowser
+  - --talk-name=org.freedesktop.FileManager1
 build-options:
   append-path: /usr/lib/sdk/rust-stable/bin
 modules:
