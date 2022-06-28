@@ -61,6 +61,18 @@
   </custom>
   <content_rating type="oars-1.0" />
   <releases>
+    <release version="0.2.1" date="2022-06-28">
+      <description>
+        <p>This patch release has the following changes:</p>
+        <ul>
+          <li>Inhibit computer sleep while transfer is running</li>
+          <li>Button to open the download folder after transfer is complete</li>
+          <li>Change URI format to use the `wormhole-transfer` specification for future interoperability with other magic-wormhole clients</li>
+          <li>Translation updates</li>
+          <li>Metadata improvements</li>
+        </ul>
+      </description>
+    </release>
     <release version="0.2.0" date="2022-06-17">
       <description>
         <p>This release includes the following updates:</p>
