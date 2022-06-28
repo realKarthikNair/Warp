@@ -1,7 +1,7 @@
 [package]
 name = "warp"
 license = "GPL-3.0"
-version = "0.2.0"
+version = "0.2.1"
 authors = ["Fina Wilke <code@felinira.net>"]
 homepage = "https://apps.gnome.org/app/app.drey.Warp/"
 repository = "https://gitlab.gnome.org/World/warp/"
