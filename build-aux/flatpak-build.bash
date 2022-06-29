@@ -17,7 +17,11 @@ fi
 
 set -xe
 
-build-aux/generate-manifest.bash
+build-aux/generate-manifest.bash || echo "Warning: Problem regenerating devel manifest, using existing manifest"
+flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+flatpak remote-add --user --if-not-exists gnome-nightly https://nightly.gnome.org/gnome-nightly.flatpakrepo
+flatpak install --user --noninteractive org.gnome.Sdk//master
+flatpak install --user --noninteractive org.freedesktop.Sdk.Extension.rust-stable//21.08
 flatpak-builder \
   --user --verbose --force-clean -y --repo=$REPO_DIR flatpak_out build-aux/$MANIFEST
 flatpak build-bundle $REPO_DIR $APP_ID.flatpak $APP_ID

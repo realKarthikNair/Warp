@@ -41,13 +41,12 @@ flatpak install warp-nightly.flatpak
 
 ### Build
 
-Make sure you have `flatpak` and `flatpak-builder` installed. Then run the commands below.
+Make sure you have `flatpak` and `flatpak-builder` installed. Then run the command below.
+
+This will add the `flathub` and `gnome-nightly` repositories to your flatpak user installation.
 
 ```shell
-flatpak remote-add --user --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-flatpak install --user org.gnome.Sdk//42 org.freedesktop.Sdk.Extension.rust-stable//21.08 org.gnome.Platform//42
-cd build-aux
-flatpak-builder --user app app.drey.Warp.Devel.json
+build-aux/flatpak-build.sh dev
 ```
 
 ### Run
