@@ -450,6 +450,10 @@ impl WarpApplicationWindow {
         self.imp().action_view.clone()
     }
 
+    pub fn leaflet(&self) -> adw::Leaflet {
+        self.imp().leaflet.clone()
+    }
+
     pub fn open_code_from_uri(&self, uri: WormholeTransferURI) {
         let app_cfg: AppConfig<AppVersion> = uri.to_app_cfg();
         if uri.direction == TransferDirection::Receive {

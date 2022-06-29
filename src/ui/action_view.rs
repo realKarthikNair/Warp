@@ -361,6 +361,13 @@ impl ActionView {
         self.imp().context.borrow().direction
     }
 
+    fn set_can_navigate_back(&self, can_navigate_back: bool) {
+        self.imp().back_button.set_visible(can_navigate_back);
+        WarpApplicationWindow::default()
+            .leaflet()
+            .set_can_navigate_back(can_navigate_back);
+    }
+
     fn update_ui(&self) {
         let imp = self.imp();
         let direction = self.transfer_direction();
@@ -371,13 +378,14 @@ impl ActionView {
                 imp.open_box.set_visible(false);
                 imp.cancel_button.set_visible(true);
                 imp.accept_transfer_button.set_visible(false);
-                imp.back_button.set_visible(false);
                 imp.code_box.set_visible(false);
                 imp.progress_bar.set_visible(true);
                 imp.progress_bar.set_show_text(false);
                 imp.copy_error_button.set_visible(false);
                 imp.status_page
                     .set_icon_name(Some("arrows-questionmark-symbolic"));
+
+                self.set_can_navigate_back(false);
                 self.show_progress_indeterminate(true);
             }
             UIState::Archive(filename) => match direction {
@@ -560,12 +568,13 @@ impl ActionView {
                 imp.status_page
                     // Translators: Title
                     .set_title(&gettext("File Transfer Successful"));
-                imp.back_button.set_visible(true);
                 imp.cancel_button.set_visible(false);
                 imp.status_page
                     .set_icon_name(Some("checkmark-large-symbolic"));
                 imp.progress_bar.set_text(None);
                 imp.progress_bar.set_visible(false);
+
+                self.set_can_navigate_back(true);
 
                 let notification = gio::Notification::new(&gettext("File Transfer Complete"));
 
@@ -602,13 +611,14 @@ impl ActionView {
                     .set_title(&gettext("File Transfer Failed"));
                 imp.status_page
                     .set_description(Some(&error.gettext_error()));
-                imp.back_button.set_visible(true);
                 imp.cancel_button.set_visible(false);
                 imp.status_page
                     .set_icon_name(Some("horizontal-arrows-one-way-symbolic"));
                 imp.progress_bar.set_text(None);
                 imp.progress_bar.set_visible(false);
                 imp.accept_transfer_button.set_visible(false);
+
+                self.set_can_navigate_back(true);
 
                 let notification = gio::Notification::new(&gettext("File Transfer Failed"));
                 notification.set_body(Some(&gettextf(
