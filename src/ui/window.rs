@@ -244,6 +244,15 @@ mod imp {
                 .connect_dismissed(clone!(@weak obj => move |_toast| {
                     obj.imp().inserted_code_toast_showing.set(false);
                 }));
+
+            self.leaflet
+                .connect_visible_child_notify(clone!(@weak obj => move |leaflet| {
+                    if let Some(widget) = leaflet.visible_child() {
+                        if widget != obj.action_view() {
+                            obj.navigate_back_cb();
+                        }
+                    }
+                }));
         }
     }
 
@@ -388,6 +397,10 @@ impl WarpApplicationWindow {
     }
 
     pub fn navigate_back(&self) {
+        self.imp().leaflet.navigate(adw::NavigationDirection::Back);
+    }
+
+    fn navigate_back_cb(&self) {
         let imp = self.imp();
         imp.action_view_showing.set(false);
         imp.leaflet.navigate(adw::NavigationDirection::Back);
