@@ -118,7 +118,6 @@ impl WarpApplication {
         glib::Object::new(&[
             ("application-id", &Some(globals::APP_ID)),
             ("flags", &gio::ApplicationFlags::HANDLES_OPEN),
-            ("resource-base-path", &Some("/app/drey/Warp/")),
         ])
         .expect("Application initialization failed...")
     }
