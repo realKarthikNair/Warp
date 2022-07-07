@@ -49,7 +49,6 @@ pub async fn cancelable_future<T>(
             Ok(res)
         },
         () = cancel_future => {
-            drop(future);
             log::debug!("Future canceled");
             Err(AppError::Canceled)
         }

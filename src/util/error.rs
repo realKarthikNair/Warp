@@ -4,7 +4,7 @@ use crate::{glib, globals};
 use gettextrs::gettext;
 use gtk::prelude::*;
 use gtk::{gio, MessageType};
-use std::fmt::{Debug, Display, Formatter};
+use std::fmt::{Debug, Display, Formatter, Write};
 use std::io::ErrorKind;
 use std::sync::atomic::{AtomicBool, Ordering};
 use thiserror::Error;
@@ -289,7 +289,7 @@ pub fn error_for_panic() -> AppError {
 
     let mut backtrace_info = globals::PANIC_BACKTRACES.lock().unwrap();
     for backtrace_msg in backtrace_info.iter() {
-        msg.push_str(&format!("{}\n", backtrace_msg));
+        let _ignored = writeln!(msg, "{}", backtrace_msg);
     }
 
     backtrace_info.clear();
