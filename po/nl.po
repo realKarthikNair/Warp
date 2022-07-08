@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: warp main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
 "POT-Creation-Date: 2022-06-30 13:50+0000\n"
-"PO-Revision-Date: 2022-06-30 17:15+0200\n"
+"PO-Revision-Date: 2022-07-08 23:29+0200\n"
 "Last-Translator: Nathan Follens <nfollens@gnome.org>\n"
 "Language-Team: Dutch <gnome-nl-list@gnome.org>\n"
 "Language: nl\n"
@@ -80,7 +80,7 @@ msgstr "Hoofdvenster"
 #. Translators: Entry placeholder; This is a noun
 #: data/app.drey.Warp.metainfo.xml.in.in:32 data/resources/ui/window.ui:161
 msgid "Transmit Code"
-msgstr "Verzendcode"
+msgstr "Overdrachtscode"
 
 #: data/app.drey.Warp.metainfo.xml.in.in:36
 #: data/resources/ui/action_view.ui:119
@@ -119,7 +119,7 @@ msgstr "Terug"
 #. Translators: Button; Transmit Link is a noun
 #: data/resources/ui/action_view.ui:71
 msgid "Copy Transmit Link"
-msgstr "Overdrachtslink kopiëren"
+msgstr "Overdrachtsverwijzing kopiëren"
 
 #. Translators: Button; Transmit Code is a noun
 #: data/resources/ui/action_view.ui:78
@@ -280,8 +280,8 @@ msgstr ""
 "partijen Warp op hun apparaten installeren.\n"
 "\n"
 "Na een bestand geselecteerd te hebben moet de verzender de ontvanger de "
-"gegeven code doorgeven. Dit wordt bij voorkeur gedaan via een beveiligde "
-"verbinding.\n"
+"gegeven code doorgeven. Dit wordt bij voorkeur gedaan via een beveiligd "
+"communicatiekanaal.\n"
 "\n"
 "Als de ontvanger de code heeft ingevoerd kan de bestandsoverdracht "
 "beginnen.\n"
@@ -518,7 +518,7 @@ msgstr ""
 #. Translators: Description, During transfer
 #: src/ui/action_view.rs:535
 msgid "File “{}” via local network direct transfer"
-msgstr "Bestand ‘{}’ via directe lokale netwerkoverdracht"
+msgstr "Bestand ‘{}’ via directe lokalenetwerkoverdracht"
 
 #. Translators: Description, During transfer
 #: src/ui/action_view.rs:538
