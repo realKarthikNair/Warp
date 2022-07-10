@@ -9,8 +9,8 @@ use crate::util::future::*;
 use crate::util::{show_dir, TransferDirection, WormholeTransferURI};
 use crate::{globals, WarpApplication};
 use adw::gio::NotificationPriority;
+use adw::prelude::*;
 use gettextrs::*;
-use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use gtk::{gio, glib, ResponseType};
 use std::ffi::OsString;
@@ -657,11 +657,10 @@ impl ActionView {
             return true;
         }
 
-        let dialog = Self::ask_abort_dialog();
-        let answer = dialog.run_future().await;
-        dialog.close();
+        let dialog = WarpApplicationWindow::default().ask_abort_dialog();
+        let response = dialog.run_future(None).await;
 
-        if answer == gtk::ResponseType::Cancel {
+        if response == "abort" {
             self.cancel().await;
             true
         } else {
@@ -1078,22 +1077,6 @@ impl ActionView {
         let continue_receiver = self.imp().context.borrow().continue_receiver.clone();
         cancelable_future(continue_receiver.recv(), Self::cancel_future()).await??;
         Ok(())
-    }
-
-    fn ask_abort_dialog() -> gtk::MessageDialog {
-        let dialog = gtk::builders::MessageDialogBuilder::new()
-            // Translators: File receive confirmation message dialog title
-            .text(&gettext("Abort file transfer?"))
-            .secondary_text(&gettext("Do you want to abort the current file transfer?"))
-            .message_type(gtk::MessageType::Question)
-            .buttons(gtk::ButtonsType::None)
-            .transient_for(&WarpApplicationWindow::default())
-            .modal(true)
-            .build();
-        let _continue_button = dialog.add_button(&gettext("Continue"), ResponseType::Close);
-        let abort_button = dialog.add_button(&gettext("Abort"), ResponseType::Cancel);
-        abort_button.add_css_class("destructive-action");
-        dialog
     }
 
     fn no_registered_application_error_dialog(msg: &str) -> gtk::MessageDialog {
