@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <object class="AdwClampLayout" id="clamp_layout">
-    <property name="tightening-threshold">260</property>
-  </object>
-  <object class="AdwClampLayout" id="clamp_layout2">
-    <property name="tightening-threshold">260</property>
-  </object>
   <template class="WarpPreferencesWindow" parent="AdwPreferencesWindow">
     <property name="modal">True</property>
     <property name="destroy-with-parent">True</property>
@@ -23,35 +17,17 @@
 
 Leaving these entries empty will use the application defaults.</property>
             <child>
-              <object class="AdwActionRow">
+              <object class="AdwEntryRow" id="rendezvous_server_url_entry_row">
                 <property name="title" translatable="yes">Rendezvous Server URL</property>
-                <child>
-                  <object class="GtkEntry" id="rendezvous_server_url_entry">
-                    <property name="valign">center</property>
-                    <property name="input-purpose">url</property>
-                    <property name="layout-manager">clamp_layout</property>
-                    <style>
-                      <class name="preferences-entry"/>
-                    </style>
-                    <property name="text" bind-source="WarpPreferencesWindow" bind-property="rendezvous-server-url" bind-flags="sync-create|bidirectional"/>
-                  </object>
-                </child>
+                <property name="input-purpose">url</property>
+                <property name="text" bind-source="WarpPreferencesWindow" bind-property="rendezvous-server-url" bind-flags="sync-create|bidirectional"/>
               </object>
             </child>
             <child>
-              <object class="AdwActionRow">
+              <object class="AdwEntryRow" id="transit_server_url_entry_row">
                 <property name="title" translatable="yes">Transit Server URL</property>
-                <child>
-                  <object class="GtkEntry" id="transit_server_url_entry">
-                    <property name="valign">center</property>
-                    <property name="input-purpose">url</property>
-                    <property name="layout-manager">clamp_layout2</property>
-                    <style>
-                      <class name="preferences-entry"/>
-                    </style>
-                    <property name="text" bind-source="WarpPreferencesWindow" bind-property="transit-server-url" bind-flags="sync-create|bidirectional"/>
-                  </object>
-                </child>
+                <property name="input-purpose">url</property>
+                <property name="text" bind-source="WarpPreferencesWindow" bind-property="transit-server-url" bind-flags="sync-create|bidirectional"/>
               </object>
             </child>
           </object>
