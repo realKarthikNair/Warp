@@ -61,6 +61,11 @@
   </custom>
   <content_rating type="oars-1.0" />
   <releases>
+    <release version="0.2.2" date="2022-07-13">
+      <description>
+        <p>Translation updates and minor bug fixes</p>
+      </description>
+    </release>
     <release version="0.2.1" date="2022-06-28">
       <description>
         <p>This patch release has the following changes:</p>
