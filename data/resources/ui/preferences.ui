@@ -39,8 +39,23 @@ Leaving these entries empty will use the application defaults.</property>
 
 A short code is easy to remember but increases the risk of someone else guessing the code. As a code may only be guessed once, the risk is very small even with short codes. A length of 4 is very secure.</property>
             <child>
+              <object class="AdwActionRow" id="code_action_row">
+                <property name="title" translatable="yes">Manual Code Entry</property>
+                <property name="subtitle" translatable="yes">Always enter your own code</property>
+                <property name="activatable">True</property>
+                <property name="can-focus">True</property>
+                <child>
+                  <object class="GtkSwitch" id="manual_code_switch">
+                    <property name="valign">center</property>
+                    <property name="state" bind-source="WarpPreferencesWindow" bind-property="manual-code-entry" bind-flags="sync-create|bidirectional"/>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
               <object class="AdwActionRow">
                 <property name="title" translatable="yes">Code Word Count</property>
+                <property name="sensitive" bind-source="WarpPreferencesWindow" bind-property="manual-code-entry" bind-flags="sync-create|invert-boolean"/>
                 <child>
                   <object class="GtkSpinButton" id="code_length_spin_button">
                     <property name="valign">center</property>

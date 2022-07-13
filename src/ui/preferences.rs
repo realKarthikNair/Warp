@@ -26,10 +26,14 @@ mod imp {
         pub transit_server_url_entry_row: TemplateChild<adw::EntryRow>,
 
         #[template_child]
+        pub manual_code_switch: TemplateChild<gtk::Switch>,
+
+        #[template_child]
         pub code_length_spin_button: TemplateChild<gtk::SpinButton>,
 
         pub rendezvous_server_url: RefCell<String>,
         pub transit_server_url: RefCell<String>,
+        pub manual_code_entry: Cell<bool>,
         pub code_length: Cell<i32>,
     }
 
@@ -68,6 +72,13 @@ mod imp {
                         None,
                         glib::ParamFlags::READWRITE | glib::ParamFlags::EXPLICIT_NOTIFY,
                     ),
+                    glib::ParamSpecBoolean::new(
+                        "manual-code-entry",
+                        "",
+                        "",
+                        false,
+                        glib::ParamFlags::READWRITE | glib::ParamFlags::EXPLICIT_NOTIFY,
+                    ),
                     glib::ParamSpecInt::new(
                         "code-length",
                         "",
@@ -92,6 +103,7 @@ mod imp {
             match pspec.name() {
                 "rendezvous-server-url" => obj.set_rendezvous_server_url(value.get().unwrap()),
                 "transit-server-url" => obj.set_transit_server_url(value.get().unwrap()),
+                "manual-code-entry" => obj.set_manual_code_entry(value.get().unwrap()),
                 "code-length" => obj.set_code_length(value.get().unwrap()),
                 _ => unimplemented!(),
             }
@@ -101,6 +113,7 @@ mod imp {
             match pspec.name() {
                 "rendezvous-server-url" => obj.rendezvous_server_url().to_value(),
                 "transit-server-url" => obj.transit_server_url().to_value(),
+                "manual-code-entry" => obj.manual_code_entry().to_value(),
                 "code-length" => obj.code_length().to_value(),
                 _ => unimplemented!(),
             }
@@ -110,6 +123,7 @@ mod imp {
             self.parent_constructed(obj);
 
             let window = WarpApplicationWindow::default();
+
             obj.set_transient_for(Some(&window));
             obj.set_rendezvous_server_url(
                 window
@@ -126,10 +140,8 @@ mod imp {
                     .unwrap_or_else(|| "".to_owned()),
             );
 
-            /*self.rendezvous_server_url_entry_row
-                .set_placeholder_text(Some(globals::WORMHOLE_DEFAULT_RENDEZVOUS_SERVER.as_str()));
-            self.rendezvous_server_url_entry_row
-                .set_placeholder_text(Some(globals::WORMHOLE_DEFAULT_TRANSIT_RELAY.as_str()));*/
+            obj.set_manual_code_entry(window.config().manual_code_entry);
+
             self.code_length_spin_button
                 .set_adjustment(&gtk::Adjustment::new(4f64, 2f64, 8f64, 1f64, 0f64, 0f64));
 
@@ -149,6 +161,8 @@ mod imp {
             let transit_url = &*self.transit_server_url.borrow();
             window.config().transit_server_url =
                 (!transit_url.is_empty()).then(|| transit_url.clone());
+
+            window.config().manual_code_entry = self.manual_code_entry.get();
 
             let code_length = self.code_length.get();
             window.config().code_length = Some(code_length as usize);
@@ -234,6 +248,15 @@ impl WarpPreferencesWindow {
 
     pub fn transit_server_url(&self) -> String {
         self.imp().transit_server_url.borrow().to_string()
+    }
+
+    pub fn set_manual_code_entry(&self, manual_code_entry: bool) {
+        self.imp().manual_code_entry.set(manual_code_entry);
+        self.notify("manual-code-entry");
+    }
+
+    pub fn manual_code_entry(&self) -> bool {
+        self.imp().manual_code_entry.get()
     }
 
     pub fn set_code_length(&self, length: i32) {

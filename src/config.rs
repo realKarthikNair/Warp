@@ -30,6 +30,8 @@ pub struct Config {
     pub rendezvous_server_url: Option<String>,
     pub transit_server_url: Option<String>,
 
+    #[serde(default)]
+    pub manual_code_entry: bool,
     pub code_length: Option<usize>,
 }
 
