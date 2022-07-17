@@ -31,7 +31,8 @@ const TIMEOUT_MS: u64 = 5000;
 pub enum UIState {
     Initial,
     Archive(OsString),
-    RequestCode,
+    PasswordEntry,
+    RequestMailbox,
     HasCode(WormholeTransferURI),
     Connected,
     AskConfirmation(String, u64),
@@ -46,7 +47,8 @@ impl PartialEq for UIState {
         match self {
             UIState::Initial => matches!(other, UIState::Initial),
             UIState::Archive(_) => matches!(other, UIState::Archive(..)),
-            UIState::RequestCode => matches!(other, UIState::RequestCode),
+            UIState::PasswordEntry => matches!(other, UIState::PasswordEntry),
+            UIState::RequestMailbox => matches!(other, UIState::RequestMailbox),
             UIState::HasCode(..) => matches!(other, UIState::HasCode(..)),
             UIState::Connected => matches!(other, UIState::Connected),
             UIState::AskConfirmation(..) => matches!(other, UIState::AskConfirmation(..)),
@@ -80,6 +82,10 @@ pub struct UIContext {
     /// Send a message to this sender to continue the process after the confirmation question
     pub continue_sender: async_channel::Sender<()>,
     pub continue_receiver: async_channel::Receiver<()>,
+
+    /// This channel is used to signify that password entry has finished
+    pub password_entry_sender: async_channel::Sender<String>,
+    pub password_entry_receiver: async_channel::Receiver<String>,
 
     /// User initiated cancel
     pub canceled: bool,
@@ -115,6 +121,7 @@ impl Default for UIContext {
         let (continue_sender, continue_receiver) = async_channel::unbounded();
         let (cancellation_complete_sender, cancellation_complete_receiver) =
             async_channel::unbounded();
+        let (password_entry_sender, password_entry_receiver) = async_channel::unbounded();
 
         Self {
             progress_timeout_source_id: None,
@@ -124,6 +131,8 @@ impl Default for UIContext {
             cancellation_complete_receiver,
             continue_sender,
             continue_receiver,
+            password_entry_sender,
+            password_entry_receiver,
             canceled: false,
             file_path: None,
             file_path_received_successfully: None,
@@ -165,11 +174,19 @@ mod imp {
         #[template_child]
         pub accept_transfer_button: TemplateChild<gtk::Button>,
         #[template_child]
+        pub password_entry_complete_button: TemplateChild<gtk::Button>,
+        #[template_child]
         pub progress_bar: TemplateChild<gtk::ProgressBar>,
         #[template_child]
         pub status_page: TemplateChild<adw::StatusPage>,
         #[template_child]
         pub code_box: TemplateChild<gtk::Box>,
+        #[template_child]
+        pub manual_password_box: TemplateChild<gtk::Box>,
+        #[template_child]
+        pub manual_password_entry: TemplateChild<gtk::Entry>,
+        #[template_child]
+        pub password_strength_level_bar: TemplateChild<gtk::LevelBar>,
         #[template_child]
         pub code_entry: TemplateChild<gtk::Entry>,
         #[template_child]
@@ -327,6 +344,21 @@ mod imp {
                         }
                     };
                 }));
+
+            self.manual_password_entry
+                .connect_text_notify(clone!(@weak obj => move |entry| {
+                    let strength = (entry.text().len() as f64 / 10.0).clamp(0.0, 1.0);
+                    obj.imp().password_strength_level_bar.set_value(strength);
+                    obj.imp().password_entry_complete_button.set_sensitive(strength >= 0.9)
+                }));
+
+            self.password_entry_complete_button
+                .connect_clicked(clone!(@weak obj => move |_| {
+                    main_async_local_infallible(async move {
+                        let password = obj.imp().manual_password_entry.text();
+                        let _ = obj.imp().context.borrow().password_entry_sender.send(password.to_string()).await;
+                    });
+                }));
         }
     }
 
@@ -378,6 +410,8 @@ impl ActionView {
                 imp.open_box.set_visible(false);
                 imp.cancel_button.set_visible(true);
                 imp.accept_transfer_button.set_visible(false);
+                imp.manual_password_box.set_visible(false);
+                imp.manual_password_entry.set_text("");
                 imp.code_box.set_visible(false);
                 imp.progress_bar.set_visible(true);
                 imp.progress_bar.set_show_text(false);
@@ -404,7 +438,25 @@ impl ActionView {
                     // We don't create archives here
                 }
             },
-            UIState::RequestCode => match direction {
+            UIState::PasswordEntry => match direction {
+                TransferDirection::Send => {
+                    imp.status_page
+                        .set_icon_name(Some("arrows-questionmark-symbolic"));
+                    // Translators: Title
+                    imp.status_page.set_title(&gettext("Enter Password"));
+                    imp.status_page
+                        // Translators: Description, Filename
+                        .set_description(Some(&gettext(
+                            "The complete code will be available after connecting",
+                        )));
+
+                    imp.manual_password_box.set_visible(true);
+                    imp.progress_bar.set_visible(false);
+                    self.show_progress_indeterminate(false);
+                }
+                TransferDirection::Receive => {}
+            },
+            UIState::RequestMailbox => match direction {
                 TransferDirection::Send => {
                     imp.status_page
                         .set_icon_name(Some("arrows-questionmark-symbolic"));
@@ -413,6 +465,10 @@ impl ActionView {
                     imp.status_page
                         // Translators: Description, Filename
                         .set_description(Some(&gettext("Requesting file transfer")));
+
+                    imp.manual_password_box.set_visible(false);
+                    imp.progress_bar.set_visible(true);
+                    self.show_progress_indeterminate(true);
                 }
                 TransferDirection::Receive => {}
             },
@@ -909,19 +965,34 @@ impl ActionView {
         app_cfg: AppConfig<AppVersion>,
     ) -> Result<(), AppError> {
         self.prepare_transmit(TransferDirection::Send)?;
-        self.set_ui_state(UIState::RequestCode);
 
         let window = WarpApplicationWindow::default();
 
         let (mut file, path, filename) = self.prepare_and_open_file(&path).await?;
         self.imp().context.borrow_mut().file_name = Some(filename.clone());
-        let code_length = window.config().code_length_or_default();
 
-        let res = spawn_async(cancelable_future(
-            Wormhole::connect_without_code(app_cfg.clone(), code_length),
-            Self::cancel_future(),
-        ))
-        .await?;
+        let res = if window.config().manual_code_entry {
+            self.set_ui_state(UIState::PasswordEntry);
+            let password_receiver = self.imp().context.borrow().password_entry_receiver.clone();
+            let password =
+                cancelable_future(password_receiver.recv(), Self::cancel_future()).await??;
+
+            self.set_ui_state(UIState::RequestMailbox);
+
+            spawn_async(cancelable_future(
+                Wormhole::connect_with_password(app_cfg.clone(), password),
+                Self::cancel_future(),
+            ))
+            .await?
+        } else {
+            self.set_ui_state(UIState::RequestMailbox);
+            let code_length = window.config().code_length_or_default();
+            spawn_async(cancelable_future(
+                Wormhole::connect_without_code(app_cfg.clone(), code_length),
+                Self::cancel_future(),
+            ))
+            .await?
+        };
 
         let (welcome, connection) = match res {
             Ok(tuple) => tuple,
