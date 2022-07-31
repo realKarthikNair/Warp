@@ -1,7 +1,6 @@
 use adw::prelude::*;
 use adw::subclass::prelude::*;
 use gtk::glib;
-use gtk::subclass::prelude::*;
 
 use crate::ui::window::WarpApplicationWindow;
 
@@ -14,17 +13,16 @@ mod imp {
 
     use crate::glib::signal::Inhibit;
     use crate::glib::Value;
-    use crate::globals;
     use gtk::CompositeTemplate;
 
     #[derive(Debug, Default, CompositeTemplate)]
     #[template(resource = "/app/drey/Warp/ui/preferences.ui")]
     pub struct WarpPreferencesWindow {
         #[template_child]
-        pub rendezvous_server_url_entry: TemplateChild<gtk::Entry>,
+        pub rendezvous_server_url_entry_row: TemplateChild<adw::EntryRow>,
 
         #[template_child]
-        pub transit_server_url_entry: TemplateChild<gtk::Entry>,
+        pub transit_server_url_entry_row: TemplateChild<adw::EntryRow>,
 
         #[template_child]
         pub code_length_spin_button: TemplateChild<gtk::SpinButton>,
@@ -127,10 +125,6 @@ mod imp {
                     .unwrap_or_else(|| "".to_owned()),
             );
 
-            self.rendezvous_server_url_entry
-                .set_placeholder_text(Some(globals::WORMHOLE_DEFAULT_RENDEZVOUS_SERVER.as_str()));
-            self.transit_server_url_entry
-                .set_placeholder_text(Some(globals::WORMHOLE_DEFAULT_TRANSIT_RELAY.as_str()));
             self.code_length_spin_button
                 .set_adjustment(&gtk::Adjustment::new(4f64, 2f64, 8f64, 1f64, 0f64, 0f64));
 
@@ -174,14 +168,26 @@ impl WarpPreferencesWindow {
     }
 
     pub fn set_rendezvous_server_url(&self, url: String) {
-        if url.is_empty() || url::Url::parse(&url).is_ok() {
+        let is_valid_url = url::Url::parse(&url).is_ok();
+
+        if is_valid_url && !url.is_empty() {
             self.imp()
-                .rendezvous_server_url_entry
+                .rendezvous_server_url_entry_row
+                .add_css_class("success");
+        } else {
+            self.imp()
+                .rendezvous_server_url_entry_row
+                .remove_css_class("success");
+        }
+
+        if url.is_empty() || is_valid_url {
+            self.imp()
+                .rendezvous_server_url_entry_row
                 .remove_css_class("error");
             self.imp().rendezvous_server_url.replace(url);
         } else {
             self.imp()
-                .rendezvous_server_url_entry
+                .rendezvous_server_url_entry_row
                 .add_css_class("error");
             self.imp().rendezvous_server_url.replace("".to_owned());
         }
@@ -194,13 +200,27 @@ impl WarpPreferencesWindow {
     }
 
     pub fn set_transit_server_url(&self, url: String) {
-        if url.is_empty() || url::Url::parse(&url).is_ok() {
+        let is_valid_url = url::Url::parse(&url).is_ok();
+
+        if is_valid_url && !url.is_empty() {
             self.imp()
-                .transit_server_url_entry
+                .transit_server_url_entry_row
+                .add_css_class("success");
+        } else {
+            self.imp()
+                .transit_server_url_entry_row
+                .remove_css_class("success");
+        }
+
+        if url.is_empty() || is_valid_url {
+            self.imp()
+                .transit_server_url_entry_row
                 .remove_css_class("error");
             self.imp().transit_server_url.replace(url);
         } else {
-            self.imp().transit_server_url_entry.add_css_class("error");
+            self.imp()
+                .transit_server_url_entry_row
+                .add_css_class("error");
             self.imp().transit_server_url.replace("".to_owned());
         }
 

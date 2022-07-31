@@ -2,8 +2,8 @@ use crate::config::PersistentConfig;
 use crate::gettext::gettextf;
 use crate::globals::TRANSMIT_CODE_MATCH_REGEX;
 use crate::ui::action_view::ActionView;
+use adw::prelude::*;
 use gettextrs::*;
-use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use gtk::{gio, glib, ResponseType};
 use std::cell::RefMut;
@@ -62,6 +62,10 @@ mod imp {
         pub folder_chooser: TemplateChild<gtk::FileChooserNative>,
         #[template_child]
         pub inserted_code_toast: TemplateChild<adw::Toast>,
+        #[template_child]
+        pub ask_abort_dialog: TemplateChild<adw::MessageDialog>,
+        #[template_child]
+        pub no_registered_application_error_dialog: TemplateChild<adw::MessageDialog>,
 
         pub action_view_showing: Cell<bool>,
         pub config: RefCell<PersistentConfig>,
@@ -465,6 +469,16 @@ impl WarpApplicationWindow {
 
     pub fn leaflet(&self) -> adw::Leaflet {
         self.imp().leaflet.clone()
+    }
+
+    pub fn ask_abort_dialog(&self) -> adw::MessageDialog {
+        self.imp().ask_abort_dialog.clone()
+    }
+
+    pub fn no_registered_application_error_dialog(&self, msg: &str) -> adw::MessageDialog {
+        let dialog = self.imp().no_registered_application_error_dialog.clone();
+        dialog.set_body(msg);
+        dialog
     }
 
     pub fn open_code_from_uri(&self, uri: WormholeTransferURI) {

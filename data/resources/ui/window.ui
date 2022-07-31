@@ -41,6 +41,30 @@
     <property name="title" translatable="yes">Inserted code from clipboard</property>
     <property name="timeout">3</property>
   </object>
+  <object class="AdwMessageDialog" id="ask_abort_dialog">
+    <!-- Translators: File receive confirmation message dialog title -->
+    <property name="heading" translatable="yes">Abort File Transfer?</property>
+    <property name="body" translatable="yes">Do you want to abort the current file transfer?</property>
+    <property name="close_response">continue</property>
+    <property name="transient-for">WarpApplicationWindow</property>
+    <property name="modal">True</property>
+    <property name="hide-on-close">True</property>
+    <responses>
+      <response id="continue" translatable="yes">_Continue</response>
+      <response id="abort" appearance="destructive" translatable="yes">_Abort</response>
+    </responses>
+  </object>
+  <object class="AdwMessageDialog" id="no_registered_application_error_dialog">
+    <!-- Translators: Error dialog title -->
+    <property name="heading" translatable="yes">Unable to Open File</property>
+    <property name="transient-for">WarpApplicationWindow</property>
+    <property name="modal">True</property>
+    <property name="hide-on-close">True</property>
+    <responses>
+      <response id="close" translatable="yes">_Close</response>
+      <response id="show-in-folder" appearance="destructive" translatable="yes">_Show in Folder</response>
+    </responses>
+  </object>
   <template class="WarpApplicationWindow" parent="AdwApplicationWindow">
     <property name="width-request">360</property>
     <property name="height-request">530</property>
