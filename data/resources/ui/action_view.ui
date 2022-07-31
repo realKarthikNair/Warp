@@ -16,9 +16,6 @@
             <!-- Translators: Button -->
             <property name="tooltip-text" translatable="yes">Cancel</property>
             <property name="label">Cancel</property>
-            <style>
-              <class name="destructive-action"/>
-            </style>
           </object>
         </child>
         <child type="start">
