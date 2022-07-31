@@ -300,7 +300,7 @@ mod imp {
                                 log::error!("Error opening file: {}", err);
                                 main_async_local_infallible(async move {
                                     let dialog = WarpApplicationWindow::default().no_registered_application_error_dialog(err.message());
-                                    let answer = dialog.run_future(None).await;
+                                    let answer = dialog.run_future().await;
                                     dialog.close();
 
                                     if answer == "show-in-folder" {
@@ -658,7 +658,7 @@ impl ActionView {
         }
 
         let dialog = WarpApplicationWindow::default().ask_abort_dialog();
-        let response = dialog.run_future(None).await;
+        let response = dialog.run_future().await;
 
         if response == "abort" {
             self.cancel().await;

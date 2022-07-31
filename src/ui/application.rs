@@ -3,7 +3,6 @@ use gettextrs::gettext;
 use adw::subclass::prelude::*;
 use glib::clone;
 use gtk::prelude::*;
-use gtk::subclass::prelude::*;
 use gtk::{gdk, gio, glib};
 
 use crate::globals;

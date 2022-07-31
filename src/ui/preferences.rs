@@ -1,7 +1,6 @@
 use adw::prelude::*;
 use adw::subclass::prelude::*;
 use gtk::glib;
-use gtk::subclass::prelude::*;
 
 use crate::ui::window::WarpApplicationWindow;
 
@@ -126,10 +125,6 @@ mod imp {
                     .unwrap_or_else(|| "".to_owned()),
             );
 
-            /*self.rendezvous_server_url_entry_row
-                .set_placeholder_text(Some(globals::WORMHOLE_DEFAULT_RENDEZVOUS_SERVER.as_str()));
-            self.rendezvous_server_url_entry_row
-                .set_placeholder_text(Some(globals::WORMHOLE_DEFAULT_TRANSIT_RELAY.as_str()));*/
             self.code_length_spin_button
                 .set_adjustment(&gtk::Adjustment::new(4f64, 2f64, 8f64, 1f64, 0f64, 0f64));
 

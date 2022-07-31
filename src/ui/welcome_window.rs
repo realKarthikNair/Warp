@@ -1,7 +1,6 @@
 use adw::prelude::*;
 use adw::subclass::prelude::*;
 use gtk::glib;
-use gtk::subclass::prelude::*;
 
 use crate::globals;
 

@@ -2,20 +2,20 @@
     {
         "type": "git",
         "url": "https://github.com/gtk-rs/gtk-rs-core",
-        "commit": "2fb41df377ed87f0237e41e5fee89a5203938ddd",
-        "dest": "flatpak-cargo/git/gtk-rs-core-2fb41df"
+        "commit": "faed1d691ecc513d13869d20bf0a26c4f0a8fd54",
+        "dest": "flatpak-cargo/git/gtk-rs-core-faed1d6"
     },
     {
         "type": "git",
         "url": "https://github.com/gtk-rs/gtk4-rs",
-        "commit": "cd4e0a2dc59c4fdfdb8d75930bc4a38e7278f329",
-        "dest": "flatpak-cargo/git/gtk4-rs-cd4e0a2"
+        "commit": "4e8b6ca611e9a2d23e096eb8f7048fd9afc8c777",
+        "dest": "flatpak-cargo/git/gtk4-rs-4e8b6ca"
     },
     {
         "type": "git",
-        "url": "https://gitlab.gnome.org/msandova/libadwaita-rs",
-        "commit": "a3b6fe1fbc37e2c8415346657c27578031576d8d",
-        "dest": "flatpak-cargo/git/libadwaita-rs-a3b6fe1"
+        "url": "https://gitlab.gnome.org/World/Rust/libadwaita-rs",
+        "commit": "01881b0c9f67ed5a351b78fcd9b172fee246fdd4",
+        "dest": "flatpak-cargo/git/libadwaita-rs-01881b0"
     },
     {
         "type": "archive",
@@ -527,7 +527,7 @@
     {
         "type": "shell",
         "commands": [
-            "cp -r --reflink=auto \"flatpak-cargo/git/gtk-rs-core-2fb41df/cairo\" \"cargo/vendor/cairo-rs\""
+            "cp -r --reflink=auto \"flatpak-cargo/git/gtk-rs-core-faed1d6/cairo\" \"cargo/vendor/cairo-rs\""
         ]
     },
     {
@@ -539,7 +539,7 @@
     {
         "type": "shell",
         "commands": [
-            "cp -r --reflink=auto \"flatpak-cargo/git/gtk-rs-core-2fb41df/cairo/sys\" \"cargo/vendor/cairo-sys-rs\""
+            "cp -r --reflink=auto \"flatpak-cargo/git/gtk-rs-core-faed1d6/cairo/sys\" \"cargo/vendor/cairo-sys-rs\""
         ]
     },
     {
@@ -1175,7 +1175,7 @@
     {
         "type": "shell",
         "commands": [
-            "cp -r --reflink=auto \"flatpak-cargo/git/gtk-rs-core-2fb41df/gdk-pixbuf\" \"cargo/vendor/gdk-pixbuf\""
+            "cp -r --reflink=auto \"flatpak-cargo/git/gtk-rs-core-faed1d6/gdk-pixbuf\" \"cargo/vendor/gdk-pixbuf\""
         ]
     },
     {
@@ -1187,7 +1187,7 @@
     {
         "type": "shell",
         "commands": [
-            "cp -r --reflink=auto \"flatpak-cargo/git/gtk-rs-core-2fb41df/gdk-pixbuf/sys\" \"cargo/vendor/gdk-pixbuf-sys\""
+            "cp -r --reflink=auto \"flatpak-cargo/git/gtk-rs-core-faed1d6/gdk-pixbuf/sys\" \"cargo/vendor/gdk-pixbuf-sys\""
         ]
     },
     {
@@ -1199,7 +1199,7 @@
     {
         "type": "shell",
         "commands": [
-            "cp -r --reflink=auto \"flatpak-cargo/git/gtk4-rs-cd4e0a2/gdk4\" \"cargo/vendor/gdk4\""
+            "cp -r --reflink=auto \"flatpak-cargo/git/gtk4-rs-4e8b6ca/gdk4\" \"cargo/vendor/gdk4\""
         ]
     },
     {
@@ -1211,7 +1211,7 @@
     {
         "type": "shell",
         "commands": [
-            "cp -r --reflink=auto \"flatpak-cargo/git/gtk4-rs-cd4e0a2/gdk4/sys\" \"cargo/vendor/gdk4-sys\""
+            "cp -r --reflink=auto \"flatpak-cargo/git/gtk4-rs-4e8b6ca/gdk4/sys\" \"cargo/vendor/gdk4-sys\""
         ]
     },
     {
@@ -1327,7 +1327,7 @@
     {
         "type": "shell",
         "commands": [
-            "cp -r --reflink=auto \"flatpak-cargo/git/gtk-rs-core-2fb41df/gio\" \"cargo/vendor/gio\""
+            "cp -r --reflink=auto \"flatpak-cargo/git/gtk-rs-core-faed1d6/gio\" \"cargo/vendor/gio\""
         ]
     },
     {
@@ -1339,7 +1339,7 @@
     {
         "type": "shell",
         "commands": [
-            "cp -r --reflink=auto \"flatpak-cargo/git/gtk-rs-core-2fb41df/gio/sys\" \"cargo/vendor/gio-sys\""
+            "cp -r --reflink=auto \"flatpak-cargo/git/gtk-rs-core-faed1d6/gio/sys\" \"cargo/vendor/gio-sys\""
         ]
     },
     {
@@ -1351,7 +1351,7 @@
     {
         "type": "shell",
         "commands": [
-            "cp -r --reflink=auto \"flatpak-cargo/git/gtk-rs-core-2fb41df/glib\" \"cargo/vendor/glib\""
+            "cp -r --reflink=auto \"flatpak-cargo/git/gtk-rs-core-faed1d6/glib\" \"cargo/vendor/glib\""
         ]
     },
     {
@@ -1363,7 +1363,7 @@
     {
         "type": "shell",
         "commands": [
-            "cp -r --reflink=auto \"flatpak-cargo/git/gtk-rs-core-2fb41df/glib-macros\" \"cargo/vendor/glib-macros\""
+            "cp -r --reflink=auto \"flatpak-cargo/git/gtk-rs-core-faed1d6/glib-macros\" \"cargo/vendor/glib-macros\""
         ]
     },
     {
@@ -1375,7 +1375,7 @@
     {
         "type": "shell",
         "commands": [
-            "cp -r --reflink=auto \"flatpak-cargo/git/gtk-rs-core-2fb41df/glib/sys\" \"cargo/vendor/glib-sys\""
+            "cp -r --reflink=auto \"flatpak-cargo/git/gtk-rs-core-faed1d6/glib/sys\" \"cargo/vendor/glib-sys\""
         ]
     },
     {
@@ -1400,7 +1400,7 @@
     {
         "type": "shell",
         "commands": [
-            "cp -r --reflink=auto \"flatpak-cargo/git/gtk-rs-core-2fb41df/glib/gobject-sys\" \"cargo/vendor/gobject-sys\""
+            "cp -r --reflink=auto \"flatpak-cargo/git/gtk-rs-core-faed1d6/glib/gobject-sys\" \"cargo/vendor/gobject-sys\""
         ]
     },
     {
@@ -1412,7 +1412,7 @@
     {
         "type": "shell",
         "commands": [
-            "cp -r --reflink=auto \"flatpak-cargo/git/gtk-rs-core-2fb41df/graphene\" \"cargo/vendor/graphene-rs\""
+            "cp -r --reflink=auto \"flatpak-cargo/git/gtk-rs-core-faed1d6/graphene\" \"cargo/vendor/graphene-rs\""
         ]
     },
     {
@@ -1424,7 +1424,7 @@
     {
         "type": "shell",
         "commands": [
-            "cp -r --reflink=auto \"flatpak-cargo/git/gtk-rs-core-2fb41df/graphene/sys\" \"cargo/vendor/graphene-sys\""
+            "cp -r --reflink=auto \"flatpak-cargo/git/gtk-rs-core-faed1d6/graphene/sys\" \"cargo/vendor/graphene-sys\""
         ]
     },
     {
@@ -1436,7 +1436,7 @@
     {
         "type": "shell",
         "commands": [
-            "cp -r --reflink=auto \"flatpak-cargo/git/gtk4-rs-cd4e0a2/gsk4\" \"cargo/vendor/gsk4\""
+            "cp -r --reflink=auto \"flatpak-cargo/git/gtk4-rs-4e8b6ca/gsk4\" \"cargo/vendor/gsk4\""
         ]
     },
     {
@@ -1448,7 +1448,7 @@
     {
         "type": "shell",
         "commands": [
-            "cp -r --reflink=auto \"flatpak-cargo/git/gtk4-rs-cd4e0a2/gsk4/sys\" \"cargo/vendor/gsk4-sys\""
+            "cp -r --reflink=auto \"flatpak-cargo/git/gtk4-rs-4e8b6ca/gsk4/sys\" \"cargo/vendor/gsk4-sys\""
         ]
     },
     {
@@ -1460,7 +1460,7 @@
     {
         "type": "shell",
         "commands": [
-            "cp -r --reflink=auto \"flatpak-cargo/git/gtk4-rs-cd4e0a2/gtk4\" \"cargo/vendor/gtk4\""
+            "cp -r --reflink=auto \"flatpak-cargo/git/gtk4-rs-4e8b6ca/gtk4\" \"cargo/vendor/gtk4\""
         ]
     },
     {
@@ -1472,7 +1472,7 @@
     {
         "type": "shell",
         "commands": [
-            "cp -r --reflink=auto \"flatpak-cargo/git/gtk4-rs-cd4e0a2/gtk4-macros\" \"cargo/vendor/gtk4-macros\""
+            "cp -r --reflink=auto \"flatpak-cargo/git/gtk4-rs-4e8b6ca/gtk4-macros\" \"cargo/vendor/gtk4-macros\""
         ]
     },
     {
@@ -1484,7 +1484,7 @@
     {
         "type": "shell",
         "commands": [
-            "cp -r --reflink=auto \"flatpak-cargo/git/gtk4-rs-cd4e0a2/gtk4/sys\" \"cargo/vendor/gtk4-sys\""
+            "cp -r --reflink=auto \"flatpak-cargo/git/gtk4-rs-4e8b6ca/gtk4/sys\" \"cargo/vendor/gtk4-sys\""
         ]
     },
     {
@@ -1756,7 +1756,7 @@
     {
         "type": "shell",
         "commands": [
-            "cp -r --reflink=auto \"flatpak-cargo/git/libadwaita-rs-a3b6fe1/libadwaita\" \"cargo/vendor/libadwaita\""
+            "cp -r --reflink=auto \"flatpak-cargo/git/libadwaita-rs-01881b0/libadwaita\" \"cargo/vendor/libadwaita\""
         ]
     },
     {
@@ -1768,7 +1768,7 @@
     {
         "type": "shell",
         "commands": [
-            "cp -r --reflink=auto \"flatpak-cargo/git/libadwaita-rs-a3b6fe1/libadwaita/sys\" \"cargo/vendor/libadwaita-sys\""
+            "cp -r --reflink=auto \"flatpak-cargo/git/libadwaita-rs-01881b0/libadwaita/sys\" \"cargo/vendor/libadwaita-sys\""
         ]
     },
     {
@@ -2144,7 +2144,7 @@
     {
         "type": "shell",
         "commands": [
-            "cp -r --reflink=auto \"flatpak-cargo/git/gtk-rs-core-2fb41df/pango\" \"cargo/vendor/pango\""
+            "cp -r --reflink=auto \"flatpak-cargo/git/gtk-rs-core-faed1d6/pango\" \"cargo/vendor/pango\""
         ]
     },
     {
@@ -2156,7 +2156,7 @@
     {
         "type": "shell",
         "commands": [
-            "cp -r --reflink=auto \"flatpak-cargo/git/gtk-rs-core-2fb41df/pango/sys\" \"cargo/vendor/pango-sys\""
+            "cp -r --reflink=auto \"flatpak-cargo/git/gtk-rs-core-faed1d6/pango/sys\" \"cargo/vendor/pango-sys\""
         ]
     },
     {
@@ -3922,7 +3922,7 @@
     },
     {
         "type": "inline",
-        "contents": "[source.vendored-sources]\ndirectory = \"cargo/vendor\"\n\n[source.crates-io]\nreplace-with = \"vendored-sources\"\n\n[source.\"https://github.com/gtk-rs/gtk-rs-core\"]\ngit = \"https://github.com/gtk-rs/gtk-rs-core\"\nreplace-with = \"vendored-sources\"\n\n[source.\"https://github.com/gtk-rs/gtk4-rs\"]\ngit = \"https://github.com/gtk-rs/gtk4-rs\"\nreplace-with = \"vendored-sources\"\n\n[source.\"https://gitlab.gnome.org/msandova/libadwaita-rs\"]\ngit = \"https://gitlab.gnome.org/msandova/libadwaita-rs\"\nreplace-with = \"vendored-sources\"\nbranch = \"adw-dialog\"\n",
+        "contents": "[source.vendored-sources]\ndirectory = \"cargo/vendor\"\n\n[source.crates-io]\nreplace-with = \"vendored-sources\"\n\n[source.\"https://github.com/gtk-rs/gtk-rs-core\"]\ngit = \"https://github.com/gtk-rs/gtk-rs-core\"\nreplace-with = \"vendored-sources\"\n\n[source.\"https://github.com/gtk-rs/gtk4-rs\"]\ngit = \"https://github.com/gtk-rs/gtk4-rs\"\nreplace-with = \"vendored-sources\"\n\n[source.\"https://gitlab.gnome.org/World/Rust/libadwaita-rs\"]\ngit = \"https://gitlab.gnome.org/World/Rust/libadwaita-rs\"\nreplace-with = \"vendored-sources\"\n",
         "dest": "cargo",
         "dest-filename": "config"
     }
