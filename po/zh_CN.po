@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
-"POT-Creation-Date: 2022-07-07 19:06+0000\n"
-"PO-Revision-Date: 2022-07-10 10:47+0800\n"
+"POT-Creation-Date: 2022-07-31 14:57+0000\n"
+"PO-Revision-Date: 2022-08-01 19:24+0800\n"
 "Last-Translator: lumingzh <lumingzh@qq.com>\n"
 "Language-Team: Chinese - China <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
@@ -75,7 +75,7 @@ msgid "Main Window"
 msgstr "主窗口"
 
 #. Translators: Entry placeholder; This is a noun
-#: data/app.drey.Warp.metainfo.xml.in.in:32 data/resources/ui/window.ui:161
+#: data/app.drey.Warp.metainfo.xml.in.in:32 data/resources/ui/window.ui:185
 msgid "Transmit Code"
 msgstr "传输代码"
 
@@ -98,7 +98,7 @@ msgstr "文件接收中"
 msgid "File Transfer Complete"
 msgstr "文件传输完成"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:114
+#: data/app.drey.Warp.metainfo.xml.in.in:119
 msgid "Fina Wilke"
 msgstr "Fina Wilke"
 
@@ -130,7 +130,6 @@ msgstr "打开文件"
 
 #. Translators: Button
 #: data/resources/ui/action_view.ui:105 data/resources/ui/action_view.ui:107
-#: src/ui/action_view.rs:1110
 msgid "Show in Folder"
 msgstr "在文件夹中显示"
 
@@ -183,19 +182,19 @@ msgctxt "shortcut window"
 msgid "Receive File"
 msgstr "接收文件"
 
-#: data/resources/ui/preferences.ui:12
+#: data/resources/ui/preferences.ui:6
 msgid "Preferences"
 msgstr "首选项"
 
-#: data/resources/ui/preferences.ui:17
+#: data/resources/ui/preferences.ui:11
 msgid "Network"
 msgstr "网络"
 
-#: data/resources/ui/preferences.ui:21
+#: data/resources/ui/preferences.ui:15
 msgid "Server URLs"
 msgstr "服务器网址"
 
-#: data/resources/ui/preferences.ui:22
+#: data/resources/ui/preferences.ui:16
 msgid ""
 "Changing the rendezvous server URL has to be done on both sides of the "
 "transfer. Only enter a server URL you can trust.\n"
@@ -206,19 +205,19 @@ msgstr ""
 "\n"
 "这些条目留空将使用应用程序的默认值。"
 
-#: data/resources/ui/preferences.ui:27
+#: data/resources/ui/preferences.ui:21
 msgid "Rendezvous Server URL"
 msgstr "集合服务器网址"
 
-#: data/resources/ui/preferences.ui:43
+#: data/resources/ui/preferences.ui:28
 msgid "Transit Server URL"
 msgstr "传输服务器网址"
 
-#: data/resources/ui/preferences.ui:61
+#: data/resources/ui/preferences.ui:37
 msgid "Code Words"
 msgstr "代码语句"
 
-#: data/resources/ui/preferences.ui:62
+#: data/resources/ui/preferences.ui:38
 msgid ""
 "The code word count determines the security of the transfer.\n"
 "\n"
@@ -231,7 +230,7 @@ msgstr ""
 "简短的代码容易记忆但增加了他人猜测代码的风险。由于一个代码可能仅会被猜测一"
 "次，即使使用简短的代码风险也是很小。4 个单词的长度会非常安全。"
 
-#: data/resources/ui/preferences.ui:67
+#: data/resources/ui/preferences.ui:43
 msgid "Code Word Count"
 msgstr "代码单词总数"
 
@@ -240,7 +239,7 @@ msgid "Welcome"
 msgstr "欢迎"
 
 #. Translators: Button
-#: data/resources/ui/welcome_window.ui:22 src/ui/action_view.rs:1109
+#: data/resources/ui/welcome_window.ui:22
 msgid "Close"
 msgstr "关闭"
 
@@ -325,39 +324,69 @@ msgstr "打开文件夹"
 msgid "Inserted code from clipboard"
 msgstr "从剪贴板插入代码"
 
-#: data/resources/ui/window.ui:86
+#. Translators: File receive confirmation message dialog title
+#: data/resources/ui/window.ui:46
+msgid "Abort File Transfer?"
+msgstr "中止文件传输吗？"
+
+#: data/resources/ui/window.ui:47
+msgid "Do you want to abort the current file transfer?"
+msgstr "您想要中止当前文件传输吗？"
+
+#: data/resources/ui/window.ui:53
+msgid "_Continue"
+msgstr "继续(_C)"
+
+#: data/resources/ui/window.ui:54
+msgid "_Abort"
+msgstr "中止(_A)"
+
+#. Translators: Error dialog title
+#: data/resources/ui/window.ui:59
+msgid "Unable to Open File"
+msgstr "无法打开文件"
+
+#: data/resources/ui/window.ui:64
+msgid "_Close"
+msgstr "关闭(_C)"
+
+#: data/resources/ui/window.ui:65
+msgid "_Show in Folder"
+msgstr "在文件夹中显示(_S)"
+
+#: data/resources/ui/window.ui:110
 msgid "Send"
 msgstr "发送"
 
-#: data/resources/ui/window.ui:97
+#: data/resources/ui/window.ui:121
 msgid "Send File"
 msgstr "发送文件"
 
-#: data/resources/ui/window.ui:98
+#: data/resources/ui/window.ui:122
 msgid "Select or drop the file or directory to send"
 msgstr "选择或拖拽文件、目录进行发送"
 
 #. Translators: Button
-#: data/resources/ui/window.ui:108
+#: data/resources/ui/window.ui:132
 msgid "Select File"
 msgstr "选择文件"
 
 #. Translators: Button
-#: data/resources/ui/window.ui:120
+#: data/resources/ui/window.ui:144
 msgid "Select Folder"
 msgstr "选择文件夹"
 
-#: data/resources/ui/window.ui:139
+#: data/resources/ui/window.ui:163
 msgid "Receive"
 msgstr "接收"
 
 #. Translators: Button
-#: data/resources/ui/window.ui:147 data/resources/ui/window.ui:172
+#: data/resources/ui/window.ui:171 data/resources/ui/window.ui:196
 msgid "Receive File"
 msgstr "接收文件"
 
 #. Translators: Text above code input box, transmit code is a noun
-#: data/resources/ui/window.ui:149
+#: data/resources/ui/window.ui:173
 msgid "Enter the transmit code from the sender"
 msgstr "输入发送者提供的传输码"
 
@@ -550,47 +579,25 @@ msgid "The file transfer failed: {}"
 msgstr "文件传输失败：{}"
 
 #. Translators: When opening a file
-#: src/ui/action_view.rs:741
+#: src/ui/action_view.rs:740
 msgid "Specified file / directory does not exist"
 msgstr "指定文件/目录不存在"
 
-#: src/ui/action_view.rs:758
+#: src/ui/action_view.rs:757
 msgid ""
 "Error parsing rendezvous server URL. An invalid URL was entered in the "
 "settings."
 msgstr "集合服务器网址解析错误。设置中输入了无效的网址。"
 
-#: src/ui/action_view.rs:768
+#: src/ui/action_view.rs:767
 msgid "Error parsing transit URL. An invalid URL was entered in the settings."
 msgstr "传输网址解析错误。设置中输入了无效的网址。"
 
-#. Translators: File receive confirmation message dialog title
-#: src/ui/action_view.rs:1086
-msgid "Abort file transfer?"
-msgstr "中止文件传输吗？"
-
-#: src/ui/action_view.rs:1087
-msgid "Do you want to abort the current file transfer?"
-msgstr "您想要中止当前文件传输吗？"
-
-#: src/ui/action_view.rs:1093
-msgid "Continue"
-msgstr "继续"
-
-#: src/ui/action_view.rs:1094
-msgid "Abort"
-msgstr "中止"
-
-#. Translators: File receive confirmation message dialog title
-#: src/ui/action_view.rs:1102
-msgid "Unable to Open File"
-msgstr "无法打开文件"
-
-#: src/ui/action_view.rs:1208
+#: src/ui/action_view.rs:1176
 msgid "Downloads dir missing. Please set XDG_DOWNLOAD_DIR"
 msgstr "下载目录缺失。请设置 XDG_DOWNLOAD_DIR"
 
-#: src/ui/application.rs:79
+#: src/ui/application.rs:78
 msgid "Unable to use transfer link: another transfer already in progress"
 msgstr "无法使用传输链接：当前有传输正在进行中"
 
@@ -616,7 +623,7 @@ msgstr "正在发送文件"
 msgid "Receiving a File"
 msgstr "正在接收文件"
 
-#: src/ui/window.rs:104
+#: src/ui/window.rs:108
 msgid ""
 "Error loading config file “{0}”, using default config.\n"
 "Error: {1}"
@@ -624,19 +631,19 @@ msgstr ""
 "加载配置文件“{0}”出错，使用默认配置。\n"
 "错误：{1}"
 
-#: src/ui/window.rs:223
+#: src/ui/window.rs:227
 msgid "Select the file or directory to send"
 msgstr "选择文件或目录进行发送"
 
-#: src/ui/window.rs:321
+#: src/ui/window.rs:325
 msgid "Error saving configuration file: {}"
 msgstr "保存配置文件时出错：{}"
 
-#: src/ui/window.rs:366
+#: src/ui/window.rs:370
 msgid "“{}” appears to be an invalid Transmit Code. Please try again."
 msgstr "“{}”可能是无效的传输代码。请重试。"
 
-#: src/ui/window.rs:477
+#: src/ui/window.rs:491
 msgid "Sending files with a preconfigured code is not yet supported"
 msgstr "尚未支持使用预配置代码发送文件"
 
