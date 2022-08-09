@@ -32,7 +32,7 @@
   </object>
   <object class="GtkFileChooserNative" id="folder_chooser">
     <property name="title" translatable="yes">Select folder to send</property>
-    <property name="action">open</property>
+    <property name="action">select-folder</property>
     <property name="accept-label" translatable="yes">Open Folder</property>
     <property name="cancel-label" translatable="yes">Cancel</property>
   </object>
