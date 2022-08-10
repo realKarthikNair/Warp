@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: warp main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
-"POT-Creation-Date: 2022-07-12 22:10+0000\n"
-"PO-Revision-Date: 2022-07-27 02:22+0200\n"
+"POT-Creation-Date: 2022-07-31 14:57+0000\n"
+"PO-Revision-Date: 2022-07-31 18:10+0200\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -77,7 +77,7 @@ msgid "Main Window"
 msgstr "Huvudfönster"
 
 #. Translators: Entry placeholder; This is a noun
-#: data/app.drey.Warp.metainfo.xml.in.in:32 data/resources/ui/window.ui:161
+#: data/app.drey.Warp.metainfo.xml.in.in:32 data/resources/ui/window.ui:185
 msgid "Transmit Code"
 msgstr "Överföringskod"
 
@@ -132,7 +132,6 @@ msgstr "Öppna fil"
 
 #. Translators: Button
 #: data/resources/ui/action_view.ui:105 data/resources/ui/action_view.ui:107
-#: src/ui/action_view.rs:1110
 msgid "Show in Folder"
 msgstr "Visa i mapp"
 
@@ -185,19 +184,19 @@ msgctxt "shortcut window"
 msgid "Receive File"
 msgstr "Ta emot fil"
 
-#: data/resources/ui/preferences.ui:12
+#: data/resources/ui/preferences.ui:6
 msgid "Preferences"
 msgstr "Inställningar"
 
-#: data/resources/ui/preferences.ui:17
+#: data/resources/ui/preferences.ui:11
 msgid "Network"
 msgstr "Nätverk"
 
-#: data/resources/ui/preferences.ui:21
+#: data/resources/ui/preferences.ui:15
 msgid "Server URLs"
 msgstr "Server-URL:er"
 
-#: data/resources/ui/preferences.ui:22
+#: data/resources/ui/preferences.ui:16
 msgid ""
 "Changing the rendezvous server URL has to be done on both sides of the "
 "transfer. Only enter a server URL you can trust.\n"
@@ -209,19 +208,19 @@ msgstr ""
 "\n"
 "Att lämna dessa fält tomma kommer använda programmets standardvärden."
 
-#: data/resources/ui/preferences.ui:27
+#: data/resources/ui/preferences.ui:21
 msgid "Rendezvous Server URL"
 msgstr "URL för mötesserver"
 
-#: data/resources/ui/preferences.ui:43
+#: data/resources/ui/preferences.ui:28
 msgid "Transit Server URL"
 msgstr "URL för transitserver"
 
-#: data/resources/ui/preferences.ui:61
+#: data/resources/ui/preferences.ui:37
 msgid "Code Words"
 msgstr "Kodord"
 
-#: data/resources/ui/preferences.ui:62
+#: data/resources/ui/preferences.ui:38
 msgid ""
 "The code word count determines the security of the transfer.\n"
 "\n"
@@ -235,7 +234,7 @@ msgstr ""
 "gissa koden. Då en kod endast får gissas en gång så är risken väldigt liten "
 "även med korta koder. En längd på 4 är väldigt säker."
 
-#: data/resources/ui/preferences.ui:67
+#: data/resources/ui/preferences.ui:43
 msgid "Code Word Count"
 msgstr "Antal kodord"
 
@@ -244,7 +243,7 @@ msgid "Welcome"
 msgstr "Välkommen"
 
 #. Translators: Button
-#: data/resources/ui/welcome_window.ui:22 src/ui/action_view.rs:1109
+#: data/resources/ui/welcome_window.ui:22
 msgid "Close"
 msgstr "Stäng"
 
@@ -331,39 +330,69 @@ msgstr "Öppna mapp"
 msgid "Inserted code from clipboard"
 msgstr "Infogade kod från urklipp"
 
-#: data/resources/ui/window.ui:86
+#. Translators: File receive confirmation message dialog title
+#: data/resources/ui/window.ui:46
+msgid "Abort File Transfer?"
+msgstr "Avbryt filöverföring?"
+
+#: data/resources/ui/window.ui:47
+msgid "Do you want to abort the current file transfer?"
+msgstr "Vill du avbryta den aktuella filöverföringen?"
+
+#: data/resources/ui/window.ui:53
+msgid "_Continue"
+msgstr "_Fortsätt"
+
+#: data/resources/ui/window.ui:54
+msgid "_Abort"
+msgstr "_Avbryt"
+
+#. Translators: Error dialog title
+#: data/resources/ui/window.ui:59
+msgid "Unable to Open File"
+msgstr "Kunde inte öppna fil"
+
+#: data/resources/ui/window.ui:64
+msgid "_Close"
+msgstr "S_täng"
+
+#: data/resources/ui/window.ui:65
+msgid "_Show in Folder"
+msgstr "_Visa i mapp"
+
+#: data/resources/ui/window.ui:110
 msgid "Send"
 msgstr "Skicka"
 
-#: data/resources/ui/window.ui:97
+#: data/resources/ui/window.ui:121
 msgid "Send File"
 msgstr "Skicka fil"
 
-#: data/resources/ui/window.ui:98
+#: data/resources/ui/window.ui:122
 msgid "Select or drop the file or directory to send"
 msgstr "Välj eller släpp filen eller katalogen som ska skickas"
 
 #. Translators: Button
-#: data/resources/ui/window.ui:108
+#: data/resources/ui/window.ui:132
 msgid "Select File"
 msgstr "Välj fil"
 
 #. Translators: Button
-#: data/resources/ui/window.ui:120
+#: data/resources/ui/window.ui:144
 msgid "Select Folder"
 msgstr "Välj mapp"
 
-#: data/resources/ui/window.ui:139
+#: data/resources/ui/window.ui:163
 msgid "Receive"
 msgstr "Ta emot"
 
 #. Translators: Button
-#: data/resources/ui/window.ui:147 data/resources/ui/window.ui:172
+#: data/resources/ui/window.ui:171 data/resources/ui/window.ui:196
 msgid "Receive File"
 msgstr "Ta emot fil"
 
 #. Translators: Text above code input box, transmit code is a noun
-#: data/resources/ui/window.ui:149
+#: data/resources/ui/window.ui:173
 msgid "Enter the transmit code from the sender"
 msgstr "Mata in överföringskoden från avsändaren"
 
@@ -560,53 +589,31 @@ msgid "The file transfer failed: {}"
 msgstr "Filöverföringen misslyckades: {}"
 
 #. Translators: When opening a file
-#: src/ui/action_view.rs:741
+#: src/ui/action_view.rs:740
 msgid "Specified file / directory does not exist"
 msgstr "Angiven fil/katalog finns inte"
 
-#: src/ui/action_view.rs:758
+#: src/ui/action_view.rs:757
 msgid ""
 "Error parsing rendezvous server URL. An invalid URL was entered in the "
 "settings."
 msgstr ""
 "Fel vid tolkning av mötesserver-URL. En ogiltig URL angavs i inställningarna."
 
-#: src/ui/action_view.rs:768
+#: src/ui/action_view.rs:767
 msgid "Error parsing transit URL. An invalid URL was entered in the settings."
 msgstr ""
 "Fel vid tolkning av transit-URL. En ogiltig URL angavs i inställningarna."
 
-#. Translators: File receive confirmation message dialog title
-#: src/ui/action_view.rs:1086
-msgid "Abort file transfer?"
-msgstr "Avbryt filöverföring?"
-
-#: src/ui/action_view.rs:1087
-msgid "Do you want to abort the current file transfer?"
-msgstr "Vill du avbryta den aktuella filöverföringen?"
-
-#: src/ui/action_view.rs:1093
-msgid "Continue"
-msgstr "Fortsätt"
-
-#: src/ui/action_view.rs:1094
-msgid "Abort"
-msgstr "Avbryt"
-
-#. Translators: File receive confirmation message dialog title
-#: src/ui/action_view.rs:1102
-msgid "Unable to Open File"
-msgstr "Kunde inte öppna fil"
-
-#: src/ui/action_view.rs:1208
+#: src/ui/action_view.rs:1176
 msgid "Downloads dir missing. Please set XDG_DOWNLOAD_DIR"
 msgstr "Hämtningskatalog saknas. Ange XDG_DOWNLOAD_DIR"
 
-#: src/ui/application.rs:79
+#: src/ui/application.rs:78
 msgid "Unable to use transfer link: another transfer already in progress"
 msgstr "Kunde inte använda överföringslänk: en annan överföring pågår redan"
 
-#: src/ui/application.rs:206
+#: src/ui/application.rs:205
 msgid "translator-credits"
 msgstr ""
 "Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
@@ -614,23 +621,23 @@ msgstr ""
 "Skicka synpunkter på översättningen till\n"
 "<tp-sv@listor.tp-sv.se>."
 
-#: src/ui/application.rs:209
+#: src/ui/application.rs:208
 msgid "Tobias Bernard"
 msgstr "Tobias Bernard"
 
-#: src/ui/application.rs:209
+#: src/ui/application.rs:208
 msgid "Sophie Herold"
 msgstr "Sophie Herold"
 
-#: src/ui/application.rs:225
+#: src/ui/application.rs:224
 msgid "Sending a File"
 msgstr "Skickar en fil"
 
-#: src/ui/application.rs:226
+#: src/ui/application.rs:225
 msgid "Receiving a File"
 msgstr "Tar emot en fil"
 
-#: src/ui/window.rs:104
+#: src/ui/window.rs:108
 msgid ""
 "Error loading config file “{0}”, using default config.\n"
 "Error: {1}"
@@ -639,19 +646,19 @@ msgstr ""
 "standardkonfiguration.\n"
 "Fel: {1}"
 
-#: src/ui/window.rs:223
+#: src/ui/window.rs:227
 msgid "Select the file or directory to send"
 msgstr "Välj filen eller katalogen som ska skickas"
 
-#: src/ui/window.rs:321
+#: src/ui/window.rs:325
 msgid "Error saving configuration file: {}"
 msgstr "Fel vid sparande av konfigurationsfil: {}"
 
-#: src/ui/window.rs:366
+#: src/ui/window.rs:370
 msgid "“{}” appears to be an invalid Transmit Code. Please try again."
 msgstr "”{}” verkar vara en ogiltig överföringskod. Försök igen."
 
-#: src/ui/window.rs:477
+#: src/ui/window.rs:491
 msgid "Sending files with a preconfigured code is not yet supported"
 msgstr ""
 "Det finns ännu inte stöd för att skicka filer med en förkonfigurerad kod"
