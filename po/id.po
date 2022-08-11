@@ -8,16 +8,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: warp main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
-"POT-Creation-Date: 2022-07-07 19:06+0000\n"
-"PO-Revision-Date: 2022-07-11 11:10+0700\n"
-"Last-Translator: Andika Triwidada <andika@gmail.com>\n"
+"POT-Creation-Date: 2022-07-31 14:57+0000\n"
+"PO-Revision-Date: 2022-08-11 10:58+0700\n"
+"Last-Translator: Kukuh Syafaat <kukuhsyafaat@gnome.org>\n"
 "Language-Team: Indonesian <gnome-l10n-id@googlegroups.com>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.0\n"
+"X-Generator: Poedit 3.1.1\n"
 
 #: data/app.drey.Warp.desktop.in.in:3 data/app.drey.Warp.metainfo.xml.in.in:7
 #: src/main.rs:94
@@ -78,7 +78,7 @@ msgid "Main Window"
 msgstr "Jendela Utama"
 
 #. Translators: Entry placeholder; This is a noun
-#: data/app.drey.Warp.metainfo.xml.in.in:32 data/resources/ui/window.ui:161
+#: data/app.drey.Warp.metainfo.xml.in.in:32 data/resources/ui/window.ui:185
 msgid "Transmit Code"
 msgstr "Kode Transmisi"
 
@@ -101,7 +101,7 @@ msgstr "Menerima Berkas"
 msgid "File Transfer Complete"
 msgstr "Transfer Berkas Selesai"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:114
+#: data/app.drey.Warp.metainfo.xml.in.in:119
 msgid "Fina Wilke"
 msgstr "Fina Wilke"
 
@@ -133,7 +133,6 @@ msgstr "Buka Berkas"
 
 #. Translators: Button
 #: data/resources/ui/action_view.ui:105 data/resources/ui/action_view.ui:107
-#: src/ui/action_view.rs:1110
 msgid "Show in Folder"
 msgstr "Tampilkan dalam Folder"
 
@@ -186,19 +185,19 @@ msgctxt "shortcut window"
 msgid "Receive File"
 msgstr "Terima Berkas"
 
-#: data/resources/ui/preferences.ui:12
+#: data/resources/ui/preferences.ui:6
 msgid "Preferences"
 msgstr "Preferensi"
 
-#: data/resources/ui/preferences.ui:17
+#: data/resources/ui/preferences.ui:11
 msgid "Network"
 msgstr "Jaringan"
 
-#: data/resources/ui/preferences.ui:21
+#: data/resources/ui/preferences.ui:15
 msgid "Server URLs"
 msgstr "URL Peladen"
 
-#: data/resources/ui/preferences.ui:22
+#: data/resources/ui/preferences.ui:16
 msgid ""
 "Changing the rendezvous server URL has to be done on both sides of the "
 "transfer. Only enter a server URL you can trust.\n"
@@ -210,19 +209,19 @@ msgstr ""
 "\n"
 "Membiarkan entri ini kosong akan menggunakan bawaan aplikasi."
 
-#: data/resources/ui/preferences.ui:27
+#: data/resources/ui/preferences.ui:21
 msgid "Rendezvous Server URL"
 msgstr "URL Peladen Rendezvous"
 
-#: data/resources/ui/preferences.ui:43
+#: data/resources/ui/preferences.ui:28
 msgid "Transit Server URL"
 msgstr "URL Peladen Transit"
 
-#: data/resources/ui/preferences.ui:61
+#: data/resources/ui/preferences.ui:37
 msgid "Code Words"
 msgstr "Kata-kata Kode"
 
-#: data/resources/ui/preferences.ui:62
+#: data/resources/ui/preferences.ui:38
 msgid ""
 "The code word count determines the security of the transfer.\n"
 "\n"
@@ -236,7 +235,7 @@ msgstr ""
 "tersebut. Karena kode mungkin hanya dapat ditebak sekali, risikonya sangat "
 "kecil bahkan dengan kode pendek. Panjang 4 sangat aman."
 
-#: data/resources/ui/preferences.ui:67
+#: data/resources/ui/preferences.ui:43
 msgid "Code Word Count"
 msgstr "Jumlah Kata Kode"
 
@@ -245,7 +244,7 @@ msgid "Welcome"
 msgstr "Selamat Datang"
 
 #. Translators: Button
-#: data/resources/ui/welcome_window.ui:22 src/ui/action_view.rs:1109
+#: data/resources/ui/welcome_window.ui:22
 msgid "Close"
 msgstr "Tutup"
 
@@ -332,39 +331,69 @@ msgstr "Buka Berkas"
 msgid "Inserted code from clipboard"
 msgstr "Kode yang disisipkan dari papan klip"
 
-#: data/resources/ui/window.ui:86
+#. Translators: File receive confirmation message dialog title
+#: data/resources/ui/window.ui:46
+msgid "Abort File Transfer?"
+msgstr "Membatalkan Transfer Berkas?"
+
+#: data/resources/ui/window.ui:47
+msgid "Do you want to abort the current file transfer?"
+msgstr "Apakah Anda ingin membatalkan transfer berkas saat ini?"
+
+#: data/resources/ui/window.ui:53
+msgid "_Continue"
+msgstr "_Lanjutkan"
+
+#: data/resources/ui/window.ui:54
+msgid "_Abort"
+msgstr "_Gugur"
+
+#. Translators: Error dialog title
+#: data/resources/ui/window.ui:59
+msgid "Unable to Open File"
+msgstr "Tidak Dapat Membuka Berkas"
+
+#: data/resources/ui/window.ui:64
+msgid "_Close"
+msgstr "_Tutup"
+
+#: data/resources/ui/window.ui:65
+msgid "_Show in Folder"
+msgstr "Tampilkan dalam _Folder"
+
+#: data/resources/ui/window.ui:110
 msgid "Send"
 msgstr "Kirim"
 
-#: data/resources/ui/window.ui:97
+#: data/resources/ui/window.ui:121
 msgid "Send File"
 msgstr "Kirim Berkas"
 
-#: data/resources/ui/window.ui:98
+#: data/resources/ui/window.ui:122
 msgid "Select or drop the file or directory to send"
 msgstr "Pilih atau jatuhkan berkas atau direktori untuk dikirim"
 
 #. Translators: Button
-#: data/resources/ui/window.ui:108
+#: data/resources/ui/window.ui:132
 msgid "Select File"
 msgstr "Pilih Berkas"
 
 #. Translators: Button
-#: data/resources/ui/window.ui:120
+#: data/resources/ui/window.ui:144
 msgid "Select Folder"
 msgstr "Pilih Folder"
 
-#: data/resources/ui/window.ui:139
+#: data/resources/ui/window.ui:163
 msgid "Receive"
 msgstr "Terima"
 
 #. Translators: Button
-#: data/resources/ui/window.ui:147 data/resources/ui/window.ui:172
+#: data/resources/ui/window.ui:171 data/resources/ui/window.ui:196
 msgid "Receive File"
 msgstr "Terima Berkas"
 
 #. Translators: Text above code input box, transmit code is a noun
-#: data/resources/ui/window.ui:149
+#: data/resources/ui/window.ui:173
 msgid "Enter the transmit code from the sender"
 msgstr "Masukkan kode transmisi dari pengirim"
 
@@ -557,11 +586,11 @@ msgid "The file transfer failed: {}"
 msgstr "Transfer berkas gagal: {}"
 
 #. Translators: When opening a file
-#: src/ui/action_view.rs:741
+#: src/ui/action_view.rs:740
 msgid "Specified file / directory does not exist"
 msgstr "Berkas / direktori tertentu tidak ada"
 
-#: src/ui/action_view.rs:758
+#: src/ui/action_view.rs:757
 msgid ""
 "Error parsing rendezvous server URL. An invalid URL was entered in the "
 "settings."
@@ -569,38 +598,16 @@ msgstr ""
 "Galat mengurai URL peladen rendezvous. URL yang tidak valid dimasukkan dalam "
 "pengaturan."
 
-#: src/ui/action_view.rs:768
+#: src/ui/action_view.rs:767
 msgid "Error parsing transit URL. An invalid URL was entered in the settings."
 msgstr ""
 "Galat mengurai URL transit. URL yang tidak valid dimasukkan dalam pengaturan."
 
-#. Translators: File receive confirmation message dialog title
-#: src/ui/action_view.rs:1086
-msgid "Abort file transfer?"
-msgstr "Membatalkan transfer berkas?"
-
-#: src/ui/action_view.rs:1087
-msgid "Do you want to abort the current file transfer?"
-msgstr "Apakah Anda ingin membatalkan transfer berkas saat ini?"
-
-#: src/ui/action_view.rs:1093
-msgid "Continue"
-msgstr "Lanjutkan"
-
-#: src/ui/action_view.rs:1094
-msgid "Abort"
-msgstr "Gugur"
-
-#. Translators: File receive confirmation message dialog title
-#: src/ui/action_view.rs:1102
-msgid "Unable to Open File"
-msgstr "Tidak Dapat Membuka Berkas"
-
-#: src/ui/action_view.rs:1208
+#: src/ui/action_view.rs:1176
 msgid "Downloads dir missing. Please set XDG_DOWNLOAD_DIR"
 msgstr "Dir unduh hilang. Silakan atur XDG_DOWNLOAD_DIR"
 
-#: src/ui/application.rs:79
+#: src/ui/application.rs:78
 msgid "Unable to use transfer link: another transfer already in progress"
 msgstr ""
 "Tidak dapat menggunakan tautan transfer: transfer lain sudah berlangsung"
@@ -627,7 +634,7 @@ msgstr "Mengirim Berkas"
 msgid "Receiving a File"
 msgstr "Menerima Berkas"
 
-#: src/ui/window.rs:104
+#: src/ui/window.rs:108
 msgid ""
 "Error loading config file “{0}”, using default config.\n"
 "Error: {1}"
@@ -635,20 +642,20 @@ msgstr ""
 "Galat memuat berkas konfigurasi \"{0}\", menggunakan konfigurasi bawaan.\n"
 "Galat: {1}"
 
-#: src/ui/window.rs:223
+#: src/ui/window.rs:227
 msgid "Select the file or directory to send"
 msgstr "Pilih berkas atau direktori untuk dikirim"
 
-#: src/ui/window.rs:321
+#: src/ui/window.rs:325
 msgid "Error saving configuration file: {}"
 msgstr "Galat menyimpan berkas konfigurasi: {}"
 
-#: src/ui/window.rs:366
+#: src/ui/window.rs:370
 msgid "“{}” appears to be an invalid Transmit Code. Please try again."
 msgstr ""
 "\"{}\" tampaknya merupakan Kode Kirim yang tidak valid. Silakan coba lagi."
 
-#: src/ui/window.rs:477
+#: src/ui/window.rs:491
 msgid "Sending files with a preconfigured code is not yet supported"
 msgstr ""
 "Mengirim berkas dengan kode yang telah dikonfigurasi sebelumnya belum "
