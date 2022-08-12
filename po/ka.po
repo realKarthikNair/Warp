@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
-"POT-Creation-Date: 2022-07-27 00:34+0000\n"
-"PO-Revision-Date: 2022-07-31 09:21+0200\n"
+"POT-Creation-Date: 2022-08-11 03:59+0000\n"
+"PO-Revision-Date: 2022-08-12 06:21+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: \n"
 "Language: ka\n"
@@ -73,12 +73,12 @@ msgid "Main Window"
 msgstr "მთავარი ფანჯარა"
 
 #. Translators: Entry placeholder; This is a noun
-#: data/app.drey.Warp.metainfo.xml.in.in:32 data/resources/ui/window.ui:161
+#: data/app.drey.Warp.metainfo.xml.in.in:32 data/resources/ui/window.ui:185
 msgid "Transmit Code"
 msgstr "კოდის გადაცემა"
 
 #: data/app.drey.Warp.metainfo.xml.in.in:36
-#: data/resources/ui/action_view.ui:119
+#: data/resources/ui/action_view.ui:116
 msgid "Accept File Transfer"
 msgstr "ფაილის მიღების თანხმობა"
 
@@ -107,42 +107,41 @@ msgid "Cancel"
 msgstr "_გაუქმება"
 
 #. Translators: Button
-#: data/resources/ui/action_view.ui:27 data/resources/ui/welcome_window.ui:58
+#: data/resources/ui/action_view.ui:24 data/resources/ui/welcome_window.ui:58
 msgid "Back"
 msgstr "უკან"
 
 #. Translators: Button; Transmit Link is a noun
-#: data/resources/ui/action_view.ui:71
+#: data/resources/ui/action_view.ui:68
 msgid "Copy Transmit Link"
 msgstr "გადაცემის ბმულის კოპირება"
 
 #. Translators: Button; Transmit Code is a noun
-#: data/resources/ui/action_view.ui:78
+#: data/resources/ui/action_view.ui:75
 msgid "Copy Transmit Code"
 msgstr "გადაცემის კოდის კოპირება"
 
 #. Translators: Button
-#: data/resources/ui/action_view.ui:92 data/resources/ui/action_view.ui:94
+#: data/resources/ui/action_view.ui:89 data/resources/ui/action_view.ui:91
 msgid "Open File"
 msgstr "ფაილის გახსნა"
 
 #. Translators: Button
-#: data/resources/ui/action_view.ui:105 data/resources/ui/action_view.ui:107
-#: src/ui/action_view.rs:1110
+#: data/resources/ui/action_view.ui:102 data/resources/ui/action_view.ui:104
 msgid "Show in Folder"
 msgstr "საქაღალდეში ჩვენება"
 
 #. Translators: Button
-#: data/resources/ui/action_view.ui:122
+#: data/resources/ui/action_view.ui:119
 msgid "Accept"
 msgstr "დასტური"
 
-#: data/resources/ui/action_view.ui:133
+#: data/resources/ui/action_view.ui:130
 msgid "Copy a detailed message for reporting an issue"
 msgstr ""
 
 #. Translators: Button
-#: data/resources/ui/action_view.ui:136
+#: data/resources/ui/action_view.ui:133
 msgid "Copy Error Message"
 msgstr "შეცდომის შეტყობინების კოპირება"
 
@@ -181,19 +180,19 @@ msgctxt "shortcut window"
 msgid "Receive File"
 msgstr "ფაილის მიღება"
 
-#: data/resources/ui/preferences.ui:12
+#: data/resources/ui/preferences.ui:6
 msgid "Preferences"
 msgstr "მორგება"
 
-#: data/resources/ui/preferences.ui:17
+#: data/resources/ui/preferences.ui:11
 msgid "Network"
 msgstr "ქსელი"
 
-#: data/resources/ui/preferences.ui:21
+#: data/resources/ui/preferences.ui:15
 msgid "Server URLs"
 msgstr "სერვერის URL-ები"
 
-#: data/resources/ui/preferences.ui:22
+#: data/resources/ui/preferences.ui:16
 msgid ""
 "Changing the rendezvous server URL has to be done on both sides of the "
 "transfer. Only enter a server URL you can trust.\n"
@@ -201,19 +200,19 @@ msgid ""
 "Leaving these entries empty will use the application defaults."
 msgstr ""
 
-#: data/resources/ui/preferences.ui:27
+#: data/resources/ui/preferences.ui:21
 msgid "Rendezvous Server URL"
 msgstr ""
 
-#: data/resources/ui/preferences.ui:43
+#: data/resources/ui/preferences.ui:28
 msgid "Transit Server URL"
 msgstr "ტრანზიტის სერვერის ღ₾"
 
-#: data/resources/ui/preferences.ui:61
+#: data/resources/ui/preferences.ui:37
 msgid "Code Words"
 msgstr "კოდური სიტყვები"
 
-#: data/resources/ui/preferences.ui:62
+#: data/resources/ui/preferences.ui:38
 msgid ""
 "The code word count determines the security of the transfer.\n"
 "\n"
@@ -222,7 +221,7 @@ msgid ""
 "small even with short codes. A length of 4 is very secure."
 msgstr ""
 
-#: data/resources/ui/preferences.ui:67
+#: data/resources/ui/preferences.ui:43
 msgid "Code Word Count"
 msgstr "კოდური სიტყვების რიცხვა"
 
@@ -231,7 +230,7 @@ msgid "Welcome"
 msgstr "კეთილი იყოს თქვენი მობრძანება"
 
 #. Translators: Button
-#: data/resources/ui/welcome_window.ui:22 src/ui/action_view.rs:1109
+#: data/resources/ui/welcome_window.ui:22
 msgid "Close"
 msgstr "დახურვა"
 
@@ -308,39 +307,69 @@ msgstr "საქაღალდის გახსნა"
 msgid "Inserted code from clipboard"
 msgstr "კოდი ჩასმულაი გაცვლის ბაფერიდან"
 
-#: data/resources/ui/window.ui:86
+#. Translators: File receive confirmation message dialog title
+#: data/resources/ui/window.ui:46
+msgid "Abort File Transfer?"
+msgstr "გავაუქმო ფაილის მიმოცვლა?"
+
+#: data/resources/ui/window.ui:47
+msgid "Do you want to abort the current file transfer?"
+msgstr "გნებავთ ფაილების მიმდინარე მიმოცვლის გაუქმება?"
+
+#: data/resources/ui/window.ui:53
+msgid "_Continue"
+msgstr "_გაგრძელება"
+
+#: data/resources/ui/window.ui:54
+msgid "_Abort"
+msgstr "_შეწყვეტა"
+
+#. Translators: Error dialog title
+#: data/resources/ui/window.ui:59
+msgid "Unable to Open File"
+msgstr "ფაილის გახსნა შეუძლებელია"
+
+#: data/resources/ui/window.ui:64
+msgid "_Close"
+msgstr "_დახურვა"
+
+#: data/resources/ui/window.ui:65
+msgid "_Show in Folder"
+msgstr "საქაღალდეში _ჩვენება"
+
+#: data/resources/ui/window.ui:110
 msgid "Send"
 msgstr "გაგზავნა"
 
-#: data/resources/ui/window.ui:97
+#: data/resources/ui/window.ui:121
 msgid "Send File"
 msgstr "ფაილის გაგზავნა"
 
-#: data/resources/ui/window.ui:98
+#: data/resources/ui/window.ui:122
 msgid "Select or drop the file or directory to send"
 msgstr "გაგზავნისთვის აირჩიეთ ან დააგდეთ ფაილი ან საქაღალდე"
 
 #. Translators: Button
-#: data/resources/ui/window.ui:108
+#: data/resources/ui/window.ui:132
 msgid "Select File"
 msgstr "აირჩიეთ ფაილი"
 
 #. Translators: Button
-#: data/resources/ui/window.ui:120
+#: data/resources/ui/window.ui:144
 msgid "Select Folder"
 msgstr "აირჩიეთ საქაღალდე"
 
-#: data/resources/ui/window.ui:139
+#: data/resources/ui/window.ui:163
 msgid "Receive"
 msgstr "მიღება"
 
 #. Translators: Button
-#: data/resources/ui/window.ui:147 data/resources/ui/window.ui:172
+#: data/resources/ui/window.ui:171 data/resources/ui/window.ui:196
 msgid "Receive File"
 msgstr "ფაილის მიღება"
 
 #. Translators: Text above code input box, transmit code is a noun
-#: data/resources/ui/window.ui:149
+#: data/resources/ui/window.ui:173
 msgid "Enter the transmit code from the sender"
 msgstr "შეიყვანეთ გამომგზავნისგან მიღებული"
 
@@ -528,89 +557,67 @@ msgid "The file transfer failed: {}"
 msgstr "ფაილის მიმოცვლის შეცდომა: {}"
 
 #. Translators: When opening a file
-#: src/ui/action_view.rs:741
+#: src/ui/action_view.rs:740
 msgid "Specified file / directory does not exist"
 msgstr "მითითებული ფაილი / საქაღალდე არ არსებობს"
 
-#: src/ui/action_view.rs:758
+#: src/ui/action_view.rs:757
 msgid ""
 "Error parsing rendezvous server URL. An invalid URL was entered in the "
 "settings."
 msgstr ""
 
-#: src/ui/action_view.rs:768
+#: src/ui/action_view.rs:767
 msgid "Error parsing transit URL. An invalid URL was entered in the settings."
 msgstr ""
 
-#. Translators: File receive confirmation message dialog title
-#: src/ui/action_view.rs:1086
-msgid "Abort file transfer?"
-msgstr "გავაქმო ფაილის მიმოცვლა?"
-
-#: src/ui/action_view.rs:1087
-msgid "Do you want to abort the current file transfer?"
-msgstr "გნებავთ ფაილების მიმდინარე მიმოცვლის გაუქმება?"
-
-#: src/ui/action_view.rs:1093
-msgid "Continue"
-msgstr "გაგრძელება"
-
-#: src/ui/action_view.rs:1094
-msgid "Abort"
-msgstr "შეწყვეტა"
-
-#. Translators: File receive confirmation message dialog title
-#: src/ui/action_view.rs:1102
-msgid "Unable to Open File"
-msgstr "ფაილის გახსნა შეუძლებელია"
-
-#: src/ui/action_view.rs:1208
+#: src/ui/action_view.rs:1176
 msgid "Downloads dir missing. Please set XDG_DOWNLOAD_DIR"
 msgstr ""
 
-#: src/ui/application.rs:79
+#: src/ui/application.rs:78
 msgid "Unable to use transfer link: another transfer already in progress"
 msgstr ""
 
-#: src/ui/application.rs:206
+#: src/ui/application.rs:205
 msgid "translator-credits"
 msgstr "მთარგმნელის შესახებ"
 
-#: src/ui/application.rs:209
+#: src/ui/application.rs:208
 msgid "Tobias Bernard"
 msgstr "Tobias Bernard"
 
-#: src/ui/application.rs:209
+#: src/ui/application.rs:208
 msgid "Sophie Herold"
 msgstr "Sophie Herold"
 
-#: src/ui/application.rs:225
+#: src/ui/application.rs:224
 msgid "Sending a File"
 msgstr "ფალის გაგზავნა"
 
-#: src/ui/application.rs:226
+#: src/ui/application.rs:225
 msgid "Receiving a File"
 msgstr "ფალის მიღება"
 
-#: src/ui/window.rs:104
+#: src/ui/window.rs:108
 msgid ""
 "Error loading config file “{0}”, using default config.\n"
 "Error: {1}"
 msgstr ""
 
-#: src/ui/window.rs:223
+#: src/ui/window.rs:227
 msgid "Select the file or directory to send"
 msgstr "აირჩიეთ გასაგზავნი ფაილი ან საქაღალდე"
 
-#: src/ui/window.rs:321
+#: src/ui/window.rs:325
 msgid "Error saving configuration file: {}"
 msgstr "კონფიგურაციის ფაილის შენახვის შეცდომა: {}"
 
-#: src/ui/window.rs:366
+#: src/ui/window.rs:370
 msgid "“{}” appears to be an invalid Transmit Code. Please try again."
 msgstr ""
 
-#: src/ui/window.rs:477
+#: src/ui/window.rs:491
 msgid "Sending files with a preconfigured code is not yet supported"
 msgstr ""
 
