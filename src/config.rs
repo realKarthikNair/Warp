@@ -7,7 +7,7 @@ use std::path::PathBuf;
 use wormhole::transfer::AppVersion;
 use wormhole::{AppConfig, AppID};
 
-#[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
+#[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq)]
 pub struct WindowConfig {
     pub width: i32,
     pub height: i32,
@@ -22,7 +22,7 @@ impl Default for WindowConfig {
     }
 }
 
-#[derive(Clone, Default, Debug, Serialize, Deserialize, PartialEq)]
+#[derive(Clone, Default, Debug, Serialize, Deserialize, PartialEq, Eq)]
 pub struct Config {
     pub window: WindowConfig,
     pub welcome_window_shown: bool,

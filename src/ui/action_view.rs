@@ -295,7 +295,7 @@ mod imp {
                         if let Ok(uri) = uri {
                             log::debug!("Opening file with uri '{}'", uri);
                             let none: Option<&AppLaunchContext> = None;
-                            let res = AppInfo::launch_default_for_uri(&uri.to_string(), none);
+                            let res = AppInfo::launch_default_for_uri(&uri, none);
                             if let Err(err) = res {
                                 log::error!("Error opening file: {}", err);
                                 main_async_local_infallible(async move {
@@ -732,7 +732,7 @@ impl ActionView {
             )
         } else if path.is_file() {
             (
-                smol::fs::OpenOptions::new().read(true).open(&*path).await?,
+                smol::fs::OpenOptions::new().read(true).open(path).await?,
                 path.to_path_buf(),
             )
         } else {

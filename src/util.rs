@@ -46,7 +46,7 @@ pub fn extract_transmit_code(str: &str) -> Option<String> {
         .map(|m| m.as_str().to_owned())
 }
 
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum TransferDirection {
     Send,
     Receive,
@@ -107,7 +107,7 @@ impl WormholeTransferURI {
         rendezvous_server.set_query(None);
         if self.rendezvous_server != *globals::WORMHOLE_DEFAULT_RENDEZVOUS_SERVER {
             uri.query_pairs_mut()
-                .append_pair("rendezvous", &rendezvous_server.to_string());
+                .append_pair("rendezvous", rendezvous_server.as_ref());
         }
 
         if self.direction != TransferDirection::Receive {
