@@ -26,3 +26,17 @@ The log level can be adjusted by setting the `RUST_LOG` variable:
 ```shell
 RUST_LOG=debug cargo run
 ```
+
+### Release
+
+Creating a release:
+
+- Update version in `Cargo.toml`
+- Run `cargo` to update `Cargo.lock`
+- Run `build-aux/generate-manifest.bash`
+- Update `data/app.drey.Warp.metainfo.xml.in.in`
+  - Add/Update release section with current date, version and release notes
+- Update flathub repo and create PR
+- Test flathub build
+- Merge flathub PR
+- Tag the release
