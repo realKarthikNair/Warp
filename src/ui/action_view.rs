@@ -617,7 +617,7 @@ impl ActionView {
                 imp.progress_bar.set_text(None);
                 imp.progress_bar.set_visible(false);
                 imp.accept_transfer_button.set_visible(false);
-                imp.code_entry.set_visible(false);
+                imp.code_box.set_visible(false);
 
                 self.set_can_navigate_back(true);
 
