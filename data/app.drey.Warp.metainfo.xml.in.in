@@ -61,6 +61,11 @@
   </custom>
   <content_rating type="oars-1.0" />
   <releases>
+    <release version="0.2.4" date="2022-08-27">
+      <description>
+        <p>Fixes an issue with the code entry disappearing after a prior failed transfer</p>
+      </description>
+    </release>
     <release version="0.2.3" date="2022-08-09">
       <description>
         <p>This patch release has the following changes:</p>
