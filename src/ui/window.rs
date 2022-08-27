@@ -431,7 +431,7 @@ impl WarpApplicationWindow {
             let obj = self.clone();
             main_async_local_infallible(async move {
                 let imp = obj.imp();
-                let clipboard = obj.display().clipboard();
+                let clipboard = obj.clipboard();
                 let text = clipboard.read_text_future().await;
                 if let Ok(Some(text)) = text {
                     let extracted_data = if let Some(uri_str) = extract_transmit_uri(&text) {

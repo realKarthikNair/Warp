@@ -231,7 +231,7 @@ mod imp {
                 .connect_clicked(clone!(@weak obj => move |_| {
                     let code = obj.imp().code_entry.text();
                     let window = WarpApplicationWindow::default();
-                    let clipboard = window.display().clipboard();
+                    let clipboard = window.clipboard();
 
                     clipboard.set_text(&code);
 
@@ -246,7 +246,7 @@ mod imp {
                 .connect_clicked(clone!(@weak obj => move |_| {
                     let code = obj.imp().code_entry.text();
                     let window = WarpApplicationWindow::default();
-                    let clipboard = window.display().clipboard();
+                    let clipboard = window.clipboard();
 
                     let uri = WormholeTransferURI {
                         code: Code(code.to_string()),
@@ -269,7 +269,7 @@ mod imp {
 
                     let toast = if let UIState::Error(error) = &*obj.ui_state() {
                         let msg = format!("{}", error);
-                        window.display().clipboard().set_text(&msg);
+                        window.clipboard().set_text(&msg);
 
                         adw::Toast::new("Copied Error to Clipboard")
                     } else {
