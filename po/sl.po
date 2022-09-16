@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: warp main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
-"POT-Creation-Date: 2022-05-26 13:10+0000\n"
-"PO-Revision-Date: 2022-05-26 21:06+0200\n"
+"POT-Creation-Date: 2022-09-14 18:32+0000\n"
+"PO-Revision-Date: 2022-09-16 22:52+0200\n"
 "Last-Translator: Matej Urbančič <mateju@src.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups."
 "com>\n"
@@ -23,7 +23,7 @@ msgstr ""
 "X-Generator: Poedit 3.0.1\n"
 
 #: data/app.drey.Warp.desktop.in.in:3 data/app.drey.Warp.metainfo.xml.in.in:7
-#: src/main.rs:35
+#: src/main.rs:94
 msgid "Warp"
 msgstr "Warp"
 
@@ -77,70 +77,75 @@ msgid "Main Window"
 msgstr "Glavno okno"
 
 #. Translators: Entry placeholder; This is a noun
-#: data/app.drey.Warp.metainfo.xml.in.in:32 data/resources/ui/window.ui:144
+#: data/app.drey.Warp.metainfo.xml.in.in:32 data/resources/ui/window.ui:185
 msgid "Transmit Code"
 msgstr "Prenos kode"
 
 #: data/app.drey.Warp.metainfo.xml.in.in:36
-#: data/resources/ui/action_view.ui:101
+#: data/resources/ui/action_view.ui:116
 msgid "Accept File Transfer"
 msgstr ""
 
 #. Translators: Title
-#: data/app.drey.Warp.metainfo.xml.in.in:40 src/ui/action_view.rs:470
+#: data/app.drey.Warp.metainfo.xml.in.in:40 src/ui/action_view.rs:558
 msgid "Sending File"
 msgstr "Poteka pošiljanje datoteke"
 
 #. Translators: Title
-#: data/app.drey.Warp.metainfo.xml.in.in:44 src/ui/action_view.rs:474
+#: data/app.drey.Warp.metainfo.xml.in.in:44 src/ui/action_view.rs:562
 msgid "Receiving File"
 msgstr "Poteka prejemanje datoteke"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:48 src/ui/action_view.rs:490
+#: data/app.drey.Warp.metainfo.xml.in.in:48 src/ui/action_view.rs:579
 msgid "File Transfer Complete"
-msgstr ""
+msgstr "Penos datoteke je končan"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:88 src/ui/application.rs:221
+#: data/app.drey.Warp.metainfo.xml.in.in:142
 msgid "Fina Wilke"
 msgstr "Fina Wilke"
 
 #. Translators: Button
-#: data/resources/ui/action_view.ui:17 src/ui/window.rs:213
-#: src/ui/window.rs:227
+#: data/resources/ui/action_view.ui:17 data/resources/ui/window.ui:31
+#: data/resources/ui/window.ui:37
 msgid "Cancel"
 msgstr "Prekliči"
 
 #. Translators: Button
-#: data/resources/ui/action_view.ui:27 data/resources/ui/welcome_window.ui:58
+#: data/resources/ui/action_view.ui:24 data/resources/ui/welcome_window.ui:58
 msgid "Back"
 msgstr "Nazaj"
 
 #. Translators: Button; Transmit Link is a noun
-#: data/resources/ui/action_view.ui:71
+#: data/resources/ui/action_view.ui:68
 msgid "Copy Transmit Link"
 msgstr ""
 
 #. Translators: Button; Transmit Code is a noun
-#: data/resources/ui/action_view.ui:78
+#: data/resources/ui/action_view.ui:75
 msgid "Copy Transmit Code"
 msgstr ""
 
 #. Translators: Button
-#: data/resources/ui/action_view.ui:87 data/resources/ui/action_view.ui:90
+#: data/resources/ui/action_view.ui:89 data/resources/ui/action_view.ui:91
 msgid "Open File"
 msgstr "Odpri datoteko"
 
 #. Translators: Button
-#: data/resources/ui/action_view.ui:104
+#: data/resources/ui/action_view.ui:102 data/resources/ui/action_view.ui:104
+msgid "Show in Folder"
+msgstr "Pokaži v mapi"
+
+#. Translators: Button
+#: data/resources/ui/action_view.ui:119
 msgid "Accept"
 msgstr "Sprejmi"
 
-#: data/resources/ui/action_view.ui:115
+#: data/resources/ui/action_view.ui:130
 msgid "Copy a detailed message for reporting an issue"
 msgstr ""
 
 #. Translators: Button
-#: data/resources/ui/action_view.ui:118
+#: data/resources/ui/action_view.ui:133
 msgid "Copy Error Message"
 msgstr "Kopiraj sporočilo o napaki"
 
@@ -179,19 +184,19 @@ msgctxt "shortcut window"
 msgid "Receive File"
 msgstr "Začne s prejemanjem datoteke"
 
-#: data/resources/ui/preferences.ui:12
+#: data/resources/ui/preferences.ui:6
 msgid "Preferences"
 msgstr "Možnosti"
 
-#: data/resources/ui/preferences.ui:17
+#: data/resources/ui/preferences.ui:11
 msgid "Network"
 msgstr "Omrežje"
 
-#: data/resources/ui/preferences.ui:21
+#: data/resources/ui/preferences.ui:15
 msgid "Server URLs"
 msgstr "Naslovi URL strežnika"
 
-#: data/resources/ui/preferences.ui:22
+#: data/resources/ui/preferences.ui:16
 msgid ""
 "Changing the rendezvous server URL has to be done on both sides of the "
 "transfer. Only enter a server URL you can trust.\n"
@@ -199,12 +204,29 @@ msgid ""
 "Leaving these entries empty will use the application defaults."
 msgstr ""
 
-#: data/resources/ui/preferences.ui:27
+#: data/resources/ui/preferences.ui:21
 msgid "Rendezvous Server URL"
 msgstr ""
 
-#: data/resources/ui/preferences.ui:43
+#: data/resources/ui/preferences.ui:28
 msgid "Transit Server URL"
+msgstr ""
+
+#: data/resources/ui/preferences.ui:37
+msgid "Code Words"
+msgstr ""
+
+#: data/resources/ui/preferences.ui:38
+msgid ""
+"The code word count determines the security of the transfer.\n"
+"\n"
+"A short code is easy to remember but increases the risk of someone else "
+"guessing the code. As a code may only be guessed once, the risk is very "
+"small even with short codes. A length of 4 is very secure."
+msgstr ""
+
+#: data/resources/ui/preferences.ui:43
+msgid "Code Word Count"
 msgstr ""
 
 #: data/resources/ui/welcome_window.ui:5
@@ -268,39 +290,90 @@ msgstr "_Pomoč"
 msgid "_About Warp"
 msgstr "_O programu"
 
-#: data/resources/ui/window.ui:69
+#: data/resources/ui/window.ui:28
+msgid "Select file to send"
+msgstr ""
+
+#: data/resources/ui/window.ui:30
+msgid "Open"
+msgstr "Odpri"
+
+#: data/resources/ui/window.ui:34
+msgid "Select folder to send"
+msgstr "Izbor mape za pošiljanje"
+
+#: data/resources/ui/window.ui:36
+msgid "Open Folder"
+msgstr "Odpri mapo"
+
+#. Translators: Notification when code was automatically detected in clipboard and inserted into code entry on receive page
+#: data/resources/ui/window.ui:41
+msgid "Inserted code from clipboard"
+msgstr ""
+
+#. Translators: File receive confirmation message dialog title
+#: data/resources/ui/window.ui:46
+msgid "Abort File Transfer?"
+msgstr "Ali želite prekiniti prenos datotek?"
+
+#: data/resources/ui/window.ui:47
+msgid "Do you want to abort the current file transfer?"
+msgstr ""
+
+#: data/resources/ui/window.ui:53
+msgid "_Continue"
+msgstr "_Nadaljuj"
+
+#: data/resources/ui/window.ui:54
+msgid "_Abort"
+msgstr "_Prekini"
+
+#. Translators: Error dialog title
+#: data/resources/ui/window.ui:59
+msgid "Unable to Open File"
+msgstr "Ni mogoče odpreti datoteke"
+
+#: data/resources/ui/window.ui:64
+msgid "_Close"
+msgstr "_Zapri"
+
+#: data/resources/ui/window.ui:65
+msgid "_Show in Folder"
+msgstr "_Pokaži v mapi"
+
+#: data/resources/ui/window.ui:110
 msgid "Send"
 msgstr "Pošlji"
 
-#: data/resources/ui/window.ui:80
+#: data/resources/ui/window.ui:121
 msgid "Send File"
 msgstr "Pošlji datoteke"
 
-#: data/resources/ui/window.ui:81
+#: data/resources/ui/window.ui:122
 msgid "Select or drop the file or directory to send"
 msgstr ""
 
 #. Translators: Button
-#: data/resources/ui/window.ui:91
+#: data/resources/ui/window.ui:132
 msgid "Select File"
 msgstr "Izbor datotek"
 
 #. Translators: Button
-#: data/resources/ui/window.ui:103
+#: data/resources/ui/window.ui:144
 msgid "Select Folder"
 msgstr "Izbor mape"
 
-#: data/resources/ui/window.ui:122
+#: data/resources/ui/window.ui:163
 msgid "Receive"
 msgstr "Prejmi"
 
 #. Translators: Button
-#: data/resources/ui/window.ui:130 data/resources/ui/window.ui:155
+#: data/resources/ui/window.ui:171 data/resources/ui/window.ui:196
 msgid "Receive File"
 msgstr "Prejmi datoteke"
 
 #. Translators: Text above code input box, transmit code is a noun
-#: data/resources/ui/window.ui:132
+#: data/resources/ui/window.ui:173
 msgid "Enter the transmit code from the sender"
 msgstr ""
 
@@ -353,368 +426,337 @@ msgid "{0} — {1}"
 msgstr ""
 
 #. Translators: Notification when clicking on "Copy Code to Clipboard" button
-#: src/ui/action_view.rs:188
+#: src/ui/action_view.rs:239
 msgid "Copied Code to Clipboard"
 msgstr ""
 
 #. Translators: Notification when clicking on "Copy Link to Clipboard" button
-#: src/ui/action_view.rs:211
+#: src/ui/action_view.rs:260
 msgid "Copied Link to Clipboard"
 msgstr ""
 
-#: src/ui/action_view.rs:227
+#: src/ui/action_view.rs:276
 msgid "No error available"
 msgstr ""
 
 #. Translators: Title
-#: src/ui/action_view.rs:320
+#: src/ui/action_view.rs:395
 msgid "Creating Archive"
 msgstr "Poteka ustvarjanje arhiva"
 
-#. Translators: Description
-#: src/ui/action_view.rs:323
-msgid "Compressing folder"
-msgstr "Poteka skrčenje mape"
+#: src/ui/action_view.rs:399
+msgid "Compressing folder “{}”"
+msgstr "Poteka stiskanje mape »{}«"
 
 #. Translators: Title
-#: src/ui/action_view.rs:334 src/ui/action_view.rs:370
+#: src/ui/action_view.rs:412 src/ui/action_view.rs:457
 msgid "Connecting"
 msgstr "Povezovanje"
 
 #. Translators: Description, Filename
-#: src/ui/action_view.rs:337
+#: src/ui/action_view.rs:415
 msgid "Requesting file transfer"
 msgstr ""
 
 #. Translators: Title, this is a noun
-#: src/ui/action_view.rs:345
+#: src/ui/action_view.rs:423
 msgid "Your Transmit Code"
 msgstr ""
 
-#. Translators: Description, Code in box below
-#: src/ui/action_view.rs:354
+#. Translators: Description, Code in box below, argument is filename
+#: src/ui/action_view.rs:439
 msgid ""
+"Ready to send “{}”\n"
+"The receiver needs to enter this code to begin the file transfer."
+msgstr ""
+
+#. Translators: Description, Code in box below, argument is filename
+#: src/ui/action_view.rs:445
+msgid ""
+"Ready to send “{}”\n"
 "The receiver needs to enter this code to begin the file transfer.\n"
 "\n"
 "You have entered a custom rendezvous server URL in preferences. Please "
 "verify the receiver also uses the same rendezvous server."
 msgstr ""
 
-#. Translators: Description, Code in box below
-#: src/ui/action_view.rs:359
-msgid "The receiver needs to enter this code to begin the file transfer."
-msgstr ""
-
 #. Translators: Description, Transfer Code
-#: src/ui/action_view.rs:373
+#: src/ui/action_view.rs:460
 msgid "Connecting to peer with code “{}”"
 msgstr ""
 
-#: src/ui/action_view.rs:382
+#: src/ui/action_view.rs:469
 msgid "Connected to Peer"
 msgstr "Vzpostavljena je povezava z oddaljenim mestom"
 
 #. Translators: Description
-#: src/ui/action_view.rs:390
+#: src/ui/action_view.rs:478
 msgid "Preparing to send file"
 msgstr ""
 
 #. Translators: Description
-#: src/ui/action_view.rs:396
+#: src/ui/action_view.rs:484
 msgid "Preparing to receive file"
 msgstr ""
 
-#: src/ui/action_view.rs:408
+#: src/ui/action_view.rs:496
 msgid "Accept File Transfer?"
 msgstr ""
 
 #. Translators: File receive confirmation message dialog; Filename, File size
-#: src/ui/action_view.rs:411
+#: src/ui/action_view.rs:499
 msgid ""
 "Your peer wants to send you “{0}” (Size: {1}).\n"
 "Do you want to download this file to your Downloads folder?"
 msgstr ""
 
-#: src/ui/action_view.rs:416
+#: src/ui/action_view.rs:504
 msgid "Ready to Receive File"
 msgstr "Naprava je pripravljena za prejem datoteke"
 
-#: src/ui/action_view.rs:418
+#: src/ui/action_view.rs:506
 msgid ""
 "A file is ready to be transferred. The transfer needs to be acknowledged."
 msgstr ""
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:447
+#: src/ui/action_view.rs:535
 msgid "File “{}” via local network direct transfer"
 msgstr ""
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:450
+#: src/ui/action_view.rs:538
 msgid "File “{}” via direct transfer"
 msgstr ""
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:456
+#: src/ui/action_view.rs:544
 msgid "File “{0}” via relay {1}"
 msgstr ""
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:459
+#: src/ui/action_view.rs:547
 msgid "File “{}” via relay"
 msgstr ""
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:463
+#: src/ui/action_view.rs:551
 msgid "File “{}” via Unknown connection method"
 msgstr ""
 
 #. Translators: Title
-#: src/ui/action_view.rs:482
+#: src/ui/action_view.rs:570
 msgid "File Transfer Successful"
 msgstr "Prenos datotek je uspešno končan"
 
 #. Translators: Description, Filename
-#: src/ui/action_view.rs:499
+#: src/ui/action_view.rs:587
 msgid "Successfully sent file “{}”"
 msgstr ""
 
 #. Translators: Description, Filename
-#: src/ui/action_view.rs:508
+#: src/ui/action_view.rs:596
 msgid "File has been saved to the Downloads folder as “{}”"
 msgstr ""
 
 #. Translators: Title
-#: src/ui/action_view.rs:523 src/ui/action_view.rs:534
+#: src/ui/action_view.rs:611 src/ui/action_view.rs:624
 msgid "File Transfer Failed"
 msgstr "Prenos datotek je spodletel"
 
-#: src/ui/action_view.rs:536
+#: src/ui/action_view.rs:626
 msgid "The file transfer failed: {}"
 msgstr "Prenos datotek je spodletel: {}"
 
 #. Translators: When opening a file
-#: src/ui/action_view.rs:618
+#: src/ui/action_view.rs:740
 msgid "Specified file / directory does not exist"
 msgstr ""
 
-#: src/ui/action_view.rs:652
+#: src/ui/action_view.rs:757
 msgid ""
 "Error parsing rendezvous server URL. An invalid URL was entered in the "
 "settings."
 msgstr ""
 
-#: src/ui/action_view.rs:664
+#: src/ui/action_view.rs:767
 msgid "Error parsing transit URL. An invalid URL was entered in the settings."
 msgstr ""
 
-#. Translators: File receive confirmation message dialog title
-#: src/ui/action_view.rs:928
-msgid "Abort file transfer?"
-msgstr ""
-
-#: src/ui/action_view.rs:929
-msgid "Do you want to abort the current file transfer?"
-msgstr ""
-
-#: src/ui/action_view.rs:935
-msgid "Continue"
-msgstr "Nadaljuj"
-
-#: src/ui/action_view.rs:936
-msgid "Abort"
-msgstr "Prekliči"
-
-#: src/ui/action_view.rs:1026
+#: src/ui/action_view.rs:1176
 msgid "Downloads dir missing. Please set XDG_DOWNLOAD_DIR"
 msgstr ""
 
-#: src/ui/application.rs:80
+#: src/ui/application.rs:78
 msgid "Unable to use transfer link: another transfer already in progress"
 msgstr ""
 
-#: src/ui/application.rs:218
+#: src/ui/application.rs:205
 msgid "translator-credits"
 msgstr "Matej Urbančič <mateju@svn.gnome.org>"
 
-#: src/ui/application.rs:221
+#: src/ui/application.rs:208
+msgid "Tobias Bernard"
+msgstr ""
+
+#: src/ui/application.rs:208
 msgid "Sophie Herold"
 msgstr "Sophie Herold"
 
-#: src/ui/application.rs:237
+#: src/ui/application.rs:224
 msgid "Sending a File"
 msgstr ""
 
-#: src/ui/application.rs:238
+#: src/ui/application.rs:225
 msgid "Receiving a File"
 msgstr ""
 
-#: src/ui/fs.rs:95
-msgid "Path {} does not have a directory name"
-msgstr ""
-
-#: src/ui/window.rs:101
+#: src/ui/window.rs:108
 msgid ""
-"Error loading config file “{0}“, using default config.\n"
+"Error loading config file “{0}”, using default config.\n"
 "Error: {1}"
 msgstr ""
 
-#: src/ui/window.rs:209
-msgid "Select file to send"
-msgstr ""
-
-#: src/ui/window.rs:212
-msgid "Open"
-msgstr "Odpri"
-
-#: src/ui/window.rs:223
-msgid "Select folder to send"
-msgstr "Izbor mape za pošiljanje"
-
-#: src/ui/window.rs:226
-msgid "Open Folder"
-msgstr "Odpri mapo"
-
-#: src/ui/window.rs:244
+#: src/ui/window.rs:227
 msgid "Select the file or directory to send"
 msgstr ""
 
-#. Translators: Notification when code was automatically detected in clipboard and inserted into code entry on receive page
-#: src/ui/window.rs:267
-msgid "Inserted code from clipboard"
-msgstr ""
-
-#: src/ui/window.rs:322
+#: src/ui/window.rs:325
 msgid "Error saving configuration file: {}"
 msgstr ""
 
-#: src/ui/window.rs:365
+#: src/ui/window.rs:370
 msgid "“{}” appears to be an invalid Transmit Code. Please try again."
 msgstr ""
 
-#: src/ui/window.rs:473
+#: src/ui/window.rs:491
 msgid "Sending files with a preconfigured code is not yet supported"
 msgstr ""
 
-#: src/util.rs:146 src/util.rs:219
+#: src/util.rs:32
+msgid "Failed to open downloads folder."
+msgstr ""
+
+#: src/util.rs:168 src/util.rs:241
 msgid "The URI format is invalid"
 msgstr ""
 
-#: src/util.rs:150 src/util.rs:154
+#: src/util.rs:172 src/util.rs:176
 msgid "The code does not match the required format"
 msgstr ""
 
-#: src/util.rs:169 src/util.rs:175
+#: src/util.rs:191 src/util.rs:197
 msgid "Unknown URI version: {}"
 msgstr ""
 
-#: src/util.rs:184
-msgid "The URI parameter “rendezvous“ contains an invalid URL: '{}'"
+#: src/util.rs:206
+msgid "The URI parameter “rendezvous” contains an invalid URL: “{}”"
 msgstr ""
 
-#: src/util.rs:196
-msgid "The URI parameter “role“ must be “follower“ or “leader“ (was: {})"
+#: src/util.rs:218
+msgid "The URI parameter “role” must be “follower” or “leader” (was: “{}”)"
 msgstr ""
 
-#: src/util.rs:203
-msgid "Unknown URI parameter “{}“"
+#: src/util.rs:225
+msgid "Unknown URI parameter “{}”"
 msgstr ""
 
-#: src/util/error.rs:131
+#: src/util/error.rs:142
 msgid "An error occurred"
 msgstr "Prišlo je do napake"
 
-#: src/util/error.rs:161 src/util/error.rs:226
+#: src/util/error.rs:172 src/util/error.rs:237
 msgid "Corrupt or unexpected message received"
 msgstr ""
 
-#: src/util/error.rs:166
+#: src/util/error.rs:177
 msgid ""
 "The rendezvous server will not allow further connections for this code. A "
 "new code needs to be generated."
 msgstr ""
 
-#: src/util/error.rs:168
+#: src/util/error.rs:179
 msgid ""
 "The rendezvous server removed the code due to inactivity. A new code needs "
 "to be generated."
 msgstr ""
 
-#: src/util/error.rs:170
+#: src/util/error.rs:181
 msgid "The rendezvous server responded with an unknown message: {}"
 msgstr ""
 
-#: src/util/error.rs:173
+#: src/util/error.rs:184
 msgid ""
 "Error connecting to the rendezvous server.\n"
 "You have entered a custom rendezvous server URL in preferences. Please "
 "verify the URL is correct and the server is working."
 msgstr ""
 
-#: src/util/error.rs:175
+#: src/util/error.rs:186
 msgid ""
 "Error connecting to the rendezvous server.\n"
 "Please try again later / verify you are connected to the internet."
 msgstr ""
 
-#: src/util/error.rs:179
+#: src/util/error.rs:190
 msgid ""
 "Encryption key confirmation failed. If you or your peer didn't mistype the "
 "code, this is a sign of an attacker guessing passwords. Please try again "
 "some time later."
 msgstr ""
 
-#: src/util/error.rs:181
+#: src/util/error.rs:192
 msgid "Cannot decrypt a received message"
 msgstr ""
 
-#: src/util/error.rs:182 src/util/error.rs:237 src/util/error.rs:242
+#: src/util/error.rs:193 src/util/error.rs:248 src/util/error.rs:253
+#: src/util/error.rs:256
 msgid "An unknown error occurred"
 msgstr "Prišlo je do neznane napake."
 
-#: src/util/error.rs:188
+#: src/util/error.rs:199
 msgid "File / Directory not found"
-msgstr ""
+msgstr "Mape ali datoteke ni mogoče najti"
 
-#: src/util/error.rs:189
+#: src/util/error.rs:200
 msgid "Permission denied"
 msgstr "Ni ustreznih dovoljenj."
 
-#: src/util/error.rs:201
+#: src/util/error.rs:212
 msgid "Transfer was not acknowledged by peer"
 msgstr ""
 
-#: src/util/error.rs:203
+#: src/util/error.rs:214
 msgid "The received file is corrupted"
 msgstr ""
 
-#: src/util/error.rs:209
+#: src/util/error.rs:220
 msgid ""
 "The file contained a different amount of bytes than advertised! Sent {} "
 "bytes, but should have been {}"
 msgstr ""
 
-#: src/util/error.rs:214
+#: src/util/error.rs:225
 msgid "The other side has cancelled the transfer"
 msgstr ""
 
-#: src/util/error.rs:216
+#: src/util/error.rs:227
 msgid "The other side has rejected the transfer"
 msgstr ""
 
-#: src/util/error.rs:218
+#: src/util/error.rs:229
 msgid "Something went wrong on the other side: {}"
 msgstr ""
 
-#: src/util/error.rs:233
+#: src/util/error.rs:244
 msgid "Error while establishing file transfer connection"
 msgstr ""
 
-#: src/util/error.rs:235
+#: src/util/error.rs:246
 msgid "Unknown file transfer error"
-msgstr ""
+msgstr "Neznana napaka prejema datoteke"
 
-#: src/util/error.rs:243
+#: src/util/error.rs:258
 msgid ""
 "An unexpected error occurred. Please report an issue with the error message."
 msgstr ""
