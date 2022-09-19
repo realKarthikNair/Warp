@@ -3,24 +3,24 @@
 # This file is distributed under the same license as the warp package.
 #
 # Matej Urbančič <mateju@src.gnome.org>, 2022–.
+# Martin Srebotnjak <miles@filmsi.net>, 2022-.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: warp main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
-"POT-Creation-Date: 2022-09-14 18:32+0000\n"
-"PO-Revision-Date: 2022-09-16 22:52+0200\n"
-"Last-Translator: Matej Urbančič <mateju@src.gnome.org>\n"
-"Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups."
-"com>\n"
+"POT-Creation-Date: 2022-09-16 20:54+0000\n"
+"PO-Revision-Date: 2022-09-19 10:17+0200\n"
+"Last-Translator: Martin Srebotnjak <miles@filmsi.net>\n"
+"Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || "
-"n%100==4 ? 3 : 0);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
+"%100==4 ? 3 : 0);\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.1.1\n"
 
 #: data/app.drey.Warp.desktop.in.in:3 data/app.drey.Warp.metainfo.xml.in.in:7
 #: src/main.rs:94
@@ -62,7 +62,7 @@ msgstr "Vsak prenos datoteke je šifriran"
 
 #: data/app.drey.Warp.metainfo.xml.in.in:20
 msgid "Directly transfer files on the local network if possible"
-msgstr ""
+msgstr "Če je mogoče, prenesi datoteke neposredno v krajevnem omrežju"
 
 #: data/app.drey.Warp.metainfo.xml.in.in:21
 msgid "An internet connection is required"
@@ -84,7 +84,7 @@ msgstr "Prenos kode"
 #: data/app.drey.Warp.metainfo.xml.in.in:36
 #: data/resources/ui/action_view.ui:116
 msgid "Accept File Transfer"
-msgstr ""
+msgstr "Sprejmi prenos datotek"
 
 #. Translators: Title
 #: data/app.drey.Warp.metainfo.xml.in.in:40 src/ui/action_view.rs:558
@@ -118,12 +118,12 @@ msgstr "Nazaj"
 #. Translators: Button; Transmit Link is a noun
 #: data/resources/ui/action_view.ui:68
 msgid "Copy Transmit Link"
-msgstr ""
+msgstr "Kopiraj povezavo za prenos"
 
 #. Translators: Button; Transmit Code is a noun
 #: data/resources/ui/action_view.ui:75
 msgid "Copy Transmit Code"
-msgstr ""
+msgstr "Kopiraj kodo za prenos"
 
 #. Translators: Button
 #: data/resources/ui/action_view.ui:89 data/resources/ui/action_view.ui:91
@@ -142,7 +142,7 @@ msgstr "Sprejmi"
 
 #: data/resources/ui/action_view.ui:130
 msgid "Copy a detailed message for reporting an issue"
-msgstr ""
+msgstr "Kopiraj podrobno sporočilo za poročanje o težavi"
 
 #. Translators: Button
 #: data/resources/ui/action_view.ui:133
@@ -177,7 +177,7 @@ msgstr "Začne s pošiljanjem datoteke"
 #: data/resources/ui/help_overlay.ui:37
 msgctxt "shortcut window"
 msgid "Send Folder"
-msgstr ""
+msgstr "Pošlji mapo"
 
 #: data/resources/ui/help_overlay.ui:43
 msgctxt "shortcut window"
@@ -206,15 +206,16 @@ msgstr ""
 
 #: data/resources/ui/preferences.ui:21
 msgid "Rendezvous Server URL"
-msgstr ""
+msgstr "URL strežnika rendezvous"
 
 #: data/resources/ui/preferences.ui:28
+#, fuzzy
 msgid "Transit Server URL"
-msgstr ""
+msgstr "URL strežnika transit"
 
 #: data/resources/ui/preferences.ui:37
 msgid "Code Words"
-msgstr ""
+msgstr "Kodne besede"
 
 #: data/resources/ui/preferences.ui:38
 msgid ""
@@ -224,10 +225,16 @@ msgid ""
 "guessing the code. As a code may only be guessed once, the risk is very "
 "small even with short codes. A length of 4 is very secure."
 msgstr ""
+"Število kodnih besed določa varnost prenosa.\n"
+"\n"
+"Kratko kodo si lažje zapomnite, vendar povečuje tveganje, da nekdo drug kodo "
+"ugane. Ker se koda lahko ugiba le enkrat, je tveganje zelo majhno tudi s "
+"kratkimi kodami. Dolžina 4 je zelo varna."
 
 #: data/resources/ui/preferences.ui:43
+#, fuzzy
 msgid "Code Word Count"
-msgstr ""
+msgstr "Število besed kode"
 
 #: data/resources/ui/welcome_window.ui:5
 msgid "Welcome"
@@ -292,7 +299,7 @@ msgstr "_O programu"
 
 #: data/resources/ui/window.ui:28
 msgid "Select file to send"
-msgstr ""
+msgstr "Izberite datoteko, ki jo želite poslati"
 
 #: data/resources/ui/window.ui:30
 msgid "Open"
@@ -309,7 +316,7 @@ msgstr "Odpri mapo"
 #. Translators: Notification when code was automatically detected in clipboard and inserted into code entry on receive page
 #: data/resources/ui/window.ui:41
 msgid "Inserted code from clipboard"
-msgstr ""
+msgstr "Vstavljena koda iz odložišča"
 
 #. Translators: File receive confirmation message dialog title
 #: data/resources/ui/window.ui:46
@@ -318,7 +325,7 @@ msgstr "Ali želite prekiniti prenos datotek?"
 
 #: data/resources/ui/window.ui:47
 msgid "Do you want to abort the current file transfer?"
-msgstr ""
+msgstr "Ali želite prekiniti trenutni prenos datotek?"
 
 #: data/resources/ui/window.ui:53
 msgid "_Continue"
@@ -351,7 +358,7 @@ msgstr "Pošlji datoteke"
 
 #: data/resources/ui/window.ui:122
 msgid "Select or drop the file or directory to send"
-msgstr ""
+msgstr "Izberite ali spustite datoteko ali mapo za pošiljanje"
 
 #. Translators: Button
 #: data/resources/ui/window.ui:132
@@ -375,13 +382,13 @@ msgstr "Prejmi datoteke"
 #. Translators: Text above code input box, transmit code is a noun
 #: data/resources/ui/window.ui:173
 msgid "Enter the transmit code from the sender"
-msgstr ""
+msgstr "Vnesite kodo prenosa od pošiljatelja"
 
 #. Translators: {0} = file size transferred, {1} = total file size, Example: 17.3MB / 20.5MB
 #: src/gettext/duration.rs:12
 msgctxt "File size transferred"
 msgid "{0} / {1}"
-msgstr ""
+msgstr "{0} / {1}"
 
 #. Translators: File transfer time left
 #: src/gettext/duration.rs:19
@@ -423,21 +430,21 @@ msgstr[3] "Še {} dneve"
 #: src/gettext/duration.rs:53
 msgctxt "Combine bytes progress {0} and time remaining {1}"
 msgid "{0} — {1}"
-msgstr ""
+msgstr "{0} — {1}"
 
 #. Translators: Notification when clicking on "Copy Code to Clipboard" button
 #: src/ui/action_view.rs:239
 msgid "Copied Code to Clipboard"
-msgstr ""
+msgstr "Kopirana koda v odložišče"
 
 #. Translators: Notification when clicking on "Copy Link to Clipboard" button
 #: src/ui/action_view.rs:260
 msgid "Copied Link to Clipboard"
-msgstr ""
+msgstr "Kopirana povezava na odložišče"
 
 #: src/ui/action_view.rs:276
 msgid "No error available"
-msgstr ""
+msgstr "Napaka ni na voljo"
 
 #. Translators: Title
 #: src/ui/action_view.rs:395
@@ -456,12 +463,12 @@ msgstr "Povezovanje"
 #. Translators: Description, Filename
 #: src/ui/action_view.rs:415
 msgid "Requesting file transfer"
-msgstr ""
+msgstr "Zahtevanje prenosa datotek"
 
 #. Translators: Title, this is a noun
 #: src/ui/action_view.rs:423
 msgid "Your Transmit Code"
-msgstr ""
+msgstr "Vaša koda za pošiljanje"
 
 #. Translators: Description, Code in box below, argument is filename
 #: src/ui/action_view.rs:439
@@ -492,16 +499,16 @@ msgstr "Vzpostavljena je povezava z oddaljenim mestom"
 #. Translators: Description
 #: src/ui/action_view.rs:478
 msgid "Preparing to send file"
-msgstr ""
+msgstr "Priprava na pošiljanje datoteke"
 
 #. Translators: Description
 #: src/ui/action_view.rs:484
 msgid "Preparing to receive file"
-msgstr ""
+msgstr "Priprava na prejemanje datoteke"
 
 #: src/ui/action_view.rs:496
 msgid "Accept File Transfer?"
-msgstr ""
+msgstr "Ali želite sprejeti prenos datotek?"
 
 #. Translators: File receive confirmation message dialog; Filename, File size
 #: src/ui/action_view.rs:499
@@ -515,9 +522,10 @@ msgid "Ready to Receive File"
 msgstr "Naprava je pripravljena za prejem datoteke"
 
 #: src/ui/action_view.rs:506
+#, fuzzy
 msgid ""
 "A file is ready to be transferred. The transfer needs to be acknowledged."
-msgstr ""
+msgstr "Datoteka je pripravljena za prenos. Prenos je treba priznati."
 
 #. Translators: Description, During transfer
 #: src/ui/action_view.rs:535
@@ -552,12 +560,13 @@ msgstr "Prenos datotek je uspešno končan"
 #. Translators: Description, Filename
 #: src/ui/action_view.rs:587
 msgid "Successfully sent file “{}”"
-msgstr ""
+msgstr "Uspešno poslana datoteka »{}«"
 
 #. Translators: Description, Filename
 #: src/ui/action_view.rs:596
+#, fuzzy
 msgid "File has been saved to the Downloads folder as “{}”"
-msgstr ""
+msgstr "Datoteka je bila shranjena v mapo Prenosi kot »{}«"
 
 #. Translators: Title
 #: src/ui/action_view.rs:611 src/ui/action_view.rs:624
@@ -571,7 +580,7 @@ msgstr "Prenos datotek je spodletel: {}"
 #. Translators: When opening a file
 #: src/ui/action_view.rs:740
 msgid "Specified file / directory does not exist"
-msgstr ""
+msgstr "Navedena datoteka/mapa ne obstaja"
 
 #: src/ui/action_view.rs:757
 msgid ""
@@ -593,11 +602,13 @@ msgstr ""
 
 #: src/ui/application.rs:205
 msgid "translator-credits"
-msgstr "Matej Urbančič <mateju@svn.gnome.org>"
+msgstr ""
+"Matej Urbančič <mateju@svn.gnome.org>\n"
+"Martin Srebotnjak <miles@filmsi.net>"
 
 #: src/ui/application.rs:208
 msgid "Tobias Bernard"
-msgstr ""
+msgstr "Tobias Bernard"
 
 #: src/ui/application.rs:208
 msgid "Sophie Herold"
@@ -605,11 +616,11 @@ msgstr "Sophie Herold"
 
 #: src/ui/application.rs:224
 msgid "Sending a File"
-msgstr ""
+msgstr "Pošiljanje datoteke"
 
 #: src/ui/application.rs:225
 msgid "Receiving a File"
-msgstr ""
+msgstr "Prejemanje datoteke"
 
 #: src/ui/window.rs:108
 msgid ""
@@ -619,11 +630,11 @@ msgstr ""
 
 #: src/ui/window.rs:227
 msgid "Select the file or directory to send"
-msgstr ""
+msgstr "Izberite datoteko ali mapo, ki ga/jo želite poslati"
 
 #: src/ui/window.rs:325
 msgid "Error saving configuration file: {}"
-msgstr ""
+msgstr "Napaka pri shranjevanju prilagoditvene datoteke: {}"
 
 #: src/ui/window.rs:370
 msgid "“{}” appears to be an invalid Transmit Code. Please try again."
@@ -635,19 +646,19 @@ msgstr ""
 
 #: src/util.rs:32
 msgid "Failed to open downloads folder."
-msgstr ""
+msgstr "Odpiranje mape za prenose ni uspelo."
 
 #: src/util.rs:168 src/util.rs:241
 msgid "The URI format is invalid"
-msgstr ""
+msgstr "Oblika URI ni veljavna"
 
 #: src/util.rs:172 src/util.rs:176
 msgid "The code does not match the required format"
-msgstr ""
+msgstr "Koda se ne ujema z zahtevano obliko"
 
 #: src/util.rs:191 src/util.rs:197
 msgid "Unknown URI version: {}"
-msgstr ""
+msgstr "Neznana različica URI: {}"
 
 #: src/util.rs:206
 msgid "The URI parameter “rendezvous” contains an invalid URL: “{}”"
@@ -659,7 +670,7 @@ msgstr ""
 
 #: src/util.rs:225
 msgid "Unknown URI parameter “{}”"
-msgstr ""
+msgstr "Neznan parameter URI »{}«"
 
 #: src/util/error.rs:142
 msgid "An error occurred"
@@ -667,7 +678,7 @@ msgstr "Prišlo je do napake"
 
 #: src/util/error.rs:172 src/util/error.rs:237
 msgid "Corrupt or unexpected message received"
-msgstr ""
+msgstr "Prejeto poškodovano ali nepričakovano sporočilo"
 
 #: src/util/error.rs:177
 msgid ""
@@ -707,7 +718,7 @@ msgstr ""
 
 #: src/util/error.rs:192
 msgid "Cannot decrypt a received message"
-msgstr ""
+msgstr "Prejetega sporočila ni mogoče dešifrirati"
 
 #: src/util/error.rs:193 src/util/error.rs:248 src/util/error.rs:253
 #: src/util/error.rs:256
@@ -724,33 +735,35 @@ msgstr "Ni ustreznih dovoljenj."
 
 #: src/util/error.rs:212
 msgid "Transfer was not acknowledged by peer"
-msgstr ""
+msgstr "Vrstnik ni priznal prenosa"
 
 #: src/util/error.rs:214
 msgid "The received file is corrupted"
-msgstr ""
+msgstr "Prejeta datoteka je poškodovana"
 
 #: src/util/error.rs:220
 msgid ""
 "The file contained a different amount of bytes than advertised! Sent {} "
 "bytes, but should have been {}"
 msgstr ""
+"Datoteka je vsebovala drugačno količino bajtov, kot oglašuje! Poslanih {} "
+"bajtov, vendar bi jih moralo biti {}"
 
 #: src/util/error.rs:225
 msgid "The other side has cancelled the transfer"
-msgstr ""
+msgstr "Druga stran je preklicala prenos"
 
 #: src/util/error.rs:227
 msgid "The other side has rejected the transfer"
-msgstr ""
+msgstr "Druga stran je zavrnila prenos"
 
 #: src/util/error.rs:229
 msgid "Something went wrong on the other side: {}"
-msgstr ""
+msgstr "Na drugi strani je šlo nekaj narobe: {}"
 
 #: src/util/error.rs:244
 msgid "Error while establishing file transfer connection"
-msgstr ""
+msgstr "Napaka pri vzpostavljanju povezave za prenos datotek"
 
 #: src/util/error.rs:246
 msgid "Unknown file transfer error"
@@ -760,3 +773,5 @@ msgstr "Neznana napaka prejema datoteke"
 msgid ""
 "An unexpected error occurred. Please report an issue with the error message."
 msgstr ""
+"Prišlo je do nepričakovane napake. Prosimo, poročajte o težavi s sporočilom "
+"o napaki."
