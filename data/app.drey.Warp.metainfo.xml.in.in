@@ -61,12 +61,13 @@
   </custom>
   <content_rating type="oars-1.0" />
   <releases>
-    <release version="0.3.0-beta.1" date="2022-08-27">
+    <release version="0.3.0" date="2022-09-23">
       <description>
-        <p>Framework update</p>
+        <p>Update for GNOME 43</p>
         <ul>
-          <li>Rework a few UI components</li>
+          <li>Rework multiple UI elements</li>
           <li>Use libadwaita 1.2</li>
+          <li>Translation updates</li>
         </ul>
       </description>
     </release>

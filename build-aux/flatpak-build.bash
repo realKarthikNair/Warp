@@ -7,9 +7,11 @@ if [[ $1 == "dev" ]]; then
   echo "Using devel manifest"
   APP_ID="$APP_ID.Devel"
   MANIFEST="$APP_ID.json"
+  RUNTIME_VERSION="master"
 elif [[ $1 == "release" ]]; then
   echo "Using release manifest"
   MANIFEST="$APP_ID.yaml"
+  RUNTIME_VERSION="$(yq -r '.["runtime-version"]' build-aux/app.drey.Warp.yaml)"
 else
   echo "Run either with dev or release as first argument to select the manifest file"
   exit 1
@@ -23,9 +25,10 @@ flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flath
 flatpak remote-add --user --if-not-exists flathub-beta https://flathub.org/beta-repo/flathub-beta.flatpakrepo
 flatpak remote-add --user --if-not-exists gnome-nightly https://nightly.gnome.org/gnome-nightly.flatpakrepo
 
-flatpak install --user --noninteractive org.gnome.Sdk//master
-flatpak install --user --noninteractive org.gnome.Platform//master
-flatpak install --user --noninteractive org.freedesktop.Sdk.Extension.rust-stable//22.08beta
+flatpak install --user --noninteractive org.gnome.Sdk//${RUNTIME_VERSION}
+flatpak install --user --noninteractive org.gnome.Platform//${RUNTIME_VERSION}
+
+flatpak install --user --noninteractive org.freedesktop.Sdk.Extension.rust-stable//22.08
 
 flatpak-builder \
   --user --verbose --force-clean -y --repo=$REPO_DIR flatpak_out build-aux/$MANIFEST
