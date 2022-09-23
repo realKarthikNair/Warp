@@ -197,15 +197,18 @@ impl WarpApplication {
 
     fn show_about_dialog(&self) {
         let dialog = adw::AboutWindow::builder()
+            .application_name(&gettext("Warp"))
             .application_icon(globals::APP_ID)
+            .version(globals::VERSION)
             .license_type(gtk::License::Gpl30)
             .website("https://apps.gnome.org/app/app.drey.Warp/")
-            .version(globals::VERSION)
-            .transient_for(&self.main_window())
+            .issue_url("https://gitlab.gnome.org/World/warp/-/issues")
             .translator_credits(&gettext("translator-credits"))
-            .modal(true)
+            .developer_name("Fina Wilke")
             .developers(vec!["Fina Wilke".into()])
             .artists(vec![gettext("Tobias Bernard"), gettext("Sophie Herold")])
+            .transient_for(&self.main_window())
+            .modal(true)
             .build();
 
         dialog.present();
