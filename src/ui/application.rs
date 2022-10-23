@@ -1,14 +1,15 @@
 use gettextrs::gettext;
+use std::path::PathBuf;
 
 use adw::subclass::prelude::*;
-use glib::clone;
+use glib::{clone, FromVariant};
 use gtk::prelude::*;
 use gtk::{gdk, gio, glib};
 
 use crate::globals;
 use crate::ui::preferences::WarpPreferencesWindow;
 use crate::ui::window::WarpApplicationWindow;
-use crate::util::TransferDirection;
+use crate::util::{show_dir, TransferDirection};
 
 mod imp {
     use super::*;
@@ -171,6 +172,20 @@ impl WarpApplication {
             app.show_about_dialog();
         }));
         self.add_action(&action_about);
+
+        // Show received file in file browser (called from notification)
+        let action_show_file =
+            gio::SimpleAction::new("show-file", Some(&PathBuf::static_variant_type()));
+        action_show_file.connect_activate(clone!(@weak self as app => move |_action, data| {
+            if let Some(data) = data {
+                let path = PathBuf::from_variant(data);
+                if let Some(filename) = path {
+                    // Ignore because what are we supposed to do otherwise
+                    let _ = show_dir(&filename);
+                }
+            }
+        }));
+        self.add_action(&action_show_file);
     }
 
     // Sets up keyboard shortcuts

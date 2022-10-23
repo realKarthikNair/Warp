@@ -600,6 +600,14 @@ impl ActionView {
 
                     imp.status_page.set_description(Some(&description));
                     imp.open_box.set_visible(true);
+
+                    if let Some(path) = imp.context.borrow().file_path_received_successfully.clone()
+                    {
+                        notification.set_default_action_and_target_value(
+                            "app.show-file",
+                            Some(&path.to_variant()),
+                        );
+                    }
                     notification.set_body(Some(&description));
                 }
 

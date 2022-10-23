@@ -66,6 +66,8 @@
         <p>Bugfix release</p>
         <ul>
           <li>Fix about window</li>
+          <li>File received notification now opens the containing folder when clicked</li>
+          <li>Update to gtk-rs 0.5</li>
           <li>Translation updates</li>
         </ul>
       </description>
