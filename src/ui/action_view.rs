@@ -12,7 +12,7 @@ use adw::gio::NotificationPriority;
 use adw::prelude::*;
 use gettextrs::*;
 use gtk::subclass::prelude::*;
-use gtk::{gio, glib};
+use gtk::{gio, glib, template_callbacks};
 use std::ffi::OsString;
 use std::fmt::Debug;
 use std::future::Future;
@@ -144,7 +144,6 @@ mod imp {
     use gtk::gdk::AppLaunchContext;
     use std::cell::RefCell;
 
-    use crate::glib::clone;
     //use crate::util::WormholeTransferURI;
     use gtk::gio::AppInfo;
     use gtk::CompositeTemplate;
@@ -189,7 +188,8 @@ mod imp {
         type ParentType = gtk::Box;
 
         fn class_init(klass: &mut Self::Class) {
-            Self::bind_template(klass);
+            klass.bind_template();
+            klass.bind_template_callbacks();
         }
 
         // You must call `Widget`'s `init_template()` within `instance_init()`.
@@ -198,141 +198,141 @@ mod imp {
         }
     }
 
-    impl ObjectImpl for ActionView {
-        fn constructed(&self) {
-            self.parent_constructed();
-            let obj = self.obj();
-
-            self.cancel_button
-                .connect_clicked(clone!(@weak obj => move |_| {
-                    main_async_local(super::ActionView::transmit_error_handler, async move {
-                        obj.cancel_request().await;
-                        Ok(())
-                    });
-                }));
-
-            self.back_button
-                .connect_clicked(clone!(@weak obj => move |_| {
-                    WarpApplicationWindow::default().navigate_back();
-                }));
-
-            self.accept_transfer_button
-                .connect_clicked(clone!(@weak obj => move |_|
-                    main_async_local(super::ActionView::transmit_error_handler, async move {
-                        let continue_sender = obj.imp().context.borrow().continue_sender.clone();
-                        continue_sender.send(()).await.unwrap();
-
-                        Ok(())
-                    });
-                ));
-
-            self.progress_bar.set_pulse_step(0.05);
-
-            self.code_copy_button
-                .connect_clicked(clone!(@weak obj => move |_| {
-                    let code = obj.imp().code_entry.text();
-                    let window = WarpApplicationWindow::default();
-                    let clipboard = window.clipboard();
-
-                    clipboard.set_text(&code);
-
-                    // Translators: Notification when clicking on "Copy Code to Clipboard" button
-                    let toast = adw::Toast::new(&gettext("Copied Code to Clipboard"));
-                    toast.set_timeout(3);
-                    toast.set_priority(adw::ToastPriority::Normal);
-                    window.toast_overlay().add_toast(&toast);
-                }));
-
-            self.link_copy_button
-                .connect_clicked(clone!(@weak obj => move |_| {
-                    let code = obj.imp().code_entry.text();
-                    let window = WarpApplicationWindow::default();
-                    let clipboard = window.clipboard();
-
-                    let uri = WormholeTransferURI {
-                        code: Code(code.to_string()),
-                        version: 0,
-                        rendezvous_server: obj.imp().context.borrow().rendezvous_url.clone(),
-                        direction: TransferDirection::Receive,
-                    };
-                    clipboard.set_text(&uri.create_uri());
-
-                    // Translators: Notification when clicking on "Copy Link to Clipboard" button
-                    let toast = adw::Toast::new(&gettext("Copied Link to Clipboard"));
-                    toast.set_timeout(3);
-                    toast.set_priority(adw::ToastPriority::Normal);
-                    window.toast_overlay().add_toast(&toast);
-                }));
-
-            self.copy_error_button
-                .connect_clicked(clone!(@weak obj => move |_| {
-                    let window = WarpApplicationWindow::default();
-
-                    let toast = if let UIState::Error(error) = &*obj.ui_state() {
-                        let msg = format!("{}", error);
-                        window.clipboard().set_text(&msg);
-
-                        adw::Toast::new("Copied Error to Clipboard")
-                    } else {
-                        adw::Toast::new(&gettext("No error available"))
-                    };
-
-                    toast.set_timeout(3);
-                    toast.set_priority(adw::ToastPriority::Normal);
-                    window.toast_overlay().add_toast(&toast);
-                }));
-
-            self.code_entry.connect_has_focus_notify(|entry| {
-                // Select all text when entry is focused
-                if entry.has_focus() {
-                    entry.select_region(0, -1);
-                }
-            });
-
-            self.open_button
-                .connect_clicked(clone!(@weak obj => move |_| {
-                    if let Some(filename) = obj.imp().context.borrow_mut().file_path_received_successfully.clone() {
-                        let uri = glib::filename_to_uri(filename.clone(), None);
-                        if let Ok(uri) = uri {
-                            log::debug!("Opening file with uri '{}'", uri);
-                            let none: Option<&AppLaunchContext> = None;
-                            let res = AppInfo::launch_default_for_uri(&uri, none);
-                            if let Err(err) = res {
-                                log::error!("Error opening file: {}", err);
-                                main_async_local_infallible(async move {
-                                    let dialog = WarpApplicationWindow::default().no_registered_application_error_dialog(err.message());
-                                    let answer = dialog.run_future().await;
-                                    dialog.close();
-
-                                    if answer == "show-in-folder" {
-                                        if let Err(err) = show_dir(&filename) {
-                                            log::error!("Error showing directory: {}", err);
-                                            err.handle();
-                                        }
-                                    }
-                                });
-                            }
-                        } else {
-                            log::error!("Filename to open is not a valid uri");
-                        }
-                    } else {
-                        log::error!("Open button clicked but no filename set");
-                    };
-                }));
-
-            self.open_dir_button
-                .connect_clicked(clone!(@weak obj => move |_| {
-                    if let Some(filename) = obj.imp().context.borrow_mut().file_path_received_successfully.clone() {
-                        if let Err(err) = show_dir(&filename) {
-                            err.handle();
-                        }
-                    };
-                }));
-        }
-    }
-
+    impl ObjectImpl for ActionView {}
     impl WidgetImpl for ActionView {}
     impl BoxImpl for ActionView {}
+
+    #[template_callbacks]
+    impl ActionView {
+        #[template_callback]
+        fn back_button_clicked(&self) {
+            WarpApplicationWindow::default().navigate_back()
+        }
+
+        #[template_callback]
+        async fn cancel_button_clicked(&self) {
+            self.obj().cancel_request().await;
+        }
+
+        #[template_callback]
+        async fn accept_transfer_button_clicked(&self) {
+            let continue_sender = self.context.borrow().continue_sender.clone();
+            continue_sender.send(()).await.unwrap();
+        }
+
+        #[template_callback]
+        fn code_copy_button_clicked(&self) {
+            let code = self.code_entry.text();
+            let window = WarpApplicationWindow::default();
+            let clipboard = window.clipboard();
+
+            clipboard.set_text(&code);
+
+            // Translators: Notification when clicking on "Copy Code to Clipboard" button
+            let toast = adw::Toast::new(&gettext("Copied Code to Clipboard"));
+            toast.set_timeout(3);
+            toast.set_priority(adw::ToastPriority::Normal);
+            window.toast_overlay().add_toast(&toast);
+        }
+
+        #[template_callback]
+        fn link_copy_button_clicked(&self) {
+            let code = self.code_entry.text();
+            let window = WarpApplicationWindow::default();
+            let clipboard = window.clipboard();
+
+            let uri = WormholeTransferURI {
+                code: Code(code.to_string()),
+                version: 0,
+                rendezvous_server: self.context.borrow().rendezvous_url.clone(),
+                direction: TransferDirection::Receive,
+            };
+            clipboard.set_text(&uri.create_uri());
+
+            // Translators: Notification when clicking on "Copy Link to Clipboard" button
+            let toast = adw::Toast::new(&gettext("Copied Link to Clipboard"));
+            toast.set_timeout(3);
+            toast.set_priority(adw::ToastPriority::Normal);
+            window.toast_overlay().add_toast(&toast);
+        }
+
+        #[template_callback]
+        fn copy_error_button_clicked(&self) {
+            let window = WarpApplicationWindow::default();
+
+            let toast = if let UIState::Error(error) = &*self.context.borrow().ui_state {
+                let msg = format!("{}", error);
+                window.clipboard().set_text(&msg);
+
+                adw::Toast::new("Copied Error to Clipboard")
+            } else {
+                adw::Toast::new(&gettext("No error available"))
+            };
+
+            toast.set_timeout(3);
+            toast.set_priority(adw::ToastPriority::Normal);
+            window.toast_overlay().add_toast(&toast);
+        }
+
+        #[template_callback]
+        fn code_entry_select_all(entry: &gtk::Entry) {
+            // Select all text when entry is focused
+            if let Some(delegate) = entry.delegate() {
+                if delegate.has_focus() {
+                    entry.select_region(0, -1);
+                }
+            }
+        }
+
+        #[template_callback]
+        async fn open_button_clicked(&self) {
+            if let Some(filename) = self
+                .context
+                .borrow_mut()
+                .file_path_received_successfully
+                .clone()
+            {
+                let uri = glib::filename_to_uri(filename.clone(), None);
+                if let Ok(uri) = uri {
+                    log::debug!("Opening file with uri '{}'", uri);
+                    let none: Option<&AppLaunchContext> = None;
+                    let res = AppInfo::launch_default_for_uri(&uri, none);
+                    if let Err(err) = res {
+                        log::error!("Error opening file: {}", err);
+                        let dialog = WarpApplicationWindow::default()
+                            .no_registered_application_error_dialog(err.message());
+                        let answer = dialog.run_future().await;
+                        dialog.close();
+
+                        if answer == "show-in-folder" {
+                            if let Err(err) = show_dir(&filename) {
+                                log::error!("Error showing directory: {}", err);
+                                err.handle();
+                            }
+                        }
+                    }
+                } else {
+                    log::error!("Filename to open is not a valid uri");
+                }
+            } else {
+                log::error!("Open button clicked but no filename set");
+            };
+        }
+
+        #[template_callback]
+        fn open_dir_button_clicked(&self) {
+            if let Some(filename) = self
+                .context
+                .borrow_mut()
+                .file_path_received_successfully
+                .clone()
+            {
+                if let Err(err) = show_dir(&filename) {
+                    err.handle();
+                }
+            };
+        }
+    }
 }
 
 glib::wrapper! {
@@ -656,7 +656,7 @@ impl ActionView {
         }
     }
 
-    /// This will ask whether the transfer should be cancelled. If
+    /// This will ask whether the transfer should be cancelled.
     pub async fn cancel_request(&self) -> bool {
         if matches!(
             &*self.imp().context.borrow().ui_state,
@@ -1143,6 +1143,26 @@ impl ActionView {
         self.set_ui_state(UIState::Done(file_name));
 
         self.transmit_cleanup();
+    }
+
+    pub async fn try_or_error<F>(&self, func: F)
+    where
+        F: FnOnce() -> Result<(), AppError> + 'static,
+    {
+        match func() {
+            Ok(()) => (),
+            Err(app_error) => Self::transmit_error_handler(app_error),
+        }
+    }
+
+    pub async fn try_async_or_error<F>(func: F)
+    where
+        F: Future<Output = Result<(), AppError>> + 'static,
+    {
+        match func.await {
+            Ok(()) => (),
+            Err(app_error) => Self::transmit_error_handler(app_error),
+        }
     }
 
     pub fn transmit_error(&self, error: AppError) {

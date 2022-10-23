@@ -13,6 +13,7 @@
         </style>
         <child type="start">
           <object class="GtkButton" id="cancel_button">
+            <signal name="clicked" handler="cancel_button_clicked" swapped="true"/>
             <!-- Translators: Button -->
             <property name="tooltip-text" translatable="yes">Cancel</property>
             <property name="label">Cancel</property>
@@ -20,6 +21,7 @@
         </child>
         <child type="start">
           <object class="GtkButton" id="back_button">
+            <signal name="clicked" handler="back_button_clicked" swapped="true"/>
             <!-- Translators: Button -->
             <property name="tooltip-text" translatable="yes">Back</property>
             <property name="visible">False</property>
@@ -43,7 +45,9 @@
                 <child>
                   <object class="AdwClamp">
                     <child>
-                      <object class="GtkProgressBar" id="progress_bar"/>
+                      <object class="GtkProgressBar" id="progress_bar">
+                        <property name="pulse-step">0.05</property>
+                      </object>
                     </child>
                   </object>
                 </child>
@@ -57,12 +61,15 @@
                         </style>
                         <child>
                           <object class="GtkEntry" id="code_entry">
+                            <signal name="notify::cursor-position" handler="code_entry_select_all"/>
+                            <signal name="notify::selection-bound" handler="code_entry_select_all"/>
                             <property name="editable">False</property>
                             <property name="hexpand">True</property>
                           </object>
                         </child>
                         <child>
                           <object class="GtkButton" id="link_copy_button">
+                            <signal name="clicked" handler="link_copy_button_clicked" swapped="true"/>
                             <property name="icon-name">chain-link-symbolic</property>
                             <!-- Translators: Button; Transmit Link is a noun -->
                             <property name="tooltip-text" translatable="yes">Copy Transmit Link</property>
@@ -70,6 +77,7 @@
                         </child>
                         <child>
                           <object class="GtkButton" id="code_copy_button">
+                            <signal name="clicked" handler="code_copy_button_clicked" swapped="true"/>
                             <property name="icon-name">copy-symbolic</property>
                             <!-- Translators: Button; Transmit Code is a noun -->
                             <property name="tooltip-text" translatable="yes">Copy Transmit Code</property>
@@ -86,6 +94,7 @@
                     <property name="spacing">12</property>
                     <child>
                       <object class="GtkButton" id="open_button">
+                        <signal name="clicked" handler="open_button_clicked" swapped="true"/>
                         <property name="tooltip-text" translatable="yes">Open File</property>
                         <!-- Translators: Button -->
                         <property name="label" translatable="yes">Open File</property>
@@ -99,6 +108,7 @@
                     </child>
                     <child>
                       <object class="GtkButton" id="open_dir_button">
+                        <signal name="clicked" handler="open_dir_button_clicked" swapped="true"/>
                         <property name="tooltip-text" translatable="yes">Show in Folder</property>
                         <!-- Translators: Button -->
                         <property name="label" translatable="yes">Show in Folder</property>
@@ -113,6 +123,7 @@
                 </child>
                 <child>
                   <object class="GtkButton" id="accept_transfer_button">
+                    <signal name="clicked" handler="accept_transfer_button_clicked" swapped="true"/>
                     <property name="tooltip-text" translatable="yes">Accept File Transfer</property>
                     <property name="visible">False</property>
                     <!-- Translators: Button -->
@@ -127,6 +138,7 @@
                 </child>
                 <child>
                   <object class="GtkButton" id="copy_error_button">
+                    <signal name="clicked" handler="copy_error_button_clicked" swapped="true"/>
                     <property name="tooltip-text" translatable="yes">Copy a detailed message for reporting an issue</property>
                     <property name="visible">False</property>
                     <!-- Translators: Button -->
