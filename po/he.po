@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: warp main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
-"POT-Creation-Date: 2022-07-31 14:57+0000\n"
-"PO-Revision-Date: 2022-08-18 17:28+0300\n"
+"POT-Creation-Date: 2022-08-18 14:30+0000\n"
+"PO-Revision-Date: 2022-10-23 20:27+0300\n"
 "Last-Translator: Yosef Or Boczko <yoseforb@gmail.com>\n"
 "Language-Team: Hebrew <>\n"
 "Language: he\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : n==2 ? 1 : n>10 && n%10==0 ? "
 "2 : 3)\n"
-"X-Generator: Gtranslator 40.0\n"
+"X-Generator: Gtranslator 42.0\n"
 
 #: data/app.drey.Warp.desktop.in.in:3 data/app.drey.Warp.metainfo.xml.in.in:7
 #: src/main.rs:94
@@ -39,7 +39,7 @@ msgid ""
 "Warp allows you to securely send files to each other via the internet or "
 "local network by exchanging a word-based code."
 msgstr ""
-"Warp מאפשר לך לשלוח ולקבל קבצים בצורה מאובטחת דרך האינטרנט או הרשת המקומית "
+"‏Warp מאפשר לך לשלוח ולקבל קבצים בצורה מאובטחת דרך האינטרנט או הרשת המקומית "
 "על ידי החלפת קוד מבוסס מילים."
 
 #: data/app.drey.Warp.metainfo.xml.in.in:13
@@ -84,7 +84,7 @@ msgid "Transmit Code"
 msgstr "קוד העברה"
 
 #: data/app.drey.Warp.metainfo.xml.in.in:36
-#: data/resources/ui/action_view.ui:119
+#: data/resources/ui/action_view.ui:116
 msgid "Accept File Transfer"
 msgstr "אישור העברת קובץ"
 
@@ -102,7 +102,7 @@ msgstr "קובץ מתקבל"
 msgid "File Transfer Complete"
 msgstr "העברת הקובץ הושלמה"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:119
+#: data/app.drey.Warp.metainfo.xml.in.in:128
 msgid "Fina Wilke"
 msgstr "פינה וילקה"
 
@@ -113,41 +113,41 @@ msgid "Cancel"
 msgstr "ביטול"
 
 #. Translators: Button
-#: data/resources/ui/action_view.ui:27 data/resources/ui/welcome_window.ui:58
+#: data/resources/ui/action_view.ui:24 data/resources/ui/welcome_window.ui:58
 msgid "Back"
 msgstr "חזרה"
 
 #. Translators: Button; Transmit Link is a noun
-#: data/resources/ui/action_view.ui:71
+#: data/resources/ui/action_view.ui:68
 msgid "Copy Transmit Link"
 msgstr "העתקת קישור העברה"
 
 #. Translators: Button; Transmit Code is a noun
-#: data/resources/ui/action_view.ui:78
+#: data/resources/ui/action_view.ui:75
 msgid "Copy Transmit Code"
 msgstr "העתקת קוד העברה"
 
 #. Translators: Button
-#: data/resources/ui/action_view.ui:92 data/resources/ui/action_view.ui:94
+#: data/resources/ui/action_view.ui:89 data/resources/ui/action_view.ui:91
 msgid "Open File"
 msgstr "פתיחת קובץ"
 
 #. Translators: Button
-#: data/resources/ui/action_view.ui:105 data/resources/ui/action_view.ui:107
+#: data/resources/ui/action_view.ui:102 data/resources/ui/action_view.ui:104
 msgid "Show in Folder"
 msgstr "הצגה בתיקייה"
 
 #. Translators: Button
-#: data/resources/ui/action_view.ui:122
+#: data/resources/ui/action_view.ui:119
 msgid "Accept"
 msgstr "אישור"
 
-#: data/resources/ui/action_view.ui:133
+#: data/resources/ui/action_view.ui:130
 msgid "Copy a detailed message for reporting an issue"
 msgstr "להעתיק הודעה מפורטת כדי לדווח על התקלה"
 
 #. Translators: Button
-#: data/resources/ui/action_view.ui:136
+#: data/resources/ui/action_view.ui:133
 msgid "Copy Error Message"
 msgstr "העתקת הודעת שגיאה"
 
@@ -274,7 +274,7 @@ msgid ""
 "\n"
 "For more information about Warp, open the Help pages from the menu."
 msgstr ""
-"Warp מקל על העברת קבצים. כדי להתחיל, על שני הצדדים להתקין את Warp על "
+"‏Warp מקל על העברת קבצים. כדי להתחיל, על שני הצדדים להתקין את Warp על "
 "המכשירים שלהם.\n"
 "\n"
 "לאחר בחירת הקובץ להעברה, על הצד השולח לספר לצד המקבל מה קוד ההעברה. עדיף דרך "
@@ -332,7 +332,6 @@ msgstr "התקבל קוד מלוח הגזירים"
 
 #. Translators: File receive confirmation message dialog title
 #: data/resources/ui/window.ui:46
-#| msgid "Abort file transfer?"
 msgid "Abort File Transfer?"
 msgstr "לבטל העברת קובץ?"
 
@@ -341,12 +340,10 @@ msgid "Do you want to abort the current file transfer?"
 msgstr "לבטל את שליחת הקובץ הנוכחי?"
 
 #: data/resources/ui/window.ui:53
-#| msgid "Continue"
 msgid "_Continue"
 msgstr "לה_משיך"
 
 #: data/resources/ui/window.ui:54
-#| msgid "Abort"
 msgid "_Abort"
 msgstr "_לבטל"
 
@@ -356,12 +353,10 @@ msgid "Unable to Open File"
 msgstr "לא ניתן לפתוח קובץ"
 
 #: data/resources/ui/window.ui:64
-#| msgid "Close"
 msgid "_Close"
 msgstr "_סגירה"
 
 #: data/resources/ui/window.ui:65
-#| msgid "Show in Folder"
 msgid "_Show in Folder"
 msgstr "ה_צגה בתיקייה"
 
@@ -626,7 +621,9 @@ msgstr "לא ניתן להשתמש בקישור העברה: מתבצעת העב�
 
 #: src/ui/application.rs:205
 msgid "translator-credits"
-msgstr "ירון שהרבני <sh.yaron@gmail.com>"
+msgstr ""
+"ירון שהרבני <sh.yaron@gmail.com>\n"
+"מיזם תרגום GNOME לעברית https://l10n.gnome.org/teams/he/"
 
 #: src/ui/application.rs:208
 msgid "Tobias Bernard"
