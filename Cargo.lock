@@ -1310,24 +1310,6 @@ dependencies = [
 
 [[package]]
 name = "gvdb"
-version = "0.2.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "873f93f1bcfb0c967e4577442169613448a0aa6666e2810f85b669f31dce79f4"
-dependencies = [
- "byteorder",
- "flate2",
- "json",
- "memmap2",
- "safe-transmute",
- "serde",
- "serde-xml-rs 0.5.1",
- "walkdir",
- "xml-rs",
- "zvariant",
-]
-
-[[package]]
-name = "gvdb"
 version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "45a25bb788ebbe56697e340805b370e1ec0851be6308f2c883f07c7ccaeaa7dd"
@@ -1338,7 +1320,7 @@ dependencies = [
  "memmap2",
  "safe-transmute",
  "serde",
- "serde-xml-rs 0.6.0",
+ "serde-xml-rs",
  "walkdir",
  "xml-rs",
  "zvariant",
@@ -1350,7 +1332,7 @@ version = "0.1.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e10e4d0758e2231af146c92815f59233acb78d8c0f58c0bbf7bd496e5fde0d01"
 dependencies = [
- "gvdb 0.3.0",
+ "gvdb",
  "litrs",
  "proc-macro2",
  "quote",
@@ -1722,12 +1704,11 @@ dependencies = [
 
 [[package]]
 name = "nix"
-version = "0.23.1"
+version = "0.24.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9f866317acbd3a240710c63f065ffb1e4fd466259045ccb504130b7f668f35c6"
+checksum = "195cdbc1741b8134346d515b3a56a1c94b0912758009cfd53f99ea0f57b065fc"
 dependencies = [
  "bitflags",
- "cc",
  "cfg-if",
  "libc",
  "memoffset",
@@ -2304,18 +2285,6 @@ dependencies = [
 
 [[package]]
 name = "serde-xml-rs"
-version = "0.5.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "65162e9059be2f6a3421ebbb4fef3e74b7d9e7c60c50a0e292c6239f19f1edfa"
-dependencies = [
- "log",
- "serde",
- "thiserror",
- "xml-rs",
-]
-
-[[package]]
-name = "serde-xml-rs"
 version = "0.6.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "fb3aa78ecda1ebc9ec9847d5d3aba7d618823446a049ba2491940506da6e2782"
@@ -2873,7 +2842,7 @@ dependencies = [
  "gettext-rs",
  "gio",
  "gtk4",
- "gvdb 0.2.2",
+ "gvdb",
  "gvdb-macros",
  "libadwaita",
  "log",
@@ -3145,9 +3114,9 @@ dependencies = [
 
 [[package]]
 name = "zbus"
-version = "2.3.2"
+version = "3.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2d8f1a037b2c4a67d9654dc7bdfa8ff2e80555bbefdd3c1833c1d1b27c963a6b"
+checksum = "41ce2de393c874ba871292e881bf3c13a0d5eb38170ebab2e50b4c410eaa222b"
 dependencies = [
  "async-broadcast",
  "async-channel",
@@ -3166,7 +3135,6 @@ dependencies = [
  "futures-sink",
  "futures-util",
  "hex",
- "lazy_static",
  "nix",
  "once_cell",
  "ordered-stream",
@@ -3185,9 +3153,9 @@ dependencies = [
 
 [[package]]
 name = "zbus_macros"
-version = "2.3.2"
+version = "3.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1f8fb5186d1c87ae88cf234974c240671238b4a679158ad3b94ec465237349a6"
+checksum = "a13d08f5dc6cf725b693cb6ceacd43cd430ec0664a879188f29e7d7dcd98f96d"
 dependencies = [
  "proc-macro-crate",
  "proc-macro2",
