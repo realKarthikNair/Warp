@@ -81,13 +81,8 @@ mod imp {
             PROPERTIES.as_ref()
         }
 
-        fn set_property(
-            &self,
-            obj: &Self::Type,
-            _id: usize,
-            value: &Value,
-            pspec: &glib::ParamSpec,
-        ) {
+        fn set_property(&self, _id: usize, value: &Value, pspec: &glib::ParamSpec) {
+            let obj = self.obj();
             match pspec.name() {
                 "rendezvous-server-url" => obj.set_rendezvous_server_url(value.get().unwrap()),
                 "transit-server-url" => obj.set_transit_server_url(value.get().unwrap()),
@@ -96,7 +91,8 @@ mod imp {
             }
         }
 
-        fn property(&self, obj: &Self::Type, _id: usize, pspec: &glib::ParamSpec) -> Value {
+        fn property(&self, _id: usize, pspec: &glib::ParamSpec) -> Value {
+            let obj = self.obj();
             match pspec.name() {
                 "rendezvous-server-url" => obj.rendezvous_server_url().to_value(),
                 "transit-server-url" => obj.transit_server_url().to_value(),
@@ -105,8 +101,9 @@ mod imp {
             }
         }
 
-        fn constructed(&self, obj: &Self::Type) {
-            self.parent_constructed(obj);
+        fn constructed(&self) {
+            self.parent_constructed();
+            let obj = self.obj();
 
             let window = WarpApplicationWindow::default();
             obj.set_transient_for(Some(&window));
@@ -134,7 +131,7 @@ mod imp {
 
     impl WidgetImpl for WarpPreferencesWindow {}
     impl WindowImpl for WarpPreferencesWindow {
-        fn close_request(&self, _window: &Self::Type) -> Inhibit {
+        fn close_request(&self) -> Inhibit {
             let window = WarpApplicationWindow::default();
 
             let rendezvous_url = &*self.rendezvous_server_url.borrow();
@@ -164,7 +161,7 @@ glib::wrapper! {
 
 impl WarpPreferencesWindow {
     pub fn new() -> Self {
-        glib::Object::new(&[]).expect("Failed to create WarpPreferencesWindow")
+        glib::Object::new(&[])
     }
 
     pub fn set_rendezvous_server_url(&self, url: String) {

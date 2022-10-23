@@ -29,7 +29,7 @@ mod imp {
     use crate::globals;
     use crate::ui::welcome_window::WelcomeWindow;
     use crate::util::{error::UiError, future::main_async_local_infallible};
-    use gtk::{CompositeTemplate, Inhibit};
+    use gtk::CompositeTemplate;
 
     #[derive(Default, CompositeTemplate)]
     #[template(resource = "/app/drey/Warp/ui/window.ui")]
@@ -91,8 +91,9 @@ mod imp {
     }
 
     impl ObjectImpl for WarpApplicationWindow {
-        fn constructed(&self, obj: &Self::Type) {
-            self.parent_constructed(obj);
+        fn constructed(&self) {
+            self.parent_constructed();
+            let obj = self.obj();
 
             // Devel Profile
             if globals::DEBUG_BUILD {
@@ -207,12 +208,12 @@ mod imp {
             });
 
             self.file_chooser.set_modal(true);
-            self.file_chooser.set_transient_for(Some(obj));
+            self.file_chooser.set_transient_for(Some(&*obj));
             self.file_chooser
                 .connect_response(file_chooser_closure.clone());
 
             self.folder_chooser.set_modal(true);
-            self.folder_chooser.set_transient_for(Some(obj));
+            self.folder_chooser.set_transient_for(Some(&*obj));
             self.folder_chooser.connect_response(file_chooser_closure);
 
             self.code_entry.connect_has_focus_notify(|entry| {
@@ -261,21 +262,24 @@ mod imp {
     }
 
     impl WidgetImpl for WarpApplicationWindow {
-        fn show(&self, widget: &Self::Type) {
-            self.parent_show(widget);
+        fn show(&self) {
+            self.parent_show();
+            let widget = self.obj();
+
             widget.load_window_size();
 
             if !self.config.borrow().welcome_window_shown {
                 let welcome_window = WelcomeWindow::new();
                 welcome_window.set_modal(true);
-                welcome_window.set_transient_for(Some(widget));
+                welcome_window.set_transient_for(Some(&*widget));
                 welcome_window.show();
             }
         }
     }
     impl WindowImpl for WarpApplicationWindow {
         // Save window state on delete event
-        fn close_request(&self, window: &Self::Type) -> gtk::Inhibit {
+        fn close_request(&self) -> gtk::Inhibit {
+            let window = self.obj();
             window.save_window_size();
             window.save_config();
 
@@ -293,10 +297,10 @@ mod imp {
 
                 // When close button is clicked a second time we will just close the window
                 self.close_in_progress.set(true);
-                Inhibit(true)
+                gtk::Inhibit(true)
             } else {
                 // Pass close request on to the parent
-                self.parent_close_request(window)
+                self.parent_close_request()
             }
         }
     }
@@ -313,7 +317,7 @@ glib::wrapper! {
 
 impl WarpApplicationWindow {
     pub fn new(app: &WarpApplication) -> Self {
-        glib::Object::new(&[("application", app)]).expect("Failed to create WarpApplicationWindow")
+        glib::Object::new(&[("application", app)])
     }
 
     pub fn config(&self) -> RefMut<PersistentConfig> {

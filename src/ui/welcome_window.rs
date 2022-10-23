@@ -46,8 +46,9 @@ mod imp {
     }
 
     impl ObjectImpl for WelcomeWindow {
-        fn constructed(&self, obj: &Self::Type) {
-            self.parent_constructed(obj);
+        fn constructed(&self) {
+            self.parent_constructed();
+            let obj = self.obj();
 
             self.status_page.set_icon_name(Some(globals::APP_ID));
 
@@ -86,7 +87,7 @@ glib::wrapper! {
 
 impl WelcomeWindow {
     pub fn new() -> Self {
-        glib::Object::new(&[]).expect("Failed to create WelcomeWindow")
+        glib::Object::new(&[])
     }
 }
 

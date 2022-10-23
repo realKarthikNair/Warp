@@ -199,8 +199,9 @@ mod imp {
     }
 
     impl ObjectImpl for ActionView {
-        fn constructed(&self, obj: &Self::Type) {
-            self.parent_constructed(obj);
+        fn constructed(&self) {
+            self.parent_constructed();
+            let obj = self.obj();
 
             self.cancel_button
                 .connect_clicked(clone!(@weak obj => move |_| {
@@ -341,7 +342,7 @@ glib::wrapper! {
 
 impl ActionView {
     pub fn new() -> Self {
-        glib::Object::new(&[]).expect("Failed to create ActionView")
+        glib::Object::new(&[])
     }
 
     fn set_ui_state(&self, ui_state: UIState) {

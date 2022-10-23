@@ -36,9 +36,9 @@ mod imp {
     impl ObjectImpl for WarpApplication {}
 
     impl ApplicationImpl for WarpApplication {
-        fn activate(&self, app: &Self::Type) {
+        fn activate(&self) {
             log::debug!("GtkApplication<WarpApplication>::activate");
-            self.parent_activate(app);
+            self.parent_activate();
 
             if let Some(window) = self.window.get() {
                 let window = window.upgrade().unwrap();
@@ -48,17 +48,18 @@ mod imp {
 
             log::debug!("Create window");
 
-            let window = WarpApplicationWindow::new(app);
+            let window = WarpApplicationWindow::new(&self.obj());
             self.window
                 .set(window.downgrade())
                 .expect("Window already set.");
 
-            app.main_window().present();
+            self.obj().main_window().present();
         }
 
-        fn startup(&self, app: &Self::Type) {
+        fn startup(&self) {
             log::debug!("GtkApplication<WarpApplication>::startup");
-            self.parent_startup(app);
+            let app = self.obj();
+            self.parent_startup();
 
             // Set icons for shell
             gtk::Window::set_default_icon_name(globals::APP_ID);
@@ -69,8 +70,9 @@ mod imp {
             app.setup_accels();
         }
 
-        fn open(&self, app: &Self::Type, files: &[File], _hint: &str) {
-            self.activate(app);
+        fn open(&self, files: &[File], _hint: &str) {
+            self.activate();
+            let app = self.obj();
 
             if !files.is_empty() {
                 if app.main_window().transfer_in_progress() {
@@ -119,7 +121,6 @@ impl WarpApplication {
             ("flags", &gio::ApplicationFlags::HANDLES_OPEN),
             ("resource-base-path", &Some("/app/drey/Warp/")),
         ])
-        .expect("Application initialization failed...")
     }
 
     pub fn main_window(&self) -> WarpApplicationWindow {
