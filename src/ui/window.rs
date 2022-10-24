@@ -1,11 +1,12 @@
 use crate::config::PersistentConfig;
 use crate::gettext::gettextf;
+use crate::glib::clone;
 use crate::globals::TRANSMIT_CODE_MATCH_REGEX;
 use crate::ui::action_view::ActionView;
 use adw::prelude::*;
 use gettextrs::*;
 use gtk::subclass::prelude::*;
-use gtk::{gio, glib, ResponseType};
+use gtk::{gio, glib, template_callbacks, ResponseType};
 use std::cell::RefMut;
 use std::str::FromStr;
 use wormhole::transfer::AppVersion;
@@ -29,7 +30,7 @@ mod imp {
     use crate::globals;
     use crate::ui::welcome_window::WelcomeWindow;
     use crate::util::{error::UiError, future::main_async_local_infallible};
-    use gtk::CompositeTemplate;
+    use gtk::{template_callbacks, CompositeTemplate};
 
     #[derive(Default, CompositeTemplate)]
     #[template(resource = "/app/drey/Warp/ui/window.ui")]
@@ -82,6 +83,7 @@ mod imp {
 
         fn class_init(klass: &mut Self::Class) {
             Self::bind_template(klass);
+            klass.bind_template_instance_callbacks();
         }
 
         // You must call `Widget`'s `init_template()` within `instance_init()`.
@@ -121,68 +123,8 @@ mod imp {
                 }),
             ));
 
-            obj.connect_notify(Some("is-active"), |obj, _| {
-                obj.add_code_from_clipboard();
-            });
-
-            self.stack
-                .connect_visible_child_name_notify(clone!(@weak obj => move |_| {
-                    obj.add_code_from_clipboard();
-                }));
-
             obj.setup_help_overlay();
-
-            self.send_select_file_button
-                .connect_clicked(clone!(@weak obj => move |_| {
-                    obj.imp().file_chooser.get().show();
-                }));
-
-            self.send_select_folder_button
-                .connect_clicked(clone!(@weak obj => move |_| {
-                    obj.imp().folder_chooser.get().show();
-                }));
-
-            // Open folder
-            let action_open_folder = gio::SimpleAction::new("open-folder", None);
-            action_open_folder.connect_activate(clone!(@weak obj => move |_, _| {
-                if !obj.action_view_showing() {
-                    let imp = obj.imp();
-                    imp.stack.set_visible_child_name("send");
-                    imp.folder_chooser.get().show();
-                }
-            }));
-            obj.add_action(&action_open_folder);
-
-            // Open (send) file
-            let action_send = gio::SimpleAction::new("open-file", None);
-            action_send.connect_activate(clone!(@weak obj => move |_, _| {
-                if !obj.action_view_showing() {
-                    let imp = obj.imp();
-                    imp.stack.set_visible_child_name("send");
-                    imp.file_chooser.get().show();
-                }
-            }));
-            obj.add_action(&action_send);
-
-            // Receive file
-            let action_send = gio::SimpleAction::new("receive-file", None);
-            action_send.connect_activate(clone!(@weak obj => move |_, _| {
-                if !obj.action_view_showing() {
-                    obj.imp().stack.set_visible_child_name("receive");
-                    obj.imp().code_entry.grab_focus();
-                }
-            }));
-            obj.add_action(&action_send);
-
-            self.receive_button
-                .connect_clicked(clone!(@weak obj => move |_| {
-                    obj.receive_file_button();
-                }));
-
-            self.code_entry
-                .connect_activate(clone!(@weak obj => move |_| {
-                    obj.receive_file_button();
-                }));
+            obj.setup_gactions();
 
             let file_chooser_closure = clone!(@strong obj => move |chooser: &gtk::FileChooserNative, response: gtk::ResponseType| {
                 match response {
@@ -207,19 +149,9 @@ mod imp {
                 };
             });
 
-            self.file_chooser.set_modal(true);
-            self.file_chooser.set_transient_for(Some(&*obj));
             self.file_chooser
                 .connect_response(file_chooser_closure.clone());
-
-            self.folder_chooser.set_modal(true);
-            self.folder_chooser.set_transient_for(Some(&*obj));
             self.folder_chooser.connect_response(file_chooser_closure);
-
-            self.code_entry.connect_has_focus_notify(|entry| {
-                // Select all text when entry is focused
-                entry.select_region(0, -1);
-            });
 
             // Drag and Drop (disabled on flatpak, see https://gitlab.gnome.org/GNOME/gnome-shell/-/issues/418
             if WarpApplication::is_flatpak() {
@@ -244,20 +176,6 @@ mod imp {
                 );
                 self.send_box.add_controller(&drop_target);
             }
-
-            self.inserted_code_toast
-                .connect_dismissed(clone!(@weak obj => move |_toast| {
-                    obj.imp().inserted_code_toast_showing.set(false);
-                }));
-
-            self.leaflet
-                .connect_visible_child_notify(clone!(@weak obj => move |leaflet| {
-                    if let Some(widget) = leaflet.visible_child() {
-                        if widget != obj.action_view() {
-                            obj.navigate_back_cb();
-                        }
-                    }
-                }));
         }
     }
 
@@ -276,6 +194,7 @@ mod imp {
             }
         }
     }
+
     impl WindowImpl for WarpApplicationWindow {
         // Save window state on delete event
         fn close_request(&self) -> gtk::Inhibit {
@@ -315,6 +234,7 @@ glib::wrapper! {
         @implements gio::ActionMap, gio::ActionGroup, gtk::Root;
 }
 
+#[template_callbacks]
 impl WarpApplicationWindow {
     pub fn new(app: &WarpApplication) -> Self {
         glib::Object::new(&[("application", app)])
@@ -341,6 +261,40 @@ impl WarpApplicationWindow {
         self.set_help_overlay(shortcuts.as_ref());
     }
 
+    fn setup_gactions(&self) {
+        // Open folder
+        let action_open_folder = gio::SimpleAction::new("open-folder", None);
+        action_open_folder.connect_activate(clone!(@weak self as obj => move |_, _| {
+            if !obj.action_view_showing() {
+                let imp = obj.imp();
+                imp.stack.set_visible_child_name("send");
+                imp.folder_chooser.get().show();
+            }
+        }));
+        self.add_action(&action_open_folder);
+
+        // Open (send) file
+        let action_send = gio::SimpleAction::new("open-file", None);
+        action_send.connect_activate(clone!(@weak self as obj => move |_, _| {
+            if !obj.action_view_showing() {
+                let imp = obj.imp();
+                imp.stack.set_visible_child_name("send");
+                imp.file_chooser.get().show();
+            }
+        }));
+        self.add_action(&action_send);
+
+        // Receive file
+        let action_send = gio::SimpleAction::new("receive-file", None);
+        action_send.connect_activate(clone!(@weak self as obj => move |_, _| {
+            if !obj.action_view_showing() {
+                obj.imp().stack.set_visible_child_name("receive");
+                obj.imp().code_entry.grab_focus();
+            }
+        }));
+        self.add_action(&action_send);
+    }
+
     fn save_window_size(&self) {
         let imp = self.imp();
 
@@ -359,7 +313,32 @@ impl WarpApplicationWindow {
         self.set_default_size(width, height);
     }
 
-    pub fn receive_file_button(&self) {
+    #[template_callback]
+    fn leaflet_visible_child_notify(&self) {
+        if let Some(widget) = self.imp().leaflet.visible_child() {
+            if widget != self.action_view() {
+                self.navigate_back_cb();
+            }
+        }
+    }
+
+    #[template_callback]
+    fn inserted_code_toast_dismissed(&self) {
+        self.imp().inserted_code_toast_showing.set(false);
+    }
+
+    #[template_callback]
+    fn select_file_button_clicked(&self) {
+        self.imp().file_chooser.show();
+    }
+
+    #[template_callback]
+    fn select_folder_button_clicked(&self) {
+        self.imp().folder_chooser.show();
+    }
+
+    #[template_callback]
+    pub fn receive_button_clicked(&self) {
         let text = self.imp().code_entry.text();
         let uri = extract_transmit_uri(&text).and_then(|s| WormholeTransferURI::from_str(&s).ok());
         let code = if TRANSMIT_CODE_MATCH_REGEX.is_match(&text) {
@@ -424,6 +403,7 @@ impl WarpApplicationWindow {
             .insert(code.to_string());
     }
 
+    #[template_callback]
     pub fn add_code_from_clipboard(&self) {
         let stack_name = if let Some(name) = self.imp().stack.visible_child_name() {
             name
