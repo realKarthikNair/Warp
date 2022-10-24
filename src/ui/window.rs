@@ -30,7 +30,7 @@ mod imp {
     use crate::globals;
     use crate::ui::welcome_window::WelcomeWindow;
     use crate::util::{error::UiError, future::main_async_local_infallible};
-    use gtk::{template_callbacks, CompositeTemplate};
+    use gtk::CompositeTemplate;
 
     #[derive(Default, CompositeTemplate)]
     #[template(resource = "/app/drey/Warp/ui/window.ui")]

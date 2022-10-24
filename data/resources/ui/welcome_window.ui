@@ -18,12 +18,14 @@
                 <property name="centering-policy">strict</property>
                 <child type="start">
                   <object class="GtkButton" id="close_button">
+                    <signal name="clicked" handler="close_button_clicked" swapped="true"/>
                     <!-- Translators: Button -->
                     <property name="label" translatable="yes">Close</property>
                   </object>
                 </child>
                 <child type="end">
                   <object class="GtkButton" id="next_button">
+                    <signal name="clicked" handler="navigate_forward" swapped="true"/>
                     <!-- Translators: Button -->
                     <property name="label" translatable="yes">Next</property>
                     <style>
@@ -54,6 +56,7 @@
                 </property>
                 <child type="start">
                   <object class="GtkButton" id="back_button">
+                    <signal name="clicked" handler="navigate_back" swapped="true"/>
                     <!-- Translators: Button -->
                     <property name="tooltip-text" translatable="yes">Back</property>
                     <property name="icon-name">go-previous-symbolic</property>
@@ -105,6 +108,7 @@ For more information about Warp, open the Help pages from the menu.</property>
                             </child>
                             <child>
                               <object class="GtkButton" id="get_started_button">
+                                <signal name="clicked" handler="get_started_button_clicked" swapped="true"/>
                                 <!-- Translators: Big button to finish welcome screen -->
                                 <property name="label" translatable="yes">Get Started Using Warp</property>
                                 <property name="halign">center</property>

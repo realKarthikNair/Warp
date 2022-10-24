@@ -1,22 +1,20 @@
 use adw::prelude::*;
 use adw::subclass::prelude::*;
-use gtk::glib;
+use gtk::{glib, template_callbacks};
 
 use crate::globals;
+use crate::ui::window::WarpApplicationWindow;
 
 mod imp {
     use super::*;
-    use adw::NavigationDirection;
 
-    use crate::glib::clone;
-    use crate::ui::window::WarpApplicationWindow;
     use gtk::CompositeTemplate;
 
     #[derive(Debug, Default, CompositeTemplate)]
     #[template(resource = "/app/drey/Warp/ui/welcome_window.ui")]
     pub struct WelcomeWindow {
         #[template_child]
-        leaflet: TemplateChild<adw::Leaflet>,
+        pub(super) leaflet: TemplateChild<adw::Leaflet>,
         #[template_child]
         status_page: TemplateChild<adw::StatusPage>,
         #[template_child]
@@ -36,7 +34,8 @@ mod imp {
         type ParentType = adw::Window;
 
         fn class_init(klass: &mut Self::Class) {
-            Self::bind_template(klass);
+            klass.bind_template();
+            klass.bind_template_instance_callbacks();
         }
 
         // You must call `Widget`'s `init_template()` within `instance_init()`.
@@ -48,30 +47,7 @@ mod imp {
     impl ObjectImpl for WelcomeWindow {
         fn constructed(&self) {
             self.parent_constructed();
-            let obj = self.obj();
-
             self.status_page.set_icon_name(Some(globals::APP_ID));
-
-            self.close_button
-                .connect_clicked(clone!(@weak obj => move |_| {
-                    obj.close();
-                }));
-
-            self.back_button
-                .connect_clicked(clone!(@weak obj => move |_| {
-                    obj.imp().leaflet.navigate(NavigationDirection::Back);
-                }));
-
-            self.next_button
-                .connect_clicked(clone!(@weak obj => move |_| {
-                    obj.imp().leaflet.navigate(NavigationDirection::Forward);
-                }));
-
-            self.get_started_button
-                .connect_clicked(clone!(@weak obj => move |_| {
-                    WarpApplicationWindow::default().set_welcome_window_shown(true);
-                    obj.close();
-                }));
         }
     }
 
@@ -85,9 +61,33 @@ glib::wrapper! {
         @extends gtk::Widget, gtk::Window, adw::Window;
 }
 
+#[template_callbacks]
 impl WelcomeWindow {
     pub fn new() -> Self {
         glib::Object::new(&[])
+    }
+
+    #[template_callback]
+    pub fn close_button_clicked(&self) {
+        self.close()
+    }
+
+    #[template_callback]
+    pub fn navigate_back(&self) {
+        self.imp().leaflet.navigate(adw::NavigationDirection::Back);
+    }
+
+    #[template_callback]
+    pub fn navigate_forward(&self) {
+        self.imp()
+            .leaflet
+            .navigate(adw::NavigationDirection::Forward);
+    }
+
+    #[template_callback]
+    pub fn get_started_button_clicked(&self) {
+        WarpApplicationWindow::default().set_welcome_window_shown(true);
+        self.close();
     }
 }
 
