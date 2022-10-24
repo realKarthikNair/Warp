@@ -150,6 +150,7 @@ mod imp {
             Inhibit(false)
         }
     }
+
     impl AdwWindowImpl for WarpPreferencesWindow {}
     impl PreferencesWindowImpl for WarpPreferencesWindow {}
 }
