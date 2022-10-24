@@ -206,7 +206,7 @@ mod imp {
     impl ActionView {
         #[template_callback]
         fn back_button_clicked(&self) {
-            WarpApplicationWindow::default().navigate_back()
+            WarpApplicationWindow::default().navigate_back();
         }
 
         #[template_callback]
@@ -286,12 +286,13 @@ mod imp {
 
         #[template_callback]
         async fn open_button_clicked(&self) {
-            if let Some(filename) = self
+            let maybe_path = self
                 .context
-                .borrow_mut()
+                .borrow()
                 .file_path_received_successfully
-                .clone()
-            {
+                .clone();
+
+            if let Some(filename) = maybe_path {
                 let uri = glib::filename_to_uri(filename.clone(), None);
                 if let Ok(uri) = uri {
                     log::debug!("Opening file with uri '{}'", uri);
@@ -1073,7 +1074,7 @@ impl ActionView {
                     update_progress = progress.set_progress(sent as usize);
                     progress.get_pretty_time_remaining()
                 })
-                .unwrap_or_else(|| "".to_owned());
+                .unwrap_or_default();
 
             if update_progress {
                 imp.progress_bar.set_fraction(sent as f64 / total as f64);
@@ -1143,26 +1144,6 @@ impl ActionView {
         self.set_ui_state(UIState::Done(file_name));
 
         self.transmit_cleanup();
-    }
-
-    pub async fn try_or_error<F>(&self, func: F)
-    where
-        F: FnOnce() -> Result<(), AppError> + 'static,
-    {
-        match func() {
-            Ok(()) => (),
-            Err(app_error) => Self::transmit_error_handler(app_error),
-        }
-    }
-
-    pub async fn try_async_or_error<F>(func: F)
-    where
-        F: Future<Output = Result<(), AppError>> + 'static,
-    {
-        match func.await {
-            Ok(()) => (),
-            Err(app_error) => Self::transmit_error_handler(app_error),
-        }
     }
 
     pub fn transmit_error(&self, error: AppError) {

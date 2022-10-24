@@ -69,7 +69,7 @@ impl WelcomeWindow {
 
     #[template_callback]
     pub fn close_button_clicked(&self) {
-        self.close()
+        self.close();
     }
 
     #[template_callback]

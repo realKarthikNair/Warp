@@ -46,7 +46,7 @@ pub async fn compress_folder(path: &Path) -> Result<tempfile::NamedTempFile, App
     let mut zip_file = tempfile::Builder::new()
         .prefix("warp_archive_")
         .suffix(".zip")
-        .tempfile_in(&tmp_dir)?;
+        .tempfile_in(tmp_dir)?;
 
     log::debug!("Creating archive: {}", zip_file.path().display());
     smol::spawn(async move {

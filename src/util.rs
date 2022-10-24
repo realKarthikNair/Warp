@@ -16,7 +16,7 @@ pub mod future;
 
 /// From [Pika Backup](https://gitlab.gnome.org/World/pika-backup/-/blob/main/src/ui/page_archives/display.rs#L63)
 pub fn show_dir(path: &std::path::Path) -> Result<(), AppError> {
-    let uri = gio::File::for_path(&path).uri();
+    let uri = gio::File::for_path(path).uri();
 
     let show_folder = || -> std::result::Result<(), _> {
         let conn = zbus::blocking::Connection::session()?;
@@ -123,7 +123,7 @@ impl WormholeTransferURI {
         code: &str,
         direction: TransferDirection,
     ) -> Self {
-        let rendezvous_server = url::Url::parse(&*app_cfg.rendezvous_url).unwrap();
+        let rendezvous_server = url::Url::parse(&app_cfg.rendezvous_url).unwrap();
         Self {
             code: Code(code.to_owned()),
             version: 0,

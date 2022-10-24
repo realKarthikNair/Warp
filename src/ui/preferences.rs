@@ -112,14 +112,14 @@ mod imp {
                     .config()
                     .rendezvous_server_url
                     .clone()
-                    .unwrap_or_else(|| "".to_owned()),
+                    .unwrap_or_default(),
             );
             obj.set_transit_server_url(
                 window
                     .config()
                     .transit_server_url
                     .clone()
-                    .unwrap_or_else(|| "".to_owned()),
+                    .unwrap_or_default(),
             );
 
             self.code_length_spin_button
@@ -186,7 +186,7 @@ impl WarpPreferencesWindow {
             self.imp()
                 .rendezvous_server_url_entry_row
                 .add_css_class("error");
-            self.imp().rendezvous_server_url.replace("".to_owned());
+            self.imp().rendezvous_server_url.replace(String::new());
         }
 
         self.notify("rendezvous-server-url");
@@ -218,7 +218,7 @@ impl WarpPreferencesWindow {
             self.imp()
                 .transit_server_url_entry_row
                 .add_css_class("error");
-            self.imp().transit_server_url.replace("".to_owned());
+            self.imp().transit_server_url.replace(String::new());
         }
 
         self.notify("transit-server-url");
