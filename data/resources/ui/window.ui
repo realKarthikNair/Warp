@@ -115,7 +115,8 @@
                             <child>
                               <object class="AdwViewStackPage">
                                 <property name="name">send</property>
-                                <property name="title" translatable="yes">Send</property>
+                                <property name="title" translatable="yes">_Send</property>
+                                <property name="use-underline">True</property>
                                 <property name="icon-name">send-to-symbolic</property>
                                 <property name="child">
                                   <object class="GtkBox" id="send_box">
@@ -170,7 +171,8 @@
                             <child>
                               <object class="AdwViewStackPage">
                                 <property name="name">receive</property>
-                                <property name="title" translatable="yes">Receive</property>
+                                <property name="title" translatable="yes">_Receive</property>
+                                <property name="use-underline">True</property>
                                 <property name="icon-name">folder-download-symbolic</property>
                                 <property name="child">
                                   <object class="GtkBox">
