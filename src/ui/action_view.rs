@@ -20,7 +20,8 @@ use std::net::{IpAddr, SocketAddr};
 use std::path::{Path, PathBuf};
 use std::rc::Rc;
 use std::time::Duration;
-use wormhole::transfer::AppVersion;
+use regex::Regex;
+use wormhole::transfer::{AppVersion, TransferError};
 use wormhole::transit::TransitInfo;
 use wormhole::{transfer, transit, AppConfig, Code, Wormhole};
 
@@ -36,6 +37,7 @@ pub enum UIState {
     Connected,
     AskConfirmation(String, u64),
     Transmitting(String, TransitInfo, SocketAddr),
+    TextMessage(String),
     Done(OsString),
     Error(AppError),
 }
@@ -51,6 +53,7 @@ impl PartialEq for UIState {
             UIState::Connected => matches!(other, UIState::Connected),
             UIState::AskConfirmation(..) => matches!(other, UIState::AskConfirmation(..)),
             UIState::Transmitting(..) => matches!(other, UIState::Transmitting(..)),
+            UIState::TextMessage(..) => matches!(other, UIState::TextMessage(..)),
             UIState::Done(_) => matches!(other, UIState::Done(..)),
             UIState::Error(_) => matches!(other, UIState::Error(..)),
         }
@@ -177,6 +180,10 @@ mod imp {
         pub code_copy_button: TemplateChild<gtk::Button>,
         #[template_child]
         pub copy_error_button: TemplateChild<gtk::Button>,
+        #[template_child]
+        pub text_message_label: TemplateChild<gtk::Label>,
+        #[template_child]
+        pub text_message_box: TemplateChild<gtk::Box>,
 
         pub context: RefCell<UIContext>,
     }
@@ -268,6 +275,18 @@ mod imp {
             } else {
                 adw::Toast::new(&gettext("No error available"))
             };
+
+            toast.set_timeout(3);
+            toast.set_priority(adw::ToastPriority::Normal);
+            window.toast_overlay().add_toast(&toast);
+        }
+
+        #[template_callback]
+        fn text_message_copy_button_clicked(&self) {
+            let window = WarpApplicationWindow::default();
+            window.clipboard().set_text(&*self.text_message_label.text());
+
+            let toast = adw::Toast::new(&gettext("Copied Message to clipboard"));
 
             toast.set_timeout(3);
             toast.set_priority(adw::ToastPriority::Normal);
@@ -384,6 +403,8 @@ impl ActionView {
                 imp.progress_bar.set_visible(true);
                 imp.progress_bar.set_show_text(false);
                 imp.copy_error_button.set_visible(false);
+                imp.text_message_box.set_visible(false);
+                imp.text_message_label.set_text("");
                 imp.status_page
                     .set_icon_name(Some("arrows-questionmark-symbolic"));
 
@@ -566,6 +587,20 @@ impl ActionView {
                         .set_icon_name(Some("folder-download-symbolic"));
                 }
             }
+            UIState::TextMessage(message) => {
+                imp.status_page.set_icon_name(None);
+                imp.status_page.set_title(&gettext("Transfer Successful"));
+                imp.status_page.set_description(Some(&gettext("A text message was received")));
+                imp.text_message_box.set_visible(true);
+                imp.text_message_label.set_text(message);
+
+                imp.cancel_button.set_visible(false);
+                imp.progress_bar.set_text(None);
+                imp.progress_bar.set_visible(false);
+
+                self.show_progress_indeterminate(false);
+                self.set_can_navigate_back(true);
+            }
             UIState::Done(filename) => {
                 imp.status_page
                     // Translators: Title
@@ -661,7 +696,7 @@ impl ActionView {
     pub async fn cancel_request(&self) -> bool {
         if matches!(
             &*self.imp().context.borrow().ui_state,
-            UIState::AskConfirmation(..) | UIState::Done(..) | UIState::Error(..)
+            UIState::AskConfirmation(..) | UIState::TextMessage(..) | UIState::Done(..) | UIState::Error(..)
         ) {
             self.cancel().await;
             return true;
@@ -809,17 +844,31 @@ impl ActionView {
 
         let relay_url = self.imp().context.borrow().transit_url.clone();
 
-        let request = spawn_async(async move {
+        let request_res = spawn_async(async move {
             Ok(transfer::request_file(
                 connection,
                 relay_url,
                 TRANSIT_ABILITIES,
                 Self::cancel_future(),
             )
-            .await?)
+            .await)
         })
-        .await?
-        .ok_or(AppError::Canceled)?;
+        .await?;
+
+        if let Err(TransferError::ProtocolUnexpectedMessage(_, ref msg)) = request_res {
+            let msg = format!("{:?}", msg);
+            let regex = Regex::new(r#"^Offer\(Message\("(.*)"\)\)$"#).unwrap();
+            let mut matches = regex.captures_iter(&msg);
+            let match1 = matches.next();
+            if let Some(captures) = match1 {
+                let msg = captures[1].split("\\n").collect::<Vec<&str>>().join("\n").to_string();
+                self.set_ui_state(UIState::TextMessage(msg));
+                self.transmit_cleanup();
+                return Ok(());
+            }
+        }
+
+        let request = request_res?.ok_or(AppError::Canceled)?;
 
         // Only use the last filename component otherwise the other side can overwrite
         // files in different directories
@@ -1207,13 +1256,13 @@ impl ActionView {
 
     pub fn transfer_in_progress(&self) -> bool {
         !self.imp().context.borrow().canceled
-            && !matches!(&*self.ui_state(), UIState::Done(..) | UIState::Error(..))
+            && !matches!(&*self.ui_state(), UIState::TextMessage(..) | UIState::Done(..) | UIState::Error(..))
     }
 
     pub fn should_handle_error_inline(&self) -> bool {
         !matches!(
             &*self.ui_state(),
-            UIState::Initial | UIState::Done(..) | UIState::Error(..)
+            UIState::Initial | UIState::TextMessage(..) | UIState::Done(..) | UIState::Error(..)
         )
     }
 }

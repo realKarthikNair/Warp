@@ -52,6 +52,35 @@
                   </object>
                 </child>
                 <child>
+                  <object class="GtkBox" id="text_message_box">
+                    <property name="orientation">vertical</property>
+                    <property name="spacing">12</property>
+                    <child>
+                      <object class="AdwClamp">
+                        <child>
+                          <object class="GtkLabel" id="text_message_label">
+                            <property name="selectable">True</property>
+                            <property name="single-line-mode">False</property>
+                            <property name="halign">start</property>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkButton">
+                        <signal name="clicked" handler="text_message_copy_button_clicked" swapped="true"/>
+                        <property name="tooltip-text" translatable="yes">Copy the received text message to the clipboard</property>
+                        <!-- Translators: Button -->
+                        <property name="label" translatable="yes">Copy Text</property>
+                        <property name="hexpand">False</property>
+                        <style>
+                          <class name="pill"/>
+                        </style>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child>
                   <object class="AdwClamp">
                     <child>
                       <object class="GtkBox" id="code_box">
