@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
-"POT-Creation-Date: 2022-11-05 00:51+0000\n"
-"PO-Revision-Date: 2022-11-06 05:42+0100\n"
+"POT-Creation-Date: 2022-11-21 01:33+0000\n"
+"PO-Revision-Date: 2022-11-21 07:35+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: \n"
 "Language: ka\n"
@@ -422,6 +422,10 @@ msgstr "კოდი დაკოპირდა გაცვლის ბაფ
 #: src/ui/action_view.rs:253
 msgid "Copied Link to Clipboard"
 msgstr "ბმული დაკოპირდა გაცვლის ბაფერში"
+
+#: src/ui/action_view.rs:267
+msgid "Copied Error to Clipboard"
+msgstr "შეცდომა დაკოპირდა გაცვლის ბაფერში"
 
 #: src/ui/action_view.rs:269
 msgid "No error available"
