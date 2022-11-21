@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
-"POT-Creation-Date: 2022-11-05 00:51+0000\n"
-"PO-Revision-Date: 2022-11-05 11:30+0100\n"
+"POT-Creation-Date: 2022-11-21 01:33+0000\n"
+"PO-Revision-Date: 2022-11-21 10:20+0100\n"
 "Last-Translator: Jürgen Benvenuti <gastornis@posteo.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "Language: de\n"
@@ -293,7 +293,6 @@ msgstr ""
 "Um mehr darüber zu erfahren, wie Warp funktioniert, öffnen Sie die "
 "Hilfeseiten über das Menü."
 
-# Gefällt mir besser, da es Namen enthält. - jb
 #. Translators: Big button to finish welcome screen
 #: data/resources/ui/welcome_window.ui:113
 msgid "Get Started Using Warp"
@@ -457,6 +456,10 @@ msgstr "Code in die Zwischenablage kopiert"
 #: src/ui/action_view.rs:253
 msgid "Copied Link to Clipboard"
 msgstr "Link in die Zwischenablage kopiert"
+
+#: src/ui/action_view.rs:267
+msgid "Copied Error to Clipboard"
+msgstr "Fehler in die Zwischenablage kopiert"
 
 #: src/ui/action_view.rs:269
 msgid "No error available"
