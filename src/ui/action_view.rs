@@ -264,7 +264,7 @@ mod imp {
                 let msg = format!("{}", error);
                 window.clipboard().set_text(&msg);
 
-                adw::Toast::new("Copied Error to Clipboard")
+                adw::Toast::new(&gettext("Copied Error to Clipboard"))
             } else {
                 adw::Toast::new(&gettext("No error available"))
             };
