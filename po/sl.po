@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: warp main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
-"POT-Creation-Date: 2022-11-05 00:51+0000\n"
-"PO-Revision-Date: 2022-11-06 21:22+0100\n"
+"POT-Creation-Date: 2022-11-21 01:33+0000\n"
+"PO-Revision-Date: 2022-11-23 17:01+0100\n"
 "Last-Translator: Martin Srebotnjak <miles@filmsi.net>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
@@ -458,6 +458,10 @@ msgstr "Kopirana koda v odložišče"
 #: src/ui/action_view.rs:253
 msgid "Copied Link to Clipboard"
 msgstr "Kopirana povezava na odložišče"
+
+#: src/ui/action_view.rs:267
+msgid "Copied Error to Clipboard"
+msgstr "Kopirana napaka na odložišče"
 
 #: src/ui/action_view.rs:269
 msgid "No error available"
