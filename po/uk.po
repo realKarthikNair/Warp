@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: warp main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
-"POT-Creation-Date: 2022-11-05 00:51+0000\n"
-"PO-Revision-Date: 2022-11-05 20:33+0200\n"
-"Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
+"POT-Creation-Date: 2022-11-21 01:33+0000\n"
+"PO-Revision-Date: 2022-11-23 18:15+0200\n"
+"Last-Translator: Fracture dept <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -364,7 +364,6 @@ msgid "_Show in Folder"
 msgstr "По_казати у теці"
 
 #: data/resources/ui/window.ui:118
-#| msgid "Send"
 msgid "_Send"
 msgstr "_Надіслати"
 
@@ -387,7 +386,6 @@ msgid "Select Folder"
 msgstr "Вибрати теку"
 
 #: data/resources/ui/window.ui:174
-#| msgid "Receive"
 msgid "_Receive"
 msgstr "_Отримати"
 
@@ -458,6 +456,11 @@ msgstr "Код скопійовано до буфера обміну"
 #: src/ui/action_view.rs:253
 msgid "Copied Link to Clipboard"
 msgstr "Посилання скопійовано до буфера обміну"
+
+#: src/ui/action_view.rs:267
+#| msgid "Copied Code to Clipboard"
+msgid "Copied Error to Clipboard"
+msgstr "Повідомлення про помилку скопійовано до буфера обміну"
 
 #: src/ui/action_view.rs:269
 msgid "No error available"
