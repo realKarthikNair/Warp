@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: warp main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
-"POT-Creation-Date: 2022-11-05 00:51+0000\n"
-"PO-Revision-Date: 2022-11-05 19:34+0100\n"
+"POT-Creation-Date: 2022-11-21 01:33+0000\n"
+"PO-Revision-Date: 2022-11-23 01:03+0100\n"
 "Last-Translator: Balázs Úr <ur.balazs at fsf dot hu>\n"
 "Language-Team: Hungarian <gnome-hu-list at gnome dot org>\n"
 "Language: hu\n"
@@ -333,7 +333,7 @@ msgstr "Mappa megnyitása"
 #. Translators: Notification when code was automatically detected in clipboard and inserted into code entry on receive page
 #: data/resources/ui/window.ui:46
 msgid "Inserted code from clipboard"
-msgstr "Kód beillesztve a vágólapról"
+msgstr "A kód beillesztve a vágólapról"
 
 #. Translators: File receive confirmation message dialog title
 #: data/resources/ui/window.ui:51
@@ -366,7 +366,6 @@ msgid "_Show in Folder"
 msgstr "_Megjelenítés mappában"
 
 #: data/resources/ui/window.ui:118
-#| msgid "Send"
 msgid "_Send"
 msgstr "_Küldés"
 
@@ -389,7 +388,6 @@ msgid "Select Folder"
 msgstr "Mappa kiválasztása"
 
 #: data/resources/ui/window.ui:174
-#| msgid "Receive"
 msgid "_Receive"
 msgstr "_Fogadás"
 
@@ -446,12 +444,17 @@ msgstr "{0} — {1}"
 #. Translators: Notification when clicking on "Copy Code to Clipboard" button
 #: src/ui/action_view.rs:232
 msgid "Copied Code to Clipboard"
-msgstr "Kód másolva a vágólapra"
+msgstr "A kód a vágólapra másolva"
 
 #. Translators: Notification when clicking on "Copy Link to Clipboard" button
 #: src/ui/action_view.rs:253
 msgid "Copied Link to Clipboard"
-msgstr "Hivatkozás másolva a vágólapra"
+msgstr "A hivatkozás a vágólapra másolva"
+
+#: src/ui/action_view.rs:267
+#| msgid "Copied Code to Clipboard"
+msgid "Copied Error to Clipboard"
+msgstr "A hiba a vágólapra másolva"
 
 #: src/ui/action_view.rs:269
 msgid "No error available"
