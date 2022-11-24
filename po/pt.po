@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: warp main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
-"POT-Creation-Date: 2022-11-05 00:51+0000\n"
-"PO-Revision-Date: 2022-11-07 16:52+0000\n"
+"POT-Creation-Date: 2022-11-21 01:33+0000\n"
+"PO-Revision-Date: 2022-11-24 14:00+0000\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <pt@li.org>\n"
 "Language: pt\n"
@@ -446,6 +446,10 @@ msgstr "Código copiado para a área de transferência"
 #: src/ui/action_view.rs:253
 msgid "Copied Link to Clipboard"
 msgstr "Ligação copiada para a área de transferência"
+
+#: src/ui/action_view.rs:267
+msgid "Copied Error to Clipboard"
+msgstr "Erro copiado para a área de transferência"
 
 #: src/ui/action_view.rs:269
 msgid "No error available"
