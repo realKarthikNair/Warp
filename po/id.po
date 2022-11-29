@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: warp main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
-"POT-Creation-Date: 2022-11-05 00:51+0000\n"
-"PO-Revision-Date: 2022-11-16 11:45+0700\n"
+"POT-Creation-Date: 2022-11-21 01:33+0000\n"
+"PO-Revision-Date: 2022-11-29 13:48+0700\n"
 "Last-Translator: Kukuh Syafaat <kukuhsyafaat@gnome.org>\n"
 "Language-Team: Indonesian <gnome-l10n-id@googlegroups.com>\n"
 "Language: id\n"
@@ -34,12 +34,20 @@ msgid "Gnome;GTK;Wormhole;Magic-Wormhole;"
 msgstr "Gnome;GTK;Wormhole;Magic-Wormhole;"
 
 #: data/app.drey.Warp.metainfo.xml.in.in:10
-msgid "Warp allows you to securely send files to each other via the internet or local network by exchanging a word-based code."
-msgstr "Warp memungkinkan Anda untuk mengirim berkas dengan aman satu sama lain melalui internet atau jaringan lokal dengan bertukar kode berbasis kata."
+msgid ""
+"Warp allows you to securely send files to each other via the internet or "
+"local network by exchanging a word-based code."
+msgstr ""
+"Warp memungkinkan Anda untuk mengirim berkas dengan aman satu sama lain "
+"melalui internet atau jaringan lokal dengan bertukar kode berbasis kata."
 
 #: data/app.drey.Warp.metainfo.xml.in.in:13
-msgid "The best transfer method will be determined using the “Magic Wormhole” protocol which includes local network transfer if possible."
-msgstr "Metode transfer terbaik akan ditentukan menggunakan protokol \"Magic Wormhole\" yang mencakup transfer jaringan lokal jika memungkinkan."
+msgid ""
+"The best transfer method will be determined using the “Magic Wormhole” "
+"protocol which includes local network transfer if possible."
+msgstr ""
+"Metode transfer terbaik akan ditentukan menggunakan protokol \"Magic Wormhole"
+"\" yang mencakup transfer jaringan lokal jika memungkinkan."
 
 #: data/app.drey.Warp.metainfo.xml.in.in:16
 msgid "Features"
@@ -190,10 +198,14 @@ msgid "Server URLs"
 msgstr "URL Peladen"
 
 #: data/resources/ui/preferences.ui:16
-msgid "Changing the rendezvous server URL has to be done on both sides of the transfer. Only enter a server URL you can trust.\n"
+msgid ""
+"Changing the rendezvous server URL has to be done on both sides of the "
+"transfer. Only enter a server URL you can trust.\n"
 "\n"
 "Leaving these entries empty will use the application defaults."
-msgstr "Mengubah URL peladen rendezvous harus dilakukan di kedua sisi transfer. Hanya masukkan URL peladen yang dapat Anda percayai.\n"
+msgstr ""
+"Mengubah URL peladen rendezvous harus dilakukan di kedua sisi transfer. "
+"Hanya masukkan URL peladen yang dapat Anda percayai.\n"
 "\n"
 "Membiarkan entri ini kosong akan menggunakan bawaan aplikasi."
 
@@ -210,12 +222,18 @@ msgid "Code Words"
 msgstr "Kata-kata Kode"
 
 #: data/resources/ui/preferences.ui:38
-msgid "The code word count determines the security of the transfer.\n"
+msgid ""
+"The code word count determines the security of the transfer.\n"
 "\n"
-"A short code is easy to remember but increases the risk of someone else guessing the code. As a code may only be guessed once, the risk is very small even with short codes. A length of 4 is very secure."
-msgstr "Jumlah kata kode menentukan keamanan transfer.\n"
+"A short code is easy to remember but increases the risk of someone else "
+"guessing the code. As a code may only be guessed once, the risk is very "
+"small even with short codes. A length of 4 is very secure."
+msgstr ""
+"Jumlah kata kode menentukan keamanan transfer.\n"
 "\n"
-"Kode pendek mudah diingat tetapi meningkatkan risiko orang lain menebak kode tersebut. Karena kode mungkin hanya dapat ditebak sekali, risikonya sangat kecil bahkan dengan kode pendek. Panjang 4 sangat aman."
+"Kode pendek mudah diingat tetapi meningkatkan risiko orang lain menebak kode "
+"tersebut. Karena kode mungkin hanya dapat ditebak sekali, risikonya sangat "
+"kecil bahkan dengan kode pendek. Panjang 4 sangat aman."
 
 #: data/resources/ui/preferences.ui:43
 msgid "Code Word Count"
@@ -244,16 +262,24 @@ msgid "Introduction"
 msgstr "Pengantar"
 
 #: data/resources/ui/welcome_window.ui:100
-msgid "Warp makes file transfer simple. To get started, both parties need to install Warp on their devices.\n"
+msgid ""
+"Warp makes file transfer simple. To get started, both parties need to "
+"install Warp on their devices.\n"
 "\n"
-"After selecting a file to transmit, the sender needs to tell the receiver the displayed transmit code. This is preferably done via a secure communication channel.\n"
+"After selecting a file to transmit, the sender needs to tell the receiver "
+"the displayed transmit code. This is preferably done via a secure "
+"communication channel.\n"
 "\n"
 "When the receiver has entered the code, the file transfer can begin.\n"
 "\n"
 "For more information about Warp, open the Help pages from the menu."
-msgstr "Warp membuat transfer berkas menjadi sederhana. Untuk memulai, kedua belah pihak perlu memasang Warp di perangkat mereka.\n"
+msgstr ""
+"Warp membuat transfer berkas menjadi sederhana. Untuk memulai, kedua belah "
+"pihak perlu memasang Warp di perangkat mereka.\n"
 "\n"
-"Setelah memilih berkas yang akan dikirim, pengirim perlu memberi tahu penerima kode transmisi yang ditampilkan. Ini sebaiknya dilakukan melalui saluran komunikasi yang aman.\n"
+"Setelah memilih berkas yang akan dikirim, pengirim perlu memberi tahu "
+"penerima kode transmisi yang ditampilkan. Ini sebaiknya dilakukan melalui "
+"saluran komunikasi yang aman.\n"
 "\n"
 "Ketika penerima telah memasukkan kode, transfer berkas dapat dimulai.\n"
 "\n"
@@ -417,6 +443,10 @@ msgstr "Kode yang Disalin ke Papan Klip"
 msgid "Copied Link to Clipboard"
 msgstr "Tautan yang Disalin ke Papan Klip"
 
+#: src/ui/action_view.rs:267
+msgid "Copied Error to Clipboard"
+msgstr "Galat yang Disalin ke Papan Klip"
+
 #: src/ui/action_view.rs:269
 msgid "No error available"
 msgstr "Tidak ada galat yang tersedia"
@@ -447,21 +477,27 @@ msgstr "Kode Pengiriman Anda"
 
 #. Translators: Description, Code in box below, argument is filename
 #: src/ui/action_view.rs:441
-msgid "Ready to send “{}”\n"
+msgid ""
+"Ready to send “{}”\n"
 "The receiver needs to enter this code to begin the file transfer."
-msgstr "Siap mengirim \"{}\"\n"
+msgstr ""
+"Siap mengirim \"{}\"\n"
 "Penerima harus memasukkan kode ini untuk memulai transfer berkas."
 
 #. Translators: Description, Code in box below, argument is filename
 #: src/ui/action_view.rs:447
-msgid "Ready to send “{}”\n"
+msgid ""
+"Ready to send “{}”\n"
 "The receiver needs to enter this code to begin the file transfer.\n"
 "\n"
-"You have entered a custom rendezvous server URL in preferences. Please verify the receiver also uses the same rendezvous server."
-msgstr "Siap mengirim \"{}\"\n"
+"You have entered a custom rendezvous server URL in preferences. Please "
+"verify the receiver also uses the same rendezvous server."
+msgstr ""
+"Siap mengirim \"{}\"\n"
 "Penerima harus memasukkan kode ini untuk memulai transfer berkas.\n"
 "\n"
-"Anda telah memasukkan URL peladen rendezvous ubahan di preferensi. Harap verifikasi bahwa penerima juga menggunakan peladen rendezvous yang sama."
+"Anda telah memasukkan URL peladen rendezvous ubahan di preferensi. Harap "
+"verifikasi bahwa penerima juga menggunakan peladen rendezvous yang sama."
 
 #. Translators: Description, Transfer Code
 #: src/ui/action_view.rs:462
@@ -488,9 +524,11 @@ msgstr "Terima Transfer Berkas?"
 
 #. Translators: File receive confirmation message dialog; Filename, File size
 #: src/ui/action_view.rs:501
-msgid "Your peer wants to send you “{0}” (Size: {1}).\n"
+msgid ""
+"Your peer wants to send you “{0}” (Size: {1}).\n"
 "Do you want to download this file to your Downloads folder?"
-msgstr "Peer Anda ingin mengirimi Anda \"{0}\" (Ukuran: {1}).\n"
+msgstr ""
+"Peer Anda ingin mengirimi Anda \"{0}\" (Ukuran: {1}).\n"
 "Apakah Anda ingin mengunduh berkas ini ke folder Unduhan Anda?"
 
 #: src/ui/action_view.rs:506
@@ -498,7 +536,8 @@ msgid "Ready to Receive File"
 msgstr "Siap untuk Menerima Berkas"
 
 #: src/ui/action_view.rs:508
-msgid "A file is ready to be transferred. The transfer needs to be acknowledged."
+msgid ""
+"A file is ready to be transferred. The transfer needs to be acknowledged."
 msgstr "Berkas siap ditransfer. Transfer perlu diakui."
 
 #. Translators: Description, During transfer
@@ -556,12 +595,17 @@ msgid "Specified file / directory does not exist"
 msgstr "Berkas / direktori tertentu tidak ada"
 
 #: src/ui/action_view.rs:767
-msgid "Error parsing rendezvous server URL. An invalid URL was entered in the settings."
-msgstr "Galat mengurai URL peladen rendezvous. URL yang tidak valid dimasukkan dalam pengaturan."
+msgid ""
+"Error parsing rendezvous server URL. An invalid URL was entered in the "
+"settings."
+msgstr ""
+"Galat mengurai URL peladen rendezvous. URL yang tidak valid dimasukkan dalam "
+"pengaturan."
 
 #: src/ui/action_view.rs:777
 msgid "Error parsing transit URL. An invalid URL was entered in the settings."
-msgstr "Galat mengurai URL transit. URL yang tidak valid dimasukkan dalam pengaturan."
+msgstr ""
+"Galat mengurai URL transit. URL yang tidak valid dimasukkan dalam pengaturan."
 
 #: src/ui/action_view.rs:1186
 msgid "Downloads dir missing. Please set XDG_DOWNLOAD_DIR"
@@ -569,11 +613,13 @@ msgstr "Dir unduh hilang. Silakan atur XDG_DOWNLOAD_DIR"
 
 #: src/ui/application.rs:81
 msgid "Unable to use transfer link: another transfer already in progress"
-msgstr "Tidak dapat menggunakan tautan transfer: transfer lain sudah berlangsung"
+msgstr ""
+"Tidak dapat menggunakan tautan transfer: transfer lain sudah berlangsung"
 
 #: src/ui/application.rs:222
 msgid "translator-credits"
-msgstr "Kukuh Syafaat <kukuhsyafaat@gnome.org>, 2022.\n"
+msgstr ""
+"Kukuh Syafaat <kukuhsyafaat@gnome.org>, 2022.\n"
 "Andika Triwidada <andika@gmail.com>, 2022."
 
 #: src/ui/application.rs:225
@@ -593,9 +639,11 @@ msgid "Receiving a File"
 msgstr "Menerima Berkas"
 
 #: src/ui/window.rs:111
-msgid "Error loading config file “{0}”, using default config.\n"
+msgid ""
+"Error loading config file “{0}”, using default config.\n"
 "Error: {1}"
-msgstr "Galat memuat berkas konfigurasi \"{0}\", menggunakan konfigurasi bawaan.\n"
+msgstr ""
+"Galat memuat berkas konfigurasi \"{0}\", menggunakan konfigurasi bawaan.\n"
 "Galat: {1}"
 
 #: src/ui/window.rs:242
@@ -604,11 +652,14 @@ msgstr "Galat menyimpan berkas konfigurasi: {}"
 
 #: src/ui/window.rs:346
 msgid "“{}” appears to be an invalid Transmit Code. Please try again."
-msgstr "\"{}\" tampaknya merupakan Kode Kirim yang tidak valid. Silakan coba lagi."
+msgstr ""
+"\"{}\" tampaknya merupakan Kode Kirim yang tidak valid. Silakan coba lagi."
 
 #: src/ui/window.rs:468
 msgid "Sending files with a preconfigured code is not yet supported"
-msgstr "Mengirim berkas dengan kode yang telah dikonfigurasi sebelumnya belum didukung"
+msgstr ""
+"Mengirim berkas dengan kode yang telah dikonfigurasi sebelumnya belum "
+"didukung"
 
 #: src/util.rs:32
 msgid "Failed to open downloads folder."
@@ -632,7 +683,8 @@ msgstr "Parameter URI \"rendezvous\" berisi URL yang tidak valid: \"{}\""
 
 #: src/util.rs:218
 msgid "The URI parameter “role” must be “follower” or “leader” (was: “{}”)"
-msgstr "Parameter URI \"role\" harus \"follower\" atau \"leader\" (adalah: \"{}\")"
+msgstr ""
+"Parameter URI \"role\" harus \"follower\" atau \"leader\" (adalah: \"{}\")"
 
 #: src/util.rs:225
 msgid "Unknown URI parameter “{}”"
@@ -647,32 +699,51 @@ msgid "Corrupt or unexpected message received"
 msgstr "Pesan rusak atau tidak terduga yang diterima"
 
 #: src/util/error.rs:177
-msgid "The rendezvous server will not allow further connections for this code. A new code needs to be generated."
-msgstr "Peladen rendezvous tidak akan mengizinkan koneksi lebih lanjut untuk kode ini. Kode baru perlu dibuat."
+msgid ""
+"The rendezvous server will not allow further connections for this code. A "
+"new code needs to be generated."
+msgstr ""
+"Peladen rendezvous tidak akan mengizinkan koneksi lebih lanjut untuk kode "
+"ini. Kode baru perlu dibuat."
 
 #: src/util/error.rs:179
-msgid "The rendezvous server removed the code due to inactivity. A new code needs to be generated."
-msgstr "Peladen rendezvous menghapus kode karena tidak aktif. Kode baru perlu dibuat."
+msgid ""
+"The rendezvous server removed the code due to inactivity. A new code needs "
+"to be generated."
+msgstr ""
+"Peladen rendezvous menghapus kode karena tidak aktif. Kode baru perlu dibuat."
 
 #: src/util/error.rs:181
 msgid "The rendezvous server responded with an unknown message: {}"
 msgstr "Peladen pertemuan merespons dengan pesan yang tidak diketahui: {}"
 
 #: src/util/error.rs:184
-msgid "Error connecting to the rendezvous server.\n"
-"You have entered a custom rendezvous server URL in preferences. Please verify the URL is correct and the server is working."
-msgstr "Galat menghubungkan ke peladen rendezvous.\n"
-"Anda telah memasukkan URL peladen rendezvous kustom di preferensi. Harap verifikasi URL sudah benar dan peladen berfungsi."
+msgid ""
+"Error connecting to the rendezvous server.\n"
+"You have entered a custom rendezvous server URL in preferences. Please "
+"verify the URL is correct and the server is working."
+msgstr ""
+"Galat menghubungkan ke peladen rendezvous.\n"
+"Anda telah memasukkan URL peladen rendezvous kustom di preferensi. Harap "
+"verifikasi URL sudah benar dan peladen berfungsi."
 
 #: src/util/error.rs:186
-msgid "Error connecting to the rendezvous server.\n"
+msgid ""
+"Error connecting to the rendezvous server.\n"
 "Please try again later / verify you are connected to the internet."
-msgstr "Galat menghubungkan ke peladen rendezvous.\n"
+msgstr ""
+"Galat menghubungkan ke peladen rendezvous.\n"
 "Silakan coba lagi nanti / verifikasi bahwa Anda terhubung ke internet."
 
 #: src/util/error.rs:190
-msgid "Encryption key confirmation failed. If you or your peer didn't mistype the code, this is a sign of an attacker guessing passwords. Please try again some time later."
-msgstr "Konfirmasi kunci enkripsi gagal. Jika Anda atau rekan Anda tidak salah mengetik kode, ini adalah tanda penyerang menebak kata sandi. Silakan coba lagi beberapa waktu kemudian."
+msgid ""
+"Encryption key confirmation failed. If you or your peer didn't mistype the "
+"code, this is a sign of an attacker guessing passwords. Please try again "
+"some time later."
+msgstr ""
+"Konfirmasi kunci enkripsi gagal. Jika Anda atau rekan Anda tidak salah "
+"mengetik kode, ini adalah tanda penyerang menebak kata sandi. Silakan coba "
+"lagi beberapa waktu kemudian."
 
 #: src/util/error.rs:192
 msgid "Cannot decrypt a received message"
@@ -700,8 +771,12 @@ msgid "The received file is corrupted"
 msgstr "Berkas yang diterima rusak"
 
 #: src/util/error.rs:220
-msgid "The file contained a different amount of bytes than advertised! Sent {} bytes, but should have been {}"
-msgstr "Berkas tersebut berisi jumlah bita yang berbeda dari yang dinyatakan! Dikirim {} bita, tetapi seharusnya {}"
+msgid ""
+"The file contained a different amount of bytes than advertised! Sent {} "
+"bytes, but should have been {}"
+msgstr ""
+"Berkas tersebut berisi jumlah bita yang berbeda dari yang dinyatakan! "
+"Dikirim {} bita, tetapi seharusnya {}"
 
 #: src/util/error.rs:225
 msgid "The other side has cancelled the transfer"
@@ -724,7 +799,8 @@ msgid "Unknown file transfer error"
 msgstr "Galat transfer berkas tidak diketahui"
 
 #: src/util/error.rs:258
-msgid "An unexpected error occurred. Please report an issue with the error message."
+msgid ""
+"An unexpected error occurred. Please report an issue with the error message."
 msgstr "Terjadi galat tak terduga. Laporkan masalah dengan pesan galat."
 
 #~ msgid "Select the file or directory to send"
