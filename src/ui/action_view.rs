@@ -471,6 +471,8 @@ impl ActionView {
                 imp.status_page.set_title(&gettext("Connected to Peer"));
                 imp.code_box.set_visible(false);
                 imp.accept_transfer_button.set_visible(false);
+
+                self.show_progress_indeterminate(true);
                 imp.progress_bar.set_visible(true);
 
                 match direction {
