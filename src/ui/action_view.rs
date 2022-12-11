@@ -377,6 +377,7 @@ impl ActionView {
 
         match &*ui_state {
             UIState::Initial => {
+                imp.cancel_button.set_sensitive(true);
                 imp.open_box.set_visible(false);
                 imp.cancel_button.set_visible(true);
                 imp.accept_transfer_button.set_visible(false);
@@ -694,6 +695,7 @@ impl ActionView {
 
     pub async fn cancel(&self) {
         log::info!("Cancelling transfer");
+        self.imp().cancel_button.set_sensitive(false);
         self.imp().context.borrow_mut().canceled = true;
 
         let imp = self.imp();
