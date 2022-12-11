@@ -61,6 +61,16 @@
   </custom>
   <content_rating type="oars-1.0" />
   <releases>
+    <release version="0.3.2" date="2022-12-11">
+      <description>
+        <p>Bugfix release</p>
+        <ul>
+          <li>Fix Progress bar would not move sometimes</li>
+          <li>Fix Transfer cancellation issues</li>
+          <li>Translation updates</li>
+        </ul>
+      </description>
+    </release>
     <release version="0.3.1" date="2022-10-24">
       <description>
         <p>Bugfix release</p>
