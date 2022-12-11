@@ -70,16 +70,16 @@ pub struct UIContext {
     pub progress_timeout_source_id: Option<glib::source::SourceId>,
 
     /// When sending a message to the cancel sender the whole process gets aborted
-    pub cancel_sender: async_channel::Sender<()>,
-    pub cancel_receiver: async_channel::Receiver<()>,
+    pub cancel_sender: async_broadcast::Sender<()>,
+    pub cancel_receiver: async_broadcast::Receiver<()>,
 
     /// We will send a message to this channel when the transfer was cancelled successfully
-    pub cancellation_complete_sender: async_channel::Sender<()>,
-    pub cancellation_complete_receiver: async_channel::Receiver<()>,
+    pub cancellation_complete_sender: async_broadcast::Sender<()>,
+    pub cancellation_complete_receiver: async_broadcast::Receiver<()>,
 
     /// Send a message to this sender to continue the process after the confirmation question
-    pub continue_sender: async_channel::Sender<()>,
-    pub continue_receiver: async_channel::Receiver<()>,
+    pub continue_sender: async_broadcast::Sender<()>,
+    pub continue_receiver: async_broadcast::Receiver<()>,
 
     /// User initiated cancel
     pub canceled: bool,
@@ -111,10 +111,10 @@ pub struct UIContext {
 
 impl Default for UIContext {
     fn default() -> Self {
-        let (cancel_sender, cancel_receiver) = async_channel::unbounded();
-        let (continue_sender, continue_receiver) = async_channel::unbounded();
+        let (cancel_sender, cancel_receiver) = async_broadcast::broadcast(1);
+        let (continue_sender, continue_receiver) = async_broadcast::broadcast(1);
         let (cancellation_complete_sender, cancellation_complete_receiver) =
-            async_channel::unbounded();
+            async_broadcast::broadcast(1);
 
         Self {
             progress_timeout_source_id: None,
@@ -217,7 +217,7 @@ mod imp {
         #[template_callback]
         async fn accept_transfer_button_clicked(&self) {
             let continue_sender = self.context.borrow().continue_sender.clone();
-            continue_sender.send(()).await.unwrap();
+            continue_sender.broadcast(()).await.unwrap();
         }
 
         #[template_callback]
@@ -682,7 +682,7 @@ impl ActionView {
     }
 
     async fn wait_for_cancellation_future(&self) {
-        let channel = self
+        let mut channel = self
             .imp()
             .context
             .borrow()
@@ -701,7 +701,7 @@ impl ActionView {
         let imp = self.imp();
         log::debug!("Sending cancel signal");
         let cancel_sender = imp.context.borrow().cancel_sender.clone();
-        cancel_sender.send(()).await.unwrap();
+        cancel_sender.broadcast(()).await.unwrap();
         self.wait_for_cancellation_future().await;
         WarpApplicationWindow::default().navigate_back();
     }
@@ -998,11 +998,11 @@ impl ActionView {
     }
 
     /// Wrapper to handle waiting on a channel that receives ()
-    async fn receiver_future(receiver: async_channel::Receiver<()>) {
+    async fn receiver_future(name: &str, mut receiver: async_broadcast::Receiver<()>) {
         let res = receiver.recv().await;
         match res {
             Ok(()) => {
-                log::debug!("Canceled transfer");
+                log::debug!("Receiver future '{}' received signal", name);
             }
             Err(err) => {
                 panic!("{:?}", err);
@@ -1014,7 +1014,7 @@ impl ActionView {
     fn cancel_future() -> impl Future<Output = ()> {
         let obj = ActionView::default();
         let cancel_receiver = obj.imp().context.borrow().cancel_receiver.clone();
-        Self::receiver_future(cancel_receiver)
+        Self::receiver_future("cancel", cancel_receiver)
     }
 
     /// This future is for any wormhole calls that have proper cancellation but no timeout handling
@@ -1023,7 +1023,7 @@ impl ActionView {
     /// `timeout_ms` milliseconds to properly respond. When there is no response the future will
     /// be finished
     fn cancel_timeout_future(timeout_ms: u64) -> impl Future<Output = ()> {
-        let (sender, receiver) = async_channel::unbounded();
+        let (sender, receiver) = async_broadcast::broadcast(1);
         async move {
             // Wait for a cancellation event
             Self::cancel_future().await;
@@ -1031,12 +1031,12 @@ impl ActionView {
             // Then do a timeout
             glib::timeout_add_once(Duration::from_millis(timeout_ms), move || {
                 log::debug!("Cancellation timeout");
-                if let Err(err) = sender.try_send(()) {
+                if let Err(err) = sender.try_broadcast(()) {
                     log::error!("Error when sending cancellation timeout message: {:?}", err);
                 }
             });
 
-            Self::receiver_future(receiver).await;
+            Self::receiver_future("timeout", receiver).await;
         }
     }
 
@@ -1088,7 +1088,7 @@ impl ActionView {
     }
 
     async fn ask_confirmation_future(&self) -> Result<(), AppError> {
-        let continue_receiver = self.imp().context.borrow().continue_receiver.clone();
+        let mut continue_receiver = self.imp().context.borrow().continue_receiver.clone();
         cancelable_future(continue_receiver.recv(), Self::cancel_future()).await??;
         Ok(())
     }
@@ -1105,7 +1105,7 @@ impl ActionView {
                 .context
                 .borrow()
                 .cancellation_complete_sender
-                .try_send(())
+                .try_broadcast(())
             {
                 log::error!("Error sending cancellation complete message: {:?}", err);
             }

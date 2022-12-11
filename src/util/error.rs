@@ -64,6 +64,10 @@ pub enum AppError {
         #[from]
         source: async_channel::RecvError,
     },
+    AsyncBroadcastRecvError {
+        #[from]
+        source: async_broadcast::RecvError,
+    },
     Zip {
         #[from]
         source: zip::result::ZipError,
@@ -88,6 +92,9 @@ impl Display for AppError {
             AppError::Ui { source } => write!(f, "UiError: {}", source),
             AppError::AsyncChannelRecvError { source } => {
                 write!(f, "AsyncChannelRecvError: {}", source)
+            }
+            AppError::AsyncBroadcastRecvError { source } => {
+                write!(f, "AsyncBroadcastRecvError: {}", source)
             }
             AppError::Zip { source } => write!(f, "ZipError: {}", source),
             AppError::Panic { msg } => write!(f, "Panic: {}", msg),
@@ -250,7 +257,7 @@ impl AppError {
             AppError::Wormhole { source } => Self::gettext_error_wormhole(source),
             // UIErrors are generated our code and already wrapped in gettext
             AppError::Ui { source } => source.to_string(),
-            AppError::AsyncChannelRecvError { .. } => gettext("An unknown error occurred"),
+            AppError::AsyncChannelRecvError { .. } | AppError::AsyncBroadcastRecvError { .. } => gettext("An unknown error occurred"),
             AppError::Zip { source } => match source {
                 ZipError::Io(err) => Self::gettext_error_io(err),
                 _ => gettext("An unknown error occurred"),
