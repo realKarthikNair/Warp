@@ -7,24 +7,24 @@ msgid ""
 msgstr ""
 "Project-Id-Version: warp main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
-"POT-Creation-Date: 2022-10-09 16:40+0000\n"
-"PO-Revision-Date: 2022-10-11 09:20+0330\n"
-"Last-Translator: eshagh <eshagh094@gmail.com>\n"
+"POT-Creation-Date: 2022-11-21 01:33+0000\n"
+"PO-Revision-Date: 2022-12-14 15:38+0330\n"
+"Last-Translator: Danial Behzadi <dani.behzi@ubuntu.com>\n"
 "Language-Team: Persian <fa@li.org>\n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #: data/app.drey.Warp.desktop.in.in:3 data/app.drey.Warp.metainfo.xml.in.in:7
-#: src/main.rs:94 src/ui/application.rs:200
+#: src/main.rs:94 src/ui/application.rs:216
 msgid "Warp"
 msgstr "پیچ‌وتاب"
 
 #: data/app.drey.Warp.desktop.in.in:4 data/app.drey.Warp.metainfo.xml.in.in:8
-#: data/resources/ui/welcome_window.ui:40
+#: data/resources/ui/welcome_window.ui:42
 msgid "Fast and secure file transfer"
 msgstr "انتقال سریع و ایمن پرونده"
 
@@ -34,19 +34,19 @@ msgstr "Gnome;GTK;Wormhole;Magic-Wormhole;گنوم;کرمچاله;انتقال;�
 
 #: data/app.drey.Warp.metainfo.xml.in.in:10
 msgid ""
-"Warp allows you to securely send files to each other via the internet or "
-"local network by exchanging a word-based code."
+"Warp allows you to securely send files to each other via the internet or local "
+"network by exchanging a word-based code."
 msgstr ""
-"پیچ‌وتاب به شما این امکان را می‌دهد که با تبادل یک کد مبتنی بر کلمه، پرونده‌ها "
-"را به طور ایمن از طریق اینترنت یا شبکهٔ محلی برای یکدیگر ارسال کنید."
+"پیچ‌وتاب می‌گذارد با تبادل کدی واژه‌محور، پرونده‌ها را به صورت امن از طریق اینترنت "
+"یا شبکهٔ محلّی برای هم بفرستید."
 
 #: data/app.drey.Warp.metainfo.xml.in.in:13
 msgid ""
 "The best transfer method will be determined using the “Magic Wormhole” "
 "protocol which includes local network transfer if possible."
 msgstr ""
-"بهترین روش انتقالی که با استفاده از شیوه‌نامهٔ «کرمچالهٔ جادویی» تعیین می‌شود، "
-"در صورت امکان شامل انتقال در شبکهٔ محلی نیز می‌شود."
+"بهترین روش انتقالی که با استفاده از شیوه‌نامهٔ «کرمچالهٔ جادویی» تعیین می‌شود، در "
+"صورت امکان شامل انتقال در شبکهٔ محلی نیز می‌شود."
 
 #: data/app.drey.Warp.metainfo.xml.in.in:16
 msgid "Features"
@@ -54,7 +54,7 @@ msgstr "امکانات"
 
 #: data/app.drey.Warp.metainfo.xml.in.in:18
 msgid "Send files between multiple devices"
-msgstr "ارسال پرونده‌ها میان چندین افزاره"
+msgstr "فرستادن پرونده‌ها بین چند افزاره"
 
 #: data/app.drey.Warp.metainfo.xml.in.in:19
 msgid "Every file transfer is encrypted"
@@ -77,75 +77,74 @@ msgid "Main Window"
 msgstr "پنجرهٔ اصلی"
 
 #. Translators: Entry placeholder; This is a noun
-#: data/app.drey.Warp.metainfo.xml.in.in:32 data/resources/ui/window.ui:185
+#: data/app.drey.Warp.metainfo.xml.in.in:32 data/resources/ui/window.ui:198
 msgid "Transmit Code"
 msgstr "کد انتقال"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:36
-#: data/resources/ui/action_view.ui:116
+#: data/app.drey.Warp.metainfo.xml.in.in:36 data/resources/ui/action_view.ui:127
 msgid "Accept File Transfer"
-msgstr "پذیرش پروندهٔ انتقالی"
+msgstr "پذیرش انتقال پرونده"
 
 #. Translators: Title
-#: data/app.drey.Warp.metainfo.xml.in.in:40 src/ui/action_view.rs:558
+#: data/app.drey.Warp.metainfo.xml.in.in:40 src/ui/action_view.rs:560
 msgid "Sending File"
-msgstr "در حال ارسال پرونده"
+msgstr "فرستادن پرونده"
 
 #. Translators: Title
-#: data/app.drey.Warp.metainfo.xml.in.in:44 src/ui/action_view.rs:562
+#: data/app.drey.Warp.metainfo.xml.in.in:44 src/ui/action_view.rs:564
 msgid "Receiving File"
-msgstr "در حال دریافت پرونده"
+msgstr "گرفتن پرونده"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:48 src/ui/action_view.rs:579
+#: data/app.drey.Warp.metainfo.xml.in.in:48 src/ui/action_view.rs:581
 msgid "File Transfer Complete"
-msgstr "انتقال پرونده تکمیل شد"
+msgstr "انتقال پرونده کامل"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:143
+#: data/app.drey.Warp.metainfo.xml.in.in:155
 msgid "Fina Wilke"
 msgstr "فینا ویلکه"
 
 #. Translators: Button
-#: data/resources/ui/action_view.ui:17 data/resources/ui/window.ui:31
-#: data/resources/ui/window.ui:37
+#: data/resources/ui/action_view.ui:18 data/resources/ui/window.ui:31
+#: data/resources/ui/window.ui:39
 msgid "Cancel"
 msgstr "لغو"
 
 #. Translators: Button
-#: data/resources/ui/action_view.ui:24 data/resources/ui/welcome_window.ui:58
+#: data/resources/ui/action_view.ui:26 data/resources/ui/welcome_window.ui:61
 msgid "Back"
 msgstr "بازگشت"
 
 #. Translators: Button; Transmit Link is a noun
-#: data/resources/ui/action_view.ui:68
+#: data/resources/ui/action_view.ui:75
 msgid "Copy Transmit Link"
 msgstr "رونوشت پیوند انتقال"
 
 #. Translators: Button; Transmit Code is a noun
-#: data/resources/ui/action_view.ui:75
+#: data/resources/ui/action_view.ui:83
 msgid "Copy Transmit Code"
 msgstr "رونوشت کد انتقال"
 
 #. Translators: Button
-#: data/resources/ui/action_view.ui:89 data/resources/ui/action_view.ui:91
+#: data/resources/ui/action_view.ui:98 data/resources/ui/action_view.ui:100
 msgid "Open File"
 msgstr "گشودن پرونده"
 
 #. Translators: Button
-#: data/resources/ui/action_view.ui:102 data/resources/ui/action_view.ui:104
+#: data/resources/ui/action_view.ui:112 data/resources/ui/action_view.ui:114
 msgid "Show in Folder"
 msgstr "نمایش در شاخه"
 
 #. Translators: Button
-#: data/resources/ui/action_view.ui:119
+#: data/resources/ui/action_view.ui:130
 msgid "Accept"
 msgstr "پذیرش"
 
-#: data/resources/ui/action_view.ui:130
+#: data/resources/ui/action_view.ui:142
 msgid "Copy a detailed message for reporting an issue"
 msgstr "رونوشت یک پیام همراه جزییات برای گزارش یک مشکل"
 
 #. Translators: Button
-#: data/resources/ui/action_view.ui:133
+#: data/resources/ui/action_view.ui:145
 msgid "Copy Error Message"
 msgstr "رونوشت پیام خطا"
 
@@ -172,12 +171,12 @@ msgstr "انتقال پرونده"
 #: data/resources/ui/help_overlay.ui:31
 msgctxt "shortcut window"
 msgid "Send File"
-msgstr "ارسال پرونده"
+msgstr "فرستادن پرونده"
 
 #: data/resources/ui/help_overlay.ui:37
 msgctxt "shortcut window"
 msgid "Send Folder"
-msgstr "ارسال شاخه"
+msgstr "فرستادن شاخه"
 
 #: data/resources/ui/help_overlay.ui:43
 msgctxt "shortcut window"
@@ -214,51 +213,51 @@ msgstr ""
 
 #: data/resources/ui/preferences.ui:37
 msgid "Code Words"
-msgstr ""
+msgstr "واژگان رمزی"
 
 #: data/resources/ui/preferences.ui:38
 msgid ""
 "The code word count determines the security of the transfer.\n"
 "\n"
 "A short code is easy to remember but increases the risk of someone else "
-"guessing the code. As a code may only be guessed once, the risk is very "
-"small even with short codes. A length of 4 is very secure."
+"guessing the code. As a code may only be guessed once, the risk is very small "
+"even with short codes. A length of 4 is very secure."
 msgstr ""
 
 #: data/resources/ui/preferences.ui:43
 msgid "Code Word Count"
-msgstr ""
+msgstr "شمار وازهٔ رمزی"
 
 #: data/resources/ui/welcome_window.ui:5
 msgid "Welcome"
 msgstr "خوش‌آمدید"
 
 #. Translators: Button
-#: data/resources/ui/welcome_window.ui:22
+#: data/resources/ui/welcome_window.ui:23
 msgid "Close"
 msgstr "بستن"
 
 #. Translators: Button
-#: data/resources/ui/welcome_window.ui:28
+#: data/resources/ui/welcome_window.ui:30
 msgid "Next"
 msgstr "بعدی"
 
-#: data/resources/ui/welcome_window.ui:39
+#: data/resources/ui/welcome_window.ui:41
 msgid "Welcome to Warp"
 msgstr "به پیچ‌وتاب خوش‌آمدید"
 
-#: data/resources/ui/welcome_window.ui:86
+#: data/resources/ui/welcome_window.ui:89
 msgid "Introduction"
 msgstr "مقدمه"
 
-#: data/resources/ui/welcome_window.ui:97
+#: data/resources/ui/welcome_window.ui:100
 msgid ""
-"Warp makes file transfer simple. To get started, both parties need to "
-"install Warp on their devices.\n"
+"Warp makes file transfer simple. To get started, both parties need to install "
+"Warp on their devices.\n"
 "\n"
-"After selecting a file to transmit, the sender needs to tell the receiver "
-"the displayed transmit code. This is preferably done via a secure "
-"communication channel.\n"
+"After selecting a file to transmit, the sender needs to tell the receiver the "
+"displayed transmit code. This is preferably done via a secure communication "
+"channel.\n"
 "\n"
 "When the receiver has entered the code, the file transfer can begin.\n"
 "\n"
@@ -266,7 +265,7 @@ msgid ""
 msgstr ""
 
 #. Translators: Big button to finish welcome screen
-#: data/resources/ui/welcome_window.ui:109
+#: data/resources/ui/welcome_window.ui:113
 msgid "Get Started Using Warp"
 msgstr ""
 
@@ -292,88 +291,88 @@ msgstr "_دربارهٔ پیچ‌وتاب"
 
 #: data/resources/ui/window.ui:28
 msgid "Select file to send"
-msgstr "گزینش یک پرونده برای ارسال"
+msgstr "گزینش پرونده برای فرستادن"
 
 #: data/resources/ui/window.ui:30
 msgid "Open"
 msgstr "گشودن"
 
-#: data/resources/ui/window.ui:34
-msgid "Select folder to send"
-msgstr "گزینش یک شاخه برای ارسال"
-
 #: data/resources/ui/window.ui:36
+msgid "Select folder to send"
+msgstr "گزینش شاخه برای فرستادن"
+
+#: data/resources/ui/window.ui:38
 msgid "Open Folder"
 msgstr "گشودن شاخه"
 
 #. Translators: Notification when code was automatically detected in clipboard and inserted into code entry on receive page
-#: data/resources/ui/window.ui:41
+#: data/resources/ui/window.ui:46
 msgid "Inserted code from clipboard"
 msgstr "کد از تخته‌گیره درج شد"
 
 #. Translators: File receive confirmation message dialog title
-#: data/resources/ui/window.ui:46
+#: data/resources/ui/window.ui:51
 msgid "Abort File Transfer?"
-msgstr "انتقال پرونده قطع شود؟"
+msgstr "قطع انتقال پرونده؟"
 
-#: data/resources/ui/window.ui:47
+#: data/resources/ui/window.ui:52
 msgid "Do you want to abort the current file transfer?"
 msgstr "آیا از قطع انتقال پروندهٔ کنونی مطمئنید؟"
 
-#: data/resources/ui/window.ui:53
+#: data/resources/ui/window.ui:58
 msgid "_Continue"
 msgstr "_ادامه"
 
-#: data/resources/ui/window.ui:54
+#: data/resources/ui/window.ui:59
 msgid "_Abort"
 msgstr "_قطع کردن"
 
 #. Translators: Error dialog title
-#: data/resources/ui/window.ui:59
+#: data/resources/ui/window.ui:64
 msgid "Unable to Open File"
 msgstr "ناتوان در گشودن پرونده"
 
-#: data/resources/ui/window.ui:64
+#: data/resources/ui/window.ui:69
 msgid "_Close"
 msgstr "_بستن"
 
-#: data/resources/ui/window.ui:65
+#: data/resources/ui/window.ui:70
 msgid "_Show in Folder"
 msgstr "_نمایش در شاخه"
 
-#: data/resources/ui/window.ui:110
-msgid "Send"
-msgstr "ارسال"
+#: data/resources/ui/window.ui:118
+msgid "_Send"
+msgstr "_فرستادن"
 
-#: data/resources/ui/window.ui:121
+#: data/resources/ui/window.ui:130
 msgid "Send File"
-msgstr "ارسال پرونده"
+msgstr "فرستادن پرونده"
 
-#: data/resources/ui/window.ui:122
+#: data/resources/ui/window.ui:131
 msgid "Select or drop the file or directory to send"
-msgstr "گزینش یا رها کردن یک پرونده یا شاخه برای ارسال"
+msgstr "گزینش یا رها کردن پرونده یا شاخه برای فرستادن"
 
 #. Translators: Button
-#: data/resources/ui/window.ui:132
+#: data/resources/ui/window.ui:142
 msgid "Select File"
 msgstr "گزینش پرونده"
 
 #. Translators: Button
-#: data/resources/ui/window.ui:144
+#: data/resources/ui/window.ui:155
 msgid "Select Folder"
 msgstr "گزینش شاخه"
 
-#: data/resources/ui/window.ui:163
-msgid "Receive"
-msgstr "دریافت"
+#: data/resources/ui/window.ui:174
+msgid "_Receive"
+msgstr "_گرفتن"
 
 #. Translators: Button
-#: data/resources/ui/window.ui:171 data/resources/ui/window.ui:196
+#: data/resources/ui/window.ui:183 data/resources/ui/window.ui:210
 msgid "Receive File"
-msgstr "دریافت پرونده"
+msgstr "گرفتن پرونده"
 
 #. Translators: Text above code input box, transmit code is a noun
-#: data/resources/ui/window.ui:173
+#: data/resources/ui/window.ui:185
 msgid "Enter the transmit code from the sender"
 msgstr "کد انتقالی که از فرستنده گرفتید، وارد کنید"
 
@@ -387,29 +386,29 @@ msgstr "{0} / {1}"
 #: src/gettext/duration.rs:19
 msgid "One second left"
 msgid_plural "{} seconds left"
-msgstr[0] "یک ثانیه باقی‌مانده"
-msgstr[1] "{} ثانیه باقی‌مانده"
+msgstr[0] "یک ثانیه مانده"
+msgstr[1] "{} ثانیه مانده"
 
 #. Translators: File transfer time left
 #: src/gettext/duration.rs:27
 msgid "One minute left"
 msgid_plural "{} minutes left"
-msgstr[0] "یک دقیقه باقی‌مانده"
-msgstr[1] "{} دقیقه باقی‌مانده"
+msgstr[0] "یک دقیقه مانده"
+msgstr[1] "{} دقیقه مانده"
 
 #. Translators: File transfer time left
 #: src/gettext/duration.rs:35
 msgid "One hour left"
 msgid_plural "{} hours left"
-msgstr[0] "یک ساعت باقی‌مانده"
-msgstr[1] "{} ساعت باقی‌مانده"
+msgstr[0] "یک ساعت مانده"
+msgstr[1] "{} ساعت مانده"
 
 #. Translators: File transfer time left
 #: src/gettext/duration.rs:43
 msgid "One day left"
 msgid_plural "{} days left"
-msgstr[0] "یک روز باقی‌مانده"
-msgstr[1] "{} روز باقی‌مانده"
+msgstr[0] "یک روز مانده"
+msgstr[1] "{} روز مانده"
 
 #. Translators: {0} = 11.3MB / 20.7MB, {1} = 3 seconds left
 #: src/gettext/duration.rs:53
@@ -418,210 +417,211 @@ msgid "{0} — {1}"
 msgstr "{0} — {1}"
 
 #. Translators: Notification when clicking on "Copy Code to Clipboard" button
-#: src/ui/action_view.rs:239
+#: src/ui/action_view.rs:232
 msgid "Copied Code to Clipboard"
 msgstr "کد در تخته‌گیره رونوشت شد"
 
 #. Translators: Notification when clicking on "Copy Link to Clipboard" button
-#: src/ui/action_view.rs:260
+#: src/ui/action_view.rs:253
 msgid "Copied Link to Clipboard"
 msgstr "پیوند در تخته‌گیره رونوشت شد"
 
-#: src/ui/action_view.rs:276
+#: src/ui/action_view.rs:267
+msgid "Copied Error to Clipboard"
+msgstr "خطا در تخته‌گیره رونوشت شد"
+
+#: src/ui/action_view.rs:269
 msgid "No error available"
 msgstr "خطایی وجود ندارد"
 
 #. Translators: Title
-#: src/ui/action_view.rs:395
+#: src/ui/action_view.rs:397
 msgid "Creating Archive"
-msgstr "در حال ایجاد بایگانی"
+msgstr "ایجاد کردن بایگانی"
 
-#: src/ui/action_view.rs:399
+#: src/ui/action_view.rs:401
 msgid "Compressing folder “{}”"
-msgstr "در حال فشرده‌سازی شاخهٔ «{}»"
+msgstr "فشرده سازی شاخهٔ «{}»"
 
 #. Translators: Title
-#: src/ui/action_view.rs:412 src/ui/action_view.rs:457
+#: src/ui/action_view.rs:414 src/ui/action_view.rs:459
 msgid "Connecting"
-msgstr "در حال اتّصال"
+msgstr "وصل شدن"
 
 #. Translators: Description, Filename
-#: src/ui/action_view.rs:415
+#: src/ui/action_view.rs:417
 msgid "Requesting file transfer"
-msgstr ""
+msgstr "درخواست انتقال پرونده"
 
 #. Translators: Title, this is a noun
-#: src/ui/action_view.rs:423
+#: src/ui/action_view.rs:425
 msgid "Your Transmit Code"
-msgstr ""
+msgstr "کد انتقالتان"
 
 #. Translators: Description, Code in box below, argument is filename
-#: src/ui/action_view.rs:439
+#: src/ui/action_view.rs:441
 msgid ""
 "Ready to send “{}”\n"
 "The receiver needs to enter this code to begin the file transfer."
 msgstr ""
 
 #. Translators: Description, Code in box below, argument is filename
-#: src/ui/action_view.rs:445
+#: src/ui/action_view.rs:447
 msgid ""
 "Ready to send “{}”\n"
 "The receiver needs to enter this code to begin the file transfer.\n"
 "\n"
-"You have entered a custom rendezvous server URL in preferences. Please "
-"verify the receiver also uses the same rendezvous server."
+"You have entered a custom rendezvous server URL in preferences. Please verify "
+"the receiver also uses the same rendezvous server."
 msgstr ""
 
 #. Translators: Description, Transfer Code
-#: src/ui/action_view.rs:460
+#: src/ui/action_view.rs:462
 msgid "Connecting to peer with code “{}”"
 msgstr ""
 
-#: src/ui/action_view.rs:469
+#: src/ui/action_view.rs:471
 msgid "Connected to Peer"
 msgstr ""
 
 #. Translators: Description
-#: src/ui/action_view.rs:478
+#: src/ui/action_view.rs:480
 msgid "Preparing to send file"
-msgstr ""
+msgstr "آماده سازی برای فرستادن پرونده"
 
 #. Translators: Description
-#: src/ui/action_view.rs:484
+#: src/ui/action_view.rs:486
 msgid "Preparing to receive file"
-msgstr ""
+msgstr "آماده سازی برای گرفتن پرونده"
 
-#: src/ui/action_view.rs:496
+#: src/ui/action_view.rs:498
 msgid "Accept File Transfer?"
-msgstr ""
+msgstr "پذیرش انتقال پرونده؟"
 
 #. Translators: File receive confirmation message dialog; Filename, File size
-#: src/ui/action_view.rs:499
+#: src/ui/action_view.rs:501
 msgid ""
 "Your peer wants to send you “{0}” (Size: {1}).\n"
 "Do you want to download this file to your Downloads folder?"
 msgstr ""
 
-#: src/ui/action_view.rs:504
-msgid "Ready to Receive File"
-msgstr ""
-
 #: src/ui/action_view.rs:506
-msgid ""
-"A file is ready to be transferred. The transfer needs to be acknowledged."
+msgid "Ready to Receive File"
+msgstr "آمادهٔ گرفتن پرونده"
+
+#: src/ui/action_view.rs:508
+msgid "A file is ready to be transferred. The transfer needs to be acknowledged."
 msgstr ""
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:535
+#: src/ui/action_view.rs:537
 msgid "File “{}” via local network direct transfer"
-msgstr ""
+msgstr "پروندهٔ «{}» از طریق انتقال مستقیم شبکهٔ محلّی"
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:538
+#: src/ui/action_view.rs:540
 msgid "File “{}” via direct transfer"
-msgstr ""
+msgstr "پروندهٔ «{}» از طریق انتقال مستقیم"
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:544
+#: src/ui/action_view.rs:546
 msgid "File “{0}” via relay {1}"
-msgstr ""
+msgstr "پروندهٔ «{0}» از طریق رلهٔ {1}"
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:547
+#: src/ui/action_view.rs:549
 msgid "File “{}” via relay"
-msgstr ""
+msgstr "پروندهٔ «{}» از طریق رله"
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:551
+#: src/ui/action_view.rs:553
 msgid "File “{}” via Unknown connection method"
-msgstr ""
+msgstr "پروندهٔ «{}» از طریق روش اتّصال ناشناخته"
 
 #. Translators: Title
-#: src/ui/action_view.rs:570
+#: src/ui/action_view.rs:572
 msgid "File Transfer Successful"
 msgstr "انتقال پرونده موفّقیت آمیز بود"
 
 #. Translators: Description, Filename
-#: src/ui/action_view.rs:587
+#: src/ui/action_view.rs:589
 msgid "Successfully sent file “{}”"
-msgstr "پروندهٔ «{}» با موفّقیت ارسال شد"
+msgstr "پروندهٔ «{}» با موفّقیت فرستاده شد"
 
 #. Translators: Description, Filename
-#: src/ui/action_view.rs:596
+#: src/ui/action_view.rs:598
 msgid "File has been saved to the Downloads folder as “{}”"
 msgstr "پرونده به عنوان «{}» در شاخهٔ بارگیری‌ها ذخیره شد"
 
 #. Translators: Title
-#: src/ui/action_view.rs:611 src/ui/action_view.rs:624
+#: src/ui/action_view.rs:621 src/ui/action_view.rs:634
 msgid "File Transfer Failed"
 msgstr "انتقال پرونده شکست خورد"
 
-#: src/ui/action_view.rs:626
+#: src/ui/action_view.rs:636
 msgid "The file transfer failed: {}"
 msgstr "انتقال پرونده شکست خورد: {}"
 
 #. Translators: When opening a file
-#: src/ui/action_view.rs:740
+#: src/ui/action_view.rs:750
 msgid "Specified file / directory does not exist"
-msgstr ""
+msgstr "پرونده یا شاخهٔ مشخّص شده وجود ندارد"
 
-#: src/ui/action_view.rs:757
+#: src/ui/action_view.rs:767
 msgid ""
 "Error parsing rendezvous server URL. An invalid URL was entered in the "
 "settings."
 msgstr ""
 
-#: src/ui/action_view.rs:767
+#: src/ui/action_view.rs:777
 msgid "Error parsing transit URL. An invalid URL was entered in the settings."
 msgstr ""
 
-#: src/ui/action_view.rs:1176
+#: src/ui/action_view.rs:1186
 msgid "Downloads dir missing. Please set XDG_DOWNLOAD_DIR"
 msgstr ""
 
-#: src/ui/application.rs:78
+#: src/ui/application.rs:81
 msgid "Unable to use transfer link: another transfer already in progress"
 msgstr ""
 
-#: src/ui/application.rs:206
+#: src/ui/application.rs:222
 msgid "translator-credits"
-msgstr "سید اسحاق مقیم شهیدانی <eshagh094@gmail.com>"
+msgstr ""
+"سید اسحاق مقیم شهیدانی <eshagh094@gmail.com>\n"
+"دانیال بهزادی <dani.behzi@ubuntu.com>"
 
-#: src/ui/application.rs:209
+#: src/ui/application.rs:225
 msgid "Tobias Bernard"
 msgstr "توبیاس برنارد"
 
-#: src/ui/application.rs:209
+#: src/ui/application.rs:225
 msgid "Sophie Herold"
 msgstr "سوفی هرلود"
 
-#: src/ui/application.rs:227
+#: src/ui/application.rs:243
 msgid "Sending a File"
-msgstr "در حال ارسال یک پرونده"
+msgstr "فرستادن پرونده"
 
-#: src/ui/application.rs:228
+#: src/ui/application.rs:244
 msgid "Receiving a File"
-msgstr "در حال دریافت یک پرونده"
+msgstr "گرفتن پرونده"
 
-#: src/ui/window.rs:108
+#: src/ui/window.rs:111
 msgid ""
 "Error loading config file “{0}”, using default config.\n"
 "Error: {1}"
 msgstr ""
 
-#: src/ui/window.rs:227
-msgid "Select the file or directory to send"
-msgstr ""
-
-#: src/ui/window.rs:325
+#: src/ui/window.rs:242
 msgid "Error saving configuration file: {}"
 msgstr ""
 
-#: src/ui/window.rs:370
+#: src/ui/window.rs:346
 msgid "“{}” appears to be an invalid Transmit Code. Please try again."
 msgstr ""
 
-#: src/ui/window.rs:491
+#: src/ui/window.rs:468
 msgid "Sending files with a preconfigured code is not yet supported"
 msgstr ""
 
@@ -631,15 +631,15 @@ msgstr ""
 
 #: src/util.rs:168 src/util.rs:241
 msgid "The URI format is invalid"
-msgstr ""
+msgstr "قالب نشانی بدریخت است"
 
 #: src/util.rs:172 src/util.rs:176
 msgid "The code does not match the required format"
-msgstr ""
+msgstr "کد با قالب مورد نیاز مطابق نیست"
 
 #: src/util.rs:191 src/util.rs:197
 msgid "Unknown URI version: {}"
-msgstr ""
+msgstr "نگارش نشانی ناشناخته: {}"
 
 #: src/util.rs:206
 msgid "The URI parameter “rendezvous” contains an invalid URL: “{}”"
@@ -651,26 +651,26 @@ msgstr ""
 
 #: src/util.rs:225
 msgid "Unknown URI parameter “{}”"
-msgstr ""
+msgstr "پارامتر نشانی ناشناخته: {}"
 
 #: src/util/error.rs:142
 msgid "An error occurred"
-msgstr "یک خطا رخ داد"
+msgstr "خطایی رخ داد"
 
 #: src/util/error.rs:172 src/util/error.rs:237
 msgid "Corrupt or unexpected message received"
-msgstr ""
+msgstr "پیام خراب یا نامنتظره رسید"
 
 #: src/util/error.rs:177
 msgid ""
-"The rendezvous server will not allow further connections for this code. A "
-"new code needs to be generated."
+"The rendezvous server will not allow further connections for this code. A new "
+"code needs to be generated."
 msgstr ""
 
 #: src/util/error.rs:179
 msgid ""
-"The rendezvous server removed the code due to inactivity. A new code needs "
-"to be generated."
+"The rendezvous server removed the code due to inactivity. A new code needs to "
+"be generated."
 msgstr ""
 
 #: src/util/error.rs:181
@@ -680,8 +680,8 @@ msgstr ""
 #: src/util/error.rs:184
 msgid ""
 "Error connecting to the rendezvous server.\n"
-"You have entered a custom rendezvous server URL in preferences. Please "
-"verify the URL is correct and the server is working."
+"You have entered a custom rendezvous server URL in preferences. Please verify "
+"the URL is correct and the server is working."
 msgstr ""
 
 #: src/util/error.rs:186
@@ -693,18 +693,18 @@ msgstr ""
 #: src/util/error.rs:190
 msgid ""
 "Encryption key confirmation failed. If you or your peer didn't mistype the "
-"code, this is a sign of an attacker guessing passwords. Please try again "
-"some time later."
+"code, this is a sign of an attacker guessing passwords. Please try again some "
+"time later."
 msgstr ""
 
 #: src/util/error.rs:192
 msgid "Cannot decrypt a received message"
-msgstr "نمی‌توان پیام دریافت شده را رمزگشایی کرد"
+msgstr "نمی‌توان پیام رسیده را رمزگشایی کرد"
 
 #: src/util/error.rs:193 src/util/error.rs:248 src/util/error.rs:253
 #: src/util/error.rs:256
 msgid "An unknown error occurred"
-msgstr "یک خطای ناشناس رخ داد"
+msgstr "خطایی ناشناخته رخ داد"
 
 #: src/util/error.rs:199
 msgid "File / Directory not found"
@@ -712,7 +712,7 @@ msgstr "پرونده یا شاخه پیدا نشد"
 
 #: src/util/error.rs:200
 msgid "Permission denied"
-msgstr "اجازه داده نشد"
+msgstr "اجازه رد شد"
 
 #: src/util/error.rs:212
 msgid "Transfer was not acknowledged by peer"
@@ -720,35 +720,37 @@ msgstr ""
 
 #: src/util/error.rs:214
 msgid "The received file is corrupted"
-msgstr ""
+msgstr "پروندهٔ گرفته خراب است"
 
 #: src/util/error.rs:220
 msgid ""
-"The file contained a different amount of bytes than advertised! Sent {} "
-"bytes, but should have been {}"
+"The file contained a different amount of bytes than advertised! Sent {} bytes, "
+"but should have been {}"
 msgstr ""
+"پرونده مقداری متفاوت از آن‌چه گفته بود داشت. {} بایت فرستاده شد، ولی باید {} "
+"بایت بود"
 
 #: src/util/error.rs:225
 msgid "The other side has cancelled the transfer"
-msgstr ""
+msgstr "سمت مقابل انتقال را لغو کرد"
 
 #: src/util/error.rs:227
 msgid "The other side has rejected the transfer"
-msgstr ""
+msgstr "سمت مقابل انتقال را رد کرد"
 
 #: src/util/error.rs:229
 msgid "Something went wrong on the other side: {}"
-msgstr ""
+msgstr "چزی در سمت مقابل اشتباه پیش رفت: {}"
 
 #: src/util/error.rs:244
 msgid "Error while establishing file transfer connection"
-msgstr ""
+msgstr "خطا هنگام برقراری اتّصال انتقال پرونده"
 
 #: src/util/error.rs:246
 msgid "Unknown file transfer error"
-msgstr ""
+msgstr "خطای انتقال پروندهٔ نشاناخته"
 
 #: src/util/error.rs:258
 msgid ""
 "An unexpected error occurred. Please report an issue with the error message."
-msgstr ""
+msgstr "خطایی نامنتظره رخ داد. لطفاً مسئله‌ای با پیام خطا گزارش کنید."
