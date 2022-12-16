@@ -9,7 +9,7 @@ fn fmt(mut format: String, args: &[&dyn Display]) -> String {
     }
 
     for (i, arg) in args.iter().enumerate() {
-        format = format.replace(&format!("{{{}}}", i), &arg.to_string());
+        format = format.replace(&format!("{{{i}}}"), &arg.to_string());
     }
 
     format

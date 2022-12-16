@@ -85,20 +85,20 @@ impl Display for AppError {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
         match self {
             AppError::Canceled => write!(f, "Operation was canceled by the user"),
-            AppError::Io { source } => write!(f, "I/O Error: {}", source),
-            AppError::Url { source } => write!(f, "URL ParseError: {}", source),
-            AppError::Transfer { source } => write!(f, "TransferError: {:?}", source),
-            AppError::Wormhole { source } => write!(f, "WormholeError: {:?}", source),
-            AppError::Ui { source } => write!(f, "UiError: {}", source),
+            AppError::Io { source } => write!(f, "I/O Error: {source}"),
+            AppError::Url { source } => write!(f, "URL ParseError: {source}"),
+            AppError::Transfer { source } => write!(f, "TransferError: {source:?}"),
+            AppError::Wormhole { source } => write!(f, "WormholeError: {source:?}"),
+            AppError::Ui { source } => write!(f, "UiError: {source}"),
             AppError::AsyncChannelRecvError { source } => {
-                write!(f, "AsyncChannelRecvError: {}", source)
+                write!(f, "AsyncChannelRecvError: {source}")
             }
             AppError::AsyncBroadcastRecvError { source } => {
-                write!(f, "AsyncBroadcastRecvError: {}", source)
+                write!(f, "AsyncBroadcastRecvError: {source}")
             }
-            AppError::Zip { source } => write!(f, "ZipError: {}", source),
-            AppError::Panic { msg } => write!(f, "Panic: {}", msg),
-            AppError::Glib { source } => write!(f, "Glib: {}", source),
+            AppError::Zip { source } => write!(f, "ZipError: {source}"),
+            AppError::Panic { msg } => write!(f, "Panic: {msg}"),
+            AppError::Glib { source } => write!(f, "Glib: {source}"),
         }
     }
 }
@@ -296,7 +296,7 @@ pub fn error_for_panic() -> AppError {
 
     let mut backtrace_info = globals::PANIC_BACKTRACES.lock().unwrap();
     for backtrace_msg in backtrace_info.iter() {
-        let _ignored = writeln!(msg, "{}", backtrace_msg);
+        let _ignored = writeln!(msg, "{backtrace_msg}");
     }
 
     backtrace_info.clear();

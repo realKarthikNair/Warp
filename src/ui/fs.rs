@@ -105,7 +105,7 @@ pub fn safe_persist_tempfile(
                 return Err(err.error);
             }
 
-            file_stem = format!("{} ({})", orig_file_stem, i);
+            file_stem = format!("{orig_file_stem} ({i})");
             i += 1;
 
             temp_path = err.path;

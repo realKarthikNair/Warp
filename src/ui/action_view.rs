@@ -261,7 +261,7 @@ mod imp {
             let window = WarpApplicationWindow::default();
 
             let toast = if let UIState::Error(error) = &*self.context.borrow().ui_state {
-                let msg = format!("{}", error);
+                let msg = format!("{error}");
                 window.clipboard().set_text(&msg);
 
                 adw::Toast::new(&gettext("Copied Error to Clipboard"))
@@ -1005,7 +1005,7 @@ impl ActionView {
                 log::debug!("Receiver future '{}' received signal", name);
             }
             Err(err) => {
-                panic!("{:?}", err);
+                panic!("{err:?}");
             }
         }
     }
