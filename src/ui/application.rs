@@ -1,22 +1,18 @@
-use gettextrs::gettext;
-use std::path::PathBuf;
-
-use adw::subclass::prelude::*;
-use glib::{clone, FromVariant};
-use gtk::prelude::*;
-use gtk::{gdk, gio, glib};
-
 use crate::globals;
 use crate::ui::preferences::WarpPreferencesWindow;
 use crate::ui::window::WarpApplicationWindow;
 use crate::util::{show_dir, TransferDirection};
+use adw::prelude::*;
+use adw::subclass::prelude::*;
+use gettextrs::gettext;
+use glib::{clone, FromVariant};
+use std::path::PathBuf;
 
 mod imp {
     use super::*;
     use crate::util::error::{AppError, UiError};
     use crate::util::extract_transmit_code;
     use crate::util::WormholeTransferURI;
-    use gio::File;
     use glib::WeakRef;
     use once_cell::sync::OnceCell;
     use std::cell::Cell;
@@ -57,21 +53,7 @@ mod imp {
             self.obj().main_window().present();
         }
 
-        fn startup(&self) {
-            log::debug!("GtkApplication<WarpApplication>::startup");
-            let app = self.obj();
-            self.parent_startup();
-
-            // Set icons for shell
-            gtk::Window::set_default_icon_name(globals::APP_ID);
-
-            app.cleanup_cache();
-            app.setup_css();
-            app.setup_gactions();
-            app.setup_accels();
-        }
-
-        fn open(&self, files: &[File], _hint: &str) {
+        fn open(&self, files: &[gio::File], _hint: &str) {
             self.activate();
             let app = self.obj();
 
@@ -102,6 +84,20 @@ mod imp {
                     }
                 }
             }
+        }
+
+        fn startup(&self) {
+            log::debug!("GtkApplication<WarpApplication>::startup");
+            let app = self.obj();
+            self.parent_startup();
+
+            // Set icons for shell
+            gtk::Window::set_default_icon_name(globals::APP_ID);
+
+            app.cleanup_cache();
+            app.setup_css();
+            app.setup_gactions();
+            app.setup_accels();
         }
     }
 

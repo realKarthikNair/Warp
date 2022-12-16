@@ -1,18 +1,16 @@
 use super::fs;
 use super::progress::FileTransferProgress;
 use crate::gettext::gettextf;
-use crate::glib::clone;
 use crate::ui::fs::safe_persist_tempfile;
 use crate::ui::window::WarpApplicationWindow;
 use crate::util::error::*;
 use crate::util::future::*;
 use crate::util::{show_dir, TransferDirection, WormholeTransferURI};
 use crate::{globals, WarpApplication};
-use adw::gio::NotificationPriority;
 use adw::prelude::*;
+use adw::subclass::prelude::*;
 use gettextrs::*;
-use gtk::subclass::prelude::*;
-use gtk::{gio, glib, template_callbacks};
+use glib::clone;
 use std::ffi::OsString;
 use std::fmt::Debug;
 use std::future::Future;
@@ -20,9 +18,6 @@ use std::net::{IpAddr, SocketAddr};
 use std::path::{Path, PathBuf};
 use std::rc::Rc;
 use std::time::Duration;
-use wormhole::transfer::AppVersion;
-use wormhole::transit::TransitInfo;
-use wormhole::{transfer, transit, AppConfig, Code, Wormhole};
 
 // 5 seconds timeout
 const TIMEOUT_MS: u64 = 5000;
@@ -35,7 +30,7 @@ pub enum UIState {
     HasCode(WormholeTransferURI),
     Connected,
     AskConfirmation(String, u64),
-    Transmitting(String, TransitInfo, SocketAddr),
+    Transmitting(String, wormhole::transit::TransitInfo, SocketAddr),
     Done(OsString),
     Error(AppError),
 }
@@ -137,7 +132,8 @@ impl Default for UIContext {
     }
 }
 
-static TRANSIT_ABILITIES: transit::Abilities = transit::Abilities::ALL_ABILITIES;
+static TRANSIT_ABILITIES: wormhole::transit::Abilities =
+    wormhole::transit::Abilities::ALL_ABILITIES;
 
 mod imp {
     use super::*;
@@ -145,10 +141,8 @@ mod imp {
     use std::cell::RefCell;
 
     //use crate::util::WormholeTransferURI;
-    use gtk::gio::AppInfo;
-    use gtk::CompositeTemplate;
 
-    #[derive(Debug, Default, CompositeTemplate)]
+    #[derive(Debug, Default, gtk::CompositeTemplate)]
     #[template(resource = "/app/drey/Warp/ui/action_view.ui")]
     pub struct ActionView {
         #[template_child]
@@ -202,7 +196,7 @@ mod imp {
     impl WidgetImpl for ActionView {}
     impl BoxImpl for ActionView {}
 
-    #[template_callbacks]
+    #[gtk::template_callbacks]
     impl ActionView {
         #[template_callback]
         fn back_button_clicked(&self) {
@@ -242,7 +236,7 @@ mod imp {
             let clipboard = window.clipboard();
 
             let uri = WormholeTransferURI {
-                code: Code(code.to_string()),
+                code: wormhole::Code(code.to_string()),
                 version: 0,
                 rendezvous_server: self.context.borrow().rendezvous_url.clone(),
                 direction: TransferDirection::Receive,
@@ -297,7 +291,7 @@ mod imp {
                 if let Ok(uri) = uri {
                     log::debug!("Opening file with uri '{}'", uri);
                     let none: Option<&AppLaunchContext> = None;
-                    let res = AppInfo::launch_default_for_uri(&uri, none);
+                    let res = gio::AppInfo::launch_default_for_uri(&uri, none);
                     if let Err(err) = res {
                         log::error!("Error opening file: {}", err);
                         let dialog = WarpApplicationWindow::default()
@@ -510,7 +504,7 @@ impl ActionView {
                 notification.set_body(Some(&gettext(
                     "A file is ready to be transferred. The transfer needs to be acknowledged.",
                 )));
-                notification.set_priority(NotificationPriority::Urgent);
+                notification.set_priority(gio::NotificationPriority::Urgent);
                 notification.set_category(Some("transfer"));
                 WarpApplication::default()
                     .send_notification_if_background(Some("receive-ready"), &notification);
@@ -534,7 +528,7 @@ impl ActionView {
                 let is_site_local = gio_addr.is_site_local();
 
                 let description = match info {
-                    TransitInfo::Direct => {
+                    wormhole::transit::TransitInfo::Direct => {
                         if is_site_local {
                             // Translators: Description, During transfer
                             gettextf("File “{}” via local network direct transfer", &[&filename])
@@ -543,7 +537,7 @@ impl ActionView {
                             gettextf("File “{}” via direct transfer", &[&filename])
                         }
                     }
-                    TransitInfo::Relay { name } => {
+                    wormhole::transit::TransitInfo::Relay { name } => {
                         if let Some(name) = name {
                             // Translators: Description, During transfer
                             gettextf("File “{0}” via relay {1}", &[&filename, &name])
@@ -583,7 +577,7 @@ impl ActionView {
 
                 let notification = gio::Notification::new(&gettext("File Transfer Complete"));
 
-                notification.set_priority(NotificationPriority::High);
+                notification.set_priority(gio::NotificationPriority::High);
                 notification.set_category(Some("transfer.complete"));
 
                 if direction == TransferDirection::Send {
@@ -639,7 +633,7 @@ impl ActionView {
                     "The file transfer failed: {}",
                     &[&error.gettext_error()],
                 )));
-                notification.set_priority(NotificationPriority::High);
+                notification.set_priority(gio::NotificationPriority::High);
                 notification.set_category(Some("transfer.error"));
                 WarpApplication::default()
                     .send_notification_if_background(Some("transfer-error"), &notification);
@@ -790,8 +784,8 @@ impl ActionView {
     async fn transmit_receive(
         &self,
         download_path: PathBuf,
-        code: Code,
-        app_cfg: AppConfig<AppVersion>,
+        code: wormhole::Code,
+        app_cfg: wormhole::AppConfig<wormhole::transfer::AppVersion>,
     ) -> Result<(), AppError> {
         self.prepare_transmit(TransferDirection::Receive)?;
         let uri = WormholeTransferURI::from_app_cfg_with_code_direction(
@@ -804,7 +798,7 @@ impl ActionView {
         WarpApplicationWindow::default().add_code(&code);
 
         let (_welcome, connection) = spawn_async(cancelable_future(
-            Wormhole::connect_with_code(app_cfg, code),
+            wormhole::Wormhole::connect_with_code(app_cfg, code),
             Self::cancel_future(),
         ))
         .await??;
@@ -814,7 +808,7 @@ impl ActionView {
         let relay_url = self.imp().context.borrow().transit_url.clone();
 
         let request = spawn_async(async move {
-            Ok(transfer::request_file(
+            Ok(wormhole::transfer::request_file(
                 connection,
                 relay_url,
                 TRANSIT_ABILITIES,
@@ -920,7 +914,7 @@ impl ActionView {
     async fn transmit_send(
         &self,
         path: PathBuf,
-        app_cfg: AppConfig<AppVersion>,
+        app_cfg: wormhole::AppConfig<wormhole::transfer::AppVersion>,
     ) -> Result<(), AppError> {
         self.prepare_transmit(TransferDirection::Send)?;
         self.set_ui_state(UIState::RequestCode);
@@ -932,7 +926,7 @@ impl ActionView {
         let code_length = window.config().code_length_or_default();
 
         let res = spawn_async(cancelable_future(
-            Wormhole::connect_without_code(app_cfg.clone(), code_length),
+            wormhole::Wormhole::connect_without_code(app_cfg.clone(), code_length),
             Self::cancel_future(),
         ))
         .await?;
@@ -963,7 +957,7 @@ impl ActionView {
             spawn_async(async move {
                 let metadata = file.metadata().await?;
 
-                transfer::send_file(
+                wormhole::transfer::send_file(
                     connection,
                     transit_url,
                     &mut file,
@@ -1041,7 +1035,7 @@ impl ActionView {
     }
 
     /// Callback with information about the currently running transfer
-    fn transit_handler(info: TransitInfo, peer_ip: SocketAddr) {
+    fn transit_handler(info: wormhole::transit::TransitInfo, peer_ip: SocketAddr) {
         glib::MainContext::default().invoke(move || {
             let obj = ActionView::default();
             let imp = obj.imp();
@@ -1168,7 +1162,11 @@ impl ActionView {
             .transmit_error(error);
     }
 
-    pub fn send_file(&self, path: PathBuf, app_cfg: AppConfig<AppVersion>) {
+    pub fn send_file(
+        &self,
+        path: PathBuf,
+        app_cfg: wormhole::AppConfig<wormhole::transfer::AppVersion>,
+    ) {
         log::info!("Sending file: {}", path.display());
         let obj = self.clone();
 
@@ -1180,8 +1178,8 @@ impl ActionView {
 
     fn receive_file_impl(
         &self,
-        code: Code,
-        app_cfg: AppConfig<AppVersion>,
+        code: wormhole::Code,
+        app_cfg: wormhole::AppConfig<wormhole::transfer::AppVersion>,
     ) -> Result<(), AppError> {
         let path = if let Some(downloads) = glib::user_special_dir(glib::UserDirectory::Downloads) {
             downloads
@@ -1202,7 +1200,11 @@ impl ActionView {
         Ok(())
     }
 
-    pub fn receive_file(&self, code: Code, app_cfg: AppConfig<AppVersion>) {
+    pub fn receive_file(
+        &self,
+        code: wormhole::Code,
+        app_cfg: wormhole::AppConfig<wormhole::transfer::AppVersion>,
+    ) {
         log::info!("Receiving file with code '{}'", code);
         if let Err(err) = self.receive_file_impl(code, app_cfg) {
             self.transmit_error(err);

@@ -4,7 +4,6 @@ use futures::FutureExt;
 use futures::{pin_mut, select};
 use std::ffi::OsString;
 use std::future::Future;
-use std::io::ErrorKind;
 use std::path::{Path, PathBuf};
 use zip::ZipWriter;
 use zip_extensions::write::ZipWriterExtensions;
@@ -100,7 +99,7 @@ pub fn safe_persist_tempfile(
         path = dir.join(filename.clone());
         let persist_res = temp_path.persist_noclobber(&path);
         if let Err(err) = persist_res {
-            if err.error.kind() != ErrorKind::AlreadyExists {
+            if err.error.kind() != std::io::ErrorKind::AlreadyExists {
                 log::error!("Error creating file '{}': {}", path.display(), err);
                 return Err(err.error);
             }

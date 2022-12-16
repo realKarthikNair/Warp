@@ -1,13 +1,10 @@
-use adw::prelude::*;
-use adw::subclass::prelude::*;
-use gtk::{glib, template_callbacks};
-
 use crate::globals;
 use crate::ui::window::WarpApplicationWindow;
+use adw::prelude::*;
+use adw::subclass::prelude::*;
 
 mod imp {
     use super::*;
-
     use gtk::CompositeTemplate;
 
     #[derive(Debug, Default, CompositeTemplate)]
@@ -61,7 +58,7 @@ glib::wrapper! {
         @extends gtk::Widget, gtk::Window, adw::Window;
 }
 
-#[template_callbacks]
+#[gtk::template_callbacks]
 impl WelcomeWindow {
     pub fn new() -> Self {
         glib::Object::new(&[])

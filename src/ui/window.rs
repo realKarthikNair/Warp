@@ -1,16 +1,13 @@
 use crate::config::PersistentConfig;
 use crate::gettext::gettextf;
-use crate::glib::clone;
-use crate::globals::TRANSMIT_CODE_MATCH_REGEX;
+use crate::globals;
 use crate::ui::action_view::ActionView;
 use adw::prelude::*;
+use adw::subclass::prelude::*;
 use gettextrs::*;
-use gtk::subclass::prelude::*;
-use gtk::{gio, glib, template_callbacks, ResponseType};
+use glib::clone;
 use std::cell::RefMut;
 use std::str::FromStr;
-use wormhole::transfer::AppVersion;
-use wormhole::AppConfig;
 
 use crate::ui::application::WarpApplication;
 use crate::util::error::AppError;
@@ -21,18 +18,13 @@ use crate::util::{
 
 mod imp {
     use super::*;
-    use adw::subclass::prelude::AdwApplicationWindowImpl;
+    use crate::config::PersistentConfig;
+    use crate::ui::welcome_window::WelcomeWindow;
+    use crate::util::{error::UiError, future::main_async_local_infallible};
     use std::cell::{Cell, RefCell};
     use std::collections::HashSet;
 
-    use crate::config::PersistentConfig;
-    use crate::glib::clone;
-    use crate::globals;
-    use crate::ui::welcome_window::WelcomeWindow;
-    use crate::util::{error::UiError, future::main_async_local_infallible};
-    use gtk::CompositeTemplate;
-
-    #[derive(Default, CompositeTemplate)]
+    #[derive(Default, gtk::CompositeTemplate)]
     #[template(resource = "/app/drey/Warp/ui/window.ui")]
     pub struct WarpApplicationWindow {
         #[template_child]
@@ -128,7 +120,7 @@ mod imp {
 
             let file_chooser_closure = clone!(@strong obj => move |chooser: &gtk::FileChooserNative, response: gtk::ResponseType| {
                 match response {
-                    ResponseType::Accept => {
+                    gtk::ResponseType::Accept => {
                         if let Some(file) = chooser.file() {
                             if let Some(path) = file.path() {
                                 log::debug!("Picked file: {}", path.display());
@@ -140,7 +132,7 @@ mod imp {
                             log::debug!("File chooser accepted but no file selected");
                         }
                     }
-                    ResponseType::Cancel => {
+                    gtk::ResponseType::Cancel => {
                         log::debug!("File chooser canceled");
                     }
                     _ => {
@@ -227,7 +219,7 @@ glib::wrapper! {
         @implements gio::ActionMap, gio::ActionGroup, gtk::Root;
 }
 
-#[template_callbacks]
+#[gtk::template_callbacks]
 impl WarpApplicationWindow {
     pub fn new(app: &WarpApplication) -> Self {
         glib::Object::new(&[("application", app)])
@@ -334,7 +326,7 @@ impl WarpApplicationWindow {
     pub fn receive_button_clicked(&self) {
         let text = self.imp().code_entry.text();
         let uri = extract_transmit_uri(&text).and_then(|s| WormholeTransferURI::from_str(&s).ok());
-        let code = if TRANSMIT_CODE_MATCH_REGEX.is_match(&text) {
+        let code = if globals::TRANSMIT_CODE_MATCH_REGEX.is_match(&text) {
             wormhole::Code(text.to_string())
         } else if let Some(uri) = uri {
             self.open_code_from_uri(uri);
@@ -459,7 +451,7 @@ impl WarpApplicationWindow {
     }
 
     pub fn open_code_from_uri(&self, uri: WormholeTransferURI) {
-        let app_cfg: AppConfig<AppVersion> = uri.to_app_cfg();
+        let app_cfg = uri.to_app_cfg();
         if uri.direction == TransferDirection::Receive {
             self.imp().stack.set_visible_child_name("receive");
             self.action_view().receive_file(uri.code, app_cfg);

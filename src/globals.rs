@@ -1,4 +1,3 @@
-use adw::glib;
 use once_cell::sync::Lazy;
 use regex::Regex;
 use std::path::PathBuf;

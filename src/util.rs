@@ -1,15 +1,10 @@
 use crate::error::{AppError, UiError};
 use crate::gettext::gettextf;
-use crate::glib::Cast;
 use crate::globals;
 use crate::globals::{TRANSMIT_CODE_FIND_REGEX, TRANSMIT_URI_FIND_REGEX};
 use gettextrs::gettext;
 use gio::prelude::*;
-use gtk::gdk;
-use qrcode::QrCode;
 use std::str::FromStr;
-use wormhole::transfer::AppVersion;
-use wormhole::{AppConfig, AppID, Code};
 
 pub mod error;
 pub mod future;
@@ -18,7 +13,7 @@ pub mod future;
 pub fn show_dir(path: &std::path::Path) -> Result<(), AppError> {
     let uri = gio::File::for_path(path).uri();
 
-    let show_folder = || -> std::result::Result<(), _> {
+    let show_folder = || -> Result<(), _> {
         let conn = zbus::blocking::Connection::session()?;
         let proxy = zbus::blocking::Proxy::new(
             &conn,
@@ -69,14 +64,14 @@ impl ToString for WormholeURIParseError {
 
 #[derive(Debug)]
 pub struct WormholeTransferURI {
-    pub code: Code,
+    pub code: wormhole::Code,
     pub version: usize,
     pub rendezvous_server: url::Url,
     pub direction: TransferDirection,
 }
 
 impl WormholeTransferURI {
-    pub fn new(code: Code, rendezvous_server: url::Url, direction: TransferDirection) -> Self {
+    pub fn new(code: wormhole::Code, rendezvous_server: url::Url, direction: TransferDirection) -> Self {
         let mut rendezvous_server = rendezvous_server;
         rendezvous_server.set_path("");
         rendezvous_server.set_query(None);
@@ -119,32 +114,32 @@ impl WormholeTransferURI {
 
     /// This assumes the rendezvous server URI inside the `AppConfig` is a valid URI
     pub fn from_app_cfg_with_code_direction(
-        app_cfg: &AppConfig<AppVersion>,
+        app_cfg: &wormhole::AppConfig<wormhole::transfer::AppVersion>,
         code: &str,
         direction: TransferDirection,
     ) -> Self {
         let rendezvous_server = url::Url::parse(&app_cfg.rendezvous_url).unwrap();
         Self {
-            code: Code(code.to_owned()),
+            code: wormhole::Code(code.to_owned()),
             version: 0,
             rendezvous_server,
             direction,
         }
     }
 
-    pub fn to_app_cfg(&self) -> AppConfig<AppVersion> {
+    pub fn to_app_cfg(&self) -> wormhole::AppConfig<wormhole::transfer::AppVersion> {
         let mut rendezvous_url = self.rendezvous_server.clone();
         rendezvous_url.set_path("v1");
 
-        AppConfig {
-            id: AppID::new(globals::WORMHOLE_DEFAULT_APPID_STR),
+        wormhole::AppConfig {
+            id: wormhole::AppID::new(globals::WORMHOLE_DEFAULT_APPID_STR),
             rendezvous_url: rendezvous_url.to_string().into(),
-            app_version: AppVersion {},
+            app_version: wormhole::transfer::AppVersion {},
         }
     }
 
     pub fn to_paintable_qr(&self) -> gdk::Paintable {
-        let qr = QrCode::new(self.create_uri()).unwrap();
+        let qr = qrcode::QrCode::new(self.create_uri()).unwrap();
         let svg = qr
             .render::<qrcode::render::svg::Color>()
             .min_dimensions(800, 800)
@@ -178,7 +173,7 @@ impl TryFrom<url::Url> for WormholeTransferURI {
         }
 
         let mut this = WormholeTransferURI::new(
-            Code(code.to_string()),
+            wormhole::Code(code.to_string()),
             globals::WORMHOLE_DEFAULT_RENDEZVOUS_SERVER.clone(),
             TransferDirection::Receive,
         );

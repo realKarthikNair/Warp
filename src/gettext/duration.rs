@@ -1,5 +1,4 @@
 use super::*;
-use gtk::glib;
 
 /// From <https://gitlab.gnome.org/World/pika-backup/-/blob/main/src/ui/utils/duration.rs>
 pub fn left(done_bytes: usize, total_bytes: usize, d: &chrono::Duration) -> String {

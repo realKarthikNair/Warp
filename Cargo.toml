@@ -26,6 +26,7 @@ gtk = {version = "0.5", package = "gtk4"}
 gdk = {version = "0.5", package = "gdk4", features = ["v4_6"]}
 gio = {version = "0.16", package = "gio", features = ["v2_70"]}
 adw = {version = "0.2", package = "libadwaita", features = ["v1_2"]}
+glib = "0.16"
 #gtk = {version = "0.5", package = "gtk4", git = "https://github.com/gtk-rs/gtk4-rs"}
 #gdk = {version = "0.5", package = "gdk4", git = "https://github.com/gtk-rs/gtk4-rs", features = ["v4_6"]}
 #gio = {version = "0.16", package = "gio", git = "https://github.com/gtk-rs/gtk-rs-core", features = ["v2_70"]}

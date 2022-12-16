@@ -28,8 +28,6 @@
     clippy::wildcard_imports
 )]
 
-#[macro_use]
-mod macros;
 mod config;
 #[allow(dead_code)]
 mod gettext;
@@ -41,7 +39,6 @@ mod util;
 use crate::ui::application::WarpApplication;
 use crate::util::error;
 use gettextrs::gettext;
-use gtk::glib;
 
 fn setup_gresources() {
     #[cfg(all(debug_assertions, not(feature = "meson")))]

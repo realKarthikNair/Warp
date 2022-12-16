@@ -1,21 +1,16 @@
+use crate::ui::window::WarpApplicationWindow;
 use adw::prelude::*;
 use adw::subclass::prelude::*;
-use gtk::glib;
-
-use crate::ui::window::WarpApplicationWindow;
 
 const CODE_LENGTH_MIN: i32 = 2;
 const CODE_LENGTH_MAX: i32 = 8;
 
 mod imp {
     use super::*;
+    use glib::signal::Inhibit;
     use std::cell::{Cell, RefCell};
 
-    use crate::glib::signal::Inhibit;
-    use crate::glib::Value;
-    use gtk::CompositeTemplate;
-
-    #[derive(Debug, Default, CompositeTemplate)]
+    #[derive(Debug, Default, gtk::CompositeTemplate)]
     #[template(resource = "/app/drey/Warp/ui/preferences.ui")]
     pub struct WarpPreferencesWindow {
         #[template_child]
@@ -81,7 +76,7 @@ mod imp {
             PROPERTIES.as_ref()
         }
 
-        fn set_property(&self, _id: usize, value: &Value, pspec: &glib::ParamSpec) {
+        fn set_property(&self, _id: usize, value: &glib::Value, pspec: &glib::ParamSpec) {
             let obj = self.obj();
             match pspec.name() {
                 "rendezvous-server-url" => obj.set_rendezvous_server_url(value.get().unwrap()),
@@ -91,7 +86,7 @@ mod imp {
             }
         }
 
-        fn property(&self, _id: usize, pspec: &glib::ParamSpec) -> Value {
+        fn property(&self, _id: usize, pspec: &glib::ParamSpec) -> glib::Value {
             let obj = self.obj();
             match pspec.name() {
                 "rendezvous-server-url" => obj.rendezvous_server_url().to_value(),

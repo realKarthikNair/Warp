@@ -1,7 +1,6 @@
 use crate::error;
 use crate::util::error::AppError;
 use futures::{pin_mut, select, FutureExt};
-use gtk::glib;
 use std::future::Future;
 
 pub async fn spawn_async<F, T>(func: F) -> Result<T, AppError>

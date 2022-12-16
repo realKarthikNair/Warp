@@ -1,11 +1,7 @@
 use crate::globals;
-use gtk::glib;
 use serde::{Deserialize, Serialize};
-use std::fs::File;
 use std::ops::{Deref, DerefMut};
 use std::path::PathBuf;
-use wormhole::transfer::AppVersion;
-use wormhole::{AppConfig, AppID};
 
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq)]
 pub struct WindowConfig {
@@ -58,7 +54,7 @@ impl PersistentConfig {
         let path = Self::path();
         log::info!("Loading config file: '{}'", path.display());
 
-        let file = File::open(path);
+        let file = std::fs::File::open(path);
         if let Err(err) = &file {
             if matches!(err.kind(), std::io::ErrorKind::NotFound) {
                 log::info!("Config file not found. Using default values");
@@ -129,7 +125,7 @@ impl PersistentConfig {
         self.code_length.unwrap_or(4)
     }
 
-    pub fn app_cfg(&self) -> AppConfig<AppVersion> {
+    pub fn app_cfg(&self) -> wormhole::AppConfig<wormhole::transfer::AppVersion> {
         let mut rendezvous_url = self
             .rendezvous_server_url()
             .unwrap_or_else(|_| globals::WORMHOLE_DEFAULT_RENDEZVOUS_SERVER.clone());
@@ -138,10 +134,10 @@ impl PersistentConfig {
         rendezvous_url.set_path("v1");
         log::debug!("Creating AppConfig with server url '{}'", rendezvous_url);
 
-        AppConfig {
-            id: AppID::new(globals::WORMHOLE_DEFAULT_APPID_STR),
+        wormhole::AppConfig {
+            id: wormhole::AppID::new(globals::WORMHOLE_DEFAULT_APPID_STR),
             rendezvous_url: rendezvous_url.to_string().into(),
-            app_version: AppVersion {},
+            app_version: wormhole::transfer::AppVersion {},
         }
     }
 }
