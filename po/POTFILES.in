@@ -9,7 +9,6 @@ src/config.rs
 src/gettext.rs
 src/gettext/duration.rs
 src/globals.rs
-src/macros.rs
 src/main.rs
 src/ui.rs
 src/ui/action_view.rs
