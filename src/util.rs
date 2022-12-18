@@ -71,7 +71,11 @@ pub struct WormholeTransferURI {
 }
 
 impl WormholeTransferURI {
-    pub fn new(code: wormhole::Code, rendezvous_server: url::Url, direction: TransferDirection) -> Self {
+    pub fn new(
+        code: wormhole::Code,
+        rendezvous_server: url::Url,
+        direction: TransferDirection,
+    ) -> Self {
         let mut rendezvous_server = rendezvous_server;
         rendezvous_server.set_path("");
         rendezvous_server.set_query(None);
