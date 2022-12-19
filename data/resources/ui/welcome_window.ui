@@ -16,13 +16,6 @@
             <child>
               <object class="AdwHeaderBar">
                 <property name="centering-policy">strict</property>
-                <child type="start">
-                  <object class="GtkButton" id="close_button">
-                    <signal name="clicked" handler="close_button_clicked" swapped="true"/>
-                    <!-- Translators: Button -->
-                    <property name="label" translatable="yes">Close</property>
-                  </object>
-                </child>
                 <child type="end">
                   <object class="GtkButton" id="next_button">
                     <signal name="clicked" handler="navigate_forward" swapped="true"/>

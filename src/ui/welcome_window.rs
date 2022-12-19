@@ -15,8 +15,6 @@ mod imp {
         #[template_child]
         status_page: TemplateChild<adw::StatusPage>,
         #[template_child]
-        close_button: TemplateChild<gtk::Button>,
-        #[template_child]
         back_button: TemplateChild<gtk::Button>,
         #[template_child]
         next_button: TemplateChild<gtk::Button>,
@@ -62,11 +60,6 @@ glib::wrapper! {
 impl WelcomeWindow {
     pub fn new() -> Self {
         glib::Object::new(&[])
-    }
-
-    #[template_callback]
-    pub fn close_button_clicked(&self) {
-        self.close();
     }
 
     #[template_callback]
