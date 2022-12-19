@@ -197,6 +197,11 @@
                                                     <!-- Translators: Entry placeholder; This is a noun -->
                                                     <property name="placeholder-text" translatable="yes">Transmit Code</property>
                                                     <property name="hexpand">False</property>
+                                                    <property name="buffer">
+                                                      <object class="GtkEntryBuffer">
+                                                        <signal name="notify::text" handler="code_entry_changed" swapped="true"/>
+                                                      </object>
+                                                    </property>
                                                   </object>
                                                 </child>
                                               </object>
@@ -206,6 +211,7 @@
                                                 <signal name="clicked" handler="receive_button_clicked" swapped="true"/>
                                                 <property name="halign">center</property>
                                                 <property name="width-request">150</property>
+                                                <property name="sensitive">False</property>
                                                 <!-- Translators: Button -->
                                                 <property name="label" translatable="yes">Receive File</property>
                                                 <style>

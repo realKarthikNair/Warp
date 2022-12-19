@@ -323,6 +323,13 @@ impl WarpApplicationWindow {
     }
 
     #[template_callback]
+    fn code_entry_changed(&self) {
+        self.imp()
+            .receive_button
+            .set_sensitive(!self.imp().code_entry.text().is_empty());
+    }
+
+    #[template_callback]
     pub fn receive_button_clicked(&self) {
         let text = self.imp().code_entry.text();
         let uri = extract_transmit_uri(&text).and_then(|s| WormholeTransferURI::from_str(&s).ok());
