@@ -3,10 +3,20 @@ use regex::Regex;
 use std::path::PathBuf;
 use std::sync::Mutex;
 
+pub static WORMHOLE_DEFAULT_RENDEZVOUS_SERVER_STR: &str = "ws://relay.magic-wormhole.io:4000";
 pub static WORMHOLE_DEFAULT_RENDEZVOUS_SERVER: Lazy<url::Url> =
-    Lazy::new(|| url::Url::parse("ws://relay.magic-wormhole.io:4000").unwrap());
-pub static WORMHOLE_DEFAULT_TRANSIT_RELAY: Lazy<url::Url> =
-    Lazy::new(|| url::Url::parse("tcp://transit.magic-wormhole.io:4001").unwrap());
+    Lazy::new(|| url::Url::parse(WORMHOLE_DEFAULT_RENDEZVOUS_SERVER_STR).unwrap());
+
+pub static WORMHOLE_DEFAULT_TRANSIT_RELAY_URL_STR: &str = "tcp://transit.magic-wormhole.io:4001";
+pub static WORMHOLE_DEFAULT_TRANSIT_RELAY_HINTS: Lazy<Vec<wormhole::transit::RelayHint>> =
+    Lazy::new(|| {
+        vec![wormhole::transit::RelayHint::from_urls(
+            None,
+            [WORMHOLE_DEFAULT_TRANSIT_RELAY_URL_STR.parse().unwrap()],
+        )
+        .unwrap()]
+    });
+
 pub const WORMHOLE_DEFAULT_APPID_STR: &str = "lothar.com/wormhole/text-or-file-xfer";
 
 pub static TRANSMIT_URI_FIND_REGEX: Lazy<Regex> =

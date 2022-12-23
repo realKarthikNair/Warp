@@ -1,4 +1,5 @@
 use crate::globals;
+use crate::util::error::AppError;
 use serde::{Deserialize, Serialize};
 use std::ops::{Deref, DerefMut};
 use std::path::PathBuf;
@@ -113,11 +114,14 @@ impl PersistentConfig {
         }
     }
 
-    pub fn transit_server_url(&self) -> Result<url::Url, url::ParseError> {
+    pub fn transit_relay_hints(&self) -> Result<Vec<wormhole::transit::RelayHint>, AppError> {
         if let Some(url) = &self.transit_server_url {
-            url.parse()
+            Ok(vec![wormhole::transit::RelayHint::from_urls(
+                None,
+                [url.parse()?],
+            )?])
         } else {
-            Ok(globals::WORMHOLE_DEFAULT_TRANSIT_RELAY.clone())
+            Ok(globals::WORMHOLE_DEFAULT_TRANSIT_RELAY_HINTS.clone())
         }
     }
 

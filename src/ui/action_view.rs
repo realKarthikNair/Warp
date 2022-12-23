@@ -101,7 +101,7 @@ pub struct UIContext {
     pub rendezvous_url: url::Url,
 
     /// The transit url in use
-    pub transit_url: url::Url,
+    pub relay_hints: Vec<wormhole::transit::RelayHint>,
 }
 
 impl Default for UIContext {
@@ -126,7 +126,7 @@ impl Default for UIContext {
             direction: TransferDirection::default(),
             ui_state: Rc::default(),
             progress: None,
-            transit_url: globals::WORMHOLE_DEFAULT_TRANSIT_RELAY.clone(),
+            relay_hints: globals::WORMHOLE_DEFAULT_TRANSIT_RELAY_HINTS.clone(),
             rendezvous_url: globals::WORMHOLE_DEFAULT_RENDEZVOUS_SERVER.clone(),
         }
     }
@@ -769,13 +769,13 @@ impl ActionView {
 
         let transit_url = WarpApplicationWindow::default()
             .config()
-            .transit_server_url()
+            .transit_relay_hints()
             .map_err(|_| {
                 UiError::new(&gettext(
                     "Error parsing transit URL. An invalid URL was entered in the settings.",
                 ))
             })?;
-        self.imp().context.borrow_mut().transit_url = transit_url;
+        self.imp().context.borrow_mut().relay_hints = transit_url;
 
         WarpApplicationWindow::default().show_action_view();
         Ok(())
@@ -805,7 +805,7 @@ impl ActionView {
 
         self.set_ui_state(UIState::Connected);
 
-        let relay_url = self.imp().context.borrow().transit_url.clone();
+        let relay_url = self.imp().context.borrow().relay_hints.clone();
 
         let request = spawn_async(async move {
             Ok(wormhole::transfer::request_file(
@@ -951,7 +951,7 @@ impl ActionView {
         self.set_ui_state(UIState::Connected);
 
         self.imp().context.borrow_mut().file_path = Some(path);
-        let transit_url = self.imp().context.borrow().transit_url.clone();
+        let transit_url = self.imp().context.borrow().relay_hints.clone();
 
         cancelable_future(
             spawn_async(async move {

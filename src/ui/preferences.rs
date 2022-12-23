@@ -7,12 +7,17 @@ const CODE_LENGTH_MAX: i32 = 8;
 
 mod imp {
     use super::*;
+    use crate::gettext::gettextf;
+    use crate::globals;
     use glib::signal::Inhibit;
     use std::cell::{Cell, RefCell};
 
     #[derive(Debug, Default, gtk::CompositeTemplate)]
     #[template(resource = "/app/drey/Warp/ui/preferences.ui")]
     pub struct WarpPreferencesWindow {
+        #[template_child]
+        pub preferences_group: TemplateChild<adw::PreferencesGroup>,
+
         #[template_child]
         pub rendezvous_server_url_entry_row: TemplateChild<adw::EntryRow>,
 
@@ -121,6 +126,19 @@ mod imp {
                 .set_adjustment(&gtk::Adjustment::new(4f64, 2f64, 8f64, 1f64, 0f64, 0f64));
 
             obj.set_code_length(window.config().code_length_or_default() as i32);
+
+            self.preferences_group.set_description(Some(&gettextf(
+                "Changing the rendezvous server URL needs to be done on both sides of the \
+transfer. Only enter a server URL you can trust.\n\
+\n\
+Leaving these entries empty will use the application defaults:\n\
+Rendezvous Server: “{0}”\n\
+Transit Server: “{1}”",
+                &[
+                    &globals::WORMHOLE_DEFAULT_RENDEZVOUS_SERVER_STR,
+                    &globals::WORMHOLE_DEFAULT_TRANSIT_RELAY_URL_STR,
+                ],
+            )));
         }
     }
 
@@ -193,9 +211,14 @@ impl WarpPreferencesWindow {
     }
 
     pub fn set_transit_server_url(&self, url: String) {
-        let is_valid_url = url::Url::parse(&url).is_ok();
+        let url_res = url::Url::parse(&url);
+        let is_valid_hint = if let Ok(url) = url_res {
+            wormhole::transit::RelayHint::from_urls(None, [url]).is_ok()
+        } else {
+            false
+        };
 
-        if is_valid_url && !url.is_empty() {
+        if is_valid_hint && !url.is_empty() {
             self.imp()
                 .transit_server_url_entry_row
                 .add_css_class("success");
@@ -205,7 +228,7 @@ impl WarpPreferencesWindow {
                 .remove_css_class("success");
         }
 
-        if url.is_empty() || is_valid_url {
+        if url.is_empty() || is_valid_hint {
             self.imp()
                 .transit_server_url_entry_row
                 .remove_css_class("error");
