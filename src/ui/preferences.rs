@@ -131,7 +131,7 @@ mod imp {
                 "Changing the rendezvous server URL needs to be done on both sides of the \
 transfer. Only enter a server URL you can trust.\n\
 \n\
-Leaving these entries empty will use the application defaults:\n\
+Leaving these entries empty will use the app defaults:\n\
 Rendezvous Server: “{0}”\n\
 Transit Server: “{1}”",
                 &[
