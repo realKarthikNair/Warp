@@ -1,30 +1,30 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Georgian translation for Warp.
+# Copyright (C) 2022 Warp's COPYRIGHT HOLDER
+# This file is distributed under the same license as the Warp package.
+# Ekaterine Papava <papava.e@gtu.ge>, 2022.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
-"POT-Creation-Date: 2022-11-21 01:33+0000\n"
-"PO-Revision-Date: 2022-11-21 07:35+0100\n"
-"Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
+"POT-Creation-Date: 2022-12-25 09:40+0000\n"
+"PO-Revision-Date: 2022-12-26 02:28+0100\n"
+"Last-Translator: Ekaterine Papava <papava.e@gtu.ge>\n"
 "Language-Team: \n"
 "Language: ka\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.2\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #: data/app.drey.Warp.desktop.in.in:3 data/app.drey.Warp.metainfo.xml.in.in:7
-#: src/main.rs:94 src/ui/application.rs:216
+#: src/main.rs:91 src/ui/application.rs:212
 msgid "Warp"
 msgstr "Warp"
 
 #: data/app.drey.Warp.desktop.in.in:4 data/app.drey.Warp.metainfo.xml.in.in:8
-#: data/resources/ui/welcome_window.ui:42
+#: data/resources/ui/welcome_window.ui:35
 msgid "Fast and secure file transfer"
 msgstr "ფაილების სწრაფი და უსაფრთხო გადაცემა"
 
@@ -50,7 +50,7 @@ msgstr "თვისებები"
 
 #: data/app.drey.Warp.metainfo.xml.in.in:18
 msgid "Send files between multiple devices"
-msgstr ""
+msgstr "ფაილების მრავალ მოწყობილობას შორის მიმოცვლა"
 
 #: data/app.drey.Warp.metainfo.xml.in.in:19
 msgid "Every file transfer is encrypted"
@@ -58,7 +58,7 @@ msgstr "ფაილების გადაცემა დაშიფრუ�
 
 #: data/app.drey.Warp.metainfo.xml.in.in:20
 msgid "Directly transfer files on the local network if possible"
-msgstr ""
+msgstr "ლოკალურ ქსელში, შესაძლებლობის შემთხვევაში, ფაილების პირდაპირ გადაცემა"
 
 #: data/app.drey.Warp.metainfo.xml.in.in:21
 msgid "An internet connection is required"
@@ -83,20 +83,20 @@ msgid "Accept File Transfer"
 msgstr "ფაილის მიღების თანხმობა"
 
 #. Translators: Title
-#: data/app.drey.Warp.metainfo.xml.in.in:40 src/ui/action_view.rs:560
+#: data/app.drey.Warp.metainfo.xml.in.in:40 src/ui/action_view.rs:557
 msgid "Sending File"
 msgstr "ფალის გაგზავნა"
 
 #. Translators: Title
-#: data/app.drey.Warp.metainfo.xml.in.in:44 src/ui/action_view.rs:564
+#: data/app.drey.Warp.metainfo.xml.in.in:44 src/ui/action_view.rs:561
 msgid "Receiving File"
 msgstr "ფალის მიღება"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:48 src/ui/action_view.rs:581
+#: data/app.drey.Warp.metainfo.xml.in.in:48 src/ui/action_view.rs:578
 msgid "File Transfer Complete"
 msgstr "ფაილის გადაგზავნა დასრულდა"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:155
+#: data/app.drey.Warp.metainfo.xml.in.in:165
 msgid "Fina Wilke"
 msgstr "Fina Wilke"
 
@@ -107,7 +107,7 @@ msgid "Cancel"
 msgstr "_გაუქმება"
 
 #. Translators: Button
-#: data/resources/ui/action_view.ui:26 data/resources/ui/welcome_window.ui:61
+#: data/resources/ui/action_view.ui:26 data/resources/ui/welcome_window.ui:54
 msgid "Back"
 msgstr "უკან"
 
@@ -152,30 +152,40 @@ msgstr "ზოგადი"
 
 #: data/resources/ui/help_overlay.ui:14
 msgctxt "shortcut window"
+msgid "Show Help"
+msgstr "დახმარების ჩვენება"
+
+#: data/resources/ui/help_overlay.ui:20
+msgctxt "shortcut window"
 msgid "Show Shortcuts"
 msgstr "მალსახმობების ჩვენება"
 
-#: data/resources/ui/help_overlay.ui:20
+#: data/resources/ui/help_overlay.ui:26
+msgctxt "shortcut window"
+msgid "Show Preferences"
+msgstr "მორგება"
+
+#: data/resources/ui/help_overlay.ui:32
 msgctxt "shortcut window"
 msgid "Quit"
 msgstr "დატოვება"
 
-#: data/resources/ui/help_overlay.ui:28
+#: data/resources/ui/help_overlay.ui:40
 msgctxt "shortcut window"
 msgid "File Transfer"
 msgstr "ფაილის მიმოცვლა"
 
-#: data/resources/ui/help_overlay.ui:31
+#: data/resources/ui/help_overlay.ui:43
 msgctxt "shortcut window"
 msgid "Send File"
 msgstr "ფაილის გაგზავნა"
 
-#: data/resources/ui/help_overlay.ui:37
+#: data/resources/ui/help_overlay.ui:49
 msgctxt "shortcut window"
 msgid "Send Folder"
 msgstr "საქაღალდის გაგზავნა"
 
-#: data/resources/ui/help_overlay.ui:43
+#: data/resources/ui/help_overlay.ui:55
 msgctxt "shortcut window"
 msgid "Receive File"
 msgstr "ფაილის მიღება"
@@ -192,27 +202,19 @@ msgstr "ქსელი"
 msgid "Server URLs"
 msgstr "სერვერის URL-ები"
 
-#: data/resources/ui/preferences.ui:16
-msgid ""
-"Changing the rendezvous server URL has to be done on both sides of the "
-"transfer. Only enter a server URL you can trust.\n"
-"\n"
-"Leaving these entries empty will use the application defaults."
-msgstr ""
-
-#: data/resources/ui/preferences.ui:21
+#: data/resources/ui/preferences.ui:18
 msgid "Rendezvous Server URL"
 msgstr ""
 
-#: data/resources/ui/preferences.ui:28
+#: data/resources/ui/preferences.ui:25
 msgid "Transit Server URL"
 msgstr "ტრანზიტის სერვერის ღ₾"
 
-#: data/resources/ui/preferences.ui:37
+#: data/resources/ui/preferences.ui:34
 msgid "Code Words"
 msgstr "კოდური სიტყვები"
 
-#: data/resources/ui/preferences.ui:38
+#: data/resources/ui/preferences.ui:35
 msgid ""
 "The code word count determines the security of the transfer.\n"
 "\n"
@@ -221,7 +223,7 @@ msgid ""
 "small even with short codes. A length of 4 is very secure."
 msgstr ""
 
-#: data/resources/ui/preferences.ui:43
+#: data/resources/ui/preferences.ui:40
 msgid "Code Word Count"
 msgstr "კოდური სიტყვების რიცხვა"
 
@@ -231,23 +233,18 @@ msgstr "კეთილი იყოს თქვენი მობრძან
 
 #. Translators: Button
 #: data/resources/ui/welcome_window.ui:23
-msgid "Close"
-msgstr "დახურვა"
-
-#. Translators: Button
-#: data/resources/ui/welcome_window.ui:30
 msgid "Next"
 msgstr "შემდეგი"
 
-#: data/resources/ui/welcome_window.ui:41
+#: data/resources/ui/welcome_window.ui:34
 msgid "Welcome to Warp"
 msgstr "კეთილი იყოს თქვენი მობრძანება Warp-ში"
 
-#: data/resources/ui/welcome_window.ui:89
+#: data/resources/ui/welcome_window.ui:82
 msgid "Introduction"
 msgstr "შესავალი"
 
-#: data/resources/ui/welcome_window.ui:100
+#: data/resources/ui/welcome_window.ui:93
 msgid ""
 "Warp makes file transfer simple. To get started, both parties need to "
 "install Warp on their devices.\n"
@@ -262,9 +259,9 @@ msgid ""
 msgstr ""
 
 #. Translators: Big button to finish welcome screen
-#: data/resources/ui/welcome_window.ui:113
+#: data/resources/ui/welcome_window.ui:106
 msgid "Get Started Using Warp"
-msgstr ""
+msgstr "Warp-ის გამოყენების დაწყება"
 
 #. Translators: menu item
 #: data/resources/ui/window.ui:7
@@ -364,7 +361,7 @@ msgid "_Receive"
 msgstr "_მიღება"
 
 #. Translators: Button
-#: data/resources/ui/window.ui:183 data/resources/ui/window.ui:210
+#: data/resources/ui/window.ui:183 data/resources/ui/window.ui:216
 msgid "Receive File"
 msgstr "ფაილის მიღება"
 
@@ -374,96 +371,96 @@ msgid "Enter the transmit code from the sender"
 msgstr "შეიყვანეთ გამომგზავნისგან მიღებული"
 
 #. Translators: {0} = file size transferred, {1} = total file size, Example: 17.3MB / 20.5MB
-#: src/gettext/duration.rs:12
+#: src/gettext/duration.rs:11
 msgctxt "File size transferred"
 msgid "{0} / {1}"
 msgstr "{0} / {1}"
 
 #. Translators: File transfer time left
-#: src/gettext/duration.rs:19
+#: src/gettext/duration.rs:18
 msgid "One second left"
 msgid_plural "{} seconds left"
 msgstr[0] "დარჩენილია {} წამი"
 msgstr[1] "დარჩენილია {} წამი"
 
 #. Translators: File transfer time left
-#: src/gettext/duration.rs:27
+#: src/gettext/duration.rs:26
 msgid "One minute left"
 msgid_plural "{} minutes left"
 msgstr[0] "დარჩენილია {} წამი"
 msgstr[1] "დარჩენილია {} წამი"
 
 #. Translators: File transfer time left
-#: src/gettext/duration.rs:35
+#: src/gettext/duration.rs:34
 msgid "One hour left"
 msgid_plural "{} hours left"
 msgstr[0] "დარჩენილია {} საათი"
 msgstr[1] "დარჩენილია {} საათი"
 
 #. Translators: File transfer time left
-#: src/gettext/duration.rs:43
+#: src/gettext/duration.rs:42
 msgid "One day left"
 msgid_plural "{} days left"
 msgstr[0] "დარჩენილია {} დღე"
 msgstr[1] "დარჩენილია {} დღე"
 
 #. Translators: {0} = 11.3MB / 20.7MB, {1} = 3 seconds left
-#: src/gettext/duration.rs:53
+#: src/gettext/duration.rs:52
 msgctxt "Combine bytes progress {0} and time remaining {1}"
 msgid "{0} — {1}"
 msgstr "{0} — {1}"
 
 #. Translators: Notification when clicking on "Copy Code to Clipboard" button
-#: src/ui/action_view.rs:232
+#: src/ui/action_view.rs:226
 msgid "Copied Code to Clipboard"
 msgstr "კოდი დაკოპირდა გაცვლის ბაფერში"
 
 #. Translators: Notification when clicking on "Copy Link to Clipboard" button
-#: src/ui/action_view.rs:253
+#: src/ui/action_view.rs:247
 msgid "Copied Link to Clipboard"
 msgstr "ბმული დაკოპირდა გაცვლის ბაფერში"
 
-#: src/ui/action_view.rs:267
+#: src/ui/action_view.rs:261
 msgid "Copied Error to Clipboard"
 msgstr "შეცდომა დაკოპირდა გაცვლის ბაფერში"
 
-#: src/ui/action_view.rs:269
+#: src/ui/action_view.rs:263
 msgid "No error available"
 msgstr "შეცდომის ტექსტი ხელმიუწვდომელია"
 
 #. Translators: Title
-#: src/ui/action_view.rs:397
+#: src/ui/action_view.rs:392
 msgid "Creating Archive"
 msgstr "შეკუმშული არქივის შექმნა"
 
-#: src/ui/action_view.rs:401
+#: src/ui/action_view.rs:396
 msgid "Compressing folder “{}”"
 msgstr "მიმდინარეობს საქაღალდის შეკუმშვა: \"{}\""
 
 #. Translators: Title
-#: src/ui/action_view.rs:414 src/ui/action_view.rs:459
+#: src/ui/action_view.rs:409 src/ui/action_view.rs:454
 msgid "Connecting"
 msgstr "დაკავშირება"
 
 #. Translators: Description, Filename
-#: src/ui/action_view.rs:417
+#: src/ui/action_view.rs:412
 msgid "Requesting file transfer"
 msgstr "ფაილის მიმოცვლის მოთხოვნა"
 
 #. Translators: Title, this is a noun
-#: src/ui/action_view.rs:425
+#: src/ui/action_view.rs:420
 msgid "Your Transmit Code"
 msgstr "გადაცემის კოდი"
 
 #. Translators: Description, Code in box below, argument is filename
-#: src/ui/action_view.rs:441
+#: src/ui/action_view.rs:436
 msgid ""
 "Ready to send “{}”\n"
 "The receiver needs to enter this code to begin the file transfer."
 msgstr ""
 
 #. Translators: Description, Code in box below, argument is filename
-#: src/ui/action_view.rs:447
+#: src/ui/action_view.rs:442
 msgid ""
 "Ready to send “{}”\n"
 "The receiver needs to enter this code to begin the file transfer.\n"
@@ -473,281 +470,294 @@ msgid ""
 msgstr ""
 
 #. Translators: Description, Transfer Code
-#: src/ui/action_view.rs:462
+#: src/ui/action_view.rs:457
 msgid "Connecting to peer with code “{}”"
-msgstr ""
+msgstr "პარტნიორთან მიერთება კოდით \"{}\""
 
-#: src/ui/action_view.rs:471
+#: src/ui/action_view.rs:466
 msgid "Connected to Peer"
 msgstr "პარტნიორთან მიერთება წარმატენულია"
 
 #. Translators: Description
-#: src/ui/action_view.rs:480
+#: src/ui/action_view.rs:477
 msgid "Preparing to send file"
 msgstr "ფაილის გაგზავნისთვის მომზადება"
 
 #. Translators: Description
-#: src/ui/action_view.rs:486
+#: src/ui/action_view.rs:483
 msgid "Preparing to receive file"
 msgstr "ფაილის მიღებისთვის მომზადება"
 
-#: src/ui/action_view.rs:498
+#: src/ui/action_view.rs:495
 msgid "Accept File Transfer?"
 msgstr "ადასტურებთ ფაილის მიღებას?"
 
 #. Translators: File receive confirmation message dialog; Filename, File size
-#: src/ui/action_view.rs:501
+#: src/ui/action_view.rs:498
 msgid ""
 "Your peer wants to send you “{0}” (Size: {1}).\n"
 "Do you want to download this file to your Downloads folder?"
 msgstr ""
 
-#: src/ui/action_view.rs:506
+#: src/ui/action_view.rs:503
 msgid "Ready to Receive File"
 msgstr "მზად ვარ ფაილის მისაღებად"
 
-#: src/ui/action_view.rs:508
+#: src/ui/action_view.rs:505
 msgid ""
 "A file is ready to be transferred. The transfer needs to be acknowledged."
-msgstr ""
+msgstr "ფაილი გასაგზავნად მზადაა. მეორე მხარემ გაგზავნა უნდა დაადასტუროს."
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:537
+#: src/ui/action_view.rs:534
 msgid "File “{}” via local network direct transfer"
 msgstr ""
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:540
+#: src/ui/action_view.rs:537
 msgid "File “{}” via direct transfer"
-msgstr ""
+msgstr "ფაილი \"{}\" პირდაპირი გაგზავნით"
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:546
+#: src/ui/action_view.rs:543
 msgid "File “{0}” via relay {1}"
 msgstr ""
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:549
+#: src/ui/action_view.rs:546
 msgid "File “{}” via relay"
 msgstr ""
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:553
+#: src/ui/action_view.rs:550
 msgid "File “{}” via Unknown connection method"
-msgstr ""
+msgstr "ფაილი \"{}\" მიერთების უცნობი მეთოდით"
 
 #. Translators: Title
-#: src/ui/action_view.rs:572
+#: src/ui/action_view.rs:569
 msgid "File Transfer Successful"
-msgstr ""
+msgstr "ფაილის გადაცემა წარმატებულია"
 
 #. Translators: Description, Filename
-#: src/ui/action_view.rs:589
+#: src/ui/action_view.rs:586
 msgid "Successfully sent file “{}”"
-msgstr ""
+msgstr "ფაილი \"{}\" წარმატებით გაიგზავნა"
 
 #. Translators: Description, Filename
-#: src/ui/action_view.rs:598
+#: src/ui/action_view.rs:595
 msgid "File has been saved to the Downloads folder as “{}”"
-msgstr ""
+msgstr "ფაილი შენახულია გადმოწერების საქაღალდეში, როგორც \"{}\""
 
 #. Translators: Title
-#: src/ui/action_view.rs:621 src/ui/action_view.rs:634
+#: src/ui/action_view.rs:618 src/ui/action_view.rs:631
 msgid "File Transfer Failed"
 msgstr "ფაილის გადაგზავნა ვერ მოხერხდა"
 
-#: src/ui/action_view.rs:636
+#: src/ui/action_view.rs:633
 msgid "The file transfer failed: {}"
 msgstr "ფაილის მიმოცვლის შეცდომა: {}"
 
 #. Translators: When opening a file
-#: src/ui/action_view.rs:750
+#: src/ui/action_view.rs:748
 msgid "Specified file / directory does not exist"
 msgstr "მითითებული ფაილი / საქაღალდე არ არსებობს"
 
-#: src/ui/action_view.rs:767
+#: src/ui/action_view.rs:765
 msgid ""
 "Error parsing rendezvous server URL. An invalid URL was entered in the "
 "settings."
 msgstr ""
 
-#: src/ui/action_view.rs:777
+#: src/ui/action_view.rs:775
 msgid "Error parsing transit URL. An invalid URL was entered in the settings."
 msgstr ""
 
-#: src/ui/action_view.rs:1186
+#: src/ui/action_view.rs:1188
 msgid "Downloads dir missing. Please set XDG_DOWNLOAD_DIR"
-msgstr ""
+msgstr "გადმოწერის საქაღალდე არ არსებობს. დააყენეთ XDG_DOWNLOAD_DIR"
 
-#: src/ui/application.rs:81
+#: src/ui/application.rs:63
 msgid "Unable to use transfer link: another transfer already in progress"
-msgstr ""
+msgstr "გადაცემის ბმულის გამოყენების შეცდომა: გადაცემა უკვე მიმდინარეობს"
 
-#: src/ui/application.rs:222
+#: src/ui/application.rs:218
 msgid "translator-credits"
 msgstr "მთარგმნელის შესახებ"
 
-#: src/ui/application.rs:225
+#: src/ui/application.rs:221
 msgid "Tobias Bernard"
 msgstr "Tobias Bernard"
 
-#: src/ui/application.rs:225
+#: src/ui/application.rs:221
 msgid "Sophie Herold"
 msgstr "Sophie Herold"
 
-#: src/ui/application.rs:243
+#: src/ui/application.rs:239
 msgid "Sending a File"
 msgstr "ფალის გაგზავნა"
 
-#: src/ui/application.rs:244
+#: src/ui/application.rs:240
 msgid "Receiving a File"
 msgstr "ფალის მიღება"
 
-#: src/ui/window.rs:111
+#: src/ui/preferences.rs:131
+msgid ""
+"Changing the rendezvous server URL needs to be done on both sides of the "
+"transfer. Only enter a server URL you can trust.\n"
+"\n"
+"Leaving these entries empty will use the app defaults:\n"
+"Rendezvous Server: “{0}”\n"
+"Transit Server: “{1}”"
+msgstr ""
+
+#: src/ui/window.rs:103
 msgid ""
 "Error loading config file “{0}”, using default config.\n"
 "Error: {1}"
 msgstr ""
 
-#: src/ui/window.rs:242
+#: src/ui/window.rs:234
 msgid "Error saving configuration file: {}"
 msgstr "კონფიგურაციის ფაილის შენახვის შეცდომა: {}"
 
-#: src/ui/window.rs:346
+#: src/ui/window.rs:345
 msgid "“{}” appears to be an invalid Transmit Code. Please try again."
 msgstr ""
 
-#: src/ui/window.rs:468
+#: src/ui/window.rs:467
 msgid "Sending files with a preconfigured code is not yet supported"
 msgstr ""
 
-#: src/util.rs:32
+#: src/util.rs:27
 msgid "Failed to open downloads folder."
 msgstr "გადმოწერის საქაღალდის გახსნის პრობლემა."
 
-#: src/util.rs:168 src/util.rs:241
+#: src/util.rs:167 src/util.rs:240
 msgid "The URI format is invalid"
 msgstr "URI-ის ფორმატი არასწორია"
 
-#: src/util.rs:172 src/util.rs:176
+#: src/util.rs:171 src/util.rs:175
 msgid "The code does not match the required format"
-msgstr ""
+msgstr "კოდი მოთხოვნილ ფორმატს არ ემთხვევა"
 
-#: src/util.rs:191 src/util.rs:197
+#: src/util.rs:190 src/util.rs:196
 msgid "Unknown URI version: {}"
 msgstr "URI -ის არასწორი ვერსია “{}”"
 
-#: src/util.rs:206
+#: src/util.rs:205
 msgid "The URI parameter “rendezvous” contains an invalid URL: “{}”"
 msgstr ""
 
-#: src/util.rs:218
+#: src/util.rs:217
 msgid "The URI parameter “role” must be “follower” or “leader” (was: “{}”)"
 msgstr ""
 
-#: src/util.rs:225
+#: src/util.rs:224
 msgid "Unknown URI parameter “{}”"
 msgstr "URI -ის არასწორი პარამეტრი “{}”"
 
-#: src/util/error.rs:142
+#: src/util/error.rs:154
 msgid "An error occurred"
 msgstr "შეცდომა"
 
-#: src/util/error.rs:172 src/util/error.rs:237
+#: src/util/error.rs:184 src/util/error.rs:249
 msgid "Corrupt or unexpected message received"
-msgstr ""
+msgstr "მიღებული შეტყობინება დაზიანებული ან მოულოდნელია"
 
-#: src/util/error.rs:177
+#: src/util/error.rs:189
 msgid ""
 "The rendezvous server will not allow further connections for this code. A "
 "new code needs to be generated."
 msgstr ""
 
-#: src/util/error.rs:179
+#: src/util/error.rs:191
 msgid ""
 "The rendezvous server removed the code due to inactivity. A new code needs "
 "to be generated."
 msgstr ""
 
-#: src/util/error.rs:181
+#: src/util/error.rs:193
 msgid "The rendezvous server responded with an unknown message: {}"
 msgstr ""
 
-#: src/util/error.rs:184
+#: src/util/error.rs:196
 msgid ""
 "Error connecting to the rendezvous server.\n"
 "You have entered a custom rendezvous server URL in preferences. Please "
 "verify the URL is correct and the server is working."
 msgstr ""
 
-#: src/util/error.rs:186
+#: src/util/error.rs:198
 msgid ""
 "Error connecting to the rendezvous server.\n"
 "Please try again later / verify you are connected to the internet."
 msgstr ""
 
-#: src/util/error.rs:190
+#: src/util/error.rs:202
 msgid ""
 "Encryption key confirmation failed. If you or your peer didn't mistype the "
 "code, this is a sign of an attacker guessing passwords. Please try again "
 "some time later."
 msgstr ""
 
-#: src/util/error.rs:192
+#: src/util/error.rs:204
 msgid "Cannot decrypt a received message"
 msgstr "მიღებული შეტყობინების გაშიფვრის"
 
-#: src/util/error.rs:193 src/util/error.rs:248 src/util/error.rs:253
-#: src/util/error.rs:256
+#: src/util/error.rs:205 src/util/error.rs:260 src/util/error.rs:266
+#: src/util/error.rs:269
 msgid "An unknown error occurred"
 msgstr "უცნობი შეცდომა"
 
-#: src/util/error.rs:199
+#: src/util/error.rs:211
 msgid "File / Directory not found"
 msgstr "ფაილი / საქაღალდე არ არსებობს"
 
-#: src/util/error.rs:200
+#: src/util/error.rs:212
 msgid "Permission denied"
 msgstr "წვდომა აკრძალულია"
 
-#: src/util/error.rs:212
+#: src/util/error.rs:224
 msgid "Transfer was not acknowledged by peer"
 msgstr ""
 
-#: src/util/error.rs:214
+#: src/util/error.rs:226
 msgid "The received file is corrupted"
 msgstr "მიღებული ფაილ დაზიანებულია"
 
-#: src/util/error.rs:220
+#: src/util/error.rs:232
 msgid ""
 "The file contained a different amount of bytes than advertised! Sent {} "
 "bytes, but should have been {}"
 msgstr ""
 
-#: src/util/error.rs:225
+#: src/util/error.rs:237
 msgid "The other side has cancelled the transfer"
 msgstr "მეორე მხარემ მიმოცვლა შეწყვიტა"
 
-#: src/util/error.rs:227
+#: src/util/error.rs:239
 msgid "The other side has rejected the transfer"
 msgstr "მეორე მხარემ მიმოცვლა უარჰყო"
 
-#: src/util/error.rs:229
+#: src/util/error.rs:241
 msgid "Something went wrong on the other side: {}"
-msgstr ""
+msgstr "მეორე მხარეს რაღაც არასწორია: {}"
 
-#: src/util/error.rs:244
+#: src/util/error.rs:256
 msgid "Error while establishing file transfer connection"
 msgstr ""
 
-#: src/util/error.rs:246
+#: src/util/error.rs:258
 msgid "Unknown file transfer error"
 msgstr "ფაილის მიმოცვლის უცნობი შეცდომა"
 
-#: src/util/error.rs:258
+#: src/util/error.rs:271
 msgid ""
 "An unexpected error occurred. Please report an issue with the error message."
 msgstr ""
+
+#~ msgid "Close"
+#~ msgstr "დახურვა"
 
 #~ msgid "Select the file or directory to send"
 #~ msgstr "აირჩიეთ გასაგზავნი ფაილი ან საქაღალდე"
