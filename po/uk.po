@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: warp main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
-"POT-Creation-Date: 2022-11-21 01:33+0000\n"
-"PO-Revision-Date: 2022-11-23 18:15+0200\n"
-"Last-Translator: Fracture dept <yurchor@ukr.net>\n"
+"POT-Creation-Date: 2022-12-25 09:40+0000\n"
+"PO-Revision-Date: 2022-12-27 19:18+0200\n"
+"Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -20,12 +20,12 @@ msgstr ""
 "X-Generator: Lokalize 20.12.0\n"
 
 #: data/app.drey.Warp.desktop.in.in:3 data/app.drey.Warp.metainfo.xml.in.in:7
-#: src/main.rs:94 src/ui/application.rs:216
+#: src/main.rs:91 src/ui/application.rs:212
 msgid "Warp"
 msgstr "Warp"
 
 #: data/app.drey.Warp.desktop.in.in:4 data/app.drey.Warp.metainfo.xml.in.in:8
-#: data/resources/ui/welcome_window.ui:42
+#: data/resources/ui/welcome_window.ui:35
 msgid "Fast and secure file transfer"
 msgstr "Швидке і безпечне передавання файлів"
 
@@ -90,20 +90,20 @@ msgid "Accept File Transfer"
 msgstr "Прийняти перенесення файла"
 
 #. Translators: Title
-#: data/app.drey.Warp.metainfo.xml.in.in:40 src/ui/action_view.rs:560
+#: data/app.drey.Warp.metainfo.xml.in.in:40 src/ui/action_view.rs:557
 msgid "Sending File"
 msgstr "Надсилання файла"
 
 #. Translators: Title
-#: data/app.drey.Warp.metainfo.xml.in.in:44 src/ui/action_view.rs:564
+#: data/app.drey.Warp.metainfo.xml.in.in:44 src/ui/action_view.rs:561
 msgid "Receiving File"
 msgstr "Отримання файла"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:48 src/ui/action_view.rs:581
+#: data/app.drey.Warp.metainfo.xml.in.in:48 src/ui/action_view.rs:578
 msgid "File Transfer Complete"
 msgstr "Перенесення файла завершено"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:155
+#: data/app.drey.Warp.metainfo.xml.in.in:165
 msgid "Fina Wilke"
 msgstr "Фіна Вільке (Fina Wilke)"
 
@@ -114,7 +114,7 @@ msgid "Cancel"
 msgstr "Скасувати"
 
 #. Translators: Button
-#: data/resources/ui/action_view.ui:26 data/resources/ui/welcome_window.ui:61
+#: data/resources/ui/action_view.ui:26 data/resources/ui/welcome_window.ui:54
 msgid "Back"
 msgstr "Назад"
 
@@ -159,30 +159,41 @@ msgstr "Загальне"
 
 #: data/resources/ui/help_overlay.ui:14
 msgctxt "shortcut window"
+msgid "Show Help"
+msgstr "Показати довідку"
+
+#: data/resources/ui/help_overlay.ui:20
+msgctxt "shortcut window"
 msgid "Show Shortcuts"
 msgstr "Показати клавіатурні скорочення"
 
-#: data/resources/ui/help_overlay.ui:20
+#: data/resources/ui/help_overlay.ui:26
+#| msgid "Preferences"
+msgctxt "shortcut window"
+msgid "Show Preferences"
+msgstr "Показати налаштування"
+
+#: data/resources/ui/help_overlay.ui:32
 msgctxt "shortcut window"
 msgid "Quit"
 msgstr "Вийти з програми"
 
-#: data/resources/ui/help_overlay.ui:28
+#: data/resources/ui/help_overlay.ui:40
 msgctxt "shortcut window"
 msgid "File Transfer"
 msgstr "Перенесення файлів"
 
-#: data/resources/ui/help_overlay.ui:31
+#: data/resources/ui/help_overlay.ui:43
 msgctxt "shortcut window"
 msgid "Send File"
 msgstr "Надіслати файл"
 
-#: data/resources/ui/help_overlay.ui:37
+#: data/resources/ui/help_overlay.ui:49
 msgctxt "shortcut window"
 msgid "Send Folder"
 msgstr "Надіслати теку"
 
-#: data/resources/ui/help_overlay.ui:43
+#: data/resources/ui/help_overlay.ui:55
 msgctxt "shortcut window"
 msgid "Receive File"
 msgstr "Отримати файл"
@@ -199,31 +210,19 @@ msgstr "Мережа"
 msgid "Server URLs"
 msgstr "Адреси серверів"
 
-#: data/resources/ui/preferences.ui:16
-msgid ""
-"Changing the rendezvous server URL has to be done on both sides of the "
-"transfer. Only enter a server URL you can trust.\n"
-"\n"
-"Leaving these entries empty will use the application defaults."
-msgstr ""
-"Змінити адресу сервера рандеву слід на обох кінцях з'єднання передавання "
-"даних. Вам слід вказати адресу надійного сервера.\n"
-"\n"
-"Якщо не заповнювати ці пункти, програма використає типові значення."
-
-#: data/resources/ui/preferences.ui:21
+#: data/resources/ui/preferences.ui:18
 msgid "Rendezvous Server URL"
 msgstr "Адреса сервера рандеву"
 
-#: data/resources/ui/preferences.ui:28
+#: data/resources/ui/preferences.ui:25
 msgid "Transit Server URL"
 msgstr "Адреса транзитного сервера"
 
-#: data/resources/ui/preferences.ui:37
+#: data/resources/ui/preferences.ui:34
 msgid "Code Words"
 msgstr "Кодові слова"
 
-#: data/resources/ui/preferences.ui:38
+#: data/resources/ui/preferences.ui:35
 msgid ""
 "The code word count determines the security of the transfer.\n"
 "\n"
@@ -237,7 +236,7 @@ msgstr ""
 "хтось його вгадає. Оскільки код може бути вгадано лише раз, ризик є доволі "
 "незначним навіть для коротких кодови слів. Довжина 4 є досить безпечною."
 
-#: data/resources/ui/preferences.ui:43
+#: data/resources/ui/preferences.ui:40
 msgid "Code Word Count"
 msgstr "Лічильник кодового слова"
 
@@ -247,23 +246,18 @@ msgstr "Вітаємо"
 
 #. Translators: Button
 #: data/resources/ui/welcome_window.ui:23
-msgid "Close"
-msgstr "Закрити"
-
-#. Translators: Button
-#: data/resources/ui/welcome_window.ui:30
 msgid "Next"
 msgstr "Далі"
 
-#: data/resources/ui/welcome_window.ui:41
+#: data/resources/ui/welcome_window.ui:34
 msgid "Welcome to Warp"
 msgstr "Вітаємо у Warp"
 
-#: data/resources/ui/welcome_window.ui:89
+#: data/resources/ui/welcome_window.ui:82
 msgid "Introduction"
 msgstr "Вступ"
 
-#: data/resources/ui/welcome_window.ui:100
+#: data/resources/ui/welcome_window.ui:93
 msgid ""
 "Warp makes file transfer simple. To get started, both parties need to "
 "install Warp on their devices.\n"
@@ -288,7 +282,7 @@ msgstr ""
 "Щоб дізнатися більше про Warp, скористайтеся довідковими сторінками з меню."
 
 #. Translators: Big button to finish welcome screen
-#: data/resources/ui/welcome_window.ui:113
+#: data/resources/ui/welcome_window.ui:106
 msgid "Get Started Using Warp"
 msgstr "Початкові зауваження щодо користування Warp"
 
@@ -390,7 +384,7 @@ msgid "_Receive"
 msgstr "_Отримати"
 
 #. Translators: Button
-#: data/resources/ui/window.ui:183 data/resources/ui/window.ui:210
+#: data/resources/ui/window.ui:183 data/resources/ui/window.ui:216
 msgid "Receive File"
 msgstr "Отримати файл"
 
@@ -400,13 +394,13 @@ msgid "Enter the transmit code from the sender"
 msgstr "Введіть код передавання від відправника"
 
 #. Translators: {0} = file size transferred, {1} = total file size, Example: 17.3MB / 20.5MB
-#: src/gettext/duration.rs:12
+#: src/gettext/duration.rs:11
 msgctxt "File size transferred"
 msgid "{0} / {1}"
 msgstr "{0} з {1}"
 
 #. Translators: File transfer time left
-#: src/gettext/duration.rs:19
+#: src/gettext/duration.rs:18
 msgid "One second left"
 msgid_plural "{} seconds left"
 msgstr[0] "Лишилася {} секунда"
@@ -415,7 +409,7 @@ msgstr[2] "Лишилося {} секунд"
 msgstr[3] "Лишилася {} секунда"
 
 #. Translators: File transfer time left
-#: src/gettext/duration.rs:27
+#: src/gettext/duration.rs:26
 msgid "One minute left"
 msgid_plural "{} minutes left"
 msgstr[0] "Лишилася {} хвилина"
@@ -424,7 +418,7 @@ msgstr[2] "Лишилося {} хвилин"
 msgstr[3] "Лишилася одна хвилина"
 
 #. Translators: File transfer time left
-#: src/gettext/duration.rs:35
+#: src/gettext/duration.rs:34
 msgid "One hour left"
 msgid_plural "{} hours left"
 msgstr[0] "Лишилася {} година"
@@ -433,7 +427,7 @@ msgstr[2] "Лишилося {} годин"
 msgstr[3] "Лишилася одна година"
 
 #. Translators: File transfer time left
-#: src/gettext/duration.rs:43
+#: src/gettext/duration.rs:42
 msgid "One day left"
 msgid_plural "{} days left"
 msgstr[0] "Лишився {} день"
@@ -442,56 +436,55 @@ msgstr[2] "Лишилося {} днів"
 msgstr[3] "Лишився один день"
 
 #. Translators: {0} = 11.3MB / 20.7MB, {1} = 3 seconds left
-#: src/gettext/duration.rs:53
+#: src/gettext/duration.rs:52
 msgctxt "Combine bytes progress {0} and time remaining {1}"
 msgid "{0} — {1}"
 msgstr "{0} — {1}"
 
 #. Translators: Notification when clicking on "Copy Code to Clipboard" button
-#: src/ui/action_view.rs:232
+#: src/ui/action_view.rs:226
 msgid "Copied Code to Clipboard"
 msgstr "Код скопійовано до буфера обміну"
 
 #. Translators: Notification when clicking on "Copy Link to Clipboard" button
-#: src/ui/action_view.rs:253
+#: src/ui/action_view.rs:247
 msgid "Copied Link to Clipboard"
 msgstr "Посилання скопійовано до буфера обміну"
 
-#: src/ui/action_view.rs:267
-#| msgid "Copied Code to Clipboard"
+#: src/ui/action_view.rs:261
 msgid "Copied Error to Clipboard"
 msgstr "Повідомлення про помилку скопійовано до буфера обміну"
 
-#: src/ui/action_view.rs:269
+#: src/ui/action_view.rs:263
 msgid "No error available"
 msgstr "Немає доступних помилок"
 
 #. Translators: Title
-#: src/ui/action_view.rs:397
+#: src/ui/action_view.rs:392
 msgid "Creating Archive"
 msgstr "Створюємо архів"
 
-#: src/ui/action_view.rs:401
+#: src/ui/action_view.rs:396
 msgid "Compressing folder “{}”"
 msgstr "Стискаємо теку «{}»"
 
 #. Translators: Title
-#: src/ui/action_view.rs:414 src/ui/action_view.rs:459
+#: src/ui/action_view.rs:409 src/ui/action_view.rs:454
 msgid "Connecting"
 msgstr "З'єднання"
 
 #. Translators: Description, Filename
-#: src/ui/action_view.rs:417
+#: src/ui/action_view.rs:412
 msgid "Requesting file transfer"
 msgstr "Запит щодо передавання файла"
 
 #. Translators: Title, this is a noun
-#: src/ui/action_view.rs:425
+#: src/ui/action_view.rs:420
 msgid "Your Transmit Code"
 msgstr "Ваш код передавання"
 
 #. Translators: Description, Code in box below, argument is filename
-#: src/ui/action_view.rs:441
+#: src/ui/action_view.rs:436
 msgid ""
 "Ready to send “{}”\n"
 "The receiver needs to enter this code to begin the file transfer."
@@ -500,7 +493,7 @@ msgstr ""
 "Отримувач потребуватиме цей код, щоб розпочати перенесення файлів."
 
 #. Translators: Description, Code in box below, argument is filename
-#: src/ui/action_view.rs:447
+#: src/ui/action_view.rs:442
 msgid ""
 "Ready to send “{}”\n"
 "The receiver needs to enter this code to begin the file transfer.\n"
@@ -515,30 +508,30 @@ msgstr ""
 "ласка, переконайтеся, що отримувач використав той самий сервер рандеву."
 
 #. Translators: Description, Transfer Code
-#: src/ui/action_view.rs:462
+#: src/ui/action_view.rs:457
 msgid "Connecting to peer with code “{}”"
 msgstr "З'єднуємося із вузлом з кодом «{}»"
 
-#: src/ui/action_view.rs:471
+#: src/ui/action_view.rs:466
 msgid "Connected to Peer"
 msgstr "З'єднано з вузлом"
 
 #. Translators: Description
-#: src/ui/action_view.rs:480
+#: src/ui/action_view.rs:477
 msgid "Preparing to send file"
 msgstr "Готуємося до надсилання файла"
 
 #. Translators: Description
-#: src/ui/action_view.rs:486
+#: src/ui/action_view.rs:483
 msgid "Preparing to receive file"
 msgstr "Готуємося до отримання файла"
 
-#: src/ui/action_view.rs:498
+#: src/ui/action_view.rs:495
 msgid "Accept File Transfer?"
 msgstr "Прийняти перенесення файла?"
 
 #. Translators: File receive confirmation message dialog; Filename, File size
-#: src/ui/action_view.rs:501
+#: src/ui/action_view.rs:498
 msgid ""
 "Your peer wants to send you “{0}” (Size: {1}).\n"
 "Do you want to download this file to your Downloads folder?"
@@ -546,70 +539,70 @@ msgstr ""
 "Ваш зовнішній вузол хоче надіслати вам «{0}» (розмір: {1}).\n"
 "Ви хочете отримати цей файл до вашої теки «Завантаження»?"
 
-#: src/ui/action_view.rs:506
+#: src/ui/action_view.rs:503
 msgid "Ready to Receive File"
 msgstr "Готовий до одержання файла"
 
-#: src/ui/action_view.rs:508
+#: src/ui/action_view.rs:505
 msgid ""
 "A file is ready to be transferred. The transfer needs to be acknowledged."
 msgstr "Файл готовий до передавання. Передавання слід підтвердити."
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:537
+#: src/ui/action_view.rs:534
 msgid "File “{}” via local network direct transfer"
 msgstr "Файл «{}» шляхом безпосереднього передавання локальною мережею"
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:540
+#: src/ui/action_view.rs:537
 msgid "File “{}” via direct transfer"
 msgstr "Файл «{}» шляхом безпосереднього передавання"
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:546
+#: src/ui/action_view.rs:543
 msgid "File “{0}” via relay {1}"
 msgstr "Файл «{0}» за допомогою ретранслятора {1}"
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:549
+#: src/ui/action_view.rs:546
 msgid "File “{}” via relay"
 msgstr "Файл «{}» за допомогою ретранслятора"
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:553
+#: src/ui/action_view.rs:550
 msgid "File “{}” via Unknown connection method"
 msgstr "Файл «{}» за допомогою невідомого способу з'єднання"
 
 #. Translators: Title
-#: src/ui/action_view.rs:572
+#: src/ui/action_view.rs:569
 msgid "File Transfer Successful"
 msgstr "Успішне перенесення файлів"
 
 #. Translators: Description, Filename
-#: src/ui/action_view.rs:589
+#: src/ui/action_view.rs:586
 msgid "Successfully sent file “{}”"
 msgstr "Успішно надіслано файл «{}»"
 
 #. Translators: Description, Filename
-#: src/ui/action_view.rs:598
+#: src/ui/action_view.rs:595
 msgid "File has been saved to the Downloads folder as “{}”"
 msgstr "Файл було збережено до теки «Завантаження» як «{}»"
 
 #. Translators: Title
-#: src/ui/action_view.rs:621 src/ui/action_view.rs:634
+#: src/ui/action_view.rs:618 src/ui/action_view.rs:631
 msgid "File Transfer Failed"
 msgstr "Перенесення файлів зазнало невдачі"
 
-#: src/ui/action_view.rs:636
+#: src/ui/action_view.rs:633
 msgid "The file transfer failed: {}"
 msgstr "Помилка передавання файла: {}"
 
 #. Translators: When opening a file
-#: src/ui/action_view.rs:750
+#: src/ui/action_view.rs:748
 msgid "Specified file / directory does not exist"
 msgstr "Вказаного файла або каталогу не існує"
 
-#: src/ui/action_view.rs:767
+#: src/ui/action_view.rs:765
 msgid ""
 "Error parsing rendezvous server URL. An invalid URL was entered in the "
 "settings."
@@ -617,45 +610,66 @@ msgstr ""
 "Помилка під час обробки адреси сервера рандеву. У параметрах вказано "
 "некоректну адресу."
 
-#: src/ui/action_view.rs:777
+#: src/ui/action_view.rs:775
 msgid "Error parsing transit URL. An invalid URL was entered in the settings."
 msgstr ""
 "Помилка під час обробки проміжної адреси. У параметрах вказано некоректну "
 "адресу."
 
-#: src/ui/action_view.rs:1186
+#: src/ui/action_view.rs:1188
 msgid "Downloads dir missing. Please set XDG_DOWNLOAD_DIR"
 msgstr ""
 "Немає каталогу «Завантаження». Будь ласка, встановіть значення змінної "
 "середовища XDG_DOWNLOAD_DIR"
 
-#: src/ui/application.rs:81
+#: src/ui/application.rs:63
 msgid "Unable to use transfer link: another transfer already in progress"
 msgstr ""
 "Не вдалося скористатися посиланням для передавання: вже виконується інше "
 "передавання"
 
-#: src/ui/application.rs:222
+#: src/ui/application.rs:218
 msgid "translator-credits"
 msgstr "Юрій Чорноіван <yurchor@ukr.net>, 2022"
 
-#: src/ui/application.rs:225
+#: src/ui/application.rs:221
 msgid "Tobias Bernard"
 msgstr "Tobias Bernard"
 
-#: src/ui/application.rs:225
+#: src/ui/application.rs:221
 msgid "Sophie Herold"
 msgstr "Софі Герольд"
 
-#: src/ui/application.rs:243
+#: src/ui/application.rs:239
 msgid "Sending a File"
 msgstr "Надсилання файла"
 
-#: src/ui/application.rs:244
+#: src/ui/application.rs:240
 msgid "Receiving a File"
 msgstr "Отримання файла"
 
-#: src/ui/window.rs:111
+#: src/ui/preferences.rs:131
+#| msgid ""
+#| "Changing the rendezvous server URL has to be done on both sides of the "
+#| "transfer. Only enter a server URL you can trust.\n"
+#| "\n"
+#| "Leaving these entries empty will use the application defaults."
+msgid ""
+"Changing the rendezvous server URL needs to be done on both sides of the "
+"transfer. Only enter a server URL you can trust.\n"
+"\n"
+"Leaving these entries empty will use the app defaults:\n"
+"Rendezvous Server: “{0}”\n"
+"Transit Server: “{1}”"
+msgstr ""
+"Змінити адресу сервера рандеву слід на обох кінцях з'єднання передавання "
+"даних. Вам слід вказати адресу надійного сервера.\n"
+"\n"
+"Якщо не заповнювати ці пункти, програма використає типові значення:\n"
+"Сервер зустрічі: «{0}»\n"
+"Транзитний сервер: «{1}»"
+
+#: src/ui/window.rs:103
 msgid ""
 "Error loading config file “{0}”, using default config.\n"
 "Error: {1}"
@@ -664,60 +678,60 @@ msgstr ""
 "типові налаштування.\n"
 "Помилка: {1}"
 
-#: src/ui/window.rs:242
+#: src/ui/window.rs:234
 msgid "Error saving configuration file: {}"
 msgstr "Помилка під час спроби зберегти файл налаштувань: {}"
 
-#: src/ui/window.rs:346
+#: src/ui/window.rs:345
 msgid "“{}” appears to be an invalid Transmit Code. Please try again."
 msgstr ""
 "Здається, «{}» є некоректним кодом передавання. Будь ласка, повторіть спробу."
 
-#: src/ui/window.rs:468
+#: src/ui/window.rs:467
 msgid "Sending files with a preconfigured code is not yet supported"
 msgstr ""
 "Підтримку надсилання файлів із попередньо налаштованим кодом ще не "
 "реалізовано"
 
-#: src/util.rs:32
+#: src/util.rs:27
 msgid "Failed to open downloads folder."
 msgstr "Не вдалося відкрити теку отриманих даних."
 
-#: src/util.rs:168 src/util.rs:241
+#: src/util.rs:167 src/util.rs:240
 msgid "The URI format is invalid"
 msgstr "Некоректний формат адреси"
 
-#: src/util.rs:172 src/util.rs:176
+#: src/util.rs:171 src/util.rs:175
 msgid "The code does not match the required format"
 msgstr "Код не відповідає бажаному формату"
 
-#: src/util.rs:191 src/util.rs:197
+#: src/util.rs:190 src/util.rs:196
 msgid "Unknown URI version: {}"
 msgstr "Невідома версія адреси: {}"
 
-#: src/util.rs:206
+#: src/util.rs:205
 msgid "The URI parameter “rendezvous” contains an invalid URL: “{}”"
 msgstr "Параметр «rendezvous» адреси містить некоректну адресу: «{}»"
 
-#: src/util.rs:218
+#: src/util.rs:217
 msgid "The URI parameter “role” must be “follower” or “leader” (was: “{}”)"
 msgstr ""
 "Значенням параметра адреси «role» має бути «follower» або «leader» (було: "
 "«{}»)"
 
-#: src/util.rs:225
+#: src/util.rs:224
 msgid "Unknown URI parameter “{}”"
 msgstr "Невідомий параметр адреси «{}»"
 
-#: src/util/error.rs:142
+#: src/util/error.rs:154
 msgid "An error occurred"
 msgstr "Сталася помилка"
 
-#: src/util/error.rs:172 src/util/error.rs:237
+#: src/util/error.rs:184 src/util/error.rs:249
 msgid "Corrupt or unexpected message received"
 msgstr "Отримано пошкоджене або неочікуване повідомлення"
 
-#: src/util/error.rs:177
+#: src/util/error.rs:189
 msgid ""
 "The rendezvous server will not allow further connections for this code. A "
 "new code needs to be generated."
@@ -725,18 +739,18 @@ msgstr ""
 "Сервер рандеву не дозволить подальші з'єднання з цим кодом. Має бути "
 "створено новий код."
 
-#: src/util/error.rs:179
+#: src/util/error.rs:191
 msgid ""
 "The rendezvous server removed the code due to inactivity. A new code needs "
 "to be generated."
 msgstr ""
 "Сервер рандеву вилучив код через неактивність. Має бути створено новий код."
 
-#: src/util/error.rs:181
+#: src/util/error.rs:193
 msgid "The rendezvous server responded with an unknown message: {}"
 msgstr "Сервер рандеву відповів невідомим повідомленням: {}"
 
-#: src/util/error.rs:184
+#: src/util/error.rs:196
 msgid ""
 "Error connecting to the rendezvous server.\n"
 "You have entered a custom rendezvous server URL in preferences. Please "
@@ -746,7 +760,7 @@ msgstr ""
 "Вами введено нетипову адресу сервера рандеву у налаштуваннях. Будь ласка, "
 "перевірте, чи правильно вказано адресу, і чи працює сервер."
 
-#: src/util/error.rs:186
+#: src/util/error.rs:198
 msgid ""
 "Error connecting to the rendezvous server.\n"
 "Please try again later / verify you are connected to the internet."
@@ -755,7 +769,7 @@ msgstr ""
 "Будь ласка, повторіть спробу пізніше або перевірте, чи з'єднано комп'ютер з "
 "інтернетом."
 
-#: src/util/error.rs:190
+#: src/util/error.rs:202
 msgid ""
 "Encryption key confirmation failed. If you or your peer didn't mistype the "
 "code, this is a sign of an attacker guessing passwords. Please try again "
@@ -765,32 +779,32 @@ msgstr ""
 "зовнішнього вузла ввели код правильно, це може бути ознакою відгадування "
 "зловмисником пароля. Будь ласка, повторіть спробу пізніше."
 
-#: src/util/error.rs:192
+#: src/util/error.rs:204
 msgid "Cannot decrypt a received message"
 msgstr "Не вдалося розшифрувати отримане повідомлення"
 
-#: src/util/error.rs:193 src/util/error.rs:248 src/util/error.rs:253
-#: src/util/error.rs:256
+#: src/util/error.rs:205 src/util/error.rs:260 src/util/error.rs:266
+#: src/util/error.rs:269
 msgid "An unknown error occurred"
 msgstr "Сталася невідома помилка"
 
-#: src/util/error.rs:199
+#: src/util/error.rs:211
 msgid "File / Directory not found"
 msgstr "Не знайдено файла або каталогу"
 
-#: src/util/error.rs:200
+#: src/util/error.rs:212
 msgid "Permission denied"
 msgstr "Відмовлено у доступі"
 
-#: src/util/error.rs:212
+#: src/util/error.rs:224
 msgid "Transfer was not acknowledged by peer"
 msgstr "Передавання не підтверджено зовнішнім вузлом"
 
-#: src/util/error.rs:214
+#: src/util/error.rs:226
 msgid "The received file is corrupted"
 msgstr "Отриманий файл пошкоджено"
 
-#: src/util/error.rs:220
+#: src/util/error.rs:232
 msgid ""
 "The file contained a different amount of bytes than advertised! Sent {} "
 "bytes, but should have been {}"
@@ -798,32 +812,35 @@ msgstr ""
 "У файлі міститься інша кількість байтів, ніж оголошено! Надіслано {} байтів, "
 "а мало бути {}"
 
-#: src/util/error.rs:225
+#: src/util/error.rs:237
 msgid "The other side has cancelled the transfer"
 msgstr "Передавання скасовано на іншому боці"
 
-#: src/util/error.rs:227
+#: src/util/error.rs:239
 msgid "The other side has rejected the transfer"
 msgstr "У передаванні відмовлено на іншому боці"
 
-#: src/util/error.rs:229
+#: src/util/error.rs:241
 msgid "Something went wrong on the other side: {}"
 msgstr "Щось пішло не так на іншому боці: {}"
 
-#: src/util/error.rs:244
+#: src/util/error.rs:256
 msgid "Error while establishing file transfer connection"
 msgstr "Помилка під час встановлення з'єднання з передавання файлів"
 
-#: src/util/error.rs:246
+#: src/util/error.rs:258
 msgid "Unknown file transfer error"
 msgstr "Невідомий файл — помилка передавання"
 
-#: src/util/error.rs:258
+#: src/util/error.rs:271
 msgid ""
 "An unexpected error occurred. Please report an issue with the error message."
 msgstr ""
 "Сталася неочікувана помилка. Будь ласка, повідомте про цю ваду, навівши "
 "повідомлення про помилку."
+
+#~ msgid "Close"
+#~ msgstr "Закрити"
 
 #~ msgid "Select the file or directory to send"
 #~ msgstr "Виберіть теку або каталог для надсилання"
