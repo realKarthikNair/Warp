@@ -29,13 +29,24 @@ pub static PANIC_BACKTRACES: Lazy<Mutex<Vec<String>>> = Lazy::new(Default::defau
 
 pub const APP_NAME: &str = "warp";
 pub const GETTEXT_PACKAGE: &str = APP_NAME;
-pub const DEFAULT_LOCALEDIR: &str = "/usr/share/locale";
+pub const DEFAULT_LOCALEDIR_LINUX: &str = "/usr/share/locale";
 pub const PKGDATADIR: &str = "/app/share/warp";
 pub const VERSION: &str = env!("CARGO_PKG_VERSION");
 pub static CACHE_DIR: Lazy<PathBuf> = Lazy::new(|| {
     let mut path = glib::user_cache_dir();
     path.push(APP_ID);
     path
+});
+/// On Windows, resources are packaged in a common folder next to the executable.
+/// If the current exe cannot be found, fall back to the working directory (".") instead.
+pub static WINDOWS_BASE_PATH: Lazy<PathBuf> = Lazy::new(|| {
+    std::env::current_exe().map_or_else(
+        |_| ".".into(),
+        |mut exe| {
+            exe.pop();
+            exe
+        },
+    )
 });
 
 pub static GRESOURCE_DATA: &[u8] =

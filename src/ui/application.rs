@@ -46,7 +46,6 @@ mod imp {
             log::debug!("Create window");
 
             let window = WarpApplicationWindow::new(&self.obj());
-            window.set_icon_name(Some(globals::APP_ID));
             self.window
                 .set(window.downgrade())
                 .expect("Window already set.");
@@ -149,14 +148,7 @@ impl WarpApplication {
             let help_uri = if cfg!(not(windows)) {
                 "help:warp".into()
             } else {
-                /* Try to find exe, use current dir otherwise */
-                let mut uri = std::env::current_exe().map_or_else(
-                    |_| ".".into(),
-                    |mut exe| {
-                        exe.pop();
-                        exe
-                    },
-                );
+                let mut uri = globals::WINDOWS_BASE_PATH.clone();
                 /* Hardcode the "C" language for now, so no translated help files *sigh*
                  *
                  * The problem is that gettext is a mess and does not provide us with a good way

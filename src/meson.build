@@ -46,6 +46,6 @@ cargo_build = custom_target(
     cargo, 'build',
     cargo_options,
     # Replace with --out-dir once stable https://github.com/rust-lang/cargo/issues/6790#issuecomment-655728327=
-    '&&', 'cp', 'src/' + (get_option('target') / rust_target / meson.project_name()) + file_extension, '@OUTPUT@'
+    '&&', 'cp', 'src' / get_option('target') / rust_target / meson.project_name() + file_extension, '@OUTPUT@'
   ]
 )

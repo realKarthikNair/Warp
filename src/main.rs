@@ -83,17 +83,10 @@ fn main() {
 
     let localedir = if cfg!(not(windows)) {
         option_env!("LOCALEDIR")
-            .unwrap_or(globals::DEFAULT_LOCALEDIR)
+            .unwrap_or(globals::DEFAULT_LOCALEDIR_LINUX)
             .into()
     } else {
-        /* Try to find exe, use current dir otherwise */
-        let mut base_dir = std::env::current_exe().map_or_else(
-            |_| ".".into(),
-            |mut exe| {
-                exe.pop();
-                exe
-            },
-        );
+        let mut base_dir = globals::WINDOWS_BASE_PATH.clone();
         base_dir.push("share\\locale");
         base_dir
     };
