@@ -142,7 +142,28 @@ impl WarpApplication {
         // Help
         let action_help = gio::SimpleAction::new("help", None);
         action_help.connect_activate(clone!(@weak self as app => move |_, _| {
-            gtk::show_uri(Some(&WarpApplicationWindow::default()), "help:warp", gtk::gdk::CURRENT_TIME);
+            /* `help:` URIs are a Linux specific thing and won't work on Windows. There, we'll just open the path to the
+             * respective HTML files and hope that it launches a browser …
+             */
+            let help_uri = if cfg!(not(windows)) {
+                "help:warp".into()
+            } else {
+                let mut uri = globals::WINDOWS_BASE_PATH.clone();
+                /* Hardcode the "C" language for now, so no translated help files *sigh*
+                 *
+                 * The problem is that gettext is a mess and does not provide us with a good way
+                 * to query the currenty used language. In theory it can do that, but the values
+                 * it returned on Windows did not work as they should.
+                 */
+                uri.push("share\\help\\C\\warp\\index.html");
+                /* People with non-UTF-8 paths will at least get a good error message */
+                let mut uri = uri.to_string_lossy().into_owned();
+                uri.insert_str(0, "file:///");
+                uri
+            };
+
+            log::debug!("Opening '{}' to show help", help_uri);
+            gtk::show_uri(Some(&app.main_window()), &help_uri, gtk::gdk::CURRENT_TIME);
         }));
         self.add_action(&action_help);
 

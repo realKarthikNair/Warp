@@ -222,7 +222,7 @@ glib::wrapper! {
 #[gtk::template_callbacks]
 impl WarpApplicationWindow {
     pub fn new(app: &WarpApplication) -> Self {
-        glib::Object::new(&[("application", app)])
+        glib::Object::new(&[("application", app), ("icon-name", &globals::APP_ID)])
     }
 
     pub fn config(&self) -> RefMut<PersistentConfig> {

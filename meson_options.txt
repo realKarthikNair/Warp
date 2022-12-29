@@ -8,3 +8,4 @@ option(
   value: 'default',
   description: 'The build profile for Warp. One of "default" or "development".'
 )
+option('target', type: 'string', value: '', description: 'Cross compilation target. Leave empty for native compilation.')

@@ -27,6 +27,8 @@
     clippy::unused_self,
     clippy::wildcard_imports
 )]
+/* Hide the console on Windows */
+#![windows_subsystem = "windows"]
 
 mod config;
 #[allow(dead_code)]
@@ -78,10 +80,25 @@ fn main() {
 
     // Prepare i18n
     gettextrs::setlocale(gettextrs::LocaleCategory::LcAll, "");
-    let localedir = option_env!("LOCALEDIR").unwrap_or(globals::DEFAULT_LOCALEDIR);
+
+    let localedir = if cfg!(not(windows)) {
+        option_env!("LOCALEDIR")
+            .unwrap_or(globals::DEFAULT_LOCALEDIR_LINUX)
+            .into()
+    } else {
+        let mut base_dir = globals::WINDOWS_BASE_PATH.clone();
+        base_dir.push("share\\locale");
+        base_dir
+    };
+
     match gettextrs::bindtextdomain(globals::GETTEXT_PACKAGE, localedir) {
         Ok(path) => log::debug!("Bound text domain for path: {}", path.display()),
         Err(err) => log::error!("Error binding text domain: {}", err),
+    }
+    if let Err(err) = gettextrs::bind_textdomain_codeset(globals::GETTEXT_PACKAGE, "UTF-8") {
+        log::error!(
+            "Error while setting locale formatting: {}. This shouldn't be a problem—except on Windows", err
+        );
     }
 
     if let Err(err) = gettextrs::textdomain(globals::GETTEXT_PACKAGE) {

@@ -54,3 +54,55 @@ cargo-deny:
   script:
     - cargo install cargo-deny
     - cargo deny check
+
+windows:
+  image: 'ghcr.io/mglolenstine/gtk4-cross:gtk-4.8'
+  stage: test
+  variables:
+    BUNDLE: "warp-nightly-windows"
+  script:
+    # Install dependencies
+    - |
+      curl https://sh.rustup.rs -sSf | sh -s -- -y
+      . ~/.cargo/env
+      rustup target add x86_64-pc-windows-gnu
+
+      dnf install wget yelp-tools -y
+      dnf clean all -y
+
+    # Build
+    - |
+      export PKG_CONFIG_PATH=/usr/lib64/pkgconfig:/usr/share/pkgconfig:/usr/x86_64-w64-mingw32/sys-root/mingw/lib/pkgconfig/:/usr/x86_64-w64-mingw32/lib/pkgconfig/
+      # export CARGO_BUILD_TARGET="x86_64-pc-windows-gnu"
+
+      mkdir -p package
+      meson build -Dprefix="$PWD/package" -Dtarget="x86_64-pc-windows-gnu"
+      ninja -C "build"
+      ninja -C "build" install
+
+    # Package
+    - |
+      # Move the binary out of /bin and add back .exe extension
+      mv package/bin/warp package/warp.exe
+
+      package
+
+      # Application icon
+      wget https://github.com/electron/rcedit/releases/download/v1.1.1/rcedit-x64.exe
+      wine rcedit-x64.exe "package/warp.exe" --set-icon "./data/icons/app.drey.Warp.ico"
+
+      # Compile help to HTML
+      for lang in package/share/help/*/warp; do
+        yelp-build html $lang -o $lang
+      done
+
+      # Cleanup: delete empty folders
+      find package -type d -empty -delete
+
+      mv package "${BUNDLE}"
+  artifacts:
+    name: 'Windows artifacts'
+    expose_as: 'Get Windows bundle here'
+    paths:
+      - "${BUNDLE}"
+    expire_in: 14 days
