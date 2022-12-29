@@ -31,8 +31,7 @@ flatpak install --user --noninteractive org.gnome.Platform//${RUNTIME_VERSION}
 flatpak install --user --noninteractive org.freedesktop.Sdk.Extension.rust-stable//22.08
 
 flatpak-builder \
-  --user --verbose --force-clean -y --repo=$REPO_DIR flatpak_out build-aux/$MANIFEST
+  --user --verbose --force-clean --install -y --repo=$REPO_DIR flatpak_out build-aux/$MANIFEST
 flatpak build-bundle $REPO_DIR $APP_ID.flatpak $APP_ID
 
-flatpak --user install -y $APP_ID.flatpak
 flatpak run $APP_ID//master
