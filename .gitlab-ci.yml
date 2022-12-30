@@ -84,6 +84,10 @@ windows:
     - |
       package
 
+      # Icon theme
+      mkdir -p package/share/icons/
+      cp -rT /usr/share/icons/Adwaita package/share/icons/Adwaita
+
       # Application icon
       wget https://github.com/electron/rcedit/releases/download/v1.1.1/rcedit-x64.exe
       wine rcedit-x64.exe "package/warp.exe" --set-icon "./data/icons/app.drey.Warp.ico"
