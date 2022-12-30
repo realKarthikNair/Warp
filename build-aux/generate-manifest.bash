@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 set -e
 
-builtin type -P yq &> /dev/null
+./build-aux/flatpak-cargo-generator.py -o build-aux/cargo-sources.json Cargo.lock || echo "error generating cargo sources" && exit 0
+
+builtin type -P yq &> /dev/null || echo "yq not found, skipping manifest generation" && exit 0
 
 yq '
 .["app-id"] += ".Devel" |
@@ -12,5 +14,3 @@ yq '
 .modules |= map(if .name=="warp" then .["config-opts"] -= ["-Dprofile=default"] else . end) |
 .modules |= map(if .name=="warp" then .["run-tests"] = true else . end)' \
 build-aux/app.drey.Warp.yaml > build-aux/app.drey.Warp.Devel.json
-
-./build-aux/flatpak-cargo-generator.py -o build-aux/cargo-sources.json Cargo.lock
