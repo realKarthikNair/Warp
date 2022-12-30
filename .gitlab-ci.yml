@@ -67,7 +67,7 @@ windows:
       . ~/.cargo/env
       rustup target add x86_64-pc-windows-gnu
 
-      dnf install wget yelp-tools -y
+      dnf install wget yelp-tools librsvg2-tools ImageMagick -y
       dnf clean all -y
 
     # Build
@@ -89,6 +89,7 @@ windows:
       cp -rT /usr/share/icons/Adwaita package/share/icons/Adwaita
 
       # Application icon
+      rsvg-convert ./data/icons/app.drey.Warp.svg | convert -scale 256x256 - ./data/icons/app.drey.Warp.ico
       wget https://github.com/electron/rcedit/releases/download/v1.1.1/rcedit-x64.exe
       wine rcedit-x64.exe "package/warp.exe" --set-icon "./data/icons/app.drey.Warp.ico"
 
