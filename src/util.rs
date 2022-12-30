@@ -4,13 +4,36 @@ use crate::globals;
 use crate::globals::{TRANSMIT_CODE_FIND_REGEX, TRANSMIT_URI_FIND_REGEX};
 use gettextrs::gettext;
 use gio::prelude::*;
+use std::ffi::OsString;
 use std::str::FromStr;
 
 pub mod error;
 pub mod future;
 
-/// From [Pika Backup](https://gitlab.gnome.org/World/pika-backup/-/blob/main/src/ui/page_archives/display.rs#L63)
 pub fn show_dir(path: &std::path::Path) -> Result<(), AppError> {
+    if cfg!(windows) {
+        show_dir_windows(path)
+    } else {
+        show_dir_dbus(path)
+    }
+}
+
+fn show_dir_windows(path: &std::path::Path) -> Result<(), AppError> {
+    let cmd = "explorer.exe";
+    let mut arg = OsString::from("/select,");
+    arg.push(path.as_os_str());
+
+    log::debug!("Running command '{} {}'", cmd, arg.to_string_lossy(),);
+
+    std::process::Command::new(cmd)
+        .arg(arg)
+        .output()
+        .map_err(|_| UiError::new(&gettext("Failed to open downloads folder.")))?;
+    Ok(())
+}
+
+/// From [Pika Backup](https://gitlab.gnome.org/World/pika-backup/-/blob/main/src/ui/page_archives/display.rs#L63)
+fn show_dir_dbus(path: &std::path::Path) -> Result<(), AppError> {
     let uri = gio::File::for_path(path).uri();
 
     let show_folder = || -> Result<(), _> {
