@@ -27,7 +27,7 @@
     clippy::unused_self,
     clippy::wildcard_imports
 )]
-/* Hide the console on Windows */
+// Hide the console on Windows
 #![windows_subsystem = "windows"]
 
 mod config;
@@ -77,6 +77,14 @@ fn main() {
     pretty_env_logger::init();
 
     error::install_panic_hook();
+
+    // Windows stdout support with hidden console
+    #[cfg(windows)]
+    {
+        let _ = win32console::console::WinConsole::free_console();
+        // ATTACH_PARENT_PROCESS = 0xFFFFFFFF
+        let _ = win32console::console::WinConsole::attach_console(0xFFFFFFFF);
+    }
 
     // Prepare i18n
     gettextrs::setlocale(gettextrs::LocaleCategory::LcAll, "");
