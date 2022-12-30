@@ -24,6 +24,7 @@ if get_option('target') != ''
   cargo_options += [ '--target', get_option('target') ]
   if get_option('target').contains('windows')
     file_extension = '.exe'
+    bindir = ''
   endif
 endif
 
@@ -36,7 +37,7 @@ cargo_build = custom_target(
   'cargo-build',
   build_by_default: true,
   build_always_stale: true,
-  output: meson.project_name(),
+  output: meson.project_name() + file_extension,
   console: true,
   install: true,
   install_dir: bindir,

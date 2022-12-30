@@ -82,9 +82,6 @@ windows:
 
     # Package
     - |
-      # Move the binary out of /bin and add back .exe extension
-      mv package/bin/warp package/warp.exe
-
       package
 
       # Application icon
