@@ -32,12 +32,20 @@ Flatpak is the recommended way to build and run Warp.
 
 ## Nightly
 
+### Linux / Flatpak
+
 Download and install the latest flatpak build from gitlab
 
 ```shell
 wget "https://gitlab.gnome.org/api/v4/projects/19921/jobs/artifacts/main/raw/warp-nightly.flatpak?job=flatpak" -O warp-nightly.flatpak
 flatpak install warp-nightly.flatpak
 ```
+
+### Windows
+
+Download the latest Windows build from gitlab CI. Extract the archive to a directory of your choice and run `warp.exe` inside `warp-windows-nightly`.
+
+[Windows_artifacts.zip](https://gitlab.gnome.org/World/warp/-/jobs/artifacts/main/download?job=windows)
 
 ### Build
 
