@@ -8,10 +8,12 @@
   <summary>Fast and secure file transfer</summary>
   <description>
     <p>
-        Warp allows you to securely send files to each other via the internet or local network by exchanging a word-based code.
+      Warp allows you to securely send files to each other via the internet or local network by
+      exchanging a word-based code.
     </p>
     <p>
-        The best transfer method will be determined using the “Magic Wormhole” protocol which includes local network transfer if possible.
+      The best transfer method will be determined using the “Magic Wormhole” protocol which includes
+      local network transfer if possible.
     </p>
     <p>Features</p>
     <ul>
@@ -19,7 +21,7 @@
       <li>Every file transfer is encrypted</li>
       <li>Directly transfer files on the local network if possible</li>
       <li>An internet connection is required</li>
-      <li>Compatibility with the “Magic Wormhole” command line client</li>
+      <li>Compatibility with the Magic Wormhole command line client and all other compatible apps</li>
     </ul>
   </description>
   <screenshots>
@@ -78,7 +80,8 @@
           <li>Fix about window</li>
           <li>File received notification now opens the containing folder when clicked</li>
           <li>Update to gtk-rs 0.5</li>
-          <li>Enable drag and drop for flatpak. Confirmed to work with Nautilus 43 and gtk 4.8.1 upwards</li>
+          <li>Enable drag and drop for flatpak. Confirmed to work with Nautilus 43 and gtk 4.8.1
+            upwards</li>
           <li>Translation updates</li>
         </ul>
       </description>
@@ -118,7 +121,8 @@
         <ul>
           <li>Inhibit computer sleep while transfer is running</li>
           <li>Button to open the download folder after transfer is complete</li>
-          <li>Change URI format to use the `wormhole-transfer` specification for future interoperability with other magic-wormhole clients</li>
+          <li>Change URI format to use the `wormhole-transfer` specification for future
+            interoperability with other magic-wormhole clients</li>
           <li>Translation updates</li>
           <li>Metadata improvements</li>
         </ul>
@@ -154,13 +158,13 @@
     </release>
   </releases>
   <kudos>
-     <!--
+    <!--
        GNOME Software kudos:
-       https://gitlab.gnome.org/GNOME/gnome-software/blob/main/doc/kudos.md
+    https://gitlab.gnome.org/GNOME/gnome-software/blob/main/doc/kudos.md
      -->
-     <kudo>ModernToolkit</kudo>
-     <kudo>HiDpiIcon</kudo>
-     <kudo>HighContrast</kudo>
+    <kudo>ModernToolkit</kudo>
+    <kudo>HiDpiIcon</kudo>
+    <kudo>HighContrast</kudo>
   </kudos>
   <developer_name>Fina Wilke</developer_name>
   <update_contact>code@felinira.net</update_contact>
