@@ -8,7 +8,7 @@ mod imp {
     use gtk::CompositeTemplate;
 
     #[derive(Debug, Default, CompositeTemplate)]
-    #[template(resource = "/app/drey/Warp/ui/welcome_window.ui")]
+    #[template(file = "welcome_window.ui")]
     pub struct WelcomeWindow {
         #[template_child]
         pub(super) leaflet: TemplateChild<adw::Leaflet>,

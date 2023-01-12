@@ -1,8 +1,9 @@
 #!/bin/sh
 
 src="$(find src/ -path '*.rs')"
+ui="$(find src/ -path '*.ui')"
 git ls-files \
-	$src "data/resources/*.ui" "data/*.desktop.in.in" "data/*.xml.in.in" \
+	$src $ui "data/resources/*.ui" "data/*.desktop.in.in" "data/*.xml.in.in" \
 	> po/POTFILES.in
 
 cd po || exit 1

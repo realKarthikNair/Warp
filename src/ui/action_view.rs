@@ -143,7 +143,7 @@ mod imp {
     //use crate::util::WormholeTransferURI;
 
     #[derive(Debug, Default, gtk::CompositeTemplate)]
-    #[template(resource = "/app/drey/Warp/ui/action_view.ui")]
+    #[template(file = "action_view.ui")]
     pub struct ActionView {
         #[template_child]
         pub cancel_button: TemplateChild<gtk::Button>,

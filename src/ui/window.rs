@@ -25,7 +25,7 @@ mod imp {
     use std::collections::HashSet;
 
     #[derive(Default, gtk::CompositeTemplate)]
-    #[template(resource = "/app/drey/Warp/ui/window.ui")]
+    #[template(file = "window.ui")]
     pub struct WarpApplicationWindow {
         #[template_child]
         pub stack: TemplateChild<adw::ViewStack>,

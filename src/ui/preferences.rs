@@ -13,7 +13,7 @@ mod imp {
     use std::cell::{Cell, RefCell};
 
     #[derive(Debug, Default, gtk::CompositeTemplate)]
-    #[template(resource = "/app/drey/Warp/ui/preferences.ui")]
+    #[template(file = "preferences.ui")]
     pub struct WarpPreferencesWindow {
         #[template_child]
         pub preferences_group: TemplateChild<adw::PreferencesGroup>,
