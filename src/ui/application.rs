@@ -107,7 +107,7 @@ mod imp {
 
 glib::wrapper! {
     pub struct WarpApplication(ObjectSubclass<imp::WarpApplication>)
-        @extends gio::Application, gtk::Application,
+        @extends gio::Application, gtk::Application, adw::Application,
         @implements gio::ActionMap, gio::ActionGroup;
 }
 
