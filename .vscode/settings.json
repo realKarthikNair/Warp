@@ -1,0 +1,21 @@
+{
+    "files.watcherExclude": {
+        "**/.git/objects/**": true,
+        "**/.git/subtree-cache/**": true,
+        "**/node_modules/*/**": true,
+        "**/.hg/store/**": true,
+        ".flatpak/**": true,
+        "_build/**": true
+    },
+    "lldb.displayFormat": "auto",
+    "lldb.dereferencePointers": true,
+    "lldb.consoleMode": "commands",
+    "rust-analyzer.server.path": "/home/fina/Code/warp/.flatpak/rust-analyzer.sh",
+    "rust-analyzer.runnables.command": "/home/fina/Code/warp/.flatpak/cargo.sh",
+    "rust-analyzer.files.excludeDirs": [
+        ".flatpak"
+    ],
+    "mesonbuild.configureOnOpen": false,
+    "mesonbuild.buildFolder": "_build",
+    "mesonbuild.mesonPath": "/home/fina/Code/warp/.flatpak/meson.sh"
+}
