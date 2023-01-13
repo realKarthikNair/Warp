@@ -2,11 +2,19 @@ use crate::globals;
 use crate::util::error::AppError;
 use futures::FutureExt;
 use futures::{pin_mut, select};
-use std::ffi::OsString;
+use std::ffi::{OsStr, OsString};
 use std::future::Future;
 use std::path::{Path, PathBuf};
 use zip::ZipWriter;
 use zip_extensions::write::ZipWriterExtensions;
+
+use super::application::WarpApplication;
+
+pub fn is_portal_path(path: &Path) -> bool {
+    WarpApplication::is_flatpak()
+        && path.starts_with("/run/user")
+        && path.iter().nth(4) == Some(OsStr::new("doc"))
+}
 
 pub async fn compress_folder_cancelable(
     path: &Path,

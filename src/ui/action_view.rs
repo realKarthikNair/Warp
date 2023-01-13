@@ -597,14 +597,17 @@ impl ActionView {
                     );
 
                     imp.status_page.set_description(Some(&description));
-                    imp.open_box.set_visible(true);
 
                     if let Some(path) = imp.context.borrow().file_path_received_successfully.clone()
                     {
+                        imp.open_box.set_visible(true);
                         notification.set_default_action_and_target_value(
                             "app.show-file",
                             Some(&path.to_variant()),
                         );
+
+                        imp.open_dir_button
+                            .set_visible(!super::fs::is_portal_path(&path));
                     }
                     notification.set_body(Some(&description));
                 }
