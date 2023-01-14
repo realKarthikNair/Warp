@@ -95,7 +95,6 @@ mod imp {
             gtk::Window::set_default_icon_name(globals::APP_ID);
 
             app.cleanup_cache();
-            app.setup_css();
             app.setup_gactions();
             app.setup_accels();
         }
@@ -214,18 +213,6 @@ impl WarpApplication {
         self.set_accels_for_action("win.open-folder", &["<Control>d"]);
         self.set_accels_for_action("win.receive-file", &["<Control>r"]);
         self.set_accels_for_action("app.preferences", &["<Control>comma"]);
-    }
-
-    fn setup_css(&self) {
-        let provider = gtk::CssProvider::new();
-        provider.load_from_resource("/app/drey/Warp/style.css");
-        if let Some(display) = gdk::Display::default() {
-            gtk::StyleContext::add_provider_for_display(
-                &display,
-                &provider,
-                gtk::STYLE_PROVIDER_PRIORITY_APPLICATION,
-            );
-        }
     }
 
     fn show_about_dialog(&self) {
