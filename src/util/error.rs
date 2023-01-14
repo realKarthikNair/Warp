@@ -162,16 +162,17 @@ impl AppError {
         );
 
         if res.is_ok() {
-            let dialog = gtk::builders::MessageDialogBuilder::new()
-                .message_type(gtk::MessageType::Error)
-                .text(msg1)
-                .secondary_text(&msg2)
-                .buttons(gtk::ButtonsType::Close)
+            let dialog = adw::builders::MessageDialogBuilder::new()
+                .heading(msg1)
+                .body(&msg2)
+                .close_response("close")
                 .transient_for(window)
                 .modal(true)
                 .build();
 
-            dialog.run_async(|obj, _| {
+            dialog.add_response("close", &gettext("_Close"));
+
+            dialog.run_async(None, |obj, _| {
                 obj.close();
                 ERROR_DIALOG_ALREADY_SHOWING.store(false, Ordering::SeqCst);
             });
