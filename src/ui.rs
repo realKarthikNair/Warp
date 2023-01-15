@@ -5,4 +5,5 @@ pub mod window;
 
 mod fs;
 mod preferences;
+mod pride;
 mod progress;

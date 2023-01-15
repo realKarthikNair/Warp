@@ -382,6 +382,7 @@ impl ActionView {
                 imp.status_page
                     .set_icon_name(Some("arrows-questionmark-symbolic"));
 
+                super::pride::apply_seasonal_style(&*imp.progress_bar);
                 self.set_can_navigate_back(false);
                 self.show_progress_indeterminate(true);
             }

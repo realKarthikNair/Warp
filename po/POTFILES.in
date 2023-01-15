@@ -13,6 +13,7 @@ src/ui/application.rs
 src/ui/fs.rs
 src/ui/preferences.rs
 src/ui/preferences.ui
+src/ui/pride.rs
 src/ui/progress.rs
 src/ui/welcome_window.rs
 src/ui/welcome_window.ui
