@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
+  <object class="GtkFileChooserNative" id="save_as_file_chooser">
+    <property name="title" translatable="yes">Save As</property>
+    <property name="action">save</property>
+    <property name="accept-label" translatable="yes">Save</property>
+    <property name="cancel-label" translatable="yes">Cancel</property>
+    <property name="modal">True</property>
+    <signal name="response" handler="save_as_file_selected" swapped="true"/>
+  </object>
   <template class="ActionView" parent="GtkBox">
     <property name="orientation">vertical</property>
     <child>
@@ -122,19 +130,39 @@
                   </object>
                 </child>
                 <child>
-                  <object class="GtkButton" id="accept_transfer_button">
-                    <signal name="clicked" handler="accept_transfer_button_clicked" swapped="true"/>
-                    <property name="tooltip-text" translatable="yes">Accept File Transfer</property>
+                  <object class="GtkBox" id="accept_transfer_box">
                     <property name="visible">False</property>
-                    <!-- Translators: Button -->
-                    <property name="label" translatable="yes">Accept</property>
-                    <property name="width-request">150</property>
-                    <property name="hexpand">False</property>
-                    <style>
-                      <class name="pill"/>
-                      <class name="suggested-action"/>
-                    </style>
-                  </object>
+                    <property name="orientation">vertical</property>
+                    <property name="halign">center</property>
+                    <property name="spacing">12</property>
+                    <child>
+                      <object class="GtkButton" id="accept_transfer_button">
+                        <signal name="clicked" handler="accept_transfer_button_clicked" swapped="true"/>
+                        <property name="tooltip-text" translatable="yes">Accept File Transfer and save to Downloads folder</property>
+                        <!-- Translators: Button -->
+                        <property name="label" translatable="yes">Accept</property>
+                        <property name="width-request">150</property>
+                        <property name="hexpand">False</property>
+                        <style>
+                          <class name="pill"/>
+                          <class name="suggested-action"/>
+                        </style>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="save_as_button">
+                        <signal name="clicked" handler="save_as_button_clicked" swapped="true"/>
+                        <property name="tooltip-text" translatable="yes">Select Save Location</property>
+                        <!-- Translators: Button -->
+                        <property name="label" translatable="yes">Save As</property>
+                        <property name="width-request">150</property>
+                        <property name="hexpand">False</property>
+                        <style>
+                          <class name="pill"/>
+                        </style>
+                      </object>
+                    </child>
+                </object>
                 </child>
                 <child>
                   <object class="GtkButton" id="copy_error_button">

@@ -73,8 +73,8 @@ pub struct UIContext {
     pub cancellation_complete_receiver: async_broadcast::Receiver<()>,
 
     /// Send a message to this sender to continue the process after the confirmation question
-    pub continue_sender: async_broadcast::Sender<()>,
-    pub continue_receiver: async_broadcast::Receiver<()>,
+    pub continue_sender: async_broadcast::Sender<Option<PathBuf>>,
+    pub continue_receiver: async_broadcast::Receiver<Option<PathBuf>>,
 
     /// User initiated cancel
     pub canceled: bool,
@@ -156,7 +156,7 @@ mod imp {
         #[template_child]
         pub back_button: TemplateChild<gtk::Button>,
         #[template_child]
-        pub accept_transfer_button: TemplateChild<gtk::Button>,
+        pub accept_transfer_box: TemplateChild<gtk::Box>,
         #[template_child]
         pub progress_bar: TemplateChild<gtk::ProgressBar>,
         #[template_child]
@@ -171,6 +171,8 @@ mod imp {
         pub code_copy_button: TemplateChild<gtk::Button>,
         #[template_child]
         pub copy_error_button: TemplateChild<gtk::Button>,
+        #[template_child]
+        pub save_as_file_chooser: TemplateChild<gtk::FileChooserNative>,
 
         pub context: RefCell<UIContext>,
     }
@@ -193,7 +195,14 @@ mod imp {
     }
 
     impl ObjectImpl for ActionView {}
-    impl WidgetImpl for ActionView {}
+
+    impl WidgetImpl for ActionView {
+        fn show(&self) {
+            self.parent_show();
+            self.save_as_file_chooser
+                .set_transient_for(Some(&WarpApplicationWindow::default()));
+        }
+    }
     impl BoxImpl for ActionView {}
 
     #[gtk::template_callbacks]
@@ -211,7 +220,26 @@ mod imp {
         #[template_callback]
         async fn accept_transfer_button_clicked(&self) {
             let continue_sender = self.context.borrow().continue_sender.clone();
-            continue_sender.broadcast(()).await.unwrap();
+            continue_sender.broadcast(None).await.unwrap();
+        }
+
+        #[template_callback]
+        fn save_as_button_clicked(&self) {
+            let dialog = &self.save_as_file_chooser;
+            dialog.show();
+        }
+
+        #[template_callback]
+        async fn save_as_file_selected(&self, response: i32) {
+            if response == gtk::ResponseType::Accept {
+                if let Some(file) = self.save_as_file_chooser.file() {
+                    if let Some(path) = file.path() {
+                        log::debug!("Selected path: '{}'", path.display());
+                        let continue_sender = self.context.borrow().continue_sender.clone();
+                        continue_sender.broadcast(Some(path)).await.unwrap();
+                    };
+                }
+            }
         }
 
         #[template_callback]
@@ -374,7 +402,7 @@ impl ActionView {
                 imp.cancel_button.set_sensitive(true);
                 imp.open_box.set_visible(false);
                 imp.cancel_button.set_visible(true);
-                imp.accept_transfer_button.set_visible(false);
+                imp.accept_transfer_box.set_visible(false);
                 imp.code_box.set_visible(false);
                 imp.progress_bar.set_visible(true);
                 imp.progress_bar.set_show_text(false);
@@ -475,7 +503,7 @@ impl ActionView {
                 imp.status_page.remove_css_class("qr");
                 imp.status_page.set_title(&gettext("Connected to Peer"));
                 imp.code_box.set_visible(false);
-                imp.accept_transfer_button.set_visible(false);
+                imp.accept_transfer_box.set_visible(false);
 
                 self.show_progress_indeterminate(true);
                 imp.progress_bar.set_visible(true);
@@ -498,14 +526,14 @@ impl ActionView {
             }
             UIState::AskConfirmation(filename, size) => {
                 self.show_progress_indeterminate(false);
-                imp.accept_transfer_button.set_visible(true);
+                imp.accept_transfer_box.set_visible(true);
                 imp.progress_bar.set_visible(false);
 
                 imp.status_page.set_icon_name(Some("paper-filled-symbolic"));
                 imp.status_page.set_title(&gettext("Accept File Transfer?"));
                 imp.status_page.set_description(Some(&gettextf(
                     // Translators: File receive confirmation message dialog; Filename, File size
-                    "Your peer wants to send you “{0}” (Size: {1}).\nDo you want to download this file to your Downloads folder?",
+                    "Your peer wants to send you “{0}” (Size: {1}).\nDo you want to download this file? The default action will save the file to your Downloads folder.",
                     &[&filename,
                         &glib::format_size(*size)]
                 )));
@@ -521,7 +549,7 @@ impl ActionView {
             }
             UIState::Transmitting(filename, info, peer_addr) => {
                 self.show_progress_indeterminate(false);
-                imp.accept_transfer_button.set_visible(false);
+                imp.accept_transfer_box.set_visible(false);
                 imp.progress_bar.set_visible(true);
                 imp.progress_bar.set_show_text(true);
 
@@ -599,27 +627,39 @@ impl ActionView {
 
                     imp.status_page.set_description(Some(&description));
                     notification.set_body(Some(&description));
-                } else {
-                    let description = gettextf(
-                        // Translators: Description, Filename
-                        "File has been saved to the Downloads folder as “{}”",
-                        &[&filename.to_string_lossy()],
-                    );
-
-                    imp.status_page.set_description(Some(&description));
-
-                    if let Some(path) = imp.context.borrow().file_path_received_successfully.clone()
-                    {
-                        imp.open_box.set_visible(true);
-                        notification.set_default_action_and_target_value(
-                            "app.show-file",
-                            Some(&path.to_variant()),
+                } else if let Some(path) =
+                    imp.context.borrow().file_path_received_successfully.clone()
+                {
+                    let description = super::fs::default_download_dir()
+                        .ok()
+                        .filter(|download_dir| path.parent() == Some(download_dir))
+                        .map_or_else(
+                            || {
+                                gettextf(
+                                    // Translators: Filename
+                                    "File has been saved to the selected folder as “{}”",
+                                    &[&filename.to_string_lossy()],
+                                )
+                            },
+                            |_dir| {
+                                gettextf(
+                                    // Translators: Filename
+                                    "File has been saved to the Downloads folder as “{}”",
+                                    &[&filename.to_string_lossy()],
+                                )
+                            },
                         );
 
-                        imp.open_dir_button
-                            .set_visible(!super::fs::is_portal_path(&path));
-                    }
+                    imp.status_page.set_description(Some(&description));
                     notification.set_body(Some(&description));
+
+                    imp.open_box.set_visible(true);
+                    imp.open_dir_button
+                        .set_visible(!super::fs::is_portal_path(&path));
+                    notification.set_default_action_and_target_value(
+                        "app.show-file",
+                        Some(&path.to_variant()),
+                    );
                 }
 
                 WarpApplication::default()
@@ -636,7 +676,7 @@ impl ActionView {
                     .set_icon_name(Some("horizontal-arrows-one-way-symbolic"));
                 imp.progress_bar.set_text(None);
                 imp.progress_bar.set_visible(false);
-                imp.accept_transfer_button.set_visible(false);
+                imp.accept_transfer_box.set_visible(false);
                 imp.code_box.set_visible(false);
 
                 self.set_can_navigate_back(true);
@@ -796,7 +836,6 @@ impl ActionView {
 
     async fn transmit_receive(
         &self,
-        download_path: PathBuf,
         code: wormhole::Code,
         app_cfg: wormhole::AppConfig<wormhole::transfer::AppVersion>,
     ) -> Result<(), AppError> {
@@ -834,7 +873,7 @@ impl ActionView {
 
         // Only use the last filename component otherwise the other side can overwrite
         // files in different directories
-        let filename = if let Some(file_name) = request.filename.file_name() {
+        let offer_filename = if let Some(file_name) = request.filename.file_name() {
             PathBuf::from(file_name)
         } else {
             // This shouldn't happen realistically
@@ -842,35 +881,63 @@ impl ActionView {
         };
 
         self.set_ui_state(UIState::AskConfirmation(
-            filename.to_string_lossy().to_string(),
+            offer_filename.to_string_lossy().to_string(),
             request.filesize,
         ));
 
         // Continue or cancel
+        self.imp()
+            .save_as_file_chooser
+            .set_current_name(&offer_filename.to_string_lossy());
         let res = self.ask_confirmation_future().await;
-        if res.is_err() {
-            smol::spawn(async move {
-                let _ = request.reject().await;
-            })
-            .await;
+        let selected_download_file_path = match res {
+            Ok(selected_path) => selected_path,
+            Err(err) => {
+                smol::spawn(async move {
+                    let _ = request.reject().await;
+                })
+                .await;
 
-            return res;
-        }
+                return Err(err);
+            }
+        };
+
+        let use_temp_path = selected_download_file_path.is_none();
+        let download_file_path = selected_download_file_path
+            .unwrap_or(super::fs::default_download_dir()?.join(offer_filename));
 
         self.set_ui_state(UIState::Connected);
 
         WarpApplication::default().withdraw_notification("receive-ready");
 
-        let mut tempfile_prefix = filename.as_os_str().to_os_string();
-        tempfile_prefix.push(".");
+        let download_file_name =
+            PathBuf::from(download_file_path.file_name().ok_or_else(|| {
+                UiError::new(&gettextf(
+                    "Invalid path selected: {}",
+                    &[&download_file_path.display()],
+                ))
+            })?);
 
-        let temp_file = tempfile::Builder::new()
-            .prefix(&tempfile_prefix)
-            .suffix(&".warpdownload")
-            .tempfile_in(download_path)?;
-        let file = smol::fs::File::from(temp_file.reopen()?);
+        let temp_file = if use_temp_path {
+            let mut tempfile_prefix = download_file_name.as_os_str().to_os_string();
+            tempfile_prefix.push(".");
 
-        self.imp().context.borrow_mut().file_name = Some(filename.as_os_str().to_os_string());
+            tempfile::Builder::new()
+                .prefix(&tempfile_prefix)
+                .suffix(&".warpdownload")
+                .tempfile_in(download_file_path.parent().unwrap_or(&PathBuf::from("./")))?
+        } else {
+            let file = std::fs::File::create(&download_file_path)?;
+            tempfile::NamedTempFile::from_parts(
+                file,
+                tempfile::TempPath::from_path(&download_file_path),
+            )
+        };
+
+        let async_file = smol::fs::File::from(temp_file.reopen()?);
+
+        self.imp().context.borrow_mut().file_name =
+            Some(download_file_name.as_os_str().to_os_string());
 
         cancelable_future(
             spawn_async(async move {
@@ -879,7 +946,7 @@ impl ActionView {
                     temp_file.path().to_string_lossy()
                 );
 
-                let mut file = file;
+                let mut file = async_file;
                 request
                     .accept(
                         Self::transit_handler,
@@ -904,7 +971,12 @@ impl ActionView {
                 drop(file);
 
                 // Rename the file to its final name
-                let path = safe_persist_tempfile(temp_file, &filename)?;
+                let path = if use_temp_path {
+                    safe_persist_tempfile(temp_file, &download_file_name)?
+                } else {
+                    temp_file.keep().map_err(|err| err.error)?.1
+                };
+
                 let obj = WarpApplicationWindow::default().action_view();
                 obj.imp().context.borrow_mut().file_name =
                     Some(path.file_name().unwrap().to_os_string());
@@ -1094,10 +1166,10 @@ impl ActionView {
         });
     }
 
-    async fn ask_confirmation_future(&self) -> Result<(), AppError> {
+    async fn ask_confirmation_future(&self) -> Result<Option<PathBuf>, AppError> {
         let mut continue_receiver = self.imp().context.borrow().continue_receiver.clone();
-        cancelable_future(continue_receiver.recv(), Self::cancel_future()).await??;
-        Ok(())
+        let result = cancelable_future(continue_receiver.recv(), Self::cancel_future()).await??;
+        Ok(result)
     }
 
     /// Any post-transfer cleanup operations that are shared between success and failure states
@@ -1189,39 +1261,18 @@ impl ActionView {
         });
     }
 
-    fn receive_file_impl(
-        &self,
-        code: wormhole::Code,
-        app_cfg: wormhole::AppConfig<wormhole::transfer::AppVersion>,
-    ) -> Result<(), AppError> {
-        let path = if let Some(downloads) = glib::user_special_dir(glib::UserDirectory::Downloads) {
-            downloads
-        } else {
-            return Err(UiError::new(&gettext(
-                "Downloads dir missing. Please set XDG_DOWNLOAD_DIR",
-            ))
-            .into());
-        };
-
-        let obj = self.clone();
-
-        main_async_local(Self::transmit_error_handler, async move {
-            obj.transmit_receive(path, code, app_cfg).await?;
-            Ok(())
-        });
-
-        Ok(())
-    }
-
     pub fn receive_file(
         &self,
         code: wormhole::Code,
         app_cfg: wormhole::AppConfig<wormhole::transfer::AppVersion>,
     ) {
         log::info!("Receiving file with code '{}'", code);
-        if let Err(err) = self.receive_file_impl(code, app_cfg) {
-            self.transmit_error(err);
-        }
+        let obj = self.clone();
+
+        main_async_local(Self::transmit_error_handler, async move {
+            obj.transmit_receive(code, app_cfg).await?;
+            Ok(())
+        });
     }
 
     pub fn transfer_in_progress(&self) -> bool {

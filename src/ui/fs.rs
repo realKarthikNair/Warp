@@ -1,5 +1,6 @@
-use crate::globals;
+use crate::error::UiError;
 use crate::util::error::AppError;
+use crate::{gettext, globals};
 use futures::FutureExt;
 use futures::{pin_mut, select};
 use std::ffi::{OsStr, OsString};
@@ -14,6 +15,17 @@ pub fn is_portal_path(path: &Path) -> bool {
     WarpApplication::is_flatpak()
         && path.starts_with("/run/user")
         && path.iter().nth(4) == Some(OsStr::new("doc"))
+}
+
+pub fn default_download_dir() -> Result<PathBuf, AppError> {
+    if let Some(downloads) = glib::user_special_dir(glib::UserDirectory::Downloads) {
+        Ok(downloads)
+    } else {
+        Err(UiError::new(&gettext(
+            "Downloads dir missing. Please set XDG_DOWNLOAD_DIR",
+        ))
+        .into())
+    }
 }
 
 pub async fn compress_folder_cancelable(
