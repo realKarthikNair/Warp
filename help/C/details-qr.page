@@ -12,6 +12,8 @@
  </info>
  <title>QR Codes</title>
  <p>Instead of typing the code manually it is possible to scan a QR code.</p>
- <p>For a list of supported applications, see the <link href="https://gitlab.gnome.org/World/warp/-/blob/main/README.md#qr-codes">readme file</link>.</p>
- <p>Using any other applications might lead to problems scanning the code. The QR code standard is fairly new and not all applications have updated their custom QR code format to the standardized version.</p>
+ <p>For a list of supported apps, see the 
+ <link href="https://gitlab.gnome.org/World/warp/-/blob/main/README.md#qr-codes">readme file</link>.</p>
+ <p>Using any other apps might lead to problems scanning the code. The QR code standard is fairly new and not 
+ all apps have updated their custom QR code format to the standardized version.</p>
 </page>

@@ -11,9 +11,9 @@
   <desc>Introduction to file transfer with <app>Warp</app></desc>
  </info>
  <title>Introduction</title>
- <p><app>Warp</app> is an application that allows you to send files from one device to another effortlessly. <app>Warp</app> uses a
+ <p><app>Warp</app> is an app that allows you to send files from one device to another effortlessly. <app>Warp</app> uses a
  secure transmit code to identify and encrypt file transmissions.</p>
- <p>To use <app>Warp</app> to transfer a file, the sender needs to open the application. Select a file using the <gui>Send</gui> tab.
+ <p>To use <app>Warp</app> to transfer a file, the sender needs to open the app. Select a file using the <gui>Send</gui> tab.
  <app>Warp</app> will now try to contact the <link xref="details-glossary#rendezvous-server"/> and generate a
  <link xref="details-glossary#transmit-code"/>.</p>
  <p>The sender then needs to tell the receiver the transmit code of the file. (preferably via an encrypted or otherwise

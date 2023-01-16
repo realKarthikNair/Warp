@@ -1,7 +1,7 @@
-= Commandline Application
+= Commandline App
   [topic]
 @link[guide >index#details]
-@desc Interoperability with the Magic Wormhole Commandline Application
+@desc Interoperability with the Magic Wormhole Commandline App
 
 You can use the $link[href=https://github.com/magic-wormhole/magic-wormhole](Magic Wormhole) commandline client to
 communicate with $app(Warp) directly.
