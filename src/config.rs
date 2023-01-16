@@ -28,6 +28,9 @@ pub struct Config {
     pub transit_server_url: Option<String>,
 
     pub code_length: Option<usize>,
+
+    #[serde(default)]
+    pub show_save_dialog: bool,
 }
 
 #[derive(Clone, Default, Debug)]

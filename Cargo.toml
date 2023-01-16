@@ -46,13 +46,16 @@ regex = "1.5"
 gvdb = { version = "0.3", features = [ "gresource" ]}
 gvdb-macros = { version = "0.1" }
 thiserror = "1.0"
-tempfile = "3.3"
+tempfile = "3.3.0"
 backtrace = "0.3"
 qrcode = "0.12"
 zip = "0.5"
 zip-extensions = "0.6"
 zbus = "3.3"
 async-broadcast = "0.4"
+
+[patch.crates-io]
+tempfile = { package = "tempfile", commit = "1c6149d7ce33b2ad8b20a38a8ddce0fc29f68f0e", git = "https://github.com/Stebalien/tempfile.git" }
 
 [target.'cfg(windows)'.dependencies]
 win32console = "0.1"

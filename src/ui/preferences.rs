@@ -27,9 +27,13 @@ mod imp {
         #[template_child]
         pub code_length_spin_button: TemplateChild<gtk::SpinButton>,
 
+        #[template_child]
+        pub show_save_dialog_switch: TemplateChild<gtk::Switch>,
+
         pub rendezvous_server_url: RefCell<String>,
         pub transit_server_url: RefCell<String>,
         pub code_length: Cell<i32>,
+        pub show_save_dialog: Cell<bool>,
     }
 
     #[glib::object_subclass]
@@ -53,29 +57,21 @@ mod imp {
             use once_cell::sync::Lazy;
             static PROPERTIES: Lazy<Vec<glib::ParamSpec>> = Lazy::new(|| {
                 vec![
-                    glib::ParamSpecString::new(
-                        "rendezvous-server-url",
-                        "",
-                        "",
-                        None,
-                        glib::ParamFlags::READWRITE | glib::ParamFlags::EXPLICIT_NOTIFY,
-                    ),
-                    glib::ParamSpecString::new(
-                        "transit-server-url",
-                        "",
-                        "",
-                        None,
-                        glib::ParamFlags::READWRITE | glib::ParamFlags::EXPLICIT_NOTIFY,
-                    ),
-                    glib::ParamSpecInt::new(
-                        "code-length",
-                        "",
-                        "",
-                        CODE_LENGTH_MIN,
-                        CODE_LENGTH_MAX,
-                        4,
-                        glib::ParamFlags::READWRITE | glib::ParamFlags::EXPLICIT_NOTIFY,
-                    ),
+                    glib::ParamSpecString::builder("rendezvous-server-url")
+                        .explicit_notify()
+                        .build(),
+                    glib::ParamSpecString::builder("transit-server-url")
+                        .explicit_notify()
+                        .build(),
+                    glib::ParamSpecInt::builder("code-length")
+                        .default_value(4)
+                        .minimum(CODE_LENGTH_MIN)
+                        .maximum(CODE_LENGTH_MAX)
+                        .explicit_notify()
+                        .build(),
+                    glib::ParamSpecBoolean::builder("show-save-dialog")
+                        .explicit_notify()
+                        .build(),
                 ]
             });
             PROPERTIES.as_ref()
@@ -87,6 +83,7 @@ mod imp {
                 "rendezvous-server-url" => obj.set_rendezvous_server_url(value.get().unwrap()),
                 "transit-server-url" => obj.set_transit_server_url(value.get().unwrap()),
                 "code-length" => obj.set_code_length(value.get().unwrap()),
+                "show-save-dialog" => obj.set_show_save_dialog(value.get().unwrap()),
                 _ => unimplemented!(),
             }
         }
@@ -97,6 +94,7 @@ mod imp {
                 "rendezvous-server-url" => obj.rendezvous_server_url().to_value(),
                 "transit-server-url" => obj.transit_server_url().to_value(),
                 "code-length" => obj.code_length().to_value(),
+                "show-save-dialog" => obj.show_save_dialog().to_value(),
                 _ => unimplemented!(),
             }
         }
@@ -157,6 +155,8 @@ Transit Server: “{1}”",
 
             let code_length = self.code_length.get();
             window.config().code_length = Some(code_length as usize);
+
+            window.config().show_save_dialog = self.show_save_dialog.get();
 
             window.save_config();
 
@@ -254,6 +254,15 @@ impl WarpPreferencesWindow {
 
     pub fn code_length(&self) -> i32 {
         self.imp().code_length.get()
+    }
+
+    pub fn set_show_save_dialog(&self, value: bool) {
+        self.imp().show_save_dialog.set(value);
+        self.notify("show-save-dialog");
+    }
+
+    pub fn show_save_dialog(&self) -> bool {
+        self.imp().show_save_dialog.get()
     }
 }
 
