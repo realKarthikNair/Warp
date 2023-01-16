@@ -127,7 +127,8 @@ impl WormholeTransferURI {
         let mut rendezvous_server = self.rendezvous_server.clone();
         rendezvous_server.set_path("");
         rendezvous_server.set_query(None);
-        if self.rendezvous_server != *globals::WORMHOLE_DEFAULT_RENDEZVOUS_SERVER {
+
+        if rendezvous_server != *globals::WORMHOLE_DEFAULT_RENDEZVOUS_SERVER {
             uri.query_pairs_mut()
                 .append_pair("rendezvous", rendezvous_server.as_ref());
         }

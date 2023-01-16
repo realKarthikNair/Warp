@@ -140,7 +140,7 @@ mod imp {
     use gtk::gdk::AppLaunchContext;
     use std::cell::RefCell;
 
-    //use crate::util::WormholeTransferURI;
+    use crate::util::WormholeTransferURI;
 
     #[derive(Debug, Default, gtk::CompositeTemplate)]
     #[template(file = "action_view.ui")]
@@ -414,53 +414,62 @@ impl ActionView {
                 }
                 TransferDirection::Receive => {}
             },
-            UIState::HasCode(uri) => match direction {
-                TransferDirection::Send => {
-                    imp.status_page.set_icon_name(Some("code-symbolic"));
-                    // Translators: Title, this is a noun
-                    imp.status_page.set_title(&gettext("Your Transmit Code"));
-                    //imp.status_page.set_paintable(Some(&uri.to_paintable_qr()));
-                    //imp.status_page.add_css_class("qr");
+            UIState::HasCode(uri) => {
+                match direction {
+                    TransferDirection::Send => {
+                        imp.status_page.set_icon_name(Some("code-symbolic"));
+                        // Translators: Title, this is a noun
+                        imp.status_page.set_title(&gettext("Your Transmit Code"));
+                        imp.status_page.set_paintable(Some(&uri.to_paintable_qr()));
+                        imp.status_page.add_css_class("qr");
 
-                    let filename = imp
-                        .context
-                        .borrow()
-                        .file_name
-                        .clone()
-                        .unwrap_or_else(|| "?".into());
+                        let filename = imp
+                            .context
+                            .borrow()
+                            .file_name
+                            .clone()
+                            .unwrap_or_else(|| "?".into());
 
-                    if imp.context.borrow().rendezvous_url
-                        == *globals::WORMHOLE_DEFAULT_RENDEZVOUS_SERVER
-                    {
-                        imp.status_page.set_description(Some(&gettextf(
-                            // Translators: Description, Code in box below, argument is filename
-                            "Ready to send “{}”\nThe receiver needs to enter this code to begin the file transfer.",
-                            &[&filename.to_string_lossy()]
-                        )));
-                    } else {
-                        imp.status_page.set_description(Some(&gettextf(
-                            // Translators: Description, Code in box below, argument is filename
-                            "Ready to send “{}”\nThe receiver needs to enter this code to begin the file transfer.\n\nYou have entered a custom rendezvous server URL in preferences. Please verify the receiver also uses the same rendezvous server.",
-                            &[&filename.to_string_lossy()]
-                        )));
+                        // Translators: Description line 1, argument is filename
+                        let mut description =
+                            gettextf("Ready to send “{}”.", &[&filename.to_string_lossy()]);
+                        description += "\n";
+                        // Translators: Description line 2, Code words and QR code visible,
+                        description += &gettext("The receiver needs to enter or scan this code to begin the file transfer.");
+                        description += " ";
+                        // Translators: Description line 2, Argument is a list of apps that support the QR code standard.
+                        description += &gettextf(
+                            "The QR code is compatible with the following apps: {}.",
+                            &[&"Warp"],
+                        );
+
+                        if imp.context.borrow().rendezvous_url
+                            != *globals::WORMHOLE_DEFAULT_RENDEZVOUS_SERVER
+                        {
+                            description += "\n";
+                            description += &gettext("You have entered a custom rendezvous server URL in preferences. Please verify the receiver also uses the same rendezvous server.");
+                        }
+
+                        imp.status_page.set_description(Some(&description));
+
+                        imp.code_box.set_visible(true);
+                        imp.code_entry.set_text(uri.code.as_ref());
+                        imp.progress_bar.set_visible(false);
                     }
-                    imp.code_box.set_visible(true);
-                    imp.code_entry.set_text(uri.code.as_ref());
-                    imp.progress_bar.set_visible(false);
+                    TransferDirection::Receive => {
+                        imp.status_page
+                            .set_icon_name(Some("arrows-questionmark-symbolic"));
+                        // Translators: Title
+                        imp.status_page.set_title(&gettext("Connecting"));
+                        imp.status_page.set_description(Some(&gettextf(
+                            // Translators: Description, Transfer Code
+                            "Connecting to peer with code “{}”",
+                            &[&uri.code],
+                        )));
+                        imp.progress_bar.set_visible(true);
+                    }
                 }
-                TransferDirection::Receive => {
-                    imp.status_page
-                        .set_icon_name(Some("arrows-questionmark-symbolic"));
-                    // Translators: Title
-                    imp.status_page.set_title(&gettext("Connecting"));
-                    imp.status_page.set_description(Some(&gettextf(
-                        // Translators: Description, Transfer Code
-                        "Connecting to peer with code “{}”",
-                        &[&uri.code],
-                    )));
-                    imp.progress_bar.set_visible(true);
-                }
-            },
+            }
             UIState::Connected => {
                 // Translators: Title
                 imp.status_page.remove_css_class("qr");

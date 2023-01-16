@@ -73,9 +73,9 @@
   <template class="WarpApplicationWindow" parent="AdwApplicationWindow">
     <signal name="notify::is-active" handler="add_code_from_clipboard" swapped="true"/>
     <property name="width-request">360</property>
-    <property name="height-request">530</property>
+    <property name="height-request">564</property>
     <property name="default-width">460</property>
-    <property name="default-height">530</property>
+    <property name="default-height">564</property>
     <child>
       <object class="GtkWindowHandle">
         <child>
