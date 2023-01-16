@@ -1,6 +1,7 @@
 pages = [
   'details-commandline.page',
   'details-glossary.page',
+  'details-qr.page',
   'general-intro.page',
   'index.page',
 ]

@@ -1,0 +1,12 @@
+= QR Codes
+  [topic]
+@link[guide >index#details]
+@desc Using QR Codes
+
+Instead of typing the code manually it is possible to scan a QR code.
+
+For a list of supported applications, see the 
+$link[href=https://gitlab.gnome.org/World/warp/-/blob/main/README.md#qr-codes](readme file).
+
+Using any other applications might lead to problems scanning the code. The QR code standard is fairly new and not 
+all applications have updated their custom QR code format to the standardized version.
