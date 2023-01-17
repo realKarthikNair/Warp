@@ -1,35 +1,35 @@
 project(
   run_command(
-    find_program(meson.source_root() / 'build-aux/meson-cargo-manifest.py'),
+    find_program(meson.global_source_root() / 'build-aux/meson-cargo-manifest.py'),
     'package', 'name',
     check: true
   ).stdout(),
   'rust',
   version: run_command(
-    find_program(meson.source_root() / 'build-aux/meson-cargo-manifest.py'),
+    find_program(meson.global_source_root() / 'build-aux/meson-cargo-manifest.py'),
     'package', 'version',
     check: true
   ).stdout(),
   meson_version: '>= 0.59',
   license: run_command(
-    find_program(meson.source_root() / 'build-aux/meson-cargo-manifest.py'),
+    find_program(meson.global_source_root() / 'build-aux/meson-cargo-manifest.py'),
     'package', 'license',
     check: true
   ).stdout(),
 )
 
 homepage = run_command(
-    find_program(meson.source_root() / 'build-aux/meson-cargo-manifest.py'),
+    find_program(meson.global_source_root() / 'build-aux/meson-cargo-manifest.py'),
     'package', 'homepage',
     check: true
 ).stdout()
 issuetracker = run_command(
-    find_program(meson.source_root() / 'build-aux/meson-cargo-manifest.py'),
+    find_program(meson.global_source_root() / 'build-aux/meson-cargo-manifest.py'),
     'package.metadata.urls', 'issuetracker',
     check: true
 ).stdout()
 contact = run_command(
-    find_program(meson.source_root() / 'build-aux/meson-cargo-manifest.py'),
+    find_program(meson.global_source_root() / 'build-aux/meson-cargo-manifest.py'),
     'package.metadata.urls', 'contact',
     check: true
 ).stdout()
@@ -64,7 +64,7 @@ gettext_package = meson.project_name()
 
 if get_option('profile') == 'development'
   profile = 'Devel'
-  vcs_tag = run_command('git', 'rev-parse', '--short', 'HEAD').stdout().strip()
+  vcs_tag = run_command('git', 'rev-parse', '--short', 'HEAD', check: true).stdout().strip()
   if vcs_tag == ''
     version_suffix = '-devel'
   else
@@ -86,7 +86,7 @@ meson.add_dist_script(
 if get_option('profile') != 'release'
   # Setup pre-commit hook for ensuring coding style is always consistent
   message('Setting up git pre-commit hook')
-  run_command('cp', '-f', 'hooks/pre-commit.hook', '.git/hooks/pre-commit')
+  run_command('cp', '-f', 'hooks/pre-commit.hook', '.git/hooks/pre-commit', check: true)
 endif
 
 subdir('data')

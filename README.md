@@ -87,18 +87,16 @@ flatpak-builder --install --user app app.drey.Warp.Devel.json warp --force-clean
 It is supported to install the project locally without flatpak.
 
 ```shell
-meson build
-cd build
-ninja
-sudo ninja install
+meson setup build
+ninja -C build
+ninja -C build install
 ```
 
 To uninstall:
 
 ```shell
-cd build
-ninja uninstall
-```
+sudo ninja -C uninstall
+``` 
 
 It is required to test any big changes with flatpak before contributing any new code.
 
