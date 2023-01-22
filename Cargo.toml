@@ -52,7 +52,7 @@ qrcode = "0.12"
 zip = "0.5"
 zip-extensions = "0.6"
 zbus = "3.3"
-async-broadcast = "0.4"
+async-broadcast = "0.5"
 
 [patch.crates-io]
 tempfile = { package = "tempfile", commit = "1c6149d7ce33b2ad8b20a38a8ddce0fc29f68f0e", git = "https://github.com/Stebalien/tempfile.git" }
