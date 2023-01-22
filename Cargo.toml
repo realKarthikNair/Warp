@@ -1,7 +1,7 @@
 [package]
 name = "warp"
 license = "GPL-3.0"
-version = "0.3.2"
+version = "0.4.0-beta"
 authors = ["Fina Wilke <code@felinira.net>"]
 homepage = "https://apps.gnome.org/app/app.drey.Warp/"
 repository = "https://gitlab.gnome.org/World/warp/"
@@ -55,7 +55,7 @@ zbus = "3.3"
 async-broadcast = "0.5"
 
 [patch.crates-io]
-tempfile = { package = "tempfile", commit = "1c6149d7ce33b2ad8b20a38a8ddce0fc29f68f0e", git = "https://github.com/Stebalien/tempfile.git" }
+tempfile = { package = "tempfile", git = "https://github.com/Stebalien/tempfile.git" }
 
 [target.'cfg(windows)'.dependencies]
 win32console = "0.1"
