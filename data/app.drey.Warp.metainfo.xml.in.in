@@ -68,7 +68,7 @@
         <ul>
           <li>QR Code support. Please check the list of <a href="https://gitlab.gnome.org/World/warp#qr-codes">supported applications</a></li>
           <li>Save files to other destinations apart from the downloads folder</li>
-          <li>Experimental Windows support. You can a <a href="https://gitlab.gnome.org/World/warp#windows">nightly build</a>.</li>
+          <li>Experimental Windows support. You can a download <a href="https://gitlab.gnome.org/World/warp#windows">nightly build</a> to try it out.</li>
           <li>Seasonal pride progress bars</li>
           <li>Translation updates</li>
         </ul>
