@@ -11,7 +11,6 @@ use std::path::PathBuf;
 mod imp {
     use super::*;
     use crate::util::error::{AppError, UiError};
-    use crate::util::extract_transmit_code;
     use crate::util::WormholeTransferURI;
     use glib::WeakRef;
     use once_cell::sync::OnceCell;
@@ -64,14 +63,6 @@ mod imp {
                     ))
                     .into();
                     err.show_error_dialog(&app.main_window());
-                } else if let Some(code) = files[0]
-                    .uri()
-                    .strip_prefix("warp://recv/")
-                    .and_then(extract_transmit_code)
-                {
-                    app.main_window()
-                        .action_view()
-                        .receive_file(wormhole::Code(code), app.main_window().config().app_cfg());
                 } else {
                     match files[0].uri().parse::<WormholeTransferURI>() {
                         Ok(uri) => {
