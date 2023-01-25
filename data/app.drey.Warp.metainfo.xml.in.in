@@ -21,6 +21,7 @@
       <li>Every file transfer is encrypted</li>
       <li>Directly transfer files on the local network if possible</li>
       <li>An internet connection is required</li>
+      <li>QR Code support</li>
       <li>Compatibility with the Magic Wormhole command line client and all other compatible apps</li>
     </ul>
   </description>
