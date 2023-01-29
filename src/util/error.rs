@@ -144,10 +144,7 @@ impl AppError {
         }
 
         // We can just panic if we can't display a proper error in the UI
-        panic!(
-            "An error occurred during application initialisation: {}",
-            self
-        );
+        panic!("An error occurred during application initialisation: {self}",);
     }
 
     pub fn show_error_dialog(&self, window: &WarpApplicationWindow) {

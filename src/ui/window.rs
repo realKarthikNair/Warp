@@ -397,9 +397,7 @@ impl WarpApplicationWindow {
 
     #[template_callback]
     pub fn add_code_from_clipboard(&self) {
-        let stack_name = if let Some(name) = self.imp().stack.visible_child_name() {
-            name
-        } else {
+        let Some(stack_name) = self.imp().stack.visible_child_name() else {
             return;
         };
 

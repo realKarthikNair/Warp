@@ -187,8 +187,9 @@ impl WarpApplication {
             if let Some(data) = data {
                 let path = PathBuf::from_variant(data);
                 if let Some(filename) = path {
-                    // Ignore because what are we supposed to do otherwise
-                    let _ = show_dir(&filename);
+                    if let Err(err) = show_dir(&filename) {
+                        log::error!("Error when showing directory: {}", err);
+                    }
                 }
             }
         }));
