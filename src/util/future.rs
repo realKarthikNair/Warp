@@ -1,4 +1,5 @@
 use crate::error;
+use crate::ui::application::WarpApplication;
 use crate::util::error::AppError;
 use futures::{pin_mut, select, FutureExt};
 use std::future::Future;
@@ -13,6 +14,13 @@ where
     task.catch_unwind()
         .await
         .map_err(|_| error::error_for_panic())?
+}
+
+pub fn invoke_main_with_app<F>(func: F)
+where
+    F: FnOnce(WarpApplication) + 'static + Send,
+{
+    glib::MainContext::default().invoke(|| func(WarpApplication::default()));
 }
 
 /// Run a future from main thread with error handling

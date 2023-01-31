@@ -786,7 +786,8 @@ impl ActionView {
             self.set_ui_state(UIState::Archive(filename.clone()));
             filename.push(".zip");
 
-            let temp_file = fs::compress_folder_cancelable(path, Self::cancel_future()).await?;
+            let temp_file =
+                fs::compress_folder_cancelable(path, Self::cancel_future().await?).await?;
             (
                 smol::fs::File::from(temp_file.reopen()?),
                 temp_file.path().to_path_buf(),
@@ -851,7 +852,7 @@ impl ActionView {
 
         let (_welcome, connection) = spawn_async(cancelable_future(
             wormhole::Wormhole::connect_with_code(app_cfg, code),
-            Self::cancel_future(),
+            Self::cancel_future().await?,
         ))
         .await??;
 
@@ -864,7 +865,7 @@ impl ActionView {
                 connection,
                 relay_url,
                 TRANSIT_ABILITIES,
-                Self::cancel_future(),
+                Self::cancel_future().await?,
             )
             .await?)
         })
@@ -954,7 +955,7 @@ impl ActionView {
                         Self::transit_handler,
                         Self::progress_handler,
                         &mut file,
-                        Self::cancel_future(),
+                        Self::cancel_future().await?,
                     )
                     .await?;
 
@@ -1014,7 +1015,7 @@ impl ActionView {
 
         let res = spawn_async(cancelable_future(
             wormhole::Wormhole::connect_without_code(app_cfg.clone(), code_length),
-            Self::cancel_future(),
+            Self::cancel_future().await?,
         ))
         .await?;
 
@@ -1034,7 +1035,7 @@ impl ActionView {
         self.set_ui_state(UIState::HasCode(uri));
 
         let connection =
-            spawn_async(cancelable_future(connection, Self::cancel_future())).await??;
+            spawn_async(cancelable_future(connection, Self::cancel_future().await?)).await??;
         self.set_ui_state(UIState::Connected);
 
         self.imp().context.borrow_mut().file_path = Some(path);
@@ -1053,7 +1054,7 @@ impl ActionView {
                     TRANSIT_ABILITIES,
                     Self::transit_handler,
                     Self::progress_handler,
-                    Self::cancel_future(),
+                    Self::cancel_future().await?,
                 )
                 .await?;
 
@@ -1092,10 +1093,13 @@ impl ActionView {
     }
 
     /// This future will finish when a message is received in the cancellation channel
-    fn cancel_future() -> impl Future<Output = ()> {
-        let obj = ActionView::default();
-        let cancel_receiver = obj.imp().context.borrow().cancel_receiver.clone();
-        Self::receiver_future("cancel", cancel_receiver)
+    async fn cancel_future() -> Result<impl Future<Output = ()>, AppError> {
+        block_on_main_async(async move {
+            let obj = WarpApplication::default().main_window().action_view();
+            let cancel_receiver = obj.imp().context.borrow().cancel_receiver.clone();
+            Self::receiver_future("cancel", cancel_receiver)
+        })
+        .await
     }
 
     /// This future is for any wormhole calls that have proper cancellation but no timeout handling
@@ -1170,7 +1174,8 @@ impl ActionView {
 
     async fn ask_confirmation_future(&self) -> Result<Option<PathBuf>, AppError> {
         let mut continue_receiver = self.imp().context.borrow().continue_receiver.clone();
-        let result = cancelable_future(continue_receiver.recv(), Self::cancel_future()).await??;
+        let result =
+            cancelable_future(continue_receiver.recv(), Self::cancel_future().await?).await??;
         Ok(result)
     }
 
