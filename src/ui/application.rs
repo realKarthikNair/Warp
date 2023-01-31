@@ -240,8 +240,8 @@ impl WarpApplication {
             TransferDirection::Receive => gettext("Receiving a File"),
         };
 
-        let inhibit = WarpApplication::default().inhibit(
-            Some(&WarpApplicationWindow::default()),
+        let inhibit = self.inhibit(
+            Some(&self.main_window()),
             gtk::ApplicationInhibitFlags::LOGOUT | gtk::ApplicationInhibitFlags::SUSPEND,
             Some(&inhibit_reason),
         );

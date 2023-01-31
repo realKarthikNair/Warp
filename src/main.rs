@@ -24,7 +24,8 @@
     clippy::module_name_repetitions,
     clippy::too_many_lines,
     clippy::unused_self,
-    clippy::wildcard_imports
+    clippy::wildcard_imports,
+    clippy::new_without_default
 )]
 // Hide the console on Windows
 #![windows_subsystem = "windows"]

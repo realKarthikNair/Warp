@@ -1,5 +1,5 @@
 use crate::globals;
-use crate::ui::window::WarpApplicationWindow;
+use crate::ui::application::WarpApplication;
 use adw::prelude::*;
 use adw::subclass::prelude::*;
 
@@ -62,6 +62,13 @@ impl WelcomeWindow {
         glib::Object::new(&[])
     }
 
+    fn app(&self) -> WarpApplication {
+        self.application()
+            .expect("Application to exist")
+            .downcast()
+            .expect("Application to be WarpApplication")
+    }
+
     #[template_callback]
     pub fn navigate_back(&self) {
         self.imp().leaflet.navigate(adw::NavigationDirection::Back);
@@ -76,7 +83,7 @@ impl WelcomeWindow {
 
     #[template_callback]
     pub fn get_started_button_clicked(&self) {
-        WarpApplicationWindow::default().set_welcome_window_shown(true);
+        self.app().main_window().set_welcome_window_shown(true);
         self.close();
     }
 }

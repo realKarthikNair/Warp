@@ -1,5 +1,6 @@
 use crate::gettext::gettextf;
 use crate::globals;
+use crate::ui::application::WarpApplication;
 use crate::ui::window::WarpApplicationWindow;
 use adw::prelude::*;
 use gettextrs::gettext;
@@ -112,6 +113,11 @@ impl Display for AppError {
 static ERROR_DIALOG_ALREADY_SHOWING: AtomicBool = AtomicBool::new(false);
 
 impl AppError {
+    #[allow(clippy::unnecessary_wraps)]
+    pub fn ok<R>(res: R) -> Result<R, AppError> {
+        Ok(res)
+    }
+
     pub fn handle(self) {
         if let AppError::Canceled = self {
             // Don't do anything here, the user canceled the operation
@@ -190,7 +196,7 @@ impl AppError {
                     } else {
                         gettextf("The rendezvous server responded with an unknown message: {}", &[msg])
                     }
-                } else if WarpApplicationWindow::default().config().rendezvous_server_url.is_some() {
+                } else if WarpApplication::default().main_window().config().rendezvous_server_url.is_some() {
                     gettext("Error connecting to the rendezvous server.\nYou have entered a custom rendezvous server URL in preferences. Please verify the URL is correct and the server is working.")
                 } else {
                     gettext("Error connecting to the rendezvous server.\nPlease try again later / verify you are connected to the internet.")

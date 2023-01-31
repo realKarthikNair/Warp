@@ -200,7 +200,7 @@ mod imp {
         fn show(&self) {
             self.parent_show();
             self.save_as_file_chooser
-                .set_transient_for(Some(&WarpApplicationWindow::default()));
+                .set_transient_for(Some(&self.obj().window()));
         }
     }
     impl BoxImpl for ActionView {}
@@ -209,7 +209,7 @@ mod imp {
     impl ActionView {
         #[template_callback]
         fn back_button_clicked(&self) {
-            WarpApplicationWindow::default().navigate_back();
+            self.obj().window().navigate_back();
         }
 
         #[template_callback]
@@ -245,7 +245,7 @@ mod imp {
         #[template_callback]
         fn code_copy_button_clicked(&self) {
             let code = self.code_entry.text();
-            let window = WarpApplicationWindow::default();
+            let window = self.obj().window();
             let clipboard = window.clipboard();
 
             clipboard.set_text(&code);
@@ -260,7 +260,7 @@ mod imp {
         #[template_callback]
         fn link_copy_button_clicked(&self) {
             let code = self.code_entry.text();
-            let window = WarpApplicationWindow::default();
+            let window = self.obj().window();
             let clipboard = window.clipboard();
 
             let uri = WormholeTransferURI {
@@ -280,7 +280,7 @@ mod imp {
 
         #[template_callback]
         fn copy_error_button_clicked(&self) {
-            let window = WarpApplicationWindow::default();
+            let window = self.obj().window();
 
             let toast = if let UIState::Error(error) = &*self.context.borrow().ui_state {
                 let msg = format!("{error}");
@@ -322,7 +322,9 @@ mod imp {
                     let res = gio::AppInfo::launch_default_for_uri(&uri, none);
                     if let Err(err) = res {
                         log::error!("Error opening file: {}", err);
-                        let dialog = WarpApplicationWindow::default()
+                        let dialog = self
+                            .obj()
+                            .window()
                             .no_registered_application_error_dialog(err.message());
                         let answer = dialog.run_future().await;
                         dialog.close();
@@ -368,6 +370,17 @@ impl ActionView {
         glib::Object::new(&[])
     }
 
+    fn window(&self) -> WarpApplicationWindow {
+        self.root()
+            .expect("ActionView must be in a window")
+            .downcast()
+            .expect("ActionView may only be situated in WarpApplicationWindow")
+    }
+
+    fn app(&self) -> WarpApplication {
+        self.window().app()
+    }
+
     fn set_ui_state(&self, ui_state: UIState) {
         self.imp().context.borrow_mut().ui_state = Rc::new(ui_state);
         self.update_ui();
@@ -387,7 +400,7 @@ impl ActionView {
 
     fn set_can_navigate_back(&self, can_navigate_back: bool) {
         self.imp().back_button.set_visible(can_navigate_back);
-        WarpApplicationWindow::default()
+        self.window()
             .leaflet()
             .set_can_navigate_back(can_navigate_back);
     }
@@ -544,7 +557,7 @@ impl ActionView {
                 )));
                 notification.set_priority(gio::NotificationPriority::Urgent);
                 notification.set_category(Some("transfer"));
-                WarpApplication::default()
+                self.app()
                     .send_notification_if_background(Some("receive-ready"), &notification);
             }
             UIState::Transmitting(filename, info, peer_addr) => {
@@ -662,7 +675,7 @@ impl ActionView {
                     );
                 }
 
-                WarpApplication::default()
+                self.app()
                     .send_notification_if_background(Some("transfer-complete"), &notification);
             }
             UIState::Error(error) => {
@@ -688,7 +701,7 @@ impl ActionView {
                 )));
                 notification.set_priority(gio::NotificationPriority::High);
                 notification.set_category(Some("transfer.error"));
-                WarpApplication::default()
+                self.app()
                     .send_notification_if_background(Some("transfer-error"), &notification);
 
                 let peer_canceled = if let AppError::Transfer {
@@ -717,7 +730,7 @@ impl ActionView {
             return true;
         }
 
-        let dialog = WarpApplicationWindow::default().ask_abort_dialog();
+        let dialog = self.window().ask_abort_dialog();
         let response = dialog.run_future().await;
 
         if response == "abort" {
@@ -750,7 +763,7 @@ impl ActionView {
         let cancel_sender = imp.context.borrow().cancel_sender.clone();
         cancel_sender.broadcast(()).await.unwrap();
         self.wait_for_cancellation_future().await;
-        WarpApplicationWindow::default().navigate_back();
+        self.window().navigate_back();
     }
 
     fn show_progress_indeterminate(&self, pulse: bool) {
@@ -786,8 +799,7 @@ impl ActionView {
             self.set_ui_state(UIState::Archive(filename.clone()));
             filename.push(".zip");
 
-            let temp_file =
-                fs::compress_folder_cancelable(path, Self::cancel_future().await?).await?;
+            let temp_file = fs::compress_folder_cancelable(path, self.cancel_future()).await?;
             (
                 smol::fs::File::from(temp_file.reopen()?),
                 temp_file.path().to_path_buf(),
@@ -807,11 +819,12 @@ impl ActionView {
 
     fn prepare_transmit(&self, direction: TransferDirection) -> Result<(), AppError> {
         self.reset();
-        WarpApplication::default().inhibit_transfer(direction);
+        self.app().inhibit_transfer(direction);
         self.set_transfer_direction(direction);
         self.set_ui_state(UIState::Initial);
 
-        let rendezvous_url = WarpApplicationWindow::default()
+        let rendezvous_url = self
+            .window()
             .config()
             .rendezvous_server_url()
             .map_err(|_| {
@@ -821,17 +834,14 @@ impl ActionView {
             })?;
         self.imp().context.borrow_mut().rendezvous_url = rendezvous_url;
 
-        let transit_url = WarpApplicationWindow::default()
-            .config()
-            .transit_relay_hints()
-            .map_err(|_| {
-                UiError::new(&gettext(
-                    "Error parsing transit URL. An invalid URL was entered in the settings.",
-                ))
-            })?;
+        let transit_url = self.window().config().transit_relay_hints().map_err(|_| {
+            UiError::new(&gettext(
+                "Error parsing transit URL. An invalid URL was entered in the settings.",
+            ))
+        })?;
         self.imp().context.borrow_mut().relay_hints = transit_url;
 
-        WarpApplicationWindow::default().show_action_view();
+        self.window().show_action_view();
         Ok(())
     }
 
@@ -848,11 +858,11 @@ impl ActionView {
         );
         self.set_ui_state(UIState::HasCode(uri));
 
-        WarpApplicationWindow::default().add_code(&code);
+        self.window().add_code(&code);
 
         let (_welcome, connection) = spawn_async(cancelable_future(
             wormhole::Wormhole::connect_with_code(app_cfg, code),
-            Self::cancel_future().await?,
+            self.cancel_future(),
         ))
         .await??;
 
@@ -860,15 +870,12 @@ impl ActionView {
 
         let relay_url = self.imp().context.borrow().relay_hints.clone();
 
-        let request = spawn_async(async move {
-            Ok(wormhole::transfer::request_file(
-                connection,
-                relay_url,
-                TRANSIT_ABILITIES,
-                Self::cancel_future().await?,
-            )
-            .await?)
-        })
+        let request = spawn_async(wormhole::transfer::request_file(
+            connection,
+            relay_url,
+            TRANSIT_ABILITIES,
+            self.cancel_future(),
+        ))
         .await?
         .ok_or(AppError::Canceled)?;
 
@@ -911,7 +918,7 @@ impl ActionView {
 
         self.set_ui_state(UIState::Connected);
 
-        WarpApplication::default().withdraw_notification("receive-ready");
+        self.app().withdraw_notification("receive-ready");
 
         let download_file_name =
             PathBuf::from(download_file_path.file_name().ok_or_else(|| {
@@ -942,59 +949,49 @@ impl ActionView {
         self.imp().context.borrow_mut().file_name =
             Some(download_file_name.as_os_str().to_os_string());
 
-        cancelable_future(
-            spawn_async(async move {
-                log::info!(
-                    "Downloading file to {:?}",
-                    temp_file.path().to_string_lossy()
-                );
+        log::info!(
+            "Downloading file to {:?}",
+            temp_file.path().to_string_lossy()
+        );
 
+        let file = cancelable_future(
+            spawn_async(async move {
                 let mut file = async_file;
                 request
                     .accept(
-                        Self::transit_handler,
-                        Self::progress_handler,
+                        Self::transit_handler_main,
+                        Self::progress_handler_main,
                         &mut file,
-                        Self::cancel_future().await?,
+                        Self::cancel_future_main().await,
                     )
                     .await?;
-
-                if WarpApplicationWindow::default()
-                    .action_view()
-                    .imp()
-                    .context
-                    .borrow()
-                    .canceled
-                {
-                    return Err(AppError::Canceled);
-                }
-
-                // Windows requires the file to be closed before renaming it
-                file.sync_all().await?;
-                drop(file);
-
-                // Rename the file to its final name
-                let path = if use_temp_path {
-                    safe_persist_tempfile(temp_file, &download_file_name)?
-                } else {
-                    temp_file.keep().map_err(|err| err.error)?.1
-                };
-
-                let obj = WarpApplicationWindow::default().action_view();
-                obj.imp().context.borrow_mut().file_name =
-                    Some(path.file_name().unwrap().to_os_string());
-                obj.imp()
-                    .context
-                    .borrow_mut()
-                    .file_path_received_successfully = Some(path);
-
-                Self::transmit_success_main();
-
-                Ok(())
+                AppError::ok(file)
             }),
             Self::cancel_timeout_future(TIMEOUT_MS),
         )
         .await??;
+
+        if self.imp().context.borrow().canceled {
+            return Err(AppError::Canceled);
+        }
+
+        // Windows requires the file to be closed before renaming it
+        file.sync_all().await?;
+        drop(file);
+
+        // Rename the file to its final name
+        let path = if use_temp_path {
+            safe_persist_tempfile(temp_file, &download_file_name)?
+        } else {
+            temp_file.keep().map_err(|err| err.error)?.1
+        };
+
+        self.imp().context.borrow_mut().file_name = Some(path.file_name().unwrap().to_os_string());
+        self.imp()
+            .context
+            .borrow_mut()
+            .file_path_received_successfully = Some(path);
+        self.transmit_success();
 
         Ok(())
     }
@@ -1007,7 +1004,7 @@ impl ActionView {
         self.prepare_transmit(TransferDirection::Send)?;
         self.set_ui_state(UIState::RequestCode);
 
-        let window = WarpApplicationWindow::default();
+        let window = self.window();
 
         let (mut file, path, filename) = self.prepare_and_open_file(&path).await?;
         self.imp().context.borrow_mut().file_name = Some(filename.clone());
@@ -1015,7 +1012,7 @@ impl ActionView {
 
         let res = spawn_async(cancelable_future(
             wormhole::Wormhole::connect_without_code(app_cfg.clone(), code_length),
-            Self::cancel_future().await?,
+            self.cancel_future(),
         ))
         .await?;
 
@@ -1034,17 +1031,16 @@ impl ActionView {
         );
         self.set_ui_state(UIState::HasCode(uri));
 
-        let connection =
-            spawn_async(cancelable_future(connection, Self::cancel_future().await?)).await??;
+        let connection = spawn_async(cancelable_future(connection, self.cancel_future())).await??;
         self.set_ui_state(UIState::Connected);
 
         self.imp().context.borrow_mut().file_path = Some(path);
         let transit_url = self.imp().context.borrow().relay_hints.clone();
 
+        let metadata = file.metadata().await?;
+
         cancelable_future(
             spawn_async(async move {
-                let metadata = file.metadata().await?;
-
                 wormhole::transfer::send_file(
                     connection,
                     transit_url,
@@ -1052,29 +1048,21 @@ impl ActionView {
                     &filename,
                     metadata.len(),
                     TRANSIT_ABILITIES,
-                    Self::transit_handler,
-                    Self::progress_handler,
-                    Self::cancel_future().await?,
+                    Self::transit_handler_main,
+                    Self::progress_handler_main,
+                    Self::cancel_future_main().await,
                 )
-                .await?;
-
-                if WarpApplicationWindow::default()
-                    .action_view()
-                    .imp()
-                    .context
-                    .borrow()
-                    .canceled
-                {
-                    return Err(AppError::Canceled);
-                }
-
-                Self::transmit_success_main();
-
-                Ok(())
+                .await
             }),
             Self::cancel_timeout_future(TIMEOUT_MS),
         )
         .await??;
+
+        if self.imp().context.borrow().canceled {
+            return Err(AppError::Canceled);
+        }
+
+        self.transmit_success();
 
         Ok(())
     }
@@ -1093,13 +1081,14 @@ impl ActionView {
     }
 
     /// This future will finish when a message is received in the cancellation channel
-    async fn cancel_future() -> Result<impl Future<Output = ()>, AppError> {
-        block_on_main_async(async move {
-            let obj = WarpApplication::default().main_window().action_view();
-            let cancel_receiver = obj.imp().context.borrow().cancel_receiver.clone();
-            Self::receiver_future("cancel", cancel_receiver)
-        })
-        .await
+    async fn cancel_future_main() -> impl Future<Output = ()> {
+        block_on_main_with_app_async(|app| app.main_window().action_view().cancel_future()).await
+    }
+
+    /// This future will finish when a message is received in the cancellation channel
+    fn cancel_future(&self) -> impl Future<Output = ()> {
+        let cancel_receiver = self.imp().context.borrow().cancel_receiver.clone();
+        Self::receiver_future("cancel", cancel_receiver)
     }
 
     /// This future is for any wormhole calls that have proper cancellation but no timeout handling
@@ -1111,7 +1100,7 @@ impl ActionView {
         let (sender, receiver) = async_broadcast::broadcast(1);
         async move {
             // Wait for a cancellation event
-            Self::cancel_future().await;
+            Self::cancel_future_main().await.await;
 
             // Then do a timeout
             glib::timeout_add_once(Duration::from_millis(timeout_ms), move || {
@@ -1126,9 +1115,9 @@ impl ActionView {
     }
 
     /// Callback with information about the currently running transfer
-    fn transit_handler(info: wormhole::transit::TransitInfo, peer_ip: SocketAddr) {
-        glib::MainContext::default().invoke(move || {
-            let obj = ActionView::default();
+    fn transit_handler_main(info: wormhole::transit::TransitInfo, peer_ip: SocketAddr) {
+        invoke_main_with_app(move |app| {
+            let obj = app.main_window().action_view();
             let imp = obj.imp();
 
             let filename = imp
@@ -1143,9 +1132,9 @@ impl ActionView {
     }
 
     /// Handles progress information updates
-    fn progress_handler(sent: u64, total: u64) {
-        glib::MainContext::default().invoke(move || {
-            let obj = ActionView::default();
+    fn progress_handler_main(sent: u64, total: u64) {
+        invoke_main_with_app(move |app| {
+            let obj = app.main_window().action_view();
             let imp = obj.imp();
 
             if imp.context.borrow().progress.is_none() {
@@ -1174,15 +1163,14 @@ impl ActionView {
 
     async fn ask_confirmation_future(&self) -> Result<Option<PathBuf>, AppError> {
         let mut continue_receiver = self.imp().context.borrow().continue_receiver.clone();
-        let result =
-            cancelable_future(continue_receiver.recv(), Self::cancel_future().await?).await??;
+        let result = cancelable_future(continue_receiver.recv(), self.cancel_future()).await??;
         Ok(result)
     }
 
     /// Any post-transfer cleanup operations that are shared between success and failure states
     pub fn transmit_cleanup(&self) {
         log::debug!("Transmit cleanup");
-        WarpApplication::default().uninhibit_transfer();
+        self.app().uninhibit_transfer();
 
         if self.imp().context.borrow().canceled {
             // Send the cancellation complete message
@@ -1208,14 +1196,6 @@ impl ActionView {
 
         // Deletes any temporary files if required
         imp.context.borrow_mut().file_path = None;
-    }
-
-    fn transmit_success_main() {
-        glib::MainContext::default().invoke(move || {
-            WarpApplicationWindow::default()
-                .action_view()
-                .transmit_success();
-        });
     }
 
     fn transmit_success(&self) {
@@ -1248,10 +1228,10 @@ impl ActionView {
         self.transmit_cleanup();
     }
 
-    pub fn transmit_error_handler(error: AppError) {
-        WarpApplicationWindow::default()
-            .action_view()
-            .transmit_error(error);
+    pub fn transmit_error_handler_main(error: AppError) {
+        invoke_main_with_app(|app| {
+            app.main_window().action_view().transmit_error(error);
+        });
     }
 
     pub fn send_file(
@@ -1262,7 +1242,7 @@ impl ActionView {
         log::info!("Sending file: {}", path.display());
         let obj = self.clone();
 
-        main_async_local(Self::transmit_error_handler, async move {
+        main_async_local(Self::transmit_error_handler_main, async move {
             obj.transmit_send(path, app_cfg).await?;
             Ok(())
         });
@@ -1276,7 +1256,7 @@ impl ActionView {
         log::info!("Receiving file with code '{}'", code);
         let obj = self.clone();
 
-        main_async_local(Self::transmit_error_handler, async move {
+        main_async_local(Self::transmit_error_handler_main, async move {
             obj.transmit_receive(code, app_cfg).await?;
             Ok(())
         });
@@ -1292,11 +1272,5 @@ impl ActionView {
             &*self.ui_state(),
             UIState::Initial | UIState::Done(..) | UIState::Error(..)
         )
-    }
-}
-
-impl Default for ActionView {
-    fn default() -> Self {
-        WarpApplicationWindow::default().action_view()
     }
 }

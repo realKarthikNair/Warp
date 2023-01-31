@@ -1,6 +1,7 @@
-use crate::ui::window::WarpApplicationWindow;
 use adw::prelude::*;
 use adw::subclass::prelude::*;
+
+use super::application::WarpApplication;
 
 const CODE_LENGTH_MIN: i32 = 2;
 const CODE_LENGTH_MAX: i32 = 8;
@@ -105,7 +106,7 @@ mod imp {
             self.parent_constructed();
             let obj = self.obj();
 
-            let window = WarpApplicationWindow::default();
+            let window = self.obj().app().main_window();
             obj.set_transient_for(Some(&window));
             obj.set_rendezvous_server_url(
                 window
@@ -145,7 +146,7 @@ Transit Server: “{1}”",
     impl WidgetImpl for WarpPreferencesWindow {}
     impl WindowImpl for WarpPreferencesWindow {
         fn close_request(&self) -> Inhibit {
-            let window = WarpApplicationWindow::default();
+            let window = self.obj().app().main_window();
 
             let rendezvous_url = &*self.rendezvous_server_url.borrow();
             window.config().rendezvous_server_url =
@@ -176,6 +177,13 @@ glib::wrapper! {
 impl WarpPreferencesWindow {
     pub fn new() -> Self {
         glib::Object::new(&[])
+    }
+
+    fn app(&self) -> WarpApplication {
+        self.application()
+            .expect("Application to exist")
+            .downcast()
+            .expect("Application to be WarpApplication")
     }
 
     pub fn set_rendezvous_server_url(&self, url: String) {

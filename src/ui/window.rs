@@ -384,7 +384,7 @@ impl WarpApplicationWindow {
         imp.action_view_showing.set(false);
         imp.leaflet.navigate(adw::NavigationDirection::Back);
         imp.code_entry.set_text("");
-        WarpApplication::default().uninhibit_transfer();
+        self.app().uninhibit_transfer();
         self.add_code_from_clipboard();
     }
 
@@ -467,10 +467,11 @@ impl WarpApplicationWindow {
             AppError::from(err).show_error_dialog(self);
         }
     }
-}
 
-impl Default for WarpApplicationWindow {
-    fn default() -> Self {
-        WarpApplication::default().main_window()
+    pub fn app(&self) -> WarpApplication {
+        self.application()
+            .expect("Window should have an application")
+            .downcast()
+            .expect("Application must be of type WarpApplicationWindow")
     }
 }
