@@ -280,6 +280,11 @@ impl WarpApplication {
 
 impl Default for WarpApplication {
     fn default() -> Self {
+        assert!(
+            gtk::is_initialized_main_thread(),
+            "Calling gio::Application::default from non-main thread"
+        );
+
         gio::Application::default()
             .expect("Application not initialized")
             .downcast::<WarpApplication>()

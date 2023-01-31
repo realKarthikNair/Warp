@@ -3,6 +3,7 @@ use crate::util::error::AppError;
 use futures::{pin_mut, select, FutureExt};
 use std::future::Future;
 
+/// Spawn a future on an async task
 pub async fn spawn_async<F, T>(func: F) -> Result<T, AppError>
 where
     F: Future<Output = Result<T, AppError>> + 'static + Send,
@@ -14,6 +15,7 @@ where
         .map_err(|_| error::error_for_panic())?
 }
 
+/// Run a future from main thread with error handling
 pub fn main_async_local<F, E>(error_handler: E, func: F)
 where
     F: Future<Output = Result<(), AppError>> + 'static,
@@ -27,6 +29,7 @@ where
     });
 }
 
+/// Run a future from main thread without error handling
 pub fn main_async_local_infallible<F>(func: F)
 where
     F: Future<Output = ()> + 'static,
