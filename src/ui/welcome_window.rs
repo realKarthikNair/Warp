@@ -63,10 +63,7 @@ impl WelcomeWindow {
     }
 
     fn app(&self) -> WarpApplication {
-        self.application()
-            .expect("Application to exist")
-            .downcast()
-            .expect("Application to be WarpApplication")
+        WarpApplication::default()
     }
 
     #[template_callback]

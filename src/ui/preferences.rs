@@ -180,10 +180,7 @@ impl WarpPreferencesWindow {
     }
 
     fn app(&self) -> WarpApplication {
-        self.application()
-            .expect("Application to exist")
-            .downcast()
-            .expect("Application to be WarpApplication")
+        WarpApplication::default()
     }
 
     pub fn set_rendezvous_server_url(&self, url: String) {
