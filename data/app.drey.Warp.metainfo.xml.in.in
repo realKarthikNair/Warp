@@ -64,7 +64,7 @@
   </custom>
   <content_rating type="oars-1.0" />
   <releases>
-    <release version="0.4.0-beta" date="2023-01-22">
+    <release version="0.4.0" date="2023-02-01">
       <description>
         <p>This release includes the following features:</p>
         <ul>
@@ -72,6 +72,7 @@
           <li>Save files to other destinations apart from the downloads folder</li>
           <li>Experimental Windows support. You can a download <a href="https://gitlab.gnome.org/World/warp#windows">nightly build</a> to try it out.</li>
           <li>Seasonal pride progress bars</li>
+          <li>Important bug fixes</li>
           <li>Translation updates</li>
         </ul>
       </description>
