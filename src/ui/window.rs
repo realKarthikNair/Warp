@@ -331,6 +331,10 @@ impl WarpApplicationWindow {
 
     #[template_callback]
     pub fn receive_button_clicked(&self) {
+        if self.action_view_showing() {
+            return;
+        }
+
         let text = self.imp().code_entry.text();
         let uri = extract_transmit_uri(&text).and_then(|s| WormholeTransferURI::from_str(&s).ok());
         let code = if globals::TRANSMIT_CODE_MATCH_REGEX.is_match(&text) {
