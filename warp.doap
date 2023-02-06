@@ -8,7 +8,10 @@
   <shortdesc xml:lang="en">Fast and secure file transfer</shortdesc>
   <homepage rdf:resource="https://gitlab.gnome.org/World/warp" />
   <bug-database rdf:resource="https://gitlab.gnome.org/World/warp/issues"/>
+
   <programming-language>Rust</programming-language>
+  <platform>GTK 4</platform>
+  <platform>Libadwaita</platform>
 
   <maintainer>
     <foaf:Person>
