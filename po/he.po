@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: warp main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
-"POT-Creation-Date: 2022-12-25 09:40+0000\n"
-"PO-Revision-Date: 2023-01-20 12:00+0200\n"
+"POT-Creation-Date: 2023-01-25 21:52+0000\n"
+"PO-Revision-Date: 2023-02-08 22:33+0200\n"
 "Last-Translator: Yosef Or Boczko <yoseforb@gmail.com>\n"
 "Language-Team: Hebrew <>\n"
 "Language: he\n"
@@ -21,12 +21,12 @@ msgstr ""
 "X-Generator: Gtranslator 42.0\n"
 
 #: data/app.drey.Warp.desktop.in.in:3 data/app.drey.Warp.metainfo.xml.in.in:7
-#: src/main.rs:91 src/ui/application.rs:212
+#: src/main.rs:116 src/ui/application.rs:211
 msgid "Warp"
 msgstr "Warp"
 
 #: data/app.drey.Warp.desktop.in.in:4 data/app.drey.Warp.metainfo.xml.in.in:8
-#: data/resources/ui/welcome_window.ui:35
+#: src/ui/welcome_window.ui:35
 msgid "Fast and secure file transfer"
 msgstr "העברת קבצים מהירה ומאובטחת"
 
@@ -42,7 +42,7 @@ msgstr ""
 "‏Warp מאפשר לך לשלוח ולקבל קבצים בצורה מאובטחת דרך האינטרנט או הרשת המקומית "
 "על ידי החלפת קוד מבוסס מילים."
 
-#: data/app.drey.Warp.metainfo.xml.in.in:13
+#: data/app.drey.Warp.metainfo.xml.in.in:14
 msgid ""
 "The best transfer method will be determined using the “Magic Wormhole” "
 "protocol which includes local network transfer if possible."
@@ -50,106 +50,66 @@ msgstr ""
 "שיטת ההעברה המיטבית תאותר על ידי פרוטוקול „Magic Wormhole” שכולל העברה דרך "
 "הרשת המקומית אם ניתן."
 
-#: data/app.drey.Warp.metainfo.xml.in.in:16
+#: data/app.drey.Warp.metainfo.xml.in.in:18
 msgid "Features"
 msgstr "יכולות"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:18
+#: data/app.drey.Warp.metainfo.xml.in.in:20
 msgid "Send files between multiple devices"
 msgstr "שליחת קבצים בין מספר מכשירים"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:19
+#: data/app.drey.Warp.metainfo.xml.in.in:21
 msgid "Every file transfer is encrypted"
 msgstr "כל העברת קבצים מוצפנת"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:20
+#: data/app.drey.Warp.metainfo.xml.in.in:22
 msgid "Directly transfer files on the local network if possible"
 msgstr "להעביר קבצים דרך הרשת המקומית אם ניתן"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:21
+#: data/app.drey.Warp.metainfo.xml.in.in:23
 msgid "An internet connection is required"
 msgstr "דרוש חיבור לאינטרנט"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:22
-msgid "Compatibility with the “Magic Wormhole” command line client"
-msgstr "תאימות עם לקוח שורת הפקודה „Magic Wormhole”"
+#: data/app.drey.Warp.metainfo.xml.in.in:24
+msgid "QR Code support"
+msgstr "תמיכה בקוד QR"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:28
+#: data/app.drey.Warp.metainfo.xml.in.in:25
+msgid ""
+"Compatibility with the Magic Wormhole command line client and all other "
+"compatible apps"
+msgstr "תאימות עם לקוח שורת הפקודה „Magic Wormhole” וכל שאר היישומים התואמים"
+
+#: data/app.drey.Warp.metainfo.xml.in.in:31
 msgid "Main Window"
 msgstr "חלון ראשי"
 
 #. Translators: Entry placeholder; This is a noun
-#: data/app.drey.Warp.metainfo.xml.in.in:32 data/resources/ui/window.ui:198
+#: data/app.drey.Warp.metainfo.xml.in.in:35 src/ui/window.ui:198
 msgid "Transmit Code"
 msgstr "קוד העברה"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:36
-#: data/resources/ui/action_view.ui:127
+#: data/app.drey.Warp.metainfo.xml.in.in:39
 msgid "Accept File Transfer"
 msgstr "אישור העברת קובץ"
 
 #. Translators: Title
-#: data/app.drey.Warp.metainfo.xml.in.in:40 src/ui/action_view.rs:557
+#: data/app.drey.Warp.metainfo.xml.in.in:43 src/ui/action_view.rs:595
 msgid "Sending File"
 msgstr "קובץ נשלח"
 
 #. Translators: Title
-#: data/app.drey.Warp.metainfo.xml.in.in:44 src/ui/action_view.rs:561
+#: data/app.drey.Warp.metainfo.xml.in.in:47 src/ui/action_view.rs:599
 msgid "Receiving File"
 msgstr "קובץ מתקבל"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:48 src/ui/action_view.rs:578
+#: data/app.drey.Warp.metainfo.xml.in.in:51 src/ui/action_view.rs:616
 msgid "File Transfer Complete"
 msgstr "העברת הקובץ הושלמה"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:165
+#: data/app.drey.Warp.metainfo.xml.in.in:182
 msgid "Fina Wilke"
 msgstr "פינה וילקה"
-
-#. Translators: Button
-#: data/resources/ui/action_view.ui:18 data/resources/ui/window.ui:31
-#: data/resources/ui/window.ui:39
-msgid "Cancel"
-msgstr "ביטול"
-
-#. Translators: Button
-#: data/resources/ui/action_view.ui:26 data/resources/ui/welcome_window.ui:54
-msgid "Back"
-msgstr "חזרה"
-
-#. Translators: Button; Transmit Link is a noun
-#: data/resources/ui/action_view.ui:75
-msgid "Copy Transmit Link"
-msgstr "העתקת קישור העברה"
-
-#. Translators: Button; Transmit Code is a noun
-#: data/resources/ui/action_view.ui:83
-msgid "Copy Transmit Code"
-msgstr "העתקת קוד העברה"
-
-#. Translators: Button
-#: data/resources/ui/action_view.ui:98 data/resources/ui/action_view.ui:100
-msgid "Open File"
-msgstr "פתיחת קובץ"
-
-#. Translators: Button
-#: data/resources/ui/action_view.ui:112 data/resources/ui/action_view.ui:114
-msgid "Show in Folder"
-msgstr "הצגה בתיקייה"
-
-#. Translators: Button
-#: data/resources/ui/action_view.ui:130
-msgid "Accept"
-msgstr "אישור"
-
-#: data/resources/ui/action_view.ui:142
-msgid "Copy a detailed message for reporting an issue"
-msgstr "להעתיק הודעה מפורטת כדי לדווח על התקלה"
-
-#. Translators: Button
-#: data/resources/ui/action_view.ui:145
-msgid "Copy Error Message"
-msgstr "העתקת הודעת שגיאה"
 
 #: data/resources/ui/help_overlay.ui:11
 msgctxt "shortcut window"
@@ -195,200 +155,6 @@ msgstr "שליחת תיקייה"
 msgctxt "shortcut window"
 msgid "Receive File"
 msgstr "קבלת קובץ"
-
-#: data/resources/ui/preferences.ui:6
-msgid "Preferences"
-msgstr "העדפות"
-
-#: data/resources/ui/preferences.ui:11
-msgid "Network"
-msgstr "רשת"
-
-#: data/resources/ui/preferences.ui:15
-msgid "Server URLs"
-msgstr "כתובות שרתים"
-
-#: data/resources/ui/preferences.ui:18
-msgid "Rendezvous Server URL"
-msgstr "כתובת שרת Rendezvous"
-
-#: data/resources/ui/preferences.ui:25
-msgid "Transit Server URL"
-msgstr "כתובת שרת העברה"
-
-#: data/resources/ui/preferences.ui:34
-msgid "Code Words"
-msgstr "מילות קוד"
-
-#: data/resources/ui/preferences.ui:35
-msgid ""
-"The code word count determines the security of the transfer.\n"
-"\n"
-"A short code is easy to remember but increases the risk of someone else "
-"guessing the code. As a code may only be guessed once, the risk is very "
-"small even with short codes. A length of 4 is very secure."
-msgstr ""
-"מספר המילים בקוד מגדיר עד ככמה ההעברה מאובטחת.\n"
-"\n"
-"קוד קצר קל לזכור אבל הסיכון שמישהו יצליח לנחש את הקוד גדל. כיוון שאפשר לנחש "
-"קוד רק פעם אחת זה סיכון מאוד קטן גם עם קודים קצרים. אורך של 4 נחשב למאובטח "
-"מאוד."
-
-#: data/resources/ui/preferences.ui:40
-msgid "Code Word Count"
-msgstr "מניין מילות קוד"
-
-#: data/resources/ui/welcome_window.ui:5
-msgid "Welcome"
-msgstr "ברוך בואך"
-
-#. Translators: Button
-#: data/resources/ui/welcome_window.ui:23
-msgid "Next"
-msgstr "הבא"
-
-#: data/resources/ui/welcome_window.ui:34
-msgid "Welcome to Warp"
-msgstr "ברוך בואך ל־Warp"
-
-#: data/resources/ui/welcome_window.ui:82
-msgid "Introduction"
-msgstr "קבלת פנים"
-
-#: data/resources/ui/welcome_window.ui:93
-msgid ""
-"Warp makes file transfer simple. To get started, both parties need to "
-"install Warp on their devices.\n"
-"\n"
-"After selecting a file to transmit, the sender needs to tell the receiver "
-"the displayed transmit code. This is preferably done via a secure "
-"communication channel.\n"
-"\n"
-"When the receiver has entered the code, the file transfer can begin.\n"
-"\n"
-"For more information about Warp, open the Help pages from the menu."
-msgstr ""
-"‏Warp מקל על העברת קבצים. כדי להתחיל, על שני הצדדים להתקין את Warp על "
-"המכשירים שלהם.\n"
-"\n"
-"לאחר בחירת הקובץ להעברה, על הצד השולח לספר לצד המקבל מה קוד ההעברה. עדיף דרך "
-"ערוץ תקשורת מאובטח.\n"
-"\n"
-"כאשר הצד המקבל מילא את הקוד, העברת הקובץ יכולה להתחילה.\n"
-"\n"
-"למידע נוסף על Warp, יש לפתוח את דפי העזרה מהתפריט."
-
-#. Translators: Big button to finish welcome screen
-#: data/resources/ui/welcome_window.ui:106
-msgid "Get Started Using Warp"
-msgstr "התחלת השימוש ב־Warp"
-
-#. Translators: menu item
-#: data/resources/ui/window.ui:7
-msgid "_Preferences"
-msgstr "ה_עדפות"
-
-#. Translators: menu item
-#: data/resources/ui/window.ui:12
-msgid "_Keyboard Shortcuts"
-msgstr "קיצורי מ_קלדת"
-
-#. Translators: menu item
-#: data/resources/ui/window.ui:17
-msgid "_Help"
-msgstr "ע_זרה"
-
-#. Translators: menu item
-#: data/resources/ui/window.ui:22
-msgid "_About Warp"
-msgstr "ע_ל Warp"
-
-#: data/resources/ui/window.ui:28
-msgid "Select file to send"
-msgstr "בחירת קובץ לשליחה"
-
-#: data/resources/ui/window.ui:30
-msgid "Open"
-msgstr "פתיחה"
-
-#: data/resources/ui/window.ui:36
-msgid "Select folder to send"
-msgstr "בחירת תיקייה לשליחה"
-
-#: data/resources/ui/window.ui:38
-msgid "Open Folder"
-msgstr "פתיחת תיקייה"
-
-#. Translators: Notification when code was automatically detected in clipboard and inserted into code entry on receive page
-#: data/resources/ui/window.ui:46
-msgid "Inserted code from clipboard"
-msgstr "התקבל קוד מלוח הגזירים"
-
-#. Translators: File receive confirmation message dialog title
-#: data/resources/ui/window.ui:51
-msgid "Abort File Transfer?"
-msgstr "לבטל העברת קובץ?"
-
-#: data/resources/ui/window.ui:52
-msgid "Do you want to abort the current file transfer?"
-msgstr "לבטל את שליחת הקובץ הנוכחי?"
-
-#: data/resources/ui/window.ui:58
-msgid "_Continue"
-msgstr "לה_משיך"
-
-#: data/resources/ui/window.ui:59
-msgid "_Abort"
-msgstr "_לבטל"
-
-#. Translators: Error dialog title
-#: data/resources/ui/window.ui:64
-msgid "Unable to Open File"
-msgstr "לא ניתן לפתוח קובץ"
-
-#: data/resources/ui/window.ui:69
-msgid "_Close"
-msgstr "_סגירה"
-
-#: data/resources/ui/window.ui:70
-msgid "_Show in Folder"
-msgstr "ה_צגה בתיקייה"
-
-#: data/resources/ui/window.ui:118
-msgid "_Send"
-msgstr "_שליחה"
-
-#: data/resources/ui/window.ui:130
-msgid "Send File"
-msgstr "שליחת קובץ"
-
-#: data/resources/ui/window.ui:131
-msgid "Select or drop the file or directory to send"
-msgstr "בחירת או גרירת הקובץ או התיקייה לשליחה"
-
-#. Translators: Button
-#: data/resources/ui/window.ui:142
-msgid "Select File"
-msgstr "בחירת קובץ"
-
-#. Translators: Button
-#: data/resources/ui/window.ui:155
-msgid "Select Folder"
-msgstr "בחירת תיקייה"
-
-#: data/resources/ui/window.ui:174
-msgid "_Receive"
-msgstr "_קבלה"
-
-#. Translators: Button
-#: data/resources/ui/window.ui:183 data/resources/ui/window.ui:216
-msgid "Receive File"
-msgstr "קבלת קובץ"
-
-#. Translators: Text above code input box, transmit code is a noun
-#: data/resources/ui/window.ui:185
-msgid "Enter the transmit code from the sender"
-msgstr "נא למלא את קוד ההעברה מהשולח"
 
 #. Translators: {0} = file size transferred, {1} = total file size, Example: 17.3MB / 20.5MB
 #: src/gettext/duration.rs:11
@@ -439,205 +205,276 @@ msgid "{0} — {1}"
 msgstr "{0} — {1}"
 
 #. Translators: Notification when clicking on "Copy Code to Clipboard" button
-#: src/ui/action_view.rs:226
+#: src/ui/action_view.rs:254
 msgid "Copied Code to Clipboard"
 msgstr "הקוד הועתק ללוח הגזירים"
 
 #. Translators: Notification when clicking on "Copy Link to Clipboard" button
-#: src/ui/action_view.rs:247
+#: src/ui/action_view.rs:275
 msgid "Copied Link to Clipboard"
 msgstr "הקישור הועתק ללוח הגזירים"
 
-#: src/ui/action_view.rs:261
+#: src/ui/action_view.rs:289
 msgid "Copied Error to Clipboard"
 msgstr "אירעה תקלה בהעתקה ללוח הגזירים"
 
-#: src/ui/action_view.rs:263
+#: src/ui/action_view.rs:291
 msgid "No error available"
 msgstr "אין שגיאה זמינה"
 
 #. Translators: Title
-#: src/ui/action_view.rs:392
+#: src/ui/action_view.rs:421
 msgid "Creating Archive"
 msgstr "נוצר ארכיון"
 
-#: src/ui/action_view.rs:396
+#: src/ui/action_view.rs:425
 msgid "Compressing folder “{}”"
 msgstr "התיקייה „{}” נדחסת"
 
 #. Translators: Title
-#: src/ui/action_view.rs:409 src/ui/action_view.rs:454
+#: src/ui/action_view.rs:438 src/ui/action_view.rs:491
 msgid "Connecting"
 msgstr "מתבצעת התחברות"
 
 #. Translators: Description, Filename
-#: src/ui/action_view.rs:412
+#: src/ui/action_view.rs:441
 msgid "Requesting file transfer"
 msgstr "נשלחת בקשה להעברת קובץ"
 
 #. Translators: Title, this is a noun
-#: src/ui/action_view.rs:420
+#: src/ui/action_view.rs:450
 msgid "Your Transmit Code"
 msgstr "קוד ההעברה שלך"
 
-#. Translators: Description, Code in box below, argument is filename
-#: src/ui/action_view.rs:436
-msgid ""
-"Ready to send “{}”\n"
-"The receiver needs to enter this code to begin the file transfer."
-msgstr ""
-"ההכנות לשליחת „{}” הסתיימו\n"
-"על הצד המקבל למלא את הקוד הזה כדי להתחיל את העברת הקובץ."
+#: src/ui/action_view.rs:463
+msgid "Ready to send “{}”."
+msgstr "מוכן לשליחת „{}”."
 
-#. Translators: Description, Code in box below, argument is filename
-#: src/ui/action_view.rs:442
+#. Translators: Description line 2, Code words and QR code visible,
+#: src/ui/action_view.rs:466
 msgid ""
-"Ready to send “{}”\n"
-"The receiver needs to enter this code to begin the file transfer.\n"
-"\n"
+"The receiver needs to enter or scan this code to begin the file transfer."
+msgstr "על הצד המקבל למלא או לסרוק את הקוד הזה כדי להתחיל את העברת הקובץ."
+
+#: src/ui/action_view.rs:470
+msgid "The QR code is compatible with the following apps: {}."
+msgstr "קוד ה־QR תואם עם היישומים הבאים: {}."
+
+#: src/ui/action_view.rs:478
+msgid ""
 "You have entered a custom rendezvous server URL in preferences. Please "
 "verify the receiver also uses the same rendezvous server."
 msgstr ""
-"ההכנות לשליחת „{}” הסתיימו\n"
-"על הצד המקבל למלא את הקוד הזה כדי להתחיל את העברת הקובץ.\n"
-"\n"
 "מילאת כתובת שרת rendezvous משלך. נא לוודא שהצד המקבל גם משתמש באותו שרת "
 "ה־rendezvous."
 
 #. Translators: Description, Transfer Code
-#: src/ui/action_view.rs:457
+#: src/ui/action_view.rs:494
 msgid "Connecting to peer with code “{}”"
 msgstr "מתבצע חיבור לצד השני עם הקוד „{}”"
 
-#: src/ui/action_view.rs:466
+#: src/ui/action_view.rs:504
 msgid "Connected to Peer"
 msgstr "יש חיבור לצד השני"
 
 #. Translators: Description
-#: src/ui/action_view.rs:477
+#: src/ui/action_view.rs:515
 msgid "Preparing to send file"
 msgstr "בהכנות לשליחת קובץ"
 
 #. Translators: Description
-#: src/ui/action_view.rs:483
+#: src/ui/action_view.rs:521
 msgid "Preparing to receive file"
 msgstr "בהכנות לקבלת קובץ"
 
-#: src/ui/action_view.rs:495
+#: src/ui/action_view.rs:533
 msgid "Accept File Transfer?"
 msgstr "לקבל העברת קובץ?"
 
 #. Translators: File receive confirmation message dialog; Filename, File size
-#: src/ui/action_view.rs:498
+#: src/ui/action_view.rs:536
 msgid ""
 "Your peer wants to send you “{0}” (Size: {1}).\n"
-"Do you want to download this file to your Downloads folder?"
+"Do you want to download this file? The default action will save the file to "
+"your Downloads folder."
 msgstr ""
 "הצד השני רוצה לשלוח אליך „{0}” (גודל: {1}).\n"
-"להוריד את הקובץ הזה לתיקיית ההורדות שלך?"
+"להוריד את הקובץ הזה? פעולת ברירת המחדל תשמור את הקובץ בתיקיית ההורדות שלך."
 
-#: src/ui/action_view.rs:503
+#: src/ui/action_view.rs:541
 msgid "Ready to Receive File"
 msgstr "הסתיימו הכנות לקבלת קובץ"
 
-#: src/ui/action_view.rs:505
+#: src/ui/action_view.rs:543
 msgid ""
 "A file is ready to be transferred. The transfer needs to be acknowledged."
 msgstr "קובץ מוכן להעברה. יש לאשר את העברת הקובץ."
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:534
+#: src/ui/action_view.rs:572
 msgid "File “{}” via local network direct transfer"
 msgstr "הקובץ „{}” דרך העברה ישירה ברשת המקומית"
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:537
+#: src/ui/action_view.rs:575
 msgid "File “{}” via direct transfer"
 msgstr "הקובץ „{}” דרך העברה מקומית"
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:543
+#: src/ui/action_view.rs:581
 msgid "File “{0}” via relay {1}"
 msgstr "הקובץ „{0}” דרך הממסר {1}"
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:546
+#: src/ui/action_view.rs:584
 msgid "File “{}” via relay"
 msgstr "הקובץ „{}” דרך ממסר"
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:550
+#: src/ui/action_view.rs:588
 msgid "File “{}” via Unknown connection method"
 msgstr "הקובץ „{}” דרך שיטת חיבור לא ידועה"
 
 #. Translators: Title
-#: src/ui/action_view.rs:569
+#: src/ui/action_view.rs:607
 msgid "File Transfer Successful"
 msgstr "העברת קובץ הצליחה"
 
 #. Translators: Description, Filename
-#: src/ui/action_view.rs:586
+#: src/ui/action_view.rs:624
 msgid "Successfully sent file “{}”"
 msgstr "הקובץ „{}” נשלח בהצלחה"
 
-#. Translators: Description, Filename
-#: src/ui/action_view.rs:595
+#. Translators: Filename
+#: src/ui/action_view.rs:640
+msgid "File has been saved to the selected folder as “{}”"
+msgstr "הקובץ נשמר לתיקיית ההורדות בשם „{}”"
+
+#. Translators: Filename
+#: src/ui/action_view.rs:647
 msgid "File has been saved to the Downloads folder as “{}”"
 msgstr "הקובץ נשמר לתיקיית ההורדות בשם „{}”"
 
 #. Translators: Title
-#: src/ui/action_view.rs:618 src/ui/action_view.rs:631
+#: src/ui/action_view.rs:671 src/ui/action_view.rs:684
 msgid "File Transfer Failed"
 msgstr "העברת קובץ נכשלה"
 
-#: src/ui/action_view.rs:633
+#: src/ui/action_view.rs:686
 msgid "The file transfer failed: {}"
 msgstr "העברת הקובץ נכשלה: {}"
 
 #. Translators: When opening a file
-#: src/ui/action_view.rs:748
+#: src/ui/action_view.rs:801
 msgid "Specified file / directory does not exist"
 msgstr "הקובץ / התיקייה שצוינו לא קיימים"
 
-#: src/ui/action_view.rs:765
+#: src/ui/action_view.rs:818
 msgid ""
 "Error parsing rendezvous server URL. An invalid URL was entered in the "
 "settings."
 msgstr "שגיאה בפענוח כתובת שרת rendezvous. הכתובת שסופקה בהגדרות שגויה."
 
-#: src/ui/action_view.rs:775
+#: src/ui/action_view.rs:828
 msgid "Error parsing transit URL. An invalid URL was entered in the settings."
 msgstr "שגיאה בפענוח כתובת העברה. הכתובת שסופקה בהגדרות שגויה."
 
-#: src/ui/action_view.rs:1188
-msgid "Downloads dir missing. Please set XDG_DOWNLOAD_DIR"
-msgstr "תיקיית ההורדות חסרה. נא להגדיר את XDG_DOWNLOAD_DIR"
+#: src/ui/action_view.rs:916
+msgid "Invalid path selected: {}"
+msgstr "הנתיב שנבחר אינו תקין: {}"
 
-#: src/ui/application.rs:63
+#. Translators: Button
+#: src/ui/action_view.ui:4 src/ui/action_view.ui:157
+msgid "Save As"
+msgstr "שמירה בשם"
+
+#: src/ui/action_view.ui:6
+msgid "Save"
+msgstr "שמירה"
+
+#. Translators: Button
+#: src/ui/action_view.ui:7 src/ui/action_view.ui:26 src/ui/window.ui:31
+#: src/ui/window.ui:39
+msgid "Cancel"
+msgstr "ביטול"
+
+#. Translators: Button
+#: src/ui/action_view.ui:34 src/ui/welcome_window.ui:54
+msgid "Back"
+msgstr "חזרה"
+
+#. Translators: Button; Transmit Link is a noun
+#: src/ui/action_view.ui:83
+msgid "Copy Transmit Link"
+msgstr "העתקת קישור העברה"
+
+#. Translators: Button; Transmit Code is a noun
+#: src/ui/action_view.ui:91
+msgid "Copy Transmit Code"
+msgstr "העתקת קוד העברה"
+
+#. Translators: Button
+#: src/ui/action_view.ui:106 src/ui/action_view.ui:108
+msgid "Open File"
+msgstr "פתיחת קובץ"
+
+#. Translators: Button
+#: src/ui/action_view.ui:120 src/ui/action_view.ui:122
+msgid "Show in Folder"
+msgstr "הצגה בתיקייה"
+
+#: src/ui/action_view.ui:141
+msgid "Accept File Transfer and save to Downloads folder"
+msgstr "אישור העברת הקובץ ושמירה לתיקיית ההורדות"
+
+#. Translators: Button
+#: src/ui/action_view.ui:143
+msgid "Accept"
+msgstr "אישור"
+
+#: src/ui/action_view.ui:155
+msgid "Select Save Location"
+msgstr "בחירת מיקום לשמירה"
+
+#: src/ui/action_view.ui:170
+msgid "Copy a detailed message for reporting an issue"
+msgstr "להעתיק הודעה מפורטת כדי לדווח על התקלה"
+
+#. Translators: Button
+#: src/ui/action_view.ui:173
+msgid "Copy Error Message"
+msgstr "העתקת הודעת שגיאה"
+
+#: src/ui/application.rs:62
 msgid "Unable to use transfer link: another transfer already in progress"
 msgstr "לא ניתן להשתמש בקישור העברה: מתבצעת העברה נוספת"
 
-#: src/ui/application.rs:218
+#: src/ui/application.rs:217
 msgid "translator-credits"
 msgstr ""
 "ירון שהרבני <sh.yaron@gmail.com>\n"
+"יוסף אור בוצ׳קו <yoseforb@gmail.com>\n"
 "מיזם תרגום GNOME לעברית https://l10n.gnome.org/teams/he/"
 
-#: src/ui/application.rs:221
+#: src/ui/application.rs:220
 msgid "Tobias Bernard"
 msgstr "טוביאס ברנרד"
 
-#: src/ui/application.rs:221
+#: src/ui/application.rs:220
 msgid "Sophie Herold"
 msgstr "סופי הרולד"
 
-#: src/ui/application.rs:239
+#: src/ui/application.rs:238
 msgid "Sending a File"
 msgstr "נשלח קובץ"
 
-#: src/ui/application.rs:240
+#: src/ui/application.rs:239
 msgid "Receiving a File"
 msgstr "מתקבל קובץ"
+
+#: src/ui/fs.rs:25
+msgid "Downloads dir missing. Please set XDG_DOWNLOAD_DIR"
+msgstr "תיקיית ההורדות חסרה. נא להגדיר את XDG_DOWNLOAD_DIR"
 
 #: src/ui/preferences.rs:131
 msgid ""
@@ -654,6 +491,93 @@ msgstr ""
 "השארת הרשומות הבאות ריקות יוביל לשימוש בברירות המחדל של היישום:\n"
 "שרת Rendezvous: ‏„{0}”\n"
 "שרת העברה: ‏„{1}”"
+
+#: src/ui/preferences.ui:6
+msgid "Preferences"
+msgstr "העדפות"
+
+#: src/ui/preferences.ui:11
+msgid "Network"
+msgstr "רשת"
+
+#: src/ui/preferences.ui:15
+msgid "Server URLs"
+msgstr "כתובות שרתים"
+
+#: src/ui/preferences.ui:18
+msgid "Rendezvous Server URL"
+msgstr "כתובת שרת Rendezvous"
+
+#: src/ui/preferences.ui:25
+msgid "Transit Server URL"
+msgstr "כתובת שרת העברה"
+
+#: src/ui/preferences.ui:34
+msgid "Code Words"
+msgstr "מילות קוד"
+
+#: src/ui/preferences.ui:35
+msgid ""
+"The code word count determines the security of the transfer.\n"
+"\n"
+"A short code is easy to remember but increases the risk of someone else "
+"guessing the code. As a code may only be guessed once, the risk is very "
+"small even with short codes. A length of 4 is very secure."
+msgstr ""
+"מספר המילים בקוד מגדיר עד ככמה ההעברה מאובטחת.\n"
+"\n"
+"קוד קצר קל לזכור אבל הסיכון שמישהו יצליח לנחש את הקוד גדל. כיוון שאפשר לנחש "
+"קוד רק פעם אחת זה סיכון מאוד קטן גם עם קודים קצרים. אורך של 4 נחשב למאובטח "
+"מאוד."
+
+#: src/ui/preferences.ui:40
+msgid "Code Word Count"
+msgstr "מניין מילות קוד"
+
+#: src/ui/welcome_window.ui:5
+msgid "Welcome"
+msgstr "ברוך בואך"
+
+#. Translators: Button
+#: src/ui/welcome_window.ui:23
+msgid "Next"
+msgstr "הבא"
+
+#: src/ui/welcome_window.ui:34
+msgid "Welcome to Warp"
+msgstr "ברוך בואך ל־Warp"
+
+#: src/ui/welcome_window.ui:82
+msgid "Introduction"
+msgstr "קבלת פנים"
+
+#: src/ui/welcome_window.ui:93
+msgid ""
+"Warp makes file transfer simple. To get started, both parties need to "
+"install Warp on their devices.\n"
+"\n"
+"After selecting a file to transmit, the sender needs to tell the receiver "
+"the displayed transmit code. This is preferably done via a secure "
+"communication channel.\n"
+"\n"
+"When the receiver has entered the code, the file transfer can begin.\n"
+"\n"
+"For more information about Warp, open the Help pages from the menu."
+msgstr ""
+"‏Warp מקל על העברת קבצים. כדי להתחיל, על שני הצדדים להתקין את Warp על "
+"המכשירים שלהם.\n"
+"\n"
+"לאחר בחירת הקובץ להעברה, על הצד השולח לספר לצד המקבל מה קוד ההעברה. עדיף דרך "
+"ערוץ תקשורת מאובטח.\n"
+"\n"
+"כאשר הצד המקבל מילא את הקוד, העברת הקובץ יכולה להתחילה.\n"
+"\n"
+"למידע נוסף על Warp, יש לפתוח את דפי העזרה מהתפריט."
+
+#. Translators: Big button to finish welcome screen
+#: src/ui/welcome_window.ui:106
+msgid "Get Started Using Warp"
+msgstr "התחלת השימוש ב־Warp"
 
 #: src/ui/window.rs:103
 msgid ""
@@ -675,33 +599,140 @@ msgstr "כנראה שקוד ההעברה „{}” שגוי. נא לנסות שו
 msgid "Sending files with a preconfigured code is not yet supported"
 msgstr "עוד אין תמיכה בשליחת קבצים עם קוד שהוגדר מראש"
 
-#: src/util.rs:27
+#. Translators: menu item
+#: src/ui/window.ui:7
+msgid "_Preferences"
+msgstr "ה_עדפות"
+
+#. Translators: menu item
+#: src/ui/window.ui:12
+msgid "_Keyboard Shortcuts"
+msgstr "קיצורי מ_קלדת"
+
+#. Translators: menu item
+#: src/ui/window.ui:17
+msgid "_Help"
+msgstr "ע_זרה"
+
+#. Translators: menu item
+#: src/ui/window.ui:22
+msgid "_About Warp"
+msgstr "ע_ל Warp"
+
+#: src/ui/window.ui:28
+msgid "Select file to send"
+msgstr "בחירת קובץ לשליחה"
+
+#: src/ui/window.ui:30
+msgid "Open"
+msgstr "פתיחה"
+
+#: src/ui/window.ui:36
+msgid "Select folder to send"
+msgstr "בחירת תיקייה לשליחה"
+
+#: src/ui/window.ui:38
+msgid "Open Folder"
+msgstr "פתיחת תיקייה"
+
+#. Translators: Notification when code was automatically detected in clipboard and inserted into code entry on receive page
+#: src/ui/window.ui:46
+msgid "Inserted code from clipboard"
+msgstr "התקבל קוד מלוח הגזירים"
+
+#. Translators: File receive confirmation message dialog title
+#: src/ui/window.ui:51
+msgid "Abort File Transfer?"
+msgstr "לבטל העברת קובץ?"
+
+#: src/ui/window.ui:52
+msgid "Do you want to abort the current file transfer?"
+msgstr "לבטל את שליחת הקובץ הנוכחי?"
+
+#: src/ui/window.ui:58
+msgid "_Continue"
+msgstr "לה_משיך"
+
+#: src/ui/window.ui:59
+msgid "_Abort"
+msgstr "_לבטל"
+
+#. Translators: Error dialog title
+#: src/ui/window.ui:64
+msgid "Unable to Open File"
+msgstr "לא ניתן לפתוח קובץ"
+
+#: src/ui/window.ui:69 src/util/error.rs:173
+msgid "_Close"
+msgstr "_סגירה"
+
+#: src/ui/window.ui:70
+msgid "_Show in Folder"
+msgstr "ה_צגה בתיקייה"
+
+#: src/ui/window.ui:118
+msgid "_Send"
+msgstr "_שליחה"
+
+#: src/ui/window.ui:130
+msgid "Send File"
+msgstr "שליחת קובץ"
+
+#: src/ui/window.ui:131
+msgid "Select or drop the file or directory to send"
+msgstr "בחירת או גרירת הקובץ או התיקייה לשליחה"
+
+#. Translators: Button
+#: src/ui/window.ui:142
+msgid "Select File"
+msgstr "בחירת קובץ"
+
+#. Translators: Button
+#: src/ui/window.ui:155
+msgid "Select Folder"
+msgstr "בחירת תיקייה"
+
+#: src/ui/window.ui:174
+msgid "_Receive"
+msgstr "_קבלה"
+
+#. Translators: Button
+#: src/ui/window.ui:183 src/ui/window.ui:216
+msgid "Receive File"
+msgstr "קבלת קובץ"
+
+#. Translators: Text above code input box, transmit code is a noun
+#: src/ui/window.ui:185
+msgid "Enter the transmit code from the sender"
+msgstr "נא למלא את קוד ההעברה מהשולח"
+
+#: src/util.rs:31 src/util.rs:50
 msgid "Failed to open downloads folder."
 msgstr "פתיחת תיקיית ההורדות נכשלה."
 
-#: src/util.rs:167 src/util.rs:240
+#: src/util.rs:191 src/util.rs:264
 msgid "The URI format is invalid"
 msgstr "תבנית כתובת המשאב שגויה"
 
-#: src/util.rs:171 src/util.rs:175
+#: src/util.rs:195 src/util.rs:199
 msgid "The code does not match the required format"
 msgstr "הקוד לא עומד בתבנית הדרושה"
 
-#: src/util.rs:190 src/util.rs:196
+#: src/util.rs:214 src/util.rs:220
 msgid "Unknown URI version: {}"
 msgstr "גרסת כתובת משאב לא ידועה: {}"
 
-#: src/util.rs:205
+#: src/util.rs:229
 msgid "The URI parameter “rendezvous” contains an invalid URL: “{}”"
 msgstr "משתנה כתובת המשאב „rendezvous” מכיל כתובת שגויה: „{}”"
 
-#: src/util.rs:217
+#: src/util.rs:241
 msgid "The URI parameter “role” must be “follower” or “leader” (was: “{}”)"
 msgstr ""
 "משתנה כתובת המשאב „role” (תפקיד) חייב להיות „follower” (מובל) או "
 "„leader” (מוביל) (היה: „{}”)"
 
-#: src/util.rs:224
+#: src/util.rs:248
 msgid "Unknown URI parameter “{}”"
 msgstr "משתנה לא ידוע בכתובת משאב „{}”"
 
@@ -709,27 +740,27 @@ msgstr "משתנה לא ידוע בכתובת משאב „{}”"
 msgid "An error occurred"
 msgstr "אירעה שגיאה"
 
-#: src/util/error.rs:184 src/util/error.rs:249
+#: src/util/error.rs:185 src/util/error.rs:250
 msgid "Corrupt or unexpected message received"
 msgstr "התקבלה הודעה שגויה או בלתי צפויה"
 
-#: src/util/error.rs:189
+#: src/util/error.rs:190
 msgid ""
 "The rendezvous server will not allow further connections for this code. A "
 "new code needs to be generated."
 msgstr "שרת ה־rendezvous לא יאפשר חיבורים נוספים לקוד הזה. יש לציין קוד חדש."
 
-#: src/util/error.rs:191
+#: src/util/error.rs:192
 msgid ""
 "The rendezvous server removed the code due to inactivity. A new code needs "
 "to be generated."
 msgstr "שרת ה־rendezvous הסיר את הקוד עקב חוסר פעילות. יש לייצר קוד חדש."
 
-#: src/util/error.rs:193
+#: src/util/error.rs:194
 msgid "The rendezvous server responded with an unknown message: {}"
 msgstr "שרת ה־rendezvous הגיב עם הודעה לא ידועה: {}"
 
-#: src/util/error.rs:196
+#: src/util/error.rs:197
 msgid ""
 "Error connecting to the rendezvous server.\n"
 "You have entered a custom rendezvous server URL in preferences. Please "
@@ -738,7 +769,7 @@ msgstr ""
 "שגיאה בהתחברות לשרת ה־rendezvous.\n"
 "מילאת כתובת שרת rendezvous משלך בהעדפות. נא לוודא שהכתובת נכונה ושהשרת עובד."
 
-#: src/util/error.rs:198
+#: src/util/error.rs:199
 msgid ""
 "Error connecting to the rendezvous server.\n"
 "Please try again later / verify you are connected to the internet."
@@ -746,7 +777,7 @@ msgstr ""
 "שגיאה בהתחברות לשרת ה־rendezvous.\n"
 "נא לנסות שוב או לוודא שהחיבור לאינטרנט תקין."
 
-#: src/util/error.rs:202
+#: src/util/error.rs:203
 msgid ""
 "Encryption key confirmation failed. If you or your peer didn't mistype the "
 "code, this is a sign of an attacker guessing passwords. Please try again "
@@ -755,32 +786,32 @@ msgstr ""
 "אימות מפתח ההצפנה נכשלה. הם הקוד שהוקלד על ידי העמית בצד השני שגוי, זה סימן "
 "לכך שתוקפים מנסים לנחש את הסיסמאות שלך. נא לנסות שוב בהמשך."
 
-#: src/util/error.rs:204
+#: src/util/error.rs:205
 msgid "Cannot decrypt a received message"
 msgstr "לא ניתן לפענח את ההודעה שהתקבלה"
 
-#: src/util/error.rs:205 src/util/error.rs:260 src/util/error.rs:266
-#: src/util/error.rs:269
+#: src/util/error.rs:206 src/util/error.rs:261 src/util/error.rs:267
+#: src/util/error.rs:270
 msgid "An unknown error occurred"
 msgstr "אירעה שגיאה לא ידועה"
 
-#: src/util/error.rs:211
+#: src/util/error.rs:212
 msgid "File / Directory not found"
 msgstr "קובץ / תיקייה לא נמצאו"
 
-#: src/util/error.rs:212
+#: src/util/error.rs:213
 msgid "Permission denied"
 msgstr "ההרשאה נדחתה"
 
-#: src/util/error.rs:224
+#: src/util/error.rs:225
 msgid "Transfer was not acknowledged by peer"
 msgstr "ההעברה לא אושרה על ידי הצד השני"
 
-#: src/util/error.rs:226
+#: src/util/error.rs:227
 msgid "The received file is corrupted"
 msgstr "הקובץ שהתקבל פגום"
 
-#: src/util/error.rs:232
+#: src/util/error.rs:233
 msgid ""
 "The file contained a different amount of bytes than advertised! Sent {} "
 "bytes, but should have been {}"
@@ -788,27 +819,27 @@ msgstr ""
 "הקובץ מכיל כמות שונה של בתים מכפי שפורסם! נשלחו {} בתים אך היו אמורים להישלח "
 "{}"
 
-#: src/util/error.rs:237
+#: src/util/error.rs:238
 msgid "The other side has cancelled the transfer"
 msgstr "הצד השני ביטל את ההעברה"
 
-#: src/util/error.rs:239
+#: src/util/error.rs:240
 msgid "The other side has rejected the transfer"
 msgstr "הצד השני דחה את ההעברה"
 
-#: src/util/error.rs:241
+#: src/util/error.rs:242
 msgid "Something went wrong on the other side: {}"
 msgstr "משהו השתבש בצד השני: {}"
 
-#: src/util/error.rs:256
+#: src/util/error.rs:257
 msgid "Error while establishing file transfer connection"
 msgstr "שגיאה בהקמת חיבור העברת קבצים"
 
-#: src/util/error.rs:258
+#: src/util/error.rs:259
 msgid "Unknown file transfer error"
 msgstr "שגיאת העברת קבצים לא ידועה"
 
-#: src/util/error.rs:271
+#: src/util/error.rs:272
 msgid ""
 "An unexpected error occurred. Please report an issue with the error message."
 msgstr "אירעה שגיאה לא ידועה. נא לדווח על התקלה בצירוף הודעת השגיאה."
