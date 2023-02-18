@@ -1,6 +1,7 @@
 stages:
   - check
   - test
+  - release
 
 flatpak:
   image: 'quay.io/gnome_infrastructure/gnome-runtime-images:gnome-master'
