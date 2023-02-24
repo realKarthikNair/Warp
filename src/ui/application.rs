@@ -103,11 +103,11 @@ glib::wrapper! {
 
 impl WarpApplication {
     pub fn new() -> Self {
-        glib::Object::new(&[
-            ("application-id", &Some(globals::APP_ID)),
-            ("flags", &gio::ApplicationFlags::HANDLES_OPEN),
-            ("resource-base-path", &Some("/app/drey/Warp/")),
-        ])
+        glib::Object::builder()
+            .property("application-id", &Some(globals::APP_ID))
+            .property("flags", &gio::ApplicationFlags::HANDLES_OPEN)
+            .property("resource-base-path", &Some("/app/drey/Warp/"))
+            .build()
     }
 
     pub fn main_window(&self) -> WarpApplicationWindow {
@@ -209,16 +209,16 @@ impl WarpApplication {
 
     fn show_about_dialog(&self) {
         let dialog = adw::AboutWindow::builder()
-            .application_name(&gettext("Warp"))
+            .application_name(gettext("Warp"))
             .application_icon(globals::APP_ID)
             .version(globals::VERSION)
             .license_type(gtk::License::Gpl30)
             .website("https://apps.gnome.org/app/app.drey.Warp/")
             .issue_url("https://gitlab.gnome.org/World/warp/-/issues")
-            .translator_credits(&gettext("translator-credits"))
+            .translator_credits(gettext("translator-credits"))
             .developer_name("Fina Wilke")
-            .developers(vec!["Fina Wilke".into()])
-            .artists(vec![gettext("Tobias Bernard"), gettext("Sophie Herold")])
+            .developers(["Fina Wilke"])
+            .artists(["Tobias Bernard", "Sophie Herold"])
             .transient_for(&self.main_window())
             .modal(true)
             .build();

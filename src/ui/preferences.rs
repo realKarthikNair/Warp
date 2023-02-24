@@ -176,7 +176,7 @@ glib::wrapper! {
 
 impl WarpPreferencesWindow {
     pub fn new() -> Self {
-        glib::Object::new(&[])
+        glib::Object::new()
     }
 
     fn app(&self) -> WarpApplication {

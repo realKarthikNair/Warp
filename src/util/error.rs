@@ -165,9 +165,9 @@ impl AppError {
         );
 
         if res.is_ok() {
-            let dialog = adw::builders::MessageDialogBuilder::new()
+            let dialog = adw::MessageDialog::builder()
                 .heading(msg1)
-                .body(&msg2)
+                .body(msg2)
                 .close_response("close")
                 .transient_for(window)
                 .modal(true)
@@ -175,8 +175,7 @@ impl AppError {
 
             dialog.add_response("close", &gettext("_Close"));
 
-            dialog.run_async(None, |obj, _| {
-                obj.close();
+            dialog.choose(gio::Cancellable::NONE, |_response| {
                 ERROR_DIALOG_ALREADY_SHOWING.store(false, Ordering::SeqCst);
             });
         }

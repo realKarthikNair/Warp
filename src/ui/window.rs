@@ -160,7 +160,7 @@ mod imp {
                     false
                 }),
             );
-            self.send_box.add_controller(&drop_target);
+            self.send_box.add_controller(drop_target);
         }
     }
 
@@ -222,7 +222,10 @@ glib::wrapper! {
 #[gtk::template_callbacks]
 impl WarpApplicationWindow {
     pub fn new(app: &WarpApplication) -> Self {
-        glib::Object::new(&[("application", app), ("icon-name", &globals::APP_ID)])
+        glib::Object::builder()
+            .property("application", app)
+            .property("icon-name", &globals::APP_ID)
+            .build()
     }
 
     pub fn config(&self) -> RefMut<PersistentConfig> {
@@ -428,7 +431,7 @@ impl WarpApplicationWindow {
                         {
                             let imp = obj.imp();
                             imp.code_entry.set_text(&extracted_text);
-                            imp.toast_overlay.add_toast(&imp.inserted_code_toast);
+                            imp.toast_overlay.add_toast(imp.inserted_code_toast.clone());
                             imp.inserted_code_toast_showing.set(true);
                         }
                     }

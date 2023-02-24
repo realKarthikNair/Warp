@@ -59,7 +59,7 @@ glib::wrapper! {
 #[gtk::template_callbacks]
 impl WelcomeWindow {
     pub fn new() -> Self {
-        glib::Object::new(&[])
+        glib::Object::new()
     }
 
     fn app(&self) -> WarpApplication {

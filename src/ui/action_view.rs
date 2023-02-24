@@ -254,7 +254,7 @@ mod imp {
             let toast = adw::Toast::new(&gettext("Copied Code to Clipboard"));
             toast.set_timeout(3);
             toast.set_priority(adw::ToastPriority::Normal);
-            window.toast_overlay().add_toast(&toast);
+            window.toast_overlay().add_toast(toast);
         }
 
         #[template_callback]
@@ -275,7 +275,7 @@ mod imp {
             let toast = adw::Toast::new(&gettext("Copied Link to Clipboard"));
             toast.set_timeout(3);
             toast.set_priority(adw::ToastPriority::Normal);
-            window.toast_overlay().add_toast(&toast);
+            window.toast_overlay().add_toast(toast);
         }
 
         #[template_callback]
@@ -293,7 +293,7 @@ mod imp {
 
             toast.set_timeout(3);
             toast.set_priority(adw::ToastPriority::Normal);
-            window.toast_overlay().add_toast(&toast);
+            window.toast_overlay().add_toast(toast);
         }
 
         #[template_callback]
@@ -326,8 +326,7 @@ mod imp {
                             .obj()
                             .window()
                             .no_registered_application_error_dialog(err.message());
-                        let answer = dialog.run_future().await;
-                        dialog.close();
+                        let answer = dialog.choose_future().await;
 
                         if answer == "show-in-folder" {
                             if let Err(err) = show_dir(&filename) {
@@ -367,7 +366,7 @@ glib::wrapper! {
 
 impl ActionView {
     pub fn new() -> Self {
-        glib::Object::new(&[])
+        glib::Object::new()
     }
 
     fn window(&self) -> WarpApplicationWindow {
@@ -731,7 +730,7 @@ impl ActionView {
         }
 
         let dialog = self.window().ask_abort_dialog();
-        let response = dialog.run_future().await;
+        let response = dialog.choose_future().await;
 
         if response == "abort" {
             self.cancel().await;
