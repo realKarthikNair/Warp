@@ -11,9 +11,11 @@ mod imp {
     use crate::gettext::gettextf;
     use crate::globals;
     use glib::signal::Inhibit;
+    use glib::Properties;
     use std::cell::{Cell, RefCell};
 
-    #[derive(Debug, Default, gtk::CompositeTemplate)]
+    #[derive(Properties, Debug, Default, gtk::CompositeTemplate)]
+    #[properties(wrapper_type = super::WarpPreferencesWindow)]
     #[template(file = "preferences.ui")]
     pub struct WarpPreferencesWindow {
         #[template_child]
@@ -28,8 +30,11 @@ mod imp {
         #[template_child]
         pub code_length_spin_button: TemplateChild<gtk::SpinButton>,
 
+        #[property(get, set = Self::set_rendezvous_server_url)]
         pub rendezvous_server_url: RefCell<String>,
+        #[property(get, set = Self::set_transit_server_url)]
         pub transit_server_url: RefCell<String>,
+        #[property(get, set, default = 4, minimum = CODE_LENGTH_MIN, maximum = CODE_LENGTH_MAX)]
         pub code_length: Cell<i32>,
     }
 
@@ -51,62 +56,22 @@ mod imp {
 
     impl ObjectImpl for WarpPreferencesWindow {
         fn properties() -> &'static [glib::ParamSpec] {
-            use once_cell::sync::Lazy;
-            static PROPERTIES: Lazy<Vec<glib::ParamSpec>> = Lazy::new(|| {
-                vec![
-                    glib::ParamSpecString::new(
-                        "rendezvous-server-url",
-                        "",
-                        "",
-                        None,
-                        glib::ParamFlags::READWRITE | glib::ParamFlags::EXPLICIT_NOTIFY,
-                    ),
-                    glib::ParamSpecString::new(
-                        "transit-server-url",
-                        "",
-                        "",
-                        None,
-                        glib::ParamFlags::READWRITE | glib::ParamFlags::EXPLICIT_NOTIFY,
-                    ),
-                    glib::ParamSpecInt::new(
-                        "code-length",
-                        "",
-                        "",
-                        CODE_LENGTH_MIN,
-                        CODE_LENGTH_MAX,
-                        4,
-                        glib::ParamFlags::READWRITE | glib::ParamFlags::EXPLICIT_NOTIFY,
-                    ),
-                ]
-            });
-            PROPERTIES.as_ref()
+            Self::derived_properties()
         }
 
-        fn set_property(&self, _id: usize, value: &glib::Value, pspec: &glib::ParamSpec) {
-            let obj = self.obj();
-            match pspec.name() {
-                "rendezvous-server-url" => obj.set_rendezvous_server_url(value.get().unwrap()),
-                "transit-server-url" => obj.set_transit_server_url(value.get().unwrap()),
-                "code-length" => obj.set_code_length(value.get().unwrap()),
-                _ => unimplemented!(),
-            }
+        fn set_property(&self, id: usize, value: &glib::Value, pspec: &glib::ParamSpec) {
+            self.derived_set_property(id, value, pspec)
         }
 
-        fn property(&self, _id: usize, pspec: &glib::ParamSpec) -> glib::Value {
-            let obj = self.obj();
-            match pspec.name() {
-                "rendezvous-server-url" => obj.rendezvous_server_url().to_value(),
-                "transit-server-url" => obj.transit_server_url().to_value(),
-                "code-length" => obj.code_length().to_value(),
-                _ => unimplemented!(),
-            }
+        fn property(&self, id: usize, pspec: &glib::ParamSpec) -> glib::Value {
+            self.derived_property(id, pspec)
         }
 
         fn constructed(&self) {
             self.parent_constructed();
             let obj = self.obj();
 
-            let window = self.obj().app().main_window();
+            let window = self.app().main_window();
             obj.set_transient_for(Some(&window));
             obj.set_rendezvous_server_url(
                 window
@@ -146,7 +111,7 @@ Transit Server: “{1}”",
     impl WidgetImpl for WarpPreferencesWindow {}
     impl WindowImpl for WarpPreferencesWindow {
         fn close_request(&self) -> Inhibit {
-            let window = self.obj().app().main_window();
+            let window = self.app().main_window();
 
             let rendezvous_url = &*self.rendezvous_server_url.borrow();
             window.config().rendezvous_server_url =
@@ -167,6 +132,57 @@ Transit Server: “{1}”",
 
     impl AdwWindowImpl for WarpPreferencesWindow {}
     impl PreferencesWindowImpl for WarpPreferencesWindow {}
+
+    impl WarpPreferencesWindow {
+        fn app(&self) -> WarpApplication {
+            WarpApplication::default()
+        }
+
+        fn set_rendezvous_server_url(&self, url: String) {
+            let is_valid_url = url::Url::parse(&url).is_ok();
+
+            if is_valid_url && !url.is_empty() {
+                self.rendezvous_server_url_entry_row
+                    .add_css_class("success");
+            } else {
+                self.rendezvous_server_url_entry_row
+                    .remove_css_class("success");
+            }
+
+            if url.is_empty() || is_valid_url {
+                self.rendezvous_server_url_entry_row
+                    .remove_css_class("error");
+                self.rendezvous_server_url.replace(url);
+            } else {
+                self.rendezvous_server_url_entry_row.add_css_class("error");
+                self.rendezvous_server_url.replace(String::new());
+            }
+        }
+
+        fn set_transit_server_url(&self, url: String) {
+            let url_res = url::Url::parse(&url);
+            let is_valid_hint = if let Ok(url) = url_res {
+                wormhole::transit::RelayHint::from_urls(None, [url]).is_ok()
+            } else {
+                false
+            };
+
+            if is_valid_hint && !url.is_empty() {
+                self.transit_server_url_entry_row.add_css_class("success");
+            } else {
+                self.transit_server_url_entry_row
+                    .remove_css_class("success");
+            }
+
+            if url.is_empty() || is_valid_hint {
+                self.transit_server_url_entry_row.remove_css_class("error");
+                self.transit_server_url.replace(url);
+            } else {
+                self.transit_server_url_entry_row.add_css_class("error");
+                self.transit_server_url.replace(String::new());
+            }
+        }
+    }
 }
 
 glib::wrapper! {
@@ -177,88 +193,6 @@ glib::wrapper! {
 impl WarpPreferencesWindow {
     pub fn new() -> Self {
         glib::Object::new()
-    }
-
-    fn app(&self) -> WarpApplication {
-        WarpApplication::default()
-    }
-
-    pub fn set_rendezvous_server_url(&self, url: String) {
-        let is_valid_url = url::Url::parse(&url).is_ok();
-
-        if is_valid_url && !url.is_empty() {
-            self.imp()
-                .rendezvous_server_url_entry_row
-                .add_css_class("success");
-        } else {
-            self.imp()
-                .rendezvous_server_url_entry_row
-                .remove_css_class("success");
-        }
-
-        if url.is_empty() || is_valid_url {
-            self.imp()
-                .rendezvous_server_url_entry_row
-                .remove_css_class("error");
-            self.imp().rendezvous_server_url.replace(url);
-        } else {
-            self.imp()
-                .rendezvous_server_url_entry_row
-                .add_css_class("error");
-            self.imp().rendezvous_server_url.replace(String::new());
-        }
-
-        self.notify("rendezvous-server-url");
-    }
-
-    pub fn rendezvous_server_url(&self) -> String {
-        self.imp().rendezvous_server_url.borrow().to_string()
-    }
-
-    pub fn set_transit_server_url(&self, url: String) {
-        let url_res = url::Url::parse(&url);
-        let is_valid_hint = if let Ok(url) = url_res {
-            wormhole::transit::RelayHint::from_urls(None, [url]).is_ok()
-        } else {
-            false
-        };
-
-        if is_valid_hint && !url.is_empty() {
-            self.imp()
-                .transit_server_url_entry_row
-                .add_css_class("success");
-        } else {
-            self.imp()
-                .transit_server_url_entry_row
-                .remove_css_class("success");
-        }
-
-        if url.is_empty() || is_valid_hint {
-            self.imp()
-                .transit_server_url_entry_row
-                .remove_css_class("error");
-            self.imp().transit_server_url.replace(url);
-        } else {
-            self.imp()
-                .transit_server_url_entry_row
-                .add_css_class("error");
-            self.imp().transit_server_url.replace(String::new());
-        }
-
-        self.notify("transit-server-url");
-    }
-
-    pub fn transit_server_url(&self) -> String {
-        self.imp().transit_server_url.borrow().to_string()
-    }
-
-    pub fn set_code_length(&self, length: i32) {
-        self.imp().code_length.set(length);
-        self.notify("code-length");
-    }
-
-    pub fn code_length(&self) -> i32 {
-        self.imp().code_length.get()
     }
 }
 
