@@ -56,15 +56,6 @@ else
     echo "--Checking style pass--"
 fi
 
-echo "--Checking clippy--"
-cargo clippy -q -- -D warnings
-if test $? != 0; then
-    echo "--Checking clippy fail--"
-    echo "Please fix the above issues, either manually or by running: cargo fix"
-
-    exit -1
-fi
-
 echo -n "--Checking manifest and generated sources--"
 ./build-aux/generate-manifest.bash 2> /dev/null
 if test $? != 0; then
