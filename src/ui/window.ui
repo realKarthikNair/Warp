@@ -102,6 +102,8 @@
                           <object class="GtkMenuButton" id="appmenu_button">
                             <property name="icon-name">open-menu-symbolic</property>
                             <property name="menu-model">primary_menu</property>
+                            <property name="primary">True</property>
+                            <property name="tooltip-text" translatable="yes">Main Menu</property>
                           </object>
                         </child>
                       </object>
@@ -139,7 +141,7 @@
                                               <object class="GtkButton" id="send_select_file_button">
                                                 <signal name="clicked" handler="select_file_button_clicked" swapped="true"/>
                                                 <!-- Translators: Button -->
-                                                <property name="label" translatable="yes">Select File</property>
+                                                <property name="label" translatable="yes">Select File…</property>
                                                 <property name="width-request">150</property>
                                                 <property name="hexpand">False</property>
                                                 <style>
@@ -152,7 +154,7 @@
                                               <object class="GtkButton" id="send_select_folder_button">
                                                 <signal name="clicked" handler="select_folder_button_clicked" swapped="true"/>
                                                 <!-- Translators: Button -->
-                                                <property name="label" translatable="yes">Select Folder</property>
+                                                <property name="label" translatable="yes">Select Folder…</property>
                                                 <property name="width-request">150</property>
                                                 <property name="hexpand">False</property>
                                                 <style>
