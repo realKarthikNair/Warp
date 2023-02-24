@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
-"POT-Creation-Date: 2023-02-13 09:35+0000\n"
-"PO-Revision-Date: 2023-02-20 20:59+0100\n"
+"POT-Creation-Date: 2023-02-24 02:20+0000\n"
+"PO-Revision-Date: 2023-02-24 06:55+0100\n"
 "Last-Translator: Jürgen Benvenuti <gastornis@posteo.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "Language: de\n"
@@ -88,7 +88,7 @@ msgid "Main Window"
 msgstr "Hauptfenster"
 
 #. Translators: Entry placeholder; This is a noun
-#: data/app.drey.Warp.metainfo.xml.in.in:35 src/ui/window.ui:198
+#: data/app.drey.Warp.metainfo.xml.in.in:35 src/ui/window.ui:200
 msgid "Transmit Code"
 msgstr "Übertragungscode"
 
@@ -573,7 +573,7 @@ msgid ""
 "\n"
 "When the receiver has entered the code, the file transfer can begin.\n"
 "\n"
-"For more information about Warp, open the Help pages from the menu."
+"For more information about Warp, open the Help section from the Main Menu."
 msgstr ""
 "Warp macht Dateiübertragung einfach. Um loszulegen, müssen beide Parteien "
 "Warp auf ihren Geräten installieren.\n"
@@ -585,8 +585,8 @@ msgstr ""
 "Sobald die empfangende Person den Code eingegeben hat, kann die "
 "Dateiübertragung beginnen.\n"
 "\n"
-"Um mehr darüber zu erfahren, wie Warp funktioniert, öffnen Sie die "
-"Hilfeseiten über das Menü."
+"Um mehr darüber zu erfahren, wie Warp funktioniert, öffnen Sie den "
+"Hilfeabschnitt über das Hauptmenü."
 
 #. Translators: Big button to finish welcome screen
 #: src/ui/welcome_window.ui:106
@@ -689,41 +689,45 @@ msgstr "_Schließen"
 msgid "_Show in Folder"
 msgstr "Im _Ordner anzeigen"
 
-#: src/ui/window.ui:118
+#: src/ui/window.ui:106
+msgid "Main Menu"
+msgstr "Hauptmenü"
+
+#: src/ui/window.ui:120
 msgid "_Send"
 msgstr "_Senden"
 
-#: src/ui/window.ui:130
+#: src/ui/window.ui:132
 msgid "Send File"
 msgstr "Datei senden"
 
-#: src/ui/window.ui:131
+#: src/ui/window.ui:133
 msgid "Select or drop the file or directory to send"
 msgstr ""
 "Eine Datei oder einen Ordner zum Versenden auswählen oder in dieses Fenster "
 "ziehen"
 
 #. Translators: Button
-#: src/ui/window.ui:142
-msgid "Select File"
-msgstr "Datei auswählen"
+#: src/ui/window.ui:144
+msgid "Select File…"
+msgstr "Datei auswählen …"
 
 #. Translators: Button
-#: src/ui/window.ui:155
-msgid "Select Folder"
-msgstr "Ordner auswählen"
+#: src/ui/window.ui:157
+msgid "Select Folder…"
+msgstr "Ordner auswählen …"
 
-#: src/ui/window.ui:174
+#: src/ui/window.ui:176
 msgid "_Receive"
 msgstr "_Empfangen"
 
 #. Translators: Button
-#: src/ui/window.ui:183 src/ui/window.ui:216
+#: src/ui/window.ui:185 src/ui/window.ui:218
 msgid "Receive File"
 msgstr "Datei empfangen"
 
 #. Translators: Text above code input box, transmit code is a noun
-#: src/ui/window.ui:185
+#: src/ui/window.ui:187
 msgid "Enter the transmit code from the sender"
 msgstr "Den Übertragungscode der sendenden Person eingeben"
 
