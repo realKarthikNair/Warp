@@ -216,9 +216,9 @@ impl WarpApplication {
             .website("https://apps.gnome.org/app/app.drey.Warp/")
             .issue_url("https://gitlab.gnome.org/World/warp/-/issues")
             .translator_credits(gettext("translator-credits"))
-            .developer_name("Fina Wilke")
-            .developers(["Fina Wilke"])
-            .artists(["Tobias Bernard", "Sophie Herold"])
+            .developer_name(gettext("Fina Wilke"))
+            .developers(vec![gettext("Fina Wilke")])
+            .artists(vec![gettext("Tobias Bernard"), gettext("Sophie Herold")])
             .transient_for(&self.main_window())
             .modal(true)
             .build();
