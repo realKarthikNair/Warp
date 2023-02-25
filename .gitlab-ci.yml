@@ -57,7 +57,7 @@ cargo-deny:
     - cargo deny check
 
 windows:
-  image: 'ghcr.io/mglolenstine/gtk4-cross:gtk-4.8'
+  image: 'ghcr.io/mglolenstine/gtk4-cross:gtk-nightly'
   stage: test
   allow_failure: true
   variables:
