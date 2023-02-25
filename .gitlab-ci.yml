@@ -59,7 +59,7 @@ cargo-deny:
 windows:
   image: 'ghcr.io/mglolenstine/gtk4-cross:gtk-nightly'
   stage: test
-  allow_failure: true
+  when: manual
   variables:
     BUNDLE: "warp-nightly-windows"
   script:
