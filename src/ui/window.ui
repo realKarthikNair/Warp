@@ -77,177 +77,170 @@
     <property name="default-width">460</property>
     <property name="default-height">564</property>
     <child>
-      <object class="GtkWindowHandle">
+      <object class="AdwToastOverlay" id="toast_overlay">
         <child>
-          <object class="AdwToastOverlay" id="toast_overlay">
+          <object class="AdwLeaflet" id="leaflet">
+            <signal name="notify::visible-child" handler="leaflet_visible_child_notify" swapped="true"/>
+            <property name="can-unfold">False</property>
             <child>
-              <object class="AdwLeaflet" id="leaflet">
-                <signal name="notify::visible-child" handler="leaflet_visible_child_notify" swapped="true"/>
-                <property name="can-unfold">False</property>
+              <object class="GtkBox">
+                <property name="orientation">vertical</property>
                 <child>
-                  <object class="GtkBox">
-                    <property name="orientation">vertical</property>
-                    <child>
-                      <object class="AdwHeaderBar" id="headerbar">
-                        <style>
-                          <class name="flat"/>
-                        </style>
-                        <property name="centering-policy">strict</property>
-                        <property name="title-widget">
-                          <object class="AdwViewSwitcherTitle" id="title">
-                            <property name="stack">stack</property>
-                          </object>
-                        </property>
-                        <child type="end">
-                          <object class="GtkMenuButton" id="appmenu_button">
-                            <property name="icon-name">open-menu-symbolic</property>
-                            <property name="menu-model">primary_menu</property>
-                            <property name="primary">True</property>
-                            <property name="tooltip-text" translatable="yes">Main Menu</property>
-                          </object>
-                        </child>
+                  <object class="AdwHeaderBar" id="headerbar">
+                    <property name="centering-policy">strict</property>
+                    <property name="title-widget">
+                      <object class="AdwViewSwitcherTitle" id="title">
+                        <property name="stack">stack</property>
                       </object>
-                    </child>
-                    <child>
-                      <object class="GtkBox" id="label">
-                        <property name="orientation">vertical</property>
-                        <child>
-                          <object class="AdwViewStack" id="stack">
-                            <signal name="notify::visible-child-name" handler="add_code_from_clipboard" swapped="true"/>
-                            <child>
-                              <object class="AdwViewStackPage">
-                                <property name="name">send</property>
-                                <property name="title" translatable="yes">_Send</property>
-                                <property name="use-underline">True</property>
-                                <property name="icon-name">send-to-symbolic</property>
-                                <property name="child">
-                                  <object class="GtkBox" id="send_box">
-                                    <property name="orientation">vertical</property>
-                                    <style>
-                                      <class name="send-box"/>
-                                    </style>
-                                    <child>
-                                      <object class="AdwStatusPage" id="send_status_page">
-                                        <property name="vexpand">True</property>
-                                        <property name="title" translatable="yes">Send File</property>
-                                        <property name="description" translatable="yes">Select or drop the file or directory to send</property>
-                                        <property name="icon-name">send-to-symbolic</property>
-                                        <child>
-                                          <object class="GtkBox">
-                                            <property name="orientation">vertical</property>
-                                            <property name="halign">center</property>
-                                            <property name="spacing">12</property>
-                                            <child>
-                                              <object class="GtkButton" id="send_select_file_button">
-                                                <signal name="clicked" handler="select_file_button_clicked" swapped="true"/>
-                                                <!-- Translators: Button -->
-                                                <property name="label" translatable="yes">Select File…</property>
-                                                <property name="width-request">150</property>
-                                                <property name="hexpand">False</property>
-                                                <style>
-                                                  <class name="suggested-action"/>
-                                                  <class name="pill"/>
-                                                </style>
-                                              </object>
-                                            </child>
-                                            <child>
-                                              <object class="GtkButton" id="send_select_folder_button">
-                                                <signal name="clicked" handler="select_folder_button_clicked" swapped="true"/>
-                                                <!-- Translators: Button -->
-                                                <property name="label" translatable="yes">Select Folder…</property>
-                                                <property name="width-request">150</property>
-                                                <property name="hexpand">False</property>
-                                                <style>
-                                                  <class name="pill"/>
-                                                </style>
-                                              </object>
-                                            </child>
-                                          </object>
-                                        </child>
-                                      </object>
-                                    </child>
-                                  </object>
-                                </property>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="AdwViewStackPage">
-                                <property name="name">receive</property>
-                                <property name="title" translatable="yes">_Receive</property>
-                                <property name="use-underline">True</property>
-                                <property name="icon-name">folder-download-symbolic</property>
-                                <property name="child">
-                                  <object class="GtkBox">
-                                    <property name="orientation">vertical</property>
-                                    <child>
-                                      <object class="AdwStatusPage">
-                                        <property name="vexpand">True</property>
-                                        <property name="title" translatable="yes">Receive File</property>
-                                        <!-- Translators: Text above code input box, transmit code is a noun -->
-                                        <property name="description" translatable="yes">Enter the transmit code from the sender</property>
-                                        <property name="icon-name">folder-download-symbolic</property>
-                                        <child>
-                                          <object class="GtkBox">
-                                            <property name="orientation">vertical</property>
-                                            <property name="halign">center</property>
-                                            <property name="spacing">12</property>
-                                            <child>
-                                              <object class="AdwClamp">
-                                                <child>
-                                                  <object class="GtkEntry" id="code_entry">
-                                                    <signal name="activate" handler="receive_button_clicked" swapped="true"/>
-                                                    <!-- Translators: Entry placeholder; This is a noun -->
-                                                    <property name="placeholder-text" translatable="yes">Transmit Code</property>
-                                                    <property name="hexpand">False</property>
-                                                    <property name="buffer">
-                                                      <object class="GtkEntryBuffer">
-                                                        <signal name="notify::text" handler="code_entry_changed" swapped="true"/>
-                                                      </object>
-                                                    </property>
-                                                  </object>
-                                                </child>
-                                              </object>
-                                            </child>
-                                            <child>
-                                              <object class="GtkButton" id="receive_button">
-                                                <signal name="clicked" handler="receive_button_clicked" swapped="true"/>
-                                                <property name="halign">center</property>
-                                                <property name="width-request">150</property>
-                                                <property name="sensitive">False</property>
-                                                <!-- Translators: Button -->
-                                                <property name="label" translatable="yes">Receive File</property>
-                                                <style>
-                                                  <class name="suggested-action"/>
-                                                  <class name="pill"/>
-                                                </style>
-                                              </object>
-                                            </child>
-                                          </object>
-                                        </child>
-                                      </object>
-                                    </child>
-                                  </object>
-                                </property>
-                              </object>
-                            </child>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="AdwViewSwitcherBar">
-                            <property name="stack">stack</property>
-                            <binding name="reveal">
-                              <lookup name="title-visible">title</lookup>
-                            </binding>
-                          </object>
-                        </child>
+                    </property>
+                    <child type="end">
+                      <object class="GtkMenuButton" id="appmenu_button">
+                        <property name="icon-name">open-menu-symbolic</property>
+                        <property name="menu-model">primary_menu</property>
+                        <property name="primary">True</property>
+                        <property name="tooltip-text" translatable="yes">Main Menu</property>
                       </object>
                     </child>
                   </object>
                 </child>
                 <child>
-                  <object class="ActionView" id="action_view"/>
+                  <object class="GtkBox" id="label">
+                    <property name="orientation">vertical</property>
+                    <child>
+                      <object class="AdwViewStack" id="stack">
+                        <signal name="notify::visible-child-name" handler="add_code_from_clipboard" swapped="true"/>
+                        <child>
+                          <object class="AdwViewStackPage">
+                            <property name="name">send</property>
+                            <property name="title" translatable="yes">_Send</property>
+                            <property name="use-underline">True</property>
+                            <property name="icon-name">send-to-symbolic</property>
+                            <property name="child">
+                              <object class="GtkBox" id="send_box">
+                                <property name="orientation">vertical</property>
+                                <style>
+                                  <class name="send-box"/>
+                                </style>
+                                <child>
+                                  <object class="AdwStatusPage" id="send_status_page">
+                                    <property name="vexpand">True</property>
+                                    <property name="title" translatable="yes">Send File</property>
+                                    <property name="description" translatable="yes">Select or drop the file or directory to send</property>
+                                    <property name="icon-name">send-to-symbolic</property>
+                                    <child>
+                                      <object class="GtkBox">
+                                        <property name="orientation">vertical</property>
+                                        <property name="halign">center</property>
+                                        <property name="spacing">12</property>
+                                        <child>
+                                          <object class="GtkButton" id="send_select_file_button">
+                                            <signal name="clicked" handler="select_file_button_clicked" swapped="true"/>
+                                            <!-- Translators: Button -->
+                                            <property name="label" translatable="yes">Select File…</property>
+                                            <property name="width-request">150</property>
+                                            <property name="hexpand">False</property>
+                                            <style>
+                                              <class name="suggested-action"/>
+                                              <class name="pill"/>
+                                            </style>
+                                          </object>
+                                        </child>
+                                        <child>
+                                          <object class="GtkButton" id="send_select_folder_button">
+                                            <signal name="clicked" handler="select_folder_button_clicked" swapped="true"/>
+                                            <!-- Translators: Button -->
+                                            <property name="label" translatable="yes">Select Folder…</property>
+                                            <property name="width-request">150</property>
+                                            <property name="hexpand">False</property>
+                                            <style>
+                                              <class name="pill"/>
+                                            </style>
+                                          </object>
+                                        </child>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                              </object>
+                            </property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="AdwViewStackPage">
+                            <property name="name">receive</property>
+                            <property name="title" translatable="yes">_Receive</property>
+                            <property name="use-underline">True</property>
+                            <property name="icon-name">folder-download-symbolic</property>
+                            <property name="child">
+                              <object class="GtkBox">
+                                <property name="orientation">vertical</property>
+                                <child>
+                                  <object class="AdwStatusPage">
+                                    <property name="vexpand">True</property>
+                                    <property name="title" translatable="yes">Receive File</property>
+                                    <!-- Translators: Text above code input box, transmit code is a noun -->
+                                    <property name="description" translatable="yes">Enter the transmit code from the sender</property>
+                                    <property name="icon-name">folder-download-symbolic</property>
+                                    <child>
+                                      <object class="GtkBox">
+                                        <property name="orientation">vertical</property>
+                                        <property name="halign">center</property>
+                                        <property name="spacing">12</property>
+                                        <child>
+                                          <object class="AdwClamp">
+                                            <child>
+                                              <object class="GtkEntry" id="code_entry">
+                                                <signal name="activate" handler="receive_button_clicked" swapped="true"/>
+                                                <!-- Translators: Entry placeholder; This is a noun -->
+                                                <property name="placeholder-text" translatable="yes">Transmit Code</property>
+                                                <property name="hexpand">False</property>
+                                                <property name="buffer">
+                                                  <object class="GtkEntryBuffer">
+                                                    <signal name="notify::text" handler="code_entry_changed" swapped="true"/>
+                                                  </object>
+                                                </property>
+                                              </object>
+                                            </child>
+                                          </object>
+                                        </child>
+                                        <child>
+                                          <object class="GtkButton" id="receive_button">
+                                            <signal name="clicked" handler="receive_button_clicked" swapped="true"/>
+                                            <property name="halign">center</property>
+                                            <property name="width-request">150</property>
+                                            <property name="sensitive">False</property>
+                                            <!-- Translators: Button -->
+                                            <property name="label" translatable="yes">Receive File</property>
+                                            <style>
+                                              <class name="suggested-action"/>
+                                              <class name="pill"/>
+                                            </style>
+                                          </object>
+                                        </child>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                              </object>
+                            </property>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="AdwViewSwitcherBar">
+                        <property name="stack">stack</property>
+                        <binding name="reveal">
+                          <lookup name="title-visible">title</lookup>
+                        </binding>
+                      </object>
+                    </child>
+                  </object>
                 </child>
               </object>
+            </child>
+            <child>
+              <object class="ActionView" id="action_view"/>
             </child>
           </object>
         </child>
