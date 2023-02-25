@@ -98,7 +98,7 @@
                             <property name="stack">stack</property>
                           </object>
                         </property>
-                        <child type="start">
+                        <child type="end">
                           <object class="GtkMenuButton" id="appmenu_button">
                             <property name="icon-name">open-menu-symbolic</property>
                             <property name="menu-model">primary_menu</property>
