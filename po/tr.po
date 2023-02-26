@@ -9,16 +9,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Warp Master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
-"POT-Creation-Date: 2023-02-01 16:40+0000\n"
-"PO-Revision-Date: 2023-02-02 15:35+0300\n"
-"Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
+"POT-Creation-Date: 2023-02-24 02:20+0000\n"
+"PO-Revision-Date: 2023-02-24 05:43+0300\n"
+"Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
 "Language-Team: Türkçe <gnome-turk@gnome.org>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.1.1\n"
 "X-POOTLE-MTIME: 1434043811.000000\n"
 
 #: data/app.drey.Warp.desktop.in.in:3 data/app.drey.Warp.metainfo.xml.in.in:7
@@ -90,7 +90,7 @@ msgid "Main Window"
 msgstr "Ana Pencere"
 
 #. Translators: Entry placeholder; This is a noun
-#: data/app.drey.Warp.metainfo.xml.in.in:35 src/ui/window.ui:198
+#: data/app.drey.Warp.metainfo.xml.in.in:35 src/ui/window.ui:200
 msgid "Transmit Code"
 msgstr "Aktarım Kodu"
 
@@ -562,7 +562,7 @@ msgid ""
 "\n"
 "When the receiver has entered the code, the file transfer can begin.\n"
 "\n"
-"For more information about Warp, open the Help pages from the menu."
+"For more information about Warp, open the Help section from the Main Menu."
 msgstr ""
 "Warp, dosya aktarımını basitleştirir. Başlamak için her iki aygıta Warp "
 "kurulmalıdır.\n"
@@ -572,7 +572,7 @@ msgstr ""
 "\n"
 "Alıcı, kodu girdiğinde dosya aktarımı başlayacaktır.\n"
 "\n"
-"Warp ile ilgili daha çok bilgi için menüden Yardım sayfalarına bakın."
+"Warp ile ilgili daha çok bilgi için Ana Menüden Yardım sayfalarına bakın."
 
 #. Translators: Big button to finish welcome screen
 #: src/ui/welcome_window.ui:106
@@ -670,39 +670,43 @@ msgstr "_Kapat"
 msgid "_Show in Folder"
 msgstr "_Klasörde Göster"
 
-#: src/ui/window.ui:118
+#: src/ui/window.ui:106
+msgid "Main Menu"
+msgstr "Ana Menü"
+
+#: src/ui/window.ui:120
 msgid "_Send"
 msgstr "_Gönder"
 
-#: src/ui/window.ui:130
+#: src/ui/window.ui:132
 msgid "Send File"
 msgstr "Dosya Gönder"
 
-#: src/ui/window.ui:131
+#: src/ui/window.ui:133
 msgid "Select or drop the file or directory to send"
 msgstr "Gönderilecek dosyayı/dizini seç veya sürükleyip bırak"
 
 #. Translators: Button
-#: src/ui/window.ui:142
-msgid "Select File"
+#: src/ui/window.ui:144
+msgid "Select File…"
 msgstr "Dosya Seç"
 
 #. Translators: Button
-#: src/ui/window.ui:155
-msgid "Select Folder"
+#: src/ui/window.ui:157
+msgid "Select Folder…"
 msgstr "Klasör Seç"
 
-#: src/ui/window.ui:174
+#: src/ui/window.ui:176
 msgid "_Receive"
 msgstr "_Al"
 
 #. Translators: Button
-#: src/ui/window.ui:183 src/ui/window.ui:216
+#: src/ui/window.ui:185 src/ui/window.ui:218
 msgid "Receive File"
 msgstr "Dosya Al"
 
 #. Translators: Text above code input box, transmit code is a noun
-#: src/ui/window.ui:185
+#: src/ui/window.ui:187
 msgid "Enter the transmit code from the sender"
 msgstr "Göndericiden gelen aktarım kodunu girin"
 
