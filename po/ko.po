@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: warp main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
-"POT-Creation-Date: 2023-01-25 21:52+0000\n"
-"PO-Revision-Date: 2023-01-27 02:50+0900\n"
+"POT-Creation-Date: 2023-02-25 16:35+0000\n"
+"PO-Revision-Date: 2023-03-04 19:56+0900\n"
 "Last-Translator: Seong-ho Cho <shcho@gnome.org>\n"
 "Language-Team: Korean <gnome-kr@googlegroups.com>\n"
 "Language: ko\n"
@@ -19,7 +19,7 @@ msgstr ""
 "X-Generator: Poedit 2.3.1\n"
 
 #: data/app.drey.Warp.desktop.in.in:3 data/app.drey.Warp.metainfo.xml.in.in:7
-#: src/main.rs:116 src/ui/application.rs:211
+#: src/main.rs:116 src/ui/application.rs:212
 msgid "Warp"
 msgstr "워프"
 
@@ -45,8 +45,8 @@ msgid ""
 "The best transfer method will be determined using the “Magic Wormhole” "
 "protocol which includes local network transfer if possible."
 msgstr ""
-"가능한 경우 로컬 네트워크 전송이 가능한 “매직 웜홀” 프로토콜로 최상의 전송 "
-"방식을 결정합니다."
+"가능한 경우 로컬 네트워크 전송이 가능한 “매직 웜홀” 프로토콜로 최상의 전송 방"
+"식을 결정합니다."
 
 #: data/app.drey.Warp.metainfo.xml.in.in:18
 msgid "Features"
@@ -83,7 +83,7 @@ msgid "Main Window"
 msgstr "주 창"
 
 #. Translators: Entry placeholder; This is a noun
-#: data/app.drey.Warp.metainfo.xml.in.in:35 src/ui/window.ui:198
+#: data/app.drey.Warp.metainfo.xml.in.in:35 src/ui/window.ui:195
 msgid "Transmit Code"
 msgstr "전송 코드"
 
@@ -92,20 +92,21 @@ msgid "Accept File Transfer"
 msgstr "파일 전송 허용"
 
 #. Translators: Title
-#: data/app.drey.Warp.metainfo.xml.in.in:43 src/ui/action_view.rs:595
+#: data/app.drey.Warp.metainfo.xml.in.in:43 src/ui/action_view.rs:607
 msgid "Sending File"
 msgstr "파일 보내는 중"
 
 #. Translators: Title
-#: data/app.drey.Warp.metainfo.xml.in.in:47 src/ui/action_view.rs:599
+#: data/app.drey.Warp.metainfo.xml.in.in:47 src/ui/action_view.rs:611
 msgid "Receiving File"
 msgstr "파일 받는 중"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:51 src/ui/action_view.rs:616
+#: data/app.drey.Warp.metainfo.xml.in.in:51 src/ui/action_view.rs:628
 msgid "File Transfer Complete"
 msgstr "파일 전송 완료"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:182
+#: data/app.drey.Warp.metainfo.xml.in.in:183 src/ui/application.rs:219
+#: src/ui/application.rs:220
 msgid "Fina Wilke"
 msgstr "Fina Wilke"
 
@@ -209,76 +210,76 @@ msgid "No error available"
 msgstr "오류가 없습니다"
 
 #. Translators: Title
-#: src/ui/action_view.rs:421
+#: src/ui/action_view.rs:433
 msgid "Creating Archive"
 msgstr "아카이브 만드는 중"
 
-#: src/ui/action_view.rs:425
+#: src/ui/action_view.rs:437
 msgid "Compressing folder “{}”"
 msgstr "“{}” 폴더 압축 중"
 
 #. Translators: Title
-#: src/ui/action_view.rs:438 src/ui/action_view.rs:491
+#: src/ui/action_view.rs:450 src/ui/action_view.rs:503
 msgid "Connecting"
 msgstr "연결 중"
 
 #. Translators: Description, Filename
-#: src/ui/action_view.rs:441
+#: src/ui/action_view.rs:453
 msgid "Requesting file transfer"
 msgstr "파일 전송 요청 중"
 
 #. Translators: Title, this is a noun
-#: src/ui/action_view.rs:450
+#: src/ui/action_view.rs:462
 msgid "Your Transmit Code"
 msgstr "전송 코드"
 
-#: src/ui/action_view.rs:463
+#: src/ui/action_view.rs:475
 msgid "Ready to send “{}”."
 msgstr "“{}” 보내기 준비가 끝났습니다."
 
 #. Translators: Description line 2, Code words and QR code visible,
-#: src/ui/action_view.rs:466
+#: src/ui/action_view.rs:478
 msgid ""
 "The receiver needs to enter or scan this code to begin the file transfer."
 msgstr "파일 전송을 시작하려면 수신자가 이 코드를 입력해야합니다."
 
-#: src/ui/action_view.rs:470
+#: src/ui/action_view.rs:482
 msgid "The QR code is compatible with the following apps: {}."
 msgstr "QR 코드는 다음 앱에서도 지원합니다: {}."
 
-#: src/ui/action_view.rs:478
+#: src/ui/action_view.rs:490
 msgid ""
 "You have entered a custom rendezvous server URL in preferences. Please "
 "verify the receiver also uses the same rendezvous server."
 msgstr ""
-"기본 설정에 개별 랑데부 서버 URL을 입력했습니다. 수신자 측에도 동일한 랑데"
-"부 서버를 입력했는지 확인하십시오."
+"기본 설정에 개별 랑데부 서버 URL을 입력했습니다. 수신자 측에도 동일한 랑데부 "
+"서버를 입력했는지 확인하십시오."
 
 #. Translators: Description, Transfer Code
-#: src/ui/action_view.rs:494
+#: src/ui/action_view.rs:506
 msgid "Connecting to peer with code “{}”"
 msgstr "“{}” 코드로 상대방에게 연결하는 중"
 
-#: src/ui/action_view.rs:504
+#: src/ui/action_view.rs:516
 msgid "Connected to Peer"
 msgstr "상대방에게 연결했습니다"
 
 #. Translators: Description
-#: src/ui/action_view.rs:515
+#: src/ui/action_view.rs:527
 msgid "Preparing to send file"
 msgstr "파일 송신 준비 중"
 
 #. Translators: Description
-#: src/ui/action_view.rs:521
+#: src/ui/action_view.rs:533
 msgid "Preparing to receive file"
 msgstr "파일 수신 준비 중"
 
-#: src/ui/action_view.rs:533
+#: src/ui/action_view.rs:545
 msgid "Accept File Transfer?"
 msgstr "파일 전송을 허용합니까?"
 
 #. Translators: File receive confirmation message dialog; Filename, File size
-#: src/ui/action_view.rs:536
+#: src/ui/action_view.rs:548
 msgid ""
 "Your peer wants to send you “{0}” (Size: {1}).\n"
 "Do you want to download this file? The default action will save the file to "
@@ -288,85 +289,85 @@ msgstr ""
 "다운로드 폴더에 이 파일을 다운로드하시겠습니까? 다운로드 폴더로의 파일 저장"
 "이 기본 동작입니다."
 
-#: src/ui/action_view.rs:541
+#: src/ui/action_view.rs:553
 msgid "Ready to Receive File"
 msgstr "파일 수신 대기"
 
-#: src/ui/action_view.rs:543
+#: src/ui/action_view.rs:555
 msgid ""
 "A file is ready to be transferred. The transfer needs to be acknowledged."
 msgstr "파일 전송 준비가 끝났습니다. 상대방이 전송을 허용해야 합니다."
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:572
+#: src/ui/action_view.rs:584
 msgid "File “{}” via local network direct transfer"
 msgstr "로컬 네트워크 직접 전송 방식을 통한 “{}” 파일"
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:575
+#: src/ui/action_view.rs:587
 msgid "File “{}” via direct transfer"
 msgstr "직접 전송 방식을 통한 “{}” 파일"
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:581
+#: src/ui/action_view.rs:593
 msgid "File “{0}” via relay {1}"
 msgstr "{1} 릴레이를 통한 “{0}” 파일"
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:584
+#: src/ui/action_view.rs:596
 msgid "File “{}” via relay"
 msgstr "릴레이를 통한 “{}” 파일"
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:588
+#: src/ui/action_view.rs:600
 msgid "File “{}” via Unknown connection method"
 msgstr "알 수 없는 연결 방식을 통한 “{}” 파일"
 
 #. Translators: Title
-#: src/ui/action_view.rs:607
+#: src/ui/action_view.rs:619
 msgid "File Transfer Successful"
 msgstr "파일 전송에 성공했습니다"
 
 #. Translators: Description, Filename
-#: src/ui/action_view.rs:624
+#: src/ui/action_view.rs:636
 msgid "Successfully sent file “{}”"
 msgstr "“{}” 파일 보내기에 성공했습니다"
 
 #. Translators: Filename
-#: src/ui/action_view.rs:640
+#: src/ui/action_view.rs:652
 msgid "File has been saved to the selected folder as “{}”"
 msgstr "선택한 폴더에 “{}” 파일로 저장했습니다"
 
 #. Translators: Filename
-#: src/ui/action_view.rs:647
+#: src/ui/action_view.rs:659
 msgid "File has been saved to the Downloads folder as “{}”"
 msgstr "다운로드 폴더에 “{}” 파일로 저장했습니다"
 
 #. Translators: Title
-#: src/ui/action_view.rs:671 src/ui/action_view.rs:684
+#: src/ui/action_view.rs:683 src/ui/action_view.rs:696
 msgid "File Transfer Failed"
 msgstr "파일 전송 실패"
 
-#: src/ui/action_view.rs:686
+#: src/ui/action_view.rs:698
 msgid "The file transfer failed: {}"
 msgstr "파일 전송에 실패했습니다: {}"
 
 #. Translators: When opening a file
-#: src/ui/action_view.rs:801
+#: src/ui/action_view.rs:813
 msgid "Specified file / directory does not exist"
 msgstr "지정한 파일 또는 디렉터리가 없습니다"
 
-#: src/ui/action_view.rs:818
+#: src/ui/action_view.rs:831
 msgid ""
 "Error parsing rendezvous server URL. An invalid URL was entered in the "
 "settings."
 msgstr "랑데부 서버 URL 해석 오류. 부적절한 URL을 설정에 입력했습니다."
 
-#: src/ui/action_view.rs:828
+#: src/ui/action_view.rs:838
 msgid "Error parsing transit URL. An invalid URL was entered in the settings."
 msgstr "전송 URL 해석 오류. 부적절한 URL을 설정에 입력했습니다."
 
-#: src/ui/action_view.rs:916
+#: src/ui/action_view.rs:925
 msgid "Invalid path selected: {}"
 msgstr "선택한 경로가 부적절합니다: {}"
 
@@ -436,23 +437,23 @@ msgstr "오류 메시지 복사"
 msgid "Unable to use transfer link: another transfer already in progress"
 msgstr "전송 링크를 활용할 수 없습니다: 다른 전송 작업이 진행중입니다"
 
-#: src/ui/application.rs:217
+#: src/ui/application.rs:218
 msgid "translator-credits"
 msgstr "조성호 <shcho@gnome.org>, 2022"
 
-#: src/ui/application.rs:220
+#: src/ui/application.rs:221
 msgid "Tobias Bernard"
 msgstr "Tobias Bernard"
 
-#: src/ui/application.rs:220
+#: src/ui/application.rs:221
 msgid "Sophie Herold"
 msgstr "Sophie Herold"
 
-#: src/ui/application.rs:238
+#: src/ui/application.rs:239
 msgid "Sending a File"
 msgstr "파일 보내는 중"
 
-#: src/ui/application.rs:239
+#: src/ui/application.rs:240
 msgid "Receiving a File"
 msgstr "파일 받는 중"
 
@@ -461,7 +462,7 @@ msgid "Downloads dir missing. Please set XDG_DOWNLOAD_DIR"
 msgstr ""
 "다운로드 디렉터리가 없습니다. XDG_DOWNLOAD_DIR 환경 변수를 설정하십시오"
 
-#: src/ui/preferences.rs:131
+#: src/ui/preferences.rs:97
 msgid ""
 "Changing the rendezvous server URL needs to be done on both sides of the "
 "transfer. Only enter a server URL you can trust.\n"
@@ -547,7 +548,7 @@ msgid ""
 "\n"
 "When the receiver has entered the code, the file transfer can begin.\n"
 "\n"
-"For more information about Warp, open the Help pages from the menu."
+"For more information about Warp, open the Help section from the Main Menu."
 msgstr ""
 "워프는 파일 전송을 간단하게 해줍니다. 시작하려면 두 장치에 워프를 설치해야합"
 "니다.\n"
@@ -557,7 +558,7 @@ msgstr ""
 "\n"
 "수신자가 코드를 입력하면, 파일 전송을 시작할 수 있습니다.\n"
 "\n"
-"워프 정보는 메뉴의 도움말 페이지를 열어 살펴보십시오."
+"워프 정보는 주 메뉴의 도움말 페이지를 열어 살펴보십시오."
 
 #. Translators: Big button to finish welcome screen
 #: src/ui/welcome_window.ui:106
@@ -572,15 +573,15 @@ msgstr ""
 "“{0}” 설정 파일 불러오기 오류. 기본 설정을 사용합니다.\n"
 "오류: {1}"
 
-#: src/ui/window.rs:234
+#: src/ui/window.rs:237
 msgid "Error saving configuration file: {}"
 msgstr "설정 파일 저장 중 오류: {}"
 
-#: src/ui/window.rs:345
+#: src/ui/window.rs:352
 msgid "“{}” appears to be an invalid Transmit Code. Please try again."
 msgstr "“{}”은(는) 부적절한 전송 코드로 보입니다. 다시 시도하십시오."
 
-#: src/ui/window.rs:467
+#: src/ui/window.rs:472
 msgid "Sending files with a preconfigured code is not yet supported"
 msgstr "사전 구성 코드를 통한 파일 전송은 아직 지원하지 않습니다"
 
@@ -647,7 +648,7 @@ msgstr "중단(_A)"
 msgid "Unable to Open File"
 msgstr "파일을 열 수 없습니다"
 
-#: src/ui/window.ui:69 src/util/error.rs:173
+#: src/ui/window.ui:69 src/util/error.rs:176
 msgid "_Close"
 msgstr "닫기(_C)"
 
@@ -655,39 +656,43 @@ msgstr "닫기(_C)"
 msgid "_Show in Folder"
 msgstr "폴더 표시(_S)"
 
-#: src/ui/window.ui:118
+#: src/ui/window.ui:101
+msgid "Main Menu"
+msgstr "주 메뉴"
+
+#: src/ui/window.ui:115
 msgid "_Send"
 msgstr "송신(_S)"
 
-#: src/ui/window.ui:130
+#: src/ui/window.ui:127
 msgid "Send File"
 msgstr "파일 보내기"
 
-#: src/ui/window.ui:131
+#: src/ui/window.ui:128
 msgid "Select or drop the file or directory to send"
 msgstr "보낼 파일 또는 디렉터리를 선택하거나 끌어다 놓으십시오"
 
 #. Translators: Button
-#: src/ui/window.ui:142
-msgid "Select File"
-msgstr "파일 선택"
+#: src/ui/window.ui:139
+msgid "Select File…"
+msgstr "파일 선택…"
 
 #. Translators: Button
-#: src/ui/window.ui:155
-msgid "Select Folder"
-msgstr "폴더 선택"
+#: src/ui/window.ui:152
+msgid "Select Folder…"
+msgstr "폴더 선택…"
 
-#: src/ui/window.ui:174
+#: src/ui/window.ui:171
 msgid "_Receive"
 msgstr "수신(_R)"
 
 #. Translators: Button
-#: src/ui/window.ui:183 src/ui/window.ui:216
+#: src/ui/window.ui:180 src/ui/window.ui:213
 msgid "Receive File"
 msgstr "파일 수신"
 
 #. Translators: Text above code input box, transmit code is a noun
-#: src/ui/window.ui:185
+#: src/ui/window.ui:182
 msgid "Enter the transmit code from the sender"
 msgstr "보낸 사람의 전송 코드를 입력하십시오"
 
@@ -713,41 +718,39 @@ msgstr "URI 매개변수 “rendezvous”에 부적절한 URL 값이 있습니�
 
 #: src/util.rs:241
 msgid "The URI parameter “role” must be “follower” or “leader” (was: “{}”)"
-msgstr ""
-"“role” URL 매개변수는 “follower” 또는 “leader” 여야합니다 ( “{}” 였음)"
+msgstr "“role” URL 매개변수는 “follower” 또는 “leader” 여야합니다 ( “{}” 였음)"
 
 #: src/util.rs:248
 msgid "Unknown URI parameter “{}”"
 msgstr "알 수 없는 “{}” URI 매개변수"
 
-#: src/util/error.rs:154
+#: src/util/error.rs:157
 msgid "An error occurred"
 msgstr "오류가 발생했습니다"
 
-#: src/util/error.rs:185 src/util/error.rs:250
+#: src/util/error.rs:187 src/util/error.rs:252
 msgid "Corrupt or unexpected message received"
 msgstr "깨졌거나 예상치 못한 메시지를 받았습니다"
 
-#: src/util/error.rs:190
+#: src/util/error.rs:192
 msgid ""
 "The rendezvous server will not allow further connections for this code. A "
 "new code needs to be generated."
 msgstr ""
-"랑데부 서버에서 이 코드의 연결을 더이상 허용하지 않습니다. 새 코드를 만들어"
-"야합니다."
+"랑데부 서버에서 이 코드의 연결을 더이상 허용하지 않습니다. 새 코드를 만들어야"
+"합니다."
 
-#: src/util/error.rs:192
+#: src/util/error.rs:194
 msgid ""
 "The rendezvous server removed the code due to inactivity. A new code needs "
 "to be generated."
-msgstr ""
-"랑데부 서버에서 비활성 코드를 제거했습니다. 새 코드를 만들어야 합니다."
+msgstr "랑데부 서버에서 비활성 코드를 제거했습니다. 새 코드를 만들어야 합니다."
 
-#: src/util/error.rs:194
+#: src/util/error.rs:196
 msgid "The rendezvous server responded with an unknown message: {}"
 msgstr "랑데부 서버에서 알 수 없는 메시지로 응답했습니다: {}"
 
-#: src/util/error.rs:197
+#: src/util/error.rs:199
 msgid ""
 "Error connecting to the rendezvous server.\n"
 "You have entered a custom rendezvous server URL in preferences. Please "
@@ -757,7 +760,7 @@ msgstr ""
 "기본 설정에서 개별 랑데부 서버 URL을 입력했습니다. URL이 올바른지, 서버가 동"
 "작하는지 확인하십시오."
 
-#: src/util/error.rs:199
+#: src/util/error.rs:201
 msgid ""
 "Error connecting to the rendezvous server.\n"
 "Please try again later / verify you are connected to the internet."
@@ -765,7 +768,7 @@ msgstr ""
 "랑데부 서버 연결 오류.\n"
 "나중에 다시 시도하거나 인터넷에 연결했는지 확인하십시오."
 
-#: src/util/error.rs:203
+#: src/util/error.rs:205
 msgid ""
 "Encryption key confirmation failed. If you or your peer didn't mistype the "
 "code, this is a sign of an attacker guessing passwords. Please try again "
@@ -774,32 +777,32 @@ msgstr ""
 "암호화 키 확인 실패. 여러분 또는 상대방이 코드를 잘못 입력하면 공격자가 암호"
 "를 유추할 수 있는 신호를 줍니다. 한참 후 다시 시도하십시오."
 
-#: src/util/error.rs:205
+#: src/util/error.rs:207
 msgid "Cannot decrypt a received message"
 msgstr "수신 메시지를 복호화할 수 없습니다"
 
-#: src/util/error.rs:206 src/util/error.rs:261 src/util/error.rs:267
-#: src/util/error.rs:270
+#: src/util/error.rs:208 src/util/error.rs:263 src/util/error.rs:269
+#: src/util/error.rs:272
 msgid "An unknown error occurred"
 msgstr "알 수 없는 오류 발생"
 
-#: src/util/error.rs:212
+#: src/util/error.rs:214
 msgid "File / Directory not found"
 msgstr "파일 / 디렉터리가 없습니다"
 
-#: src/util/error.rs:213
+#: src/util/error.rs:215
 msgid "Permission denied"
 msgstr "권한 거부"
 
-#: src/util/error.rs:225
+#: src/util/error.rs:227
 msgid "Transfer was not acknowledged by peer"
 msgstr "피어가 전송 여부에 대해 응답하지 않습니다"
 
-#: src/util/error.rs:227
+#: src/util/error.rs:229
 msgid "The received file is corrupted"
 msgstr "수신한 파일이 깨졌습니다"
 
-#: src/util/error.rs:233
+#: src/util/error.rs:235
 msgid ""
 "The file contained a different amount of bytes than advertised! Sent {} "
 "bytes, but should have been {}"
@@ -807,27 +810,27 @@ msgstr ""
 "사전에 알린 정보와는 파일의 바이트 단위 용량이 다릅니다! {} 바이트를 보냈지"
 "만, {} 여야 합니다"
 
-#: src/util/error.rs:238
+#: src/util/error.rs:240
 msgid "The other side has cancelled the transfer"
 msgstr "상대방이 전송을 취소했습니다"
 
-#: src/util/error.rs:240
+#: src/util/error.rs:242
 msgid "The other side has rejected the transfer"
 msgstr "상대방이 전송을 거절했습니다"
 
-#: src/util/error.rs:242
+#: src/util/error.rs:244
 msgid "Something went wrong on the other side: {}"
 msgstr "상대 측에 문제가 생겼습니다: {}"
 
-#: src/util/error.rs:257
+#: src/util/error.rs:259
 msgid "Error while establishing file transfer connection"
 msgstr "파일 전송 연결 수립 중 오류"
 
-#: src/util/error.rs:259
+#: src/util/error.rs:261
 msgid "Unknown file transfer error"
 msgstr "알 수 없는 파일 전송 오류"
 
-#: src/util/error.rs:272
+#: src/util/error.rs:274
 msgid ""
 "An unexpected error occurred. Please report an issue with the error message."
 msgstr ""
