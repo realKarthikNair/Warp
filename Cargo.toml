@@ -43,7 +43,7 @@ serde_json = "1.0"
 simple_moving_average = "0.1"
 chrono = "0.4"
 regex = "1.5"
-gvdb = { version = "0.3", features = [ "gresource" ]}
+gvdb = { version = "0.4", features = [ "gresource" ]}
 gvdb-macros = { version = "0.1" }
 thiserror = "1.0"
 tempfile = "3.3.0"
