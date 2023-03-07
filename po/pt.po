@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: warp main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
-"POT-Creation-Date: 2023-02-25 16:35+0000\n"
-"PO-Revision-Date: 2023-02-26 16:24+0000\n"
+"POT-Creation-Date: 2023-03-05 22:03+0000\n"
+"PO-Revision-Date: 2023-03-07 14:49+0000\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <pt@li.org>\n"
 "Language: pt\n"
@@ -85,7 +85,7 @@ msgid "Main Window"
 msgstr "Janela principal"
 
 #. Translators: Entry placeholder; This is a noun
-#: data/app.drey.Warp.metainfo.xml.in.in:35 src/ui/window.ui:195
+#: data/app.drey.Warp.metainfo.xml.in.in:35 src/ui/window.ui:197
 msgid "Transmit Code"
 msgstr "Código de transmissão"
 
@@ -696,27 +696,31 @@ msgstr "Selecionar e largar o ficheiro ou diretório a enviar"
 
 #. Translators: Button
 #: src/ui/window.ui:139
-msgid "Select File…"
-msgstr "Selecionar ficheiro…"
+msgid "Select _File…"
+msgstr "Selecionar _ficheiro…"
 
 #. Translators: Button
-#: src/ui/window.ui:152
-msgid "Select Folder…"
-msgstr "Selecionar pasta…"
+#: src/ui/window.ui:153
+msgid "Select F_older…"
+msgstr "Selecionar _pasta…"
 
-#: src/ui/window.ui:171
+#: src/ui/window.ui:173
 msgid "_Receive"
 msgstr "_Receber"
 
-#. Translators: Button
-#: src/ui/window.ui:180 src/ui/window.ui:213
+#: src/ui/window.ui:182
 msgid "Receive File"
 msgstr "Receber ficheiro"
 
 #. Translators: Text above code input box, transmit code is a noun
-#: src/ui/window.ui:182
+#: src/ui/window.ui:184
 msgid "Enter the transmit code from the sender"
 msgstr "Insira o código de transmissão do remetente"
+
+#. Translators: Button
+#: src/ui/window.ui:215
+msgid "Receive _File"
+msgstr "Receber _ficheiro"
 
 #: src/util.rs:31 src/util.rs:50
 msgid "Failed to open downloads folder."
