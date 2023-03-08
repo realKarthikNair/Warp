@@ -10,7 +10,7 @@ default-run = "warp"
 
 [package.metadata.urls]
 issuetracker = "https://gitlab.gnome.org/World/warp/issues"
-contact = "https://matrix.to/#/#app.drey.Warp:matrix.org"
+contact = "https://matrix.to/#/#warp:gnome.org"
 
 [profile.release]
 lto = true
