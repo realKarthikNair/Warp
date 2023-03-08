@@ -22,7 +22,7 @@ The best transfer method will be determined using the [Magic Wormhole](https://g
 
 ## Support
 
-To receive support, you can join the matrix channel at https://matrix.to/#/#app.drey.Warp:matrix.org.
+To receive support, you can join the matrix channel at https://matrix.to/#/#warp:gnome.org.
 
 Please report issues and bugs in the issue tracker in Gitlab.
 
@@ -52,9 +52,7 @@ flatpak install warp-nightly.flatpak
 
 ### Windows
 
-Download the latest Windows build from gitlab CI. Extract the archive to a directory of your choice and run `warp.exe` inside `warp-windows-nightly`.
-
-[Windows_artifacts.zip](https://gitlab.gnome.org/World/warp/-/jobs/artifacts/main/download?job=windows)
+Download the latest Windows build from gitlab CI. Extract the archive to a directory of your choice and run `warp.exe` inside `warp-windows-nightly`. The [releases page](https://gitlab.gnome.org/World/warp/-/releases) includes the latest Windows release.
 
 ### Build
 
