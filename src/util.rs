@@ -44,7 +44,7 @@ fn show_dir_dbus(path: &std::path::Path) -> Result<(), AppError> {
             "/org/freedesktop/FileManager1",
             "org.freedesktop.FileManager1",
         )?;
-        proxy.call("ShowFolders", &(vec![uri.as_str()], ""))
+        proxy.call("ShowItems", &(vec![uri.as_str()], ""))
     };
 
     show_folder().map_err(|_| UiError::new(&gettext("Failed to open downloads folder.")))?;
