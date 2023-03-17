@@ -480,7 +480,7 @@ impl ActionView {
                         // Translators: Description line 2, Argument is a list of apps that support the QR code standard.
                         description += &gettextf(
                             "The QR code is compatible with the following apps: {}.",
-                            &[&"Warp", &"Wormhole (Android)"],
+                            &[&"Warp, Wormhole (Android)"],
                         );
 
                         if imp.context.borrow().rendezvous_url
