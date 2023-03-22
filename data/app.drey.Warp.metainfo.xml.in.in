@@ -64,6 +64,17 @@
   </custom>
   <content_rating type="oars-1.0" />
   <releases>
+    <release version="0.5.0" date="2023-03-22">
+      <description>
+        <p>This release includes the following features:</p>
+        <ul>
+          <li>Update runtime to GNOME 44</li>
+          <li>Fix “Show in Folder” for Dolphin users</li>
+          <li>Add Shortcuts and tweaks to align the experience with other GNOME apps</li>
+          <li>Translation updates</li>
+        </ul>
+      </description>
+    </release>
     <release version="0.4.0" date="2023-02-01">
       <description>
         <p>This release includes the following features:</p>
