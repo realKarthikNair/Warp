@@ -6,8 +6,8 @@
 msgid ""
 msgstr "Project-Id-Version: warp main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
-"POT-Creation-Date: 2023-02-25 16:35+0000\n"
-"PO-Revision-Date: 2023-02-26 20:28+0000\n"
+"POT-Creation-Date: 2023-03-05 22:03+0000\n"
+"PO-Revision-Date: 2023-03-26 20:28+0000\n"
 "Last-Translator: Asier Sarasua Garmendia <asiersarasua@ni.eus>\n"
 "Language-Team: Basque <librezale@librezale.eus>\n"
 "Language: eu\n"
@@ -77,7 +77,7 @@ msgid "Main Window"
 msgstr "Leiho nagusia"
 
 #. Translators: Entry placeholder; This is a noun
-#: data/app.drey.Warp.metainfo.xml.in.in:35 src/ui/window.ui:195
+#: data/app.drey.Warp.metainfo.xml.in.in:35 src/ui/window.ui:197
 msgid "Transmit Code"
 msgstr "Transmisio-kodea"
 
@@ -656,27 +656,31 @@ msgstr "Hautatu edo jaregin bidaliko den fitxategia edo direktorioa"
 
 #. Translators: Button
 #: src/ui/window.ui:139
-msgid "Select File…"
-msgstr "Hautatu fitxategia…"
+msgid "Select _File…"
+msgstr "Hautatu _fitxategia…"
 
 #. Translators: Button
-#: src/ui/window.ui:152
-msgid "Select Folder…"
-msgstr "Hautatu karpeta…"
+#: src/ui/window.ui:153
+msgid "Select F_older…"
+msgstr "Hautatu _karpeta…"
 
-#: src/ui/window.ui:171
+#: src/ui/window.ui:173
 msgid "_Receive"
 msgstr "_Jaso"
 
-#. Translators: Button
-#: src/ui/window.ui:180 src/ui/window.ui:213
+#: src/ui/window.ui:182
 msgid "Receive File"
 msgstr "Jaso fitxategia"
 
 #. Translators: Text above code input box, transmit code is a noun
-#: src/ui/window.ui:182
+#: src/ui/window.ui:184
 msgid "Enter the transmit code from the sender"
 msgstr "Sartu bidaltzailearen transmisio-kodea"
+
+#. Translators: Button
+#: src/ui/window.ui:215
+msgid "Receive _File"
+msgstr "Jaso _fitxategia"
 
 #: src/util.rs:31 src/util.rs:50
 msgid "Failed to open downloads folder."
