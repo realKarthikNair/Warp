@@ -190,7 +190,7 @@
                                       <object class="GtkBox">
                                         <property name="orientation">vertical</property>
                                         <property name="halign">center</property>
-                                        <property name="spacing">12</property>
+                                        <property name="spacing">24</property>
                                         <child>
                                           <object class="AdwClamp">
                                             <child>
@@ -204,6 +204,9 @@
                                                     <signal name="notify::text" handler="code_entry_changed" swapped="true"/>
                                                   </object>
                                                 </property>
+                                                <style>
+                                                  <class name="card"/>
+                                                </style>
                                               </object>
                                             </child>
                                           </object>
