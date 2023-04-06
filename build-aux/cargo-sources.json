@@ -1,5 +1,23 @@
 [
     {
+        "type": "git",
+        "url": "https://github.com/gtk-rs/gtk-rs-core",
+        "commit": "45106668e7e4475639355906c435ffa79b107eba",
+        "dest": "flatpak-cargo/git/gtk-rs-core-4510666"
+    },
+    {
+        "type": "git",
+        "url": "https://github.com/gtk-rs/gtk4-rs",
+        "commit": "c4fd92f2dd0590f600be9a054f1f1a14e81e4c63",
+        "dest": "flatpak-cargo/git/gtk4-rs-c4fd92f"
+    },
+    {
+        "type": "git",
+        "url": "https://gitlab.gnome.org/felinira/libadwaita-rs",
+        "commit": "5517266d00aa58c33d0548f665ab8ceb04b5b395",
+        "dest": "flatpak-cargo/git/libadwaita-rs-5517266"
+    },
+    {
         "type": "archive",
         "archive-type": "tar-gzip",
         "url": "https://static.crates.io/crates/addr2line/addr2line-0.19.0.crate",
@@ -572,29 +590,27 @@
         "dest-filename": ".cargo-checksum.json"
     },
     {
-        "type": "archive",
-        "archive-type": "tar-gzip",
-        "url": "https://static.crates.io/crates/cairo-rs/cairo-rs-0.17.0.crate",
-        "sha256": "a8af54f5d48af1226928adc1f57edd22f5df1349e7da1fc96ae15cf43db0e871",
-        "dest": "cargo/vendor/cairo-rs-0.17.0"
+        "type": "shell",
+        "commands": [
+            "cp -r --reflink=auto \"flatpak-cargo/git/gtk-rs-core-4510666/cairo\" \"cargo/vendor/cairo-rs\""
+        ]
     },
     {
         "type": "inline",
-        "contents": "{\"package\": \"a8af54f5d48af1226928adc1f57edd22f5df1349e7da1fc96ae15cf43db0e871\", \"files\": {}}",
-        "dest": "cargo/vendor/cairo-rs-0.17.0",
+        "contents": "{\"package\": null, \"files\": {}}",
+        "dest": "cargo/vendor/cairo-rs",
         "dest-filename": ".cargo-checksum.json"
     },
     {
-        "type": "archive",
-        "archive-type": "tar-gzip",
-        "url": "https://static.crates.io/crates/cairo-sys-rs/cairo-sys-rs-0.17.0.crate",
-        "sha256": "f55382a01d30e5e53f185eee269124f5e21ab526595b872751278dfbb463594e",
-        "dest": "cargo/vendor/cairo-sys-rs-0.17.0"
+        "type": "shell",
+        "commands": [
+            "cp -r --reflink=auto \"flatpak-cargo/git/gtk-rs-core-4510666/cairo/sys\" \"cargo/vendor/cairo-sys-rs\""
+        ]
     },
     {
         "type": "inline",
-        "contents": "{\"package\": \"f55382a01d30e5e53f185eee269124f5e21ab526595b872751278dfbb463594e\", \"files\": {}}",
-        "dest": "cargo/vendor/cairo-sys-rs-0.17.0",
+        "contents": "{\"package\": null, \"files\": {}}",
+        "dest": "cargo/vendor/cairo-sys-rs",
         "dest-filename": ".cargo-checksum.json"
     },
     {
@@ -1339,55 +1355,51 @@
         "dest-filename": ".cargo-checksum.json"
     },
     {
-        "type": "archive",
-        "archive-type": "tar-gzip",
-        "url": "https://static.crates.io/crates/gdk-pixbuf/gdk-pixbuf-0.17.0.crate",
-        "sha256": "b023fbe0c6b407bd3d9805d107d9800da3829dc5a676653210f1d5f16d7f59bf",
-        "dest": "cargo/vendor/gdk-pixbuf-0.17.0"
+        "type": "shell",
+        "commands": [
+            "cp -r --reflink=auto \"flatpak-cargo/git/gtk-rs-core-4510666/gdk-pixbuf\" \"cargo/vendor/gdk-pixbuf\""
+        ]
     },
     {
         "type": "inline",
-        "contents": "{\"package\": \"b023fbe0c6b407bd3d9805d107d9800da3829dc5a676653210f1d5f16d7f59bf\", \"files\": {}}",
-        "dest": "cargo/vendor/gdk-pixbuf-0.17.0",
+        "contents": "{\"package\": null, \"files\": {}}",
+        "dest": "cargo/vendor/gdk-pixbuf",
         "dest-filename": ".cargo-checksum.json"
     },
     {
-        "type": "archive",
-        "archive-type": "tar-gzip",
-        "url": "https://static.crates.io/crates/gdk-pixbuf-sys/gdk-pixbuf-sys-0.17.0.crate",
-        "sha256": "7b41bd2b44ed49d99277d3925652a163038bd5ed943ec9809338ffb2f4391e3b",
-        "dest": "cargo/vendor/gdk-pixbuf-sys-0.17.0"
+        "type": "shell",
+        "commands": [
+            "cp -r --reflink=auto \"flatpak-cargo/git/gtk-rs-core-4510666/gdk-pixbuf/sys\" \"cargo/vendor/gdk-pixbuf-sys\""
+        ]
     },
     {
         "type": "inline",
-        "contents": "{\"package\": \"7b41bd2b44ed49d99277d3925652a163038bd5ed943ec9809338ffb2f4391e3b\", \"files\": {}}",
-        "dest": "cargo/vendor/gdk-pixbuf-sys-0.17.0",
+        "contents": "{\"package\": null, \"files\": {}}",
+        "dest": "cargo/vendor/gdk-pixbuf-sys",
         "dest-filename": ".cargo-checksum.json"
     },
     {
-        "type": "archive",
-        "archive-type": "tar-gzip",
-        "url": "https://static.crates.io/crates/gdk4/gdk4-0.6.3.crate",
-        "sha256": "c3abf96408a26e3eddf881a7f893a1e111767137136e347745e8ea6ed12731ff",
-        "dest": "cargo/vendor/gdk4-0.6.3"
+        "type": "shell",
+        "commands": [
+            "cp -r --reflink=auto \"flatpak-cargo/git/gtk4-rs-c4fd92f/gdk4\" \"cargo/vendor/gdk4\""
+        ]
     },
     {
         "type": "inline",
-        "contents": "{\"package\": \"c3abf96408a26e3eddf881a7f893a1e111767137136e347745e8ea6ed12731ff\", \"files\": {}}",
-        "dest": "cargo/vendor/gdk4-0.6.3",
+        "contents": "{\"package\": null, \"files\": {}}",
+        "dest": "cargo/vendor/gdk4",
         "dest-filename": ".cargo-checksum.json"
     },
     {
-        "type": "archive",
-        "archive-type": "tar-gzip",
-        "url": "https://static.crates.io/crates/gdk4-sys/gdk4-sys-0.6.3.crate",
-        "sha256": "1bc92aa1608c089c49393d014c38ac0390d01e4841e1fedaa75dbcef77aaed64",
-        "dest": "cargo/vendor/gdk4-sys-0.6.3"
+        "type": "shell",
+        "commands": [
+            "cp -r --reflink=auto \"flatpak-cargo/git/gtk4-rs-c4fd92f/gdk4/sys\" \"cargo/vendor/gdk4-sys\""
+        ]
     },
     {
         "type": "inline",
-        "contents": "{\"package\": \"1bc92aa1608c089c49393d014c38ac0390d01e4841e1fedaa75dbcef77aaed64\", \"files\": {}}",
-        "dest": "cargo/vendor/gdk4-sys-0.6.3",
+        "contents": "{\"package\": null, \"files\": {}}",
+        "dest": "cargo/vendor/gdk4-sys",
         "dest-filename": ".cargo-checksum.json"
     },
     {
@@ -1482,68 +1494,63 @@
         "dest-filename": ".cargo-checksum.json"
     },
     {
-        "type": "archive",
-        "archive-type": "tar-gzip",
-        "url": "https://static.crates.io/crates/gio/gio-0.17.4.crate",
-        "sha256": "2261a3b4e922ec676d1c27ac466218c38cf5dcb49a759129e54bb5046e442125",
-        "dest": "cargo/vendor/gio-0.17.4"
+        "type": "shell",
+        "commands": [
+            "cp -r --reflink=auto \"flatpak-cargo/git/gtk-rs-core-4510666/gio\" \"cargo/vendor/gio\""
+        ]
     },
     {
         "type": "inline",
-        "contents": "{\"package\": \"2261a3b4e922ec676d1c27ac466218c38cf5dcb49a759129e54bb5046e442125\", \"files\": {}}",
-        "dest": "cargo/vendor/gio-0.17.4",
+        "contents": "{\"package\": null, \"files\": {}}",
+        "dest": "cargo/vendor/gio",
         "dest-filename": ".cargo-checksum.json"
     },
     {
-        "type": "archive",
-        "archive-type": "tar-gzip",
-        "url": "https://static.crates.io/crates/gio-sys/gio-sys-0.17.4.crate",
-        "sha256": "6b1d43b0d7968b48455244ecafe41192871257f5740aa6b095eb19db78e362a5",
-        "dest": "cargo/vendor/gio-sys-0.17.4"
+        "type": "shell",
+        "commands": [
+            "cp -r --reflink=auto \"flatpak-cargo/git/gtk-rs-core-4510666/gio/sys\" \"cargo/vendor/gio-sys\""
+        ]
     },
     {
         "type": "inline",
-        "contents": "{\"package\": \"6b1d43b0d7968b48455244ecafe41192871257f5740aa6b095eb19db78e362a5\", \"files\": {}}",
-        "dest": "cargo/vendor/gio-sys-0.17.4",
+        "contents": "{\"package\": null, \"files\": {}}",
+        "dest": "cargo/vendor/gio-sys",
         "dest-filename": ".cargo-checksum.json"
     },
     {
-        "type": "archive",
-        "archive-type": "tar-gzip",
-        "url": "https://static.crates.io/crates/glib/glib-0.17.5.crate",
-        "sha256": "cfb53061756195d76969292c2d2e329e01259276524a9bae6c9b73af62854773",
-        "dest": "cargo/vendor/glib-0.17.5"
+        "type": "shell",
+        "commands": [
+            "cp -r --reflink=auto \"flatpak-cargo/git/gtk-rs-core-4510666/glib\" \"cargo/vendor/glib\""
+        ]
     },
     {
         "type": "inline",
-        "contents": "{\"package\": \"cfb53061756195d76969292c2d2e329e01259276524a9bae6c9b73af62854773\", \"files\": {}}",
-        "dest": "cargo/vendor/glib-0.17.5",
+        "contents": "{\"package\": null, \"files\": {}}",
+        "dest": "cargo/vendor/glib",
         "dest-filename": ".cargo-checksum.json"
     },
     {
-        "type": "archive",
-        "archive-type": "tar-gzip",
-        "url": "https://static.crates.io/crates/glib-macros/glib-macros-0.17.7.crate",
-        "sha256": "bc4cf346122086f196260783aa58987190dbd5f43bfab01946d2bf9786e8d9ef",
-        "dest": "cargo/vendor/glib-macros-0.17.7"
+        "type": "shell",
+        "commands": [
+            "cp -r --reflink=auto \"flatpak-cargo/git/gtk-rs-core-4510666/glib-macros\" \"cargo/vendor/glib-macros\""
+        ]
     },
     {
         "type": "inline",
-        "contents": "{\"package\": \"bc4cf346122086f196260783aa58987190dbd5f43bfab01946d2bf9786e8d9ef\", \"files\": {}}",
-        "dest": "cargo/vendor/glib-macros-0.17.7",
+        "contents": "{\"package\": null, \"files\": {}}",
+        "dest": "cargo/vendor/glib-macros",
         "dest-filename": ".cargo-checksum.json"
     },
     {
-        "type": "archive",
-        "archive-type": "tar-gzip",
-        "url": "https://static.crates.io/crates/glib-sys/glib-sys-0.17.4.crate",
-        "sha256": "49f00ad0a1bf548e61adfff15d83430941d9e1bb620e334f779edd1c745680a5",
-        "dest": "cargo/vendor/glib-sys-0.17.4"
+        "type": "shell",
+        "commands": [
+            "cp -r --reflink=auto \"flatpak-cargo/git/gtk-rs-core-4510666/glib/sys\" \"cargo/vendor/glib-sys\""
+        ]
     },
     {
         "type": "inline",
-        "contents": "{\"package\": \"49f00ad0a1bf548e61adfff15d83430941d9e1bb620e334f779edd1c745680a5\", \"files\": {}}",
-        "dest": "cargo/vendor/glib-sys-0.17.4",
+        "contents": "{\"package\": null, \"files\": {}}",
+        "dest": "cargo/vendor/glib-sys",
         "dest-filename": ".cargo-checksum.json"
     },
     {
@@ -1560,107 +1567,99 @@
         "dest-filename": ".cargo-checksum.json"
     },
     {
-        "type": "archive",
-        "archive-type": "tar-gzip",
-        "url": "https://static.crates.io/crates/gobject-sys/gobject-sys-0.17.4.crate",
-        "sha256": "15e75b0000a64632b2d8ca3cf856af9308e3a970844f6e9659bd197f026793d0",
-        "dest": "cargo/vendor/gobject-sys-0.17.4"
+        "type": "shell",
+        "commands": [
+            "cp -r --reflink=auto \"flatpak-cargo/git/gtk-rs-core-4510666/glib/gobject-sys\" \"cargo/vendor/gobject-sys\""
+        ]
     },
     {
         "type": "inline",
-        "contents": "{\"package\": \"15e75b0000a64632b2d8ca3cf856af9308e3a970844f6e9659bd197f026793d0\", \"files\": {}}",
-        "dest": "cargo/vendor/gobject-sys-0.17.4",
+        "contents": "{\"package\": null, \"files\": {}}",
+        "dest": "cargo/vendor/gobject-sys",
         "dest-filename": ".cargo-checksum.json"
     },
     {
-        "type": "archive",
-        "archive-type": "tar-gzip",
-        "url": "https://static.crates.io/crates/graphene-rs/graphene-rs-0.17.1.crate",
-        "sha256": "21cf11565bb0e4dfc2f99d4775b6c329f0d40a2cff9c0066214d31a0e1b46256",
-        "dest": "cargo/vendor/graphene-rs-0.17.1"
+        "type": "shell",
+        "commands": [
+            "cp -r --reflink=auto \"flatpak-cargo/git/gtk-rs-core-4510666/graphene\" \"cargo/vendor/graphene-rs\""
+        ]
     },
     {
         "type": "inline",
-        "contents": "{\"package\": \"21cf11565bb0e4dfc2f99d4775b6c329f0d40a2cff9c0066214d31a0e1b46256\", \"files\": {}}",
-        "dest": "cargo/vendor/graphene-rs-0.17.1",
+        "contents": "{\"package\": null, \"files\": {}}",
+        "dest": "cargo/vendor/graphene-rs",
         "dest-filename": ".cargo-checksum.json"
     },
     {
-        "type": "archive",
-        "archive-type": "tar-gzip",
-        "url": "https://static.crates.io/crates/graphene-sys/graphene-sys-0.17.0.crate",
-        "sha256": "cf80a4849a8d9565410a8fec6fc3678e9c617f4ac7be182ca55ab75016e07af9",
-        "dest": "cargo/vendor/graphene-sys-0.17.0"
+        "type": "shell",
+        "commands": [
+            "cp -r --reflink=auto \"flatpak-cargo/git/gtk-rs-core-4510666/graphene/sys\" \"cargo/vendor/graphene-sys\""
+        ]
     },
     {
         "type": "inline",
-        "contents": "{\"package\": \"cf80a4849a8d9565410a8fec6fc3678e9c617f4ac7be182ca55ab75016e07af9\", \"files\": {}}",
-        "dest": "cargo/vendor/graphene-sys-0.17.0",
+        "contents": "{\"package\": null, \"files\": {}}",
+        "dest": "cargo/vendor/graphene-sys",
         "dest-filename": ".cargo-checksum.json"
     },
     {
-        "type": "archive",
-        "archive-type": "tar-gzip",
-        "url": "https://static.crates.io/crates/gsk4/gsk4-0.6.3.crate",
-        "sha256": "6f01ef44fa7cac15e2da9978529383e6bee03e570ba5bf7036b4c10a15cc3a3c",
-        "dest": "cargo/vendor/gsk4-0.6.3"
+        "type": "shell",
+        "commands": [
+            "cp -r --reflink=auto \"flatpak-cargo/git/gtk4-rs-c4fd92f/gsk4\" \"cargo/vendor/gsk4\""
+        ]
     },
     {
         "type": "inline",
-        "contents": "{\"package\": \"6f01ef44fa7cac15e2da9978529383e6bee03e570ba5bf7036b4c10a15cc3a3c\", \"files\": {}}",
-        "dest": "cargo/vendor/gsk4-0.6.3",
+        "contents": "{\"package\": null, \"files\": {}}",
+        "dest": "cargo/vendor/gsk4",
         "dest-filename": ".cargo-checksum.json"
     },
     {
-        "type": "archive",
-        "archive-type": "tar-gzip",
-        "url": "https://static.crates.io/crates/gsk4-sys/gsk4-sys-0.6.3.crate",
-        "sha256": "c07a84fb4dcf1323d29435aa85e2f5f58bef564342bef06775ec7bd0da1f01b0",
-        "dest": "cargo/vendor/gsk4-sys-0.6.3"
+        "type": "shell",
+        "commands": [
+            "cp -r --reflink=auto \"flatpak-cargo/git/gtk4-rs-c4fd92f/gsk4/sys\" \"cargo/vendor/gsk4-sys\""
+        ]
     },
     {
         "type": "inline",
-        "contents": "{\"package\": \"c07a84fb4dcf1323d29435aa85e2f5f58bef564342bef06775ec7bd0da1f01b0\", \"files\": {}}",
-        "dest": "cargo/vendor/gsk4-sys-0.6.3",
+        "contents": "{\"package\": null, \"files\": {}}",
+        "dest": "cargo/vendor/gsk4-sys",
         "dest-filename": ".cargo-checksum.json"
     },
     {
-        "type": "archive",
-        "archive-type": "tar-gzip",
-        "url": "https://static.crates.io/crates/gtk4/gtk4-0.6.4.crate",
-        "sha256": "1e30e124b5a605f6f5513db13958bfcd51d746607b20bc7bb718b33e303274ed",
-        "dest": "cargo/vendor/gtk4-0.6.4"
+        "type": "shell",
+        "commands": [
+            "cp -r --reflink=auto \"flatpak-cargo/git/gtk4-rs-c4fd92f/gtk4\" \"cargo/vendor/gtk4\""
+        ]
     },
     {
         "type": "inline",
-        "contents": "{\"package\": \"1e30e124b5a605f6f5513db13958bfcd51d746607b20bc7bb718b33e303274ed\", \"files\": {}}",
-        "dest": "cargo/vendor/gtk4-0.6.4",
+        "contents": "{\"package\": null, \"files\": {}}",
+        "dest": "cargo/vendor/gtk4",
         "dest-filename": ".cargo-checksum.json"
     },
     {
-        "type": "archive",
-        "archive-type": "tar-gzip",
-        "url": "https://static.crates.io/crates/gtk4-macros/gtk4-macros-0.6.5.crate",
-        "sha256": "f041a797fb098bfb06e432c61738133604bfa3af57f13f1da3b9d46271422ef0",
-        "dest": "cargo/vendor/gtk4-macros-0.6.5"
+        "type": "shell",
+        "commands": [
+            "cp -r --reflink=auto \"flatpak-cargo/git/gtk4-rs-c4fd92f/gtk4-macros\" \"cargo/vendor/gtk4-macros\""
+        ]
     },
     {
         "type": "inline",
-        "contents": "{\"package\": \"f041a797fb098bfb06e432c61738133604bfa3af57f13f1da3b9d46271422ef0\", \"files\": {}}",
-        "dest": "cargo/vendor/gtk4-macros-0.6.5",
+        "contents": "{\"package\": null, \"files\": {}}",
+        "dest": "cargo/vendor/gtk4-macros",
         "dest-filename": ".cargo-checksum.json"
     },
     {
-        "type": "archive",
-        "archive-type": "tar-gzip",
-        "url": "https://static.crates.io/crates/gtk4-sys/gtk4-sys-0.6.3.crate",
-        "sha256": "5f8283f707b07e019e76c7f2934bdd4180c277e08aa93f4c0d8dd07b7a34e22f",
-        "dest": "cargo/vendor/gtk4-sys-0.6.3"
+        "type": "shell",
+        "commands": [
+            "cp -r --reflink=auto \"flatpak-cargo/git/gtk4-rs-c4fd92f/gtk4/sys\" \"cargo/vendor/gtk4-sys\""
+        ]
     },
     {
         "type": "inline",
-        "contents": "{\"package\": \"5f8283f707b07e019e76c7f2934bdd4180c277e08aa93f4c0d8dd07b7a34e22f\", \"files\": {}}",
-        "dest": "cargo/vendor/gtk4-sys-0.6.3",
+        "contents": "{\"package\": null, \"files\": {}}",
+        "dest": "cargo/vendor/gtk4-sys",
         "dest-filename": ".cargo-checksum.json"
     },
     {
@@ -2002,29 +2001,27 @@
         "dest-filename": ".cargo-checksum.json"
     },
     {
-        "type": "archive",
-        "archive-type": "tar-gzip",
-        "url": "https://static.crates.io/crates/libadwaita/libadwaita-0.3.1.crate",
-        "sha256": "b1c4efd2020a4fcedbad2c4a97de97bf6045e5dc49d61d5a5d0cfd753db60700",
-        "dest": "cargo/vendor/libadwaita-0.3.1"
+        "type": "shell",
+        "commands": [
+            "cp -r --reflink=auto \"flatpak-cargo/git/libadwaita-rs-5517266/libadwaita\" \"cargo/vendor/libadwaita\""
+        ]
     },
     {
         "type": "inline",
-        "contents": "{\"package\": \"b1c4efd2020a4fcedbad2c4a97de97bf6045e5dc49d61d5a5d0cfd753db60700\", \"files\": {}}",
-        "dest": "cargo/vendor/libadwaita-0.3.1",
+        "contents": "{\"package\": null, \"files\": {}}",
+        "dest": "cargo/vendor/libadwaita",
         "dest-filename": ".cargo-checksum.json"
     },
     {
-        "type": "archive",
-        "archive-type": "tar-gzip",
-        "url": "https://static.crates.io/crates/libadwaita-sys/libadwaita-sys-0.3.0.crate",
-        "sha256": "0727b85b4fe2b1bed5ac90df6343de15cbf8118bfb96d7c3cc1512681a4b34ac",
-        "dest": "cargo/vendor/libadwaita-sys-0.3.0"
+        "type": "shell",
+        "commands": [
+            "cp -r --reflink=auto \"flatpak-cargo/git/libadwaita-rs-5517266/libadwaita/sys\" \"cargo/vendor/libadwaita-sys\""
+        ]
     },
     {
         "type": "inline",
-        "contents": "{\"package\": \"0727b85b4fe2b1bed5ac90df6343de15cbf8118bfb96d7c3cc1512681a4b34ac\", \"files\": {}}",
-        "dest": "cargo/vendor/libadwaita-sys-0.3.0",
+        "contents": "{\"package\": null, \"files\": {}}",
+        "dest": "cargo/vendor/libadwaita-sys",
         "dest-filename": ".cargo-checksum.json"
     },
     {
@@ -2418,29 +2415,27 @@
         "dest-filename": ".cargo-checksum.json"
     },
     {
-        "type": "archive",
-        "archive-type": "tar-gzip",
-        "url": "https://static.crates.io/crates/pango/pango-0.17.4.crate",
-        "sha256": "52c280b82a881e4208afb3359a8e7fde27a1b272280981f1f34610bed5770d37",
-        "dest": "cargo/vendor/pango-0.17.4"
+        "type": "shell",
+        "commands": [
+            "cp -r --reflink=auto \"flatpak-cargo/git/gtk-rs-core-4510666/pango\" \"cargo/vendor/pango\""
+        ]
     },
     {
         "type": "inline",
-        "contents": "{\"package\": \"52c280b82a881e4208afb3359a8e7fde27a1b272280981f1f34610bed5770d37\", \"files\": {}}",
-        "dest": "cargo/vendor/pango-0.17.4",
+        "contents": "{\"package\": null, \"files\": {}}",
+        "dest": "cargo/vendor/pango",
         "dest-filename": ".cargo-checksum.json"
     },
     {
-        "type": "archive",
-        "archive-type": "tar-gzip",
-        "url": "https://static.crates.io/crates/pango-sys/pango-sys-0.17.0.crate",
-        "sha256": "4293d0f0b5525eb5c24734d30b0ed02cd02aa734f216883f376b54de49625de8",
-        "dest": "cargo/vendor/pango-sys-0.17.0"
+        "type": "shell",
+        "commands": [
+            "cp -r --reflink=auto \"flatpak-cargo/git/gtk-rs-core-4510666/pango/sys\" \"cargo/vendor/pango-sys\""
+        ]
     },
     {
         "type": "inline",
-        "contents": "{\"package\": \"4293d0f0b5525eb5c24734d30b0ed02cd02aa734f216883f376b54de49625de8\", \"files\": {}}",
-        "dest": "cargo/vendor/pango-sys-0.17.0",
+        "contents": "{\"package\": null, \"files\": {}}",
+        "dest": "cargo/vendor/pango-sys",
         "dest-filename": ".cargo-checksum.json"
     },
     {
@@ -3044,27 +3039,27 @@
     {
         "type": "archive",
         "archive-type": "tar-gzip",
-        "url": "https://static.crates.io/crates/serde/serde-1.0.159.crate",
-        "sha256": "3c04e8343c3daeec41f58990b9d77068df31209f2af111e059e9fe9646693065",
-        "dest": "cargo/vendor/serde-1.0.159"
+        "url": "https://static.crates.io/crates/serde/serde-1.0.160.crate",
+        "sha256": "bb2f3770c8bce3bcda7e149193a069a0f4365bda1fa5cd88e03bca26afc1216c",
+        "dest": "cargo/vendor/serde-1.0.160"
     },
     {
         "type": "inline",
-        "contents": "{\"package\": \"3c04e8343c3daeec41f58990b9d77068df31209f2af111e059e9fe9646693065\", \"files\": {}}",
-        "dest": "cargo/vendor/serde-1.0.159",
+        "contents": "{\"package\": \"bb2f3770c8bce3bcda7e149193a069a0f4365bda1fa5cd88e03bca26afc1216c\", \"files\": {}}",
+        "dest": "cargo/vendor/serde-1.0.160",
         "dest-filename": ".cargo-checksum.json"
     },
     {
         "type": "archive",
         "archive-type": "tar-gzip",
-        "url": "https://static.crates.io/crates/serde_derive/serde_derive-1.0.159.crate",
-        "sha256": "4c614d17805b093df4b147b51339e7e44bf05ef59fba1e45d83500bcfb4d8585",
-        "dest": "cargo/vendor/serde_derive-1.0.159"
+        "url": "https://static.crates.io/crates/serde_derive/serde_derive-1.0.160.crate",
+        "sha256": "291a097c63d8497e00160b166a967a4a79c64f3facdd01cbd7502231688d77df",
+        "dest": "cargo/vendor/serde_derive-1.0.160"
     },
     {
         "type": "inline",
-        "contents": "{\"package\": \"4c614d17805b093df4b147b51339e7e44bf05ef59fba1e45d83500bcfb4d8585\", \"files\": {}}",
-        "dest": "cargo/vendor/serde_derive-1.0.159",
+        "contents": "{\"package\": \"291a097c63d8497e00160b166a967a4a79c64f3facdd01cbd7502231688d77df\", \"files\": {}}",
+        "dest": "cargo/vendor/serde_derive-1.0.160",
         "dest-filename": ".cargo-checksum.json"
     },
     {
@@ -3343,14 +3338,14 @@
     {
         "type": "archive",
         "archive-type": "tar-gzip",
-        "url": "https://static.crates.io/crates/syn/syn-2.0.13.crate",
-        "sha256": "4c9da457c5285ac1f936ebd076af6dac17a61cfe7826f2076b4d015cf47bc8ec",
-        "dest": "cargo/vendor/syn-2.0.13"
+        "url": "https://static.crates.io/crates/syn/syn-2.0.14.crate",
+        "sha256": "fcf316d5356ed6847742d036f8a39c3b8435cac10bd528a4bd461928a6ab34d5",
+        "dest": "cargo/vendor/syn-2.0.14"
     },
     {
         "type": "inline",
-        "contents": "{\"package\": \"4c9da457c5285ac1f936ebd076af6dac17a61cfe7826f2076b4d015cf47bc8ec\", \"files\": {}}",
-        "dest": "cargo/vendor/syn-2.0.13",
+        "contents": "{\"package\": \"fcf316d5356ed6847742d036f8a39c3b8435cac10bd528a4bd461928a6ab34d5\", \"files\": {}}",
+        "dest": "cargo/vendor/syn-2.0.14",
         "dest-filename": ".cargo-checksum.json"
     },
     {
@@ -4473,7 +4468,7 @@
     },
     {
         "type": "inline",
-        "contents": "[source.vendored-sources]\ndirectory = \"cargo/vendor\"\n\n[source.crates-io]\nreplace-with = \"vendored-sources\"\n",
+        "contents": "[source.vendored-sources]\ndirectory = \"cargo/vendor\"\n\n[source.crates-io]\nreplace-with = \"vendored-sources\"\n\n[source.\"https://github.com/gtk-rs/gtk-rs-core\"]\ngit = \"https://github.com/gtk-rs/gtk-rs-core\"\nreplace-with = \"vendored-sources\"\n\n[source.\"https://github.com/gtk-rs/gtk4-rs\"]\ngit = \"https://github.com/gtk-rs/gtk4-rs\"\nreplace-with = \"vendored-sources\"\n\n[source.\"https://gitlab.gnome.org/felinira/libadwaita-rs\"]\ngit = \"https://gitlab.gnome.org/felinira/libadwaita-rs\"\nreplace-with = \"vendored-sources\"\n",
         "dest": "cargo",
         "dest-filename": "config"
     }

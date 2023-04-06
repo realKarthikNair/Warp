@@ -42,7 +42,7 @@ base_id = 'app.drey.Warp'
 dependency('glib-2.0', version: '>= 2.66')
 dependency('gio-2.0', version: '>= 2.66')
 dependency('gtk4', version: '>= 4.10.0')
-dependency('libadwaita-1', version: '>= 1.3')
+dependency('libadwaita-1', version: '>= 1.4.alpha')
 
 glib_compile_schemas = find_program('glib-compile-schemas', required: true)
 desktop_file_validate = find_program('desktop-file-validate', required: false)
