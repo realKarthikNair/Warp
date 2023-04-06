@@ -64,3 +64,8 @@ if appstream_cli.found()
     depends: appdata_file,
   )
 endif
+# Copy appdata to gresource dir
+appdata_gresource = install_data(
+  meson.project_build_root() / 'data' / '@0@.metainfo.xml'.format(application_id),
+  install_dir: meson.project_source_root() / 'data' / 'resources',
+)
