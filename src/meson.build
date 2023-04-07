@@ -41,6 +41,7 @@ cargo_build = custom_target(
   console: true,
   install: true,
   install_dir: bindir,
+  depends: appdata_gresource,
   command: [
     'env',
     cargo_env,
