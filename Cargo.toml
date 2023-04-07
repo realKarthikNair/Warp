@@ -57,9 +57,5 @@ async-broadcast = "0.5"
 [target.'cfg(windows)'.dependencies]
 win32console = "0.1"
 
-[build-dependencies]
-xml-rs = "0.8"
-walkdir = "2"
-
 [features]
 meson = []
