@@ -7,10 +7,16 @@ use smol::fs::File;
 use super::error::{AppError, UiError};
 
 // See https://github.com/Majored/rs-async-zip/blob/main/examples/cli_compress.rs
-async fn handle_directory<W: AsyncWrite + Unpin>(
+async fn handle_directory<W: AsyncWrite + Unpin, F: Fn(usize, usize)>(
     input_path: &Path,
     writer: &mut ZipFileWriter<W>,
+    callback: F,
 ) -> Result<(), AppError> {
+    let mut num_files = 0;
+    let mut size = 0;
+
+    callback(0, 0);
+
     let entries = walk_dir(input_path.into()).await?;
     let input_dir_str = input_path
         .as_os_str()
@@ -36,7 +42,11 @@ async fn handle_directory<W: AsyncWrite + Unpin>(
         }
 
         let entry_str = &entry_str[input_dir_str.len() + 1..];
-        write_entry(entry_str, entry_path, writer).await?;
+        size += write_entry(entry_str, entry_path, writer).await?;
+
+        num_files += 1;
+
+        callback(num_files, size);
     }
 
     Ok(())
@@ -46,17 +56,18 @@ async fn write_entry<W: AsyncWrite + Unpin>(
     filename: &str,
     input_path: &Path,
     writer: &mut ZipFileWriter<W>,
-) -> Result<(), AppError> {
+) -> Result<usize, AppError> {
     let mut input_file = File::open(input_path).await?;
     let input_file_size = input_file.metadata().await?.len() as usize;
 
     let mut buffer = Vec::with_capacity(input_file_size);
     input_file.read_to_end(&mut buffer).await?;
+    let size = buffer.len();
 
     let builder = ZipEntryBuilder::new(filename.into(), Compression::Stored);
     writer.write_entry_whole(builder, &buffer).await?;
 
-    Ok(())
+    Ok(size)
 }
 
 async fn walk_dir(dir: PathBuf) -> Result<Vec<PathBuf>, AppError> {
@@ -80,14 +91,18 @@ async fn walk_dir(dir: PathBuf) -> Result<Vec<PathBuf>, AppError> {
     Ok(files)
 }
 
-pub async fn zip_dir<W: AsyncWrite + Unpin>(dir: &Path, writer: W) -> Result<(), AppError> {
+pub async fn zip_dir<W: AsyncWrite + Unpin, F: Fn(usize, usize)>(
+    dir: &Path,
+    writer: W,
+    callback: F,
+) -> Result<(), AppError> {
     let mut output_writer = ZipFileWriter::new(writer);
 
     if !dir.is_dir() {
         return Err(UiError::new(&"Directory expected").into());
     }
 
-    handle_directory(dir, &mut output_writer).await?;
+    handle_directory(dir, &mut output_writer, callback).await?;
 
     output_writer.close().await?;
 

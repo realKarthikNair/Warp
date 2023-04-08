@@ -1,6 +1,6 @@
 use super::fs;
 use super::progress::FileTransferProgress;
-use crate::gettext::gettextf;
+use crate::gettext::*;
 use crate::ui::fs::safe_persist_tempfile;
 use crate::ui::window::WarpApplicationWindow;
 use crate::util::error::*;
@@ -437,6 +437,8 @@ impl ActionView {
                             "Compressing folder “{}”",
                             &[&filename.to_string_lossy()],
                         )));
+                    imp.progress_bar.set_text(None);
+                    imp.progress_bar.set_show_text(true);
                 }
                 TransferDirection::Receive => {
                     // We don't create archives here
@@ -451,6 +453,8 @@ impl ActionView {
                     imp.status_page
                         // Translators: Description, Filename
                         .set_description(Some(&gettext("Requesting file transfer")));
+                    imp.progress_bar.set_text(None);
+                    imp.progress_bar.set_show_text(false);
                 }
                 TransferDirection::Receive => {}
             },
@@ -798,7 +802,12 @@ impl ActionView {
             self.set_ui_state(UIState::Archive(filename.clone()));
             filename.push(".zip");
 
-            let temp_file = fs::compress_folder_cancelable(path, self.cancel_future()).await?;
+            let temp_file = fs::compress_folder_cancelable(
+                path,
+                self.cancel_future(),
+                Self::zip_progress_handler,
+            )
+            .await?;
             (
                 smol::fs::File::from(temp_file.reopen()?),
                 temp_file.path().to_path_buf(),
@@ -1157,6 +1166,25 @@ impl ActionView {
                 imp.progress_bar.set_fraction(sent as f64 / total as f64);
                 imp.progress_bar.set_text(Some(&progress_str));
             }
+        });
+    }
+
+    fn zip_progress_handler(count: usize, size: usize) {
+        invoke_main_with_app(move |app| {
+            let obj = app.main_window().action_view();
+            let imp = obj.imp();
+
+            let size_str = glib::format_size(size as u64);
+            let data_str = ngettextf(
+                // Translators: Above progress bar for creating an archive to send as a folder
+                "{} File - Size: {}",
+                "{} Files - Size: {}",
+                count as u32,
+                &[&count.to_string(), &size_str],
+            );
+
+            log::trace!("ZIP progress: {}", data_str);
+            imp.progress_bar.set_text(Some(&data_str));
         });
     }
 

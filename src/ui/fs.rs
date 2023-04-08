@@ -26,11 +26,12 @@ pub fn default_download_dir() -> Result<PathBuf, AppError> {
     }
 }
 
-pub async fn compress_folder_cancelable(
+pub async fn compress_folder_cancelable<F: 'static + Fn(usize, usize) + Send>(
     path: &Path,
     cancel_future: impl Future<Output = ()>,
+    progress_callback: F,
 ) -> Result<tempfile::NamedTempFile, AppError> {
-    let tar_path_future = compress_folder(path);
+    let tar_path_future = compress_folder(path, progress_callback);
     let tar_path_future = tar_path_future.fuse();
     let cancel_future = cancel_future.fuse();
 
@@ -53,7 +54,10 @@ pub async fn compress_folder_cancelable(
     }
 }
 
-pub async fn compress_folder(path: &Path) -> Result<tempfile::NamedTempFile, AppError> {
+pub async fn compress_folder<F: 'static + Fn(usize, usize) + Send>(
+    path: &Path,
+    progress_callback: F,
+) -> Result<tempfile::NamedTempFile, AppError> {
     let path = path.to_path_buf();
     assert!(path.is_dir(), "Wrong compress_folder invocation");
 
@@ -69,7 +73,7 @@ pub async fn compress_folder(path: &Path) -> Result<tempfile::NamedTempFile, App
 
     log::debug!("Creating archive: {}", zip_file.path().display());
     smol::spawn(async move {
-        crate::util::zip::zip_dir(&path, &mut async_zip_file).await?;
+        crate::util::zip::zip_dir(&path, &mut async_zip_file, progress_callback).await?;
         Ok(zip_file)
     })
     .await
