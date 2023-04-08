@@ -9,6 +9,7 @@ use std::str::FromStr;
 
 pub mod error;
 pub mod future;
+pub mod zip;
 
 pub fn show_dir(path: &std::path::Path) -> Result<(), AppError> {
     if cfg!(windows) {

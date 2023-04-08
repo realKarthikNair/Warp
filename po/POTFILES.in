@@ -22,3 +22,4 @@ src/ui/window.ui
 src/util.rs
 src/util/error.rs
 src/util/future.rs
+src/util/zip.rs

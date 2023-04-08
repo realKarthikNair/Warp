@@ -6,8 +6,6 @@ use futures::{pin_mut, select};
 use std::ffi::{OsStr, OsString};
 use std::future::Future;
 use std::path::{Path, PathBuf};
-use zip::ZipWriter;
-use zip_extensions::write::ZipWriterExtensions;
 
 use super::application::WarpApplication;
 
@@ -62,16 +60,16 @@ pub async fn compress_folder(path: &Path) -> Result<tempfile::NamedTempFile, App
     let tmp_dir = &*globals::CACHE_DIR;
     std::fs::create_dir_all(tmp_dir)?;
 
-    let mut zip_file = tempfile::Builder::new()
+    let zip_file = tempfile::Builder::new()
         .prefix("warp_archive_")
         .suffix(".zip")
         .tempfile_in(tmp_dir)?;
 
+    let mut async_zip_file = smol::fs::File::from(zip_file.reopen()?);
+
     log::debug!("Creating archive: {}", zip_file.path().display());
     smol::spawn(async move {
-        let mut zip = ZipWriter::new(&mut zip_file);
-        zip.create_from_directory(&path)?;
-        drop(zip);
+        crate::util::zip::zip_dir(&path, &mut async_zip_file).await?;
         Ok(zip_file)
     })
     .await

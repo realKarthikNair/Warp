@@ -49,10 +49,9 @@ thiserror = "1.0"
 tempfile = "3.4.0"
 backtrace = "0.3"
 qrcode = "0.12"
-zip = "0.5"
-zip-extensions = "0.6"
 zbus = "3.3"
 async-broadcast = "0.5"
+async_zip = "0.0.13"
 
 [target.'cfg(windows)'.dependencies]
 win32console = "0.1"
