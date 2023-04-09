@@ -1,73 +1,77 @@
 # Serbian translation for warp.
 # Copyright (C) 2022 warp's COPYRIGHT HOLDER
 # This file is distributed under the same license as the warp package.
-# Марко Костић <marko.m.kostic@gmail.com>, 2022.
+# Мирослав Николић <miroslavnikolić@rocketmail.com>, 2022.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: warp main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
-"POT-Creation-Date: 2022-08-18 14:30+0000\n"
-"PO-Revision-Date: 2022-08-23 22:13+0200\n"
-"Last-Translator: Марко М. Костић <marko.m.kostic@gmail.com>\n"
-"Language-Team: Serbian <gnome-sr@googlegroups.com>\n"
+"POT-Creation-Date: 2022-08-04 11:50+0000\n"
+"PO-Revision-Date: 2022-08-12 14:52+0200\n"
+"Last-Translator: Мирослав Николић <miroslavnikolić@rocketmail.com>\n"
+"Language-Team: Serbian <српски <gnome-sr@googlegroups.org>>\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=n==1? 3 : n%10==1 && n%100!=11 ? 0 : n"
-"%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Poedit 3.1.1\n"
+"%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2\n"
 
 #: data/app.drey.Warp.desktop.in.in:3 data/app.drey.Warp.metainfo.xml.in.in:7
 #: src/main.rs:94
 msgid "Warp"
-msgstr "Ворп"
+msgstr "Варп"
 
 #: data/app.drey.Warp.desktop.in.in:4 data/app.drey.Warp.metainfo.xml.in.in:8
 #: data/resources/ui/welcome_window.ui:40
 msgid "Fast and secure file transfer"
-msgstr ""
+msgstr "Брз и безбедан пренос датотека"
 
 #: data/app.drey.Warp.desktop.in.in:9
 msgid "Gnome;GTK;Wormhole;Magic-Wormhole;"
 msgstr ""
+"Гном;Гтк;црвоточина;магична-црвоточина;Gnome;GTK;Wormhole;Magic-Wormhole;"
 
 #: data/app.drey.Warp.metainfo.xml.in.in:10
 msgid ""
 "Warp allows you to securely send files to each other via the internet or "
 "local network by exchanging a word-based code."
 msgstr ""
+"Варп вам омогућава да безбедно шаљете датотеке једни другима путем интернета "
+"или месне мреже размењујући на речи заснован код."
 
 #: data/app.drey.Warp.metainfo.xml.in.in:13
 msgid ""
 "The best transfer method will be determined using the “Magic Wormhole” "
 "protocol which includes local network transfer if possible."
 msgstr ""
+"Најбољи начин преноса биће одређен коришћењем „Magic Wormhole“ протокола "
+"који укључује пренос месне мреже ако је могуће."
 
 #: data/app.drey.Warp.metainfo.xml.in.in:16
 msgid "Features"
-msgstr "Могућности"
+msgstr "Функције"
 
 #: data/app.drey.Warp.metainfo.xml.in.in:18
 msgid "Send files between multiple devices"
-msgstr ""
+msgstr "Слање датотека између више уређаја"
 
 #: data/app.drey.Warp.metainfo.xml.in.in:19
 msgid "Every file transfer is encrypted"
-msgstr ""
+msgstr "Сваки пренос датотеке је шифрован"
 
 #: data/app.drey.Warp.metainfo.xml.in.in:20
 msgid "Directly transfer files on the local network if possible"
-msgstr ""
+msgstr "Непосредни пренос датотека на месној мрежи ако је могуће"
 
 #: data/app.drey.Warp.metainfo.xml.in.in:21
 msgid "An internet connection is required"
-msgstr ""
+msgstr "Интернет веза је потребна"
 
 #: data/app.drey.Warp.metainfo.xml.in.in:22
 msgid "Compatibility with the “Magic Wormhole” command line client"
-msgstr ""
+msgstr "Сагласност са „Magic Wormhole“ клијентом линије наредби"
 
 #: data/app.drey.Warp.metainfo.xml.in.in:28
 msgid "Main Window"
@@ -76,30 +80,30 @@ msgstr "Главни прозор"
 #. Translators: Entry placeholder; This is a noun
 #: data/app.drey.Warp.metainfo.xml.in.in:32 data/resources/ui/window.ui:185
 msgid "Transmit Code"
-msgstr ""
+msgstr "Код преноса"
 
 #: data/app.drey.Warp.metainfo.xml.in.in:36
 #: data/resources/ui/action_view.ui:116
 msgid "Accept File Transfer"
-msgstr ""
+msgstr "Прихвати пренос датотека"
 
 #. Translators: Title
 #: data/app.drey.Warp.metainfo.xml.in.in:40 src/ui/action_view.rs:558
 msgid "Sending File"
-msgstr ""
+msgstr "Шаљем датотеке"
 
 #. Translators: Title
 #: data/app.drey.Warp.metainfo.xml.in.in:44 src/ui/action_view.rs:562
 msgid "Receiving File"
-msgstr ""
+msgstr "Примам датотеке"
 
 #: data/app.drey.Warp.metainfo.xml.in.in:48 src/ui/action_view.rs:579
 msgid "File Transfer Complete"
-msgstr ""
+msgstr "Пренос датотеке је обављен"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:128
+#: data/app.drey.Warp.metainfo.xml.in.in:119
 msgid "Fina Wilke"
-msgstr "Фина Вилки"
+msgstr "Фина Вилке"
 
 #. Translators: Button
 #: data/resources/ui/action_view.ui:17 data/resources/ui/window.ui:31
@@ -115,12 +119,12 @@ msgstr "Назад"
 #. Translators: Button; Transmit Link is a noun
 #: data/resources/ui/action_view.ui:68
 msgid "Copy Transmit Link"
-msgstr ""
+msgstr "Умножи везу преноса"
 
 #. Translators: Button; Transmit Code is a noun
 #: data/resources/ui/action_view.ui:75
 msgid "Copy Transmit Code"
-msgstr ""
+msgstr "Умножи код преноса"
 
 #. Translators: Button
 #: data/resources/ui/action_view.ui:89 data/resources/ui/action_view.ui:91
@@ -130,7 +134,7 @@ msgstr "Отвори датотеку"
 #. Translators: Button
 #: data/resources/ui/action_view.ui:102 data/resources/ui/action_view.ui:104
 msgid "Show in Folder"
-msgstr ""
+msgstr "Прикажи у фасцикли"
 
 #. Translators: Button
 #: data/resources/ui/action_view.ui:119
@@ -139,12 +143,12 @@ msgstr "Прихвати"
 
 #: data/resources/ui/action_view.ui:130
 msgid "Copy a detailed message for reporting an issue"
-msgstr ""
+msgstr "Умножите детаљну поруку за извештавање о грешци"
 
 #. Translators: Button
 #: data/resources/ui/action_view.ui:133
 msgid "Copy Error Message"
-msgstr ""
+msgstr "Умножи поруку грешке"
 
 #: data/resources/ui/help_overlay.ui:11
 msgctxt "shortcut window"
@@ -154,32 +158,32 @@ msgstr "Опште"
 #: data/resources/ui/help_overlay.ui:14
 msgctxt "shortcut window"
 msgid "Show Shortcuts"
-msgstr "Прикажи пречице"
+msgstr "Приказ пречица"
 
 #: data/resources/ui/help_overlay.ui:20
 msgctxt "shortcut window"
 msgid "Quit"
-msgstr "Затвара програм"
+msgstr "Излаз"
 
 #: data/resources/ui/help_overlay.ui:28
 msgctxt "shortcut window"
 msgid "File Transfer"
-msgstr ""
+msgstr "Пренос датотеке"
 
 #: data/resources/ui/help_overlay.ui:31
 msgctxt "shortcut window"
 msgid "Send File"
-msgstr "Пошаљи датотеку"
+msgstr "Слање датотеке"
 
 #: data/resources/ui/help_overlay.ui:37
 msgctxt "shortcut window"
 msgid "Send Folder"
-msgstr "Пошаљи фасциклу"
+msgstr "Слање фасцикле"
 
 #: data/resources/ui/help_overlay.ui:43
 msgctxt "shortcut window"
 msgid "Receive File"
-msgstr "Прими датотеку"
+msgstr "Примање датотеке"
 
 #: data/resources/ui/preferences.ui:6
 msgid "Preferences"
@@ -191,7 +195,7 @@ msgstr "Мрежа"
 
 #: data/resources/ui/preferences.ui:15
 msgid "Server URLs"
-msgstr ""
+msgstr "Адресе сервера"
 
 #: data/resources/ui/preferences.ui:16
 msgid ""
@@ -200,18 +204,22 @@ msgid ""
 "\n"
 "Leaving these entries empty will use the application defaults."
 msgstr ""
+"Промена адресе сервера састанка треба да се уради на обе стране преноса. "
+"Унесите само адресу сервера коме можете веровати.\n"
+"\n"
+"Ако ове уносе оставите празним користиће се основности програма."
 
 #: data/resources/ui/preferences.ui:21
 msgid "Rendezvous Server URL"
-msgstr ""
+msgstr "Адреса сервера састанка"
 
 #: data/resources/ui/preferences.ui:28
 msgid "Transit Server URL"
-msgstr ""
+msgstr "Адреса сервера пролаза"
 
 #: data/resources/ui/preferences.ui:37
 msgid "Code Words"
-msgstr ""
+msgstr "Кодне речи"
 
 #: data/resources/ui/preferences.ui:38
 msgid ""
@@ -221,10 +229,15 @@ msgid ""
 "guessing the code. As a code may only be guessed once, the risk is very "
 "small even with short codes. A length of 4 is very secure."
 msgstr ""
+"Дужина кодне речи одређује безбедност преноса.\n"
+"\n"
+"Кратка шифра је лака за памћење али повећава ризик њеног откривања од стране "
+"непознатих лица. Како шифра може бити погођена само једном, ризик је врло "
+"мали чак и са кратким шифрама. Дужина од 4 је врло безбедна."
 
 #: data/resources/ui/preferences.ui:43
 msgid "Code Word Count"
-msgstr ""
+msgstr "Дужина кодне речи"
 
 #: data/resources/ui/welcome_window.ui:5
 msgid "Welcome"
@@ -242,7 +255,7 @@ msgstr "Следеће"
 
 #: data/resources/ui/welcome_window.ui:39
 msgid "Welcome to Warp"
-msgstr ""
+msgstr "Добродошли у Варп"
 
 #: data/resources/ui/welcome_window.ui:86
 msgid "Introduction"
@@ -265,7 +278,7 @@ msgstr ""
 #. Translators: Big button to finish welcome screen
 #: data/resources/ui/welcome_window.ui:109
 msgid "Get Started Using Warp"
-msgstr ""
+msgstr "Започните коришћење Варпа"
 
 #. Translators: menu item
 #: data/resources/ui/window.ui:7
@@ -275,7 +288,7 @@ msgstr "_Поставке"
 #. Translators: menu item
 #: data/resources/ui/window.ui:12
 msgid "_Keyboard Shortcuts"
-msgstr "Пречице на та_статури"
+msgstr "_Пречице тастатуре"
 
 #. Translators: menu item
 #: data/resources/ui/window.ui:17
@@ -285,11 +298,11 @@ msgstr "По_моћ"
 #. Translators: menu item
 #: data/resources/ui/window.ui:22
 msgid "_About Warp"
-msgstr ""
+msgstr "_О Варпу"
 
 #: data/resources/ui/window.ui:28
 msgid "Select file to send"
-msgstr "Изабери датотеку за слање"
+msgstr "Изаберите датотеке за слање"
 
 #: data/resources/ui/window.ui:30
 msgid "Open"
@@ -297,7 +310,7 @@ msgstr "Отвори"
 
 #: data/resources/ui/window.ui:34
 msgid "Select folder to send"
-msgstr "Изабери фасциклу за слање"
+msgstr "Изаберите фасциклу за слање"
 
 #: data/resources/ui/window.ui:36
 msgid "Open Folder"
@@ -311,11 +324,11 @@ msgstr ""
 #. Translators: File receive confirmation message dialog title
 #: data/resources/ui/window.ui:46
 msgid "Abort File Transfer?"
-msgstr ""
+msgstr "Да прекинем пренос датотеке?"
 
 #: data/resources/ui/window.ui:47
 msgid "Do you want to abort the current file transfer?"
-msgstr ""
+msgstr "Да ли желите да прекинете текући пренос датотеке?"
 
 #: data/resources/ui/window.ui:53
 msgid "_Continue"
@@ -328,7 +341,7 @@ msgstr "_Прекини"
 #. Translators: Error dialog title
 #: data/resources/ui/window.ui:59
 msgid "Unable to Open File"
-msgstr ""
+msgstr "Не могу да отворим датотеку"
 
 #: data/resources/ui/window.ui:64
 msgid "_Close"
@@ -336,7 +349,7 @@ msgstr "_Затвори"
 
 #: data/resources/ui/window.ui:65
 msgid "_Show in Folder"
-msgstr ""
+msgstr "_Прикажи у фасцикли"
 
 #: data/resources/ui/window.ui:110
 msgid "Send"
@@ -344,11 +357,11 @@ msgstr "Пошаљи"
 
 #: data/resources/ui/window.ui:121
 msgid "Send File"
-msgstr "Пошаљи датотеку"
+msgstr "Пошаљите датотеку"
 
 #: data/resources/ui/window.ui:122
 msgid "Select or drop the file or directory to send"
-msgstr ""
+msgstr "Изаберите или убаците датотеку или директоријум за слање"
 
 #. Translators: Button
 #: data/resources/ui/window.ui:132
@@ -372,49 +385,49 @@ msgstr "Прими датотеку"
 #. Translators: Text above code input box, transmit code is a noun
 #: data/resources/ui/window.ui:173
 msgid "Enter the transmit code from the sender"
-msgstr ""
+msgstr "Унесите шифру преноса пошиљаоца"
 
 #. Translators: {0} = file size transferred, {1} = total file size, Example: 17.3MB / 20.5MB
 #: src/gettext/duration.rs:12
 msgctxt "File size transferred"
 msgid "{0} / {1}"
-msgstr ""
+msgstr "{0} / {1}"
 
 #. Translators: File transfer time left
 #: src/gettext/duration.rs:19
 msgid "One second left"
 msgid_plural "{} seconds left"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Преостала је {} секунда"
+msgstr[1] "Преостале су {} секунде"
+msgstr[2] "Преостало је {} секунди"
+msgstr[3] "Преостала је једна секунда"
 
 #. Translators: File transfer time left
 #: src/gettext/duration.rs:27
 msgid "One minute left"
 msgid_plural "{} minutes left"
-msgstr[0] "{} минут је преостао"
-msgstr[1] "{} минута је преостало"
-msgstr[2] "{} минута је преостало"
-msgstr[3] "{} минут је преостао"
+msgstr[0] "Преостао је {} минут"
+msgstr[1] "Преостала су {} минута"
+msgstr[2] "Преостало је {} минута"
+msgstr[3] "Преостао је један минут"
 
 #. Translators: File transfer time left
 #: src/gettext/duration.rs:35
 msgid "One hour left"
 msgid_plural "{} hours left"
-msgstr[0] "{} сат је преостао"
-msgstr[1] "{} сата је преостало"
-msgstr[2] "{} сати је преостало"
-msgstr[3] "{} сат је преостао"
+msgstr[0] "Преостао је {} сат"
+msgstr[1] "Преостала су {} сата"
+msgstr[2] "Преостало је {} сати"
+msgstr[3] "Преостао је један сат"
 
 #. Translators: File transfer time left
 #: src/gettext/duration.rs:43
 msgid "One day left"
 msgid_plural "{} days left"
-msgstr[0] "{} дан је преостао"
-msgstr[1] "{} дана је преостало"
-msgstr[2] "{} дана је преостало"
-msgstr[3] "{} дан је преостао"
+msgstr[0] "Преостао је {} дан"
+msgstr[1] "Преостала су {} дана"
+msgstr[2] "Преостало је {} дана"
+msgstr[3] "Преостао је један дан"
 
 #. Translators: {0} = 11.3MB / 20.7MB, {1} = 3 seconds left
 #: src/gettext/duration.rs:53
@@ -434,7 +447,7 @@ msgstr ""
 
 #: src/ui/action_view.rs:276
 msgid "No error available"
-msgstr "Нема доступних грешака"
+msgstr ""
 
 #. Translators: Title
 #: src/ui/action_view.rs:395
@@ -448,7 +461,7 @@ msgstr ""
 #. Translators: Title
 #: src/ui/action_view.rs:412 src/ui/action_view.rs:457
 msgid "Connecting"
-msgstr "Повезујем се"
+msgstr ""
 
 #. Translators: Description, Filename
 #: src/ui/action_view.rs:415
@@ -509,7 +522,7 @@ msgstr ""
 
 #: src/ui/action_view.rs:504
 msgid "Ready to Receive File"
-msgstr "Спреман за пријем датотеке"
+msgstr ""
 
 #: src/ui/action_view.rs:506
 msgid ""
@@ -591,9 +604,6 @@ msgstr ""
 #: src/ui/application.rs:205
 msgid "translator-credits"
 msgstr ""
-"Марко М. Костић <marko.m.kostic@gmail.com>\n"
-"\n"
-"https://гном.срб — превод Гнома на српски језик."
 
 #: src/ui/application.rs:208
 msgid "Tobias Bernard"
@@ -601,7 +611,7 @@ msgstr ""
 
 #: src/ui/application.rs:208
 msgid "Sophie Herold"
-msgstr "Софија Херолд"
+msgstr ""
 
 #: src/ui/application.rs:224
 msgid "Sending a File"
@@ -663,7 +673,7 @@ msgstr ""
 
 #: src/util/error.rs:142
 msgid "An error occurred"
-msgstr "Дошло је до грешке"
+msgstr ""
 
 #: src/util/error.rs:172 src/util/error.rs:237
 msgid "Corrupt or unexpected message received"
@@ -712,7 +722,7 @@ msgstr ""
 #: src/util/error.rs:193 src/util/error.rs:248 src/util/error.rs:253
 #: src/util/error.rs:256
 msgid "An unknown error occurred"
-msgstr "Дошло је до непознате грешке"
+msgstr ""
 
 #: src/util/error.rs:199
 msgid "File / Directory not found"
@@ -720,7 +730,7 @@ msgstr ""
 
 #: src/util/error.rs:200
 msgid "Permission denied"
-msgstr "Приступ је одбијен"
+msgstr ""
 
 #: src/util/error.rs:212
 msgid "Transfer was not acknowledged by peer"
