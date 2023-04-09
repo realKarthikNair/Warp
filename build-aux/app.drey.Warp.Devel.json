@@ -6,6 +6,11 @@
   "sdk-extensions": [
     "org.freedesktop.Sdk.Extension.rust-stable"
   ],
+  "build-options": {
+    "env": {
+      "CARGO_REGISTRIES_CRATES_IO_PROTOCOL": "sparse"
+    }
+  },
   "command": "warp",
   "finish-args": [
     "--socket=fallback-x11",

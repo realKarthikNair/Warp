@@ -5,6 +5,9 @@ runtime-version: '44'
 sdk: org.gnome.Sdk
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.rust-stable
+build-options:
+  env:
+    CARGO_REGISTRIES_CRATES_IO_PROTOCOL: "sparse"
 command: warp
 finish-args:
   # X11 and Wayland
