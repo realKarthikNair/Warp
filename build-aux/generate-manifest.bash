@@ -1,16 +1,37 @@
 #!/usr/bin/env bash
 set -e
 
-./build-aux/flatpak-cargo-generator.py -o build-aux/cargo-sources.json Cargo.lock || echo "error generating cargo sources" && exit 0
+./build-aux/flatpak-cargo-generator.py -o build-aux/cargo-sources.json Cargo.lock || (echo "error generating cargo sources"; exit 0)
 
-builtin type -P yq &> /dev/null || echo "yq not found, skipping manifest generation" && exit 0
+builtin type -P yq &> /dev/null || (echo "yq not found, skipping manifest generation"; exit 0)
 
-yq '
+yq -o json '
 .["app-id"] += ".Devel" |
 .["finish-args"] += ["--env=RUST_LOG=warp=debug", "--env=G_MESSAGES_DEBUG=none", "--env=RUST_BACKTRACE=1"] |
 .["runtime-version"] = "master" |
-.modules |= map(if .name=="warp" then .["sources"][0] = {type: "dir", path: "../", skip: ["target", "build", "_build", "builddir", "build-aux/app", ".flatpak", ".flatpak-builder", "build-aux/.flatpak", "build-aux/.flatpak-builder", "flatpak_out", "flatpak_repo", ".fenv"]} else . end) |
-.modules |= map(if .name=="warp" then .["config-opts"] += ["-Dprofile=development"] else . end) |
-.modules |= map(if .name=="warp" then .["config-opts"] -= ["-Dprofile=default"] else . end) |
-.modules |= map(if .name=="warp" then .["run-tests"] = true else . end)' \
+.modules[] |= (
+    with(select(.name == "warp");
+        .["sources"][0] = {
+            "type": "dir",
+            "path": "../",
+            "skip": [
+                "target",
+                "build",
+                "_build",
+                "builddir",
+                "build-aux/app",
+                ".flatpak",
+                ".flatpak-builder",
+                "build-aux/.flatpak",
+                "build-aux/.flatpak-builder",
+                "flatpak_out",
+                "flatpak_repo",
+                ".fenv"
+            ]
+        } |
+        .["config-opts"] += ["-Dprofile=development"] |
+        .["config-opts"] -= ["-Dprofile=default"] |
+        .["run-tests"] = true
+    )
+)' \
 build-aux/app.drey.Warp.yaml > build-aux/app.drey.Warp.Devel.json
