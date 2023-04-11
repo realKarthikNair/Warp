@@ -8,181 +8,184 @@
     <property name="modal">True</property>
     <signal name="response" handler="save_as_file_selected" swapped="true"/>
   </object>
-  <template class="ActionView" parent="GtkBox">
-    <property name="orientation">vertical</property>
-    <child>
-      <object class="AdwHeaderBar" id="headerbar">
-        <property name="centering-policy">strict</property>
-        <property name="title-widget">
-          <object class="GtkBox"/>
-        </property>
-        <style>
-          <class name="flat"/>
-        </style>
-        <child type="start">
-          <object class="GtkButton" id="cancel_button">
-            <signal name="clicked" handler="cancel_button_clicked" swapped="true"/>
-            <!-- Translators: Button -->
-            <property name="tooltip-text" translatable="yes">Cancel</property>
-            <property name="label">Cancel</property>
+  <template class="ActionView" parent="AdwBin">
+    <property name="child">
+      <object class="AdwToolbarView">
+        <child type="top">
+          <object class="AdwHeaderBar" id="headerbar">
+            <property name="centering-policy">strict</property>
+            <property name="title-widget">
+              <object class="GtkBox"/>
+            </property>
+            <style>
+              <class name="flat"/>
+            </style>
+            <child type="start">
+              <object class="GtkButton" id="cancel_button">
+                <signal name="clicked" handler="cancel_button_clicked" swapped="true"/>
+                <!-- Translators: Button -->
+                <property name="tooltip-text" translatable="yes">Cancel</property>
+                <property name="label">Cancel</property>
+              </object>
+            </child>
+            <child type="start">
+              <object class="GtkButton" id="back_button">
+                <signal name="clicked" handler="back_button_clicked" swapped="true"/>
+                <!-- Translators: Button -->
+                <property name="tooltip-text" translatable="yes">Back</property>
+                <property name="visible">False</property>
+                <property name="icon-name">go-previous-symbolic</property>
+              </object>
+            </child>
           </object>
         </child>
-        <child type="start">
-          <object class="GtkButton" id="back_button">
-            <signal name="clicked" handler="back_button_clicked" swapped="true"/>
-            <!-- Translators: Button -->
-            <property name="tooltip-text" translatable="yes">Back</property>
-            <property name="visible">False</property>
-            <property name="icon-name">go-previous-symbolic</property>
-          </object>
-        </child>
-      </object>
-    </child>
-    <child>
-      <object class="GtkBox" id="label">
-        <property name="orientation">vertical</property>
-        <child>
-          <object class="AdwStatusPage" id="status_page">
-            <property name="vexpand">True</property>
-            <property name="icon-name">arrows-questionmark-symbolic</property>
+        <property name="content">
+          <object class="GtkBox" id="label">
+            <property name="orientation">vertical</property>
             <child>
-              <object class="GtkBox">
-                <property name="orientation">vertical</property>
-                <property name="spacing">12</property>
-                <property name="halign">center</property>
+              <object class="AdwStatusPage" id="status_page">
+                <property name="vexpand">True</property>
+                <property name="icon-name">arrows-questionmark-symbolic</property>
                 <child>
-                  <object class="AdwClamp">
-                    <child>
-                      <object class="GtkProgressBar" id="progress_bar">
-                        <property name="pulse-step">0.05</property>
-                      </object>
-                    </child>
-                  </object>
-                </child>
-                <child>
-                  <object class="AdwClamp">
-                    <child>
-                      <object class="GtkBox" id="code_box">
-                        <property name="visible">False</property>
-                        <style>
-                          <class name="linked"/>
-                          <class name="card"/>
-                        </style>
-                        <child>
-                          <object class="GtkEntry" id="code_entry">
-                            <signal name="notify::cursor-position" handler="code_entry_select_all"/>
-                            <signal name="notify::selection-bound" handler="code_entry_select_all"/>
-                            <property name="editable">False</property>
-                            <property name="hexpand">True</property>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkButton" id="link_copy_button">
-                            <signal name="clicked" handler="link_copy_button_clicked" swapped="true"/>
-                            <property name="icon-name">chain-link-symbolic</property>
-                            <!-- Translators: Button; Transmit Link is a noun -->
-                            <property name="tooltip-text" translatable="yes">Copy Transmit Link</property>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkButton" id="code_copy_button">
-                            <signal name="clicked" handler="code_copy_button_clicked" swapped="true"/>
-                            <property name="icon-name">copy-symbolic</property>
-                            <!-- Translators: Button; Transmit Code is a noun -->
-                            <property name="tooltip-text" translatable="yes">Copy Transmit Code</property>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkBox" id="open_box">
+                  <object class="GtkBox">
                     <property name="orientation">vertical</property>
-                    <property name="visible">False</property>
                     <property name="spacing">12</property>
-                    <child>
-                      <object class="GtkButton" id="open_button">
-                        <signal name="clicked" handler="open_button_clicked" swapped="true"/>
-                        <property name="tooltip-text" translatable="yes">Open File</property>
-                        <!-- Translators: Button -->
-                        <property name="label" translatable="yes">Open File</property>
-                        <property name="width-request">150</property>
-                        <property name="hexpand">False</property>
-                        <style>
-                          <class name="pill"/>
-                          <class name="suggested-action"/>
-                        </style>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkButton" id="open_dir_button">
-                        <signal name="clicked" handler="open_dir_button_clicked" swapped="true"/>
-                        <property name="tooltip-text" translatable="yes">Show in Folder</property>
-                        <!-- Translators: Button -->
-                        <property name="label" translatable="yes">Show in Folder</property>
-                        <property name="width-request">150</property>
-                        <property name="hexpand">False</property>
-                        <style>
-                          <class name="pill"/>
-                        </style>
-                      </object>
-                    </child>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkBox" id="accept_transfer_box">
-                    <property name="visible">False</property>
-                    <property name="orientation">vertical</property>
                     <property name="halign">center</property>
-                    <property name="spacing">12</property>
                     <child>
-                      <object class="GtkButton" id="accept_transfer_button">
-                        <signal name="clicked" handler="accept_transfer_button_clicked" swapped="true"/>
-                        <property name="tooltip-text" translatable="yes">Accept File Transfer and save to Downloads folder</property>
-                        <!-- Translators: Button -->
-                        <property name="label" translatable="yes">Accept</property>
-                        <property name="width-request">150</property>
-                        <property name="hexpand">False</property>
-                        <style>
-                          <class name="pill"/>
-                          <class name="suggested-action"/>
-                        </style>
+                      <object class="AdwClamp">
+                        <child>
+                          <object class="GtkProgressBar" id="progress_bar">
+                            <property name="pulse-step">0.05</property>
+                          </object>
+                        </child>
                       </object>
                     </child>
                     <child>
-                      <object class="GtkButton" id="save_as_button">
-                        <signal name="clicked" handler="save_as_button_clicked" swapped="true"/>
-                        <property name="tooltip-text" translatable="yes">Select Save Location</property>
+                      <object class="AdwClamp">
+                        <child>
+                          <object class="GtkBox" id="code_box">
+                            <property name="visible">False</property>
+                            <style>
+                              <class name="linked"/>
+                              <class name="card"/>
+                            </style>
+                            <child>
+                              <object class="GtkEntry" id="code_entry">
+                                <signal name="notify::cursor-position" handler="code_entry_select_all"/>
+                                <signal name="notify::selection-bound" handler="code_entry_select_all"/>
+                                <property name="editable">False</property>
+                                <property name="hexpand">True</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkButton" id="link_copy_button">
+                                <signal name="clicked" handler="link_copy_button_clicked" swapped="true"/>
+                                <property name="icon-name">chain-link-symbolic</property>
+                                <!-- Translators: Button; Transmit Link is a noun -->
+                                <property name="tooltip-text" translatable="yes">Copy Transmit Link</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkButton" id="code_copy_button">
+                                <signal name="clicked" handler="code_copy_button_clicked" swapped="true"/>
+                                <property name="icon-name">copy-symbolic</property>
+                                <!-- Translators: Button; Transmit Code is a noun -->
+                                <property name="tooltip-text" translatable="yes">Copy Transmit Code</property>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkBox" id="open_box">
+                        <property name="orientation">vertical</property>
+                        <property name="visible">False</property>
+                        <property name="spacing">12</property>
+                        <child>
+                          <object class="GtkButton" id="open_button">
+                            <signal name="clicked" handler="open_button_clicked" swapped="true"/>
+                            <property name="tooltip-text" translatable="yes">Open File</property>
+                            <!-- Translators: Button -->
+                            <property name="label" translatable="yes">Open File</property>
+                            <property name="width-request">150</property>
+                            <property name="hexpand">False</property>
+                            <style>
+                              <class name="pill"/>
+                              <class name="suggested-action"/>
+                            </style>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkButton" id="open_dir_button">
+                            <signal name="clicked" handler="open_dir_button_clicked" swapped="true"/>
+                            <property name="tooltip-text" translatable="yes">Show in Folder</property>
+                            <!-- Translators: Button -->
+                            <property name="label" translatable="yes">Show in Folder</property>
+                            <property name="width-request">150</property>
+                            <property name="hexpand">False</property>
+                            <style>
+                              <class name="pill"/>
+                            </style>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkBox" id="accept_transfer_box">
+                        <property name="visible">False</property>
+                        <property name="orientation">vertical</property>
+                        <property name="halign">center</property>
+                        <property name="spacing">12</property>
+                        <child>
+                          <object class="GtkButton" id="accept_transfer_button">
+                            <signal name="clicked" handler="accept_transfer_button_clicked" swapped="true"/>
+                            <property name="tooltip-text" translatable="yes">Accept File Transfer and save to Downloads folder</property>
+                            <!-- Translators: Button -->
+                            <property name="label" translatable="yes">Accept</property>
+                            <property name="width-request">150</property>
+                            <property name="hexpand">False</property>
+                            <style>
+                              <class name="pill"/>
+                              <class name="suggested-action"/>
+                            </style>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkButton" id="save_as_button">
+                            <signal name="clicked" handler="save_as_button_clicked" swapped="true"/>
+                            <property name="tooltip-text" translatable="yes">Select Save Location</property>
+                            <!-- Translators: Button -->
+                            <property name="label" translatable="yes">Save As</property>
+                            <property name="width-request">150</property>
+                            <property name="hexpand">False</property>
+                            <style>
+                              <class name="pill"/>
+                            </style>
+                          </object>
+                        </child>
+                    </object>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="copy_error_button">
+                        <signal name="clicked" handler="copy_error_button_clicked" swapped="true"/>
+                        <property name="tooltip-text" translatable="yes">Copy a detailed message for reporting an issue</property>
+                        <property name="visible">False</property>
                         <!-- Translators: Button -->
-                        <property name="label" translatable="yes">Save As</property>
-                        <property name="width-request">150</property>
+                        <property name="label" translatable="yes">Copy Error Message</property>
                         <property name="hexpand">False</property>
                         <style>
                           <class name="pill"/>
                         </style>
                       </object>
                     </child>
-                </object>
-                </child>
-                <child>
-                  <object class="GtkButton" id="copy_error_button">
-                    <signal name="clicked" handler="copy_error_button_clicked" swapped="true"/>
-                    <property name="tooltip-text" translatable="yes">Copy a detailed message for reporting an issue</property>
-                    <property name="visible">False</property>
-                    <!-- Translators: Button -->
-                    <property name="label" translatable="yes">Copy Error Message</property>
-                    <property name="hexpand">False</property>
-                    <style>
-                      <class name="pill"/>
-                    </style>
                   </object>
                 </child>
               </object>
             </child>
           </object>
-        </child>
+        </property>
       </object>
-    </child>
+    </property>
   </template>
 </interface>

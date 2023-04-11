@@ -181,7 +181,7 @@ mod imp {
     impl ObjectSubclass for ActionView {
         const NAME: &'static str = "ActionView";
         type Type = super::ActionView;
-        type ParentType = gtk::Box;
+        type ParentType = adw::Bin;
 
         fn class_init(klass: &mut Self::Class) {
             klass.bind_template();
@@ -203,7 +203,7 @@ mod imp {
                 .set_transient_for(Some(&self.obj().window()));
         }
     }
-    impl BoxImpl for ActionView {}
+    impl BinImpl for ActionView {}
 
     #[gtk::template_callbacks]
     impl ActionView {
@@ -361,7 +361,7 @@ mod imp {
 
 glib::wrapper! {
     pub struct ActionView(ObjectSubclass<imp::ActionView>)
-        @extends gtk::Widget, gtk::Box;
+        @extends gtk::Widget, adw::Bin;
 }
 
 impl ActionView {
