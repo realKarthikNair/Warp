@@ -172,6 +172,7 @@ impl WormholeTransferURI {
         let svg = qr
             .render::<qrcode::render::svg::Color>()
             .min_dimensions(800, 800)
+            .light_color(qrcode::render::svg::Color("#0000"))
             .build();
         gdk::Texture::from_bytes(&svg.as_bytes().into())
             .unwrap()

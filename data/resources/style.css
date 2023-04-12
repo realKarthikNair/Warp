@@ -23,6 +23,18 @@
   margin-bottom: 24px;
 }
 
+button.qr {
+  background-color: #FFFFFF;
+}
+
+button.qr:hover {
+  background-color: alpha(#FFFFFF, .85);
+}
+
+button.qr:active {
+  background-color: alpha(#FFFFFF, .7);
+}
+
 .popover-label {
   margin: 12px;
 }
