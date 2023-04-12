@@ -8,6 +8,18 @@
     <property name="modal">True</property>
     <signal name="response" handler="save_as_file_selected" swapped="true"/>
   </object>
+  <object class="GtkPopover" id="popover_code">
+    <child>
+      <object class="GtkLabel" id="code_detail_label">
+        <property name="max-width-chars">36</property>
+        <property name="justify">center</property>
+        <property name="wrap">True</property>
+        <style>
+          <class name="popover-label"/>
+        </style>
+      </object>
+    </child>
+  </object>
   <template class="ActionView" parent="AdwBin">
     <property name="child">
       <object class="AdwToolbarView">
@@ -63,7 +75,6 @@
                 </child>
               </object>
             </child>
-
             <child>
               <object class="GtkScrolledWindow" id="status_page_code">
                 <accessibility>
@@ -100,15 +111,31 @@
                               </object>
                             </child>
                             <child>
-                              <object class="GtkLabel" id="code_title">
-                                <property name="wrap">True</property>
-                                <property name="wrap-mode">word-char</property>
-                                <property name="justify">center</property>
-                                <property name="label" translatable="yes">Your Transmit Code</property>
-                                <style>
-                                  <class name="title"/>
-                                  <class name="title-1"/>
-                                </style>
+                              <object class="GtkBox">
+                                <property name="orientation">horizontal</property>
+                                <property name="halign">center</property>
+                                <property name="spacing">12</property>
+                                <child>
+                                  <object class="GtkLabel" id="code_title">
+                                    <property name="wrap">True</property>
+                                    <property name="wrap-mode">word-char</property>
+                                    <property name="justify">center</property>
+                                    <property name="label" translatable="yes">Your Transmit Code</property>
+                                    <style>
+                                      <class name="title"/>
+                                      <class name="title-1"/>
+                                    </style>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkMenuButton">
+                                    <property name="popover">popover_code</property>
+                                    <property name="icon-name">dialog-information-symbolic</property>
+                                    <style>
+                                      <class name="circular"/>
+                                    </style>
+                                  </object>
+                                </child>
                               </object>
                             </child>
                             <child>

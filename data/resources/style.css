@@ -14,13 +14,17 @@
   border-spacing: 12px;
 }
 
-.code-page > viewport > box > clamp > box image {
+.code-page > viewport > box > clamp > box image.qr {
   -gtk-icon-size: 192px;
   margin-bottom: 24px;
 }
 
 .code-page box.card {
   border-spacing: 0px;
+}
+
+.popover-label {
+  margin: 12px;
 }
 
 statuspage entry.card {

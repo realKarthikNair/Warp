@@ -179,6 +179,8 @@ mod imp {
         pub code_image: TemplateChild<gtk::Image>,
         #[template_child]
         pub code_description: TemplateChild<gtk::Label>,
+        #[template_child]
+        pub code_detail_label: TemplateChild<gtk::Label>,
 
         pub context: RefCell<UIContext>,
     }
@@ -478,14 +480,16 @@ impl ActionView {
                             .clone()
                             .unwrap_or_else(|| "?".into());
 
-                        // Translators: Description line 1, argument is filename
-                        let mut description =
-                            gettextf("Ready to send “{}”.", &[&filename.to_string_lossy()]);
-                        description += "\n";
-                        // Translators: Description line 2, Code words and QR code visible,
-                        description += &gettext("The receiver needs to enter or scan this code to begin the file transfer.");
-                        description += " ";
-                        // Translators: Description line 3, Argument is a list of apps that support the QR code standard.
+                        imp.code_description.set_label(&gettextf(
+                            // Translators: Description, argument is filename
+                            "Ready to send “{}”.",
+                            &[&filename.to_string_lossy()],
+                        ));
+
+                        // Translators: Help dialog line 1, Code words and QR code visible,
+                        let mut description = gettext("The receiver needs to enter or scan this code to begin the file transfer.");
+                        description += "\n\n";
+                        // Translators: Help dialog line 2, Argument is a list of apps that support the QR code standard.
                         description += &gettextf(
                             "The QR code is compatible with the following apps: {}.",
                             &[&"Warp, Wormhole (Android)"],
@@ -498,7 +502,7 @@ impl ActionView {
                             description += &gettext("You have entered a custom rendezvous server URL in preferences. Please verify the receiver also uses the same rendezvous server.");
                         }
 
-                        imp.code_description.set_label(&description);
+                        imp.code_detail_label.set_label(&description);
 
                         imp.code_entry.set_text(uri.code.as_ref());
                     }
