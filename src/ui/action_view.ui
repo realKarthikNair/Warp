@@ -169,28 +169,18 @@
                         <child>
                           <object class="AdwClamp">
                             <child>
-                              <object class="GtkBox" id="code_box">
+                              <object class="GtkEntry" id="code_entry">
                                 <style>
-                                  <class name="linked"/>
                                   <class name="card"/>
                                 </style>
-                                <property name="overflow">hidden</property>
-                                <child>
-                                  <object class="GtkEntry" id="code_entry">
-                                    <signal name="notify::cursor-position" handler="code_entry_select_all"/>
-                                    <signal name="notify::selection-bound" handler="code_entry_select_all"/>
-                                    <property name="editable">False</property>
-                                    <property name="hexpand">True</property>
-                                  </object>
-                                </child>
-                                <child>
-                                  <object class="GtkButton" id="code_copy_button">
-                                    <signal name="clicked" handler="code_copy_button_clicked" swapped="true"/>
-                                    <property name="icon-name">copy-symbolic</property>
-                                    <!-- Translators: Button; Transmit Code is a noun -->
-                                    <property name="tooltip-text" translatable="yes">Copy Transmit Code</property>
-                                  </object>
-                                </child>
+                                <signal name="notify::cursor-position" handler="code_entry_select_all"/>
+                                <signal name="notify::selection-bound" handler="code_entry_select_all"/>
+                                <property name="editable">False</property>
+                                <property name="halign">center</property>
+                                <property name="secondary-icon-name">copy-symbolic</property>
+                                <!-- Translators: Button; Transmit Code is a noun -->
+                                <property name="secondary-icon-tooltip-text" translatable="yes">Copy Transmit Code</property>
+                                <signal name="icon-release" handler="code_copy_button_clicked" swapped="true"/>
                               </object>
                             </child>
                           </object>

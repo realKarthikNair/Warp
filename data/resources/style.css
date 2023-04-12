@@ -39,8 +39,14 @@ button.qr:active {
   margin: 12px;
 }
 
-statuspage entry.card {
+statuspage entry.card,
+.code-page entry.card {
   padding: 12px 18px;
+}
+
+statuspage entry.card > image:last-child,
+.code-page entry.card > image:last-child {
+  margin-left: 12px;
 }
 
 .cancel-page viewport {

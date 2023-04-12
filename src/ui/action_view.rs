@@ -509,6 +509,7 @@ impl ActionView {
                         imp.code_detail_label.set_label(&description);
 
                         imp.code_entry.set_text(uri.code.as_ref());
+                        imp.code_entry.set_max_width_chars(uri.code.len() as i32);
                     }
                     TransferDirection::Receive => {
                         imp.stack.set_visible_child(&*imp.status_page_progress);
