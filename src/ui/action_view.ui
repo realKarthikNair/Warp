@@ -123,15 +123,15 @@
                                   </object>
                                 </child>
                                 <child>
-                                  <object class="GtkBox">
+                                  <object class="GtkCenterBox">
                                     <property name="orientation">horizontal</property>
                                     <property name="halign">center</property>
-                                    <property name="spacing">12</property>
-                                    <child>
+                                    <child type="center">
                                       <object class="GtkLabel" id="code_title">
                                         <property name="wrap">True</property>
                                         <property name="wrap-mode">word-char</property>
                                         <property name="justify">center</property>
+                                        <property name="margin-end">12</property>
                                         <property name="label" translatable="yes">Your Transmit Code</property>
                                         <style>
                                           <class name="title"/>
@@ -139,7 +139,7 @@
                                         </style>
                                       </object>
                                     </child>
-                                    <child>
+                                    <child type="end">
                                       <object class="GtkMenuButton">
                                         <property name="popover">popover_code</property>
                                         <property name="icon-name">dialog-information-symbolic</property>
