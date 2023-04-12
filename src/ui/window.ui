@@ -67,7 +67,7 @@
     <property name="hide-on-close">True</property>
     <responses>
       <response id="close" translatable="yes">_Close</response>
-      <response id="show-in-folder" appearance="destructive" translatable="yes">_Show in Folder</response>
+      <response id="show-in-folder" translatable="yes">_Show in Folder</response>
     </responses>
   </object>
   <template class="WarpApplicationWindow" parent="AdwApplicationWindow">
