@@ -66,7 +66,11 @@
   <releases>
     <release version="0.5.2" date="2023-04-12">
       <description>
-        <p>Fix a rare issue where an error message would be “stuck”</p>
+        <p>This release includes the following features:</p>
+        <ul>
+          <li>Fix a rare issue where an error message would be “stuck”</li>
+          <li>Add progress info to zip file creation</li>
+        </ul>
       </description>
     </release>
     <release version="0.5.1" date="2023-03-22">
