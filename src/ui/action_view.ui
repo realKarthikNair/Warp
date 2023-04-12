@@ -293,7 +293,7 @@
                     <style>
                       <class name="cancel-page"/>
                     </style>
-                    <property name="icon-name">horizontal-arrows-one-way-symbolic"</property>
+                    <property name="icon-name">horizontal-arrows-one-way-symbolic</property>
                     <!-- Translators: Title -->
                     <property name="title" translatable="yes">File Transfer Failed</property>
                     <child>
