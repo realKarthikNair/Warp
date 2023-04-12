@@ -6,6 +6,7 @@ sdk: org.gnome.Sdk
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.rust-stable
 build-options:
+  append-path: /usr/lib/sdk/rust-stable/bin
   env:
     CARGO_REGISTRIES_CRATES_IO_PROTOCOL: "sparse"
 command: warp
@@ -24,8 +25,6 @@ finish-args:
   - --system-talk-name=org.freedesktop.login1
   # Open folder in filebrowser
   - --talk-name=org.freedesktop.FileManager1
-build-options:
-  append-path: /usr/lib/sdk/rust-stable/bin
 modules:
   - name: warp
     buildsystem: meson

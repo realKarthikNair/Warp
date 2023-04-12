@@ -7,6 +7,7 @@
     "org.freedesktop.Sdk.Extension.rust-stable"
   ],
   "build-options": {
+    "append-path": "/usr/lib/sdk/rust-stable/bin",
     "env": {
       "CARGO_REGISTRIES_CRATES_IO_PROTOCOL": "sparse"
     }
@@ -25,9 +26,6 @@
     "--env=G_MESSAGES_DEBUG=none",
     "--env=RUST_BACKTRACE=1"
   ],
-  "build-options": {
-    "append-path": "/usr/lib/sdk/rust-stable/bin"
-  },
   "modules": [
     {
       "name": "warp",
