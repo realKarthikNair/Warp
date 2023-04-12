@@ -502,6 +502,10 @@ impl ActionView {
                             description += &gettext("You have entered a custom rendezvous server URL in preferences. Please verify the receiver also uses the same rendezvous server.");
                         }
 
+                        description += "\n\n";
+                        description +=
+                            &gettext("Click the QR code to copy the link to the clipboard.");
+
                         imp.code_detail_label.set_label(&description);
 
                         imp.code_entry.set_text(uri.code.as_ref());

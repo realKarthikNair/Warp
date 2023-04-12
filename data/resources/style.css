@@ -18,7 +18,7 @@
   border-spacing: 12px;
 }
 
-.code-page > viewport > box > clamp > box image.qr {
+.code-page > viewport > box > clamp > box button.qr {
   -gtk-icon-size: 192px;
   margin-bottom: 24px;
 }

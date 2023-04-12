@@ -99,16 +99,27 @@
                                 <property name="orientation">vertical</property>
                                 <property name="valign">center</property>
                                 <child>
-                                  <object class="GtkImage" id="code_image">
-                                    <property name="accessible-role">presentation</property>
-                                    <property name="icon-name">code-symbolic</property>
+                                  <object class="GtkButton" id="link_copy_button">
+                                    <style>
+                                      <class name="card"/>
+                                      <class name="qr"/>
+                                    </style>
+                                    <signal name="clicked" handler="link_copy_button_clicked" swapped="true"/>
+                                    <property name="icon-name">chain-link-symbolic</property>
+                                    <!-- Translators: Button; Transmit Link is a noun -->
+                                    <property name="tooltip-text" translatable="yes">Copy Transmit Link</property>
                                     <property name="halign">center</property>
                                     <property name="valign">center</property>
                                     <property name="overflow">hidden</property>
-                                    <style>
-                                      <class name="qr"/>
-                                      <class name="card"/>
-                                    </style>
+                                    <property name="child">
+                                      <object class="GtkImage" id="code_image">
+                                        <property name="accessible-role">presentation</property>
+                                        <property name="icon-name">code-symbolic</property>
+                                        <property name="halign">center</property>
+                                        <property name="valign">center</property>
+                                        <property name="overflow">hidden</property>
+                                      </object>
+                                    </property>
                                   </object>
                                 </child>
                                 <child>
@@ -170,14 +181,6 @@
                                     <signal name="notify::selection-bound" handler="code_entry_select_all"/>
                                     <property name="editable">False</property>
                                     <property name="hexpand">True</property>
-                                  </object>
-                                </child>
-                                <child>
-                                  <object class="GtkButton" id="link_copy_button">
-                                    <signal name="clicked" handler="link_copy_button_clicked" swapped="true"/>
-                                    <property name="icon-name">chain-link-symbolic</property>
-                                    <!-- Translators: Button; Transmit Link is a noun -->
-                                    <property name="tooltip-text" translatable="yes">Copy Transmit Link</property>
                                   </object>
                                 </child>
                                 <child>
