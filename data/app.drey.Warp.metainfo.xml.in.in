@@ -64,6 +64,16 @@
   </custom>
   <content_rating type="oars-1.0" />
   <releases>
+    <release version="0.5.2" date="2023-04-12">
+      <description>
+        <p>Fix a rare issue where an error message would be “stuck”</p>
+      </description>
+    </release>
+    <release version="0.5.1" date="2023-03-22">
+      <description>
+        <p>Specify correct dependency versions in meson</p>
+      </description>
+    </release>
     <release version="0.5.0" date="2023-03-22">
       <description>
         <p>This release includes the following features:</p>
