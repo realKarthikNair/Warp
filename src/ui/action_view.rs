@@ -151,7 +151,7 @@ mod imp {
         #[template_child]
         pub status_page_progress: TemplateChild<adw::StatusPage>,
         #[template_child]
-        pub status_page_code: TemplateChild<adw::StatusPage>,
+        pub status_page_code: TemplateChild<gtk::ScrolledWindow>,
         #[template_child]
         pub status_page_ask_confirmation: TemplateChild<adw::StatusPage>,
         #[template_child]
@@ -175,6 +175,10 @@ mod imp {
         pub code_entry: TemplateChild<gtk::Entry>,
         #[template_child]
         pub save_as_file_chooser: TemplateChild<gtk::FileChooserNative>,
+        #[template_child]
+        pub code_image: TemplateChild<gtk::Image>,
+        #[template_child]
+        pub code_description: TemplateChild<gtk::Label>,
 
         pub context: RefCell<UIContext>,
     }
@@ -465,8 +469,7 @@ impl ActionView {
                 match direction {
                     TransferDirection::Send => {
                         imp.stack.set_visible_child(&*imp.status_page_code);
-                        imp.status_page_code
-                            .set_paintable(Some(&uri.to_paintable_qr()));
+                        imp.code_image.set_paintable(Some(&uri.to_paintable_qr()));
 
                         let filename = imp
                             .context
@@ -495,7 +498,7 @@ impl ActionView {
                             description += &gettext("You have entered a custom rendezvous server URL in preferences. Please verify the receiver also uses the same rendezvous server.");
                         }
 
-                        imp.status_page_code.set_description(Some(&description));
+                        imp.code_description.set_label(&description);
 
                         imp.code_entry.set_text(uri.code.as_ref());
                     }

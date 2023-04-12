@@ -4,16 +4,27 @@
   border-bottom-right-radius: 12px;
 }
 
-statuspage.qr .icon {
+/* From AdwStatusPage */
+.code-page > viewport > box {
+  margin: 36px 12px;
+  border-spacing: 36px;
+}
+
+.code-page > viewport > box > clamp > box {
+  border-spacing: 12px;
+}
+
+.code-page > viewport > box > clamp > box image {
   -gtk-icon-size: 192px;
+  margin-bottom: 24px;
+}
+
+.code-page box.card {
+  border-spacing: 0px;
 }
 
 statuspage entry.card {
   padding: 12px 18px;
-}
-
-statuspage box.card {
-  border-spacing: 0px;
 }
 
 progressbar.flag-pride progress {
