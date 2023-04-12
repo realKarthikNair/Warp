@@ -73,7 +73,7 @@
   <template class="WarpApplicationWindow" parent="AdwApplicationWindow">
     <signal name="notify::is-active" handler="add_code_from_clipboard" swapped="true"/>
     <property name="default-width">460</property>
-    <property name="default-height">564</property>
+    <property name="default-height">600</property>
     <child>
       <object class="AdwToastOverlay" id="toast_overlay">
         <child>

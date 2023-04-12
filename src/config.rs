@@ -14,7 +14,7 @@ impl Default for WindowConfig {
     fn default() -> Self {
         Self {
             width: 460,
-            height: 500,
+            height: 600,
         }
     }
 }
