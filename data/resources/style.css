@@ -12,6 +12,10 @@ statuspage entry.card {
   padding: 12px 18px;
 }
 
+statuspage box.card {
+  border-spacing: 0px;
+}
+
 progressbar.flag-pride progress {
   background: linear-gradient(to right,
       #E40303,

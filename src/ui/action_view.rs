@@ -146,9 +146,21 @@ mod imp {
     #[template(file = "action_view.ui")]
     pub struct ActionView {
         #[template_child]
-        pub cancel_button: TemplateChild<gtk::Button>,
+        pub stack: TemplateChild<gtk::Stack>,
+
         #[template_child]
-        pub open_box: TemplateChild<gtk::Box>,
+        pub status_page_progress: TemplateChild<adw::StatusPage>,
+        #[template_child]
+        pub status_page_code: TemplateChild<adw::StatusPage>,
+        #[template_child]
+        pub status_page_ask_confirmation: TemplateChild<adw::StatusPage>,
+        #[template_child]
+        pub status_page_success: TemplateChild<adw::StatusPage>,
+        #[template_child]
+        pub status_page_error: TemplateChild<adw::StatusPage>,
+
+        #[template_child]
+        pub cancel_button: TemplateChild<gtk::Button>,
         #[template_child]
         pub open_button: TemplateChild<gtk::Button>,
         #[template_child]
@@ -156,21 +168,11 @@ mod imp {
         #[template_child]
         pub back_button: TemplateChild<gtk::Button>,
         #[template_child]
-        pub accept_transfer_box: TemplateChild<gtk::Box>,
+        pub copy_error_button: TemplateChild<gtk::Button>,
         #[template_child]
         pub progress_bar: TemplateChild<gtk::ProgressBar>,
         #[template_child]
-        pub status_page: TemplateChild<adw::StatusPage>,
-        #[template_child]
-        pub code_box: TemplateChild<gtk::Box>,
-        #[template_child]
         pub code_entry: TemplateChild<gtk::Entry>,
-        #[template_child]
-        pub link_copy_button: TemplateChild<gtk::Button>,
-        #[template_child]
-        pub code_copy_button: TemplateChild<gtk::Button>,
-        #[template_child]
-        pub copy_error_button: TemplateChild<gtk::Button>,
         #[template_child]
         pub save_as_file_chooser: TemplateChild<gtk::FileChooserNative>,
 
@@ -399,6 +401,9 @@ impl ActionView {
 
     fn set_can_navigate_back(&self, can_navigate_back: bool) {
         self.imp().back_button.set_visible(can_navigate_back);
+        self.imp().cancel_button.set_sensitive(!can_navigate_back);
+        self.imp().cancel_button.set_visible(!can_navigate_back);
+
         self.window()
             .leaflet()
             .set_can_navigate_back(can_navigate_back);
@@ -411,16 +416,10 @@ impl ActionView {
 
         match &*ui_state {
             UIState::Initial => {
-                imp.cancel_button.set_sensitive(true);
-                imp.open_box.set_visible(false);
-                imp.cancel_button.set_visible(true);
-                imp.accept_transfer_box.set_visible(false);
-                imp.code_box.set_visible(false);
-                imp.progress_bar.set_visible(true);
-                imp.progress_bar.set_show_text(false);
-                imp.copy_error_button.set_visible(false);
-                imp.status_page
+                imp.stack.set_visible_child(&*imp.status_page_progress);
+                imp.status_page_progress
                     .set_icon_name(Some("arrows-questionmark-symbolic"));
+                imp.progress_bar.set_show_text(false);
 
                 super::pride::apply_seasonal_style(&*imp.progress_bar);
                 self.set_can_navigate_back(false);
@@ -428,10 +427,13 @@ impl ActionView {
             }
             UIState::Archive(filename) => match direction {
                 TransferDirection::Send => {
-                    imp.status_page.set_icon_name(Some("drawer-symbolic"));
+                    imp.stack.set_visible_child(&*imp.status_page_progress);
+                    imp.status_page_progress
+                        .set_icon_name(Some("drawer-symbolic"));
                     // Translators: Title
-                    imp.status_page.set_title(&gettext("Creating Archive"));
-                    imp.status_page
+                    imp.status_page_progress
+                        .set_title(&gettext("Creating Archive"));
+                    imp.status_page_progress
                         // Translators: Description
                         .set_description(Some(&gettextf(
                             "Compressing folder “{}”",
@@ -446,11 +448,12 @@ impl ActionView {
             },
             UIState::RequestCode => match direction {
                 TransferDirection::Send => {
-                    imp.status_page
+                    imp.stack.set_visible_child(&*imp.status_page_progress);
+                    imp.status_page_progress
                         .set_icon_name(Some("arrows-questionmark-symbolic"));
                     // Translators: Title
-                    imp.status_page.set_title(&gettext("Connecting"));
-                    imp.status_page
+                    imp.status_page_progress.set_title(&gettext("Connecting"));
+                    imp.status_page_progress
                         // Translators: Description, Filename
                         .set_description(Some(&gettext("Requesting file transfer")));
                     imp.progress_bar.set_text(None);
@@ -461,11 +464,9 @@ impl ActionView {
             UIState::HasCode(uri) => {
                 match direction {
                     TransferDirection::Send => {
-                        imp.status_page.set_icon_name(Some("code-symbolic"));
-                        // Translators: Title, this is a noun
-                        imp.status_page.set_title(&gettext("Your Transmit Code"));
-                        imp.status_page.set_paintable(Some(&uri.to_paintable_qr()));
-                        imp.status_page.add_css_class("qr");
+                        imp.stack.set_visible_child(&*imp.status_page_code);
+                        imp.status_page_code
+                            .set_paintable(Some(&uri.to_paintable_qr()));
 
                         let filename = imp
                             .context
@@ -481,7 +482,7 @@ impl ActionView {
                         // Translators: Description line 2, Code words and QR code visible,
                         description += &gettext("The receiver needs to enter or scan this code to begin the file transfer.");
                         description += " ";
-                        // Translators: Description line 2, Argument is a list of apps that support the QR code standard.
+                        // Translators: Description line 3, Argument is a list of apps that support the QR code standard.
                         description += &gettextf(
                             "The QR code is compatible with the following apps: {}.",
                             &[&"Warp, Wormhole (Android)"],
@@ -494,60 +495,56 @@ impl ActionView {
                             description += &gettext("You have entered a custom rendezvous server URL in preferences. Please verify the receiver also uses the same rendezvous server.");
                         }
 
-                        imp.status_page.set_description(Some(&description));
+                        imp.status_page_code.set_description(Some(&description));
 
-                        imp.code_box.set_visible(true);
                         imp.code_entry.set_text(uri.code.as_ref());
-                        imp.progress_bar.set_visible(false);
                     }
                     TransferDirection::Receive => {
-                        imp.status_page
+                        imp.stack.set_visible_child(&*imp.status_page_progress);
+                        imp.status_page_progress
                             .set_icon_name(Some("arrows-questionmark-symbolic"));
                         // Translators: Title
-                        imp.status_page.set_title(&gettext("Connecting"));
-                        imp.status_page.set_description(Some(&gettextf(
+                        imp.status_page_progress.set_title(&gettext("Connecting"));
+                        imp.status_page_progress.set_description(Some(&gettextf(
                             // Translators: Description, Transfer Code
                             "Connecting to peer with code “{}”",
                             &[&uri.code],
                         )));
-                        imp.progress_bar.set_visible(true);
                     }
                 }
             }
             UIState::Connected => {
                 // Translators: Title
-                imp.status_page.remove_css_class("qr");
-                imp.status_page.set_title(&gettext("Connected to Peer"));
-                imp.code_box.set_visible(false);
-                imp.accept_transfer_box.set_visible(false);
+                imp.stack.set_visible_child(&*imp.status_page_progress);
+                imp.status_page_progress
+                    .set_title(&gettext("Connected to Peer"));
 
                 self.show_progress_indeterminate(true);
-                imp.progress_bar.set_visible(true);
+                imp.progress_bar.set_show_text(false);
 
                 match direction {
                     TransferDirection::Send => {
-                        imp.status_page
+                        imp.status_page_progress
                             // Translators: Description
                             .set_description(Some(&gettext("Preparing to send file")));
-                        imp.status_page.set_icon_name(Some("send-to-symbolic"));
+                        imp.status_page_progress
+                            .set_icon_name(Some("send-to-symbolic"));
                     }
                     TransferDirection::Receive => {
-                        imp.status_page
+                        imp.status_page_progress
                             // Translators: Description
                             .set_description(Some(&gettext("Preparing to receive file")));
-                        imp.status_page
+                        imp.status_page_progress
                             .set_icon_name(Some("folder-download-symbolic"));
                     }
                 }
             }
             UIState::AskConfirmation(filename, size) => {
+                imp.stack
+                    .set_visible_child(&*imp.status_page_ask_confirmation);
                 self.show_progress_indeterminate(false);
-                imp.accept_transfer_box.set_visible(true);
-                imp.progress_bar.set_visible(false);
 
-                imp.status_page.set_icon_name(Some("paper-filled-symbolic"));
-                imp.status_page.set_title(&gettext("Accept File Transfer?"));
-                imp.status_page.set_description(Some(&gettextf(
+                imp.status_page_ask_confirmation.set_description(Some(&gettextf(
                     // Translators: File receive confirmation message dialog; Filename, File size
                     "Your peer wants to send you “{0}” (Size: {1}).\nDo you want to download this file? The default action will save the file to your Downloads folder.",
                     &[&filename,
@@ -564,9 +561,8 @@ impl ActionView {
                     .send_notification_if_background(Some("receive-ready"), &notification);
             }
             UIState::Transmitting(filename, info, peer_addr) => {
+                imp.stack.set_visible_child(&*imp.status_page_progress);
                 self.show_progress_indeterminate(false);
-                imp.accept_transfer_box.set_visible(false);
-                imp.progress_bar.set_visible(true);
                 imp.progress_bar.set_show_text(true);
 
                 let mut ip = peer_addr.ip();
@@ -604,29 +600,23 @@ impl ActionView {
                     _ => gettextf("File “{}” via Unknown connection method", &[&filename]),
                 };
 
-                imp.status_page.set_description(Some(&description));
+                imp.status_page_progress.set_description(Some(&description));
 
                 if direction == TransferDirection::Send {
                     // Translators: Title
-                    imp.status_page.set_title(&gettext("Sending File"));
-                    imp.status_page.set_icon_name(Some("send-to-symbolic"));
+                    imp.status_page_progress.set_title(&gettext("Sending File"));
+                    imp.status_page_progress
+                        .set_icon_name(Some("send-to-symbolic"));
                 } else {
                     // Translators: Title
-                    imp.status_page.set_title(&gettext("Receiving File"));
-                    imp.status_page
+                    imp.status_page_progress
+                        .set_title(&gettext("Receiving File"));
+                    imp.status_page_progress
                         .set_icon_name(Some("folder-download-symbolic"));
                 }
             }
             UIState::Done(filename) => {
-                imp.status_page
-                    // Translators: Title
-                    .set_title(&gettext("File Transfer Successful"));
-                imp.cancel_button.set_visible(false);
-                imp.status_page
-                    .set_icon_name(Some("checkmark-large-symbolic"));
-                imp.progress_bar.set_text(None);
-                imp.progress_bar.set_visible(false);
-
+                imp.stack.set_visible_child(&*imp.status_page_success);
                 self.set_can_navigate_back(true);
 
                 let notification = gio::Notification::new(&gettext("File Transfer Complete"));
@@ -641,8 +631,10 @@ impl ActionView {
                         &[&filename.to_string_lossy()],
                     );
 
-                    imp.status_page.set_description(Some(&description));
+                    imp.status_page_success.set_description(Some(&description));
                     notification.set_body(Some(&description));
+                    imp.open_button.set_visible(false);
+                    imp.open_dir_button.set_visible(false);
                 } else if let Some(path) =
                     imp.context.borrow().file_path_received_successfully.clone()
                 {
@@ -666,10 +658,10 @@ impl ActionView {
                             },
                         );
 
-                    imp.status_page.set_description(Some(&description));
+                    imp.status_page_success.set_description(Some(&description));
                     notification.set_body(Some(&description));
 
-                    imp.open_box.set_visible(true);
+                    imp.open_button.set_visible(true);
                     imp.open_dir_button
                         .set_visible(!super::fs::is_portal_path(&path));
                     notification.set_default_action_and_target_value(
@@ -682,19 +674,9 @@ impl ActionView {
                     .send_notification_if_background(Some("transfer-complete"), &notification);
             }
             UIState::Error(error) => {
-                imp.status_page
-                    // Translators: Title
-                    .set_title(&gettext("File Transfer Failed"));
-                imp.status_page
+                imp.stack.set_visible_child(&*imp.status_page_error);
+                imp.status_page_error
                     .set_description(Some(&error.gettext_error()));
-                imp.cancel_button.set_visible(false);
-                imp.status_page
-                    .set_icon_name(Some("horizontal-arrows-one-way-symbolic"));
-                imp.progress_bar.set_text(None);
-                imp.progress_bar.set_visible(false);
-                imp.accept_transfer_box.set_visible(false);
-                imp.code_box.set_visible(false);
-
                 self.set_can_navigate_back(true);
 
                 let notification = gio::Notification::new(&gettext("File Transfer Failed"));
