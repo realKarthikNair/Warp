@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: warp main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
-"POT-Creation-Date: 2023-02-25 16:35+0000\n"
-"PO-Revision-Date: 2023-03-02 20:29+0200\n"
+"POT-Creation-Date: 2023-04-11 22:37+0000\n"
+"PO-Revision-Date: 2023-04-12 13:58+0300\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos+l10n@iki.fi>\n"
 "Language-Team: Finnish <lokalisointi-lista@googlegroups.com>\n"
 "Language: fi\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.1.1\n"
 
 #: data/app.drey.Warp.desktop.in.in:3 data/app.drey.Warp.metainfo.xml.in.in:7
 #: src/main.rs:116 src/ui/application.rs:212
@@ -85,7 +85,7 @@ msgid "Main Window"
 msgstr "Pääikkuna"
 
 #. Translators: Entry placeholder; This is a noun
-#: data/app.drey.Warp.metainfo.xml.in.in:35 src/ui/window.ui:195
+#: data/app.drey.Warp.metainfo.xml.in.in:35 src/ui/window.ui:200
 msgid "Transmit Code"
 msgstr "Lähetyskoodi"
 
@@ -94,20 +94,20 @@ msgid "Accept File Transfer"
 msgstr "Hyväksy tiedostonsiirto"
 
 #. Translators: Title
-#: data/app.drey.Warp.metainfo.xml.in.in:43 src/ui/action_view.rs:607
+#: data/app.drey.Warp.metainfo.xml.in.in:43 src/ui/action_view.rs:611
 msgid "Sending File"
 msgstr "Lähetetään tiedosto"
 
 #. Translators: Title
-#: data/app.drey.Warp.metainfo.xml.in.in:47 src/ui/action_view.rs:611
+#: data/app.drey.Warp.metainfo.xml.in.in:47 src/ui/action_view.rs:615
 msgid "Receiving File"
 msgstr "Vastaanotetaan tiedosto"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:51 src/ui/action_view.rs:628
+#: data/app.drey.Warp.metainfo.xml.in.in:51 src/ui/action_view.rs:632
 msgid "File Transfer Complete"
 msgstr "Tiedostonsiirto valmistui"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:183 src/ui/application.rs:219
+#: data/app.drey.Warp.metainfo.xml.in.in:194 src/ui/application.rs:219
 #: src/ui/application.rs:220
 msgid "Fina Wilke"
 msgstr "Fina Wilke"
@@ -225,37 +225,37 @@ msgid "Compressing folder “{}”"
 msgstr "Pakataan kansio “{}”"
 
 #. Translators: Title
-#: src/ui/action_view.rs:450 src/ui/action_view.rs:503
+#: src/ui/action_view.rs:452 src/ui/action_view.rs:507
 msgid "Connecting"
 msgstr "Yhdistetään"
 
 #. Translators: Description, Filename
-#: src/ui/action_view.rs:453
+#: src/ui/action_view.rs:455
 msgid "Requesting file transfer"
 msgstr "Pyydetään tiedostonsiirtoa"
 
 #. Translators: Title, this is a noun
-#: src/ui/action_view.rs:462
+#: src/ui/action_view.rs:466
 msgid "Your Transmit Code"
 msgstr "Lähetyskoodisi"
 
-#: src/ui/action_view.rs:475
+#: src/ui/action_view.rs:479
 msgid "Ready to send “{}”."
 msgstr "Valmis lähettämään “{}”."
 
 #. Translators: Description line 2, Code words and QR code visible,
-#: src/ui/action_view.rs:478
+#: src/ui/action_view.rs:482
 msgid ""
 "The receiver needs to enter or scan this code to begin the file transfer."
 msgstr ""
 "Vastaanottajan tulee kirjoittaa tai skannata tämä koodi, jotta "
 "tiedostonsiirto alkaa."
 
-#: src/ui/action_view.rs:482
+#: src/ui/action_view.rs:486
 msgid "The QR code is compatible with the following apps: {}."
 msgstr "QR-koodi on yhteensopiva seuraavien sovellusten kanssa: {}."
 
-#: src/ui/action_view.rs:490
+#: src/ui/action_view.rs:494
 msgid ""
 "You have entered a custom rendezvous server URL in preferences. Please "
 "verify the receiver also uses the same rendezvous server."
@@ -264,30 +264,30 @@ msgstr ""
 "Varmista, että vastaanottaja käyttää samaa kohtaamispalvelinta."
 
 #. Translators: Description, Transfer Code
-#: src/ui/action_view.rs:506
+#: src/ui/action_view.rs:510
 msgid "Connecting to peer with code “{}”"
 msgstr "Yhdistetään vertaiseen koodilla “{}”"
 
-#: src/ui/action_view.rs:516
+#: src/ui/action_view.rs:520
 msgid "Connected to Peer"
 msgstr "Yhdistetty vertaiseen"
 
 #. Translators: Description
-#: src/ui/action_view.rs:527
+#: src/ui/action_view.rs:531
 msgid "Preparing to send file"
 msgstr "Valmistellaan tiedoston lähetystä"
 
 #. Translators: Description
-#: src/ui/action_view.rs:533
+#: src/ui/action_view.rs:537
 msgid "Preparing to receive file"
 msgstr "Valmistellaan tiedoston vastaanottamista"
 
-#: src/ui/action_view.rs:545
+#: src/ui/action_view.rs:549
 msgid "Accept File Transfer?"
 msgstr "Hyväksytäänkö tiedostonsiirto?"
 
 #. Translators: File receive confirmation message dialog; Filename, File size
-#: src/ui/action_view.rs:548
+#: src/ui/action_view.rs:552
 msgid ""
 "Your peer wants to send you “{0}” (Size: {1}).\n"
 "Do you want to download this file? The default action will save the file to "
@@ -297,75 +297,75 @@ msgstr ""
 "Haluatko ladata tämän tiedoston? Oletustoiminto tallentaa tiedoston "
 "Lataukset-kansioon."
 
-#: src/ui/action_view.rs:553
+#: src/ui/action_view.rs:557
 msgid "Ready to Receive File"
 msgstr "Valmiina vastaanottamaan tiedosto"
 
-#: src/ui/action_view.rs:555
+#: src/ui/action_view.rs:559
 msgid ""
 "A file is ready to be transferred. The transfer needs to be acknowledged."
 msgstr "Tiedosto on valmis siirrettäväksi. Siirto tulee tiedostaa."
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:584
+#: src/ui/action_view.rs:588
 msgid "File “{}” via local network direct transfer"
 msgstr "Tiedosto “{}” paikallisverkon suoran siirron kautta"
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:587
+#: src/ui/action_view.rs:591
 msgid "File “{}” via direct transfer"
 msgstr "Tiedosto “{}” suoran siirron kautta"
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:593
+#: src/ui/action_view.rs:597
 msgid "File “{0}” via relay {1}"
 msgstr ""
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:596
+#: src/ui/action_view.rs:600
 msgid "File “{}” via relay"
 msgstr ""
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:600
+#: src/ui/action_view.rs:604
 msgid "File “{}” via Unknown connection method"
 msgstr "Tiedosto “{}” tuntemattoman yhteystavan kautta"
 
 #. Translators: Title
-#: src/ui/action_view.rs:619
+#: src/ui/action_view.rs:623
 msgid "File Transfer Successful"
 msgstr "Tiedostonsiirto onnistui"
 
 #. Translators: Description, Filename
-#: src/ui/action_view.rs:636
+#: src/ui/action_view.rs:640
 msgid "Successfully sent file “{}”"
 msgstr "Tiedosto “{}” lähetetty onnistuneesti"
 
 #. Translators: Filename
-#: src/ui/action_view.rs:652
+#: src/ui/action_view.rs:656
 msgid "File has been saved to the selected folder as “{}”"
 msgstr "Tiedosto on tallennettu valittuun kansioon nimellä “{}”"
 
 #. Translators: Filename
-#: src/ui/action_view.rs:659
+#: src/ui/action_view.rs:663
 msgid "File has been saved to the Downloads folder as “{}”"
 msgstr "Tiedosto on tallennettu Lataukset-kansioon nimellä “{}”"
 
 #. Translators: Title
-#: src/ui/action_view.rs:683 src/ui/action_view.rs:696
+#: src/ui/action_view.rs:687 src/ui/action_view.rs:700
 msgid "File Transfer Failed"
 msgstr "Tiedostonsiirto epäonnistui"
 
-#: src/ui/action_view.rs:698
+#: src/ui/action_view.rs:702
 msgid "The file transfer failed: {}"
 msgstr "Tiedostonsiirto epäonnistui: {}"
 
 #. Translators: When opening a file
-#: src/ui/action_view.rs:813
+#: src/ui/action_view.rs:822
 msgid "Specified file / directory does not exist"
 msgstr "Määritettyä tiedostoa/kansiota ei ole olemassa"
 
-#: src/ui/action_view.rs:831
+#: src/ui/action_view.rs:840
 msgid ""
 "Error parsing rendezvous server URL. An invalid URL was entered in the "
 "settings."
@@ -373,16 +373,23 @@ msgstr ""
 "Virhe jäsentäessä kohtaamispalvelimen URL-osoitetta. Virheellinen URL-osoite "
 "kirjoitettiin asetuksiin."
 
-#: src/ui/action_view.rs:838
+#: src/ui/action_view.rs:847
 msgid "Error parsing transit URL. An invalid URL was entered in the settings."
 msgstr ""
 
-#: src/ui/action_view.rs:925
+#: src/ui/action_view.rs:934
 msgid "Invalid path selected: {}"
 msgstr "Virheellinen polku valittu: {}"
 
+#. Translators: Above progress bar for creating an archive to send as a folder
+#: src/ui/action_view.rs:1180
+msgid "{} File - Size: {}"
+msgid_plural "{} Files - Size: {}"
+msgstr[0] "{} tiedosto - koko: {}"
+msgstr[1] "{} tiedostoa - koko: {}"
+
 #. Translators: Button
-#: src/ui/action_view.ui:4 src/ui/action_view.ui:157
+#: src/ui/action_view.ui:4 src/ui/action_view.ui:158
 msgid "Save As"
 msgstr "Tallenna nimellä"
 
@@ -402,44 +409,44 @@ msgid "Back"
 msgstr "Takaisin"
 
 #. Translators: Button; Transmit Link is a noun
-#: src/ui/action_view.ui:83
+#: src/ui/action_view.ui:84
 msgid "Copy Transmit Link"
 msgstr "Kopioi lähetyslinkki"
 
 #. Translators: Button; Transmit Code is a noun
-#: src/ui/action_view.ui:91
+#: src/ui/action_view.ui:92
 msgid "Copy Transmit Code"
 msgstr "Kopioi lähetyskoodi"
 
 #. Translators: Button
-#: src/ui/action_view.ui:106 src/ui/action_view.ui:108
+#: src/ui/action_view.ui:107 src/ui/action_view.ui:109
 msgid "Open File"
 msgstr "Avaa tiedosto"
 
 #. Translators: Button
-#: src/ui/action_view.ui:120 src/ui/action_view.ui:122
+#: src/ui/action_view.ui:121 src/ui/action_view.ui:123
 msgid "Show in Folder"
 msgstr "Näytä sisältävä kansio"
 
-#: src/ui/action_view.ui:141
+#: src/ui/action_view.ui:142
 msgid "Accept File Transfer and save to Downloads folder"
 msgstr "Hyväksy tiedostonsiirto ja tallenna Lataukset-kansioon"
 
 #. Translators: Button
-#: src/ui/action_view.ui:143
+#: src/ui/action_view.ui:144
 msgid "Accept"
 msgstr "Hyväksy"
 
-#: src/ui/action_view.ui:155
+#: src/ui/action_view.ui:156
 msgid "Select Save Location"
 msgstr "Valitse tallennussijainti"
 
-#: src/ui/action_view.ui:170
+#: src/ui/action_view.ui:171
 msgid "Copy a detailed message for reporting an issue"
 msgstr "Kopioi yksityiskohtainen viesti vikailmoitusta varten"
 
 #. Translators: Button
-#: src/ui/action_view.ui:173
+#: src/ui/action_view.ui:174
 msgid "Copy Error Message"
 msgstr "Kopioi virheviesti"
 
@@ -468,7 +475,7 @@ msgstr "Lähetetään tiedosto"
 msgid "Receiving a File"
 msgstr "Vastaanotetaan tiedosto"
 
-#: src/ui/fs.rs:25
+#: src/ui/fs.rs:23
 msgid "Downloads dir missing. Please set XDG_DOWNLOAD_DIR"
 msgstr "Latausten kansio puuttuu. Aseta XDG_DOWNLOAD_DIR"
 
@@ -670,71 +677,75 @@ msgstr "_Sulje"
 msgid "_Show in Folder"
 msgstr "Näytä sisältävä _kansio"
 
-#: src/ui/window.ui:101
+#: src/ui/window.ui:104
 msgid "Main Menu"
 msgstr "Päävalikko"
 
-#: src/ui/window.ui:115
+#: src/ui/window.ui:118
 msgid "_Send"
 msgstr "_Lähetä"
 
-#: src/ui/window.ui:127
+#: src/ui/window.ui:130
 msgid "Send File"
 msgstr "Lähetä tiedosto"
 
-#: src/ui/window.ui:128
+#: src/ui/window.ui:131
 msgid "Select or drop the file or directory to send"
 msgstr "Valitse tai pudota lähettävä tiedosto tai kansio"
 
 #. Translators: Button
-#: src/ui/window.ui:139
-msgid "Select File…"
-msgstr "Valitse tiedosto…"
+#: src/ui/window.ui:142
+msgid "Select _File…"
+msgstr "Valitse _tiedosto…"
 
 #. Translators: Button
-#: src/ui/window.ui:152
-msgid "Select Folder…"
-msgstr "Valitse kansio…"
+#: src/ui/window.ui:156
+msgid "Select F_older…"
+msgstr "Valitse _kansio…"
 
-#: src/ui/window.ui:171
+#: src/ui/window.ui:176
 msgid "_Receive"
 msgstr "_Vastaanota"
 
-#. Translators: Button
-#: src/ui/window.ui:180 src/ui/window.ui:213
+#: src/ui/window.ui:185
 msgid "Receive File"
 msgstr "Vastaanota tiedosto"
 
 #. Translators: Text above code input box, transmit code is a noun
-#: src/ui/window.ui:182
+#: src/ui/window.ui:187
 msgid "Enter the transmit code from the sender"
 msgstr "Anna lähettäjän ilmoittama lähetyskoodi"
 
-#: src/util.rs:31 src/util.rs:50
+#. Translators: Button
+#: src/ui/window.ui:221
+msgid "Receive _File"
+msgstr "_Vastaanota tiedosto"
+
+#: src/util.rs:32 src/util.rs:51
 msgid "Failed to open downloads folder."
 msgstr "Lataukset-kansion avaaminen epäonnistui."
 
-#: src/util.rs:191 src/util.rs:264
+#: src/util.rs:192 src/util.rs:265
 msgid "The URI format is invalid"
 msgstr "URI:n muoto on virheellinen"
 
-#: src/util.rs:195 src/util.rs:199
+#: src/util.rs:196 src/util.rs:200
 msgid "The code does not match the required format"
 msgstr "Koodi ei vastaa vaadittua muotoa"
 
-#: src/util.rs:214 src/util.rs:220
+#: src/util.rs:215 src/util.rs:221
 msgid "Unknown URI version: {}"
 msgstr "Tuntematon URI-versio: {}"
 
-#: src/util.rs:229
+#: src/util.rs:230
 msgid "The URI parameter “rendezvous” contains an invalid URL: “{}”"
 msgstr ""
 
-#: src/util.rs:241
+#: src/util.rs:242
 msgid "The URI parameter “role” must be “follower” or “leader” (was: “{}”)"
 msgstr ""
 
-#: src/util.rs:248
+#: src/util.rs:249
 msgid "Unknown URI parameter “{}”"
 msgstr "Tuntematon URI-parametri “{}”"
 
@@ -796,7 +807,6 @@ msgid "Cannot decrypt a received message"
 msgstr "Vastaanotetun viestin salausta ei voi purkaa"
 
 #: src/util/error.rs:208 src/util/error.rs:263 src/util/error.rs:269
-#: src/util/error.rs:272
 msgid "An unknown error occurred"
 msgstr "Tapahtui tuntematon virhe"
 
@@ -844,7 +854,11 @@ msgstr "Virhe muodostaessa tiedostonsiirron yhteyttä"
 msgid "Unknown file transfer error"
 msgstr "Tuntematon tiedostonsiirron virhe"
 
-#: src/util/error.rs:274
+#: src/util/error.rs:270
+msgid "An unknown error occurred while creating a zip file: {}"
+msgstr "Tapahtui tuntematon virhe zip-tiedostoa luotaessa: {}"
+
+#: src/util/error.rs:271
 msgid ""
 "An unexpected error occurred. Please report an issue with the error message."
 msgstr ""
