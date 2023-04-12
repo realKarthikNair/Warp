@@ -158,19 +158,6 @@
     {
         "type": "archive",
         "archive-type": "tar-gzip",
-        "url": "https://static.crates.io/crates/async-compression/async-compression-0.3.15.crate",
-        "sha256": "942c7cd7ae39e91bde4820d74132e9862e62c2f386c3aa90ccf55949f5bad63a",
-        "dest": "cargo/vendor/async-compression-0.3.15"
-    },
-    {
-        "type": "inline",
-        "contents": "{\"package\": \"942c7cd7ae39e91bde4820d74132e9862e62c2f386c3aa90ccf55949f5bad63a\", \"files\": {}}",
-        "dest": "cargo/vendor/async-compression-0.3.15",
-        "dest-filename": ".cargo-checksum.json"
-    },
-    {
-        "type": "archive",
-        "archive-type": "tar-gzip",
         "url": "https://static.crates.io/crates/async-executor/async-executor-1.5.1.crate",
         "sha256": "6fa3dc5f2a8564f07759c008b9109dc0d39de92a88d5588b8a5036d286383afb",
         "dest": "cargo/vendor/async-executor-1.5.1"

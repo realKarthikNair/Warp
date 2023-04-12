@@ -1080,10 +1080,10 @@ impl ActionView {
         let res = receiver.recv().await;
         match res {
             Ok(()) => {
-                log::debug!("Receiver future '{}' received signal", name);
+                log::debug!("Receiver future '{name}' received signal");
             }
             Err(err) => {
-                panic!("{err:?}");
+                log::error!("Receiver future '{name}' received error: {err:?}");
             }
         }
     }
