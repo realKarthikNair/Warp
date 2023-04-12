@@ -10,7 +10,11 @@
   border-spacing: 36px;
 }
 
-.code-page > viewport > box > clamp > box {
+.code-page.cancel-page > viewport > box {
+  margin-bottom: 0px;
+}
+
+.code-page > viewport > box > clamp > box.status-box {
   border-spacing: 12px;
 }
 
@@ -19,16 +23,17 @@
   margin-bottom: 24px;
 }
 
-.code-page box.card {
-  border-spacing: 0px;
-}
-
 .popover-label {
   margin: 12px;
 }
 
 statuspage entry.card {
   padding: 12px 18px;
+}
+
+.cancel-page viewport {
+  /* 24 px margin bottom of button + 44 px button height - 36px status page margin */
+  padding-bottom: 68px;
 }
 
 progressbar.flag-pride progress {
