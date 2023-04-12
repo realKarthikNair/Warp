@@ -15,7 +15,7 @@ contact = "https://matrix.to/#/#warp:gnome.org"
 [profile.release]
 lto = true
 codegen-units = 1
-strip = true
+strip = false
 
 [dependencies]
 log = "0.4"
