@@ -22,9 +22,11 @@ The best transfer method will be determined using the [Magic Wormhole](https://g
 
 ## Support
 
-To receive support, you can join the matrix channel at https://matrix.to/#/#warp:gnome.org.
+Warp has fairly extensive [help pages](https://world.pages.gitlab.gnome.org/warp/help/C/index.html).
 
-Please report issues and bugs in the issue tracker in Gitlab.
+To receive further support, you can join the matrix channel at [#warp:gnome.org](https://matrix.to/#/#warp:gnome.org).
+
+Please report issues and bugs in the [issue tracker](https://gitlab.gnome.org/World/warp/-/issues) in Gitlab.
 
 ### QR Codes
 
