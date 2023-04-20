@@ -3,15 +3,17 @@ stages:
   - test
   - release
 
+variables:
+  MANIFEST_PATH: "build-aux/app.drey.Warp.Devel.json"
+  FLATPAK_MODULE: "warp"
+  RUNTIME: "master"
+
 flatpak:
-  image: 'quay.io/gnome_infrastructure/gnome-runtime-images:gnome-master'
-  stage: test
+  image: 'quay.io/gnome_infrastructure/gnome-runtime-images:gnome-$RUNTIME'
   tags:
     - flatpak
   variables:
     BUNDLE: "warp-nightly.flatpak"
-    MANIFEST_PATH: "build-aux/app.drey.Warp.Devel.json"
-    FLATPAK_MODULE: "warp"
     APP_ID: "app.drey.Warp.Devel"
     RUNTIME_REPO: "https://nightly.gnome.org/gnome-nightly.flatpakrepo"
   script:
@@ -55,6 +57,25 @@ cargo-deny:
   script:
     - cargo install cargo-deny
     - cargo deny check
+
+pages:
+  image: quay.io/gnome_infrastructure/gnome-runtime-images:gnome-$RUNTIME
+  tags:
+    - flatpak
+  interruptible: true
+  script:
+    - flatpak-builder --user --disable-rofiles-fuse --keep-build-dirs --stop-at=${FLATPAK_MODULE} flatpak_app ${MANIFEST_PATH}
+    - flatpak build-finish --socket=x11 --share=network flatpak_app
+    - echo "../build-aux/build-help-html.bash" | flatpak-builder --user --disable-rofiles-fuse --build-shell=${FLATPAK_MODULE} flatpak_app ${MANIFEST_PATH}
+    - mkdir public
+    - cp -r .flatpak-builder/build/${FLATPAK_MODULE}/_flatpak_build/help-out public/help
+    - cp help/LINGUAS public/help/
+    - chmod -R a=rwx public
+  artifacts:
+    paths:
+      - 'public'
+#  rules:
+#    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
 
 windows:
   image: 'ghcr.io/mglolenstine/gtk4-cross:gtk-nightly'
