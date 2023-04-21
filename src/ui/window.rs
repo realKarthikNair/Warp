@@ -224,7 +224,7 @@ impl WarpApplicationWindow {
     pub fn new(app: &WarpApplication) -> Self {
         glib::Object::builder()
             .property("application", app)
-            .property("icon-name", &globals::APP_ID)
+            .property("icon-name", globals::APP_ID)
             .build()
     }
 

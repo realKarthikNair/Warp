@@ -104,9 +104,9 @@ glib::wrapper! {
 impl WarpApplication {
     pub fn new() -> Self {
         glib::Object::builder()
-            .property("application-id", &Some(globals::APP_ID))
-            .property("flags", &gio::ApplicationFlags::HANDLES_OPEN)
-            .property("resource-base-path", &Some("/app/drey/Warp/"))
+            .property("application-id", Some(globals::APP_ID))
+            .property("flags", gio::ApplicationFlags::HANDLES_OPEN)
+            .property("resource-base-path", Some("/app/drey/Warp/"))
             .build()
     }
 
