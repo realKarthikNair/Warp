@@ -142,6 +142,7 @@
                                     <child type="end">
                                       <object class="GtkMenuButton">
                                         <property name="popover">popover_code</property>
+                                        <property name="valign">center</property>
                                         <property name="icon-name">dialog-information-symbolic</property>
                                         <style>
                                           <class name="circular"/>
