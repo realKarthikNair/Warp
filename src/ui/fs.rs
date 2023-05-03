@@ -69,11 +69,11 @@ pub async fn compress_folder<F: 'static + Fn(usize, usize) + Send>(
         .suffix(".zip")
         .tempfile_in(tmp_dir)?;
 
-    let mut async_zip_file = smol::fs::File::from(zip_file.reopen()?);
+    let async_zip_file = smol::fs::File::from(zip_file.reopen()?);
 
     log::debug!("Creating archive: {}", zip_file.path().display());
     smol::spawn(async move {
-        crate::util::zip::zip_dir(&path, &mut async_zip_file, progress_callback).await?;
+        crate::util::zip::zip_dir(&path, async_zip_file, progress_callback).await?;
         Ok(zip_file)
     })
     .await

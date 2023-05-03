@@ -7,9 +7,9 @@ use smol::fs::File;
 use super::error::{AppError, UiError};
 
 // See https://github.com/Majored/rs-async-zip/blob/main/examples/cli_compress.rs
-async fn handle_directory<W: AsyncWrite + Unpin, F: Fn(usize, usize)>(
+async fn handle_directory<W: AsyncWrite + Unpin + Send + 'static, F: Fn(usize, usize)>(
     input_path: &Path,
-    writer: &mut ZipFileWriter<W>,
+    mut writer: ZipFileWriter<W>,
     callback: F,
 ) -> Result<(), AppError> {
     let mut num_files = 0;
@@ -42,32 +42,57 @@ async fn handle_directory<W: AsyncWrite + Unpin, F: Fn(usize, usize)>(
         }
 
         let entry_str = &entry_str[input_dir_str.len() + 1..];
-        size += write_entry(entry_str, entry_path, writer).await?;
+        let res = write_entry(entry_str, entry_path, writer).await?;
+        size += res.0;
+        writer = res.1;
 
         num_files += 1;
 
         callback(num_files, size);
     }
 
+    writer.close().await?;
+
     Ok(())
 }
 
-async fn write_entry<W: AsyncWrite + Unpin>(
+async fn write_entry<W: AsyncWrite + Unpin + Send + 'static>(
     filename: &str,
     input_path: &Path,
-    writer: &mut ZipFileWriter<W>,
-) -> Result<usize, AppError> {
+    mut writer: ZipFileWriter<W>,
+) -> Result<(usize, ZipFileWriter<W>), AppError> {
     let mut input_file = File::open(input_path).await?;
     let input_file_size = input_file.metadata().await?.len() as usize;
 
-    let mut buffer = Vec::with_capacity(input_file_size);
-    input_file.read_to_end(&mut buffer).await?;
-    let size = buffer.len();
+    // We need to do memory mapped I/O for big files. This means extra work, so we only do it for files > 10 MiB
+    if input_file_size > 10 * 1024 * 1024 {
+        let input_path = input_path.to_path_buf();
+        let filename = filename.to_owned();
+        log::trace!("Adding file {filename} to zip file via mmap");
 
-    let builder = ZipEntryBuilder::new(filename.into(), Compression::Stored);
-    writer.write_entry_whole(builder, &buffer).await?;
+        let result: Result<ZipFileWriter<W>, AppError> = smol::unblock(move || {
+            let input_file = std::fs::File::open(input_path)?;
 
-    Ok(size)
+            // Safety: This is unsafe because the underlying file could change while it's being mapped
+            // This would only lead to corrupt data.
+            let mmap = unsafe { memmap::MmapOptions::new().map(&input_file)? };
+
+            let builder = ZipEntryBuilder::new(filename, Compression::Stored);
+            smol::block_on(writer.write_entry_whole(builder, &mmap))?;
+
+            Ok(writer)
+        })
+        .await;
+
+        Ok((input_file_size, result?))
+    } else {
+        let mut buffer = Vec::with_capacity(input_file_size);
+        input_file.read_to_end(&mut buffer).await?;
+
+        let builder = ZipEntryBuilder::new(filename.into(), Compression::Stored);
+        writer.write_entry_whole(builder, &buffer).await?;
+        Ok((input_file_size, writer))
+    }
 }
 
 async fn walk_dir(dir: PathBuf) -> Result<Vec<PathBuf>, AppError> {
@@ -91,20 +116,18 @@ async fn walk_dir(dir: PathBuf) -> Result<Vec<PathBuf>, AppError> {
     Ok(files)
 }
 
-pub async fn zip_dir<W: AsyncWrite + Unpin, F: Fn(usize, usize)>(
+pub async fn zip_dir<W: AsyncWrite + Unpin + Send + 'static, F: Fn(usize, usize)>(
     dir: &Path,
     writer: W,
     callback: F,
 ) -> Result<(), AppError> {
-    let mut output_writer = ZipFileWriter::new(writer);
+    let output_writer = ZipFileWriter::new(writer);
 
     if !dir.is_dir() {
         return Err(UiError::new(&"Directory expected").into());
     }
 
-    handle_directory(dir, &mut output_writer, callback).await?;
-
-    output_writer.close().await?;
+    handle_directory(dir, output_writer, callback).await?;
 
     Ok(())
 }
