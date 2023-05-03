@@ -64,6 +64,15 @@
   </custom>
   <content_rating type="oars-1.0" />
   <releases>
+    <release version="0.5.4" date="2023-05-03">
+      <description>
+        <p>This release features</p>
+        <ul>
+          <li>Allow creating zip files from files that are too big to fit in memory at once</li>
+          <li>Translation updates</li>
+        </ul>
+      </description>
+    </release>
     <release version="0.5.3" date="2023-04-25">
       <description>
         <p>This release features translation updates</p>
