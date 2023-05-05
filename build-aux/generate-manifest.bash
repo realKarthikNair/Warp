@@ -38,7 +38,7 @@ build-aux/app.drey.Warp.yaml > build-aux/app.drey.Warp.Devel.json.new
 
 set +e
 
-cmp build-aux/app.drey.Warp.Devel.json build-aux/app.drey.Warp.yaml > /dev/null
+cmp build-aux/app.drey.Warp.Devel.json build-aux/app.drey.Warp.Devel.json.new > /dev/null
 
 if [[ $? -eq 0 ]]; then
   rm build-aux/app.drey.Warp.Devel.json.new
