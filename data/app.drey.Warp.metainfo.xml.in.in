@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Fina Wilke 2022 <code@felinira.net> -->
 <component type="desktop-application">
   <id>@app-id@</id>
   <metadata_license>CC0</metadata_license>
@@ -220,7 +219,7 @@
     <kudo>HighContrast</kudo>
   </kudos>
   <developer_name>Fina Wilke</developer_name>
-  <update_contact>code@felinira.net</update_contact>
+  <update_contact>finaw@gnome.org</update_contact>
   <translation type="gettext">@gettext-package@</translation>
   <launchable type="desktop-id">@app-id@.desktop</launchable>
   <requires>

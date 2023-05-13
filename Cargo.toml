@@ -2,7 +2,7 @@
 name = "warp"
 license = "GPL-3.0"
 version = "0.5.4"
-authors = ["Fina Wilke <code@felinira.net>"]
+authors = ["Fina Wilke <finaw@gnome.org>"]
 homepage = "https://apps.gnome.org/app/app.drey.Warp/"
 repository = "https://gitlab.gnome.org/World/warp/"
 edition = "2021"

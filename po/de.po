@@ -1,7 +1,6 @@
 # German translation for Warp.
 # Copyright (C) 2022 Fina Wilke
 # This file is distributed under the same license as the Warp package.
-# Finia Wilke <code@felinira.net>, 2022.
 # Philipp Kiemle <philipp.kiemle@gmail.com>, 2022-2023.
 # Jürgen Benvenuti <gastornis@posteo.org>, 2022, 2023.
 # Tim Sabsch <tim@sabsch.com>, 2022.
