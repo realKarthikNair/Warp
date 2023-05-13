@@ -12,9 +12,9 @@
     "lldb.consoleMode": "commands",
     "mesonbuild.configureOnOpen": false,
     "mesonbuild.buildFolder": "_build",
-    "mesonbuild.mesonPath": "/home/fina/Code/warp/.flatpak/meson.sh",
-    "rust-analyzer.server.path": "/home/fina/Code/warp/.flatpak/rust-analyzer.sh",
-    "rust-analyzer.runnables.command": "/home/fina/Code/warp/.flatpak/cargo.sh",
+    "mesonbuild.mesonPath": "${workspaceFolder}/.flatpak/meson.sh",
+    "rust-analyzer.server.path": "${workspaceFolder}/.flatpak/rust-analyzer.sh",
+    "rust-analyzer.runnables.command": "${workspaceFolder}/.flatpak/cargo.sh",
     "rust-analyzer.files.excludeDirs": [
         ".flatpak"
     ]
