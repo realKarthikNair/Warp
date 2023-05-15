@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: warp main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
 "POT-Creation-Date: 2023-05-03 19:34+0000\n"
-"PO-Revision-Date: 2023-05-10 14:04+0000\n"
+"PO-Revision-Date: 2023-05-15 08:11+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic\n"
 "Language: is\n"
@@ -40,7 +40,7 @@ msgid ""
 "Warp allows you to securely send files to each other via the internet or "
 "local network by exchanging a word-based code."
 msgstr ""
-"Með Warp getur fólk sent skrár milli hvors annarsá  öruggan hátt yfir"
+"Með Warp getur fólk sent skrár milli hvors annars á  öruggan hátt yfir"
 " internetið eða á innra neti með því að skiptast á orðakóða."
 
 #: data/app.drey.Warp.metainfo.xml.in.in:14
@@ -57,7 +57,7 @@ msgstr "Eiginleikar"
 
 #: data/app.drey.Warp.metainfo.xml.in.in:20
 msgid "Send files between multiple devices"
-msgstr "Senda skjöl milli margra tækja"
+msgstr "Senda skrár milli margra tækja"
 
 #: data/app.drey.Warp.metainfo.xml.in.in:21
 msgid "Every file transfer is encrypted"
@@ -295,8 +295,8 @@ msgid ""
 "Do you want to download this file? The default action will save the file to "
 "your Downloads folder."
 msgstr ""
-"Jafningi þinn vill senda þér skrá “{0}” (Stærð: {1}).\n"
-"Vilt þú hlaða niður þessari skrá? Sjálfgefið vistast hún í Niðurhal möppuna "
+"Jafningi þinn vill senda þér skrá “{0}” (stærð: {1}).\n"
+"Vilt þú sækja þessa skrá? Sjálfgefið vistast hún í niðurhalsmöppuna "
 "þína"
 
 #: src/ui/action_view.rs:557
@@ -316,7 +316,7 @@ msgstr "Skrá \"{}” flutt beint um innra net"
 #. Translators: Description, During transfer
 #: src/ui/action_view.rs:591
 msgid "File “{}” via direct transfer"
-msgstr "Skrá \"{}” með beinni skrársendingu"
+msgstr "Skrá \"{}” með beinni skráasendingu"
 
 #. Translators: Description, During transfer
 #: src/ui/action_view.rs:597
