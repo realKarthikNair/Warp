@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: warp main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
 "POT-Creation-Date: 2023-05-03 19:34+0000\n"
-"PO-Revision-Date: 2023-05-15 08:11+0000\n"
+"PO-Revision-Date: 2023-05-17 09:16+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic\n"
 "Language: is\n"
@@ -455,7 +455,7 @@ msgstr "Afrita villuboð"
 
 #: src/ui/application.rs:62
 msgid "Unable to use transfer link: another transfer already in progress"
-msgstr "Ekki hægt að nota sflutningstengil: annar flutningur þegar í gangi"
+msgstr "Ekki hægt að nota flutningstengil: annar flutningur þegar í gangi"
 
 #: src/ui/application.rs:218
 msgid "translator-credits"
