@@ -52,7 +52,7 @@ backtrace = "0.3"
 qrcode = "0.12"
 zbus = "3.3"
 async-broadcast = "0.5"
-async_zip = "0.0.13"
+async_zip = "0.0.15"
 memmap = "0.7.0"
 
 [target.'cfg(windows)'.dependencies]

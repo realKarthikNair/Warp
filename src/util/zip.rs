@@ -77,7 +77,7 @@ async fn write_entry<W: AsyncWrite + Unpin + Send + 'static>(
             // This would only lead to corrupt data.
             let mmap = unsafe { memmap::MmapOptions::new().map(&input_file)? };
 
-            let builder = ZipEntryBuilder::new(filename, Compression::Stored);
+            let builder = ZipEntryBuilder::new(filename.into(), Compression::Stored);
             smol::block_on(writer.write_entry_whole(builder, &mmap))?;
 
             Ok(writer)
