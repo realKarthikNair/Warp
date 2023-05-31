@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: warp main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
-"POT-Creation-Date: 2023-04-11 22:37+0000\n"
-"PO-Revision-Date: 2023-04-17 09:21+0700\n"
+"POT-Creation-Date: 2023-05-24 23:43+0000\n"
+"PO-Revision-Date: 2023-05-31 19:57+0700\n"
 "Last-Translator: Kukuh Syafaat <kukuhsyafaat@gnome.org>\n"
 "Language-Team: Indonesian <gnome-l10n-id@googlegroups.com>\n"
 "Language: id\n"
@@ -19,13 +19,13 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Poedit 3.2.2\n"
 
-#: data/app.drey.Warp.desktop.in.in:3 data/app.drey.Warp.metainfo.xml.in.in:7
-#: src/main.rs:116 src/ui/application.rs:212
+#: data/app.drey.Warp.desktop.in.in:3 data/app.drey.Warp.metainfo.xml.in.in:6
+#: src/main.rs:116
 msgid "Warp"
 msgstr "Warp"
 
-#: data/app.drey.Warp.desktop.in.in:4 data/app.drey.Warp.metainfo.xml.in.in:8
-#: src/ui/welcome_window.ui:35
+#: data/app.drey.Warp.desktop.in.in:4 data/app.drey.Warp.metainfo.xml.in.in:7
+#: src/ui/welcome_window.ui:26
 msgid "Fast and secure file transfer"
 msgstr "Transfer berkas yang cepat dan aman"
 
@@ -33,7 +33,7 @@ msgstr "Transfer berkas yang cepat dan aman"
 msgid "Gnome;GTK;Wormhole;Magic-Wormhole;"
 msgstr "Gnome;GTK;Wormhole;Magic-Wormhole;"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:10
+#: data/app.drey.Warp.metainfo.xml.in.in:9
 msgid ""
 "Warp allows you to securely send files to each other via the internet or "
 "local network by exchanging a word-based code."
@@ -41,7 +41,7 @@ msgstr ""
 "Warp memungkinkan Anda untuk mengirim berkas dengan aman satu sama lain "
 "melalui internet atau jaringan lokal dengan bertukar kode berbasis kata."
 
-#: data/app.drey.Warp.metainfo.xml.in.in:14
+#: data/app.drey.Warp.metainfo.xml.in.in:13
 msgid ""
 "The best transfer method will be determined using the “Magic Wormhole” "
 "protocol which includes local network transfer if possible."
@@ -49,31 +49,31 @@ msgstr ""
 "Metode transfer terbaik akan ditentukan menggunakan protokol \"Magic "
 "Wormhole\" yang mencakup transfer jaringan lokal jika memungkinkan."
 
-#: data/app.drey.Warp.metainfo.xml.in.in:18
+#: data/app.drey.Warp.metainfo.xml.in.in:17
 msgid "Features"
 msgstr "Fitur"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:20
+#: data/app.drey.Warp.metainfo.xml.in.in:19
 msgid "Send files between multiple devices"
 msgstr "Kirim berkas di antara beberapa perangkat"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:21
+#: data/app.drey.Warp.metainfo.xml.in.in:20
 msgid "Every file transfer is encrypted"
 msgstr "Setiap transfer berkas dienkripsi"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:22
+#: data/app.drey.Warp.metainfo.xml.in.in:21
 msgid "Directly transfer files on the local network if possible"
 msgstr "Langsung mentransfer berkas di jaringan lokal jika memungkinkan"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:23
+#: data/app.drey.Warp.metainfo.xml.in.in:22
 msgid "An internet connection is required"
 msgstr "Koneksi internet diperlukan"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:24
+#: data/app.drey.Warp.metainfo.xml.in.in:23
 msgid "QR Code support"
 msgstr "Dukungan Kode QR"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:25
+#: data/app.drey.Warp.metainfo.xml.in.in:24
 msgid ""
 "Compatibility with the Magic Wormhole command line client and all other "
 "compatible apps"
@@ -81,35 +81,33 @@ msgstr ""
 "Kompatibilitas dengan klien baris perintah Magic Wormhole dan semua aplikasi "
 "lain yang kompatibel"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:31
+#: data/app.drey.Warp.metainfo.xml.in.in:30
 msgid "Main Window"
 msgstr "Jendela Utama"
 
 #. Translators: Entry placeholder; This is a noun
-#: data/app.drey.Warp.metainfo.xml.in.in:35 src/ui/window.ui:200
+#: data/app.drey.Warp.metainfo.xml.in.in:34 src/ui/window.ui:205
 msgid "Transmit Code"
 msgstr "Kode Transmisi"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:39
+#: data/app.drey.Warp.metainfo.xml.in.in:38
 msgid "Accept File Transfer"
 msgstr "Terima Transfer Berkas"
 
 #. Translators: Title
-#: data/app.drey.Warp.metainfo.xml.in.in:43 src/ui/action_view.rs:611
+#: data/app.drey.Warp.metainfo.xml.in.in:42 src/ui/action_view.rs:619
 msgid "Sending File"
 msgstr "Mengirim Berkas"
 
-#. Translators: Title
-#: data/app.drey.Warp.metainfo.xml.in.in:47 src/ui/action_view.rs:615
+#: data/app.drey.Warp.metainfo.xml.in.in:46 src/ui/action_view.rs:625
 msgid "Receiving File"
 msgstr "Menerima Berkas"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:51 src/ui/action_view.rs:632
+#: data/app.drey.Warp.metainfo.xml.in.in:50 src/ui/action_view.rs:634
 msgid "File Transfer Complete"
 msgstr "Transfer Berkas Selesai"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:194 src/ui/application.rs:219
-#: src/ui/application.rs:220
+#: data/app.drey.Warp.metainfo.xml.in.in:221 src/ui/application.rs:216
 msgid "Fina Wilke"
 msgstr "Fina Wilke"
 
@@ -195,64 +193,59 @@ msgid "{0} — {1}"
 msgstr "{0} — {1}"
 
 #. Translators: Notification when clicking on "Copy Code to Clipboard" button
-#: src/ui/action_view.rs:254
+#: src/ui/action_view.rs:262
 msgid "Copied Code to Clipboard"
 msgstr "Kode yang Disalin ke Papan Klip"
 
 #. Translators: Notification when clicking on "Copy Link to Clipboard" button
-#: src/ui/action_view.rs:275
+#: src/ui/action_view.rs:283
 msgid "Copied Link to Clipboard"
 msgstr "Tautan yang Disalin ke Papan Klip"
 
-#: src/ui/action_view.rs:289
+#: src/ui/action_view.rs:297
 msgid "Copied Error to Clipboard"
 msgstr "Galat yang Disalin ke Papan Klip"
 
-#: src/ui/action_view.rs:291
+#: src/ui/action_view.rs:299
 msgid "No error available"
 msgstr "Tidak ada galat yang tersedia"
 
-#. Translators: Title
-#: src/ui/action_view.rs:433
+#: src/ui/action_view.rs:441
 msgid "Creating Archive"
 msgstr "Membuat Arsip"
 
-#: src/ui/action_view.rs:437
+#: src/ui/action_view.rs:445
 msgid "Compressing folder “{}”"
 msgstr "Mengompres folder “{}”"
 
 #. Translators: Title
-#: src/ui/action_view.rs:452 src/ui/action_view.rs:507
+#: src/ui/action_view.rs:461 src/ui/action_view.rs:519
 msgid "Connecting"
 msgstr "Menyambung"
 
 #. Translators: Description, Filename
-#: src/ui/action_view.rs:455
+#: src/ui/action_view.rs:464
 msgid "Requesting file transfer"
 msgstr "Meminta transfer berkas"
 
-#. Translators: Title, this is a noun
-#: src/ui/action_view.rs:466
-msgid "Your Transmit Code"
-msgstr "Kode Pengiriman Anda"
-
-#: src/ui/action_view.rs:479
+#. Translators: Description, argument is filename
+#: src/ui/action_view.rs:485
 msgid "Ready to send “{}”."
 msgstr "Siap mengirim \"{}\"."
 
-#. Translators: Description line 2, Code words and QR code visible,
-#: src/ui/action_view.rs:482
+#. Translators: Help dialog line 1, Code words and QR code visible,
+#: src/ui/action_view.rs:490
 msgid ""
 "The receiver needs to enter or scan this code to begin the file transfer."
 msgstr ""
 "Penerima perlu memasukkan atau memindai kode ini untuk memulai transfer "
 "berkas."
 
-#: src/ui/action_view.rs:486
+#: src/ui/action_view.rs:494
 msgid "The QR code is compatible with the following apps: {}."
 msgstr "Kode QR kompatibel dengan aplikasi berikut: {}."
 
-#: src/ui/action_view.rs:494
+#: src/ui/action_view.rs:502
 msgid ""
 "You have entered a custom rendezvous server URL in preferences. Please "
 "verify the receiver also uses the same rendezvous server."
@@ -260,31 +253,31 @@ msgstr ""
 "Anda telah memasukkan URL peladen rendezvous di preferensi. Harap verifikasi "
 "bahwa penerima juga menggunakan peladen rendezvous yang sama."
 
+#: src/ui/action_view.rs:507
+msgid "Click the QR code to copy the link to the clipboard."
+msgstr "Klik kode QR untuk menyalin tautan ke papan klip."
+
 #. Translators: Description, Transfer Code
-#: src/ui/action_view.rs:510
+#: src/ui/action_view.rs:522
 msgid "Connecting to peer with code “{}”"
 msgstr "Menghubungkan ke peer dengan kode \"{}\""
 
-#: src/ui/action_view.rs:520
+#: src/ui/action_view.rs:532
 msgid "Connected to Peer"
 msgstr "Terhubung ke Peer"
 
 #. Translators: Description
-#: src/ui/action_view.rs:531
+#: src/ui/action_view.rs:541
 msgid "Preparing to send file"
 msgstr "Bersiap untuk mengirim berkas"
 
 #. Translators: Description
-#: src/ui/action_view.rs:537
+#: src/ui/action_view.rs:548
 msgid "Preparing to receive file"
 msgstr "Bersiap untuk menerima berkas"
 
-#: src/ui/action_view.rs:549
-msgid "Accept File Transfer?"
-msgstr "Terima Transfer Berkas?"
-
 #. Translators: File receive confirmation message dialog; Filename, File size
-#: src/ui/action_view.rs:552
+#: src/ui/action_view.rs:561
 msgid ""
 "Your peer wants to send you “{0}” (Size: {1}).\n"
 "Do you want to download this file? The default action will save the file to "
@@ -294,75 +287,70 @@ msgstr ""
 "Apakah Anda ingin mengunduh berkas ini? Tindakan bawaan akan menyimpan "
 "berkas ke folder Unduhan Anda."
 
-#: src/ui/action_view.rs:557
+#: src/ui/action_view.rs:566
 msgid "Ready to Receive File"
 msgstr "Siap untuk Menerima Berkas"
 
-#: src/ui/action_view.rs:559
+#: src/ui/action_view.rs:568
 msgid ""
 "A file is ready to be transferred. The transfer needs to be acknowledged."
 msgstr "Berkas siap ditransfer. Transfer perlu diakui."
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:588
+#: src/ui/action_view.rs:596
 msgid "File “{}” via local network direct transfer"
 msgstr "Berkas \"{}\" melalui transfer langsung jaringan lokal"
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:591
+#: src/ui/action_view.rs:599
 msgid "File “{}” via direct transfer"
 msgstr "Berkas \"{}\" melalui transfer langsung"
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:597
+#: src/ui/action_view.rs:605
 msgid "File “{0}” via relay {1}"
 msgstr "Berkas \"{0}\" melalui {1} relai"
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:600
+#: src/ui/action_view.rs:608
 msgid "File “{}” via relay"
 msgstr "Berkas \"{}\" melalui relai"
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:604
+#: src/ui/action_view.rs:612
 msgid "File “{}” via Unknown connection method"
 msgstr "Berkas \"{}\" melalui metode koneksi tidak dikenal"
 
-#. Translators: Title
-#: src/ui/action_view.rs:623
-msgid "File Transfer Successful"
-msgstr "Transfer Berkas Berhasil"
-
 #. Translators: Description, Filename
-#: src/ui/action_view.rs:640
+#: src/ui/action_view.rs:642
 msgid "Successfully sent file “{}”"
 msgstr "Berhasil mengirim berkas \"{}\""
 
 #. Translators: Filename
-#: src/ui/action_view.rs:656
+#: src/ui/action_view.rs:660
 msgid "File has been saved to the selected folder as “{}”"
 msgstr "Berkas telah disimpan ke folder yang dipilih sebagai \"{}\""
 
 #. Translators: Filename
-#: src/ui/action_view.rs:663
+#: src/ui/action_view.rs:667
 msgid "File has been saved to the Downloads folder as “{}”"
 msgstr "Berkas telah disimpan ke folder Unduhan sebagai \"{}\""
 
 #. Translators: Title
-#: src/ui/action_view.rs:687 src/ui/action_view.rs:700
+#: src/ui/action_view.rs:694 src/ui/action_view.ui:289
 msgid "File Transfer Failed"
 msgstr "Transfer Berkas Gagal"
 
-#: src/ui/action_view.rs:702
+#: src/ui/action_view.rs:696
 msgid "The file transfer failed: {}"
 msgstr "Transfer berkas gagal: {}"
 
 #. Translators: When opening a file
-#: src/ui/action_view.rs:822
+#: src/ui/action_view.rs:816
 msgid "Specified file / directory does not exist"
 msgstr "Berkas / direktori tertentu tidak ada"
 
-#: src/ui/action_view.rs:840
+#: src/ui/action_view.rs:834
 msgid ""
 "Error parsing rendezvous server URL. An invalid URL was entered in the "
 "settings."
@@ -370,23 +358,23 @@ msgstr ""
 "Galat mengurai URL peladen rendezvous. URL yang tidak valid dimasukkan dalam "
 "pengaturan."
 
-#: src/ui/action_view.rs:847
+#: src/ui/action_view.rs:841
 msgid "Error parsing transit URL. An invalid URL was entered in the settings."
 msgstr ""
 "Galat mengurai URL transit. URL yang tidak valid dimasukkan dalam pengaturan."
 
-#: src/ui/action_view.rs:934
+#: src/ui/action_view.rs:928
 msgid "Invalid path selected: {}"
 msgstr "Path yang dipilih tidak valid: {}"
 
 #. Translators: Above progress bar for creating an archive to send as a folder
-#: src/ui/action_view.rs:1180
+#: src/ui/action_view.rs:1174
 msgid "{} File - Size: {}"
 msgid_plural "{} Files - Size: {}"
 msgstr[0] "Berkas {} - Ukuran: {}"
 
 #. Translators: Button
-#: src/ui/action_view.ui:4 src/ui/action_view.ui:158
+#: src/ui/action_view.ui:4 src/ui/action_view.ui:225
 msgid "Save As"
 msgstr "Simpan Sebagai"
 
@@ -395,55 +383,69 @@ msgid "Save"
 msgstr "Simpan"
 
 #. Translators: Button
-#: src/ui/action_view.ui:7 src/ui/action_view.ui:26 src/ui/window.ui:31
+#: src/ui/action_view.ui:7 src/ui/action_view.ui:310 src/ui/window.ui:31
 #: src/ui/window.ui:39
 msgid "Cancel"
 msgstr "Batal"
 
 #. Translators: Button
-#: src/ui/action_view.ui:34 src/ui/welcome_window.ui:54
+#: src/ui/action_view.ui:39 src/ui/welcome_window.ui:56
 msgid "Back"
 msgstr "Mundur"
 
 #. Translators: Button; Transmit Link is a noun
-#: src/ui/action_view.ui:84
+#: src/ui/action_view.ui:110
 msgid "Copy Transmit Link"
 msgstr "Salin Tautan Transmisi"
 
+#: src/ui/action_view.ui:135
+msgid "Your Transmit Code"
+msgstr "Kode Pengiriman Anda"
+
 #. Translators: Button; Transmit Code is a noun
-#: src/ui/action_view.ui:92
+#: src/ui/action_view.ui:183
 msgid "Copy Transmit Code"
 msgstr "Salin Kode Transmisi"
 
-#. Translators: Button
-#: src/ui/action_view.ui:107 src/ui/action_view.ui:109
-msgid "Open File"
-msgstr "Buka Berkas"
+#. Translators: Title
+#: src/ui/action_view.ui:200
+msgid "Accept File Transfer?"
+msgstr "Terima Transfer Berkas?"
 
-#. Translators: Button
-#: src/ui/action_view.ui:121 src/ui/action_view.ui:123
-msgid "Show in Folder"
-msgstr "Tampilkan dalam Folder"
-
-#: src/ui/action_view.ui:142
+#: src/ui/action_view.ui:209
 msgid "Accept File Transfer and save to Downloads folder"
 msgstr "Terima Transfer Berkas dan simpan ke folder Unduhan"
 
 #. Translators: Button
-#: src/ui/action_view.ui:144
+#: src/ui/action_view.ui:211
 msgid "Accept"
 msgstr "Terima"
 
-#: src/ui/action_view.ui:156
+#: src/ui/action_view.ui:223
 msgid "Select Save Location"
 msgstr "Pilih Simpan Lokasi"
 
-#: src/ui/action_view.ui:171
+#. Translators: Title
+#: src/ui/action_view.ui:244
+msgid "File Transfer Successful"
+msgstr "Transfer Berkas Berhasil"
+
+#. Translators: Button
+#: src/ui/action_view.ui:252 src/ui/action_view.ui:254
+msgid "Open File"
+msgstr "Buka Berkas"
+
+#. Translators: Button
+#: src/ui/action_view.ui:267 src/ui/action_view.ui:269
+msgid "Show in Folder"
+msgstr "Tampilkan dalam Folder"
+
+#: src/ui/action_view.ui:293
 msgid "Copy a detailed message for reporting an issue"
 msgstr "Salin pesan terperinci untuk melaporkan masalah"
 
 #. Translators: Button
-#: src/ui/action_view.ui:174
+#: src/ui/action_view.ui:295
 msgid "Copy Error Message"
 msgstr "Salin Pesan Galat"
 
@@ -452,25 +454,25 @@ msgid "Unable to use transfer link: another transfer already in progress"
 msgstr ""
 "Tidak dapat menggunakan tautan transfer: transfer lain sudah berlangsung"
 
+#: src/ui/application.rs:217
+msgid "Tobias Bernard"
+msgstr "Tobias Bernard"
+
+#: src/ui/application.rs:217
+msgid "Sophie Herold"
+msgstr "Sophie Herold"
+
 #: src/ui/application.rs:218
 msgid "translator-credits"
 msgstr ""
 "Kukuh Syafaat <kukuhsyafaat@gnome.org>, 2022-2023.\n"
 "Andika Triwidada <andika@gmail.com>, 2022."
 
-#: src/ui/application.rs:221
-msgid "Tobias Bernard"
-msgstr "Tobias Bernard"
-
-#: src/ui/application.rs:221
-msgid "Sophie Herold"
-msgstr "Sophie Herold"
-
-#: src/ui/application.rs:239
+#: src/ui/application.rs:235
 msgid "Sending a File"
 msgstr "Mengirim Berkas"
 
-#: src/ui/application.rs:240
+#: src/ui/application.rs:236
 msgid "Receiving a File"
 msgstr "Menerima Berkas"
 
@@ -503,22 +505,10 @@ msgid "Network"
 msgstr "Jaringan"
 
 #: src/ui/preferences.ui:15
-msgid "Server URLs"
-msgstr "URL Peladen"
-
-#: src/ui/preferences.ui:18
-msgid "Rendezvous Server URL"
-msgstr "URL Peladen Rendezvous"
-
-#: src/ui/preferences.ui:25
-msgid "Transit Server URL"
-msgstr "URL Peladen Transit"
-
-#: src/ui/preferences.ui:34
 msgid "Code Words"
 msgstr "Kata-kata Kode"
 
-#: src/ui/preferences.ui:35
+#: src/ui/preferences.ui:16
 msgid ""
 "The code word count determines the security of the transfer.\n"
 "\n"
@@ -532,28 +522,40 @@ msgstr ""
 "tersebut. Karena kode mungkin hanya dapat ditebak sekali, risikonya sangat "
 "kecil bahkan dengan kode pendek. Panjang 4 sangat aman."
 
-#: src/ui/preferences.ui:40
+#: src/ui/preferences.ui:21
 msgid "Code Word Count"
 msgstr "Jumlah Kata Kode"
+
+#: src/ui/preferences.ui:34
+msgid "Server URLs"
+msgstr "URL Peladen"
+
+#: src/ui/preferences.ui:37
+msgid "Rendezvous Server URL"
+msgstr "URL Peladen Rendezvous"
+
+#: src/ui/preferences.ui:44
+msgid "Transit Server URL"
+msgstr "URL Peladen Transit"
 
 #: src/ui/welcome_window.ui:5
 msgid "Welcome"
 msgstr "Selamat Datang"
 
-#. Translators: Button
-#: src/ui/welcome_window.ui:23
-msgid "Next"
-msgstr "Selanjutnya"
-
-#: src/ui/welcome_window.ui:34
+#: src/ui/welcome_window.ui:25
 msgid "Welcome to Warp"
 msgstr "Selamat Datang di Warp"
 
-#: src/ui/welcome_window.ui:82
+#. Translators: Button
+#: src/ui/welcome_window.ui:33
+msgid "Next"
+msgstr "Selanjutnya"
+
+#: src/ui/welcome_window.ui:84
 msgid "Introduction"
 msgstr "Pengantar"
 
-#: src/ui/welcome_window.ui:93
+#: src/ui/welcome_window.ui:95
 msgid ""
 "Warp makes file transfer simple. To get started, both parties need to "
 "install Warp on their devices.\n"
@@ -579,7 +581,7 @@ msgstr ""
 "Utama."
 
 #. Translators: Big button to finish welcome screen
-#: src/ui/welcome_window.ui:106
+#: src/ui/welcome_window.ui:108
 msgid "Get Started Using Warp"
 msgstr "Mulai Menggunakan Warp"
 
@@ -677,47 +679,47 @@ msgstr "_Tutup"
 msgid "_Show in Folder"
 msgstr "Tampilkan dalam _Folder"
 
-#: src/ui/window.ui:104
+#: src/ui/window.ui:101
 msgid "Main Menu"
 msgstr "Menu Utama"
 
-#: src/ui/window.ui:118
+#: src/ui/window.ui:123
 msgid "_Send"
 msgstr "_Kirim"
 
-#: src/ui/window.ui:130
+#: src/ui/window.ui:135
 msgid "Send File"
 msgstr "Kirim Berkas"
 
-#: src/ui/window.ui:131
+#: src/ui/window.ui:136
 msgid "Select or drop the file or directory to send"
 msgstr "Pilih atau jatuhkan berkas atau direktori untuk dikirim"
 
 #. Translators: Button
-#: src/ui/window.ui:142
+#: src/ui/window.ui:147
 msgid "Select _File…"
 msgstr "Pilih _Berkas…"
 
 #. Translators: Button
-#: src/ui/window.ui:156
+#: src/ui/window.ui:161
 msgid "Select F_older…"
 msgstr "Pilih F_older…"
 
-#: src/ui/window.ui:176
+#: src/ui/window.ui:181
 msgid "_Receive"
 msgstr "_Terima"
 
-#: src/ui/window.ui:185
+#: src/ui/window.ui:190
 msgid "Receive File"
 msgstr "Terima Berkas"
 
 #. Translators: Text above code input box, transmit code is a noun
-#: src/ui/window.ui:187
+#: src/ui/window.ui:192
 msgid "Enter the transmit code from the sender"
 msgstr "Masukkan kode transmisi dari pengirim"
 
 #. Translators: Button
-#: src/ui/window.ui:221
+#: src/ui/window.ui:226
 msgid "Receive _File"
 msgstr "Terima _Berkas"
 
@@ -725,28 +727,28 @@ msgstr "Terima _Berkas"
 msgid "Failed to open downloads folder."
 msgstr "Gagal membuka folder unduhan."
 
-#: src/util.rs:192 src/util.rs:265
+#: src/util.rs:193 src/util.rs:266
 msgid "The URI format is invalid"
 msgstr "Format URI tidak valid"
 
-#: src/util.rs:196 src/util.rs:200
+#: src/util.rs:197 src/util.rs:201
 msgid "The code does not match the required format"
 msgstr "Kode tidak cocok dengan format yang diperlukan"
 
-#: src/util.rs:215 src/util.rs:221
+#: src/util.rs:216 src/util.rs:222
 msgid "Unknown URI version: {}"
 msgstr "Versi URI tidak diketahui: {}"
 
-#: src/util.rs:230
+#: src/util.rs:231
 msgid "The URI parameter “rendezvous” contains an invalid URL: “{}”"
 msgstr "Parameter URI \"rendezvous\" berisi URL yang tidak valid: \"{}\""
 
-#: src/util.rs:242
+#: src/util.rs:243
 msgid "The URI parameter “role” must be “follower” or “leader” (was: “{}”)"
 msgstr ""
 "Parameter URI \"role\" harus \"follower\" atau \"leader\" (adalah: \"{}\")"
 
-#: src/util.rs:249
+#: src/util.rs:250
 msgid "Unknown URI parameter “{}”"
 msgstr "Parameter URI tidak diketahui \"{}\""
 
