@@ -3,6 +3,7 @@ use crate::util::error::AppError;
 use crate::{gettext, globals};
 use futures::FutureExt;
 use futures::{pin_mut, select};
+use std::borrow::Cow;
 use std::ffi::{OsStr, OsString};
 use std::future::Future;
 use std::path::{Path, PathBuf};
@@ -84,54 +85,95 @@ pub fn safe_persist_tempfile(
     filename: &Path,
 ) -> std::io::Result<PathBuf> {
     let mut temp_path = temp_file.into_temp_path();
-    let mut file_stem: String = filename
+    let orig_file_stem: String = filename
         .file_stem()
-        .unwrap_or(&OsString::new())
-        .to_string_lossy()
-        .into();
-    if file_stem.is_empty() {
-        file_stem = "Downloaded file".to_owned();
-    }
+        .map(OsStr::to_string_lossy)
+        .map_or("Downloaded File".to_owned(), Cow::into_owned);
 
-    let orig_file_stem = file_stem.clone();
-
-    let mut file_ext: String = filename
+    let file_ext: String = filename
         .extension()
-        .unwrap_or(&OsString::new())
+        .unwrap_or(&OsString::from("bin"))
         .to_string_lossy()
-        .into();
-    if file_ext.is_empty() {
-        file_ext = "bin".to_owned();
-    }
+        .into_owned();
 
-    let mut i = 1;
-    let mut filename;
     let dir = temp_path
         .parent()
-        .unwrap_or(&PathBuf::from("."))
-        .to_path_buf();
-    let mut path;
+        .map_or(PathBuf::from("."), ToOwned::to_owned);
+
+    let mut i = 1;
+    #[allow(clippy::redundant_clone)]
+    let mut file_stem = orig_file_stem.clone();
 
     loop {
-        let mut filename_str = file_stem.clone();
-        filename_str.push('.');
-        filename_str.push_str(&file_ext);
-        filename = PathBuf::from(filename_str);
+        let path = dir.join(PathBuf::from(format!("{file_stem}.{file_ext}")));
 
-        path = dir.join(filename.clone());
-        let persist_res = temp_path.persist_noclobber(&path);
-        if let Err(err) = persist_res {
-            if err.error.kind() != std::io::ErrorKind::AlreadyExists {
-                log::error!("Error creating file '{}': {}", path.display(), err);
-                return Err(err.error);
+        match temp_path.persist_noclobber(&path) {
+            Ok(()) => {
+                return Ok(path);
+            }
+            Err(err) => {
+                if err.error.kind() != std::io::ErrorKind::AlreadyExists {
+                    log::error!("Error creating file '{}': {}", path.display(), err);
+                    return Err(err.error);
+                }
+
+                file_stem = format!("{orig_file_stem} ({i})");
+                i += 1;
+
+                temp_path = err.path;
+            }
+        }
+    }
+}
+
+#[cfg(test)]
+mod test {
+    use std::path::PathBuf;
+
+    use super::safe_persist_tempfile;
+
+    #[test]
+    fn test_safe_persist_tempfile() {
+        let filename = PathBuf::from("warp_test_safe_persist_tempfile.bin");
+        let temp_dir = std::env::temp_dir();
+        let mut to_remove = Vec::new();
+
+        for file in std::fs::read_dir(&temp_dir).unwrap() {
+            if let Ok(file) = file {
+                let path = file.path();
+                if path.file_stem().is_some_and(|stem| {
+                    stem.to_string_lossy()
+                        .starts_with(filename.file_stem().unwrap().to_string_lossy().as_ref())
+                }) && path.extension().is_some_and(|ext| ext == "bin")
+                {
+                    std::fs::remove_file(path).unwrap();
+                }
+            }
+        }
+
+        for i in 0..10 {
+            let temp_file = tempfile::NamedTempFile::new().unwrap();
+            let res = safe_persist_tempfile(temp_file, &filename);
+            let path = res.unwrap();
+
+            if i == 0 {
+                assert_eq!(path, temp_dir.join(&filename));
+            } else {
+                assert_eq!(
+                    path,
+                    temp_dir.join(&PathBuf::from(format!(
+                        "{} ({i}).{}",
+                        filename.file_stem().unwrap().to_string_lossy(),
+                        filename.extension().unwrap().to_string_lossy()
+                    )))
+                );
             }
 
-            file_stem = format!("{orig_file_stem} ({i})");
-            i += 1;
+            to_remove.push(path);
+        }
 
-            temp_path = err.path;
-        } else {
-            return Ok(path);
+        for path in to_remove {
+            std::fs::remove_file(path).unwrap();
         }
     }
 }
