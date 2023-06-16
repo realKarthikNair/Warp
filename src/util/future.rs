@@ -11,7 +11,7 @@ pub async fn spawn_async<T>(
 where
     T: 'static + Send,
 {
-    let task = smol::spawn(async move { func.await });
+    let task = smol::spawn(func);
     task.catch_unwind()
         .await
         .map_err(|_| error::error_for_panic())?

@@ -959,14 +959,13 @@ impl ActionView {
         let file = cancelable_future(
             spawn_async(async move {
                 let mut file = async_file;
-                request
-                    .accept(
-                        Self::transit_handler_main,
-                        Self::progress_handler_main,
-                        &mut file,
-                        Self::cancel_future_main().await,
-                    )
-                    .await?;
+                Box::pin(request.accept(
+                    Self::transit_handler_main,
+                    Self::progress_handler_main,
+                    &mut file,
+                    Self::cancel_future_main().await,
+                ))
+                .await?;
                 AppError::ok(file)
             }),
             Self::cancel_timeout_future(TIMEOUT_MS),
@@ -1043,7 +1042,7 @@ impl ActionView {
 
         cancelable_future(
             spawn_async(async move {
-                wormhole::transfer::send_file(
+                Box::pin(wormhole::transfer::send_file(
                     connection,
                     transit_url,
                     &mut file,
@@ -1053,7 +1052,7 @@ impl ActionView {
                     Self::transit_handler_main,
                     Self::progress_handler_main,
                     Self::cancel_future_main().await,
-                )
+                ))
                 .await
             }),
             Self::cancel_timeout_future(TIMEOUT_MS),
@@ -1264,7 +1263,7 @@ impl ActionView {
         let obj = self.clone();
 
         main_async_local(Self::transmit_error_handler_main, async move {
-            obj.transmit_send(path, app_cfg).await?;
+            Box::pin(obj.transmit_send(path, app_cfg)).await?;
             Ok(())
         });
     }
@@ -1278,7 +1277,7 @@ impl ActionView {
         let obj = self.clone();
 
         main_async_local(Self::transmit_error_handler_main, async move {
-            obj.transmit_receive(code, app_cfg).await?;
+            Box::pin(obj.transmit_receive(code, app_cfg)).await?;
             Ok(())
         });
     }
