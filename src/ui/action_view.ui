@@ -29,18 +29,6 @@
             <property name="title-widget">
               <object class="GtkBox"/>
             </property>
-            <style>
-              <class name="flat"/>
-            </style>
-            <child type="start">
-              <object class="GtkButton" id="back_button">
-                <signal name="clicked" handler="back_button_clicked" swapped="true"/>
-                <!-- Translators: Button -->
-                <property name="tooltip-text" translatable="yes">Back</property>
-                <property name="visible">False</property>
-                <property name="icon-name">go-previous-symbolic</property>
-              </object>
-            </child>
           </object>
         </child>
         <property name="content">

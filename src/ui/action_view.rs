@@ -166,8 +166,6 @@ mod imp {
         #[template_child]
         pub open_dir_button: TemplateChild<gtk::Button>,
         #[template_child]
-        pub back_button: TemplateChild<gtk::Button>,
-        #[template_child]
         pub copy_error_button: TemplateChild<gtk::Button>,
         #[template_child]
         pub progress_bar: TemplateChild<gtk::ProgressBar>,
@@ -405,14 +403,13 @@ impl ActionView {
         self.imp().context.borrow().direction
     }
 
-    fn set_can_navigate_back(&self, can_navigate_back: bool) {
-        self.imp().back_button.set_visible(can_navigate_back);
-        self.imp().cancel_button.set_sensitive(!can_navigate_back);
-        self.imp().cancel_button.set_visible(!can_navigate_back);
+    fn set_can_pop(&self, can_pop: bool) {
+        self.imp().cancel_button.set_sensitive(!can_pop);
+        self.imp().cancel_button.set_visible(!can_pop);
 
         self.window()
-            .leaflet()
-            .set_can_navigate_back(can_navigate_back);
+            .navigation_page_action_view()
+            .set_can_pop(can_pop);
     }
 
     fn update_ui(&self) {
@@ -428,7 +425,7 @@ impl ActionView {
                 imp.progress_bar.set_show_text(false);
 
                 super::pride::apply_seasonal_style(&*imp.progress_bar);
-                self.set_can_navigate_back(false);
+                self.set_can_pop(false);
                 self.show_progress_indeterminate(true);
             }
             UIState::Archive(filename) => match direction {
@@ -629,7 +626,7 @@ impl ActionView {
             }
             UIState::Done(filename) => {
                 imp.stack.set_visible_child(&*imp.status_page_success);
-                self.set_can_navigate_back(true);
+                self.set_can_pop(true);
 
                 let notification = gio::Notification::new(&gettext("File Transfer Complete"));
 
@@ -689,7 +686,7 @@ impl ActionView {
                 imp.stack.set_visible_child(&*imp.status_page_error);
                 imp.status_page_error
                     .set_description(Some(&error.gettext_error()));
-                self.set_can_navigate_back(true);
+                self.set_can_pop(true);
 
                 let notification = gio::Notification::new(&gettext("File Transfer Failed"));
                 notification.set_body(Some(&gettextf(

@@ -38,7 +38,9 @@ mod imp {
         #[template_child]
         pub headerbar: TemplateChild<adw::HeaderBar>,
         #[template_child]
-        pub leaflet: TemplateChild<adw::Leaflet>,
+        pub navigation_view: TemplateChild<adw::NavigationView>,
+        #[template_child]
+        pub page_action_view: TemplateChild<adw::NavigationPage>,
         #[template_child]
         pub send_select_file_button: TemplateChild<gtk::Button>,
         #[template_child]
@@ -302,10 +304,14 @@ impl WarpApplicationWindow {
     }
 
     #[template_callback]
-    fn leaflet_visible_child_notify(&self) {
-        if let Some(widget) = self.imp().leaflet.visible_child() {
-            if widget != self.action_view() {
-                self.navigate_back_cb();
+    fn navigation_view_visible_page_notify(&self) {
+        if let Some(page) = self.imp().navigation_view.visible_page() {
+            if page != *self.imp().page_action_view {
+                let imp = self.imp();
+                imp.action_view_showing.set(false);
+                imp.code_entry.set_text("");
+                self.app().uninhibit_transfer();
+                self.add_code_from_clipboard();
             }
         }
     }
@@ -376,23 +382,14 @@ impl WarpApplicationWindow {
     pub fn show_action_view(&self) {
         let imp = self.imp();
         imp.action_view_showing.set(true);
-        imp.leaflet.navigate(adw::NavigationDirection::Forward);
+        imp.navigation_view.push(&*imp.page_action_view);
         if imp.inserted_code_toast_showing.get() {
             imp.inserted_code_toast.get().dismiss();
         }
     }
 
     pub fn navigate_back(&self) {
-        self.imp().leaflet.navigate(adw::NavigationDirection::Back);
-    }
-
-    fn navigate_back_cb(&self) {
-        let imp = self.imp();
-        imp.action_view_showing.set(false);
-        imp.leaflet.navigate(adw::NavigationDirection::Back);
-        imp.code_entry.set_text("");
-        self.app().uninhibit_transfer();
-        self.add_code_from_clipboard();
+        self.imp().navigation_view.pop();
     }
 
     pub fn add_code(&self, code: &wormhole::Code) {
@@ -448,8 +445,8 @@ impl WarpApplicationWindow {
         self.imp().action_view.clone()
     }
 
-    pub fn leaflet(&self) -> adw::Leaflet {
-        self.imp().leaflet.clone()
+    pub fn navigation_page_action_view(&self) -> adw::NavigationPage {
+        self.imp().page_action_view.clone()
     }
 
     pub fn ask_abort_dialog(&self) -> adw::MessageDialog {
