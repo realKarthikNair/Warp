@@ -11,11 +11,11 @@ mod imp {
     #[template(file = "welcome_window.ui")]
     pub struct WelcomeWindow {
         #[template_child]
-        pub(super) leaflet: TemplateChild<adw::Leaflet>,
+        pub(super) navigation_view: TemplateChild<adw::NavigationView>,
+        #[template_child]
+        pub(super) page_detail: TemplateChild<adw::NavigationPage>,
         #[template_child]
         status_page: TemplateChild<adw::StatusPage>,
-        #[template_child]
-        back_button: TemplateChild<gtk::Button>,
         #[template_child]
         next_button: TemplateChild<gtk::Button>,
         #[template_child]
@@ -67,15 +67,8 @@ impl WelcomeWindow {
     }
 
     #[template_callback]
-    pub fn navigate_back(&self) {
-        self.imp().leaflet.navigate(adw::NavigationDirection::Back);
-    }
-
-    #[template_callback]
-    pub fn navigate_forward(&self) {
-        self.imp()
-            .leaflet
-            .navigate(adw::NavigationDirection::Forward);
+    pub fn push_detail(&self) {
+        self.imp().navigation_view.push(&*self.imp().page_detail);
     }
 
     #[template_callback]
