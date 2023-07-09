@@ -72,19 +72,25 @@ fn setup_gresources() {
     gio::resources_register(&resource);
 }
 
+#[cfg(windows)]
+/// Workarounds and hacks for Windows
+fn windows_hacks() {
+    // stdout support with hidden console
+    let _ = win32console::console::WinConsole::free_console();
+    // ATTACH_PARENT_PROCESS = 0xFFFFFFFF
+    let _ = win32console::console::WinConsole::attach_console(0xFFFFFFFF);
+
+    std::env::set_var("GDK_DEBUG", "gl-gles");
+}
+
 fn main() {
     // Initialize logger
     pretty_env_logger::init();
 
     error::install_panic_hook();
 
-    // Windows stdout support with hidden console
     #[cfg(windows)]
-    {
-        let _ = win32console::console::WinConsole::free_console();
-        // ATTACH_PARENT_PROCESS = 0xFFFFFFFF
-        let _ = win32console::console::WinConsole::attach_console(0xFFFFFFFF);
-    }
+    windows_hacks();
 
     // Prepare i18n
     gettextrs::setlocale(gettextrs::LocaleCategory::LcAll, "");
