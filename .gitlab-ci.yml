@@ -115,6 +115,10 @@ windows:
         yelp-build html $lang -o $lang
       done
 
+      # Add gtk config
+      mkdir -p package/etc/gtk-4.0
+      printf "[Settings]\ngtk-decoration-layout=menu:close" > package/etc/gtk-4.0/settings.ini
+
       # Cleanup: delete empty folders
       find package -type d -empty -delete
 
