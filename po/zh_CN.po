@@ -8,24 +8,24 @@ msgid ""
 msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
-"POT-Creation-Date: 2022-11-05 00:51+0000\n"
-"PO-Revision-Date: 2022-11-14 17:24+0800\n"
-"Last-Translator: lumingzh <lumingzh@qq.com>\n"
+"POT-Creation-Date: 2023-07-09 20:56+0000\n"
+"PO-Revision-Date: 2023-07-11 17:40+0800\n"
+"Last-Translator: Eni <enigma@petalmail.com>\n"
 "Language-Team: Chinese - China <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0\n"
-"X-Generator: Gtranslator 42.0\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 3.3.2\n"
 
-#: data/app.drey.Warp.desktop.in.in:3 data/app.drey.Warp.metainfo.xml.in.in:7
-#: src/main.rs:94 src/ui/application.rs:216
+#: data/app.drey.Warp.desktop.in.in:3 data/app.drey.Warp.metainfo.xml.in.in:6
+#: src/main.rs:122 src/ui/window.ui:93
 msgid "Warp"
 msgstr "Warp"
 
-#: data/app.drey.Warp.desktop.in.in:4 data/app.drey.Warp.metainfo.xml.in.in:8
-#: data/resources/ui/welcome_window.ui:42
+#: data/app.drey.Warp.desktop.in.in:4 data/app.drey.Warp.metainfo.xml.in.in:7
+#: src/ui/welcome_window.ui:27
 msgid "Fast and secure file transfer"
 msgstr "快捷、安全的文件传输工具"
 
@@ -33,7 +33,7 @@ msgstr "快捷、安全的文件传输工具"
 msgid "Gnome;GTK;Wormhole;Magic-Wormhole;"
 msgstr "Gnome;GTK;Wormhole;Magic-Wormhole;虫洞;魔法虫洞;传输;传送;"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:10
+#: data/app.drey.Warp.metainfo.xml.in.in:9
 msgid ""
 "Warp allows you to securely send files to each other via the internet or "
 "local network by exchanging a word-based code."
@@ -46,106 +46,65 @@ msgid ""
 msgstr ""
 "好的文件传输方式应当致力于尽可能使用具有本地网络传输功能的“魔法虫洞”协议。"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:16
+#: data/app.drey.Warp.metainfo.xml.in.in:17
 msgid "Features"
 msgstr "特性"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:18
+#: data/app.drey.Warp.metainfo.xml.in.in:19
 msgid "Send files between multiple devices"
 msgstr "多设备间发送文件"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:19
+#: data/app.drey.Warp.metainfo.xml.in.in:20
 msgid "Every file transfer is encrypted"
 msgstr "所传输的每个文件都进行了加密"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:20
+#: data/app.drey.Warp.metainfo.xml.in.in:21
 msgid "Directly transfer files on the local network if possible"
 msgstr "如果可能的话在局域网中使用直传方式"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:21
+#: data/app.drey.Warp.metainfo.xml.in.in:22
 msgid "An internet connection is required"
 msgstr "请先连接网络"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:22
-msgid "Compatibility with the “Magic Wormhole” command line client"
-msgstr "与“魔法虫洞”命令行客户端保持兼容"
+#: data/app.drey.Warp.metainfo.xml.in.in:23
+msgid "QR Code support"
+msgstr "支持二维码"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:28
+#: data/app.drey.Warp.metainfo.xml.in.in:24
+msgid ""
+"Compatibility with the Magic Wormhole command line client and all other "
+"compatible apps"
+msgstr "与“魔法虫洞”命令行客户端以及其它同类应用保持兼容"
+
+#: data/app.drey.Warp.metainfo.xml.in.in:30
 msgid "Main Window"
 msgstr "主窗口"
 
 #. Translators: Entry placeholder; This is a noun
-#: data/app.drey.Warp.metainfo.xml.in.in:32 data/resources/ui/window.ui:198
+#: data/app.drey.Warp.metainfo.xml.in.in:34 src/ui/window.ui:211
 msgid "Transmit Code"
 msgstr "传输代码"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:36
-#: data/resources/ui/action_view.ui:127
+#: data/app.drey.Warp.metainfo.xml.in.in:38
 msgid "Accept File Transfer"
 msgstr "接受文件传输请求"
 
 #. Translators: Title
-#: data/app.drey.Warp.metainfo.xml.in.in:40 src/ui/action_view.rs:560
+#: data/app.drey.Warp.metainfo.xml.in.in:42 src/ui/action_view.rs:616
 msgid "Sending File"
 msgstr "文件发送中"
 
-#. Translators: Title
-#: data/app.drey.Warp.metainfo.xml.in.in:44 src/ui/action_view.rs:564
+#: data/app.drey.Warp.metainfo.xml.in.in:46 src/ui/action_view.rs:622
 msgid "Receiving File"
 msgstr "文件接收中"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:48 src/ui/action_view.rs:581
+#: data/app.drey.Warp.metainfo.xml.in.in:50 src/ui/action_view.rs:631
 msgid "File Transfer Complete"
 msgstr "文件传输完成"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:155
+#: data/app.drey.Warp.metainfo.xml.in.in:220 src/ui/application.rs:216
 msgid "Fina Wilke"
 msgstr "Fina Wilke"
-
-#. Translators: Button
-#: data/resources/ui/action_view.ui:18 data/resources/ui/window.ui:31
-#: data/resources/ui/window.ui:39
-msgid "Cancel"
-msgstr "取消"
-
-#. Translators: Button
-#: data/resources/ui/action_view.ui:26 data/resources/ui/welcome_window.ui:61
-msgid "Back"
-msgstr "返回"
-
-#. Translators: Button; Transmit Link is a noun
-#: data/resources/ui/action_view.ui:75
-msgid "Copy Transmit Link"
-msgstr "复制传输链接"
-
-#. Translators: Button; Transmit Code is a noun
-#: data/resources/ui/action_view.ui:83
-msgid "Copy Transmit Code"
-msgstr "复制传输代码"
-
-#. Translators: Button
-#: data/resources/ui/action_view.ui:98 data/resources/ui/action_view.ui:100
-msgid "Open File"
-msgstr "打开文件"
-
-#. Translators: Button
-#: data/resources/ui/action_view.ui:112 data/resources/ui/action_view.ui:114
-msgid "Show in Folder"
-msgstr "在文件夹中显示"
-
-#. Translators: Button
-#: data/resources/ui/action_view.ui:130
-msgid "Accept"
-msgstr "接受"
-
-#: data/resources/ui/action_view.ui:142
-msgid "Copy a detailed message for reporting an issue"
-msgstr "复制详细信息用于上报问题"
-
-#. Translators: Button
-#: data/resources/ui/action_view.ui:145
-msgid "Copy Error Message"
-msgstr "复制错误信息"
 
 #: data/resources/ui/help_overlay.ui:11
 msgctxt "shortcut window"
@@ -154,70 +113,385 @@ msgstr "常规"
 
 #: data/resources/ui/help_overlay.ui:14
 msgctxt "shortcut window"
+msgid "Show Help"
+msgstr "显示帮助"
+
+#: data/resources/ui/help_overlay.ui:20
+msgctxt "shortcut window"
 msgid "Show Shortcuts"
 msgstr "显示快捷键"
 
-#: data/resources/ui/help_overlay.ui:20
+#: data/resources/ui/help_overlay.ui:26
+msgctxt "shortcut window"
+msgid "Show Preferences"
+msgstr "显示首选项"
+
+#: data/resources/ui/help_overlay.ui:32
 msgctxt "shortcut window"
 msgid "Quit"
 msgstr "退出"
 
-#: data/resources/ui/help_overlay.ui:28
+#: data/resources/ui/help_overlay.ui:40
 msgctxt "shortcut window"
 msgid "File Transfer"
 msgstr "文件传输器"
 
-#: data/resources/ui/help_overlay.ui:31
+#: data/resources/ui/help_overlay.ui:43
 msgctxt "shortcut window"
 msgid "Send File"
 msgstr "发送文件"
 
-#: data/resources/ui/help_overlay.ui:37
+#: data/resources/ui/help_overlay.ui:49
 msgctxt "shortcut window"
 msgid "Send Folder"
 msgstr "发送目录"
 
-#: data/resources/ui/help_overlay.ui:43
+#: data/resources/ui/help_overlay.ui:55
 msgctxt "shortcut window"
 msgid "Receive File"
 msgstr "接收文件"
 
-#: data/resources/ui/preferences.ui:6
+#. Translators: {0} = file size transferred, {1} = total file size, Example: 17.3MB / 20.5MB
+#: src/gettext/duration.rs:11
+msgctxt "File size transferred"
+msgid "{0} / {1}"
+msgstr "{0} / {1}"
+
+#. Translators: File transfer time left
+#: src/gettext/duration.rs:18
+msgid "One second left"
+msgid_plural "{} seconds left"
+msgstr[0] "剩余 {} 秒"
+
+#. Translators: File transfer time left
+#: src/gettext/duration.rs:26
+msgid "One minute left"
+msgid_plural "{} minutes left"
+msgstr[0] "剩余 {} 分钟"
+
+#. Translators: File transfer time left
+#: src/gettext/duration.rs:34
+msgid "One hour left"
+msgid_plural "{} hours left"
+msgstr[0] "剩余 {} 小时"
+
+#. Translators: File transfer time left
+#: src/gettext/duration.rs:42
+msgid "One day left"
+msgid_plural "{} days left"
+msgstr[0] "剩余 {} 天"
+
+#. Translators: {0} = 11.3MB / 20.7MB, {1} = 3 seconds left
+#: src/gettext/duration.rs:52
+msgctxt "Combine bytes progress {0} and time remaining {1}"
+msgid "{0} — {1}"
+msgstr "{0} - {1}"
+
+#. Translators: Notification when clicking on "Copy Code to Clipboard" button
+#: src/ui/action_view.rs:260
+msgid "Copied Code to Clipboard"
+msgstr "代码已复制到剪切板"
+
+#. Translators: Notification when clicking on "Copy Link to Clipboard" button
+#: src/ui/action_view.rs:281
+msgid "Copied Link to Clipboard"
+msgstr "链接已复制到剪切板"
+
+#: src/ui/action_view.rs:295
+msgid "Copied Error to Clipboard"
+msgstr "错误信息已复制到剪切板"
+
+#: src/ui/action_view.rs:297
+msgid "No error available"
+msgstr "没有错误"
+
+#: src/ui/action_view.rs:438
+msgid "Creating Archive"
+msgstr "正在创建归档"
+
+#: src/ui/action_view.rs:442
+msgid "Compressing folder “{}”"
+msgstr "正在压缩文件夹“{}”"
+
+#. Translators: Title
+#: src/ui/action_view.rs:458 src/ui/action_view.rs:516
+msgid "Connecting"
+msgstr "正在连接"
+
+#. Translators: Description, Filename
+#: src/ui/action_view.rs:461
+msgid "Requesting file transfer"
+msgstr "正在请求文件传输"
+
+#. Translators: Description, argument is filename
+#: src/ui/action_view.rs:482
+msgid "Ready to send “{}”."
+msgstr "已准备好发送 “{}”。"
+
+#. Translators: Help dialog line 1, Code words and QR code visible,
+#: src/ui/action_view.rs:487
+msgid ""
+"The receiver needs to enter or scan this code to begin the file transfer."
+msgstr "接收者需要输入该代码或扫描二维码来开始文件传输。"
+
+#: src/ui/action_view.rs:491
+msgid "The QR code is compatible with the following apps: {}."
+msgstr "二维码兼容下列应用：{}。"
+
+#: src/ui/action_view.rs:499
+msgid ""
+"You have entered a custom rendezvous server URL in preferences. Please "
+"verify the receiver also uses the same rendezvous server."
+msgstr ""
+"您已在首选项中输入了自定义的集合服务器网址。请核实接收者同样使用相同的集合服"
+"务器。"
+
+#: src/ui/action_view.rs:504
+msgid "Click the QR code to copy the link to the clipboard."
+msgstr "点击二维码将链接复制到剪贴板。"
+
+#. Translators: Description, Transfer Code
+#: src/ui/action_view.rs:519
+msgid "Connecting to peer with code “{}”"
+msgstr "正在使用代码“{}”连接至对等设备"
+
+#: src/ui/action_view.rs:529
+msgid "Connected to Peer"
+msgstr "已连接至对等设备"
+
+#. Translators: Description
+#: src/ui/action_view.rs:538
+msgid "Preparing to send file"
+msgstr "正在准备发送文件"
+
+#. Translators: Description
+#: src/ui/action_view.rs:545
+msgid "Preparing to receive file"
+msgstr "正在准备接收文件"
+
+#. Translators: File receive confirmation message dialog; Filename, File size
+#: src/ui/action_view.rs:558
+msgid ""
+"Your peer wants to send you “{0}” (Size: {1}).\n"
+"Do you want to download this file? The default action will save the file to "
+"your Downloads folder."
+msgstr ""
+"您的对等设备想要给您发送“{0}”（大小：{1}）。\n"
+"您想要下载该文件吗？默认动作会将文件保存到下载文件夹。"
+
+#: src/ui/action_view.rs:563
+msgid "Ready to Receive File"
+msgstr "已准备好接收文件"
+
+#: src/ui/action_view.rs:565
+msgid ""
+"A file is ready to be transferred. The transfer needs to be acknowledged."
+msgstr "文件已准备好传输，传输者需被告知。"
+
+#. Translators: Description, During transfer
+#: src/ui/action_view.rs:593
+msgid "File “{}” via local network direct transfer"
+msgstr "文件“{}”通过本地网络使用直传方式"
+
+#. Translators: Description, During transfer
+#: src/ui/action_view.rs:596
+msgid "File “{}” via direct transfer"
+msgstr "文件“{}”使用直传方式"
+
+#. Translators: Description, During transfer
+#: src/ui/action_view.rs:602
+msgid "File “{0}” via relay {1}"
+msgstr "文件“{0}”通过 {1} 中转"
+
+#. Translators: Description, During transfer
+#: src/ui/action_view.rs:605
+msgid "File “{}” via relay"
+msgstr "文件“{}”通过中转传输"
+
+#. Translators: Description, During transfer
+#: src/ui/action_view.rs:609
+msgid "File “{}” via Unknown connection method"
+msgstr "文件“{}”通过不明连接方式传输"
+
+#. Translators: Description, Filename
+#: src/ui/action_view.rs:639
+msgid "Successfully sent file “{}”"
+msgstr "文件“{}”发送成功"
+
+#. Translators: Filename
+#: src/ui/action_view.rs:657
+msgid "File has been saved to the selected folder as “{}”"
+msgstr "文件已作为“{}”保存到指定文件夹"
+
+#. Translators: Filename
+#: src/ui/action_view.rs:664
+msgid "File has been saved to the Downloads folder as “{}”"
+msgstr "文件已作为“{}”保存到下载文件夹"
+
+#. Translators: Title
+#: src/ui/action_view.rs:691 src/ui/action_view.ui:277
+msgid "File Transfer Failed"
+msgstr "文件传输失败"
+
+#: src/ui/action_view.rs:693
+msgid "The file transfer failed: {}"
+msgstr "文件传输失败：{}"
+
+#. Translators: When opening a file
+#: src/ui/action_view.rs:813
+msgid "Specified file / directory does not exist"
+msgstr "指定文件/目录不存在"
+
+#: src/ui/action_view.rs:831
+msgid ""
+"Error parsing rendezvous server URL. An invalid URL was entered in the "
+"settings."
+msgstr "集合服务器网址解析错误。设置中输入了无效的网址。"
+
+#: src/ui/action_view.rs:838
+msgid "Error parsing transit URL. An invalid URL was entered in the settings."
+msgstr "传输网址解析错误。设置中输入了无效的网址。"
+
+#: src/ui/action_view.rs:925
+msgid "Invalid path selected: {}"
+msgstr "已选路径无效：{}"
+
+#. Translators: Above progress bar for creating an archive to send as a folder
+#: src/ui/action_view.rs:1170
+msgid "{} File - Size: {}"
+msgid_plural "{} Files - Size: {}"
+msgstr[0] "{} 个文件 - 文件大小：{}"
+
+#. Translators: Button
+#: src/ui/action_view.ui:4 src/ui/action_view.ui:213
+msgid "Save As"
+msgstr "另存为"
+
+#: src/ui/action_view.ui:6
+msgid "Save"
+msgstr "保存"
+
+#. Translators: Button
+#: src/ui/action_view.ui:7 src/ui/action_view.ui:298 src/ui/window.ui:31
+#: src/ui/window.ui:39
+msgid "Cancel"
+msgstr "取消"
+
+#. Translators: Button; Transmit Link is a noun
+#: src/ui/action_view.ui:98
+msgid "Copy Transmit Link"
+msgstr "复制传输链接"
+
+#: src/ui/action_view.ui:123
+msgid "Your Transmit Code"
+msgstr "您的传输代码"
+
+#. Translators: Button; Transmit Code is a noun
+#: src/ui/action_view.ui:171
+msgid "Copy Transmit Code"
+msgstr "复制传输代码"
+
+#. Translators: Title
+#: src/ui/action_view.ui:188
+msgid "Accept File Transfer?"
+msgstr "接受文件传输吗？"
+
+#: src/ui/action_view.ui:197
+msgid "Accept File Transfer and save to Downloads folder"
+msgstr "接受文件传输并保存到下载文件夹"
+
+#. Translators: Button
+#: src/ui/action_view.ui:199
+msgid "Accept"
+msgstr "接受"
+
+#: src/ui/action_view.ui:211
+msgid "Select Save Location"
+msgstr "选择保存位置"
+
+#. Translators: Title
+#: src/ui/action_view.ui:232
+msgid "File Transfer Successful"
+msgstr "文件传输成功"
+
+#. Translators: Button
+#: src/ui/action_view.ui:240 src/ui/action_view.ui:242
+msgid "Open File"
+msgstr "打开文件"
+
+#. Translators: Button
+#: src/ui/action_view.ui:255 src/ui/action_view.ui:257
+msgid "Show in Folder"
+msgstr "在文件夹中显示"
+
+#: src/ui/action_view.ui:281
+msgid "Copy a detailed message for reporting an issue"
+msgstr "复制详细信息用于上报问题"
+
+#. Translators: Button
+#: src/ui/action_view.ui:283
+msgid "Copy Error Message"
+msgstr "复制错误信息"
+
+#: src/ui/application.rs:62
+msgid "Unable to use transfer link: another transfer already in progress"
+msgstr "无法使用传输链接：当前有传输正在进行中"
+
+#: src/ui/application.rs:217
+msgid "Tobias Bernard"
+msgstr "Tobias Bernard"
+
+#: src/ui/application.rs:217
+msgid "Sophie Herold"
+msgstr "Sophie Herold"
+
+#: src/ui/application.rs:218
+msgid "translator-credits"
+msgstr ""
+"Sirniu <sirniu@qq.com>, 2022.\n"
+"lumingzh <lumingzh@qq.com>, 2022.\n"
+"Eni <enigma@petalmail.com>, 2023."
+
+#: src/ui/application.rs:235
+msgid "Sending a File"
+msgstr "正在发送文件"
+
+#: src/ui/application.rs:236
+msgid "Receiving a File"
+msgstr "正在接收文件"
+
+#: src/ui/fs.rs:24
+msgid "Downloads dir missing. Please set XDG_DOWNLOAD_DIR"
+msgstr "下载目录缺失。请设置 XDG_DOWNLOAD_DIR"
+
+#: src/ui/preferences.rs:97
+msgid ""
+"Changing the rendezvous server URL needs to be done on both sides of the "
+"transfer. Only enter a server URL you can trust.\n"
+"\n"
+"Leaving these entries empty will use the app defaults:\n"
+"Rendezvous Server: “{0}”\n"
+"Transit Server: “{1}”"
+msgstr ""
+"该传输需要修改传输工具两端的集合服务器网址。请输入可信任的服务器网址。\n"
+"\n"
+"这些条目留空将使用应用程序的默认值：\n"
+"集合服务器：“{0}”\n"
+"传输服务器：“{1}”"
+
+#: src/ui/preferences.ui:6
 msgid "Preferences"
 msgstr "首选项"
 
-#: data/resources/ui/preferences.ui:11
+#: src/ui/preferences.ui:11
 msgid "Network"
 msgstr "网络"
 
-#: data/resources/ui/preferences.ui:15
-msgid "Server URLs"
-msgstr "服务器网址"
-
-#: data/resources/ui/preferences.ui:16
-msgid ""
-"Changing the rendezvous server URL has to be done on both sides of the "
-"transfer. Only enter a server URL you can trust.\n"
-"\n"
-"Leaving these entries empty will use the application defaults."
-msgstr ""
-"传输工具两端的集合服务器网址必须进行修改。请输入可信任的服务器网址。\n"
-"\n"
-"这些条目留空将使用应用程序的默认值。"
-
-#: data/resources/ui/preferences.ui:21
-msgid "Rendezvous Server URL"
-msgstr "集合服务器网址"
-
-#: data/resources/ui/preferences.ui:28
-msgid "Transit Server URL"
-msgstr "传输服务器网址"
-
-#: data/resources/ui/preferences.ui:37
+#: src/ui/preferences.ui:15
 msgid "Code Words"
 msgstr "代码语句"
 
-#: data/resources/ui/preferences.ui:38
+#: src/ui/preferences.ui:16
 msgid ""
 "The code word count determines the security of the transfer.\n"
 "\n"
@@ -230,33 +504,40 @@ msgstr ""
 "简短的代码容易记忆但增加了他人猜测代码的风险。由于一个代码可能仅会被猜测一"
 "次，即使使用简短的代码风险也是很小。4 个单词的长度会非常安全。"
 
-#: data/resources/ui/preferences.ui:43
+#: src/ui/preferences.ui:21
 msgid "Code Word Count"
 msgstr "代码单词总数"
 
-#: data/resources/ui/welcome_window.ui:5
+#: src/ui/preferences.ui:34
+msgid "Server URLs"
+msgstr "服务器网址"
+
+#: src/ui/preferences.ui:37
+msgid "Rendezvous Server URL"
+msgstr "集合服务器网址"
+
+#: src/ui/preferences.ui:44
+msgid "Transit Server URL"
+msgstr "传输服务器网址"
+
+#: src/ui/welcome_window.ui:13
 msgid "Welcome"
 msgstr "欢迎"
 
-#. Translators: Button
-#: data/resources/ui/welcome_window.ui:23
-msgid "Close"
-msgstr "关闭"
-
-#. Translators: Button
-#: data/resources/ui/welcome_window.ui:30
-msgid "Next"
-msgstr "下一步"
-
-#: data/resources/ui/welcome_window.ui:41
+#: src/ui/welcome_window.ui:26
 msgid "Welcome to Warp"
 msgstr "欢迎使用 Warp"
 
-#: data/resources/ui/welcome_window.ui:89
+#. Translators: Button
+#: src/ui/welcome_window.ui:34
+msgid "Next"
+msgstr "下一步"
+
+#: src/ui/welcome_window.ui:82
 msgid "Introduction"
 msgstr "介绍"
 
-#: data/resources/ui/welcome_window.ui:100
+#: src/ui/welcome_window.ui:93
 msgid ""
 "Warp makes file transfer simple. To get started, both parties need to "
 "install Warp on their devices.\n"
@@ -267,363 +548,24 @@ msgid ""
 "\n"
 "When the receiver has entered the code, the file transfer can begin.\n"
 "\n"
-"For more information about Warp, open the Help pages from the menu."
+"For more information about Warp, open the Help section from the Main Menu."
 msgstr ""
-"Warp 让文件传输变得简单，团体成员都需将 Warp 安装到他们的设备上。\n"
+"Warp 让文件传输变得简单，想要开始使用的话，团队成员都需将 Warp 安装到他们的设"
+"备上。\n"
 "\n"
 "选择文件并开启传输后，文件发送者需将显示的传输码告知接收者。这一步建议通过安"
 "全的沟通渠道来完成。\n"
 "\n"
 "接收者输入传输码后文件开始传输。\n"
 "\n"
-"如果想获取关于 Warp 的更多信息，可从菜单中打开帮助页查看。"
+"如果想获取关于 Warp 的更多信息，可从主菜单中打开帮助页查看。"
 
 #. Translators: Big button to finish welcome screen
-#: data/resources/ui/welcome_window.ui:113
+#: src/ui/welcome_window.ui:106
 msgid "Get Started Using Warp"
 msgstr "开始使用 Warp"
 
-#. Translators: menu item
-#: data/resources/ui/window.ui:7
-msgid "_Preferences"
-msgstr "首选项(_P)"
-
-#. Translators: menu item
-#: data/resources/ui/window.ui:12
-msgid "_Keyboard Shortcuts"
-msgstr "键盘快捷键(_K)"
-
-#. Translators: menu item
-#: data/resources/ui/window.ui:17
-msgid "_Help"
-msgstr "帮助(_H)"
-
-#. Translators: menu item
-#: data/resources/ui/window.ui:22
-msgid "_About Warp"
-msgstr "关于 Warp(_A)"
-
-#: data/resources/ui/window.ui:28
-msgid "Select file to send"
-msgstr "选择文件进行发送"
-
-#: data/resources/ui/window.ui:30
-msgid "Open"
-msgstr "打开"
-
-#: data/resources/ui/window.ui:36
-msgid "Select folder to send"
-msgstr "选择文件夹进行发送"
-
-#: data/resources/ui/window.ui:38
-msgid "Open Folder"
-msgstr "打开文件夹"
-
-#. Translators: Notification when code was automatically detected in clipboard and inserted into code entry on receive page
-#: data/resources/ui/window.ui:46
-msgid "Inserted code from clipboard"
-msgstr "从剪贴板插入代码"
-
-#. Translators: File receive confirmation message dialog title
-#: data/resources/ui/window.ui:51
-msgid "Abort File Transfer?"
-msgstr "中止文件传输吗？"
-
-#: data/resources/ui/window.ui:52
-msgid "Do you want to abort the current file transfer?"
-msgstr "您想要中止当前文件传输吗？"
-
-#: data/resources/ui/window.ui:58
-msgid "_Continue"
-msgstr "继续(_C)"
-
-#: data/resources/ui/window.ui:59
-msgid "_Abort"
-msgstr "中止(_A)"
-
-#. Translators: Error dialog title
-#: data/resources/ui/window.ui:64
-msgid "Unable to Open File"
-msgstr "无法打开文件"
-
-#: data/resources/ui/window.ui:69
-msgid "_Close"
-msgstr "关闭(_C)"
-
-#: data/resources/ui/window.ui:70
-msgid "_Show in Folder"
-msgstr "在文件夹中显示(_S)"
-
-#: data/resources/ui/window.ui:118
-msgid "_Send"
-msgstr "发送(_S)"
-
-#: data/resources/ui/window.ui:130
-msgid "Send File"
-msgstr "发送文件"
-
-#: data/resources/ui/window.ui:131
-msgid "Select or drop the file or directory to send"
-msgstr "选择或拖拽文件、目录进行发送"
-
-#. Translators: Button
-#: data/resources/ui/window.ui:142
-msgid "Select File"
-msgstr "选择文件"
-
-#. Translators: Button
-#: data/resources/ui/window.ui:155
-msgid "Select Folder"
-msgstr "选择文件夹"
-
-#: data/resources/ui/window.ui:174
-msgid "_Receive"
-msgstr "接收(_R)"
-
-#. Translators: Button
-#: data/resources/ui/window.ui:183 data/resources/ui/window.ui:210
-msgid "Receive File"
-msgstr "接收文件"
-
-#. Translators: Text above code input box, transmit code is a noun
-#: data/resources/ui/window.ui:185
-msgid "Enter the transmit code from the sender"
-msgstr "输入发送者提供的传输码"
-
-#. Translators: {0} = file size transferred, {1} = total file size, Example: 17.3MB / 20.5MB
-#: src/gettext/duration.rs:12
-msgctxt "File size transferred"
-msgid "{0} / {1}"
-msgstr "{0} / {1}"
-
-#. Translators: File transfer time left
-#: src/gettext/duration.rs:19
-msgid "One second left"
-msgid_plural "{} seconds left"
-msgstr[0] "剩余 {} 秒"
-
-#. Translators: File transfer time left
-#: src/gettext/duration.rs:27
-msgid "One minute left"
-msgid_plural "{} minutes left"
-msgstr[0] "剩余 {} 分钟"
-
-#. Translators: File transfer time left
-#: src/gettext/duration.rs:35
-msgid "One hour left"
-msgid_plural "{} hours left"
-msgstr[0] "剩余 {} 小时"
-
-#. Translators: File transfer time left
-#: src/gettext/duration.rs:43
-msgid "One day left"
-msgid_plural "{} days left"
-msgstr[0] "剩余 {} 天"
-
-#. Translators: {0} = 11.3MB / 20.7MB, {1} = 3 seconds left
-#: src/gettext/duration.rs:53
-msgctxt "Combine bytes progress {0} and time remaining {1}"
-msgid "{0} — {1}"
-msgstr "{0} - {1}"
-
-#. Translators: Notification when clicking on "Copy Code to Clipboard" button
-#: src/ui/action_view.rs:232
-msgid "Copied Code to Clipboard"
-msgstr "代码已复制到剪切板"
-
-#. Translators: Notification when clicking on "Copy Link to Clipboard" button
-#: src/ui/action_view.rs:253
-msgid "Copied Link to Clipboard"
-msgstr "链接已复制到剪切板"
-
-#: src/ui/action_view.rs:269
-msgid "No error available"
-msgstr "没有错误"
-
-#. Translators: Title
-#: src/ui/action_view.rs:397
-msgid "Creating Archive"
-msgstr "正在创建归档"
-
-#: src/ui/action_view.rs:401
-msgid "Compressing folder “{}”"
-msgstr "正在压缩文件夹“{}”"
-
-#. Translators: Title
-#: src/ui/action_view.rs:414 src/ui/action_view.rs:459
-msgid "Connecting"
-msgstr "正在连接"
-
-#. Translators: Description, Filename
-#: src/ui/action_view.rs:417
-msgid "Requesting file transfer"
-msgstr "正在请求文件传输"
-
-#. Translators: Title, this is a noun
-#: src/ui/action_view.rs:425
-msgid "Your Transmit Code"
-msgstr "您的传输代码"
-
-#. Translators: Description, Code in box below, argument is filename
-#: src/ui/action_view.rs:441
-msgid ""
-"Ready to send “{}”\n"
-"The receiver needs to enter this code to begin the file transfer."
-msgstr ""
-"已准备好发送“{}”\n"
-"接收者需要输入该代码来开始文件传输。"
-
-#. Translators: Description, Code in box below, argument is filename
-#: src/ui/action_view.rs:447
-msgid ""
-"Ready to send “{}”\n"
-"The receiver needs to enter this code to begin the file transfer.\n"
-"\n"
-"You have entered a custom rendezvous server URL in preferences. Please "
-"verify the receiver also uses the same rendezvous server."
-msgstr ""
-"已准备好发送“{}”\n"
-"接收者需要输入该代码来开始文件传输。\n"
-"\n"
-"您已在首选项中输入了自定义的集合服务器网址。请核实接收者同样使用相同的集合服"
-"务器。"
-
-#. Translators: Description, Transfer Code
-#: src/ui/action_view.rs:462
-msgid "Connecting to peer with code “{}”"
-msgstr "正在使用代码“{}”连接至对等设备"
-
-#: src/ui/action_view.rs:471
-msgid "Connected to Peer"
-msgstr "已连接至对等设备"
-
-#. Translators: Description
-#: src/ui/action_view.rs:480
-msgid "Preparing to send file"
-msgstr "正在准备发送文件"
-
-#. Translators: Description
-#: src/ui/action_view.rs:486
-msgid "Preparing to receive file"
-msgstr "正在准备接收文件"
-
-#: src/ui/action_view.rs:498
-msgid "Accept File Transfer?"
-msgstr "接受文件传输吗？"
-
-#. Translators: File receive confirmation message dialog; Filename, File size
-#: src/ui/action_view.rs:501
-msgid ""
-"Your peer wants to send you “{0}” (Size: {1}).\n"
-"Do you want to download this file to your Downloads folder?"
-msgstr ""
-"您的对等设备想要给您发送“{0}”（大小：{1}）。\n"
-"您想要将该文件下载到您的下载文件夹吗？"
-
-#: src/ui/action_view.rs:506
-msgid "Ready to Receive File"
-msgstr "已准备好接收文件"
-
-#: src/ui/action_view.rs:508
-msgid ""
-"A file is ready to be transferred. The transfer needs to be acknowledged."
-msgstr "文件已准备好传输，传输者需被告知。"
-
-#. Translators: Description, During transfer
-#: src/ui/action_view.rs:537
-msgid "File “{}” via local network direct transfer"
-msgstr "文件“{}”通过本地网络使用直传方式"
-
-#. Translators: Description, During transfer
-#: src/ui/action_view.rs:540
-msgid "File “{}” via direct transfer"
-msgstr "文件“{}”使用直传方式"
-
-#. Translators: Description, During transfer
-#: src/ui/action_view.rs:546
-msgid "File “{0}” via relay {1}"
-msgstr "文件“{0}”通过 {1} 中转"
-
-#. Translators: Description, During transfer
-#: src/ui/action_view.rs:549
-msgid "File “{}” via relay"
-msgstr "文件“{}”通过中转传输"
-
-#. Translators: Description, During transfer
-#: src/ui/action_view.rs:553
-msgid "File “{}” via Unknown connection method"
-msgstr "文件“{}”通过不明连接方式传输"
-
-#. Translators: Title
-#: src/ui/action_view.rs:572
-msgid "File Transfer Successful"
-msgstr "文件传输成功"
-
-#. Translators: Description, Filename
-#: src/ui/action_view.rs:589
-msgid "Successfully sent file “{}”"
-msgstr "文件“{}”发送成功"
-
-#. Translators: Description, Filename
-#: src/ui/action_view.rs:598
-msgid "File has been saved to the Downloads folder as “{}”"
-msgstr "文件已作为“{}”保存到下载文件夹"
-
-#. Translators: Title
-#: src/ui/action_view.rs:621 src/ui/action_view.rs:634
-msgid "File Transfer Failed"
-msgstr "文件传输失败"
-
-#: src/ui/action_view.rs:636
-msgid "The file transfer failed: {}"
-msgstr "文件传输失败：{}"
-
-#. Translators: When opening a file
-#: src/ui/action_view.rs:750
-msgid "Specified file / directory does not exist"
-msgstr "指定文件/目录不存在"
-
-#: src/ui/action_view.rs:767
-msgid ""
-"Error parsing rendezvous server URL. An invalid URL was entered in the "
-"settings."
-msgstr "集合服务器网址解析错误。设置中输入了无效的网址。"
-
-#: src/ui/action_view.rs:777
-msgid "Error parsing transit URL. An invalid URL was entered in the settings."
-msgstr "传输网址解析错误。设置中输入了无效的网址。"
-
-#: src/ui/action_view.rs:1186
-msgid "Downloads dir missing. Please set XDG_DOWNLOAD_DIR"
-msgstr "下载目录缺失。请设置 XDG_DOWNLOAD_DIR"
-
-#: src/ui/application.rs:81
-msgid "Unable to use transfer link: another transfer already in progress"
-msgstr "无法使用传输链接：当前有传输正在进行中"
-
-#: src/ui/application.rs:222
-msgid "translator-credits"
-msgstr ""
-"Sirniu <sirniu@qq.com>, 2022.\n"
-"lumingzh <lumingzh@qq.com>, 2022."
-
-#: src/ui/application.rs:225
-msgid "Tobias Bernard"
-msgstr "Tobias Bernard"
-
-#: src/ui/application.rs:225
-msgid "Sophie Herold"
-msgstr "Sophie Herold"
-
-#: src/ui/application.rs:243
-msgid "Sending a File"
-msgstr "正在发送文件"
-
-#: src/ui/application.rs:244
-msgid "Receiving a File"
-msgstr "正在接收文件"
-
-#: src/ui/window.rs:111
+#: src/ui/window.rs:105
 msgid ""
 "Error loading config file “{0}”, using default config.\n"
 "Error: {1}"
@@ -631,71 +573,186 @@ msgstr ""
 "加载配置文件“{0}”出错，使用默认配置。\n"
 "错误：{1}"
 
-#: src/ui/window.rs:242
+#: src/ui/window.rs:239
 msgid "Error saving configuration file: {}"
 msgstr "保存配置文件时出错：{}"
 
-#: src/ui/window.rs:346
+#: src/ui/window.rs:358
 msgid "“{}” appears to be an invalid Transmit Code. Please try again."
 msgstr "“{}”可能是无效的传输代码。请重试。"
 
-#: src/ui/window.rs:468
+#: src/ui/window.rs:469
 msgid "Sending files with a preconfigured code is not yet supported"
 msgstr "尚未支持使用预配置代码发送文件"
 
-#: src/util.rs:32
+#. Translators: menu item
+#: src/ui/window.ui:7
+msgid "_Preferences"
+msgstr "首选项(_P)"
+
+#. Translators: menu item
+#: src/ui/window.ui:12
+msgid "_Keyboard Shortcuts"
+msgstr "键盘快捷键(_K)"
+
+#. Translators: menu item
+#: src/ui/window.ui:17
+msgid "_Help"
+msgstr "帮助(_H)"
+
+#. Translators: menu item
+#: src/ui/window.ui:22
+msgid "_About Warp"
+msgstr "关于 Warp(_A)"
+
+#: src/ui/window.ui:28
+msgid "Select file to send"
+msgstr "选择文件进行发送"
+
+#: src/ui/window.ui:30
+msgid "Open"
+msgstr "打开"
+
+#: src/ui/window.ui:36
+msgid "Select folder to send"
+msgstr "选择文件夹进行发送"
+
+#: src/ui/window.ui:38
+msgid "Open Folder"
+msgstr "打开文件夹"
+
+#. Translators: Notification when code was automatically detected in clipboard and inserted into code entry on receive page
+#: src/ui/window.ui:46
+msgid "Inserted code from clipboard"
+msgstr "从剪贴板插入代码"
+
+#. Translators: File receive confirmation message dialog title
+#: src/ui/window.ui:51
+msgid "Abort File Transfer?"
+msgstr "中止文件传输吗？"
+
+#: src/ui/window.ui:52
+msgid "Do you want to abort the current file transfer?"
+msgstr "您想要中止当前文件传输吗？"
+
+#: src/ui/window.ui:58
+msgid "_Continue"
+msgstr "继续(_C)"
+
+#: src/ui/window.ui:59
+msgid "_Abort"
+msgstr "中止(_A)"
+
+#. Translators: Error dialog title
+#: src/ui/window.ui:64
+msgid "Unable to Open File"
+msgstr "无法打开文件"
+
+#: src/ui/window.ui:69 src/util/error.rs:176
+msgid "_Close"
+msgstr "关闭(_C)"
+
+#: src/ui/window.ui:70
+msgid "_Show in Folder"
+msgstr "在文件夹中显示(_S)"
+
+#: src/ui/window.ui:110
+msgid "Main Menu"
+msgstr "主菜单"
+
+#: src/ui/window.ui:129
+msgid "_Send"
+msgstr "发送(_S)"
+
+#: src/ui/window.ui:141
+msgid "Send File"
+msgstr "发送文件"
+
+#: src/ui/window.ui:142
+msgid "Select or drop the file or directory to send"
+msgstr "选择或拖拽文件、目录进行发送"
+
+#. Translators: Button
+#: src/ui/window.ui:153
+msgid "Select _File…"
+msgstr "选择文件(_S)"
+
+#. Translators: Button
+#: src/ui/window.ui:167
+msgid "Select F_older…"
+msgstr "选择文件夹(_O)"
+
+#: src/ui/window.ui:187
+msgid "_Receive"
+msgstr "接收(_R)"
+
+#: src/ui/window.ui:196
+msgid "Receive File"
+msgstr "接收文件"
+
+#. Translators: Text above code input box, transmit code is a noun
+#: src/ui/window.ui:198
+msgid "Enter the transmit code from the sender"
+msgstr "输入发送者提供的传输码"
+
+#. Translators: Button
+#: src/ui/window.ui:232
+msgid "Receive _File"
+msgstr "接收文件(_F)"
+
+#: src/util.rs:32 src/util.rs:51
 msgid "Failed to open downloads folder."
 msgstr "打开下载文件夹失败。"
 
-#: src/util.rs:168 src/util.rs:241
+#: src/util.rs:193 src/util.rs:266
 msgid "The URI format is invalid"
 msgstr "网址格式无效"
 
-#: src/util.rs:172 src/util.rs:176
+#: src/util.rs:197 src/util.rs:201
 msgid "The code does not match the required format"
 msgstr "代码与需要的格式不匹配"
 
-#: src/util.rs:191 src/util.rs:197
+#: src/util.rs:216 src/util.rs:222
 msgid "Unknown URI version: {}"
 msgstr "未知网址版本：{}"
 
-#: src/util.rs:206
+#: src/util.rs:231
 msgid "The URI parameter “rendezvous” contains an invalid URL: “{}”"
 msgstr "网址参数“rendezvous”包含无效网址：“{}”"
 
-#: src/util.rs:218
+#: src/util.rs:243
 msgid "The URI parameter “role” must be “follower” or “leader” (was: “{}”)"
 msgstr "网址参数“role”必须为“follower”或“leader”（曾为：“{}”）"
 
-#: src/util.rs:225
+#: src/util.rs:250
 msgid "Unknown URI parameter “{}”"
 msgstr "未知网址参数“{}”"
 
-#: src/util/error.rs:142
+#: src/util/error.rs:157
 msgid "An error occurred"
 msgstr "发生错误"
 
-#: src/util/error.rs:172 src/util/error.rs:237
+#: src/util/error.rs:187 src/util/error.rs:252
 msgid "Corrupt or unexpected message received"
 msgstr "接收到损坏或意外消息"
 
-#: src/util/error.rs:177
+#: src/util/error.rs:192
 msgid ""
 "The rendezvous server will not allow further connections for this code. A "
 "new code needs to be generated."
 msgstr "该集合服务器不允许该代码的进一步连接。需要生成新代码。"
 
-#: src/util/error.rs:179
+#: src/util/error.rs:194
 msgid ""
 "The rendezvous server removed the code due to inactivity. A new code needs "
 "to be generated."
 msgstr "该集合服务器已因不活跃移除了该代码。需要生成新代码。"
 
-#: src/util/error.rs:181
+#: src/util/error.rs:196
 msgid "The rendezvous server responded with an unknown message: {}"
 msgstr "该集合服务器使用了未知消息响应：{}"
 
-#: src/util/error.rs:184
+#: src/util/error.rs:199
 msgid ""
 "Error connecting to the rendezvous server.\n"
 "You have entered a custom rendezvous server URL in preferences. Please "
@@ -705,7 +762,7 @@ msgstr ""
 "您在首选项中输入了自定义集合服务器网址。请核实该网址是否正确且服务器正常工"
 "作。"
 
-#: src/util/error.rs:186
+#: src/util/error.rs:201
 msgid ""
 "Error connecting to the rendezvous server.\n"
 "Please try again later / verify you are connected to the internet."
@@ -713,7 +770,7 @@ msgstr ""
 "连接至集合服务时出错。\n"
 "请稍后重试/验证您已连接至互联网。"
 
-#: src/util/error.rs:190
+#: src/util/error.rs:205
 msgid ""
 "Encryption key confirmation failed. If you or your peer didn't mistype the "
 "code, this is a sign of an attacker guessing passwords. Please try again "
@@ -722,61 +779,70 @@ msgstr ""
 "加密秘钥确认失败。如果您和您的对等设备都输入了正确的代码，有可能您正在遭受密"
 "码猜测攻击。请稍后重试。"
 
-#: src/util/error.rs:192
+#: src/util/error.rs:207
 msgid "Cannot decrypt a received message"
 msgstr "无法解密已接收消息"
 
-#: src/util/error.rs:193 src/util/error.rs:248 src/util/error.rs:253
-#: src/util/error.rs:256
+#: src/util/error.rs:208 src/util/error.rs:263 src/util/error.rs:269
 msgid "An unknown error occurred"
 msgstr "发生未知错误"
 
-#: src/util/error.rs:199
+#: src/util/error.rs:214
 msgid "File / Directory not found"
 msgstr "未找到文件/目录"
 
-#: src/util/error.rs:200
+#: src/util/error.rs:215
 msgid "Permission denied"
 msgstr "无权访问"
 
-#: src/util/error.rs:212
+#: src/util/error.rs:227
 msgid "Transfer was not acknowledged by peer"
 msgstr "对等设备未被告知传输"
 
-#: src/util/error.rs:214
+#: src/util/error.rs:229
 msgid "The received file is corrupted"
 msgstr "接收的文件已损坏"
 
-#: src/util/error.rs:220
+#: src/util/error.rs:235
 msgid ""
 "The file contained a different amount of bytes than advertised! Sent {} "
 "bytes, but should have been {}"
 msgstr "文件包含的字节数量与告知的不一致！发送了 {} 字节，应当有 {} 字节。"
 
-#: src/util/error.rs:225
+#: src/util/error.rs:240
 msgid "The other side has cancelled the transfer"
 msgstr "对方取消了传输"
 
-#: src/util/error.rs:227
+#: src/util/error.rs:242
 msgid "The other side has rejected the transfer"
 msgstr "对方拒绝了传输"
 
-#: src/util/error.rs:229
+#: src/util/error.rs:244
 msgid "Something went wrong on the other side: {}"
 msgstr "对方出错：{}"
 
-#: src/util/error.rs:244
+#: src/util/error.rs:259
 msgid "Error while establishing file transfer connection"
 msgstr "建立文件传输连接时出错"
 
-#: src/util/error.rs:246
+#: src/util/error.rs:261
 msgid "Unknown file transfer error"
 msgstr "未知的文件传输错误"
 
-#: src/util/error.rs:258
+#: src/util/error.rs:270
+msgid "An unknown error occurred while creating a zip file: {}"
+msgstr "在创建 zip 文件时发生未知错误：{}"
+
+#: src/util/error.rs:271
 msgid ""
 "An unexpected error occurred. Please report an issue with the error message."
 msgstr "发生了意外错误。请提交带有该错误信息的报告。"
+
+#~ msgid "Back"
+#~ msgstr "返回"
+
+#~ msgid "Close"
+#~ msgstr "关闭"
 
 #~ msgid "Select the file or directory to send"
 #~ msgstr "选择文件或目录进行发送"
