@@ -2,29 +2,30 @@
 # Copyright (C) 2022, 2023 Free Software Foundation, Inc.
 # This file is distributed under the same license as the warp package.
 #
+# Balázs Meskó <mesko.balazs at fsf dot hu>, 2023.
 # Balázs Úr <ur.balazs at fsf dot hu>, 2022, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: warp main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
-"POT-Creation-Date: 2023-03-05 22:03+0000\n"
-"PO-Revision-Date: 2023-03-07 02:25+0100\n"
+"POT-Creation-Date: 2023-07-15 12:02+0000\n"
+"PO-Revision-Date: 2023-07-26 01:03+0200\n"
 "Last-Translator: Balázs Úr <ur.balazs at fsf dot hu>\n"
-"Language-Team: Hungarian <gnome-hu-list at gnome dot org>\n"
+"Language-Team: Hungarian <openscope at fsf dot hu>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 22.08.2\n"
+"X-Generator: Lokalize 23.04.1\n"
 
-#: data/app.drey.Warp.desktop.in.in:3 data/app.drey.Warp.metainfo.xml.in.in:7
-#: src/main.rs:116 src/ui/application.rs:212
+#: data/app.drey.Warp.desktop.in.in:3 data/app.drey.Warp.metainfo.xml.in.in:6
+#: src/main.rs:122 src/ui/window.ui:93
 msgid "Warp"
 msgstr "Warp"
 
-#: data/app.drey.Warp.desktop.in.in:4 data/app.drey.Warp.metainfo.xml.in.in:8
-#: src/ui/welcome_window.ui:35
+#: data/app.drey.Warp.desktop.in.in:4 data/app.drey.Warp.metainfo.xml.in.in:7
+#: src/ui/welcome_window.ui:27
 msgid "Fast and secure file transfer"
 msgstr "Gyors és biztonságos fájlátvitel"
 
@@ -32,7 +33,7 @@ msgstr "Gyors és biztonságos fájlátvitel"
 msgid "Gnome;GTK;Wormhole;Magic-Wormhole;"
 msgstr "Gnome;GTK;Féregjárat;Féreglyuk;Mágikus-féregjárat;"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:10
+#: data/app.drey.Warp.metainfo.xml.in.in:9
 msgid ""
 "Warp allows you to securely send files to each other via the internet or "
 "local network by exchanging a word-based code."
@@ -40,7 +41,7 @@ msgstr ""
 "A Warp lehetővé teszi, hogy egy szóalapú kód cseréjével biztonságosan "
 "küldjenek fájlokat egymásnak az interneten vagy helyi hálózaton keresztül."
 
-#: data/app.drey.Warp.metainfo.xml.in.in:14
+#: data/app.drey.Warp.metainfo.xml.in.in:13
 msgid ""
 "The best transfer method will be determined using the “Magic Wormhole” "
 "protocol which includes local network transfer if possible."
@@ -49,68 +50,65 @@ msgstr ""
 "kerül meghatározásra, amely helyi hálózati átvitelt is tartalmaz, ha "
 "lehetséges."
 
-#: data/app.drey.Warp.metainfo.xml.in.in:18
+#: data/app.drey.Warp.metainfo.xml.in.in:17
 msgid "Features"
 msgstr "Funkciók"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:20
+#: data/app.drey.Warp.metainfo.xml.in.in:19
 msgid "Send files between multiple devices"
 msgstr "Fájlok küldése több eszköz között"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:21
+#: data/app.drey.Warp.metainfo.xml.in.in:20
 msgid "Every file transfer is encrypted"
 msgstr "Minden fájlátvitel titkosított"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:22
+#: data/app.drey.Warp.metainfo.xml.in.in:21
 msgid "Directly transfer files on the local network if possible"
 msgstr "Fájlok közvetlen átvitele a helyi hálózaton keresztül, ha lehetséges"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:23
+#: data/app.drey.Warp.metainfo.xml.in.in:22
 msgid "An internet connection is required"
 msgstr "Internetkapcsolat szükséges"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:24
+#: data/app.drey.Warp.metainfo.xml.in.in:23
 msgid "QR Code support"
 msgstr "QR-kód támogatás"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:25
-#| msgid "Compatibility with the “Magic Wormhole” command line client"
+#: data/app.drey.Warp.metainfo.xml.in.in:24
 msgid ""
 "Compatibility with the Magic Wormhole command line client and all other "
 "compatible apps"
 msgstr ""
-"Kompatibilitás a „mágikus féregjárat” parancssori ügyfélprogrammal és az"
-" összes egyéb kompatibilis alkalmazással"
+"Kompatibilitás a „mágikus féregjárat” parancssori ügyfélprogrammal és az "
+"összes egyéb kompatibilis alkalmazással"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:31
+#: data/app.drey.Warp.metainfo.xml.in.in:30
 msgid "Main Window"
 msgstr "Főablak"
 
 #. Translators: Entry placeholder; This is a noun
-#: data/app.drey.Warp.metainfo.xml.in.in:35 src/ui/window.ui:197
+#: data/app.drey.Warp.metainfo.xml.in.in:34 src/ui/window.ui:211
 msgid "Transmit Code"
 msgstr "Átviteli kód"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:39
+#: data/app.drey.Warp.metainfo.xml.in.in:38
 msgid "Accept File Transfer"
 msgstr "Fájlátvitel elfogadása"
 
 #. Translators: Title
-#: data/app.drey.Warp.metainfo.xml.in.in:43 src/ui/action_view.rs:607
+#: data/app.drey.Warp.metainfo.xml.in.in:42 src/ui/action_view.rs:616
 msgid "Sending File"
 msgstr "Fájl küldése"
 
-#. Translators: Title
-#: data/app.drey.Warp.metainfo.xml.in.in:47 src/ui/action_view.rs:611
+#: data/app.drey.Warp.metainfo.xml.in.in:46 src/ui/action_view.rs:622
 msgid "Receiving File"
 msgstr "Fájl fogadása"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:51 src/ui/action_view.rs:628
+#: data/app.drey.Warp.metainfo.xml.in.in:50 src/ui/action_view.rs:631
 msgid "File Transfer Complete"
 msgstr "Fájlátvitel befejezve"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:183 src/ui/application.rs:219
-#: src/ui/application.rs:220
+#: data/app.drey.Warp.metainfo.xml.in.in:220 src/ui/application.rs:216
 msgid "Fina Wilke"
 msgstr "Fina Wilke"
 
@@ -130,7 +128,6 @@ msgid "Show Shortcuts"
 msgstr "Gyorsbillentyűk megjelenítése"
 
 #: data/resources/ui/help_overlay.ui:26
-#| msgid "Preferences"
 msgctxt "shortcut window"
 msgid "Show Preferences"
 msgstr "Beállítások megjelenítése"
@@ -201,73 +198,59 @@ msgid "{0} — {1}"
 msgstr "{0} — {1}"
 
 #. Translators: Notification when clicking on "Copy Code to Clipboard" button
-#: src/ui/action_view.rs:254
+#: src/ui/action_view.rs:260
 msgid "Copied Code to Clipboard"
 msgstr "A kód a vágólapra másolva"
 
 #. Translators: Notification when clicking on "Copy Link to Clipboard" button
-#: src/ui/action_view.rs:275
+#: src/ui/action_view.rs:281
 msgid "Copied Link to Clipboard"
 msgstr "A hivatkozás a vágólapra másolva"
 
-#: src/ui/action_view.rs:289
+#: src/ui/action_view.rs:295
 msgid "Copied Error to Clipboard"
 msgstr "A hiba a vágólapra másolva"
 
-#: src/ui/action_view.rs:291
+#: src/ui/action_view.rs:297
 msgid "No error available"
 msgstr "Nem érhető el hiba"
 
-#. Translators: Title
-#: src/ui/action_view.rs:433
+#: src/ui/action_view.rs:438
 msgid "Creating Archive"
 msgstr "Archívum létrehozása"
 
-#: src/ui/action_view.rs:437
+#: src/ui/action_view.rs:442
 msgid "Compressing folder “{}”"
 msgstr "A(z) „{}” mappa tömörítése"
 
 #. Translators: Title
-#: src/ui/action_view.rs:450 src/ui/action_view.rs:503
+#: src/ui/action_view.rs:458 src/ui/action_view.rs:516
 msgid "Connecting"
 msgstr "Kapcsolódás"
 
 #. Translators: Description, Filename
-#: src/ui/action_view.rs:453
+#: src/ui/action_view.rs:461
 msgid "Requesting file transfer"
 msgstr "Fájlátvitel kérése"
 
-#. Translators: Title, this is a noun
-#: src/ui/action_view.rs:462
-msgid "Your Transmit Code"
-msgstr "Az átviteli kódja"
-
-#: src/ui/action_view.rs:475
+#. Translators: Description, argument is filename
+#: src/ui/action_view.rs:482
 msgid "Ready to send “{}”."
 msgstr "Küldésre kész: „{}”."
 
-#. Translators: Description line 2, Code words and QR code visible,
-#: src/ui/action_view.rs:478
-#| msgid ""
-#| "Ready to send “{}”\n"
-#| "The receiver needs to enter this code to begin the file transfer."
+#. Translators: Help dialog line 1, Code words and QR code visible,
+#: src/ui/action_view.rs:487
 msgid ""
 "The receiver needs to enter or scan this code to begin the file transfer."
 msgstr ""
-"A fogadónak ezt a kódot kell megadnia vagy beolvasnia a fájlátvitel"
-" megkezdéséhez."
+"A fogadónak ezt a kódot kell megadnia vagy beolvasnia a fájlátvitel "
+"megkezdéséhez."
 
-#: src/ui/action_view.rs:482
+#: src/ui/action_view.rs:491
 msgid "The QR code is compatible with the following apps: {}."
 msgstr "A QR-kód kompatibilis a következő alkalmazásokkal: {}."
 
-#: src/ui/action_view.rs:490
-#| msgid ""
-#| "Ready to send “{}”\n"
-#| "The receiver needs to enter this code to begin the file transfer.\n"
-#| "\n"
-#| "You have entered a custom rendezvous server URL in preferences. Please "
-#| "verify the receiver also uses the same rendezvous server."
+#: src/ui/action_view.rs:499
 msgid ""
 "You have entered a custom rendezvous server URL in preferences. Please "
 "verify the receiver also uses the same rendezvous server."
@@ -276,104 +259,95 @@ msgstr ""
 "Ellenőrizze, hogy a fogadó is ugyanazt a szinkronizációs kiszolgálót "
 "használja-e."
 
+#: src/ui/action_view.rs:504
+msgid "Click the QR code to copy the link to the clipboard."
+msgstr "Kattintson a QR-kódra a hivatkozás vágólapra történő másolásához."
+
 #. Translators: Description, Transfer Code
-#: src/ui/action_view.rs:506
+#: src/ui/action_view.rs:519
 msgid "Connecting to peer with code “{}”"
 msgstr "Kapcsolódás partnerhez a következő kóddal: „{}”"
 
-#: src/ui/action_view.rs:516
+#: src/ui/action_view.rs:529
 msgid "Connected to Peer"
 msgstr "Kapcsolódva partnerhez"
 
 #. Translators: Description
-#: src/ui/action_view.rs:527
+#: src/ui/action_view.rs:538
 msgid "Preparing to send file"
 msgstr "Fájlküldés előkészítése"
 
 #. Translators: Description
-#: src/ui/action_view.rs:533
+#: src/ui/action_view.rs:545
 msgid "Preparing to receive file"
 msgstr "Fájlfogadás előkészítése"
 
-#: src/ui/action_view.rs:545
-msgid "Accept File Transfer?"
-msgstr "Elfogadja a fájlátvitelt?"
-
 #. Translators: File receive confirmation message dialog; Filename, File size
-#: src/ui/action_view.rs:548
-#| msgid ""
-#| "Your peer wants to send you “{0}” (Size: {1}).\n"
-#| "Do you want to download this file to your Downloads folder?"
+#: src/ui/action_view.rs:558
 msgid ""
 "Your peer wants to send you “{0}” (Size: {1}).\n"
 "Do you want to download this file? The default action will save the file to "
 "your Downloads folder."
 msgstr ""
 "A partnere egy fájlt szeretne küldeni Önnek: „{0}” (méret: {1}).\n"
-"Le szeretné tölteni ezt a fájlt? Az alapértelmezett művelet a Letöltések"
-" mappába menti a fájlt."
+"Le szeretné tölteni ezt a fájlt? Az alapértelmezett művelet a Letöltések "
+"mappába menti a fájlt."
 
-#: src/ui/action_view.rs:553
+#: src/ui/action_view.rs:563
 msgid "Ready to Receive File"
 msgstr "Fájlfogadásra kész"
 
-#: src/ui/action_view.rs:555
+#: src/ui/action_view.rs:565
 msgid ""
 "A file is ready to be transferred. The transfer needs to be acknowledged."
 msgstr "A fájl készen áll az átvitelre. Az átvitelt nyugtázni kell."
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:584
+#: src/ui/action_view.rs:593
 msgid "File “{}” via local network direct transfer"
 msgstr "A(z) „{}” fájl helyi hálózaton keresztüli közvetlen átvitellel"
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:587
+#: src/ui/action_view.rs:596
 msgid "File “{}” via direct transfer"
 msgstr "A(z) „{}” fájl közvetlen átvitellel"
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:593
+#: src/ui/action_view.rs:602
 msgid "File “{0}” via relay {1}"
 msgstr "A(z) „{0}” fájl a(z) {1} továbbítón keresztül"
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:596
+#: src/ui/action_view.rs:605
 msgid "File “{}” via relay"
 msgstr "A(z) „{}” fájl továbbítón keresztül"
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:600
+#: src/ui/action_view.rs:609
 msgid "File “{}” via Unknown connection method"
 msgstr "A(z) „{}” fájl ismeretlen kapcsolati módszeren keresztül"
 
-#. Translators: Title
-#: src/ui/action_view.rs:619
-msgid "File Transfer Successful"
-msgstr "A fájlátvitel sikeres"
-
 #. Translators: Description, Filename
-#: src/ui/action_view.rs:636
+#: src/ui/action_view.rs:639
 msgid "Successfully sent file “{}”"
 msgstr "A(z) „{}” fájl sikeresen elküldve"
 
 #. Translators: Filename
-#: src/ui/action_view.rs:652
-#| msgid "File has been saved to the Downloads folder as “{}”"
+#: src/ui/action_view.rs:657
 msgid "File has been saved to the selected folder as “{}”"
 msgstr "A fájl a kiválasztott mappába lett mentve „{}” néven"
 
 #. Translators: Filename
-#: src/ui/action_view.rs:659
+#: src/ui/action_view.rs:664
 msgid "File has been saved to the Downloads folder as “{}”"
 msgstr "A fájl a Letöltések mappába lett mentve „{}” néven"
 
 #. Translators: Title
-#: src/ui/action_view.rs:683 src/ui/action_view.rs:696
+#: src/ui/action_view.rs:691 src/ui/action_view.ui:277
 msgid "File Transfer Failed"
 msgstr "A fájlátvitel sikertelen"
 
-#: src/ui/action_view.rs:698
+#: src/ui/action_view.rs:693
 msgid "The file transfer failed: {}"
 msgstr "A fájlátvitel sikertelen: {}"
 
@@ -400,8 +374,15 @@ msgstr ""
 msgid "Invalid path selected: {}"
 msgstr "Érvénytelen útvonal lett kiválasztva: {}"
 
+#. Translators: Above progress bar for creating an archive to send as a folder
+#: src/ui/action_view.rs:1170
+msgid "{} File - Size: {}"
+msgid_plural "{} Files - Size: {}"
+msgstr[0] "{} fájl – méret: {}"
+msgstr[1] "{} fájl – méret: {}"
+
 #. Translators: Button
-#: src/ui/action_view.ui:4 src/ui/action_view.ui:157
+#: src/ui/action_view.ui:4 src/ui/action_view.ui:213
 msgid "Save As"
 msgstr "Mentés másként"
 
@@ -410,57 +391,64 @@ msgid "Save"
 msgstr "Mentés"
 
 #. Translators: Button
-#: src/ui/action_view.ui:7 src/ui/action_view.ui:26 src/ui/window.ui:31
+#: src/ui/action_view.ui:7 src/ui/action_view.ui:298 src/ui/window.ui:31
 #: src/ui/window.ui:39
 msgid "Cancel"
 msgstr "Mégse"
 
-#. Translators: Button
-#: src/ui/action_view.ui:34 src/ui/welcome_window.ui:54
-msgid "Back"
-msgstr "Vissza"
-
 #. Translators: Button; Transmit Link is a noun
-#: src/ui/action_view.ui:83
+#: src/ui/action_view.ui:98
 msgid "Copy Transmit Link"
 msgstr "Átviteli hivatkozás másolása"
 
+#: src/ui/action_view.ui:123
+msgid "Your Transmit Code"
+msgstr "Az átviteli kódja"
+
 #. Translators: Button; Transmit Code is a noun
-#: src/ui/action_view.ui:91
+#: src/ui/action_view.ui:171
 msgid "Copy Transmit Code"
 msgstr "Átviteli kód másolása"
 
-#. Translators: Button
-#: src/ui/action_view.ui:106 src/ui/action_view.ui:108
-msgid "Open File"
-msgstr "Fájl megnyitása"
+#. Translators: Title
+#: src/ui/action_view.ui:188
+msgid "Accept File Transfer?"
+msgstr "Elfogadja a fájlátvitelt?"
 
-#. Translators: Button
-#: src/ui/action_view.ui:120 src/ui/action_view.ui:122
-msgid "Show in Folder"
-msgstr "Megjelenítés mappában"
-
-#: src/ui/action_view.ui:141
-#| msgid "File has been saved to the Downloads folder as “{}”"
+#: src/ui/action_view.ui:197
 msgid "Accept File Transfer and save to Downloads folder"
 msgstr "Fájlátvitel elfogadása és mentés a Letöltések mappába"
 
 #. Translators: Button
-#: src/ui/action_view.ui:143
+#: src/ui/action_view.ui:199
 msgid "Accept"
 msgstr "Elfogadás"
 
-#: src/ui/action_view.ui:155
-#| msgid "Select file to send"
+#: src/ui/action_view.ui:211
 msgid "Select Save Location"
 msgstr "Mentési hely kiválasztása"
 
-#: src/ui/action_view.ui:170
+#. Translators: Title
+#: src/ui/action_view.ui:232
+msgid "File Transfer Successful"
+msgstr "A fájlátvitel sikeres"
+
+#. Translators: Button
+#: src/ui/action_view.ui:240 src/ui/action_view.ui:242
+msgid "Open File"
+msgstr "Fájl megnyitása"
+
+#. Translators: Button
+#: src/ui/action_view.ui:255 src/ui/action_view.ui:257
+msgid "Show in Folder"
+msgstr "Megjelenítés mappában"
+
+#: src/ui/action_view.ui:281
 msgid "Copy a detailed message for reporting an issue"
 msgstr "Részletes üzenet másolása egy hiba jelentéséhez"
 
 #. Translators: Button
-#: src/ui/action_view.ui:173
+#: src/ui/action_view.ui:283
 msgid "Copy Error Message"
 msgstr "Hibaüzenet másolása"
 
@@ -470,37 +458,32 @@ msgstr ""
 "Nem lehet használni az átviteli hivatkozást: egy másik átvitel már "
 "folyamatban van"
 
+#: src/ui/application.rs:217
+msgid "Tobias Bernard"
+msgstr "Tobias Bernard"
+
+#: src/ui/application.rs:217
+msgid "Sophie Herold"
+msgstr "Sophie Herold"
+
 #: src/ui/application.rs:218
 msgid "translator-credits"
 msgstr "Úr Balázs <ur dot balazs at fsf dot hu>, 2022."
 
-#: src/ui/application.rs:221
-msgid "Tobias Bernard"
-msgstr "Tobias Bernard"
-
-#: src/ui/application.rs:221
-msgid "Sophie Herold"
-msgstr "Sophie Herold"
-
-#: src/ui/application.rs:239
+#: src/ui/application.rs:235
 msgid "Sending a File"
 msgstr "Fájl küldése"
 
-#: src/ui/application.rs:240
+#: src/ui/application.rs:236
 msgid "Receiving a File"
 msgstr "Fájl fogadása"
 
-#: src/ui/fs.rs:25
+#: src/ui/fs.rs:24
 msgid "Downloads dir missing. Please set XDG_DOWNLOAD_DIR"
 msgstr ""
 "A Letöltések könyvtár hiányzik. Állítsa be az XDG_DOWNLOAD_DIR értékét."
 
 #: src/ui/preferences.rs:97
-#| msgid ""
-#| "Changing the rendezvous server URL has to be done on both sides of the "
-#| "transfer. Only enter a server URL you can trust.\n"
-#| "\n"
-#| "Leaving these entries empty will use the application defaults."
 msgid ""
 "Changing the rendezvous server URL needs to be done on both sides of the "
 "transfer. Only enter a server URL you can trust.\n"
@@ -527,22 +510,10 @@ msgid "Network"
 msgstr "Hálózat"
 
 #: src/ui/preferences.ui:15
-msgid "Server URLs"
-msgstr "Kiszolgáló URL-ek"
-
-#: src/ui/preferences.ui:18
-msgid "Rendezvous Server URL"
-msgstr "Szinkronizációs kiszolgáló URL"
-
-#: src/ui/preferences.ui:25
-msgid "Transit Server URL"
-msgstr "Átviteli kiszolgáló URL"
-
-#: src/ui/preferences.ui:34
 msgid "Code Words"
 msgstr "Kódszavak"
 
-#: src/ui/preferences.ui:35
+#: src/ui/preferences.ui:16
 msgid ""
 "The code word count determines the security of the transfer.\n"
 "\n"
@@ -557,39 +528,40 @@ msgstr ""
 "kockázat még rövid kódok esetén is nagyon kicsi. A 4-es hosszúság nagyon "
 "biztonságos."
 
-#: src/ui/preferences.ui:40
+#: src/ui/preferences.ui:21
 msgid "Code Word Count"
 msgstr "Kódszavak száma"
 
-#: src/ui/welcome_window.ui:5
+#: src/ui/preferences.ui:34
+msgid "Server URLs"
+msgstr "Kiszolgáló URL-ek"
+
+#: src/ui/preferences.ui:37
+msgid "Rendezvous Server URL"
+msgstr "Szinkronizációs kiszolgáló URL"
+
+#: src/ui/preferences.ui:44
+msgid "Transit Server URL"
+msgstr "Átviteli kiszolgáló URL"
+
+#: src/ui/welcome_window.ui:13
 msgid "Welcome"
 msgstr "Üdvözöljük"
 
-#. Translators: Button
-#: src/ui/welcome_window.ui:23
-msgid "Next"
-msgstr "Következő"
-
-#: src/ui/welcome_window.ui:34
+#: src/ui/welcome_window.ui:26
 msgid "Welcome to Warp"
 msgstr "Üdvözli a Warp"
+
+#. Translators: Button
+#: src/ui/welcome_window.ui:34
+msgid "Next"
+msgstr "Következő"
 
 #: src/ui/welcome_window.ui:82
 msgid "Introduction"
 msgstr "Bevezetés"
 
 #: src/ui/welcome_window.ui:93
-#| msgid ""
-#| "Warp makes file transfer simple. To get started, both parties need to "
-#| "install Warp on their devices.\n"
-#| "\n"
-#| "After selecting a file to transmit, the sender needs to tell the receiver "
-#| "the displayed transmit code. This is preferably done via a secure "
-#| "communication channel.\n"
-#| "\n"
-#| "When the receiver has entered the code, the file transfer can begin.\n"
-#| "\n"
-#| "For more information about Warp, open the Help pages from the menu."
 msgid ""
 "Warp makes file transfer simple. To get started, both parties need to "
 "install Warp on their devices.\n"
@@ -619,7 +591,7 @@ msgstr ""
 msgid "Get Started Using Warp"
 msgstr "Kezdjen hozzá a Warp használatához"
 
-#: src/ui/window.rs:103
+#: src/ui/window.rs:105
 msgid ""
 "Error loading config file “{0}”, using default config.\n"
 "Error: {1}"
@@ -628,15 +600,15 @@ msgstr ""
 "használata.\n"
 "Hiba: {1}"
 
-#: src/ui/window.rs:237
+#: src/ui/window.rs:239
 msgid "Error saving configuration file: {}"
 msgstr "Hiba a beállítófájl mentésekor: {}"
 
-#: src/ui/window.rs:352
+#: src/ui/window.rs:358
 msgid "“{}” appears to be an invalid Transmit Code. Please try again."
 msgstr "A(z) „{}” érvénytelen átviteli kódnak tűnik. Próbálja újra."
 
-#: src/ui/window.rs:472
+#: src/ui/window.rs:469
 msgid "Sending files with a preconfigured code is not yet supported"
 msgstr "A fájlok küldése egy előre beállított kóddal még nem támogatott"
 
@@ -711,80 +683,76 @@ msgstr "_Bezárás"
 msgid "_Show in Folder"
 msgstr "_Megjelenítés mappában"
 
-#: src/ui/window.ui:101
-#| msgid "Main Window"
+#: src/ui/window.ui:110
 msgid "Main Menu"
 msgstr "Főmenü"
 
-#: src/ui/window.ui:115
+#: src/ui/window.ui:129
 msgid "_Send"
 msgstr "_Küldés"
 
-#: src/ui/window.ui:127
+#: src/ui/window.ui:141
 msgid "Send File"
 msgstr "Fájl küldése"
 
-#: src/ui/window.ui:128
+#: src/ui/window.ui:142
 msgid "Select or drop the file or directory to send"
 msgstr "Válassza ki vagy dobja ide a küldendő fájlt vagy könyvtárat"
 
 #. Translators: Button
-#: src/ui/window.ui:139
-#| msgid "Select File"
+#: src/ui/window.ui:153
 msgid "Select _File…"
 msgstr "_Fájl kiválasztása…"
 
 #. Translators: Button
-#: src/ui/window.ui:153
-#| msgid "Select Folder"
+#: src/ui/window.ui:167
 msgid "Select F_older…"
 msgstr "_Mappa kiválasztása…"
 
-#: src/ui/window.ui:173
+#: src/ui/window.ui:187
 msgid "_Receive"
 msgstr "_Fogadás"
 
-#: src/ui/window.ui:182
+#: src/ui/window.ui:196
 msgid "Receive File"
 msgstr "Fájl fogadása"
 
 #. Translators: Text above code input box, transmit code is a noun
-#: src/ui/window.ui:184
+#: src/ui/window.ui:198
 msgid "Enter the transmit code from the sender"
 msgstr "Adja meg a küldőtől kapott átviteli kódot"
 
 #. Translators: Button
-#: src/ui/window.ui:215
-#| msgid "Receive File"
+#: src/ui/window.ui:232
 msgid "Receive _File"
 msgstr "_Fájl fogadása"
 
-#: src/util.rs:31 src/util.rs:50
+#: src/util.rs:32 src/util.rs:51
 msgid "Failed to open downloads folder."
 msgstr "Nem sikerült megnyitni a letöltések mappát."
 
-#: src/util.rs:191 src/util.rs:264
+#: src/util.rs:193 src/util.rs:266
 msgid "The URI format is invalid"
 msgstr "Az URI formátuma érvénytelen"
 
-#: src/util.rs:195 src/util.rs:199
+#: src/util.rs:197 src/util.rs:201
 msgid "The code does not match the required format"
 msgstr "A kód nem egyezik az elvárt formátummal"
 
-#: src/util.rs:214 src/util.rs:220
+#: src/util.rs:216 src/util.rs:222
 msgid "Unknown URI version: {}"
 msgstr "Ismeretlen URI verzió: {}"
 
-#: src/util.rs:229
+#: src/util.rs:231
 msgid "The URI parameter “rendezvous” contains an invalid URL: “{}”"
 msgstr "A „rendezvous” URI paraméter érvénytelen URL-t tartalmaz: „{}”"
 
-#: src/util.rs:241
+#: src/util.rs:243
 msgid "The URI parameter “role” must be “follower” or “leader” (was: “{}”)"
 msgstr ""
 "A „role” URI paraméter csak „follower” vagy „leader” lehet (ez volt: „{}”)"
 
-#: src/util.rs:248
+#: src/util.rs:250
 msgid "Unknown URI parameter “{}”"
 msgstr "Ismeretlen URI paraméter: „{}”"
 
@@ -849,7 +817,6 @@ msgid "Cannot decrypt a received message"
 msgstr "Nem lehet visszafejteni egy fogadott üzenetet"
 
 #: src/util/error.rs:208 src/util/error.rs:263 src/util/error.rs:269
-#: src/util/error.rs:272
 msgid "An unknown error occurred"
 msgstr "Ismeretlen hiba történt"
 
@@ -897,7 +864,12 @@ msgstr "Hiba a fájlátviteli kapcsolat kiépítése során"
 msgid "Unknown file transfer error"
 msgstr "Ismeretlen fájlátviteli hiba"
 
-#: src/util/error.rs:274
+#: src/util/error.rs:270
+#| msgid "An unknown error occurred"
+msgid "An unknown error occurred while creating a zip file: {}"
+msgstr "Ismeretlen hiba történt a ZIP-fájl létrehozása során: {}"
+
+#: src/util/error.rs:271
 msgid ""
 "An unexpected error occurred. Please report an issue with the error message."
 msgstr "Váratlan hiba történt. Küldjön hibajelentést a hibaüzenettel."
