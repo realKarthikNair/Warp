@@ -296,7 +296,7 @@
                 <signal name="clicked" handler="cancel_button_clicked" swapped="true"/>
                 <!-- Translators: Button -->
                 <property name="tooltip-text" translatable="yes">Cancel</property>
-                <property name="label">Cancel</property>
+                <property name="label" translatable="yes">Cancel</property>
                 <property name="halign">center</property>
                 <property name="valign">end</property>
                 <property name="margin-bottom">24</property>
