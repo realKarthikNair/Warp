@@ -205,7 +205,6 @@
                         <child>
                           <object class="GtkButton" id="save_as_button">
                             <signal name="clicked" handler="save_as_button_clicked" swapped="true"/>
-                            <property name="tooltip-text" translatable="yes">Select Save Location</property>
                             <!-- Translators: Button -->
                             <property name="label" translatable="yes">Sa_ve As…</property>
                             <property name="use-underline">true</property>
@@ -235,7 +234,6 @@
                         <child>
                           <object class="GtkButton" id="open_button">
                             <signal name="clicked" handler="open_button_clicked" swapped="true"/>
-                            <property name="tooltip-text" translatable="yes">Open File</property>
                             <!-- Translators: Button -->
                             <property name="label" translatable="yes">_Open File</property>
                             <property name="use-underline">true</property>
@@ -251,7 +249,6 @@
                         <child>
                           <object class="GtkButton" id="open_dir_button">
                             <signal name="clicked" handler="open_dir_button_clicked" swapped="true"/>
-                            <property name="tooltip-text" translatable="yes">Show in Folder</property>
                             <!-- Translators: Button -->
                             <property name="label" translatable="yes">_Show in Folder</property>
                             <property name="use-underline">true</property>
@@ -278,7 +275,6 @@
                     <child>
                       <object class="GtkButton" id="copy_error_button">
                         <signal name="clicked" handler="copy_error_button_clicked" swapped="true"/>
-                        <property name="tooltip-text" translatable="yes">Copy a detailed message for reporting an issue</property>
                         <!-- Translators: Button -->
                         <property name="label" translatable="yes">Co_py Error Message</property>
                         <property name="use-underline">true</property>
