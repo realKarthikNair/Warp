@@ -52,9 +52,7 @@ mod imp {
         #[template_child]
         pub action_view: TemplateChild<ActionView>,
         #[template_child]
-        pub file_chooser: TemplateChild<gtk::FileChooserNative>,
-        #[template_child]
-        pub folder_chooser: TemplateChild<gtk::FileChooserNative>,
+        pub file_dialog: TemplateChild<gtk::FileDialog>,
         #[template_child]
         pub inserted_code_toast: TemplateChild<adw::Toast>,
         #[template_child]
@@ -120,33 +118,6 @@ mod imp {
             obj.setup_help_overlay();
             obj.setup_gactions();
 
-            let file_chooser_closure = clone!(@strong obj => move |chooser: &gtk::FileChooserNative, response: gtk::ResponseType| {
-                match response {
-                    gtk::ResponseType::Accept => {
-                        if let Some(file) = chooser.file() {
-                            if let Some(path) = file.path() {
-                                log::debug!("Picked file: {}", path.display());
-                                obj.imp().action_view.send_file(path, obj.config().app_cfg());
-                            } else {
-                                log::error!("File chooser has file but path is None");
-                            }
-                        } else {
-                            log::debug!("File chooser accepted but no file selected");
-                        }
-                    }
-                    gtk::ResponseType::Cancel => {
-                        log::debug!("File chooser canceled");
-                    }
-                    _ => {
-                        log::error!("Unknown file chooser response type");
-                    }
-                };
-            });
-
-            self.file_chooser
-                .connect_response(file_chooser_closure.clone());
-            self.folder_chooser.connect_response(file_chooser_closure);
-
             let drop_type = gio::File::static_type();
             let drag_action = gdk::DragAction::COPY;
             let drop_target = gtk::DropTarget::new(drop_type, drag_action);
@@ -167,8 +138,8 @@ mod imp {
     }
 
     impl WidgetImpl for WarpApplicationWindow {
-        fn show(&self) {
-            self.parent_show();
+        fn map(&self) {
+            self.parent_map();
             let widget = self.obj();
 
             widget.load_window_size();
@@ -177,7 +148,7 @@ mod imp {
                 let welcome_window = WelcomeWindow::new();
                 welcome_window.set_modal(true);
                 welcome_window.set_transient_for(Some(&*widget));
-                welcome_window.show();
+                welcome_window.present();
             }
         }
     }
@@ -256,9 +227,10 @@ impl WarpApplicationWindow {
         let action_open_folder = gio::SimpleAction::new("open-folder", None);
         action_open_folder.connect_activate(clone!(@weak self as obj => move |_, _| {
             if !obj.action_view_showing() {
-                let imp = obj.imp();
-                imp.stack.set_visible_child_name("send");
-                imp.folder_chooser.get().show();
+                obj.imp().stack.set_visible_child_name("send");
+                glib::MainContext::default().spawn_local(async move {
+                    obj.select_folder().await;
+                });
             }
         }));
         self.add_action(&action_open_folder);
@@ -267,9 +239,10 @@ impl WarpApplicationWindow {
         let action_send = gio::SimpleAction::new("open-file", None);
         action_send.connect_activate(clone!(@weak self as obj => move |_, _| {
             if !obj.action_view_showing() {
-                let imp = obj.imp();
-                imp.stack.set_visible_child_name("send");
-                imp.file_chooser.get().show();
+                obj.imp().stack.set_visible_child_name("send");
+                glib::MainContext::default().spawn_local(async move {
+                    obj.select_file().await;
+                });
             }
         }));
         self.add_action(&action_send);
@@ -322,13 +295,42 @@ impl WarpApplicationWindow {
     }
 
     #[template_callback]
-    fn select_file_button_clicked(&self) {
-        self.imp().file_chooser.show();
+    async fn select_file(&self) {
+        self.imp()
+            .file_dialog
+            .set_title(&gettext("Select File to Send"));
+        self.select_file_result(self.imp().file_dialog.open_future(Some(self)).await);
     }
 
     #[template_callback]
-    fn select_folder_button_clicked(&self) {
-        self.imp().folder_chooser.show();
+    async fn select_folder(&self) {
+        self.imp()
+            .file_dialog
+            .set_title(&gettext("Select Folder to Send"));
+        self.select_file_result(
+            self.imp()
+                .file_dialog
+                .select_folder_future(Some(self))
+                .await,
+        );
+    }
+
+    fn select_file_result(&self, result: Result<gio::File, glib::Error>) {
+        match result {
+            Ok(file) => {
+                if let Some(path) = file.path() {
+                    log::debug!("Picked file: {}", path.display());
+                    self.imp()
+                        .action_view
+                        .send_file(path, self.config().app_cfg());
+                } else {
+                    log::error!("File chooser has file but path is None");
+                }
+            }
+            Err(err) => {
+                log::debug!("File chooser error: {:?}", err);
+            }
+        };
     }
 
     #[template_callback]

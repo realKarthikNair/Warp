@@ -172,7 +172,7 @@ mod imp {
         #[template_child]
         pub code_entry: TemplateChild<gtk::Entry>,
         #[template_child]
-        pub save_as_file_chooser: TemplateChild<gtk::FileChooserNative>,
+        pub save_as_file_dialog: TemplateChild<gtk::FileDialog>,
         #[template_child]
         pub code_image: TemplateChild<gtk::Image>,
         #[template_child]
@@ -202,13 +202,7 @@ mod imp {
 
     impl ObjectImpl for ActionView {}
 
-    impl WidgetImpl for ActionView {
-        fn show(&self) {
-            self.parent_show();
-            self.save_as_file_chooser
-                .set_transient_for(Some(&self.obj().window()));
-        }
-    }
+    impl WidgetImpl for ActionView {}
     impl BinImpl for ActionView {}
 
     #[gtk::template_callbacks]
@@ -230,20 +224,21 @@ mod imp {
         }
 
         #[template_callback]
-        fn save_as_button_clicked(&self) {
-            let dialog = &self.save_as_file_chooser;
-            dialog.show();
-        }
-
-        #[template_callback]
-        async fn save_as_file_selected(&self, response: i32) {
-            if response == gtk::ResponseType::Accept {
-                if let Some(file) = self.save_as_file_chooser.file() {
+        async fn save_as_button_clicked(&self) {
+            match self
+                .save_as_file_dialog
+                .save_future(Some(&self.obj().window()))
+                .await
+            {
+                Ok(file) => {
                     if let Some(path) = file.path() {
                         log::debug!("Selected path: '{}'", path.display());
                         let continue_sender = self.context.borrow().continue_sender.clone();
                         continue_sender.broadcast(Some(path)).await.unwrap();
                     };
+                }
+                Err(err) => {
+                    log::debug!("Save As file chooser error: {:?}", err);
                 }
             }
         }
@@ -894,8 +889,8 @@ impl ActionView {
 
         // Continue or cancel
         self.imp()
-            .save_as_file_chooser
-            .set_current_name(&offer_filename.to_string_lossy());
+            .save_as_file_dialog
+            .set_initial_name(Some(&offer_filename.to_string_lossy()));
         let res = self.ask_confirmation_future().await;
         let selected_download_file_path = match res {
             Ok(selected_path) => selected_path,

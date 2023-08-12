@@ -153,14 +153,23 @@ impl WarpApplication {
             };
 
             log::debug!("Opening '{}' to show help", help_uri);
-            gtk::show_uri(Some(&app.main_window()), &help_uri, gtk::gdk::CURRENT_TIME);
+            let context = app
+                .active_window()
+                .map(|w| gtk::prelude::WidgetExt::display(&w).app_launch_context());
+
+            glib::MainContext::default().spawn_local(async move {
+                if let Err(err) = gio::AppInfo::launch_default_for_uri_future(&help_uri, context.as_ref()).await
+                {
+                    log::error!("Error launching help: {err:?}");
+                }
+            });
         }));
         self.add_action(&action_help);
 
         // Preferences
         let action_preferences = gio::SimpleAction::new("preferences", None);
         action_preferences.connect_activate(clone!(@weak self as app => move |_, _| {
-            WarpPreferencesWindow::new().show();
+            WarpPreferencesWindow::new().present();
         }));
         self.add_action(&action_preferences);
 

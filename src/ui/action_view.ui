@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <object class="GtkFileChooserNative" id="save_as_file_chooser">
+  <object class="GtkFileDialog" id="save_as_file_dialog">
     <property name="title" translatable="yes">Save As</property>
-    <property name="action">save</property>
-    <property name="accept-label" translatable="yes">Save</property>
-    <property name="cancel-label" translatable="yes">Cancel</property>
     <property name="modal">True</property>
-    <signal name="response" handler="save_as_file_selected" swapped="true"/>
   </object>
   <object class="GtkPopover" id="popover_code">
     <child>

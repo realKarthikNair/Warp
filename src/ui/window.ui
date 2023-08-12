@@ -24,21 +24,8 @@
       </item>
     </section>
   </menu>
-  <object class="GtkFileChooserNative" id="file_chooser">
-    <property name="title" translatable="yes">Select file to send</property>
-    <property name="action">open</property>
-    <property name="accept-label" translatable="yes">Open</property>
-    <property name="cancel-label" translatable="yes">Cancel</property>
+  <object class="GtkFileDialog" id="file_dialog">
     <property name="modal">True</property>
-    <property name="transient-for">WarpApplicationWindow</property>
-  </object>
-  <object class="GtkFileChooserNative" id="folder_chooser">
-    <property name="title" translatable="yes">Select folder to send</property>
-    <property name="action">select-folder</property>
-    <property name="accept-label" translatable="yes">Open Folder</property>
-    <property name="cancel-label" translatable="yes">Cancel</property>
-    <property name="modal">True</property>
-    <property name="transient-for">WarpApplicationWindow</property>
   </object>
   <object class="AdwToast" id="inserted_code_toast">
     <signal name="dismissed" handler="inserted_code_toast_dismissed" swapped="true"/>
@@ -148,7 +135,7 @@
                                             <property name="spacing">12</property>
                                             <child>
                                               <object class="GtkButton" id="send_select_file_button">
-                                                <signal name="clicked" handler="select_file_button_clicked" swapped="true"/>
+                                                <signal name="clicked" handler="select_file" swapped="true"/>
                                                 <!-- Translators: Button -->
                                                 <property name="label" translatable="yes">Select _File…</property>
                                                 <property name="use-underline">True</property>
@@ -162,7 +149,7 @@
                                             </child>
                                             <child>
                                               <object class="GtkButton" id="send_select_folder_button">
-                                                <signal name="clicked" handler="select_folder_button_clicked" swapped="true"/>
+                                                <signal name="clicked" handler="select_folder" swapped="true"/>
                                                 <!-- Translators: Button -->
                                                 <property name="label" translatable="yes">Select F_older…</property>
                                                 <property name="use-underline">True</property>
