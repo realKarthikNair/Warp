@@ -82,6 +82,10 @@ pub enum AppError {
         #[from]
         source: glib::Error,
     },
+    Ashpd {
+        #[from]
+        source: ashpd::Error,
+    },
 }
 
 impl Display for AppError {
@@ -105,6 +109,7 @@ impl Display for AppError {
             AppError::Zip { source } => write!(f, "ZipError: {source}"),
             AppError::Panic { msg } => write!(f, "Panic: {msg}"),
             AppError::Glib { source } => write!(f, "Glib: {source}"),
+            AppError::Ashpd { source } => write!(f, "Ashpd: {source}"),
         }
     }
 }
@@ -119,7 +124,13 @@ impl AppError {
     }
 
     pub fn is_user_canceled(&self) -> bool {
-        matches!(self, AppError::Canceled)
+        matches!(
+            self,
+            AppError::Canceled
+                | AppError::Ashpd {
+                    source: ashpd::Error::Response(ashpd::desktop::ResponseError::Cancelled)
+                }
+        )
     }
 
     pub fn handle(self) {
@@ -274,6 +285,7 @@ impl AppError {
             AppError::Zip { source } => gettextf("An unknown error occurred while creating a zip file: {}", &[source]),
             AppError::Panic { .. } => gettext("An unexpected error occurred. Please report an issue with the error message."),
             AppError::Glib { source } => source.to_string(),
+            AppError::Ashpd { source } => source.to_string(),
         }
     }
 }

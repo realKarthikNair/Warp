@@ -27,6 +27,9 @@ mod imp {
     #[derive(Default, gtk::CompositeTemplate)]
     #[template(file = "window.ui")]
     pub struct WarpApplicationWindow {
+        #[cfg(feature = "qr_code_scanning")]
+        pub page_camera: crate::ui::camera::Camera,
+
         #[template_child]
         pub page_root: TemplateChild<adw::NavigationPage>,
         #[template_child]
@@ -92,6 +95,28 @@ mod imp {
             // Devel Profile
             if globals::DEBUG_BUILD {
                 obj.add_css_class("devel");
+            }
+
+            #[cfg(feature = "qr_code_scanning")]
+            {
+                self.code_entry
+                    .set_secondary_icon_name(Some("qr-code-symbolic"));
+                self.code_entry
+                    .set_secondary_icon_tooltip_text(Some(&gettext("Scan QR Code")));
+
+                self.navigation_view.add(&self.page_camera);
+                let obj = self.obj().clone();
+                self.page_camera.connect_code_detected(
+                    glib::clone!(@weak obj => move |_camera, data| {
+                        let Ok(uri) = data.parse::<WormholeTransferURI>() else {
+                            return;
+                        };
+
+                        if !obj.imp().action_view_showing.get() {
+                            obj.open_code_from_uri(uri);
+                        };
+                    }),
+                );
             }
 
             self.config
@@ -278,15 +303,22 @@ impl WarpApplicationWindow {
     #[template_callback]
     async fn navigation_view_visible_page_notify(&self) {
         if let Some(page) = self.imp().navigation_view.visible_page() {
-            if page != *self.imp().action_view {
-                let imp = self.imp();
+            let imp = self.imp();
+
+            if page == *self.imp().action_view {
+                imp.action_view_showing.set(true);
+            } else {
                 imp.action_view_showing.set(false);
+            }
+
+            if page == *self.imp().page_root {
                 imp.code_entry.set_text("");
 
                 if let Some(app) = self.app() {
                     app.uninhibit_transfer();
                 }
 
+                self.imp().page_camera.stop();
                 self.add_code_from_clipboard();
                 if imp.action_view.transfer_in_progress() {
                     imp.action_view.cancel().await;
@@ -340,6 +372,12 @@ impl WarpApplicationWindow {
     }
 
     #[template_callback]
+    async fn scan_qr_code_button_clicked(&self) {
+        #[cfg(feature = "qr_code_scanning")]
+        self.show_camera().await;
+    }
+
+    #[template_callback]
     fn code_entry_changed(&self) {
         self.imp()
             .receive_button
@@ -389,11 +427,28 @@ impl WarpApplicationWindow {
 
     pub fn show_action_view(&self) {
         let imp = self.imp();
-        imp.action_view_showing.set(true);
-        imp.navigation_view.push(&*imp.action_view);
+
+        let visible_page = imp.navigation_view.visible_page();
+
+        if visible_page.as_ref() == Some(imp.page_root.upcast_ref()) {
+            imp.navigation_view.push(&*imp.action_view);
+        }
+
+        #[cfg(feature = "qr_code_scanning")]
+        if visible_page.as_ref() == Some(imp.page_camera.upcast_ref()) {
+            imp.navigation_view
+                .replace(&[imp.page_root.clone(), imp.action_view.clone().upcast()]);
+        }
+
         if imp.inserted_code_toast_showing.get() {
             imp.inserted_code_toast.get().dismiss();
         }
+    }
+
+    #[cfg(feature = "qr_code_scanning")]
+    pub async fn show_camera(&self) {
+        let imp = self.imp();
+        imp.navigation_view.push(&imp.page_camera);
     }
 
     pub fn navigate_home(&self) {

@@ -8,7 +8,8 @@ global_conf.set_quoted('LOCALEDIR', localedir)
 
 cargo_options = [ '--manifest-path', meson.project_source_root() / 'Cargo.toml' ]
 cargo_options += [ '--target-dir', meson.project_build_root() / 'src' ]
-cargo_options += [ '--features', 'meson' ]
+cargo_options += [ '--no-default-features' ]
+cargo_features = [ 'meson' ]
 
 if get_option('profile') == 'default' or get_option('profile') == 'release'
   cargo_options += [ '--release' ]
@@ -17,6 +18,10 @@ if get_option('profile') == 'default' or get_option('profile') == 'release'
 else
   rust_target = 'debug'
   message('Building in debug mode')
+endif
+
+if get_option('qr-code-scanning')
+  cargo_features += [ 'qr_code_scanning' ]
 endif
 
 file_extension = ''
@@ -32,6 +37,8 @@ cargo_env = [
     'CARGO_HOME=' + meson.project_build_root() / 'cargo-home',
     'LOCALEDIR=' + get_option('prefix') / get_option('localedir')
 ]
+
+cargo_options += [ '--features' ] + ','.join(cargo_features)
 
 custom_target(
   'cargo-build',

@@ -83,6 +83,9 @@ mod imp {
             let app = self.obj();
             self.parent_startup();
 
+            #[cfg(feature = "qr_code_scanning")]
+            aperture::init(globals::APP_ID);
+
             // Set icons for shell
             gtk::Window::set_default_icon_name(globals::APP_ID);
 

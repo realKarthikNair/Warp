@@ -203,6 +203,7 @@
                                                         <signal name="notify::text" handler="code_entry_changed" swapped="true"/>
                                                       </object>
                                                     </property>
+                                                    <signal name="icon-release" handler="scan_qr_code_button_clicked" swapped="true"/>                    
                                                     <style>
                                                       <class name="card"/>
                                                     </style>

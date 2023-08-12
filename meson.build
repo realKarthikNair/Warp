@@ -49,6 +49,16 @@ dependency('gio-2.0', version: '>= 2.76.0')
 dependency('gtk4', version: '>= 4.13.0')
 dependency('libadwaita-1', version: '>= 1.5.alpha')
 
+# QR Code scanning
+
+if get_option('qr-code-scanning')
+  dependency('zbar', version: '>= 0.20')
+  dependency('gstreamer-1.0', version: '>= 1.18')
+  dependency('gstreamer-base-1.0', version: '>= 1.18')
+  dependency('gstreamer-plugins-base-1.0', version: '>= 1.18')
+  dependency('gstreamer-plugins-bad-1.0', version: '>= 1.18')
+endif
+
 glib_compile_schemas = find_program('glib-compile-schemas', required: true)
 desktop_file_validate = find_program('desktop-file-validate', required: false)
 appstream_cli = find_program('appstreamcli', required: false)

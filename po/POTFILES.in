@@ -10,6 +10,9 @@ src/ui.rs
 src/ui/action_view.rs
 src/ui/action_view.ui
 src/ui/application.rs
+src/ui/camera.rs
+src/ui/camera.ui
+src/ui/camera_row.rs
 src/ui/fs.rs
 src/ui/preferences.rs
 src/ui/preferences.ui

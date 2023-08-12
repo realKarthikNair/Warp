@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="Camera" parent="AdwNavigationPage">
+    <property name="title" translatable="yes">Scan QR Code</property>
+    <child>
+      <object class="AdwToolbarView" id="toolbar_view">
+        <child type="top">
+          <object class="AdwHeaderBar" />
+        </child>
+        <child>
+          <object class="GtkStack" id="stack">
+            <property name="transition-type">crossfade</property>
+            <property name="hhomogeneous">False</property>
+            <child>
+              <object class="GtkStackPage">
+                <property name="name">loading</property>
+                <property name="child">
+                  <object class="GtkSpinner" id="spinner">
+                    <property name="halign">center</property>
+                    <property name="vexpand">True</property>
+                    <property name="valign">center</property>
+                    <property name="width-request">48</property>
+                    <property name="height-request">48</property>
+                  </object>
+                </property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkStackPage">
+                <property name="name">not-found</property>
+                <property name="child">
+                  <object class="AdwStatusPage">
+                    <property name="vexpand">True</property>
+                    <property name="icon-name">camera-hardware-disabled-symbolic</property>
+                    <property name="title" translatable="yes">No Camera Found</property>
+                    <property name="description" translatable="yes">Connect a camera to scan QR codes</property>
+                    <property name="child">
+                      <object class="GtkButton" id="screenshot">
+                        <property name="label" translatable="yes">_Troubleshooting</property>
+                        <property name="halign">center</property>
+                        <property name="margin-top">24</property>
+                        <property name="use-underline">True</property>
+                        <signal name="clicked" handler="on_troubleshooting_clicked" swapped="true" />
+                        <style>
+                          <class name="pill" />
+                        </style>
+                      </object>
+                    </property>
+                  </object>
+                </property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkStackPage">
+                <property name="name">stream</property>
+                <property name="child">
+                  <object class="GtkOverlay">
+                    <child>
+                      <object class="AdwBin" id="viewfinder_bin" />
+                    </child>
+                    <child type="overlay">
+                      <object class="GtkMenuButton" id="selection_button">
+                          <property name="icon-name">pick-camera-alt2-symbolic</property>
+                          <property name="halign">end</property>
+                          <property name="valign">end</property>
+                          <property name="margin-end">18</property>
+                          <property name="margin-bottom">18</property>
+                          <style>
+                            <class name="osd" />
+                            <class name="circular" />
+                            <class name="selectionbutton" />
+                          </style>
+                      </object>
+                    </child>
+                  </object>
+                </property>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+</interface>
