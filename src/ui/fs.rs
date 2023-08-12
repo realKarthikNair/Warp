@@ -130,16 +130,14 @@ mod test {
         let temp_dir = std::env::temp_dir();
         let mut to_remove = Vec::new();
 
-        for file in std::fs::read_dir(&temp_dir).unwrap() {
-            if let Ok(file) = file {
-                let path = file.path();
-                if path.file_stem().is_some_and(|stem| {
-                    stem.to_string_lossy()
-                        .starts_with(filename.file_stem().unwrap().to_string_lossy().as_ref())
-                }) && path.extension().is_some_and(|ext| ext == "bin")
-                {
-                    std::fs::remove_file(path).unwrap();
-                }
+        for file in std::fs::read_dir(&temp_dir).unwrap().flatten() {
+            let path = file.path();
+            if path.file_stem().is_some_and(|stem| {
+                stem.to_string_lossy()
+                    .starts_with(filename.file_stem().unwrap().to_string_lossy().as_ref())
+            }) && path.extension().is_some_and(|ext| ext == "bin")
+            {
+                std::fs::remove_file(path).unwrap();
             }
         }
 

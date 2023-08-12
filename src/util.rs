@@ -168,7 +168,7 @@ impl WormholeTransferURI {
         wormhole::AppConfig {
             id: wormhole::AppID::new(globals::WORMHOLE_DEFAULT_APPID_STR),
             rendezvous_url: rendezvous_url.to_string().into(),
-            app_version: wormhole::transfer::AppVersion {},
+            app_version: wormhole::transfer::AppVersion::default(),
         }
     }
 
