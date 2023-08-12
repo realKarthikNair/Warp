@@ -39,6 +39,7 @@ impl Display for UiError {
 #[derive(Debug, thiserror::Error)]
 pub enum AppError {
     Canceled,
+    UnsupportedProtocol(String),
     Io {
         #[from]
         source: std::io::Error,
@@ -92,6 +93,9 @@ impl Display for AppError {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
         match self {
             AppError::Canceled => write!(f, "Operation was canceled by the user"),
+            AppError::UnsupportedProtocol(proto) => {
+                write!(f, "UnsupportedProtocol: {proto}")
+            }
             AppError::Io { source } => write!(f, "I/O Error: {source}"),
             AppError::Url { source } => write!(f, "URL ParseError: {source}"),
             AppError::Transfer { source } => write!(f, "TransferError: {source:?}"),
@@ -251,6 +255,7 @@ impl AppError {
     pub fn gettext_error(&self) -> String {
         match self {
             AppError::Canceled => "canceled".to_owned(),
+            AppError::UnsupportedProtocol(proto) => gettextf("Unsupported Transfer Protocol: {}", &[&proto]),
             AppError::Io { source } => Self::gettext_error_io(source),
             // TODO those should not appear publicly
             AppError::Url { source } => source.to_string(),
