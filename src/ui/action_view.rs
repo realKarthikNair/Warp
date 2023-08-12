@@ -773,7 +773,7 @@ impl ActionView {
                 clone!(@strong self as obj => move || {
                     obj.imp().progress_bar.pulse();
 
-                    Continue(true)
+                    glib::ControlFlow::Continue
                 }),
             ));
         }

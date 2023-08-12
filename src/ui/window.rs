@@ -184,7 +184,7 @@ mod imp {
 
     impl WindowImpl for WarpApplicationWindow {
         // Save window state on delete event
-        fn close_request(&self) -> gtk::Inhibit {
+        fn close_request(&self) -> glib::Propagation {
             let window = self.obj();
             window.save_window_size();
             window.save_config();
@@ -203,7 +203,7 @@ mod imp {
 
                 // When close button is clicked a second time we will just close the window
                 self.close_in_progress.set(true);
-                gtk::Inhibit(true)
+                glib::Propagation::Stop
             } else {
                 // Pass close request on to the parent
                 self.parent_close_request()

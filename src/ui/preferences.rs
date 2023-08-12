@@ -10,7 +10,6 @@ mod imp {
     use super::*;
     use crate::gettext::gettextf;
     use crate::globals;
-    use glib::signal::Inhibit;
     use glib::Properties;
     use std::cell::{Cell, RefCell};
 
@@ -110,7 +109,7 @@ Transit Server: “{1}”",
 
     impl WidgetImpl for WarpPreferencesWindow {}
     impl WindowImpl for WarpPreferencesWindow {
-        fn close_request(&self) -> Inhibit {
+        fn close_request(&self) -> glib::Propagation {
             let window = self.app().main_window();
 
             let rendezvous_url = &*self.rendezvous_server_url.borrow();
@@ -126,7 +125,7 @@ Transit Server: “{1}”",
 
             window.save_config();
 
-            Inhibit(false)
+            glib::Propagation::Proceed
         }
     }
 
