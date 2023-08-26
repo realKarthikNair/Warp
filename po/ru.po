@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: warp main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
-"POT-Creation-Date: 2023-05-24 23:43+0000\n"
-"PO-Revision-Date: 2023-05-27 22:55+1000\n"
+"POT-Creation-Date: 2023-08-13 00:05+0000\n"
+"PO-Revision-Date: 2023-08-14 11:49+1000\n"
 "Last-Translator: Ser82-png <asvmail.as@gmail.com>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "Language: ru\n"
@@ -20,20 +20,19 @@ msgstr ""
 "X-Generator: Poedit 3.0.1\n"
 
 #: data/app.drey.Warp.desktop.in.in:3 data/app.drey.Warp.metainfo.xml.in.in:6
-#: src/main.rs:116
+#: src/main.rs:122 src/ui/window.ui:80
 msgid "Warp"
 msgstr "Warp"
 
 #: data/app.drey.Warp.desktop.in.in:4 data/app.drey.Warp.metainfo.xml.in.in:7
-#: src/ui/welcome_window.ui:26
+#: src/ui/welcome_window.ui:27
 msgid "Fast and secure file transfer"
 msgstr "Быстрая и безопасная передача файлов"
 
 #: data/app.drey.Warp.desktop.in.in:9
 msgid "Gnome;GTK;Wormhole;Magic-Wormhole;"
 msgstr ""
-"Гном; ГТК; Червоточина; Волшебная червоточина;Gnome;GTK;Wormhole;Magic-"
-"Wormhole;"
+"Гном;ГТК;Червоточина;Волшебная червоточина;Gnome;GTK;Wormhole;Magic-Wormhole;"
 
 #: data/app.drey.Warp.metainfo.xml.in.in:9
 msgid ""
@@ -88,7 +87,7 @@ msgid "Main Window"
 msgstr "Главное окно"
 
 #. Translators: Entry placeholder; This is a noun
-#: data/app.drey.Warp.metainfo.xml.in.in:34 src/ui/window.ui:205
+#: data/app.drey.Warp.metainfo.xml.in.in:34 src/ui/window.ui:198
 msgid "Transmit Code"
 msgstr "Код передачи"
 
@@ -97,19 +96,19 @@ msgid "Accept File Transfer"
 msgstr "Принять передачу файлов"
 
 #. Translators: Title
-#: data/app.drey.Warp.metainfo.xml.in.in:42 src/ui/action_view.rs:619
+#: data/app.drey.Warp.metainfo.xml.in.in:42 src/ui/action_view.rs:611
 msgid "Sending File"
 msgstr "Отправка файла"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:46 src/ui/action_view.rs:625
+#: data/app.drey.Warp.metainfo.xml.in.in:46 src/ui/action_view.rs:617
 msgid "Receiving File"
 msgstr "Получение файла"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:50 src/ui/action_view.rs:634
+#: data/app.drey.Warp.metainfo.xml.in.in:50 src/ui/action_view.rs:626
 msgid "File Transfer Complete"
 msgstr "Передача файлов завершена"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:221 src/ui/application.rs:216
+#: data/app.drey.Warp.metainfo.xml.in.in:220 src/ui/application.rs:225
 msgid "Fina Wilke"
 msgstr "Fina Wilke"
 
@@ -203,91 +202,91 @@ msgid "{0} — {1}"
 msgstr "{0} — {1}"
 
 #. Translators: Notification when clicking on "Copy Code to Clipboard" button
-#: src/ui/action_view.rs:262
+#: src/ui/action_view.rs:255
 msgid "Copied Code to Clipboard"
 msgstr "Код скопирован в буфер обмена"
 
 #. Translators: Notification when clicking on "Copy Link to Clipboard" button
-#: src/ui/action_view.rs:283
+#: src/ui/action_view.rs:276
 msgid "Copied Link to Clipboard"
 msgstr "Ссылка скопирована в буфер обмена"
 
-#: src/ui/action_view.rs:297
+#: src/ui/action_view.rs:290
 msgid "Copied Error to Clipboard"
 msgstr "Ошибка скопирована в буфер обмена"
 
-#: src/ui/action_view.rs:299
+#: src/ui/action_view.rs:292
 msgid "No error available"
 msgstr "Ошибки отсутствуют"
 
-#: src/ui/action_view.rs:441
+#: src/ui/action_view.rs:433
 msgid "Creating Archive"
 msgstr "Создание архива"
 
-#: src/ui/action_view.rs:445
+#: src/ui/action_view.rs:437
 msgid "Compressing folder “{}”"
 msgstr "Сжатие папки «{}»"
 
 #. Translators: Title
-#: src/ui/action_view.rs:461 src/ui/action_view.rs:519
+#: src/ui/action_view.rs:453 src/ui/action_view.rs:511
 msgid "Connecting"
 msgstr "Подключение"
 
 #. Translators: Description, Filename
-#: src/ui/action_view.rs:464
+#: src/ui/action_view.rs:456
 msgid "Requesting file transfer"
 msgstr "Запрос на передачу файлов"
 
 #. Translators: Description, argument is filename
-#: src/ui/action_view.rs:485
+#: src/ui/action_view.rs:477
 msgid "Ready to send “{}”."
 msgstr "Готово к отправке «{}»."
 
 #. Translators: Help dialog line 1, Code words and QR code visible,
-#: src/ui/action_view.rs:490
+#: src/ui/action_view.rs:482
 msgid ""
 "The receiver needs to enter or scan this code to begin the file transfer."
 msgstr ""
 "Получателю необходимо ввести или отсканировать этот код, чтобы начать "
 "передачу файла."
 
-#: src/ui/action_view.rs:494
+#: src/ui/action_view.rs:486
 msgid "The QR code is compatible with the following apps: {}."
 msgstr "QR-код совместим со следующими приложениями: {}."
 
-#: src/ui/action_view.rs:502
+#: src/ui/action_view.rs:494
 msgid ""
 "You have entered a custom rendezvous server URL in preferences. Please "
 "verify the receiver also uses the same rendezvous server."
 msgstr ""
-"Вы ввели пользовательский URL-адрес сервера рандеву в настройках. "
-"Пожалуйста, убедитесь, что получатель также использует тот же сервер рандеву."
+"Вы ввели пользовательский URL сервера рандеву в настройках. Пожалуйста, "
+"убедитесь, что получатель также использует тот же сервер рандеву."
 
-#: src/ui/action_view.rs:507
+#: src/ui/action_view.rs:499
 msgid "Click the QR code to copy the link to the clipboard."
 msgstr "Нажмите на QR-код, чтобы скопировать ссылку в буфер обмена."
 
 #. Translators: Description, Transfer Code
-#: src/ui/action_view.rs:522
+#: src/ui/action_view.rs:514
 msgid "Connecting to peer with code “{}”"
 msgstr "Подключение к участнику сети с кодом «{}»"
 
-#: src/ui/action_view.rs:532
+#: src/ui/action_view.rs:524
 msgid "Connected to Peer"
 msgstr "Подключен к участнику сети"
 
 #. Translators: Description
-#: src/ui/action_view.rs:541
+#: src/ui/action_view.rs:533
 msgid "Preparing to send file"
 msgstr "Подготовка к отправке файла"
 
 #. Translators: Description
-#: src/ui/action_view.rs:548
+#: src/ui/action_view.rs:540
 msgid "Preparing to receive file"
 msgstr "Подготовка к получению файла"
 
 #. Translators: File receive confirmation message dialog; Filename, File size
-#: src/ui/action_view.rs:561
+#: src/ui/action_view.rs:553
 msgid ""
 "Your peer wants to send you “{0}” (Size: {1}).\n"
 "Do you want to download this file? The default action will save the file to "
@@ -297,88 +296,88 @@ msgstr ""
 "Хотите ли вы загрузить этот файл? Действие по умолчанию сохранит файл в "
 "папке «Загрузки»."
 
-#: src/ui/action_view.rs:566
+#: src/ui/action_view.rs:558
 msgid "Ready to Receive File"
 msgstr "Готов к получению файла"
 
-#: src/ui/action_view.rs:568
+#: src/ui/action_view.rs:560
 msgid ""
 "A file is ready to be transferred. The transfer needs to be acknowledged."
 msgstr "Файл готов к передаче. Необходимо подтвердить передачу."
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:596
+#: src/ui/action_view.rs:588
 msgid "File “{}” via local network direct transfer"
 msgstr "Файл «{}» через прямую передачу по локальной сети"
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:599
+#: src/ui/action_view.rs:591
 msgid "File “{}” via direct transfer"
 msgstr "Файл «{}» через прямую передачу"
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:605
+#: src/ui/action_view.rs:597
 msgid "File “{0}” via relay {1}"
 msgstr "Файл «{0}» через ретранслятор {1}"
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:608
+#: src/ui/action_view.rs:600
 msgid "File “{}” via relay"
 msgstr "Файл «{}» через ретранслятор"
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:612
+#: src/ui/action_view.rs:604
 msgid "File “{}” via Unknown connection method"
 msgstr "Файл «{}» через неизвестный способ подключения"
 
 #. Translators: Description, Filename
-#: src/ui/action_view.rs:642
+#: src/ui/action_view.rs:634
 msgid "Successfully sent file “{}”"
 msgstr "Файл «{}» успешно отправлен"
 
 #. Translators: Filename
-#: src/ui/action_view.rs:660
+#: src/ui/action_view.rs:652
 msgid "File has been saved to the selected folder as “{}”"
 msgstr "Файл был сохранен в выбранной папке как «{}»"
 
 #. Translators: Filename
-#: src/ui/action_view.rs:667
+#: src/ui/action_view.rs:659
 msgid "File has been saved to the Downloads folder as “{}”"
-msgstr "Файл был сохранен в папке \"Загрузки\" как «{}»"
+msgstr "Файл был сохранен в папке «Загрузки» как «{}»"
 
 #. Translators: Title
-#: src/ui/action_view.rs:694 src/ui/action_view.ui:289
+#: src/ui/action_view.rs:686 src/ui/action_view.ui:273
 msgid "File Transfer Failed"
 msgstr "Передача файлов не удалась"
 
-#: src/ui/action_view.rs:696
+#: src/ui/action_view.rs:688
 msgid "The file transfer failed: {}"
 msgstr "Передача файла не удалась: {}"
 
 #. Translators: When opening a file
-#: src/ui/action_view.rs:816
+#: src/ui/action_view.rs:808
 msgid "Specified file / directory does not exist"
 msgstr "Указанный файл / папка не существует"
 
-#: src/ui/action_view.rs:834
+#: src/ui/action_view.rs:826
 msgid ""
 "Error parsing rendezvous server URL. An invalid URL was entered in the "
 "settings."
 msgstr ""
-"Ошибка при разборе URL-адреса сервера рандеву. В настройках был введен "
-"недопустимый URL."
+"Ошибка при разборе URL сервера рандеву. В настройках был введен недопустимый "
+"URL."
 
-#: src/ui/action_view.rs:841
+#: src/ui/action_view.rs:833
 msgid "Error parsing transit URL. An invalid URL was entered in the settings."
 msgstr ""
 "Ошибка при разборе транзитного URL. В настройках был введен недопустимый URL."
 
-#: src/ui/action_view.rs:928
+#: src/ui/action_view.rs:920
 msgid "Invalid path selected: {}"
 msgstr "Выбран неверный путь: {}"
 
 #. Translators: Above progress bar for creating an archive to send as a folder
-#: src/ui/action_view.rs:1174
+#: src/ui/action_view.rs:1165
 msgid "{} File - Size: {}"
 msgid_plural "{} Files - Size: {}"
 msgstr[0] "{} файл - размер: {}"
@@ -386,111 +385,101 @@ msgstr[1] "{} файла - размер: {}"
 msgstr[2] "{} файлов - размер: {}"
 
 #. Translators: Button
-#: src/ui/action_view.ui:4 src/ui/action_view.ui:225
+#: src/ui/action_view.ui:4 src/ui/action_view.ui:209
 msgid "Save As"
 msgstr "Сохранить как"
 
-#: src/ui/action_view.ui:6
-msgid "Save"
-msgstr "Сохранить"
-
-#. Translators: Button
-#: src/ui/action_view.ui:7 src/ui/action_view.ui:310 src/ui/window.ui:31
-#: src/ui/window.ui:39
-msgid "Cancel"
-msgstr "Отменить"
-
-#. Translators: Button
-#: src/ui/action_view.ui:39 src/ui/welcome_window.ui:56
-msgid "Back"
-msgstr "Назад"
-
 #. Translators: Button; Transmit Link is a noun
-#: src/ui/action_view.ui:110
+#: src/ui/action_view.ui:94
 msgid "Copy Transmit Link"
 msgstr "Копировать ссылку передачи"
 
-#: src/ui/action_view.ui:135
+#: src/ui/action_view.ui:119
 msgid "Your Transmit Code"
 msgstr "Ваш код передачи"
 
 #. Translators: Button; Transmit Code is a noun
-#: src/ui/action_view.ui:183
+#: src/ui/action_view.ui:167
 msgid "Copy Transmit Code"
 msgstr "Копировать код передачи"
 
 #. Translators: Title
-#: src/ui/action_view.ui:200
+#: src/ui/action_view.ui:184
 msgid "Accept File Transfer?"
 msgstr "Принять передачу файлов?"
 
-#: src/ui/action_view.ui:209
+#: src/ui/action_view.ui:193
 msgid "Accept File Transfer and save to Downloads folder"
 msgstr "Принять передачу файла и сохранить в папке «Загрузки»"
 
 #. Translators: Button
-#: src/ui/action_view.ui:211
+#: src/ui/action_view.ui:195
 msgid "Accept"
 msgstr "Принять"
 
-#: src/ui/action_view.ui:223
+#: src/ui/action_view.ui:207
 msgid "Select Save Location"
 msgstr "Выбрать место сохранения"
 
 #. Translators: Title
-#: src/ui/action_view.ui:244
+#: src/ui/action_view.ui:228
 msgid "File Transfer Successful"
 msgstr "Передача файлов успешно выполнена"
 
 #. Translators: Button
-#: src/ui/action_view.ui:252 src/ui/action_view.ui:254
+#: src/ui/action_view.ui:236 src/ui/action_view.ui:238
 msgid "Open File"
 msgstr "Открыть файл"
 
 #. Translators: Button
-#: src/ui/action_view.ui:267 src/ui/action_view.ui:269
+#: src/ui/action_view.ui:251 src/ui/action_view.ui:253
 msgid "Show in Folder"
 msgstr "Показать в папке"
 
-#: src/ui/action_view.ui:293
+#: src/ui/action_view.ui:277
 msgid "Copy a detailed message for reporting an issue"
 msgstr "Копировать подробное сообщение для уведомления о проблеме"
 
 #. Translators: Button
-#: src/ui/action_view.ui:295
+#: src/ui/action_view.ui:279
 msgid "Copy Error Message"
 msgstr "Копировать сообщение об ошибке"
+
+#. Translators: Button
+#: src/ui/action_view.ui:294
+msgid "Cancel"
+msgstr "Отменить"
 
 #: src/ui/application.rs:62
 msgid "Unable to use transfer link: another transfer already in progress"
 msgstr ""
 "Невозможно использовать ссылку на передачу: другая передача уже выполняется"
 
-#: src/ui/application.rs:217
+#: src/ui/application.rs:226
 msgid "Tobias Bernard"
 msgstr "Tobias Bernard"
 
-#: src/ui/application.rs:217
+#: src/ui/application.rs:226
 msgid "Sophie Herold"
 msgstr "Sophie Herold"
 
-#: src/ui/application.rs:218
+#: src/ui/application.rs:227
 msgid "translator-credits"
 msgstr "Aleksandr Melman <alexmelman88@gmail.com>, 2022-2023"
 
-#: src/ui/application.rs:235
+#: src/ui/application.rs:244
 msgid "Sending a File"
 msgstr "Отправка файла"
 
-#: src/ui/application.rs:236
+#: src/ui/application.rs:245
 msgid "Receiving a File"
 msgstr "Получение файла"
 
-#: src/ui/fs.rs:23
+#: src/ui/fs.rs:24
 msgid "Downloads dir missing. Please set XDG_DOWNLOAD_DIR"
 msgstr "Отсутствует папка загрузок. Пожалуйста, установите XDG_DOWNLOAD_DIR"
 
-#: src/ui/preferences.rs:97
+#: src/ui/preferences.rs:96
 msgid ""
 "Changing the rendezvous server URL needs to be done on both sides of the "
 "transfer. Only enter a server URL you can trust.\n"
@@ -499,8 +488,8 @@ msgid ""
 "Rendezvous Server: “{0}”\n"
 "Transit Server: “{1}”"
 msgstr ""
-"Изменение URL-адреса сервера рандеву должно быть выполнено с обеих сторон "
-"передачи. Вводите только URL-адрес сервера, которому вы можете доверять.\n"
+"Изменение URL сервера рандеву должно быть выполнено с обеих сторон передачи. "
+"Вводите только URL сервера, которому вы можете доверять.\n"
 "\n"
 "Если оставить эти записи пустыми, будут использоваться настройки приложения "
 "по умолчанию:\n"
@@ -539,34 +528,34 @@ msgstr "Количество слов кода"
 
 #: src/ui/preferences.ui:34
 msgid "Server URLs"
-msgstr "URL-адреса сервера"
+msgstr "URL сервера"
 
 #: src/ui/preferences.ui:37
 msgid "Rendezvous Server URL"
-msgstr "URL-адрес сервера рандеву"
+msgstr "URL сервера рандеву"
 
 #: src/ui/preferences.ui:44
 msgid "Transit Server URL"
-msgstr "URL-адрес транзитного сервера"
+msgstr "URL транзитного сервера"
 
-#: src/ui/welcome_window.ui:5
+#: src/ui/welcome_window.ui:13
 msgid "Welcome"
 msgstr "Добро пожаловать"
 
-#: src/ui/welcome_window.ui:25
+#: src/ui/welcome_window.ui:26
 msgid "Welcome to Warp"
 msgstr "Добро пожаловать в Warp"
 
 #. Translators: Button
-#: src/ui/welcome_window.ui:33
+#: src/ui/welcome_window.ui:34
 msgid "Next"
 msgstr "Далее"
 
-#: src/ui/welcome_window.ui:84
+#: src/ui/welcome_window.ui:82
 msgid "Introduction"
 msgstr "Введение"
 
-#: src/ui/welcome_window.ui:95
+#: src/ui/welcome_window.ui:93
 msgid ""
 "Warp makes file transfer simple. To get started, both parties need to "
 "install Warp on their devices.\n"
@@ -592,7 +581,7 @@ msgstr ""
 "главном меню."
 
 #. Translators: Big button to finish welcome screen
-#: src/ui/welcome_window.ui:108
+#: src/ui/welcome_window.ui:106
 msgid "Get Started Using Warp"
 msgstr "Начать использовать Warp"
 
@@ -605,17 +594,25 @@ msgstr ""
 "умолчанию.\n"
 "Ошибка: {1}"
 
-#: src/ui/window.rs:237
+#: src/ui/window.rs:210
 msgid "Error saving configuration file: {}"
 msgstr "Ошибка сохранения файла конфигурации: {}"
 
-#: src/ui/window.rs:352
+#: src/ui/window.rs:301
+msgid "Select File to Send"
+msgstr "Выбрать файл для отправки"
+
+#: src/ui/window.rs:309
+msgid "Select Folder to Send"
+msgstr "Выбрать папку для отправки"
+
+#: src/ui/window.rs:360
 msgid "“{}” appears to be an invalid Transmit Code. Please try again."
 msgstr ""
 "«{}», по-видимому, является недопустимым кодом передачи. Пожалуйста, "
 "попробуйте снова."
 
-#: src/ui/window.rs:472
+#: src/ui/window.rs:471
 msgid "Sending files with a preconfigured code is not yet supported"
 msgstr ""
 "Отправка файлов с предварительно настроенным кодом пока не поддерживается"
@@ -640,98 +637,82 @@ msgstr "_Справка"
 msgid "_About Warp"
 msgstr "_О приложении"
 
-#: src/ui/window.ui:28
-msgid "Select file to send"
-msgstr "Выбрать файл для отправки"
-
-#: src/ui/window.ui:30
-msgid "Open"
-msgstr "Открыть"
-
-#: src/ui/window.ui:36
-msgid "Select folder to send"
-msgstr "Выбрать папку для отправки"
-
-#: src/ui/window.ui:38
-msgid "Open Folder"
-msgstr "Открыть папку"
-
 #. Translators: Notification when code was automatically detected in clipboard and inserted into code entry on receive page
-#: src/ui/window.ui:46
+#: src/ui/window.ui:33
 msgid "Inserted code from clipboard"
 msgstr "Вставлен код из буфера обмена"
 
 #. Translators: File receive confirmation message dialog title
-#: src/ui/window.ui:51
+#: src/ui/window.ui:38
 msgid "Abort File Transfer?"
 msgstr "Прервать передачу файлов?"
 
-#: src/ui/window.ui:52
+#: src/ui/window.ui:39
 msgid "Do you want to abort the current file transfer?"
 msgstr "Вы хотите прервать текущую передачу файлов?"
 
-#: src/ui/window.ui:58
+#: src/ui/window.ui:45
 msgid "_Continue"
 msgstr "_Продолжить"
 
-#: src/ui/window.ui:59
+#: src/ui/window.ui:46
 msgid "_Abort"
 msgstr "_Прервать"
 
 #. Translators: Error dialog title
-#: src/ui/window.ui:64
+#: src/ui/window.ui:51
 msgid "Unable to Open File"
 msgstr "Невозможно открыть файл"
 
-#: src/ui/window.ui:69 src/util/error.rs:176
+#: src/ui/window.ui:56 src/util/error.rs:176
 msgid "_Close"
 msgstr "_Закрыть"
 
-#: src/ui/window.ui:70
+#: src/ui/window.ui:57
 msgid "_Show in Folder"
 msgstr "_Показать в папке"
 
-#: src/ui/window.ui:101
+#: src/ui/window.ui:97
 msgid "Main Menu"
 msgstr "Главное меню"
 
-#: src/ui/window.ui:123
+#: src/ui/window.ui:116
 msgid "_Send"
 msgstr "_Отправка"
 
-#: src/ui/window.ui:135
+#: src/ui/window.ui:128
 msgid "Send File"
 msgstr "Отправить файл"
 
-#: src/ui/window.ui:136
+#: src/ui/window.ui:129
 msgid "Select or drop the file or directory to send"
 msgstr "Выберите или перетащите файл или папку для отправки"
 
 #. Translators: Button
-#: src/ui/window.ui:147
+#: src/ui/window.ui:140
 msgid "Select _File…"
 msgstr "Выбрать _файл…"
 
 #. Translators: Button
-#: src/ui/window.ui:161
+#: src/ui/window.ui:154
 msgid "Select F_older…"
 msgstr "Выбрать _папку…"
 
-#: src/ui/window.ui:181
+#: src/ui/window.ui:174
 msgid "_Receive"
 msgstr "_Получение"
 
-#: src/ui/window.ui:190
+#: src/ui/window.ui:183
 msgid "Receive File"
 msgstr "Получить файл"
 
 #. Translators: Text above code input box, transmit code is a noun
-#: src/ui/window.ui:192
+#: src/ui/window.ui:185
 msgid "Enter the transmit code from the sender"
 msgstr "Введите код передачи от отправителя"
 
 #. Translators: Button
-#: src/ui/window.ui:226
+#: src/ui/window.ui:219
 msgid "Receive _File"
 msgstr "Получить ф_айл"
 
@@ -798,8 +779,8 @@ msgid ""
 "verify the URL is correct and the server is working."
 msgstr ""
 "Ошибка подключения к серверу рандеву.\n"
-"Вы ввели пользовательский URL-адрес сервера рандеву в настройках. "
-"Пожалуйста, убедитесь, что URL-адрес указан правильно и сервер работает."
+"Вы ввели пользовательский URL сервера рандеву в настройках. Пожалуйста, "
+"убедитесь, что URL указан правильно и сервер работает."
 
 #: src/util/error.rs:201
 msgid ""
@@ -882,6 +863,18 @@ msgid ""
 msgstr ""
 "Произошла непредвиденная ошибка. Пожалуйста, уведомите о проблеме с "
 "сообщением об ошибке."
+
+#~ msgid "Save"
+#~ msgstr "Сохранить"
+
+#~ msgid "Back"
+#~ msgstr "Назад"
+
+#~ msgid "Open"
+#~ msgstr "Открыть"
+
+#~ msgid "Open Folder"
+#~ msgstr "Открыть папку"
 
 #~ msgid "Close"
 #~ msgstr "Закрыть"
