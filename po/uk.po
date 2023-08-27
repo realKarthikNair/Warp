@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: warp main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
-"POT-Creation-Date: 2023-08-13 00:05+0000\n"
-"PO-Revision-Date: 2023-08-13 13:31+0300\n"
+"POT-Creation-Date: 2023-08-27 13:31+0000\n"
+"PO-Revision-Date: 2023-08-27 17:22+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -350,7 +350,7 @@ msgid "File has been saved to the Downloads folder as “{}”"
 msgstr "Файл було збережено до теки «Завантаження» як «{}»"
 
 #. Translators: Title
-#: src/ui/action_view.rs:686 src/ui/action_view.ui:273
+#: src/ui/action_view.rs:686 src/ui/action_view.ui:274
 msgid "File Transfer Failed"
 msgstr "Перенесення файлів зазнало невдачі"
 
@@ -390,8 +390,7 @@ msgstr[1] "{} файли — розмір: {}"
 msgstr[2] "{} файлів — розмір: {}"
 msgstr[3] "{} файл — розмір: {}"
 
-#. Translators: Button
-#: src/ui/action_view.ui:4 src/ui/action_view.ui:209
+#: src/ui/action_view.ui:4
 msgid "Save As"
 msgstr "Зберегти як"
 
@@ -415,46 +414,49 @@ msgid "Accept File Transfer?"
 msgstr "Прийняти перенесення файла?"
 
 #: src/ui/action_view.ui:193
-msgid "Accept File Transfer and save to Downloads folder"
-msgstr "Прийняти перенесений файл і зберегти його до теки «Завантаження»"
+#| msgid "Failed to open downloads folder."
+msgid "Save to Downloads Folder"
+msgstr "Зберегти до теки завантажень"
 
 #. Translators: Button
 #: src/ui/action_view.ui:195
-msgid "Accept"
-msgstr "Прийняти"
+#| msgid "Accept"
+msgid "_Accept"
+msgstr "При_йняти"
 
-#: src/ui/action_view.ui:207
-msgid "Select Save Location"
-msgstr "Виберіть місце для збереження"
+#. Translators: Button
+#: src/ui/action_view.ui:209
+#| msgid "Save As"
+msgid "Sa_ve As…"
+msgstr "З_берегти як…"
 
 #. Translators: Title
-#: src/ui/action_view.ui:228
+#: src/ui/action_view.ui:229
 msgid "File Transfer Successful"
 msgstr "Успішне перенесення файлів"
 
 #. Translators: Button
-#: src/ui/action_view.ui:236 src/ui/action_view.ui:238
-msgid "Open File"
-msgstr "Відкрити файл"
+#: src/ui/action_view.ui:238
+#| msgid "Open File"
+msgid "_Open File"
+msgstr "_Відкрити файл"
 
 #. Translators: Button
-#: src/ui/action_view.ui:251 src/ui/action_view.ui:253
-msgid "Show in Folder"
-msgstr "Показати у теці"
-
-#: src/ui/action_view.ui:277
-msgid "Copy a detailed message for reporting an issue"
-msgstr "Копіювати докладне повідомлення для звітування про ваду"
+#: src/ui/action_view.ui:253 src/ui/window.ui:57
+msgid "_Show in Folder"
+msgstr "По_казати у теці"
 
 #. Translators: Button
 #: src/ui/action_view.ui:279
-msgid "Copy Error Message"
-msgstr "Копіювати повідомлення про помилку"
+#| msgid "Copy Error Message"
+msgid "Co_py Error Message"
+msgstr "К_опіювати повідомлення про помилку"
 
 #. Translators: Button
-#: src/ui/action_view.ui:294
-msgid "Cancel"
-msgstr "Скасувати"
+#: src/ui/action_view.ui:295
+#| msgid "Cancel"
+msgid "_Cancel"
+msgstr "_Скасувати"
 
 #: src/ui/application.rs:62
 msgid "Unable to use transfer link: another transfer already in progress"
@@ -607,12 +609,10 @@ msgid "Error saving configuration file: {}"
 msgstr "Помилка під час спроби зберегти файл налаштувань: {}"
 
 #: src/ui/window.rs:301
-#| msgid "Select file to send"
 msgid "Select File to Send"
 msgstr "Виберіть файл для надсилання"
 
 #: src/ui/window.rs:309
-#| msgid "Select folder to send"
 msgid "Select Folder to Send"
 msgstr "Виберіть теку для надсилання"
 
@@ -677,10 +677,6 @@ msgstr "Не вдалося відкрити файл"
 #: src/ui/window.ui:56 src/util/error.rs:176
 msgid "_Close"
 msgstr "З_акрити"
-
-#: src/ui/window.ui:57
-msgid "_Show in Folder"
-msgstr "По_казати у теці"
 
 #: src/ui/window.ui:97
 msgid "Main Menu"
@@ -874,6 +870,18 @@ msgid ""
 msgstr ""
 "Сталася неочікувана помилка. Будь ласка, повідомте про цю ваду, навівши "
 "повідомлення про помилку."
+
+#~ msgid "Accept File Transfer and save to Downloads folder"
+#~ msgstr "Прийняти перенесений файл і зберегти його до теки «Завантаження»"
+
+#~ msgid "Select Save Location"
+#~ msgstr "Виберіть місце для збереження"
+
+#~ msgid "Show in Folder"
+#~ msgstr "Показати у теці"
+
+#~ msgid "Copy a detailed message for reporting an issue"
+#~ msgstr "Копіювати докладне повідомлення для звітування про ваду"
 
 #~ msgid "Save"
 #~ msgstr "Зберегти"
