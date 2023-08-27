@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: warp main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
-"POT-Creation-Date: 2023-08-13 00:05+0000\n"
-"PO-Revision-Date: 2023-08-13 16:21+0330\n"
+"POT-Creation-Date: 2023-08-27 13:31+0000\n"
+"PO-Revision-Date: 2023-08-27 21:42+0330\n"
 "Last-Translator: Danial Behzadi <dani.behzi@ubuntu.com>\n"
 "Language-Team: Persian <fa@li.org>\n"
 "Language: fa\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.3.2\n"
 
 #: data/app.drey.Warp.desktop.in.in:3 data/app.drey.Warp.metainfo.xml.in.in:6
 #: src/main.rs:122 src/ui/window.ui:80
@@ -192,7 +192,7 @@ msgstr[1] "{} روز مانده"
 #: src/gettext/duration.rs:52
 msgctxt "Combine bytes progress {0} and time remaining {1}"
 msgid "{0} — {1}"
-msgstr "{0} — {1}{0} — {1}"
+msgstr "{0} — {1"
 
 #. Translators: Notification when clicking on "Copy Code to Clipboard" button
 #: src/ui/action_view.rs:255
@@ -330,7 +330,7 @@ msgid "File has been saved to the Downloads folder as “{}”"
 msgstr "پرونده به عنوان «{}» در شاخهٔ بارگیری‌ها ذخیره شد"
 
 #. Translators: Title
-#: src/ui/action_view.rs:686 src/ui/action_view.ui:273
+#: src/ui/action_view.rs:686 src/ui/action_view.ui:274
 msgid "File Transfer Failed"
 msgstr "انتقال پرونده شکست خورد"
 
@@ -364,8 +364,7 @@ msgid_plural "{} Files - Size: {}"
 msgstr[0] "{} پرونده - اندازه: {}"
 msgstr[1] "{} پرونده - اندازه: {}"
 
-#. Translators: Button
-#: src/ui/action_view.ui:4 src/ui/action_view.ui:209
+#: src/ui/action_view.ui:4
 msgid "Save As"
 msgstr "ذخیره به شکل"
 
@@ -389,46 +388,43 @@ msgid "Accept File Transfer?"
 msgstr "پذیرش انتقال پرونده؟"
 
 #: src/ui/action_view.ui:193
-msgid "Accept File Transfer and save to Downloads folder"
-msgstr "پذیرش جابه‌جایی پرونده و ذخیره در شاخهٔ بارگیری‌ها"
+msgid "Save to Downloads Folder"
+msgstr "ذخیره در شاخهٔ بارگیری‌ها."
 
 #. Translators: Button
 #: src/ui/action_view.ui:195
-msgid "Accept"
-msgstr "پذیرش"
+msgid "_Accept"
+msgstr "_پذیرش"
 
-#: src/ui/action_view.ui:207
-msgid "Select Save Location"
-msgstr "گزینش مکان ذخیره"
+#. Translators: Button
+#: src/ui/action_view.ui:209
+msgid "Sa_ve As…"
+msgstr "ذخیره به _شکل…"
 
 #. Translators: Title
-#: src/ui/action_view.ui:228
+#: src/ui/action_view.ui:229
 msgid "File Transfer Successful"
 msgstr "انتقال پرونده موفّقیت آمیز بود"
 
 #. Translators: Button
-#: src/ui/action_view.ui:236 src/ui/action_view.ui:238
-msgid "Open File"
-msgstr "گشودن پرونده"
+#: src/ui/action_view.ui:238
+msgid "_Open File"
+msgstr "_گشودن پرونده"
 
 #. Translators: Button
-#: src/ui/action_view.ui:251 src/ui/action_view.ui:253
-msgid "Show in Folder"
-msgstr "نمایش در شاخه"
-
-#: src/ui/action_view.ui:277
-msgid "Copy a detailed message for reporting an issue"
-msgstr "رونوشت یک پیام همراه جزییات برای گزارش یک مشکل"
+#: src/ui/action_view.ui:253 src/ui/window.ui:57
+msgid "_Show in Folder"
+msgstr "_نمایش در شاخه"
 
 #. Translators: Button
 #: src/ui/action_view.ui:279
-msgid "Copy Error Message"
-msgstr "رونوشت پیام خطا"
+msgid "Co_py Error Message"
+msgstr "_رونوشت پیام خطا"
 
 #. Translators: Button
-#: src/ui/action_view.ui:294
-msgid "Cancel"
-msgstr "لغو"
+#: src/ui/action_view.ui:295
+msgid "_Cancel"
+msgstr "_لغو"
 
 #: src/ui/application.rs:62
 msgid "Unable to use transfer link: another transfer already in progress"
@@ -622,10 +618,6 @@ msgstr "ناتوان در گشودن پرونده"
 msgid "_Close"
 msgstr "_بستن"
 
-#: src/ui/window.ui:57
-msgid "_Show in Folder"
-msgstr "_نمایش در شاخه"
-
 #: src/ui/window.ui:97
 msgid "Main Menu"
 msgstr "فهرست اصلی"
@@ -802,6 +794,18 @@ msgstr "هنگام ایجاد پرونده‌ای فشرده، خطایی ناش
 msgid ""
 "An unexpected error occurred. Please report an issue with the error message."
 msgstr "خطایی نامنتظره رخ داد. لطفاً مسئله‌ای با پیام خطا گزارش کنید."
+
+#~ msgid "Accept File Transfer and save to Downloads folder"
+#~ msgstr "پذیرش جابه‌جایی پرونده و ذخیره در شاخهٔ بارگیری‌ها"
+
+#~ msgid "Select Save Location"
+#~ msgstr "گزینش مکان ذخیره"
+
+#~ msgid "Show in Folder"
+#~ msgstr "نمایش در شاخه"
+
+#~ msgid "Copy a detailed message for reporting an issue"
+#~ msgstr "رونوشت یک پیام همراه جزییات برای گزارش یک مشکل"
 
 #~ msgid "Save"
 #~ msgstr "ذخیره"
