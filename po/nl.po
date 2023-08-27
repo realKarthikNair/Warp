@@ -2,7 +2,7 @@
 # Copyright (C) 2022 warp's COPYRIGHT HOLDER
 # This file is distributed under the same license as the warp package.
 # Philip Goto <Philip.goto@gmail.com>, 2022.
-# Nathan Follens <nfollens@gnome.org>, 2022.
+# Nathan Follens <nfollens@gnome.org>, 2022-2023.
 #
 msgid ""
 msgstr ""
