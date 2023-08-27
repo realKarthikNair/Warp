@@ -8,24 +8,24 @@ msgid ""
 msgstr ""
 "Project-Id-Version: warp main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
-"POT-Creation-Date: 2022-10-24 20:55+0000\n"
-"PO-Revision-Date: 2022-11-02 18:40+0100\n"
+"POT-Creation-Date: 2023-08-27 13:31+0000\n"
+"PO-Revision-Date: 2023-08-27 18:28+0200\n"
 "Last-Translator: Nathan Follens <nfollens@gnome.org>\n"
-"Language-Team: Dutch <gnome-nl-list@gnome.org>\n"
+"Language-Team: GNOME-NL https://matrix.to/#/#nl:gnome.org\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.3.2\n"
 
-#: data/app.drey.Warp.desktop.in.in:3 data/app.drey.Warp.metainfo.xml.in.in:7
-#: src/main.rs:94 src/ui/application.rs:216
+#: data/app.drey.Warp.desktop.in.in:3 data/app.drey.Warp.metainfo.xml.in.in:6
+#: src/main.rs:122 src/ui/window.ui:80
 msgid "Warp"
 msgstr "Warp"
 
-#: data/app.drey.Warp.desktop.in.in:4 data/app.drey.Warp.metainfo.xml.in.in:8
-#: data/resources/ui/welcome_window.ui:42
+#: data/app.drey.Warp.desktop.in.in:4 data/app.drey.Warp.metainfo.xml.in.in:7
+#: src/ui/welcome_window.ui:27
 msgid "Fast and secure file transfer"
 msgstr "Snelle en veilige bestandsoverdracht"
 
@@ -33,7 +33,7 @@ msgstr "Snelle en veilige bestandsoverdracht"
 msgid "Gnome;GTK;Wormhole;Magic-Wormhole;"
 msgstr "Gnome;GTK;Wormhole;Magic-Wormhole;"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:10
+#: data/app.drey.Warp.metainfo.xml.in.in:9
 msgid ""
 "Warp allows you to securely send files to each other via the internet or "
 "local network by exchanging a word-based code."
@@ -49,106 +49,67 @@ msgstr ""
 "De beste overdrachtsmethode wordt vastgesteld door middel van het ‘Magic "
 "Wormhole’-protocol, en bevat lokale netwerkoverdracht wanneer mogelijk."
 
-#: data/app.drey.Warp.metainfo.xml.in.in:16
+#: data/app.drey.Warp.metainfo.xml.in.in:17
 msgid "Features"
 msgstr "Functies"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:18
+#: data/app.drey.Warp.metainfo.xml.in.in:19
 msgid "Send files between multiple devices"
 msgstr "Stuur bestanden tussen meerdere apparaten"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:19
+#: data/app.drey.Warp.metainfo.xml.in.in:20
 msgid "Every file transfer is encrypted"
 msgstr "Elke bestandsoverdracht is versleuteld"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:20
+#: data/app.drey.Warp.metainfo.xml.in.in:21
 msgid "Directly transfer files on the local network if possible"
 msgstr "Verstuur bestanden over het lokale netwerk wanneer mogelijk"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:21
+#: data/app.drey.Warp.metainfo.xml.in.in:22
 msgid "An internet connection is required"
 msgstr "Een internetverbinding is vereist"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:22
-msgid "Compatibility with the “Magic Wormhole” command line client"
-msgstr "Compatibiliteit met de ‘Magic Wormhole’-opdrachtregelcliënt"
+#: data/app.drey.Warp.metainfo.xml.in.in:23
+msgid "QR Code support"
+msgstr "QR-codeondersteuning"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:28
+#: data/app.drey.Warp.metainfo.xml.in.in:24
+msgid ""
+"Compatibility with the Magic Wormhole command line client and all other "
+"compatible apps"
+msgstr ""
+"Compatibiliteit met de ‘Magic Wormhole’-opdrachtregelcliënt en alle andere "
+"compatibele toepassingen"
+
+#: data/app.drey.Warp.metainfo.xml.in.in:30
 msgid "Main Window"
 msgstr "Hoofdvenster"
 
 #. Translators: Entry placeholder; This is a noun
-#: data/app.drey.Warp.metainfo.xml.in.in:32 data/resources/ui/window.ui:196
+#: data/app.drey.Warp.metainfo.xml.in.in:34 src/ui/window.ui:198
 msgid "Transmit Code"
 msgstr "Overdrachtscode"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:36
-#: data/resources/ui/action_view.ui:127
+#: data/app.drey.Warp.metainfo.xml.in.in:38
 msgid "Accept File Transfer"
 msgstr "Bestandsoverdracht accepteren"
 
 #. Translators: Title
-#: data/app.drey.Warp.metainfo.xml.in.in:40 src/ui/action_view.rs:560
+#: data/app.drey.Warp.metainfo.xml.in.in:42 src/ui/action_view.rs:611
 msgid "Sending File"
 msgstr "Bestand versturen"
 
-#. Translators: Title
-#: data/app.drey.Warp.metainfo.xml.in.in:44 src/ui/action_view.rs:564
+#: data/app.drey.Warp.metainfo.xml.in.in:46 src/ui/action_view.rs:617
 msgid "Receiving File"
 msgstr "Bestand ontvangen"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:48 src/ui/action_view.rs:581
+#: data/app.drey.Warp.metainfo.xml.in.in:50 src/ui/action_view.rs:626
 msgid "File Transfer Complete"
 msgstr "Bestandsoverdracht voltooid"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:154
+#: data/app.drey.Warp.metainfo.xml.in.in:220 src/ui/application.rs:225
 msgid "Fina Wilke"
 msgstr "Fina Wilke"
-
-#. Translators: Button
-#: data/resources/ui/action_view.ui:18 data/resources/ui/window.ui:31
-#: data/resources/ui/window.ui:39
-msgid "Cancel"
-msgstr "Annuleren"
-
-#. Translators: Button
-#: data/resources/ui/action_view.ui:26 data/resources/ui/welcome_window.ui:61
-msgid "Back"
-msgstr "Terug"
-
-#. Translators: Button; Transmit Link is a noun
-#: data/resources/ui/action_view.ui:75
-msgid "Copy Transmit Link"
-msgstr "Overdrachtsverwijzing kopiëren"
-
-#. Translators: Button; Transmit Code is a noun
-#: data/resources/ui/action_view.ui:83
-msgid "Copy Transmit Code"
-msgstr "Overdrachtscode kopiëren"
-
-#. Translators: Button
-#: data/resources/ui/action_view.ui:98 data/resources/ui/action_view.ui:100
-msgid "Open File"
-msgstr "Bestand openen"
-
-#. Translators: Button
-#: data/resources/ui/action_view.ui:112 data/resources/ui/action_view.ui:114
-msgid "Show in Folder"
-msgstr "In map tonen"
-
-#. Translators: Button
-#: data/resources/ui/action_view.ui:130
-msgid "Accept"
-msgstr "Accepteren"
-
-#: data/resources/ui/action_view.ui:142
-msgid "Copy a detailed message for reporting an issue"
-msgstr "Kopieer een gedetailleerd bericht om een fout te melden"
-
-#. Translators: Button
-#: data/resources/ui/action_view.ui:145
-msgid "Copy Error Message"
-msgstr "Foutmelding kopiëren"
 
 #: data/resources/ui/help_overlay.ui:11
 msgctxt "shortcut window"
@@ -157,72 +118,393 @@ msgstr "Algemeen"
 
 #: data/resources/ui/help_overlay.ui:14
 msgctxt "shortcut window"
+msgid "Show Help"
+msgstr "Hulp tonen"
+
+#: data/resources/ui/help_overlay.ui:20
+msgctxt "shortcut window"
 msgid "Show Shortcuts"
 msgstr "Sneltoetsen tonen"
 
-#: data/resources/ui/help_overlay.ui:20
+#: data/resources/ui/help_overlay.ui:26
+msgctxt "shortcut window"
+msgid "Show Preferences"
+msgstr "Voorkeuren tonen"
+
+#: data/resources/ui/help_overlay.ui:32
 msgctxt "shortcut window"
 msgid "Quit"
 msgstr "Afsluiten"
 
-#: data/resources/ui/help_overlay.ui:28
+#: data/resources/ui/help_overlay.ui:40
 msgctxt "shortcut window"
 msgid "File Transfer"
 msgstr "Bestandsoverdracht"
 
-#: data/resources/ui/help_overlay.ui:31
+#: data/resources/ui/help_overlay.ui:43
 msgctxt "shortcut window"
 msgid "Send File"
 msgstr "Bestand sturen"
 
-#: data/resources/ui/help_overlay.ui:37
+#: data/resources/ui/help_overlay.ui:49
 msgctxt "shortcut window"
 msgid "Send Folder"
 msgstr "Map sturen"
 
-#: data/resources/ui/help_overlay.ui:43
+#: data/resources/ui/help_overlay.ui:55
 msgctxt "shortcut window"
 msgid "Receive File"
 msgstr "Bestand ontvangen"
 
-#: data/resources/ui/preferences.ui:6
-msgid "Preferences"
-msgstr "Voorkeuren"
+#. Translators: {0} = file size transferred, {1} = total file size, Example: 17.3MB / 20.5MB
+#: src/gettext/duration.rs:11
+msgctxt "File size transferred"
+msgid "{0} / {1}"
+msgstr "{0} / {1}"
 
-#: data/resources/ui/preferences.ui:11
-msgid "Network"
-msgstr "Netwerk"
+#. Translators: File transfer time left
+#: src/gettext/duration.rs:18
+msgid "One second left"
+msgid_plural "{} seconds left"
+msgstr[0] "Eén seconde resterend"
+msgstr[1] "{} seconden resterend"
 
-#: data/resources/ui/preferences.ui:15
-msgid "Server URLs"
-msgstr "Server-URL’s"
+#. Translators: File transfer time left
+#: src/gettext/duration.rs:26
+msgid "One minute left"
+msgid_plural "{} minutes left"
+msgstr[0] "Eén minuut resterend"
+msgstr[1] "{} minuten resterend"
 
-#: data/resources/ui/preferences.ui:16
+#. Translators: File transfer time left
+#: src/gettext/duration.rs:34
+msgid "One hour left"
+msgid_plural "{} hours left"
+msgstr[0] "Eén uur resterend"
+msgstr[1] "{} uur resterend"
+
+#. Translators: File transfer time left
+#: src/gettext/duration.rs:42
+msgid "One day left"
+msgid_plural "{} days left"
+msgstr[0] "Eén dag resterend"
+msgstr[1] "{} dagen resterend"
+
+#. Translators: {0} = 11.3MB / 20.7MB, {1} = 3 seconds left
+#: src/gettext/duration.rs:52
+msgctxt "Combine bytes progress {0} and time remaining {1}"
+msgid "{0} — {1}"
+msgstr "{0} — {1}"
+
+#. Translators: Notification when clicking on "Copy Code to Clipboard" button
+#: src/ui/action_view.rs:255
+msgid "Copied Code to Clipboard"
+msgstr "Code gekopieerd naar klembord"
+
+#. Translators: Notification when clicking on "Copy Link to Clipboard" button
+#: src/ui/action_view.rs:276
+msgid "Copied Link to Clipboard"
+msgstr "Verwijzing gekopieerd naar klembord"
+
+#: src/ui/action_view.rs:290
+msgid "Copied Error to Clipboard"
+msgstr "Fout gekopieerd naar klembord"
+
+#: src/ui/action_view.rs:292
+msgid "No error available"
+msgstr "Geen fout beschikbaar"
+
+#: src/ui/action_view.rs:433
+msgid "Creating Archive"
+msgstr "Archief aanmaken"
+
+#: src/ui/action_view.rs:437
+msgid "Compressing folder “{}”"
+msgstr "Map ‘{}’ comprimeren"
+
+#. Translators: Title
+#: src/ui/action_view.rs:453 src/ui/action_view.rs:511
+msgid "Connecting"
+msgstr "Verbinden"
+
+#. Translators: Description, Filename
+#: src/ui/action_view.rs:456
+msgid "Requesting file transfer"
+msgstr "Bestandsoverdracht aanvragen"
+
+#. Translators: Description, argument is filename
+#: src/ui/action_view.rs:477
+msgid "Ready to send “{}”."
+msgstr "Klaar om ‘{}’ te versturen."
+
+#. Translators: Help dialog line 1, Code words and QR code visible,
+#: src/ui/action_view.rs:482
 msgid ""
-"Changing the rendezvous server URL has to be done on both sides of the "
+"The receiver needs to enter or scan this code to begin the file transfer."
+msgstr ""
+"De ontvanger moet deze code invoeren om de bestandsoverdracht te starten."
+
+#: src/ui/action_view.rs:486
+msgid "The QR code is compatible with the following apps: {}."
+msgstr "De QR-code is compatibel met de volgende toepassingen: {}."
+
+#: src/ui/action_view.rs:494
+msgid ""
+"You have entered a custom rendezvous server URL in preferences. Please "
+"verify the receiver also uses the same rendezvous server."
+msgstr ""
+"U hebt een aangepaste rendezvous-server-URL ingevoerd in de instellingen. "
+"Controleer of de ontvanger dezelfde rendezvous-server gebruikt."
+
+#: src/ui/action_view.rs:499
+msgid "Click the QR code to copy the link to the clipboard."
+msgstr "Klik op de QR-code om de verwijzing naar het klembord te kopiëren."
+
+#. Translators: Description, Transfer Code
+#: src/ui/action_view.rs:514
+msgid "Connecting to peer with code “{}”"
+msgstr "Verbinden met peer met code ‘{}’"
+
+#: src/ui/action_view.rs:524
+msgid "Connected to Peer"
+msgstr "Verbonden met peer"
+
+#. Translators: Description
+#: src/ui/action_view.rs:533
+msgid "Preparing to send file"
+msgstr "Bestand sturen voorbereiden"
+
+#. Translators: Description
+#: src/ui/action_view.rs:540
+msgid "Preparing to receive file"
+msgstr "Bestand ontvangen voorbereiden"
+
+#. Translators: File receive confirmation message dialog; Filename, File size
+#: src/ui/action_view.rs:553
+msgid ""
+"Your peer wants to send you “{0}” (Size: {1}).\n"
+"Do you want to download this file? The default action will save the file to "
+"your Downloads folder."
+msgstr ""
+"Uw peer wilt ‘{0}’ (grootte: {1}) naar u sturen.\n"
+"Wilt u dit bestand downloaden? Standaard wordt het opgeslagen in uw "
+"Downloads-map."
+
+#: src/ui/action_view.rs:558
+msgid "Ready to Receive File"
+msgstr "Klaar om bestand te ontvangen"
+
+#: src/ui/action_view.rs:560
+msgid ""
+"A file is ready to be transferred. The transfer needs to be acknowledged."
+msgstr ""
+"Een bestand is klaar om te worden overgedragen. De overdracht moet worden "
+"bevestigd."
+
+#. Translators: Description, During transfer
+#: src/ui/action_view.rs:588
+msgid "File “{}” via local network direct transfer"
+msgstr "Bestand ‘{}’ via directe lokalenetwerkoverdracht"
+
+#. Translators: Description, During transfer
+#: src/ui/action_view.rs:591
+msgid "File “{}” via direct transfer"
+msgstr "Bestand ‘{}’ via directe overdracht"
+
+#. Translators: Description, During transfer
+#: src/ui/action_view.rs:597
+msgid "File “{0}” via relay {1}"
+msgstr "Bestand ‘{0}’ via relay {1}"
+
+#. Translators: Description, During transfer
+#: src/ui/action_view.rs:600
+msgid "File “{}” via relay"
+msgstr "Bestand ‘{}’ via omweg"
+
+#. Translators: Description, During transfer
+#: src/ui/action_view.rs:604
+msgid "File “{}” via Unknown connection method"
+msgstr "Bestand ‘{}’ via onbekende verbindingsmethode"
+
+#. Translators: Description, Filename
+#: src/ui/action_view.rs:634
+msgid "Successfully sent file “{}”"
+msgstr "Bestand ‘{}’ succesvol verstuurd"
+
+#. Translators: Filename
+#: src/ui/action_view.rs:652
+msgid "File has been saved to the selected folder as “{}”"
+msgstr "Bestand is opgeslagen in de geselecteerde map als ‘{}’"
+
+#. Translators: Filename
+#: src/ui/action_view.rs:659
+msgid "File has been saved to the Downloads folder as “{}”"
+msgstr "Bestand is opgeslagen in de Downloads-map als ‘{}’"
+
+#. Translators: Title
+#: src/ui/action_view.rs:686 src/ui/action_view.ui:274
+msgid "File Transfer Failed"
+msgstr "Bestandsoverdracht mislukt"
+
+#: src/ui/action_view.rs:688
+msgid "The file transfer failed: {}"
+msgstr "De bestandsoverdracht is mislukt: {}"
+
+#. Translators: When opening a file
+#: src/ui/action_view.rs:808
+msgid "Specified file / directory does not exist"
+msgstr "Opgegeven bestand of map bestaat niet"
+
+#: src/ui/action_view.rs:826
+msgid ""
+"Error parsing rendezvous server URL. An invalid URL was entered in the "
+"settings."
+msgstr ""
+"Fout bij verwerken van rendezvous-server-URL. Een is een ongeldige URL "
+"ingevoerd in de instellingen."
+
+#: src/ui/action_view.rs:833
+msgid "Error parsing transit URL. An invalid URL was entered in the settings."
+msgstr ""
+"Fout bij verwerken van transit-URL. Een is een ongeldige URL ingevoerd in de "
+"instellingen."
+
+#: src/ui/action_view.rs:920
+msgid "Invalid path selected: {}"
+msgstr "Ongeldig pad geselecteerd: {}"
+
+#. Translators: Above progress bar for creating an archive to send as a folder
+#: src/ui/action_view.rs:1165
+msgid "{} File - Size: {}"
+msgid_plural "{} Files - Size: {}"
+msgstr[0] "{} bestand - grootte: {}"
+msgstr[1] "{} bestanden - grootte: {}"
+
+#: src/ui/action_view.ui:4
+msgid "Save As"
+msgstr "Opslaan als"
+
+#. Translators: Button; Transmit Link is a noun
+#: src/ui/action_view.ui:94
+msgid "Copy Transmit Link"
+msgstr "Overdrachtsverwijzing kopiëren"
+
+#: src/ui/action_view.ui:119
+msgid "Your Transmit Code"
+msgstr "Uw overdrachtscode"
+
+#. Translators: Button; Transmit Code is a noun
+#: src/ui/action_view.ui:167
+msgid "Copy Transmit Code"
+msgstr "Overdrachtscode kopiëren"
+
+#. Translators: Title
+#: src/ui/action_view.ui:184
+msgid "Accept File Transfer?"
+msgstr "Bestandsoverdracht accepteren?"
+
+#: src/ui/action_view.ui:193
+msgid "Save to Downloads Folder"
+msgstr "Opslaan in Downloads-map"
+
+#. Translators: Button
+#: src/ui/action_view.ui:195
+msgid "_Accept"
+msgstr "_Accepteren"
+
+#. Translators: Button
+#: src/ui/action_view.ui:209
+msgid "Sa_ve As…"
+msgstr "Ops_laan als…"
+
+#. Translators: Title
+#: src/ui/action_view.ui:229
+msgid "File Transfer Successful"
+msgstr "Bestandsoverdracht succesvol"
+
+#. Translators: Button
+#: src/ui/action_view.ui:238
+msgid "_Open File"
+msgstr "Bestand _openen"
+
+#. Translators: Button
+#: src/ui/action_view.ui:253 src/ui/window.ui:57
+msgid "_Show in Folder"
+msgstr "In map _tonen"
+
+#. Translators: Button
+#: src/ui/action_view.ui:279
+msgid "Co_py Error Message"
+msgstr "Foutmelding ko_piëren"
+
+#. Translators: Button
+#: src/ui/action_view.ui:295
+msgid "_Cancel"
+msgstr "_Annuleren"
+
+#: src/ui/application.rs:62
+msgid "Unable to use transfer link: another transfer already in progress"
+msgstr ""
+"Kon overdrachtsverwijzing niet gebruiken: er is al een andere overdracht "
+"bezig"
+
+#: src/ui/application.rs:226
+msgid "Tobias Bernard"
+msgstr "Tobias Bernard"
+
+#: src/ui/application.rs:226
+msgid "Sophie Herold"
+msgstr "Sophie Herold"
+
+#: src/ui/application.rs:227
+msgid "translator-credits"
+msgstr ""
+"Philip Goto\n"
+"Nathan Follens <nfollens@gnome.org>\n"
+"Meer info over GNOME-NL https://nl.gnome.org"
+
+#: src/ui/application.rs:244
+msgid "Sending a File"
+msgstr "Bestand versturen"
+
+#: src/ui/application.rs:245
+msgid "Receiving a File"
+msgstr "Bestand ontvangen"
+
+#: src/ui/fs.rs:24
+msgid "Downloads dir missing. Please set XDG_DOWNLOAD_DIR"
+msgstr "Downloads-map ontbreekt. Stel XDG_DOWNLOAD_DIR in"
+
+#: src/ui/preferences.rs:96
+msgid ""
+"Changing the rendezvous server URL needs to be done on both sides of the "
 "transfer. Only enter a server URL you can trust.\n"
 "\n"
-"Leaving these entries empty will use the application defaults."
+"Leaving these entries empty will use the app defaults:\n"
+"Rendezvous Server: “{0}”\n"
+"Transit Server: “{1}”"
 msgstr ""
 "Het veranderen van de rendezvous-server-URL moet door beide partijen van de "
 "overdracht worden gedaan. Voer alleen een server-URL in die u vertrouwt.\n"
 "\n"
-"Bij het leeglaten van de invoer wordt de standaardinstelling van de "
-"toepassing gebruikt."
+"Bij het leeglaten van de invoer worden de standaardinstellingen van de "
+"toepassing gebruikt:\n"
+"Rendezvous-server: ‘{0}’\n"
+"Transitserver: ‘{1}’"
 
-#: data/resources/ui/preferences.ui:21
-msgid "Rendezvous Server URL"
-msgstr "Rendezvous-server-URL"
+#: src/ui/preferences.ui:6
+msgid "Preferences"
+msgstr "Voorkeuren"
 
-#: data/resources/ui/preferences.ui:28
-msgid "Transit Server URL"
-msgstr "Transit-server-URL"
+#: src/ui/preferences.ui:11
+msgid "Network"
+msgstr "Netwerk"
 
-#: data/resources/ui/preferences.ui:37
+#: src/ui/preferences.ui:15
 msgid "Code Words"
 msgstr "Codewoorden"
 
-#: data/resources/ui/preferences.ui:38
+#: src/ui/preferences.ui:16
 msgid ""
 "The code word count determines the security of the transfer.\n"
 "\n"
@@ -236,33 +518,40 @@ msgstr ""
 "deze raadt. Omdat een code maar één keer kan worden geraden is dit risico "
 "erg klein, ook met korte codes. Een lengte van 4 is heel veilig."
 
-#: data/resources/ui/preferences.ui:43
+#: src/ui/preferences.ui:21
 msgid "Code Word Count"
 msgstr "Codewoordaantal"
 
-#: data/resources/ui/welcome_window.ui:5
+#: src/ui/preferences.ui:34
+msgid "Server URLs"
+msgstr "Server-URL’s"
+
+#: src/ui/preferences.ui:37
+msgid "Rendezvous Server URL"
+msgstr "Rendezvous-server-URL"
+
+#: src/ui/preferences.ui:44
+msgid "Transit Server URL"
+msgstr "Transit-server-URL"
+
+#: src/ui/welcome_window.ui:13
 msgid "Welcome"
 msgstr "Welkom"
 
-#. Translators: Button
-#: data/resources/ui/welcome_window.ui:23
-msgid "Close"
-msgstr "Sluiten"
-
-#. Translators: Button
-#: data/resources/ui/welcome_window.ui:30
-msgid "Next"
-msgstr "Volgende"
-
-#: data/resources/ui/welcome_window.ui:41
+#: src/ui/welcome_window.ui:26
 msgid "Welcome to Warp"
 msgstr "Welkom bij Warp"
 
-#: data/resources/ui/welcome_window.ui:89
+#. Translators: Button
+#: src/ui/welcome_window.ui:34
+msgid "Next"
+msgstr "Volgende"
+
+#: src/ui/welcome_window.ui:82
 msgid "Introduction"
 msgstr "Introductie"
 
-#: data/resources/ui/welcome_window.ui:100
+#: src/ui/welcome_window.ui:93
 msgid ""
 "Warp makes file transfer simple. To get started, both parties need to "
 "install Warp on their devices.\n"
@@ -273,7 +562,7 @@ msgid ""
 "\n"
 "When the receiver has entered the code, the file transfer can begin.\n"
 "\n"
-"For more information about Warp, open the Help pages from the menu."
+"For more information about Warp, open the Help section from the Main Menu."
 msgstr ""
 "Warp maakt bestandsoverdracht makkelijk. Om te beginnen moeten beide "
 "partijen Warp op hun apparaten installeren.\n"
@@ -282,428 +571,178 @@ msgstr ""
 "gegeven code doorgeven. Dit wordt bij voorkeur gedaan via een beveiligd "
 "communicatiekanaal.\n"
 "\n"
-"Als de ontvanger de code heeft ingevoerd kan de bestandsoverdracht "
+"Als de ontvanger de code heeft ingevoerd, kan de bestandsoverdracht "
 "beginnen.\n"
 "\n"
-"Open de hulp-pagina’s vanuit het menu voor meer informatie over Warp."
+"Open de hulp-pagina’s vanuit het hoofdmenu voor meer informatie over Warp."
 
 #. Translators: Big button to finish welcome screen
-#: data/resources/ui/welcome_window.ui:113
+#: src/ui/welcome_window.ui:106
 msgid "Get Started Using Warp"
 msgstr "Aan de slag met Warp"
 
-#. Translators: menu item
-#: data/resources/ui/window.ui:7
-msgid "_Preferences"
-msgstr "_Voorkeuren"
-
-#. Translators: menu item
-#: data/resources/ui/window.ui:12
-msgid "_Keyboard Shortcuts"
-msgstr "_Sneltoetsen"
-
-#. Translators: menu item
-#: data/resources/ui/window.ui:17
-msgid "_Help"
-msgstr "_Hulp"
-
-#. Translators: menu item
-#: data/resources/ui/window.ui:22
-msgid "_About Warp"
-msgstr "_Over Warp"
-
-#: data/resources/ui/window.ui:28
-msgid "Select file to send"
-msgstr "Selecteer bestand om te sturen"
-
-#: data/resources/ui/window.ui:30
-msgid "Open"
-msgstr "Openen"
-
-#: data/resources/ui/window.ui:36
-msgid "Select folder to send"
-msgstr "Selecteer map om te sturen"
-
-#: data/resources/ui/window.ui:38
-msgid "Open Folder"
-msgstr "Map openen"
-
-#. Translators: Notification when code was automatically detected in clipboard and inserted into code entry on receive page
-#: data/resources/ui/window.ui:46
-msgid "Inserted code from clipboard"
-msgstr "Code van klembord ingevoerd"
-
-#. Translators: File receive confirmation message dialog title
-#: data/resources/ui/window.ui:51
-msgid "Abort File Transfer?"
-msgstr "Bestandsoverdracht annuleren?"
-
-#: data/resources/ui/window.ui:52
-msgid "Do you want to abort the current file transfer?"
-msgstr "Wilt u de huidige bestandsoverdracht annuleren?"
-
-#: data/resources/ui/window.ui:58
-msgid "_Continue"
-msgstr "_Doorgaan"
-
-#: data/resources/ui/window.ui:59
-msgid "_Abort"
-msgstr "_Annuleren"
-
-#. Translators: Error dialog title
-#: data/resources/ui/window.ui:64
-msgid "Unable to Open File"
-msgstr "Kon bestand niet openen"
-
-#: data/resources/ui/window.ui:69
-msgid "_Close"
-msgstr "_Sluiten"
-
-#: data/resources/ui/window.ui:70
-msgid "_Show in Folder"
-msgstr "In map _tonen"
-
-#: data/resources/ui/window.ui:118
-msgid "Send"
-msgstr "Sturen"
-
-#: data/resources/ui/window.ui:129
-msgid "Send File"
-msgstr "Bestand sturen"
-
-#: data/resources/ui/window.ui:130
-msgid "Select or drop the file or directory to send"
-msgstr "Selecteer of zet het bestand of de map neer om te versturen"
-
-#. Translators: Button
-#: data/resources/ui/window.ui:141
-msgid "Select File"
-msgstr "Bestand selecteren"
-
-#. Translators: Button
-#: data/resources/ui/window.ui:154
-msgid "Select Folder"
-msgstr "Map selecteren"
-
-#: data/resources/ui/window.ui:173
-msgid "Receive"
-msgstr "Ontvangen"
-
-#. Translators: Button
-#: data/resources/ui/window.ui:181 data/resources/ui/window.ui:208
-msgid "Receive File"
-msgstr "Bestand ontvangen"
-
-#. Translators: Text above code input box, transmit code is a noun
-#: data/resources/ui/window.ui:183
-msgid "Enter the transmit code from the sender"
-msgstr "Voer de overdrachtscode van de verzender in"
-
-#. Translators: {0} = file size transferred, {1} = total file size, Example: 17.3MB / 20.5MB
-#: src/gettext/duration.rs:12
-msgctxt "File size transferred"
-msgid "{0} / {1}"
-msgstr "{0} / {1}"
-
-#. Translators: File transfer time left
-#: src/gettext/duration.rs:19
-msgid "One second left"
-msgid_plural "{} seconds left"
-msgstr[0] "Eén seconde resterend"
-msgstr[1] "{} seconden resterend"
-
-#. Translators: File transfer time left
-#: src/gettext/duration.rs:27
-msgid "One minute left"
-msgid_plural "{} minutes left"
-msgstr[0] "Eén minuut resterend"
-msgstr[1] "{} minuten resterend"
-
-#. Translators: File transfer time left
-#: src/gettext/duration.rs:35
-msgid "One hour left"
-msgid_plural "{} hours left"
-msgstr[0] "Eén uur resterend"
-msgstr[1] "{} uur resterend"
-
-#. Translators: File transfer time left
-#: src/gettext/duration.rs:43
-msgid "One day left"
-msgid_plural "{} days left"
-msgstr[0] "Eén dag resterend"
-msgstr[1] "{} dagen resterend"
-
-#. Translators: {0} = 11.3MB / 20.7MB, {1} = 3 seconds left
-#: src/gettext/duration.rs:53
-msgctxt "Combine bytes progress {0} and time remaining {1}"
-msgid "{0} — {1}"
-msgstr "{0} — {1}"
-
-#. Translators: Notification when clicking on "Copy Code to Clipboard" button
-#: src/ui/action_view.rs:232
-msgid "Copied Code to Clipboard"
-msgstr "Code naar klembord gekopieerd"
-
-#. Translators: Notification when clicking on "Copy Link to Clipboard" button
-#: src/ui/action_view.rs:253
-msgid "Copied Link to Clipboard"
-msgstr "Verwijzing naar klembord gekopieerd"
-
-#: src/ui/action_view.rs:269
-msgid "No error available"
-msgstr "Geen fout beschikbaar"
-
-#. Translators: Title
-#: src/ui/action_view.rs:397
-msgid "Creating Archive"
-msgstr "Archief aanmaken"
-
-#: src/ui/action_view.rs:401
-msgid "Compressing folder “{}”"
-msgstr "Map ‘{}’ comprimeren"
-
-#. Translators: Title
-#: src/ui/action_view.rs:414 src/ui/action_view.rs:459
-msgid "Connecting"
-msgstr "Verbinden"
-
-#. Translators: Description, Filename
-#: src/ui/action_view.rs:417
-msgid "Requesting file transfer"
-msgstr "Bestandsoverdracht aanvragen"
-
-#. Translators: Title, this is a noun
-#: src/ui/action_view.rs:425
-msgid "Your Transmit Code"
-msgstr "Uw overdrachtscode"
-
-#. Translators: Description, Code in box below, argument is filename
-#: src/ui/action_view.rs:441
-msgid ""
-"Ready to send “{}”\n"
-"The receiver needs to enter this code to begin the file transfer."
-msgstr ""
-"Klaar om ‘{}’ te sturen\n"
-"De ontvanger moet deze code invoeren om de bestandsoverdracht te starten."
-
-#. Translators: Description, Code in box below, argument is filename
-#: src/ui/action_view.rs:447
-msgid ""
-"Ready to send “{}”\n"
-"The receiver needs to enter this code to begin the file transfer.\n"
-"\n"
-"You have entered a custom rendezvous server URL in preferences. Please "
-"verify the receiver also uses the same rendezvous server."
-msgstr ""
-"Klaar om ‘{}’ te sturen\n"
-"De ontvanger moet deze code invoeren om de bestandsoverdracht te starten.\n"
-"\n"
-"U heeft een aangepaste rendezvous-server-URL ingevoerd onder instellingen. "
-"Controleer of de ontvanger dezelfde rendezvous-server gebruikt."
-
-#. Translators: Description, Transfer Code
-#: src/ui/action_view.rs:462
-msgid "Connecting to peer with code “{}”"
-msgstr "Verbinden met peer met code ‘{}’"
-
-#: src/ui/action_view.rs:471
-msgid "Connected to Peer"
-msgstr "Verbonden met peer"
-
-#. Translators: Description
-#: src/ui/action_view.rs:480
-msgid "Preparing to send file"
-msgstr "Bestand sturen voorbereiden"
-
-#. Translators: Description
-#: src/ui/action_view.rs:486
-msgid "Preparing to receive file"
-msgstr "Bestand ontvangen voorbereiden"
-
-#: src/ui/action_view.rs:498
-msgid "Accept File Transfer?"
-msgstr "Bestandsoverdracht accepteren?"
-
-#. Translators: File receive confirmation message dialog; Filename, File size
-#: src/ui/action_view.rs:501
-msgid ""
-"Your peer wants to send you “{0}” (Size: {1}).\n"
-"Do you want to download this file to your Downloads folder?"
-msgstr ""
-"Uw peer wilt ‘{0}’ ({1}) naar u sturen.\n"
-"Wilt u dit bestand downloaden naar uw Downloads-map?"
-
-#: src/ui/action_view.rs:506
-msgid "Ready to Receive File"
-msgstr "Klaar om bestand te ontvangen"
-
-#: src/ui/action_view.rs:508
-msgid ""
-"A file is ready to be transferred. The transfer needs to be acknowledged."
-msgstr ""
-"Een bestand is klaar om te worden overgedragen. De overdracht moet worden "
-"bevestigd."
-
-#. Translators: Description, During transfer
-#: src/ui/action_view.rs:537
-msgid "File “{}” via local network direct transfer"
-msgstr "Bestand ‘{}’ via directe lokalenetwerkoverdracht"
-
-#. Translators: Description, During transfer
-#: src/ui/action_view.rs:540
-msgid "File “{}” via direct transfer"
-msgstr "Bestand ‘{}’ via directe overdracht"
-
-#. Translators: Description, During transfer
-#: src/ui/action_view.rs:546
-msgid "File “{0}” via relay {1}"
-msgstr "Bestand ‘{0}’ via relay {1}"
-
-#. Translators: Description, During transfer
-#: src/ui/action_view.rs:549
-msgid "File “{}” via relay"
-msgstr "Bestand ‘{}’ via omweg"
-
-#. Translators: Description, During transfer
-#: src/ui/action_view.rs:553
-msgid "File “{}” via Unknown connection method"
-msgstr "Bestand ‘{}’ via onbekende verbindingsmethode"
-
-#. Translators: Title
-#: src/ui/action_view.rs:572
-msgid "File Transfer Successful"
-msgstr "Bestandsoverdracht succesvol"
-
-#. Translators: Description, Filename
-#: src/ui/action_view.rs:589
-msgid "Successfully sent file “{}”"
-msgstr "Bestand ‘{}’ succesvol verstuurd"
-
-#. Translators: Description, Filename
-#: src/ui/action_view.rs:598
-msgid "File has been saved to the Downloads folder as “{}”"
-msgstr "Bestand is opgeslagen in de Downloads-map als ‘{}’"
-
-#. Translators: Title
-#: src/ui/action_view.rs:621 src/ui/action_view.rs:634
-msgid "File Transfer Failed"
-msgstr "Bestandsoverdracht mislukt"
-
-#: src/ui/action_view.rs:636
-msgid "The file transfer failed: {}"
-msgstr "De bestandsoverdracht is mislukt: {}"
-
-#. Translators: When opening a file
-#: src/ui/action_view.rs:750
-msgid "Specified file / directory does not exist"
-msgstr "Opgegeven bestand of map bestaat niet"
-
-#: src/ui/action_view.rs:767
-msgid ""
-"Error parsing rendezvous server URL. An invalid URL was entered in the "
-"settings."
-msgstr ""
-"Fout bij verwerken van rendezvous-server-URL. Een is een ongeldige URL "
-"ingevoerd in de instellingen."
-
-#: src/ui/action_view.rs:777
-msgid "Error parsing transit URL. An invalid URL was entered in the settings."
-msgstr ""
-"Fout bij verwerken van transit-URL. Een is een ongeldige URL ingevoerd in de "
-"instellingen."
-
-#: src/ui/action_view.rs:1186
-msgid "Downloads dir missing. Please set XDG_DOWNLOAD_DIR"
-msgstr "Downloads-map ontbreekt. Stel XDG_DOWNLOAD_DIR in"
-
-#: src/ui/application.rs:81
-msgid "Unable to use transfer link: another transfer already in progress"
-msgstr ""
-"Kon overdrachtsverwijzing niet gebruiken: er is al een andere overdracht "
-"bezig"
-
-#: src/ui/application.rs:222
-msgid "translator-credits"
-msgstr ""
-"Philip Goto\n"
-"Nathan Follens <nfollens@gnome.org>\n"
-"Meer info over Gnome-NL http://nl.gnome.org"
-
-#: src/ui/application.rs:225
-msgid "Tobias Bernard"
-msgstr "Tobias Bernard"
-
-#: src/ui/application.rs:225
-msgid "Sophie Herold"
-msgstr "Sophie Herold"
-
-#: src/ui/application.rs:243
-msgid "Sending a File"
-msgstr "Bestand versturen"
-
-#: src/ui/application.rs:244
-msgid "Receiving a File"
-msgstr "Bestand ontvangen"
-
-#: src/ui/window.rs:111
+#: src/ui/window.rs:103
 msgid ""
 "Error loading config file “{0}”, using default config.\n"
 "Error: {1}"
 msgstr ""
-"Fout bij laden van confiuratiebestand ‘{}’, standaardconfiguratie wordt "
+"Fout bij laden van configuratiebestand ‘{0}’, standaardconfiguratie wordt "
 "gebruikt.\n"
 "Fout: {1}"
 
-#: src/ui/window.rs:242
+#: src/ui/window.rs:210
 msgid "Error saving configuration file: {}"
 msgstr "Fout bij opslaan van configuratiebestand: {}"
 
-#: src/ui/window.rs:346
+#: src/ui/window.rs:301
+msgid "Select File to Send"
+msgstr "Selecteer bestand om te versturen"
+
+#: src/ui/window.rs:309
+msgid "Select Folder to Send"
+msgstr "Selecteer map om te versturen"
+
+#: src/ui/window.rs:360
 msgid "“{}” appears to be an invalid Transmit Code. Please try again."
 msgstr "‘{}’ is een ongeldige overdrachtscode. Probeer het opnieuw."
 
-#: src/ui/window.rs:468
+#: src/ui/window.rs:471
 msgid "Sending files with a preconfigured code is not yet supported"
 msgstr ""
 "Bestanden sturen met een vooraf ingestelde code wordt nog niet ondersteund"
 
-#: src/util.rs:32
+#. Translators: menu item
+#: src/ui/window.ui:7
+msgid "_Preferences"
+msgstr "_Voorkeuren"
+
+#. Translators: menu item
+#: src/ui/window.ui:12
+msgid "_Keyboard Shortcuts"
+msgstr "_Sneltoetsen"
+
+#. Translators: menu item
+#: src/ui/window.ui:17
+msgid "_Help"
+msgstr "_Hulp"
+
+#. Translators: menu item
+#: src/ui/window.ui:22
+msgid "_About Warp"
+msgstr "_Over Warp"
+
+#. Translators: Notification when code was automatically detected in clipboard and inserted into code entry on receive page
+#: src/ui/window.ui:33
+msgid "Inserted code from clipboard"
+msgstr "Code van klembord ingevoerd"
+
+#. Translators: File receive confirmation message dialog title
+#: src/ui/window.ui:38
+msgid "Abort File Transfer?"
+msgstr "Bestandsoverdracht annuleren?"
+
+#: src/ui/window.ui:39
+msgid "Do you want to abort the current file transfer?"
+msgstr "Wilt u de huidige bestandsoverdracht annuleren?"
+
+#: src/ui/window.ui:45
+msgid "_Continue"
+msgstr "_Doorgaan"
+
+#: src/ui/window.ui:46
+msgid "_Abort"
+msgstr "_Annuleren"
+
+#. Translators: Error dialog title
+#: src/ui/window.ui:51
+msgid "Unable to Open File"
+msgstr "Kon bestand niet openen"
+
+#: src/ui/window.ui:56 src/util/error.rs:176
+msgid "_Close"
+msgstr "_Sluiten"
+
+#: src/ui/window.ui:97
+msgid "Main Menu"
+msgstr "Hoofdmenu"
+
+#: src/ui/window.ui:116
+msgid "_Send"
+msgstr "Ver_sturen"
+
+#: src/ui/window.ui:128
+msgid "Send File"
+msgstr "Bestand sturen"
+
+#: src/ui/window.ui:129
+msgid "Select or drop the file or directory to send"
+msgstr "Selecteer of zet het bestand of de map neer om te versturen"
+
+#. Translators: Button
+#: src/ui/window.ui:140
+msgid "Select _File…"
+msgstr "Bestand _selecteren…"
+
+#. Translators: Button
+#: src/ui/window.ui:154
+msgid "Select F_older…"
+msgstr "_Map selecteren…"
+
+#: src/ui/window.ui:174
+msgid "_Receive"
+msgstr "_Ontvangen"
+
+#: src/ui/window.ui:183
+msgid "Receive File"
+msgstr "Bestand ontvangen"
+
+#. Translators: Text above code input box, transmit code is a noun
+#: src/ui/window.ui:185
+msgid "Enter the transmit code from the sender"
+msgstr "Voer de overdrachtscode van de verzender in"
+
+#. Translators: Button
+#: src/ui/window.ui:219
+msgid "Receive _File"
+msgstr "_Bestand ontvangen"
+
+#: src/util.rs:32 src/util.rs:51
 msgid "Failed to open downloads folder."
 msgstr "Downloads-map openen mislukt."
 
-#: src/util.rs:168 src/util.rs:241
+#: src/util.rs:193 src/util.rs:266
 msgid "The URI format is invalid"
 msgstr "Het URI-formaat is ongeldig"
 
-#: src/util.rs:172 src/util.rs:176
+#: src/util.rs:197 src/util.rs:201
 msgid "The code does not match the required format"
 msgstr "De code voldoet niet aan het vereiste formaat"
 
-#: src/util.rs:191 src/util.rs:197
+#: src/util.rs:216 src/util.rs:222
 msgid "Unknown URI version: {}"
 msgstr "Onbekende URI-versie: {}"
 
-#: src/util.rs:206
+#: src/util.rs:231
 msgid "The URI parameter “rendezvous” contains an invalid URL: “{}”"
 msgstr "De URI-parameter ‘rendezvous’ bevat een ongeldige URL: ‘{}’"
 
-#: src/util.rs:218
+#: src/util.rs:243
 msgid "The URI parameter “role” must be “follower” or “leader” (was: “{}”)"
 msgstr "De URI-parameter ‘role’ moet ‘follower’ of ‘leader’ zijn (was ‘{}’)"
 
-#: src/util.rs:225
+#: src/util.rs:250
 msgid "Unknown URI parameter “{}”"
 msgstr "Onbekende URI-parameter ‘{}’"
 
-#: src/util/error.rs:142
+#: src/util/error.rs:157
 msgid "An error occurred"
 msgstr "Er is een fout opgetreden"
 
-#: src/util/error.rs:172 src/util/error.rs:237
+#: src/util/error.rs:187 src/util/error.rs:252
 msgid "Corrupt or unexpected message received"
 msgstr "Beschadigd of onverwacht bericht ontvangen"
 
-#: src/util/error.rs:177
+#: src/util/error.rs:192
 msgid ""
 "The rendezvous server will not allow further connections for this code. A "
 "new code needs to be generated."
@@ -711,7 +750,7 @@ msgstr ""
 "De rendezvous-server staat geen verdere verbindingen toe met deze code. Er "
 "moet een nieuwe code aangemaakt worden."
 
-#: src/util/error.rs:179
+#: src/util/error.rs:194
 msgid ""
 "The rendezvous server removed the code due to inactivity. A new code needs "
 "to be generated."
@@ -719,11 +758,11 @@ msgstr ""
 "De rendezvous-server heeft de code verwijderd vanwege inactiviteit. Er moet "
 "een nieuwe code aangemaakt worden."
 
-#: src/util/error.rs:181
+#: src/util/error.rs:196
 msgid "The rendezvous server responded with an unknown message: {}"
 msgstr "De rendezvous-server antwoordde met een onbekend bericht: {}"
 
-#: src/util/error.rs:184
+#: src/util/error.rs:199
 msgid ""
 "Error connecting to the rendezvous server.\n"
 "You have entered a custom rendezvous server URL in preferences. Please "
@@ -733,7 +772,7 @@ msgstr ""
 "U heeft een aangepaste rendezvous-server-URL ingevoerd in de instellingen. "
 "Controleer of deze URL juist is en de server werkt."
 
-#: src/util/error.rs:186
+#: src/util/error.rs:201
 msgid ""
 "Error connecting to the rendezvous server.\n"
 "Please try again later / verify you are connected to the internet."
@@ -741,7 +780,7 @@ msgstr ""
 "Fout bij verbinden met de rendezvous-server.\n"
 "Probeer het later opnieuw of controleer of u verbonden bent met het internet."
 
-#: src/util/error.rs:190
+#: src/util/error.rs:205
 msgid ""
 "Encryption key confirmation failed. If you or your peer didn't mistype the "
 "code, this is a sign of an attacker guessing passwords. Please try again "
@@ -751,32 +790,31 @@ msgstr ""
 "correct hebben ingevoerd, is dit een teken van een aanvaller die "
 "wachtwoorden raadt. Probeer het later opnieuw."
 
-#: src/util/error.rs:192
+#: src/util/error.rs:207
 msgid "Cannot decrypt a received message"
 msgstr "Kan ontvangen bericht niet ontsleutelen"
 
-#: src/util/error.rs:193 src/util/error.rs:248 src/util/error.rs:253
-#: src/util/error.rs:256
+#: src/util/error.rs:208 src/util/error.rs:263 src/util/error.rs:269
 msgid "An unknown error occurred"
 msgstr "Er is een onbekende fout opgetreden"
 
-#: src/util/error.rs:199
+#: src/util/error.rs:214
 msgid "File / Directory not found"
 msgstr "Bestand of map niet gevonden"
 
-#: src/util/error.rs:200
+#: src/util/error.rs:215
 msgid "Permission denied"
 msgstr "Geen toegang"
 
-#: src/util/error.rs:212
+#: src/util/error.rs:227
 msgid "Transfer was not acknowledged by peer"
 msgstr "Overdracht werd niet geaccepteerd door peer"
 
-#: src/util/error.rs:214
+#: src/util/error.rs:229
 msgid "The received file is corrupted"
 msgstr "Het ontvangen bestand is corrupt"
 
-#: src/util/error.rs:220
+#: src/util/error.rs:235
 msgid ""
 "The file contained a different amount of bytes than advertised! Sent {} "
 "bytes, but should have been {}"
@@ -784,32 +822,55 @@ msgstr ""
 "Het bestand bevatte een ander aantal bytes dan aangegeven! Er werden {} "
 "bytes verstuurd, maar dit zouden er {} geweest moeten zijn"
 
-#: src/util/error.rs:225
+#: src/util/error.rs:240
 msgid "The other side has cancelled the transfer"
 msgstr "De andere kant heeft de overdracht geannuleerd"
 
-#: src/util/error.rs:227
+#: src/util/error.rs:242
 msgid "The other side has rejected the transfer"
 msgstr "De andere kant heeft de overdracht afgewezen"
 
-#: src/util/error.rs:229
+#: src/util/error.rs:244
 msgid "Something went wrong on the other side: {}"
 msgstr "Er ging iets fout aan de andere kant: {}"
 
-#: src/util/error.rs:244
+#: src/util/error.rs:259
 msgid "Error while establishing file transfer connection"
 msgstr "Fout bij het opzetten van de bestandsoverdrachtverbinding"
 
-#: src/util/error.rs:246
+#: src/util/error.rs:261
 msgid "Unknown file transfer error"
 msgstr "Onbekende bestandsoverdrachtsfout"
 
-#: src/util/error.rs:258
+#: src/util/error.rs:270
+msgid "An unknown error occurred while creating a zip file: {}"
+msgstr ""
+"Er is een onbekende fout opgetreden bij het aanmaken van een zip-bestand: {}"
+
+#: src/util/error.rs:271
 msgid ""
 "An unexpected error occurred. Please report an issue with the error message."
 msgstr ""
 "Er is een onbekende fout opgetreden. Gelieve het probleem te melden met "
 "vermelding van de foutmelding."
+
+#~ msgid "Back"
+#~ msgstr "Terug"
+
+#~ msgid "Show in Folder"
+#~ msgstr "In map tonen"
+
+#~ msgid "Copy a detailed message for reporting an issue"
+#~ msgstr "Kopieer een gedetailleerd bericht om een fout te melden"
+
+#~ msgid "Close"
+#~ msgstr "Sluiten"
+
+#~ msgid "Open"
+#~ msgstr "Openen"
+
+#~ msgid "Open Folder"
+#~ msgstr "Map openen"
 
 #~ msgid "Select the file or directory to send"
 #~ msgstr "Selecteer het bestand of de map om te versturen"
