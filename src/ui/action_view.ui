@@ -190,7 +190,7 @@
                         <child>
                           <object class="GtkButton" id="accept_transfer_button">
                             <signal name="clicked" handler="accept_transfer_button_clicked" swapped="true"/>
-                            <property name="tooltip-text" translatable="yes">Accept File Transfer and save to Downloads folder</property>
+                            <property name="tooltip-text" translatable="yes">Save to Downloads Folder</property>
                             <!-- Translators: Button -->
                             <property name="label" translatable="yes">_Accept</property>
                             <property name="use-underline">true</property>
