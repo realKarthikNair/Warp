@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
-"POT-Creation-Date: 2023-08-13 00:05+0000\n"
-"PO-Revision-Date: 2023-08-14 06:12+0200\n"
+"POT-Creation-Date: 2023-08-27 13:31+0000\n"
+"PO-Revision-Date: 2023-08-27 15:57+0200\n"
 "Last-Translator: Ekaterine Papava <papava.e@gtu.ge>\n"
 "Language-Team: Georgian <(nothing)>\n"
 "Language: ka\n"
@@ -248,7 +248,7 @@ msgstr ""
 
 #: src/ui/action_view.rs:499
 msgid "Click the QR code to copy the link to the clipboard."
-msgstr ""
+msgstr "ბმულის ბაფერში დასაკოპირებლად დააწკაპუნეთ QR კოდზე."
 
 #. Translators: Description, Transfer Code
 #: src/ui/action_view.rs:514
@@ -289,7 +289,7 @@ msgstr "ფაილი გასაგზავნად მზადაა. �
 #. Translators: Description, During transfer
 #: src/ui/action_view.rs:588
 msgid "File “{}” via local network direct transfer"
-msgstr ""
+msgstr "ფაილი \"{}\" ლოკალურ ქსელში პირდაპირი გაგზავნით"
 
 #. Translators: Description, During transfer
 #: src/ui/action_view.rs:591
@@ -327,7 +327,7 @@ msgid "File has been saved to the Downloads folder as “{}”"
 msgstr "ფაილი შენახულია გადმოწერების საქაღალდეში, როგორც \"{}\""
 
 #. Translators: Title
-#: src/ui/action_view.rs:686 src/ui/action_view.ui:273
+#: src/ui/action_view.rs:686 src/ui/action_view.ui:274
 msgid "File Transfer Failed"
 msgstr "ფაილის გადაგზავნა ვერ მოხერხდა"
 
@@ -361,8 +361,7 @@ msgid_plural "{} Files - Size: {}"
 msgstr[0] "{} ფაილი - ზომა: {}"
 msgstr[1] "{} ფაილი - ზომა: {}"
 
-#. Translators: Button
-#: src/ui/action_view.ui:4 src/ui/action_view.ui:209
+#: src/ui/action_view.ui:4
 msgid "Save As"
 msgstr "შენახვა, როგორც"
 
@@ -386,45 +385,42 @@ msgid "Accept File Transfer?"
 msgstr "ადასტურებთ ფაილის მიღებას?"
 
 #: src/ui/action_view.ui:193
-msgid "Accept File Transfer and save to Downloads folder"
-msgstr "მიღების დადასტურება და გადმოწერების საქაღალდეში შენახვა"
+msgid "Save to Downloads Folder"
+msgstr "გადმოწერის საქაღალდეში შენახვა"
 
 #. Translators: Button
 #: src/ui/action_view.ui:195
-msgid "Accept"
-msgstr "დასტური"
+msgid "_Accept"
+msgstr "_თანხმობა"
 
-#: src/ui/action_view.ui:207
-msgid "Select Save Location"
-msgstr "აირჩიეთ შესანახი მდებარეობა"
+#. Translators: Button
+#: src/ui/action_view.ui:209
+msgid "Sa_ve As…"
+msgstr "შენახვა, _როგორც…"
 
 #. Translators: Title
-#: src/ui/action_view.ui:228
+#: src/ui/action_view.ui:229
 msgid "File Transfer Successful"
 msgstr "ფაილის გადაცემა წარმატებულია"
 
 #. Translators: Button
-#: src/ui/action_view.ui:236 src/ui/action_view.ui:238
-msgid "Open File"
-msgstr "ფაილის გახსნა"
+#: src/ui/action_view.ui:238
+msgid "_Open File"
+msgstr "ფაილის _გახსნა"
 
 #. Translators: Button
-#: src/ui/action_view.ui:251 src/ui/action_view.ui:253
-msgid "Show in Folder"
-msgstr "საქაღალდეში ჩვენება"
-
-#: src/ui/action_view.ui:277
-msgid "Copy a detailed message for reporting an issue"
-msgstr ""
+#: src/ui/action_view.ui:253 src/ui/window.ui:57
+msgid "_Show in Folder"
+msgstr "საქაღალდეში _ჩვენება"
 
 #. Translators: Button
 #: src/ui/action_view.ui:279
-msgid "Copy Error Message"
-msgstr "შეცდომის შეტყობინების კოპირება"
+msgid "Co_py Error Message"
+msgstr "შ_ეცდომის შეტყობინების კოპირება"
 
 #. Translators: Button
-#: src/ui/action_view.ui:294
-msgid "Cancel"
+#: src/ui/action_view.ui:295
+msgid "_Cancel"
 msgstr "_გაუქმება"
 
 #: src/ui/application.rs:62
@@ -615,10 +611,6 @@ msgstr "ფაილის გახსნა შეუძლებელია"
 msgid "_Close"
 msgstr "_დახურვა"
 
-#: src/ui/window.ui:57
-msgid "_Show in Folder"
-msgstr "საქაღალდეში _ჩვენება"
-
 #: src/ui/window.ui:97
 msgid "Main Menu"
 msgstr "მთავარი მენიუ"
@@ -793,6 +785,15 @@ msgstr "უცნობი შეცდომა zip ფაილის შე�
 msgid ""
 "An unexpected error occurred. Please report an issue with the error message."
 msgstr ""
+
+#~ msgid "Accept File Transfer and save to Downloads folder"
+#~ msgstr "მიღების დადასტურება და გადმოწერების საქაღალდეში შენახვა"
+
+#~ msgid "Select Save Location"
+#~ msgstr "აირჩიეთ შესანახი მდებარეობა"
+
+#~ msgid "Show in Folder"
+#~ msgstr "საქაღალდეში ჩვენება"
 
 #~ msgid "Save"
 #~ msgstr "შენახვა"
