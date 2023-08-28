@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: warp main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
-"POT-Creation-Date: 2023-08-13 00:05+0000\n"
-"PO-Revision-Date: 2023-08-13 16:23+0200\n"
+"POT-Creation-Date: 2023-08-27 13:31+0000\n"
+"PO-Revision-Date: 2023-08-28 23:58+0200\n"
 "Last-Translator: Martin Srebotnjak <miles@filmsi.net>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
@@ -352,7 +352,7 @@ msgid "File has been saved to the Downloads folder as “{}”"
 msgstr "Datoteka je bila shranjena v mapo prenosov kot »{}«"
 
 #. Translators: Title
-#: src/ui/action_view.rs:686 src/ui/action_view.ui:273
+#: src/ui/action_view.rs:686 src/ui/action_view.ui:274
 msgid "File Transfer Failed"
 msgstr "Prenos datotek je spodletel"
 
@@ -392,8 +392,7 @@ msgstr[1] "{} datoteka - velikost: {}"
 msgstr[2] "{} datoteki - velikost: {}"
 msgstr[3] "{} datoteke - velikost: {}"
 
-#. Translators: Button
-#: src/ui/action_view.ui:4 src/ui/action_view.ui:209
+#: src/ui/action_view.ui:4
 msgid "Save As"
 msgstr "Shrani kot"
 
@@ -417,46 +416,43 @@ msgid "Accept File Transfer?"
 msgstr "Ali želite sprejeti prenos datotek?"
 
 #: src/ui/action_view.ui:193
-msgid "Accept File Transfer and save to Downloads folder"
-msgstr "Sprejmi prenos datoteke in shrani v mapo prenosov"
+msgid "Save to Downloads Folder"
+msgstr "Shrani v mapo prenosov"
 
 #. Translators: Button
 #: src/ui/action_view.ui:195
-msgid "Accept"
-msgstr "Sprejmi"
+msgid "_Accept"
+msgstr "_Sprejmi"
 
-#: src/ui/action_view.ui:207
-msgid "Select Save Location"
-msgstr "Izberite mesto za shranjevanje"
+#. Translators: Button
+#: src/ui/action_view.ui:209
+msgid "Sa_ve As…"
+msgstr "Shra_ni kot …"
 
 #. Translators: Title
-#: src/ui/action_view.ui:228
+#: src/ui/action_view.ui:229
 msgid "File Transfer Successful"
 msgstr "Prenos datotek je uspešno končan"
 
 #. Translators: Button
-#: src/ui/action_view.ui:236 src/ui/action_view.ui:238
-msgid "Open File"
-msgstr "Odpri datoteko"
+#: src/ui/action_view.ui:238
+msgid "_Open File"
+msgstr "_Odpri datoteko"
 
 #. Translators: Button
-#: src/ui/action_view.ui:251 src/ui/action_view.ui:253
-msgid "Show in Folder"
-msgstr "Pokaži v mapi"
-
-#: src/ui/action_view.ui:277
-msgid "Copy a detailed message for reporting an issue"
-msgstr "Kopiraj podrobno sporočilo za poročanje o težavi"
+#: src/ui/action_view.ui:253 src/ui/window.ui:57
+msgid "_Show in Folder"
+msgstr "_Pokaži v mapi"
 
 #. Translators: Button
 #: src/ui/action_view.ui:279
-msgid "Copy Error Message"
-msgstr "Kopiraj sporočilo o napaki"
+msgid "Co_py Error Message"
+msgstr "Ko_piraj sporočilo o napaki"
 
 #. Translators: Button
-#: src/ui/action_view.ui:294
-msgid "Cancel"
-msgstr "Prekliči"
+#: src/ui/action_view.ui:295
+msgid "_Cancel"
+msgstr "Pre_kliči"
 
 #: src/ui/application.rs:62
 msgid "Unable to use transfer link: another transfer already in progress"
@@ -672,10 +668,6 @@ msgstr "Ni mogoče odpreti datoteke"
 #: src/ui/window.ui:56 src/util/error.rs:176
 msgid "_Close"
 msgstr "_Zapri"
-
-#: src/ui/window.ui:57
-msgid "_Show in Folder"
-msgstr "_Pokaži v mapi"
 
 #: src/ui/window.ui:97
 msgid "Main Menu"
