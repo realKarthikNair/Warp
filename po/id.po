@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: warp main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
-"POT-Creation-Date: 2023-08-13 00:05+0000\n"
-"PO-Revision-Date: 2023-08-18 21:29+0700\n"
+"POT-Creation-Date: 2023-08-27 13:31+0000\n"
+"PO-Revision-Date: 2023-08-30 11:43+0700\n"
 "Last-Translator: Kukuh Syafaat <kukuhsyafaat@gnome.org>\n"
 "Language-Team: Indonesian <gnome-l10n-id@googlegroups.com>\n"
 "Language: id\n"
@@ -337,7 +337,7 @@ msgid "File has been saved to the Downloads folder as “{}”"
 msgstr "Berkas telah disimpan ke folder Unduhan sebagai \"{}\""
 
 #. Translators: Title
-#: src/ui/action_view.rs:686 src/ui/action_view.ui:273
+#: src/ui/action_view.rs:686 src/ui/action_view.ui:274
 msgid "File Transfer Failed"
 msgstr "Transfer Berkas Gagal"
 
@@ -373,8 +373,7 @@ msgid "{} File - Size: {}"
 msgid_plural "{} Files - Size: {}"
 msgstr[0] "Berkas {} - Ukuran: {}"
 
-#. Translators: Button
-#: src/ui/action_view.ui:4 src/ui/action_view.ui:209
+#: src/ui/action_view.ui:4
 msgid "Save As"
 msgstr "Simpan Sebagai"
 
@@ -398,46 +397,43 @@ msgid "Accept File Transfer?"
 msgstr "Terima Transfer Berkas?"
 
 #: src/ui/action_view.ui:193
-msgid "Accept File Transfer and save to Downloads folder"
-msgstr "Terima Transfer Berkas dan simpan ke folder Unduhan"
+msgid "Save to Downloads Folder"
+msgstr "Simpan ke Folder Unduhan"
 
 #. Translators: Button
 #: src/ui/action_view.ui:195
-msgid "Accept"
-msgstr "Terima"
+msgid "_Accept"
+msgstr "Terim_a"
 
-#: src/ui/action_view.ui:207
-msgid "Select Save Location"
-msgstr "Pilih Simpan Lokasi"
+#. Translators: Button
+#: src/ui/action_view.ui:209
+msgid "Sa_ve As…"
+msgstr "_Simpan Sebagai…"
 
 #. Translators: Title
-#: src/ui/action_view.ui:228
+#: src/ui/action_view.ui:229
 msgid "File Transfer Successful"
 msgstr "Transfer Berkas Berhasil"
 
 #. Translators: Button
-#: src/ui/action_view.ui:236 src/ui/action_view.ui:238
-msgid "Open File"
-msgstr "Buka Berkas"
+#: src/ui/action_view.ui:238
+msgid "_Open File"
+msgstr "B_uka Berkas"
 
 #. Translators: Button
-#: src/ui/action_view.ui:251 src/ui/action_view.ui:253
-msgid "Show in Folder"
-msgstr "Tampilkan dalam Folder"
-
-#: src/ui/action_view.ui:277
-msgid "Copy a detailed message for reporting an issue"
-msgstr "Salin pesan terperinci untuk melaporkan masalah"
+#: src/ui/action_view.ui:253 src/ui/window.ui:57
+msgid "_Show in Folder"
+msgstr "Tampilkan dalam _Folder"
 
 #. Translators: Button
 #: src/ui/action_view.ui:279
-msgid "Copy Error Message"
-msgstr "Salin Pesan Galat"
+msgid "Co_py Error Message"
+msgstr "Salin _Pesan Galat"
 
 #. Translators: Button
-#: src/ui/action_view.ui:294
-msgid "Cancel"
-msgstr "Batal"
+#: src/ui/action_view.ui:295
+msgid "_Cancel"
+msgstr "_Batal"
 
 #: src/ui/application.rs:62
 msgid "Unable to use transfer link: another transfer already in progress"
@@ -657,10 +653,6 @@ msgstr "Tidak Dapat Membuka Berkas"
 msgid "_Close"
 msgstr "_Tutup"
 
-#: src/ui/window.ui:57
-msgid "_Show in Folder"
-msgstr "Tampilkan dalam _Folder"
-
 #: src/ui/window.ui:97
 msgid "Main Menu"
 msgstr "Menu Utama"
@@ -849,6 +841,18 @@ msgstr "Terjadi galat yang tidak diketahui saat membuat berkas zip: {}"
 msgid ""
 "An unexpected error occurred. Please report an issue with the error message."
 msgstr "Terjadi galat tak terduga. Laporkan masalah dengan pesan galat."
+
+#~ msgid "Accept File Transfer and save to Downloads folder"
+#~ msgstr "Terima Transfer Berkas dan simpan ke folder Unduhan"
+
+#~ msgid "Select Save Location"
+#~ msgstr "Pilih Simpan Lokasi"
+
+#~ msgid "Show in Folder"
+#~ msgstr "Tampilkan dalam Folder"
+
+#~ msgid "Copy a detailed message for reporting an issue"
+#~ msgstr "Salin pesan terperinci untuk melaporkan masalah"
 
 #~ msgid "Save"
 #~ msgstr "Simpan"
