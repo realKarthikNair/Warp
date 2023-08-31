@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Warp Master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
-"POT-Creation-Date: 2023-08-13 00:05+0000\n"
-"PO-Revision-Date: 2023-08-13 06:11+0300\n"
+"POT-Creation-Date: 2023-08-27 13:31+0000\n"
+"PO-Revision-Date: 2023-08-28 10:21+0300\n"
 "Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
 "Language-Team: Türkçe <takim@gnome.org.tr>\n"
 "Language: tr\n"
@@ -340,7 +340,7 @@ msgid "File has been saved to the Downloads folder as “{}”"
 msgstr "Dosya, İndirilenler klasörüne “{}” olarak kaydedildi"
 
 #. Translators: Title
-#: src/ui/action_view.rs:686 src/ui/action_view.ui:273
+#: src/ui/action_view.rs:686 src/ui/action_view.ui:274
 msgid "File Transfer Failed"
 msgstr "Dosya Aktarımı Başarısız"
 
@@ -377,8 +377,7 @@ msgid "{} File - Size: {}"
 msgid_plural "{} Files - Size: {}"
 msgstr[0] "{} Dosya - Boyut: {}"
 
-#. Translators: Button
-#: src/ui/action_view.ui:4 src/ui/action_view.ui:209
+#: src/ui/action_view.ui:4
 msgid "Save As"
 msgstr "Farklı Kaydet"
 
@@ -402,46 +401,43 @@ msgid "Accept File Transfer?"
 msgstr "Dosya Aktarımı Kabul Edilsin Mi?"
 
 #: src/ui/action_view.ui:193
-msgid "Accept File Transfer and save to Downloads folder"
-msgstr "Dosya Aktarımını kabul et ve İndirilenler klasörüne kaydet"
+msgid "Save to Downloads Folder"
+msgstr "İndirilenler Klasörüne Kaydet"
 
 #. Translators: Button
 #: src/ui/action_view.ui:195
-msgid "Accept"
-msgstr "Kabul Et"
+msgid "_Accept"
+msgstr "_Kabul Et"
 
-#: src/ui/action_view.ui:207
-msgid "Select Save Location"
-msgstr "Kayıt Konumu Seç"
+#. Translators: Button
+#: src/ui/action_view.ui:209
+msgid "Sa_ve As…"
+msgstr "F_arklı Kaydet…"
 
 #. Translators: Title
-#: src/ui/action_view.ui:228
+#: src/ui/action_view.ui:229
 msgid "File Transfer Successful"
 msgstr "Dosya Aktarımı Başarılı"
 
 #. Translators: Button
-#: src/ui/action_view.ui:236 src/ui/action_view.ui:238
-msgid "Open File"
-msgstr "Dosya Aç"
+#: src/ui/action_view.ui:238
+msgid "_Open File"
+msgstr "Dosya _Aç"
 
 #. Translators: Button
-#: src/ui/action_view.ui:251 src/ui/action_view.ui:253
-msgid "Show in Folder"
-msgstr "Klasörde Göster"
-
-#: src/ui/action_view.ui:277
-msgid "Copy a detailed message for reporting an issue"
-msgstr "Sorun bildirmek için ayrıntılı iletiyi kopyala"
+#: src/ui/action_view.ui:253 src/ui/window.ui:57
+msgid "_Show in Folder"
+msgstr "_Klasörde Göster"
 
 #. Translators: Button
 #: src/ui/action_view.ui:279
-msgid "Copy Error Message"
-msgstr "Hata İletisini Kopyala"
+msgid "Co_py Error Message"
+msgstr "Hata İletisini Ko_pyala"
 
 #. Translators: Button
-#: src/ui/action_view.ui:294
-msgid "Cancel"
-msgstr "İptal Et"
+#: src/ui/action_view.ui:295
+msgid "_Cancel"
+msgstr "İ_ptal Et"
 
 #: src/ui/application.rs:62
 msgid "Unable to use transfer link: another transfer already in progress"
@@ -656,10 +652,6 @@ msgstr "Dosya Açılamadı"
 msgid "_Close"
 msgstr "_Kapat"
 
-#: src/ui/window.ui:57
-msgid "_Show in Folder"
-msgstr "_Klasörde Göster"
-
 #: src/ui/window.ui:97
 msgid "Main Menu"
 msgstr "Ana Menü"
@@ -849,6 +841,18 @@ msgstr "Zip dosyası oluşturulurken bilinmeyen hata oluştu: {}"
 msgid ""
 "An unexpected error occurred. Please report an issue with the error message."
 msgstr "Beklenmedik hata oluştu. Lütfen hata iletisiyle ilgili sorun bildirin."
+
+#~ msgid "Accept File Transfer and save to Downloads folder"
+#~ msgstr "Dosya Aktarımını kabul et ve İndirilenler klasörüne kaydet"
+
+#~ msgid "Select Save Location"
+#~ msgstr "Kayıt Konumu Seç"
+
+#~ msgid "Show in Folder"
+#~ msgstr "Klasörde Göster"
+
+#~ msgid "Copy a detailed message for reporting an issue"
+#~ msgstr "Sorun bildirmek için ayrıntılı iletiyi kopyala"
 
 #~ msgid "Save"
 #~ msgstr "Kaydet"
