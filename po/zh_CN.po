@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
-"POT-Creation-Date: 2023-08-13 00:05+0000\n"
-"PO-Revision-Date: 2023-08-15 15:43+0800\n"
+"POT-Creation-Date: 2023-08-27 13:31+0000\n"
+"PO-Revision-Date: 2023-09-02 11:37+0800\n"
 "Last-Translator: lumingzh <lumingzh@qq.com>\n"
 "Language-Team: Chinese - China <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
@@ -329,7 +329,7 @@ msgid "File has been saved to the Downloads folder as “{}”"
 msgstr "文件已作为“{}”保存到下载文件夹"
 
 #. Translators: Title
-#: src/ui/action_view.rs:686 src/ui/action_view.ui:273
+#: src/ui/action_view.rs:686 src/ui/action_view.ui:274
 msgid "File Transfer Failed"
 msgstr "文件传输失败"
 
@@ -362,8 +362,7 @@ msgid "{} File - Size: {}"
 msgid_plural "{} Files - Size: {}"
 msgstr[0] "{} 个文件 - 文件大小：{}"
 
-#. Translators: Button
-#: src/ui/action_view.ui:4 src/ui/action_view.ui:209
+#: src/ui/action_view.ui:4
 msgid "Save As"
 msgstr "另存为"
 
@@ -387,46 +386,43 @@ msgid "Accept File Transfer?"
 msgstr "接受文件传输吗？"
 
 #: src/ui/action_view.ui:193
-msgid "Accept File Transfer and save to Downloads folder"
-msgstr "接受文件传输并保存到下载文件夹"
+msgid "Save to Downloads Folder"
+msgstr "保存至下载文件夹"
 
 #. Translators: Button
 #: src/ui/action_view.ui:195
-msgid "Accept"
-msgstr "接受"
+msgid "_Accept"
+msgstr "接受(_A)"
 
-#: src/ui/action_view.ui:207
-msgid "Select Save Location"
-msgstr "选择保存位置"
+#. Translators: Button
+#: src/ui/action_view.ui:209
+msgid "Sa_ve As…"
+msgstr "另存为(_V)…"
 
 #. Translators: Title
-#: src/ui/action_view.ui:228
+#: src/ui/action_view.ui:229
 msgid "File Transfer Successful"
 msgstr "文件传输成功"
 
 #. Translators: Button
-#: src/ui/action_view.ui:236 src/ui/action_view.ui:238
-msgid "Open File"
-msgstr "打开文件"
+#: src/ui/action_view.ui:238
+msgid "_Open File"
+msgstr "打开文件(_O)"
 
 #. Translators: Button
-#: src/ui/action_view.ui:251 src/ui/action_view.ui:253
-msgid "Show in Folder"
-msgstr "在文件夹中显示"
-
-#: src/ui/action_view.ui:277
-msgid "Copy a detailed message for reporting an issue"
-msgstr "复制详细信息用于上报问题"
+#: src/ui/action_view.ui:253 src/ui/window.ui:57
+msgid "_Show in Folder"
+msgstr "在文件夹中显示(_S)"
 
 #. Translators: Button
 #: src/ui/action_view.ui:279
-msgid "Copy Error Message"
-msgstr "复制错误信息"
+msgid "Co_py Error Message"
+msgstr "复制错误信息(_P)"
 
 #. Translators: Button
-#: src/ui/action_view.ui:294
-msgid "Cancel"
-msgstr "取消"
+#: src/ui/action_view.ui:295
+msgid "_Cancel"
+msgstr "取消(_C)"
 
 #: src/ui/application.rs:62
 msgid "Unable to use transfer link: another transfer already in progress"
@@ -639,10 +635,6 @@ msgstr "无法打开文件"
 msgid "_Close"
 msgstr "关闭(_C)"
 
-#: src/ui/window.ui:57
-msgid "_Show in Folder"
-msgstr "在文件夹中显示(_S)"
-
 #: src/ui/window.ui:97
 msgid "Main Menu"
 msgstr "主菜单"
@@ -824,6 +816,18 @@ msgstr "在创建 zip 文件时发生未知错误：{}"
 msgid ""
 "An unexpected error occurred. Please report an issue with the error message."
 msgstr "发生了意外错误。请提交带有该错误信息的报告。"
+
+#~ msgid "Accept File Transfer and save to Downloads folder"
+#~ msgstr "接受文件传输并保存到下载文件夹"
+
+#~ msgid "Select Save Location"
+#~ msgstr "选择保存位置"
+
+#~ msgid "Show in Folder"
+#~ msgstr "在文件夹中显示"
+
+#~ msgid "Copy a detailed message for reporting an issue"
+#~ msgstr "复制详细信息用于上报问题"
 
 #~ msgid "Save"
 #~ msgstr "保存"
