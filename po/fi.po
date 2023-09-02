@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: warp main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
-"POT-Creation-Date: 2023-08-13 00:05+0000\n"
-"PO-Revision-Date: 2023-08-18 19:44+0300\n"
+"POT-Creation-Date: 2023-08-27 13:31+0000\n"
+"PO-Revision-Date: 2023-09-02 17:28+0300\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos+l10n@iki.fi>\n"
 "Language-Team: Finnish <lokalisointi-lista@googlegroups.com>\n"
 "Language: fi\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.3.1\n"
+"X-Generator: Poedit 3.3.2\n"
 
 #: data/app.drey.Warp.desktop.in.in:3 data/app.drey.Warp.metainfo.xml.in.in:6
 #: src/main.rs:122 src/ui/window.ui:80
@@ -340,7 +340,7 @@ msgid "File has been saved to the Downloads folder as “{}”"
 msgstr "Tiedosto on tallennettu Lataukset-kansioon nimellä “{}”"
 
 #. Translators: Title
-#: src/ui/action_view.rs:686 src/ui/action_view.ui:273
+#: src/ui/action_view.rs:686 src/ui/action_view.ui:274
 msgid "File Transfer Failed"
 msgstr "Tiedostonsiirto epäonnistui"
 
@@ -376,8 +376,7 @@ msgid_plural "{} Files - Size: {}"
 msgstr[0] "{} tiedosto - koko: {}"
 msgstr[1] "{} tiedostoa - koko: {}"
 
-#. Translators: Button
-#: src/ui/action_view.ui:4 src/ui/action_view.ui:209
+#: src/ui/action_view.ui:4
 msgid "Save As"
 msgstr "Tallenna nimellä"
 
@@ -401,46 +400,43 @@ msgid "Accept File Transfer?"
 msgstr "Hyväksytäänkö tiedostonsiirto?"
 
 #: src/ui/action_view.ui:193
-msgid "Accept File Transfer and save to Downloads folder"
-msgstr "Hyväksy tiedostonsiirto ja tallenna Lataukset-kansioon"
+msgid "Save to Downloads Folder"
+msgstr "Tallenna Lataukset-kansioon"
 
 #. Translators: Button
 #: src/ui/action_view.ui:195
-msgid "Accept"
-msgstr "Hyväksy"
+msgid "_Accept"
+msgstr "_Hyväksy"
 
-#: src/ui/action_view.ui:207
-msgid "Select Save Location"
-msgstr "Valitse tallennussijainti"
+#. Translators: Button
+#: src/ui/action_view.ui:209
+msgid "Sa_ve As…"
+msgstr "Tallenna _nimellä…"
 
 #. Translators: Title
-#: src/ui/action_view.ui:228
+#: src/ui/action_view.ui:229
 msgid "File Transfer Successful"
 msgstr "Tiedostonsiirto onnistui"
 
 #. Translators: Button
-#: src/ui/action_view.ui:236 src/ui/action_view.ui:238
-msgid "Open File"
-msgstr "Avaa tiedosto"
+#: src/ui/action_view.ui:238
+msgid "_Open File"
+msgstr "_Avaa tiedosto"
 
 #. Translators: Button
-#: src/ui/action_view.ui:251 src/ui/action_view.ui:253
-msgid "Show in Folder"
-msgstr "Näytä sisältävä kansio"
-
-#: src/ui/action_view.ui:277
-msgid "Copy a detailed message for reporting an issue"
-msgstr "Kopioi yksityiskohtainen viesti vikailmoitusta varten"
+#: src/ui/action_view.ui:253 src/ui/window.ui:57
+msgid "_Show in Folder"
+msgstr "Näytä sisältävä _kansio"
 
 #. Translators: Button
 #: src/ui/action_view.ui:279
-msgid "Copy Error Message"
-msgstr "Kopioi virheviesti"
+msgid "Co_py Error Message"
+msgstr "Kopioi _virheviesti"
 
 #. Translators: Button
-#: src/ui/action_view.ui:294
-msgid "Cancel"
-msgstr "Peru"
+#: src/ui/action_view.ui:295
+msgid "_Cancel"
+msgstr "_Peru"
 
 #: src/ui/application.rs:62
 msgid "Unable to use transfer link: another transfer already in progress"
@@ -657,10 +653,6 @@ msgstr "Tiedostoa ei voitu avata"
 msgid "_Close"
 msgstr "_Sulje"
 
-#: src/ui/window.ui:57
-msgid "_Show in Folder"
-msgstr "Näytä sisältävä _kansio"
-
 #: src/ui/window.ui:97
 msgid "Main Menu"
 msgstr "Päävalikko"
@@ -850,6 +842,18 @@ msgid ""
 "An unexpected error occurred. Please report an issue with the error message."
 msgstr ""
 "Tapahtui odottamaton virhe. Ilmoita ongelmasta ja liitä virheviesti mukaan."
+
+#~ msgid "Accept File Transfer and save to Downloads folder"
+#~ msgstr "Hyväksy tiedostonsiirto ja tallenna Lataukset-kansioon"
+
+#~ msgid "Select Save Location"
+#~ msgstr "Valitse tallennussijainti"
+
+#~ msgid "Show in Folder"
+#~ msgstr "Näytä sisältävä kansio"
+
+#~ msgid "Copy a detailed message for reporting an issue"
+#~ msgstr "Kopioi yksityiskohtainen viesti vikailmoitusta varten"
 
 #~ msgid "Save"
 #~ msgstr "Tallenna"
