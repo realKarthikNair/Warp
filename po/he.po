@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: warp main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
-"POT-Creation-Date: 2023-08-13 00:05+0000\n"
-"PO-Revision-Date: 2023-08-18 10:03+0300\n"
+"POT-Creation-Date: 2023-08-27 13:31+0000\n"
+"PO-Revision-Date: 2023-09-04 15:30+0300\n"
 "Last-Translator: Yosef Or Boczko <yoseforb@gmail.com>\n"
 "Language-Team: Hebrew <yoseforb@gmail.com>\n"
 "Language: he\n"
@@ -17,8 +17,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : n==2 ? 1 : n>10 && n%10==0 ? "
-"2 : 3)\n"
-"X-Generator: Gtranslator 42.0\n"
+"2 : 3);\n"
+"X-Generator: Poedit 3.3.2\n"
 
 #: data/app.drey.Warp.desktop.in.in:3 data/app.drey.Warp.metainfo.xml.in.in:6
 #: src/main.rs:122 src/ui/window.ui:80
@@ -259,8 +259,8 @@ msgid ""
 "You have entered a custom rendezvous server URL in preferences. Please "
 "verify the receiver also uses the same rendezvous server."
 msgstr ""
-"מילאת כתובת שרת rendezvous משלך. נא לוודא שהצד המקבל גם משתמש באותו שרת ה־"
-"rendezvous."
+"מילאת כתובת שרת rendezvous משלך. נא לוודא שהצד המקבל גם משתמש באותו שרת "
+"ה־rendezvous."
 
 #: src/ui/action_view.rs:499
 msgid "Click the QR code to copy the link to the clipboard."
@@ -345,7 +345,7 @@ msgid "File has been saved to the Downloads folder as “{}”"
 msgstr "הקובץ נשמר לתיקיית ההורדות בשם „{}”"
 
 #. Translators: Title
-#: src/ui/action_view.rs:686 src/ui/action_view.ui:273
+#: src/ui/action_view.rs:686 src/ui/action_view.ui:274
 msgid "File Transfer Failed"
 msgstr "העברת קובץ נכשלה"
 
@@ -381,8 +381,7 @@ msgstr[1] "‏{} קבצים - גודל: {}"
 msgstr[2] "‏{} קבצים - גודל: {}"
 msgstr[3] "‏{} קבצים - גודל: {}"
 
-#. Translators: Button
-#: src/ui/action_view.ui:4 src/ui/action_view.ui:209
+#: src/ui/action_view.ui:4
 msgid "Save As"
 msgstr "שמירה בשם"
 
@@ -406,46 +405,43 @@ msgid "Accept File Transfer?"
 msgstr "לקבל העברת קובץ?"
 
 #: src/ui/action_view.ui:193
-msgid "Accept File Transfer and save to Downloads folder"
-msgstr "אישור העברת הקובץ ושמירה לתיקיית ההורדות"
+msgid "Save to Downloads Folder"
+msgstr "שמירה לתיקיית ההורדות"
 
 #. Translators: Button
 #: src/ui/action_view.ui:195
-msgid "Accept"
-msgstr "אישור"
+msgid "_Accept"
+msgstr "_אישור"
 
-#: src/ui/action_view.ui:207
-msgid "Select Save Location"
-msgstr "בחירת מיקום לשמירה"
+#. Translators: Button
+#: src/ui/action_view.ui:209
+msgid "Sa_ve As…"
+msgstr "שמירה _בשם…"
 
 #. Translators: Title
-#: src/ui/action_view.ui:228
+#: src/ui/action_view.ui:229
 msgid "File Transfer Successful"
 msgstr "העברת קובץ הצליחה"
 
 #. Translators: Button
-#: src/ui/action_view.ui:236 src/ui/action_view.ui:238
-msgid "Open File"
-msgstr "פתיחת קובץ"
+#: src/ui/action_view.ui:238
+msgid "_Open File"
+msgstr "_פתיחת קובץ"
 
 #. Translators: Button
-#: src/ui/action_view.ui:251 src/ui/action_view.ui:253
-msgid "Show in Folder"
-msgstr "הצגה בתיקייה"
-
-#: src/ui/action_view.ui:277
-msgid "Copy a detailed message for reporting an issue"
-msgstr "להעתיק הודעה מפורטת כדי לדווח על התקלה"
+#: src/ui/action_view.ui:253 src/ui/window.ui:57
+msgid "_Show in Folder"
+msgstr "ה_צגה בתיקייה"
 
 #. Translators: Button
 #: src/ui/action_view.ui:279
-msgid "Copy Error Message"
-msgstr "העתקת הודעת שגיאה"
+msgid "Co_py Error Message"
+msgstr "ה_עתקת הודעת שגיאה"
 
 #. Translators: Button
-#: src/ui/action_view.ui:294
-msgid "Cancel"
-msgstr "ביטול"
+#: src/ui/action_view.ui:295
+msgid "_Cancel"
+msgstr "_ביטול"
 
 #: src/ui/application.rs:62
 msgid "Unable to use transfer link: another transfer already in progress"
@@ -660,10 +656,6 @@ msgstr "לא ניתן לפתוח קובץ"
 msgid "_Close"
 msgstr "_סגירה"
 
-#: src/ui/window.ui:57
-msgid "_Show in Folder"
-msgstr "ה_צגה בתיקייה"
-
 #: src/ui/window.ui:97
 msgid "Main Menu"
 msgstr "תפריט ראשי"
@@ -848,6 +840,18 @@ msgstr "אירעה שגיאה בזמן יצירת קובץ zip: ‏‏{}"
 msgid ""
 "An unexpected error occurred. Please report an issue with the error message."
 msgstr "אירעה שגיאה לא ידועה. נא לדווח על התקלה בצירוף הודעת השגיאה."
+
+#~ msgid "Accept File Transfer and save to Downloads folder"
+#~ msgstr "אישור העברת הקובץ ושמירה לתיקיית ההורדות"
+
+#~ msgid "Select Save Location"
+#~ msgstr "בחירת מיקום לשמירה"
+
+#~ msgid "Show in Folder"
+#~ msgstr "הצגה בתיקייה"
+
+#~ msgid "Copy a detailed message for reporting an issue"
+#~ msgstr "להעתיק הודעה מפורטת כדי לדווח על התקלה"
 
 #~ msgid "Save"
 #~ msgstr "שמירה"
