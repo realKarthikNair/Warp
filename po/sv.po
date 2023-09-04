@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: warp main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
-"POT-Creation-Date: 2023-05-24 23:43+0000\n"
-"PO-Revision-Date: 2023-05-25 11:19+0200\n"
+"POT-Creation-Date: 2023-08-27 13:31+0000\n"
+"PO-Revision-Date: 2023-08-27 17:46+0200\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -16,15 +16,15 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.3.2\n"
 
 #: data/app.drey.Warp.desktop.in.in:3 data/app.drey.Warp.metainfo.xml.in.in:6
-#: src/main.rs:116
+#: src/main.rs:122 src/ui/window.ui:80
 msgid "Warp"
 msgstr "Warp"
 
 #: data/app.drey.Warp.desktop.in.in:4 data/app.drey.Warp.metainfo.xml.in.in:7
-#: src/ui/welcome_window.ui:26
+#: src/ui/welcome_window.ui:27
 msgid "Fast and secure file transfer"
 msgstr "Snabb och säker filöverföring"
 
@@ -85,7 +85,7 @@ msgid "Main Window"
 msgstr "Huvudfönster"
 
 #. Translators: Entry placeholder; This is a noun
-#: data/app.drey.Warp.metainfo.xml.in.in:34 src/ui/window.ui:205
+#: data/app.drey.Warp.metainfo.xml.in.in:34 src/ui/window.ui:198
 msgid "Transmit Code"
 msgstr "Överföringskod"
 
@@ -94,19 +94,19 @@ msgid "Accept File Transfer"
 msgstr "Acceptera filöverföring"
 
 #. Translators: Title
-#: data/app.drey.Warp.metainfo.xml.in.in:42 src/ui/action_view.rs:619
+#: data/app.drey.Warp.metainfo.xml.in.in:42 src/ui/action_view.rs:611
 msgid "Sending File"
 msgstr "Skickar fil"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:46 src/ui/action_view.rs:625
+#: data/app.drey.Warp.metainfo.xml.in.in:46 src/ui/action_view.rs:617
 msgid "Receiving File"
 msgstr "Tar emot fil"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:50 src/ui/action_view.rs:634
+#: data/app.drey.Warp.metainfo.xml.in.in:50 src/ui/action_view.rs:626
 msgid "File Transfer Complete"
 msgstr "Filöverföring slutförd"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:221 src/ui/application.rs:216
+#: data/app.drey.Warp.metainfo.xml.in.in:220 src/ui/application.rs:225
 msgid "Fina Wilke"
 msgstr "Fina Wilke"
 
@@ -196,58 +196,58 @@ msgid "{0} — {1}"
 msgstr "{0} — {1}"
 
 #. Translators: Notification when clicking on "Copy Code to Clipboard" button
-#: src/ui/action_view.rs:262
+#: src/ui/action_view.rs:255
 msgid "Copied Code to Clipboard"
 msgstr "Kopierade kod till urklipp"
 
 #. Translators: Notification when clicking on "Copy Link to Clipboard" button
-#: src/ui/action_view.rs:283
+#: src/ui/action_view.rs:276
 msgid "Copied Link to Clipboard"
 msgstr "Kopierade länk till urklipp"
 
-#: src/ui/action_view.rs:297
+#: src/ui/action_view.rs:290
 msgid "Copied Error to Clipboard"
 msgstr "Kopierade fel till urklipp"
 
-#: src/ui/action_view.rs:299
+#: src/ui/action_view.rs:292
 msgid "No error available"
 msgstr "Inget fel tillgängligt"
 
-#: src/ui/action_view.rs:441
+#: src/ui/action_view.rs:433
 msgid "Creating Archive"
 msgstr "Skapar arkiv"
 
-#: src/ui/action_view.rs:445
+#: src/ui/action_view.rs:437
 msgid "Compressing folder “{}”"
 msgstr "Komprimerar mappen ”{}”"
 
 #. Translators: Title
-#: src/ui/action_view.rs:461 src/ui/action_view.rs:519
+#: src/ui/action_view.rs:453 src/ui/action_view.rs:511
 msgid "Connecting"
 msgstr "Ansluter"
 
 #. Translators: Description, Filename
-#: src/ui/action_view.rs:464
+#: src/ui/action_view.rs:456
 msgid "Requesting file transfer"
 msgstr "Begär filöverföring"
 
 #. Translators: Description, argument is filename
-#: src/ui/action_view.rs:485
+#: src/ui/action_view.rs:477
 msgid "Ready to send “{}”."
 msgstr "Redo att skicka ”{}”."
 
 #. Translators: Help dialog line 1, Code words and QR code visible,
-#: src/ui/action_view.rs:490
+#: src/ui/action_view.rs:482
 msgid ""
 "The receiver needs to enter or scan this code to begin the file transfer."
 msgstr ""
 "Mottagaren måste ange eller skanna denna kod för att påbörja filöverföringen."
 
-#: src/ui/action_view.rs:494
+#: src/ui/action_view.rs:486
 msgid "The QR code is compatible with the following apps: {}."
 msgstr "QR-koden är kompatibel med följande program: {}."
 
-#: src/ui/action_view.rs:502
+#: src/ui/action_view.rs:494
 msgid ""
 "You have entered a custom rendezvous server URL in preferences. Please "
 "verify the receiver also uses the same rendezvous server."
@@ -255,31 +255,31 @@ msgstr ""
 "Du har angivit en anpassad mötesserver-URL i inställningar. Säkerställ att "
 "mottagaren också använder samma mötesserver."
 
-#: src/ui/action_view.rs:507
+#: src/ui/action_view.rs:499
 msgid "Click the QR code to copy the link to the clipboard."
 msgstr "Klicka på QR-koden för att kopiera länken till urklipp."
 
 #. Translators: Description, Transfer Code
-#: src/ui/action_view.rs:522
+#: src/ui/action_view.rs:514
 msgid "Connecting to peer with code “{}”"
 msgstr "Ansluter till motpart med koden ”{}”"
 
-#: src/ui/action_view.rs:532
+#: src/ui/action_view.rs:524
 msgid "Connected to Peer"
 msgstr "Ansluten till motpart"
 
 #. Translators: Description
-#: src/ui/action_view.rs:541
+#: src/ui/action_view.rs:533
 msgid "Preparing to send file"
 msgstr "Förbereder att skicka fil"
 
 #. Translators: Description
-#: src/ui/action_view.rs:548
+#: src/ui/action_view.rs:540
 msgid "Preparing to receive file"
 msgstr "Förbereder att ta emot fil"
 
 #. Translators: File receive confirmation message dialog; Filename, File size
-#: src/ui/action_view.rs:561
+#: src/ui/action_view.rs:553
 msgid ""
 "Your peer wants to send you “{0}” (Size: {1}).\n"
 "Do you want to download this file? The default action will save the file to "
@@ -289,181 +289,167 @@ msgstr ""
 "Vill du hämta denna fil? Standardåtgärden kommer spara filen till din "
 "hämtningsmapp."
 
-#: src/ui/action_view.rs:566
+#: src/ui/action_view.rs:558
 msgid "Ready to Receive File"
 msgstr "Redo att ta emot fil"
 
-#: src/ui/action_view.rs:568
+#: src/ui/action_view.rs:560
 msgid ""
 "A file is ready to be transferred. The transfer needs to be acknowledged."
 msgstr "En fil är klar att överföras. Överföringen måste godkännas."
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:596
+#: src/ui/action_view.rs:588
 msgid "File “{}” via local network direct transfer"
 msgstr "Filen ”{}” genom direkt överföring på lokalt nätverk"
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:599
+#: src/ui/action_view.rs:591
 msgid "File “{}” via direct transfer"
 msgstr "Filen ”{}” genom direkt överföring"
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:605
+#: src/ui/action_view.rs:597
 msgid "File “{0}” via relay {1}"
 msgstr "Filen ”{0}” genom knutpunkten {1}"
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:608
+#: src/ui/action_view.rs:600
 msgid "File “{}” via relay"
 msgstr "Filen ”{}” genom knutpunkt"
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:612
+#: src/ui/action_view.rs:604
 msgid "File “{}” via Unknown connection method"
 msgstr "Filen ”{}” genom okänd anslutningsmetod"
 
 #. Translators: Description, Filename
-#: src/ui/action_view.rs:642
+#: src/ui/action_view.rs:634
 msgid "Successfully sent file “{}”"
 msgstr "Skickade filen ”{}”"
 
 #. Translators: Filename
-#: src/ui/action_view.rs:660
+#: src/ui/action_view.rs:652
 msgid "File has been saved to the selected folder as “{}”"
 msgstr "Filen har sparats i den valda mappen som ”{}”"
 
 #. Translators: Filename
-#: src/ui/action_view.rs:667
+#: src/ui/action_view.rs:659
 msgid "File has been saved to the Downloads folder as “{}”"
 msgstr "Filen har sparats i hämtningsmappen som ”{}”"
 
 #. Translators: Title
-#: src/ui/action_view.rs:694 src/ui/action_view.ui:289
+#: src/ui/action_view.rs:686 src/ui/action_view.ui:274
 msgid "File Transfer Failed"
 msgstr "Filöverföring misslyckades"
 
-#: src/ui/action_view.rs:696
+#: src/ui/action_view.rs:688
 msgid "The file transfer failed: {}"
 msgstr "Filöverföringen misslyckades: {}"
 
 #. Translators: When opening a file
-#: src/ui/action_view.rs:816
+#: src/ui/action_view.rs:808
 msgid "Specified file / directory does not exist"
 msgstr "Angiven fil/katalog finns inte"
 
-#: src/ui/action_view.rs:834
+#: src/ui/action_view.rs:826
 msgid ""
 "Error parsing rendezvous server URL. An invalid URL was entered in the "
 "settings."
 msgstr ""
 "Fel vid tolkning av mötesserver-URL. En ogiltig URL angavs i inställningarna."
 
-#: src/ui/action_view.rs:841
+#: src/ui/action_view.rs:833
 msgid "Error parsing transit URL. An invalid URL was entered in the settings."
 msgstr ""
 "Fel vid tolkning av transit-URL. En ogiltig URL angavs i inställningarna."
 
-#: src/ui/action_view.rs:928
+#: src/ui/action_view.rs:920
 msgid "Invalid path selected: {}"
 msgstr "Ogiltig sökväg vald: {}"
 
 #. Translators: Above progress bar for creating an archive to send as a folder
-#: src/ui/action_view.rs:1174
+#: src/ui/action_view.rs:1165
 msgid "{} File - Size: {}"
 msgid_plural "{} Files - Size: {}"
 msgstr[0] "{} fil - Storlek: {}"
 msgstr[1] "{} filer - Storlek: {}"
 
-#. Translators: Button
-#: src/ui/action_view.ui:4 src/ui/action_view.ui:225
+#: src/ui/action_view.ui:4
 msgid "Save As"
 msgstr "Spara som"
 
-#: src/ui/action_view.ui:6
-msgid "Save"
-msgstr "Spara"
-
-#. Translators: Button
-#: src/ui/action_view.ui:7 src/ui/action_view.ui:310 src/ui/window.ui:31
-#: src/ui/window.ui:39
-msgid "Cancel"
-msgstr "Avbryt"
-
-#. Translators: Button
-#: src/ui/action_view.ui:39 src/ui/welcome_window.ui:56
-msgid "Back"
-msgstr "Tillbaka"
-
 #. Translators: Button; Transmit Link is a noun
-#: src/ui/action_view.ui:110
+#: src/ui/action_view.ui:94
 msgid "Copy Transmit Link"
 msgstr "Kopiera överföringslänk"
 
-#: src/ui/action_view.ui:135
+#: src/ui/action_view.ui:119
 msgid "Your Transmit Code"
 msgstr "Din överföringskod"
 
 #. Translators: Button; Transmit Code is a noun
-#: src/ui/action_view.ui:183
+#: src/ui/action_view.ui:167
 msgid "Copy Transmit Code"
 msgstr "Kopiera överföringskod"
 
 #. Translators: Title
-#: src/ui/action_view.ui:200
+#: src/ui/action_view.ui:184
 msgid "Accept File Transfer?"
 msgstr "Acceptera filöverföring?"
 
-#: src/ui/action_view.ui:209
-msgid "Accept File Transfer and save to Downloads folder"
-msgstr "Acceptera filöverföring och spara i hämtningsmapp"
+#: src/ui/action_view.ui:193
+msgid "Save to Downloads Folder"
+msgstr "Spara till hämtningsmapp"
 
 #. Translators: Button
-#: src/ui/action_view.ui:211
-msgid "Accept"
-msgstr "Acceptera"
+#: src/ui/action_view.ui:195
+msgid "_Accept"
+msgstr "_Acceptera"
 
-#: src/ui/action_view.ui:223
-msgid "Select Save Location"
-msgstr "Välj plats att spara till"
+#. Translators: Button
+#: src/ui/action_view.ui:209
+msgid "Sa_ve As…"
+msgstr "S_para som…"
 
 #. Translators: Title
-#: src/ui/action_view.ui:244
+#: src/ui/action_view.ui:229
 msgid "File Transfer Successful"
 msgstr "Filöverföring lyckades"
 
 #. Translators: Button
-#: src/ui/action_view.ui:252 src/ui/action_view.ui:254
-msgid "Open File"
-msgstr "Öppna fil"
+#: src/ui/action_view.ui:238
+msgid "_Open File"
+msgstr "Ö_ppna fil"
 
 #. Translators: Button
-#: src/ui/action_view.ui:267 src/ui/action_view.ui:269
-msgid "Show in Folder"
-msgstr "Visa i mapp"
+#: src/ui/action_view.ui:253 src/ui/window.ui:57
+msgid "_Show in Folder"
+msgstr "_Visa i mapp"
 
-#: src/ui/action_view.ui:293
-msgid "Copy a detailed message for reporting an issue"
-msgstr "Kopiera ett detaljerat meddelande för rapport av ett problem"
+#. Translators: Button
+#: src/ui/action_view.ui:279
+msgid "Co_py Error Message"
+msgstr "Ko_piera felmeddelande"
 
 #. Translators: Button
 #: src/ui/action_view.ui:295
-msgid "Copy Error Message"
-msgstr "Kopiera felmeddelande"
+msgid "_Cancel"
+msgstr "A_vbryt"
 
 #: src/ui/application.rs:62
 msgid "Unable to use transfer link: another transfer already in progress"
 msgstr "Kunde inte använda överföringslänk: en annan överföring pågår redan"
 
-#: src/ui/application.rs:217
+#: src/ui/application.rs:226
 msgid "Tobias Bernard"
 msgstr "Tobias Bernard"
 
-#: src/ui/application.rs:217
+#: src/ui/application.rs:226
 msgid "Sophie Herold"
 msgstr "Sophie Herold"
 
-#: src/ui/application.rs:218
+#: src/ui/application.rs:227
 msgid "translator-credits"
 msgstr ""
 "Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
@@ -471,19 +457,19 @@ msgstr ""
 "Skicka synpunkter på översättningen till\n"
 "<tp-sv@listor.tp-sv.se>."
 
-#: src/ui/application.rs:235
+#: src/ui/application.rs:244
 msgid "Sending a File"
 msgstr "Skickar en fil"
 
-#: src/ui/application.rs:236
+#: src/ui/application.rs:245
 msgid "Receiving a File"
 msgstr "Tar emot en fil"
 
-#: src/ui/fs.rs:23
+#: src/ui/fs.rs:24
 msgid "Downloads dir missing. Please set XDG_DOWNLOAD_DIR"
 msgstr "Hämtningskatalog saknas. Ange XDG_DOWNLOAD_DIR"
 
-#: src/ui/preferences.rs:97
+#: src/ui/preferences.rs:96
 msgid ""
 "Changing the rendezvous server URL needs to be done on both sides of the "
 "transfer. Only enter a server URL you can trust.\n"
@@ -541,24 +527,24 @@ msgstr "URL för mötesserver"
 msgid "Transit Server URL"
 msgstr "URL för transitserver"
 
-#: src/ui/welcome_window.ui:5
+#: src/ui/welcome_window.ui:13
 msgid "Welcome"
 msgstr "Välkommen"
 
-#: src/ui/welcome_window.ui:25
+#: src/ui/welcome_window.ui:26
 msgid "Welcome to Warp"
 msgstr "Välkommen till Warp"
 
 #. Translators: Button
-#: src/ui/welcome_window.ui:33
+#: src/ui/welcome_window.ui:34
 msgid "Next"
 msgstr "Nästa"
 
-#: src/ui/welcome_window.ui:84
+#: src/ui/welcome_window.ui:82
 msgid "Introduction"
 msgstr "Introduktion"
 
-#: src/ui/welcome_window.ui:95
+#: src/ui/welcome_window.ui:93
 msgid ""
 "Warp makes file transfer simple. To get started, both parties need to "
 "install Warp on their devices.\n"
@@ -583,7 +569,7 @@ msgstr ""
 "Öppna hjälpavsnittet från huvudmenyn för att få mer information om Warp."
 
 #. Translators: Big button to finish welcome screen
-#: src/ui/welcome_window.ui:108
+#: src/ui/welcome_window.ui:106
 msgid "Get Started Using Warp"
 msgstr "Kom igång med Warp"
 
@@ -596,15 +582,23 @@ msgstr ""
 "standardkonfiguration.\n"
 "Fel: {1}"
 
-#: src/ui/window.rs:237
+#: src/ui/window.rs:210
 msgid "Error saving configuration file: {}"
 msgstr "Fel vid sparande av konfigurationsfil: {}"
 
-#: src/ui/window.rs:352
+#: src/ui/window.rs:301
+msgid "Select File to Send"
+msgstr "Välj fil att skicka"
+
+#: src/ui/window.rs:309
+msgid "Select Folder to Send"
+msgstr "Välj mapp att skicka"
+
+#: src/ui/window.rs:360
 msgid "“{}” appears to be an invalid Transmit Code. Please try again."
 msgstr "”{}” verkar vara en ogiltig överföringskod. Försök igen."
 
-#: src/ui/window.rs:472
+#: src/ui/window.rs:471
 msgid "Sending files with a preconfigured code is not yet supported"
 msgstr ""
 "Det finns ännu inte stöd för att skicka filer med en förkonfigurerad kod"
@@ -629,98 +623,78 @@ msgstr "_Hjälp"
 msgid "_About Warp"
 msgstr "_Om Warp"
 
-#: src/ui/window.ui:28
-msgid "Select file to send"
-msgstr "Välj fil att skicka"
-
-#: src/ui/window.ui:30
-msgid "Open"
-msgstr "Öppna"
-
-#: src/ui/window.ui:36
-msgid "Select folder to send"
-msgstr "Välj mapp att skicka"
-
-#: src/ui/window.ui:38
-msgid "Open Folder"
-msgstr "Öppna mapp"
-
 #. Translators: Notification when code was automatically detected in clipboard and inserted into code entry on receive page
-#: src/ui/window.ui:46
+#: src/ui/window.ui:33
 msgid "Inserted code from clipboard"
 msgstr "Infogade kod från urklipp"
 
 #. Translators: File receive confirmation message dialog title
-#: src/ui/window.ui:51
+#: src/ui/window.ui:38
 msgid "Abort File Transfer?"
 msgstr "Avbryt filöverföring?"
 
-#: src/ui/window.ui:52
+#: src/ui/window.ui:39
 msgid "Do you want to abort the current file transfer?"
 msgstr "Vill du avbryta den aktuella filöverföringen?"
 
-#: src/ui/window.ui:58
+#: src/ui/window.ui:45
 msgid "_Continue"
 msgstr "_Fortsätt"
 
-#: src/ui/window.ui:59
+#: src/ui/window.ui:46
 msgid "_Abort"
 msgstr "_Avbryt"
 
 #. Translators: Error dialog title
-#: src/ui/window.ui:64
+#: src/ui/window.ui:51
 msgid "Unable to Open File"
 msgstr "Kunde inte öppna fil"
 
-#: src/ui/window.ui:69 src/util/error.rs:176
+#: src/ui/window.ui:56 src/util/error.rs:176
 msgid "_Close"
 msgstr "S_täng"
 
-#: src/ui/window.ui:70
-msgid "_Show in Folder"
-msgstr "_Visa i mapp"
-
-#: src/ui/window.ui:101
+#: src/ui/window.ui:97
 msgid "Main Menu"
 msgstr "Huvudmeny"
 
-#: src/ui/window.ui:123
+#: src/ui/window.ui:116
 msgid "_Send"
 msgstr "_Skicka"
 
-#: src/ui/window.ui:135
+#: src/ui/window.ui:128
 msgid "Send File"
 msgstr "Skicka fil"
 
-#: src/ui/window.ui:136
+#: src/ui/window.ui:129
 msgid "Select or drop the file or directory to send"
 msgstr "Välj eller släpp filen eller katalogen som ska skickas"
 
 #. Translators: Button
-#: src/ui/window.ui:147
+#: src/ui/window.ui:140
 msgid "Select _File…"
 msgstr "Välj _fil…"
 
 #. Translators: Button
-#: src/ui/window.ui:161
+#: src/ui/window.ui:154
 msgid "Select F_older…"
 msgstr "Välj _mapp…"
 
-#: src/ui/window.ui:181
+#: src/ui/window.ui:174
 msgid "_Receive"
 msgstr "_Ta emot"
 
-#: src/ui/window.ui:190
+#: src/ui/window.ui:183
 msgid "Receive File"
 msgstr "Ta emot fil"
 
 #. Translators: Text above code input box, transmit code is a noun
-#: src/ui/window.ui:192
+#: src/ui/window.ui:185
 msgid "Enter the transmit code from the sender"
 msgstr "Mata in överföringskoden från avsändaren"
 
 #. Translators: Button
-#: src/ui/window.ui:226
+#: src/ui/window.ui:219
 msgid "Receive _File"
 msgstr "Ta emot _fil"
 
@@ -869,6 +843,30 @@ msgid ""
 "An unexpected error occurred. Please report an issue with the error message."
 msgstr ""
 "Ett oväntat fel inträffade. Rapportera ett fel där du bifogar felmeddelandet."
+
+#~ msgid "Accept File Transfer and save to Downloads folder"
+#~ msgstr "Acceptera filöverföring och spara i hämtningsmapp"
+
+#~ msgid "Select Save Location"
+#~ msgstr "Välj plats att spara till"
+
+#~ msgid "Show in Folder"
+#~ msgstr "Visa i mapp"
+
+#~ msgid "Copy a detailed message for reporting an issue"
+#~ msgstr "Kopiera ett detaljerat meddelande för rapport av ett problem"
+
+#~ msgid "Save"
+#~ msgstr "Spara"
+
+#~ msgid "Back"
+#~ msgstr "Tillbaka"
+
+#~ msgid "Open"
+#~ msgstr "Öppna"
+
+#~ msgid "Open Folder"
+#~ msgstr "Öppna mapp"
 
 #~ msgid "Close"
 #~ msgstr "Stäng"
