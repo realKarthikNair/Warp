@@ -1,19 +1,10 @@
-[advisories]
-ignore = [
-    "RUSTSEC-2020-0071",
-]
-
 [licenses]
 unlicensed = "deny"
 copyleft = "allow"
 allow-osi-fsf-free = "either"
-allow = [
-    "LicenseRef-ring",
-]
+allow = ["LicenseRef-ring"]
 
 [[licenses.clarify]]
 name = "ring"
 expression = "LicenseRef-ring"
-license-files = [
-    { path = "LICENSE", hash = 0xbd0eed23 },
-]
+license-files = [{ path = "LICENSE", hash = 0xbd0eed23 }]
