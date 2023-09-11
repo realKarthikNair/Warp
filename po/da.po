@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: warp main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
-"POT-Creation-Date: 2022-12-25 09:40+0000\n"
-"PO-Revision-Date: 2023-01-01 18:43+0100\n"
+"POT-Creation-Date: 2023-08-27 13:31+0000\n"
+"PO-Revision-Date: 2023-09-11 17:18+0200\n"
 "Last-Translator: Ask Hjorth Larsen <asklarsen@gmail.com>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "Language: da\n"
@@ -22,13 +22,13 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: data/app.drey.Warp.desktop.in.in:3 data/app.drey.Warp.metainfo.xml.in.in:7
-#: src/main.rs:91 src/ui/application.rs:212
+#: data/app.drey.Warp.desktop.in.in:3 data/app.drey.Warp.metainfo.xml.in.in:6
+#: src/main.rs:122 src/ui/window.ui:80
 msgid "Warp"
 msgstr "Warp"
 
-#: data/app.drey.Warp.desktop.in.in:4 data/app.drey.Warp.metainfo.xml.in.in:8
-#: data/resources/ui/welcome_window.ui:35
+#: data/app.drey.Warp.desktop.in.in:4 data/app.drey.Warp.metainfo.xml.in.in:7
+#: src/ui/welcome_window.ui:27
 msgid "Fast and secure file transfer"
 msgstr "Hurtig og sikker filoverførsel"
 
@@ -36,7 +36,7 @@ msgstr "Hurtig og sikker filoverførsel"
 msgid "Gnome;GTK;Wormhole;Magic-Wormhole;"
 msgstr "Gnome;GTK;Wormhole;Magic-Wormhole;"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:10
+#: data/app.drey.Warp.metainfo.xml.in.in:9
 msgid ""
 "Warp allows you to securely send files to each other via the internet or "
 "local network by exchanging a word-based code."
@@ -52,106 +52,65 @@ msgstr ""
 "Den bedste overførselsmetode bestemmes med protokollen “Magic Wormhole”, som "
 "inkluderer lokal netværksoverførsel hvis muligt."
 
-#: data/app.drey.Warp.metainfo.xml.in.in:16
+#: data/app.drey.Warp.metainfo.xml.in.in:17
 msgid "Features"
 msgstr "Funktioner"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:18
+#: data/app.drey.Warp.metainfo.xml.in.in:19
 msgid "Send files between multiple devices"
 msgstr "Send filer mellem flere enheder"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:19
+#: data/app.drey.Warp.metainfo.xml.in.in:20
 msgid "Every file transfer is encrypted"
 msgstr "Alle filoverførsler er krypterede"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:20
+#: data/app.drey.Warp.metainfo.xml.in.in:21
 msgid "Directly transfer files on the local network if possible"
 msgstr "Overfør filer direkte på det lokale netværk hvis muligt"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:21
+#: data/app.drey.Warp.metainfo.xml.in.in:22
 msgid "An internet connection is required"
 msgstr "Internetforbindelse er nødvendig"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:22
-msgid "Compatibility with the “Magic Wormhole” command line client"
-msgstr "Kompatibilitet med “Magic Wormhole”-kommandolinjeklienten"
+#: data/app.drey.Warp.metainfo.xml.in.in:23
+msgid "QR Code support"
+msgstr "Understøttelse af QR-koder"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:28
+#: data/app.drey.Warp.metainfo.xml.in.in:24
+msgid ""
+"Compatibility with the Magic Wormhole command line client and all other "
+"compatible apps"
+msgstr "Kompatibilitet med “Magic Wormhole”-kommandolinjeklienten og alle andre kompatible programmer"
+
+#: data/app.drey.Warp.metainfo.xml.in.in:30
 msgid "Main Window"
 msgstr "Hovedvindue"
 
 #. Translators: Entry placeholder; This is a noun
-#: data/app.drey.Warp.metainfo.xml.in.in:32 data/resources/ui/window.ui:198
+#: data/app.drey.Warp.metainfo.xml.in.in:34 src/ui/window.ui:198
 msgid "Transmit Code"
 msgstr "Sendekode"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:36
-#: data/resources/ui/action_view.ui:127
+#: data/app.drey.Warp.metainfo.xml.in.in:38
 msgid "Accept File Transfer"
 msgstr "Acceptér filoverførsel"
 
 #. Translators: Title
-#: data/app.drey.Warp.metainfo.xml.in.in:40 src/ui/action_view.rs:557
+#: data/app.drey.Warp.metainfo.xml.in.in:42 src/ui/action_view.rs:611
 msgid "Sending File"
 msgstr "Sender fil"
 
-#. Translators: Title
-#: data/app.drey.Warp.metainfo.xml.in.in:44 src/ui/action_view.rs:561
+#: data/app.drey.Warp.metainfo.xml.in.in:46 src/ui/action_view.rs:617
 msgid "Receiving File"
 msgstr "Modtager fil"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:48 src/ui/action_view.rs:578
+#: data/app.drey.Warp.metainfo.xml.in.in:50 src/ui/action_view.rs:626
 msgid "File Transfer Complete"
 msgstr "Filoverførsel fuldført"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:165
+#: data/app.drey.Warp.metainfo.xml.in.in:220 src/ui/application.rs:225
 msgid "Fina Wilke"
 msgstr "Fina Wilke"
-
-#. Translators: Button
-#: data/resources/ui/action_view.ui:18 data/resources/ui/window.ui:31
-#: data/resources/ui/window.ui:39
-msgid "Cancel"
-msgstr "Annullér"
-
-#. Translators: Button
-#: data/resources/ui/action_view.ui:26 data/resources/ui/welcome_window.ui:54
-msgid "Back"
-msgstr "Tilbage"
-
-#. Translators: Button; Transmit Link is a noun
-#: data/resources/ui/action_view.ui:75
-msgid "Copy Transmit Link"
-msgstr "Kopiér sendelink"
-
-#. Translators: Button; Transmit Code is a noun
-#: data/resources/ui/action_view.ui:83
-msgid "Copy Transmit Code"
-msgstr "Kopiér sendekode"
-
-#. Translators: Button
-#: data/resources/ui/action_view.ui:98 data/resources/ui/action_view.ui:100
-msgid "Open File"
-msgstr "Åbn fil"
-
-#. Translators: Button
-#: data/resources/ui/action_view.ui:112 data/resources/ui/action_view.ui:114
-msgid "Show in Folder"
-msgstr "Vis i mappe"
-
-#. Translators: Button
-#: data/resources/ui/action_view.ui:130
-msgid "Accept"
-msgstr "Acceptér"
-
-#: data/resources/ui/action_view.ui:142
-msgid "Copy a detailed message for reporting an issue"
-msgstr "Kopiér en detaljeret besked for at indrapportere et problem"
-
-#. Translators: Button
-#: data/resources/ui/action_view.ui:145
-msgid "Copy Error Message"
-msgstr "Kopiér fejlmeddelelse"
 
 #: data/resources/ui/help_overlay.ui:11
 msgctxt "shortcut window"
@@ -198,200 +157,6 @@ msgctxt "shortcut window"
 msgid "Receive File"
 msgstr "Modtag fil"
 
-#: data/resources/ui/preferences.ui:6
-msgid "Preferences"
-msgstr "Indstillinger"
-
-#: data/resources/ui/preferences.ui:11
-msgid "Network"
-msgstr "Netværk"
-
-#: data/resources/ui/preferences.ui:15
-msgid "Server URLs"
-msgstr "Server-URL'er"
-
-#: data/resources/ui/preferences.ui:18
-msgid "Rendezvous Server URL"
-msgstr "URL for rendezvousserver"
-
-#: data/resources/ui/preferences.ui:25
-msgid "Transit Server URL"
-msgstr "URL for mellemvært"
-
-#: data/resources/ui/preferences.ui:34
-msgid "Code Words"
-msgstr "Ord i kode"
-
-#: data/resources/ui/preferences.ui:35
-msgid ""
-"The code word count determines the security of the transfer.\n"
-"\n"
-"A short code is easy to remember but increases the risk of someone else "
-"guessing the code. As a code may only be guessed once, the risk is very "
-"small even with short codes. A length of 4 is very secure."
-msgstr ""
-"Antallet af ord i koden bestemmer hvor sikker, overførslen er.\n"
-"\n"
-"En kort kode er nem at huske, men øger sandsynligheden for, at andre kan "
-"gætte koden. Da en kode kun kan gættes én gang, er risikoen meget lille selv "
-"med korte koder. En længde på fire er meget sikker."
-
-#: data/resources/ui/preferences.ui:40
-msgid "Code Word Count"
-msgstr "Antal ord i kode"
-
-#: data/resources/ui/welcome_window.ui:5
-msgid "Welcome"
-msgstr "Velkommen"
-
-#. Translators: Button
-#: data/resources/ui/welcome_window.ui:23
-msgid "Next"
-msgstr "Næste"
-
-#: data/resources/ui/welcome_window.ui:34
-msgid "Welcome to Warp"
-msgstr "Velkommen til Warp"
-
-#: data/resources/ui/welcome_window.ui:82
-msgid "Introduction"
-msgstr "Introduktion"
-
-#: data/resources/ui/welcome_window.ui:93
-msgid ""
-"Warp makes file transfer simple. To get started, both parties need to "
-"install Warp on their devices.\n"
-"\n"
-"After selecting a file to transmit, the sender needs to tell the receiver "
-"the displayed transmit code. This is preferably done via a secure "
-"communication channel.\n"
-"\n"
-"When the receiver has entered the code, the file transfer can begin.\n"
-"\n"
-"For more information about Warp, open the Help pages from the menu."
-msgstr ""
-"Warp gør filoverførsler nemme. For at komme i gang skal begge parter have "
-"Warp installeret på deres enheder.\n"
-"\n"
-"Efter valg af en fil der skal sendes, skal afsenderen give modtageren den "
-"viste sendekode. Dette skal helst gøres via en sikker kommunikationskanal.\n"
-"\n"
-"Når afsenderen har indtastet koden, kan filoverførslen begynde.\n"
-"\n"
-"Yderligere information om Warp kan findes i hjælpesiderne i menuen."
-
-#. Translators: Big button to finish welcome screen
-#: data/resources/ui/welcome_window.ui:106
-msgid "Get Started Using Warp"
-msgstr "Kom godt i gang med Warp"
-
-#. Translators: menu item
-#: data/resources/ui/window.ui:7
-msgid "_Preferences"
-msgstr "_Indstillinger"
-
-#. Translators: menu item
-#: data/resources/ui/window.ui:12
-msgid "_Keyboard Shortcuts"
-msgstr "_Tastaturgenveje"
-
-#. Translators: menu item
-#: data/resources/ui/window.ui:17
-msgid "_Help"
-msgstr "_Hjælp"
-
-#. Translators: menu item
-#: data/resources/ui/window.ui:22
-msgid "_About Warp"
-msgstr "_Om Warp"
-
-#: data/resources/ui/window.ui:28
-msgid "Select file to send"
-msgstr "Vælg fil, der skal sendes"
-
-#: data/resources/ui/window.ui:30
-msgid "Open"
-msgstr "Åbn"
-
-#: data/resources/ui/window.ui:36
-msgid "Select folder to send"
-msgstr "Vælg mappe, som skal sendes"
-
-#: data/resources/ui/window.ui:38
-msgid "Open Folder"
-msgstr "Åbn mappe"
-
-#. Translators: Notification when code was automatically detected in clipboard and inserted into code entry on receive page
-#: data/resources/ui/window.ui:46
-msgid "Inserted code from clipboard"
-msgstr "Kode indsat fra udklipsholderen"
-
-#. Translators: File receive confirmation message dialog title
-#: data/resources/ui/window.ui:51
-msgid "Abort File Transfer?"
-msgstr "Afbryd filoverførsel?"
-
-#: data/resources/ui/window.ui:52
-msgid "Do you want to abort the current file transfer?"
-msgstr "Vil du afbryde den nuværende filoverførsel?"
-
-#: data/resources/ui/window.ui:58
-msgid "_Continue"
-msgstr "_Fortsæt"
-
-#: data/resources/ui/window.ui:59
-msgid "_Abort"
-msgstr "_Afbryd"
-
-#. Translators: Error dialog title
-#: data/resources/ui/window.ui:64
-msgid "Unable to Open File"
-msgstr "Kan ikke åbne fil"
-
-#: data/resources/ui/window.ui:69
-msgid "_Close"
-msgstr "_Luk"
-
-#: data/resources/ui/window.ui:70
-msgid "_Show in Folder"
-msgstr "_Vis i mappe"
-
-#: data/resources/ui/window.ui:118
-msgid "_Send"
-msgstr "_Send"
-
-#: data/resources/ui/window.ui:130
-msgid "Send File"
-msgstr "Send fil"
-
-#: data/resources/ui/window.ui:131
-msgid "Select or drop the file or directory to send"
-msgstr "Vælg eller slip filen eller mappen, der skal sendes"
-
-#. Translators: Button
-#: data/resources/ui/window.ui:142
-msgid "Select File"
-msgstr "Vælg fil"
-
-#. Translators: Button
-#: data/resources/ui/window.ui:155
-msgid "Select Folder"
-msgstr "Vælg mappe"
-
-#: data/resources/ui/window.ui:174
-msgid "_Receive"
-msgstr "_Modtag"
-
-#. Translators: Button
-#: data/resources/ui/window.ui:183 data/resources/ui/window.ui:216
-msgid "Receive File"
-msgstr "Modtag fil"
-
-#. Translators: Text above code input box, transmit code is a noun
-#: data/resources/ui/window.ui:185
-msgid "Enter the transmit code from the sender"
-msgstr "Indtast afsenderens sendekode"
-
 #. Translators: {0} = file size transferred, {1} = total file size, Example: 17.3MB / 20.5MB
 #: src/gettext/duration.rs:11
 msgctxt "File size transferred"
@@ -433,167 +198,159 @@ msgid "{0} — {1}"
 msgstr "{0} — {1}"
 
 #. Translators: Notification when clicking on "Copy Code to Clipboard" button
-#: src/ui/action_view.rs:226
+#: src/ui/action_view.rs:255
 msgid "Copied Code to Clipboard"
 msgstr "Kode kopieret til udklipsholder"
 
 #. Translators: Notification when clicking on "Copy Link to Clipboard" button
-#: src/ui/action_view.rs:247
+#: src/ui/action_view.rs:276
 msgid "Copied Link to Clipboard"
 msgstr "Link kopieret til udklipsholder"
 
-#: src/ui/action_view.rs:261
+#: src/ui/action_view.rs:290
 msgid "Copied Error to Clipboard"
 msgstr "Fejlmeddelelse kopieret til udklipsholder"
 
-#: src/ui/action_view.rs:263
+#: src/ui/action_view.rs:292
 msgid "No error available"
 msgstr "Ingen fejl tilgængelig"
 
-#. Translators: Title
-#: src/ui/action_view.rs:392
+#: src/ui/action_view.rs:433
 msgid "Creating Archive"
 msgstr "Opretter arkiv"
 
-#: src/ui/action_view.rs:396
+#: src/ui/action_view.rs:437
 msgid "Compressing folder “{}”"
 msgstr "Komprimerer mappen “{}”"
 
 #. Translators: Title
-#: src/ui/action_view.rs:409 src/ui/action_view.rs:454
+#: src/ui/action_view.rs:453 src/ui/action_view.rs:511
 msgid "Connecting"
 msgstr "Forbinder"
 
 #. Translators: Description, Filename
-#: src/ui/action_view.rs:412
+#: src/ui/action_view.rs:456
 msgid "Requesting file transfer"
 msgstr "Anmoder om filoverførsel"
 
-#. Translators: Title, this is a noun
-#: src/ui/action_view.rs:420
-msgid "Your Transmit Code"
-msgstr "Din sendekode"
+#. Translators: Description, argument is filename
+#: src/ui/action_view.rs:477
+msgid "Ready to send “{}”."
+msgstr "Klar til at sende “{}”."
 
-#. Translators: Description, Code in box below, argument is filename
-#: src/ui/action_view.rs:436
+#. Translators: Help dialog line 1, Code words and QR code visible,
+#: src/ui/action_view.rs:482
 msgid ""
-"Ready to send “{}”\n"
-"The receiver needs to enter this code to begin the file transfer."
-msgstr ""
-"Klar til at sende “{}”\n"
-"Modtageren skal indtaste denne kode for at påbegynde filoverførslen."
+"The receiver needs to enter or scan this code to begin the file transfer."
+msgstr "Modtageren skal indtaste eller skanne denne kode for at påbegynde filoverførslen."
 
-#. Translators: Description, Code in box below, argument is filename
-#: src/ui/action_view.rs:442
+#: src/ui/action_view.rs:486
+msgid "The QR code is compatible with the following apps: {}."
+msgstr "QR-koden er kompatibel med følgende programmer: {}."
+
+#: src/ui/action_view.rs:494
 msgid ""
-"Ready to send “{}”\n"
-"The receiver needs to enter this code to begin the file transfer.\n"
-"\n"
 "You have entered a custom rendezvous server URL in preferences. Please "
 "verify the receiver also uses the same rendezvous server."
-msgstr ""
-"Klar til at sende “{}”\n"
-"Modtageren skal indtaste denne kode for at påbegynde filoverførslen.\n"
-"\n"
-"Du har indtastet en brugertilpasset rendezvousserver-URL i indstillingerne. "
-"Kontrollér venligtst, at modtageren bruger samme rendezvousserver."
+msgstr "Du har indtastet en brugertilpasset rendezvousserver-URL i indstillingerne. Kontrollér venligst, at modtageren bruger samme rendezvousserver."
+
+#: src/ui/action_view.rs:499
+msgid "Click the QR code to copy the link to the clipboard."
+msgstr "Klik på QR-koden for at kopiere linket til udklipsholderen."
 
 #. Translators: Description, Transfer Code
-#: src/ui/action_view.rs:457
+#: src/ui/action_view.rs:514
 msgid "Connecting to peer with code “{}”"
 msgstr "Forbinder til modpart med koden “{}”"
 
-#: src/ui/action_view.rs:466
+#: src/ui/action_view.rs:524
 msgid "Connected to Peer"
 msgstr "Forbundet til modpart"
 
 #. Translators: Description
-#: src/ui/action_view.rs:477
+#: src/ui/action_view.rs:533
 msgid "Preparing to send file"
 msgstr "Forbereder afsendelse af fil"
 
 #. Translators: Description
-#: src/ui/action_view.rs:483
+#: src/ui/action_view.rs:540
 msgid "Preparing to receive file"
 msgstr "Forbereder modtagelse af fil"
 
-#: src/ui/action_view.rs:495
-msgid "Accept File Transfer?"
-msgstr "Acceptér filoverførsel?"
-
 #. Translators: File receive confirmation message dialog; Filename, File size
-#: src/ui/action_view.rs:498
+#: src/ui/action_view.rs:553
 msgid ""
 "Your peer wants to send you “{0}” (Size: {1}).\n"
-"Do you want to download this file to your Downloads folder?"
+"Do you want to download this file? The default action will save the file to "
+"your Downloads folder."
 msgstr ""
 "Din modpart ønsker at sende dig “{0}” (størrelse: {1}).\n"
-"Vil du gemme denne fil i din Hentet-mappe?"
+"Vil du hente denne fil? Som standard gemmes den i din Hentet-mappe."
 
-#: src/ui/action_view.rs:503
+#: src/ui/action_view.rs:558
 msgid "Ready to Receive File"
 msgstr "Klar til at modtage fil"
 
-#: src/ui/action_view.rs:505
+#: src/ui/action_view.rs:560
 msgid ""
 "A file is ready to be transferred. The transfer needs to be acknowledged."
 msgstr "En fil er klar til at blive overført. Overførslen skal anerkendes."
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:534
+#: src/ui/action_view.rs:588
 msgid "File “{}” via local network direct transfer"
 msgstr "Filen “{}” via direkte overførsel på lokalt netværk"
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:537
+#: src/ui/action_view.rs:591
 msgid "File “{}” via direct transfer"
 msgstr "Filen “{}” via direkte overførsel"
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:543
+#: src/ui/action_view.rs:597
 msgid "File “{0}” via relay {1}"
 msgstr "Filen “{0}” via mellemvært {1}"
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:546
+#: src/ui/action_view.rs:600
 msgid "File “{}” via relay"
 msgstr "Filen “{}” via mellemvært"
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:550
+#: src/ui/action_view.rs:604
 msgid "File “{}” via Unknown connection method"
 msgstr "Filen “{}” via ukendt forbindelsesmetode"
 
-#. Translators: Title
-#: src/ui/action_view.rs:569
-msgid "File Transfer Successful"
-msgstr "Filoverførsel fuldført"
-
 #. Translators: Description, Filename
-#: src/ui/action_view.rs:586
+#: src/ui/action_view.rs:634
 msgid "Successfully sent file “{}”"
 msgstr "Filen “{}” blev sendt"
 
-#. Translators: Description, Filename
-#: src/ui/action_view.rs:595
+#. Translators: Filename
+#: src/ui/action_view.rs:652
+msgid "File has been saved to the selected folder as “{}”"
+msgstr "Filen er blevet gemt i den valgte mappe som “{}”"
+
+#. Translators: Filename
+#: src/ui/action_view.rs:659
 msgid "File has been saved to the Downloads folder as “{}”"
 msgstr "Filen er blevet gemt i mappen Hentet som “{}”"
 
 #. Translators: Title
-#: src/ui/action_view.rs:618 src/ui/action_view.rs:631
+#: src/ui/action_view.rs:686 src/ui/action_view.ui:274
 msgid "File Transfer Failed"
 msgstr "Filoverførsel mislykkedes"
 
-#: src/ui/action_view.rs:633
+#: src/ui/action_view.rs:688
 msgid "The file transfer failed: {}"
 msgstr "Filoverførslen mislykkedes: {}"
 
 #. Translators: When opening a file
-#: src/ui/action_view.rs:748
+#: src/ui/action_view.rs:808
 msgid "Specified file / directory does not exist"
 msgstr "Den angivne fil eller mappe findes ikke"
 
-#: src/ui/action_view.rs:765
+#: src/ui/action_view.rs:826
 msgid ""
 "Error parsing rendezvous server URL. An invalid URL was entered in the "
 "settings."
@@ -601,21 +358,98 @@ msgstr ""
 "Fejl ved fortolkning af URL til rendezvousserver. Der er indtastet en "
 "ugyldig URL i indstillingerne."
 
-#: src/ui/action_view.rs:775
+#: src/ui/action_view.rs:833
 msgid "Error parsing transit URL. An invalid URL was entered in the settings."
 msgstr ""
 "Fejl ved fortolkning af mellemværts-URL. Der er indtastet en ugyldig URL i "
 "indstillingerne."
 
-#: src/ui/action_view.rs:1188
-msgid "Downloads dir missing. Please set XDG_DOWNLOAD_DIR"
-msgstr "Mappen Hentet findes ikke. Angiv venligst XDG_DOWNLOAD_DIR"
+#: src/ui/action_view.rs:920
+msgid "Invalid path selected: {}"
+msgstr "Ugyldig sti valgt: {}"
 
-#: src/ui/application.rs:63
+#. Translators: Above progress bar for creating an archive to send as a folder
+#: src/ui/action_view.rs:1165
+msgid "{} File - Size: {}"
+msgid_plural "{} Files - Size: {}"
+msgstr[0] "{} File — Størrelse: {}"
+msgstr[1] "{} Filer — Størrelse: {}"
+
+#: src/ui/action_view.ui:4
+msgid "Save As"
+msgstr "Gem som"
+
+#. Translators: Button; Transmit Link is a noun
+#: src/ui/action_view.ui:94
+msgid "Copy Transmit Link"
+msgstr "Kopiér sendelink"
+
+#: src/ui/action_view.ui:119
+msgid "Your Transmit Code"
+msgstr "Din sendekode"
+
+#. Translators: Button; Transmit Code is a noun
+#: src/ui/action_view.ui:167
+msgid "Copy Transmit Code"
+msgstr "Kopiér sendekode"
+
+#. Translators: Title
+#: src/ui/action_view.ui:184
+msgid "Accept File Transfer?"
+msgstr "Acceptér filoverførsel?"
+
+#: src/ui/action_view.ui:193
+msgid "Save to Downloads Folder"
+msgstr "Gem til mappen Hentet"
+
+#. Translators: Button
+#: src/ui/action_view.ui:195
+msgid "_Accept"
+msgstr "_Acceptér"
+
+#. Translators: Button
+#: src/ui/action_view.ui:209
+msgid "Sa_ve As…"
+msgstr "Gem _som …"
+
+#. Translators: Title
+#: src/ui/action_view.ui:229
+msgid "File Transfer Successful"
+msgstr "Filoverførsel fuldført"
+
+#. Translators: Button
+#: src/ui/action_view.ui:238
+msgid "_Open File"
+msgstr "_Åbn fil"
+
+#. Translators: Button
+#: src/ui/action_view.ui:253 src/ui/window.ui:57
+msgid "_Show in Folder"
+msgstr "_Vis i mappe"
+
+#. Translators: Button
+#: src/ui/action_view.ui:279
+msgid "Co_py Error Message"
+msgstr "Ko_piér fejlmeddelelse"
+
+#. Translators: Button
+#: src/ui/action_view.ui:295
+msgid "_Cancel"
+msgstr "_Annullér"
+
+#: src/ui/application.rs:62
 msgid "Unable to use transfer link: another transfer already in progress"
 msgstr "Kan ikke bruge overførselslink: en anden overførsel er allerede i gang"
 
-#: src/ui/application.rs:218
+#: src/ui/application.rs:226
+msgid "Tobias Bernard"
+msgstr "Tobias Bernard"
+
+#: src/ui/application.rs:226
+msgid "Sophie Herold"
+msgstr "Sophie Herold"
+
+#: src/ui/application.rs:227
 msgid "translator-credits"
 msgstr ""
 "Ask Hjorth Larsen\n"
@@ -624,23 +458,19 @@ msgstr ""
 "Websted http://dansk-gruppen.dk\n"
 "E-mail <dansk@dansk-gruppen.dk>"
 
-#: src/ui/application.rs:221
-msgid "Tobias Bernard"
-msgstr "Tobias Bernard"
-
-#: src/ui/application.rs:221
-msgid "Sophie Herold"
-msgstr "Sophie Herold"
-
-#: src/ui/application.rs:239
+#: src/ui/application.rs:244
 msgid "Sending a File"
 msgstr "Sender en fil"
 
-#: src/ui/application.rs:240
+#: src/ui/application.rs:245
 msgid "Receiving a File"
 msgstr "Modtager en fil"
 
-#: src/ui/preferences.rs:131
+#: src/ui/fs.rs:24
+msgid "Downloads dir missing. Please set XDG_DOWNLOAD_DIR"
+msgstr "Mappen Hentet findes ikke. Angiv venligst XDG_DOWNLOAD_DIR"
+
+#: src/ui/preferences.rs:96
 msgid ""
 "Changing the rendezvous server URL needs to be done on both sides of the "
 "transfer. Only enter a server URL you can trust.\n"
@@ -649,11 +479,97 @@ msgid ""
 "Rendezvous Server: “{0}”\n"
 "Transit Server: “{1}”"
 msgstr ""
-"Ændring af rendezvousserverens URL skal gøres både hos dig og din modpart. Indtast kun URL på en server, du stoler på.\n"
+"Ændring af rendezvousserverens URL skal gøres både hos dig og din modpart. "
+"Indtast kun URL på en server, du stoler på.\n"
 "\n"
 "Hvis disse indstillinger udelades, bruges programmets standardværdier.\n"
 "Rendezvousserver: “{0}”\n"
 "Mellemvært: “{1}”"
+
+#: src/ui/preferences.ui:6
+msgid "Preferences"
+msgstr "Indstillinger"
+
+#: src/ui/preferences.ui:11
+msgid "Network"
+msgstr "Netværk"
+
+#: src/ui/preferences.ui:15
+msgid "Code Words"
+msgstr "Ord i kode"
+
+#: src/ui/preferences.ui:16
+msgid ""
+"The code word count determines the security of the transfer.\n"
+"\n"
+"A short code is easy to remember but increases the risk of someone else "
+"guessing the code. As a code may only be guessed once, the risk is very "
+"small even with short codes. A length of 4 is very secure."
+msgstr ""
+"Antallet af ord i koden bestemmer hvor sikker, overførslen er.\n"
+"\n"
+"En kort kode er nem at huske, men øger sandsynligheden for, at andre kan "
+"gætte koden. Da en kode kun kan gættes én gang, er risikoen meget lille selv "
+"med korte koder. En længde på fire er meget sikker."
+
+#: src/ui/preferences.ui:21
+msgid "Code Word Count"
+msgstr "Antal ord i kode"
+
+#: src/ui/preferences.ui:34
+msgid "Server URLs"
+msgstr "Server-URL'er"
+
+#: src/ui/preferences.ui:37
+msgid "Rendezvous Server URL"
+msgstr "URL for rendezvousserver"
+
+#: src/ui/preferences.ui:44
+msgid "Transit Server URL"
+msgstr "URL for mellemvært"
+
+#: src/ui/welcome_window.ui:13
+msgid "Welcome"
+msgstr "Velkommen"
+
+#: src/ui/welcome_window.ui:26
+msgid "Welcome to Warp"
+msgstr "Velkommen til Warp"
+
+#. Translators: Button
+#: src/ui/welcome_window.ui:34
+msgid "Next"
+msgstr "Næste"
+
+#: src/ui/welcome_window.ui:82
+msgid "Introduction"
+msgstr "Introduktion"
+
+#: src/ui/welcome_window.ui:93
+msgid ""
+"Warp makes file transfer simple. To get started, both parties need to "
+"install Warp on their devices.\n"
+"\n"
+"After selecting a file to transmit, the sender needs to tell the receiver "
+"the displayed transmit code. This is preferably done via a secure "
+"communication channel.\n"
+"\n"
+"When the receiver has entered the code, the file transfer can begin.\n"
+"\n"
+"For more information about Warp, open the Help section from the Main Menu."
+msgstr ""
+"Warp gør filoverførsler nemme. For at komme i gang skal begge parter have Warp installeret på deres enheder.\n"
+"\n"
+"Efter valg af en fil, der skal sendes, skal afsenderen give modtageren den viste sendekode. Dette skal helst gøres via en sikker kommunikationskanal.\n"
+"\n"
+"Når afsenderen har indtastet koden, kan filoverførslen begynde.\n"
+"\n"
+"Yderligere information om Warp kan findes i hjælpeafsnittet i hovedmenuen."
+
+#. Translators: Big button to finish welcome screen
+#: src/ui/welcome_window.ui:106
+msgid "Get Started Using Warp"
+msgstr "Kom godt i gang med Warp"
 
 #: src/ui/window.rs:103
 msgid ""
@@ -664,56 +580,159 @@ msgstr ""
 "standardkonfigurationen.\n"
 "Fejl: {1}"
 
-#: src/ui/window.rs:234
+#: src/ui/window.rs:210
 msgid "Error saving configuration file: {}"
 msgstr "Fejl ved forsøg på at gemme konfigurationsfil: {}"
 
-#: src/ui/window.rs:345
+#: src/ui/window.rs:301
+msgid "Select File to Send"
+msgstr "Vælg fil, som skal sendes"
+
+#: src/ui/window.rs:309
+msgid "Select Folder to Send"
+msgstr "Vælg mappe, som skal sendes"
+
+#: src/ui/window.rs:360
 msgid "“{}” appears to be an invalid Transmit Code. Please try again."
 msgstr "“{}” synes at være en ugyldig sendekode. Prøv venligst igen."
 
-#: src/ui/window.rs:467
+#: src/ui/window.rs:471
 msgid "Sending files with a preconfigured code is not yet supported"
 msgstr ""
 "Overførsel af filer med prækonfigureret kode er endnu ikke understøttet"
 
-#: src/util.rs:27
+#. Translators: menu item
+#: src/ui/window.ui:7
+msgid "_Preferences"
+msgstr "_Indstillinger"
+
+#. Translators: menu item
+#: src/ui/window.ui:12
+msgid "_Keyboard Shortcuts"
+msgstr "_Tastaturgenveje"
+
+#. Translators: menu item
+#: src/ui/window.ui:17
+msgid "_Help"
+msgstr "_Hjælp"
+
+#. Translators: menu item
+#: src/ui/window.ui:22
+msgid "_About Warp"
+msgstr "_Om Warp"
+
+#. Translators: Notification when code was automatically detected in clipboard and inserted into code entry on receive page
+#: src/ui/window.ui:33
+msgid "Inserted code from clipboard"
+msgstr "Kode indsat fra udklipsholderen"
+
+#. Translators: File receive confirmation message dialog title
+#: src/ui/window.ui:38
+msgid "Abort File Transfer?"
+msgstr "Afbryd filoverførsel?"
+
+#: src/ui/window.ui:39
+msgid "Do you want to abort the current file transfer?"
+msgstr "Vil du afbryde den nuværende filoverførsel?"
+
+#: src/ui/window.ui:45
+msgid "_Continue"
+msgstr "_Fortsæt"
+
+#: src/ui/window.ui:46
+msgid "_Abort"
+msgstr "_Afbryd"
+
+#. Translators: Error dialog title
+#: src/ui/window.ui:51
+msgid "Unable to Open File"
+msgstr "Kan ikke åbne fil"
+
+#: src/ui/window.ui:56 src/util/error.rs:176
+msgid "_Close"
+msgstr "_Luk"
+
+#: src/ui/window.ui:97
+msgid "Main Menu"
+msgstr "Hovedmenu"
+
+#: src/ui/window.ui:116
+msgid "_Send"
+msgstr "_Send"
+
+#: src/ui/window.ui:128
+msgid "Send File"
+msgstr "Send fil"
+
+#: src/ui/window.ui:129
+msgid "Select or drop the file or directory to send"
+msgstr "Vælg eller slip filen eller mappen, der skal sendes"
+
+#. Translators: Button
+#: src/ui/window.ui:140
+msgid "Select _File…"
+msgstr "Vælg _fil …"
+
+#. Translators: Button
+#: src/ui/window.ui:154
+msgid "Select F_older…"
+msgstr "Vælg _mappe …"
+
+#: src/ui/window.ui:174
+msgid "_Receive"
+msgstr "_Modtag"
+
+#: src/ui/window.ui:183
+msgid "Receive File"
+msgstr "Modtag fil"
+
+#. Translators: Text above code input box, transmit code is a noun
+#: src/ui/window.ui:185
+msgid "Enter the transmit code from the sender"
+msgstr "Indtast afsenderens sendekode"
+
+#. Translators: Button
+#: src/ui/window.ui:219
+msgid "Receive _File"
+msgstr "Modtag _fil"
+
+#: src/util.rs:32 src/util.rs:51
 msgid "Failed to open downloads folder."
 msgstr "Kunne ikke åbne downloadmappen."
 
-#: src/util.rs:167 src/util.rs:240
+#: src/util.rs:193 src/util.rs:266
 msgid "The URI format is invalid"
 msgstr "URI-formatet er ugyldigt"
 
-#: src/util.rs:171 src/util.rs:175
+#: src/util.rs:197 src/util.rs:201
 msgid "The code does not match the required format"
 msgstr "Koden har ikke det påkrævede format"
 
-#: src/util.rs:190 src/util.rs:196
+#: src/util.rs:216 src/util.rs:222
 msgid "Unknown URI version: {}"
 msgstr "Ukendt URI-version: {}"
 
-#: src/util.rs:205
+#: src/util.rs:231
 msgid "The URI parameter “rendezvous” contains an invalid URL: “{}”"
 msgstr "URI-parameteren “rendezvous” indeholder en ugyldig URL: “{}”"
 
-#: src/util.rs:217
+#: src/util.rs:243
 msgid "The URI parameter “role” must be “follower” or “leader” (was: “{}”)"
 msgstr "URI-parameteren “role” skal være “follower” eller “leader” (var: “{}”)"
 
-#: src/util.rs:224
+#: src/util.rs:250
 msgid "Unknown URI parameter “{}”"
 msgstr "Ukendt URI-parameter “{}”"
 
-#: src/util/error.rs:154
+#: src/util/error.rs:157
 msgid "An error occurred"
 msgstr "Der opstod en fejl"
 
-#: src/util/error.rs:184 src/util/error.rs:249
+#: src/util/error.rs:187 src/util/error.rs:252
 msgid "Corrupt or unexpected message received"
 msgstr "Beskadiget eller uventet meddelelse modtaget"
 
-#: src/util/error.rs:189
+#: src/util/error.rs:192
 msgid ""
 "The rendezvous server will not allow further connections for this code. A "
 "new code needs to be generated."
@@ -721,7 +740,7 @@ msgstr ""
 "Rendezvousserveren vil ikke tillade flere forbindelser med denne kode. Der "
 "skal genereres en ny kode."
 
-#: src/util/error.rs:191
+#: src/util/error.rs:194
 msgid ""
 "The rendezvous server removed the code due to inactivity. A new code needs "
 "to be generated."
@@ -729,11 +748,11 @@ msgstr ""
 "Rendezvousserveren fjernede koden på grund af inaktivitet. Der skal "
 "genereres en ny kode."
 
-#: src/util/error.rs:193
+#: src/util/error.rs:196
 msgid "The rendezvous server responded with an unknown message: {}"
 msgstr "Rendezvousserveren svarede med ukendt meddelelse: {}"
 
-#: src/util/error.rs:196
+#: src/util/error.rs:199
 msgid ""
 "Error connecting to the rendezvous server.\n"
 "You have entered a custom rendezvous server URL in preferences. Please "
@@ -744,7 +763,7 @@ msgstr ""
 "indstillingerne. Kontrollér venligst, at URL'en er korrekt, og at serveren "
 "fungerer."
 
-#: src/util/error.rs:198
+#: src/util/error.rs:201
 msgid ""
 "Error connecting to the rendezvous server.\n"
 "Please try again later / verify you are connected to the internet."
@@ -753,7 +772,7 @@ msgstr ""
 "Prøv venligst igen senere eller kontrollér, at du har forbindelse til "
 "internettet."
 
-#: src/util/error.rs:202
+#: src/util/error.rs:205
 msgid ""
 "Encryption key confirmation failed. If you or your peer didn't mistype the "
 "code, this is a sign of an attacker guessing passwords. Please try again "
@@ -763,32 +782,31 @@ msgstr ""
 "indtastede koden forkert, angiver dette, at en angriber forsøger at gætte "
 "adgangskoder. Prøv venligst igen senere."
 
-#: src/util/error.rs:204
+#: src/util/error.rs:207
 msgid "Cannot decrypt a received message"
 msgstr "Kan ikke dekryptere en modtaget meddelelse"
 
-#: src/util/error.rs:205 src/util/error.rs:260 src/util/error.rs:266
-#: src/util/error.rs:269
+#: src/util/error.rs:208 src/util/error.rs:263 src/util/error.rs:269
 msgid "An unknown error occurred"
 msgstr "Der opstod en ukendt fejl"
 
-#: src/util/error.rs:211
+#: src/util/error.rs:214
 msgid "File / Directory not found"
 msgstr "Fil/mappe ikke fundet"
 
-#: src/util/error.rs:212
+#: src/util/error.rs:215
 msgid "Permission denied"
 msgstr "Tilladelse nægtet"
 
-#: src/util/error.rs:224
+#: src/util/error.rs:227
 msgid "Transfer was not acknowledged by peer"
 msgstr "Overførslen blev ikke anerkendt af modpart"
 
-#: src/util/error.rs:226
+#: src/util/error.rs:229
 msgid "The received file is corrupted"
 msgstr "Den modtagne fil er beskadiget"
 
-#: src/util/error.rs:232
+#: src/util/error.rs:235
 msgid ""
 "The file contained a different amount of bytes than advertised! Sent {} "
 "bytes, but should have been {}"
@@ -796,25 +814,29 @@ msgstr ""
 "Filen indeholdt et andet antal byte end erklæret! {} byte sendt, men der "
 "skulle have været {}"
 
-#: src/util/error.rs:237
+#: src/util/error.rs:240
 msgid "The other side has cancelled the transfer"
 msgstr "Modparten har annulleret overførslen"
 
-#: src/util/error.rs:239
+#: src/util/error.rs:242
 msgid "The other side has rejected the transfer"
 msgstr "Modparten har afvist overførslen"
 
-#: src/util/error.rs:241
+#: src/util/error.rs:244
 msgid "Something went wrong on the other side: {}"
 msgstr "Der gik noget galt hos modparten: {}"
 
-#: src/util/error.rs:256
+#: src/util/error.rs:259
 msgid "Error while establishing file transfer connection"
 msgstr "Fejl ved etablering af forbindelse til filoverførsel"
 
-#: src/util/error.rs:258
+#: src/util/error.rs:261
 msgid "Unknown file transfer error"
 msgstr "Ukendt filoverførselsfejl"
+
+#: src/util/error.rs:270
+msgid "An unknown error occurred while creating a zip file: {}"
+msgstr "Der opstod en ukendt fejl ved oprettelse af zipfil: {}"
 
 #: src/util/error.rs:271
 msgid ""
@@ -822,6 +844,21 @@ msgid ""
 msgstr ""
 "Der opstod en uventet fejl. Rapportér venligst dette til udviklerne "
 "inklusive fejlmeddelelse."
+
+#~ msgid "Back"
+#~ msgstr "Tilbage"
+
+#~ msgid "Show in Folder"
+#~ msgstr "Vis i mappe"
+
+#~ msgid "Copy a detailed message for reporting an issue"
+#~ msgstr "Kopiér en detaljeret besked for at indrapportere et problem"
+
+#~ msgid "Open"
+#~ msgstr "Åbn"
+
+#~ msgid "Open Folder"
+#~ msgstr "Åbn mappe"
 
 #~ msgid "Select the file or directory to send"
 #~ msgstr "Vælg filen eller mappen, der skal sendes"
