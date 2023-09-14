@@ -25,12 +25,12 @@ homepage = run_command(
 ).stdout()
 issuetracker = run_command(
     find_program(meson.global_source_root() / 'build-aux/meson-cargo-manifest.py'),
-    'package.metadata.urls', 'issuetracker',
+    'package', 'metadata', 'urls', 'issuetracker',
     check: true
 ).stdout()
 contact = run_command(
     find_program(meson.global_source_root() / 'build-aux/meson-cargo-manifest.py'),
-    'package.metadata.urls', 'contact',
+    'package', 'metadata', 'urls', 'contact',
     check: true
 ).stdout()
 

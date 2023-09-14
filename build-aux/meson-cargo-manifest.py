@@ -1,8 +1,10 @@
 #!/usr/bin/python3
 
-import configparser
+import tomllib
 import sys
 
-config = configparser.ConfigParser()
-config.read('Cargo.toml')
-print(config.get(sys.argv[1], sys.argv[2]).strip('"'), end='')
+with open('Cargo.toml', 'rb') as f:
+    toml = tomllib.load(f)
+    for arg in sys.argv[1:]:
+        toml = toml[arg]
+    print(toml, end='')
