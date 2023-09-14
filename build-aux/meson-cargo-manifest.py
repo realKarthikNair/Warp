@@ -1,6 +1,9 @@
 #!/usr/bin/python3
 
-import tomllib
+try:
+    import tomllib
+except ImportError:
+    from pip._vendor import tomli as tomllib
 import sys
 
 with open('Cargo.toml', 'rb') as f:
