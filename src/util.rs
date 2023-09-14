@@ -2,6 +2,7 @@ use crate::error::{AppError, UiError};
 use crate::gettext::gettextf;
 use crate::globals;
 use crate::globals::{TRANSMIT_CODE_FIND_REGEX, TRANSMIT_URI_FIND_REGEX};
+use crate::ui::application::WarpApplication;
 use gettextrs::gettext;
 use gio::prelude::*;
 use std::ffi::OsString;
@@ -11,11 +12,11 @@ pub mod error;
 pub mod future;
 pub mod zip;
 
-pub fn show_dir(path: &std::path::Path) -> Result<(), AppError> {
+pub async fn show_dir(path: &std::path::Path) -> Result<(), AppError> {
     if cfg!(windows) {
         show_dir_windows(path)
     } else {
-        show_dir_dbus(path)
+        show_dir_dbus(path).await
     }
 }
 
@@ -33,22 +34,26 @@ fn show_dir_windows(path: &std::path::Path) -> Result<(), AppError> {
     Ok(())
 }
 
-/// From [Pika Backup](https://gitlab.gnome.org/World/pika-backup/-/blob/main/src/ui/page_archives/display.rs#L63)
-fn show_dir_dbus(path: &std::path::Path) -> Result<(), AppError> {
-    let uri = gio::File::for_path(path).uri();
+async fn show_dir_dbus(path: &std::path::Path) -> Result<(), AppError> {
+    let err_msg = gettext("Failed to open downloads folder.");
 
-    let show_folder = || -> Result<(), _> {
-        let conn = zbus::blocking::Connection::session()?;
-        let proxy = zbus::blocking::Proxy::new(
-            &conn,
-            "org.freedesktop.FileManager1",
-            "/org/freedesktop/FileManager1",
-            "org.freedesktop.FileManager1",
-        )?;
-        proxy.call("ShowItems", &(vec![uri.as_str()], ""))
-    };
+    let file = gio::File::for_path(path);
+    let window = WarpApplication::default().main_window();
 
-    show_folder().map_err(|_| UiError::new(&gettext("Failed to open downloads folder.")))?;
+    if smol::fs::metadata(path).await?.is_dir() {
+        // If this is a directory, we can open it with `FileLauncher::launch`, as the default file handler for
+        // directories is the file browser itself.
+        // If we'd use "OpenDirectory" instead, it would open the parent and pre-select the dir, not show the dir itself
+        gtk::FileLauncher::new(Some(&file))
+            .launch_future(Some(&window))
+            .await
+    } else {
+        // If this is a file we want to be displaying, open the containing folder in file browser, and pre-select the file
+        gtk::FileLauncher::new(Some(&file))
+            .open_containing_folder_future(Some(&window))
+            .await
+    }
+    .map_err(|_| UiError::new(&err_msg))?;
 
     Ok(())
 }

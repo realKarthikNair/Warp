@@ -1,5 +1,5 @@
 ---
-app-id: app.drey.Warp
+id: app.drey.Warp
 runtime: org.gnome.Platform
 runtime-version: '44'
 sdk: org.gnome.Sdk
@@ -23,8 +23,6 @@ finish-args:
   - --filesystem=xdg-download
   # Inhibit shutdown and sleep
   - --system-talk-name=org.freedesktop.login1
-  # Open folder in filebrowser
-  - --talk-name=org.freedesktop.FileManager1
 modules:
   - name: warp
     buildsystem: meson

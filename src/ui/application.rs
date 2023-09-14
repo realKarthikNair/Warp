@@ -1,6 +1,7 @@
 use crate::globals;
 use crate::ui::preferences::WarpPreferencesWindow;
 use crate::ui::window::WarpApplicationWindow;
+use crate::util::future::main_async_local;
 use crate::util::{show_dir, TransferDirection};
 use adw::prelude::*;
 use adw::subclass::prelude::*;
@@ -196,12 +197,11 @@ impl WarpApplication {
             if let Some(data) = data {
                 let path = PathBuf::from_variant(data);
                 if let Some(filename) = path {
-                    if let Err(err) = show_dir(&filename) {
-                        log::error!("Error when showing directory: {}", err);
-                    }
+                    main_async_local(crate::util::error::AppError::handle, async move {show_dir(&filename).await});
                 }
             }
         }));
+
         self.add_action(&action_show_file);
     }
 

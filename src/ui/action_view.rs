@@ -330,7 +330,7 @@ mod imp {
                         let answer = dialog.choose_future().await;
 
                         if answer == "show-in-folder" {
-                            if let Err(err) = show_dir(&filename) {
+                            if let Err(err) = show_dir(&filename).await {
                                 log::error!("Error showing directory: {}", err);
                                 err.handle();
                             }
@@ -345,14 +345,14 @@ mod imp {
         }
 
         #[template_callback]
-        fn open_dir_button_clicked(&self) {
-            if let Some(filename) = self
+        async fn open_dir_button_clicked(&self) {
+            let filename = self
                 .context
                 .borrow_mut()
                 .file_path_received_successfully
-                .clone()
-            {
-                if let Err(err) = show_dir(&filename) {
+                .clone();
+            if let Some(filename) = filename {
+                if let Err(err) = show_dir(&filename).await {
                     err.handle();
                 }
             };

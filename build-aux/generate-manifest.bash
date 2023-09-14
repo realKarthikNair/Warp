@@ -6,7 +6,7 @@ set -e
 builtin type -P yq &> /dev/null || (echo "yq not found, skipping manifest generation"; exit 0)
 
 yq -o json '
-.["app-id"] += ".Devel" |
+.["id"] += ".Devel" |
 .["finish-args"] += ["--env=RUST_LOG=warp=debug", "--env=G_MESSAGES_DEBUG=none", "--env=RUST_BACKTRACE=1"] |
 .["runtime-version"] = "master" |
 .modules[] |= (
