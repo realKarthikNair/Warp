@@ -8,14 +8,6 @@ use std::ffi::{OsStr, OsString};
 use std::future::Future;
 use std::path::{Path, PathBuf};
 
-use super::application::WarpApplication;
-
-pub fn is_portal_path(path: &Path) -> bool {
-    WarpApplication::is_flatpak()
-        && path.starts_with("/run/user")
-        && path.iter().nth(4) == Some(OsStr::new("doc"))
-}
-
 pub fn default_download_dir() -> Result<PathBuf, AppError> {
     if let Some(downloads) = glib::user_special_dir(glib::UserDirectory::Downloads) {
         Ok(downloads)

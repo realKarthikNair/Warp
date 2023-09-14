@@ -666,8 +666,7 @@ impl ActionView {
                     notification.set_body(Some(&description));
 
                     imp.open_button.set_visible(true);
-                    imp.open_dir_button
-                        .set_visible(!super::fs::is_portal_path(&path));
+                    imp.open_dir_button.set_visible(true);
                     notification.set_default_action_and_target_value(
                         "app.show-file",
                         Some(&path.to_variant()),
