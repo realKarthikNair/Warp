@@ -41,6 +41,7 @@ Creating a release:
 - Run `build-aux/generate-manifest.bash`
 - Update `data/app.drey.Warp.metainfo.xml.in.in`
   - Add/Update release section with current date, version and release notes
+  - Update screenshots
 - Update flathub repo and create PR
 - Test flathub build
 - Merge flathub PR
