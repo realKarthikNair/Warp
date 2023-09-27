@@ -405,6 +405,12 @@ impl ActionView {
         self.window()
             .navigation_page_action_view()
             .set_can_pop(can_pop);
+
+        if can_pop {
+            self.remove_css_class("cancel-button-visible");
+        } else {
+            self.add_css_class("cancel-button-visible");
+        }
     }
 
     fn update_ui(&self) {

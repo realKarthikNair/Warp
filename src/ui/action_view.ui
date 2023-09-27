@@ -17,6 +17,9 @@
     </child>
   </object>
   <template class="ActionView" parent="AdwBin">
+    <style>
+      <class name="action-view" />
+    </style>
     <property name="child">
       <object class="AdwToolbarView">
         <child type="top">

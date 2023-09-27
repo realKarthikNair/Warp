@@ -49,7 +49,7 @@ statuspage entry.card > image:last-child,
   margin-left: 12px;
 }
 
-.cancel-page viewport {
+.action-view.cancel-button-visible .cancel-page viewport {
   /* 24 px margin bottom of button + 44 px button height - 36px status page margin */
   padding-bottom: 68px;
 }
