@@ -242,6 +242,7 @@
             </child>
             <child>
               <object class="AdwNavigationPage" id="page_action_view">
+                <property name="title" translatable="yes">File Transfer</property>
                 <property name="child">
                   <object class="ActionView" id="action_view"/>
                 </property>
