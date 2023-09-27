@@ -547,6 +547,7 @@ impl ActionView {
                 imp.stack
                     .set_visible_child(&*imp.status_page_ask_confirmation);
                 self.show_progress_indeterminate(false);
+                self.set_can_pop(true);
 
                 imp.status_page_ask_confirmation.set_description(Some(&gettextf(
                     // Translators: File receive confirmation message dialog; Filename, File size
@@ -568,6 +569,7 @@ impl ActionView {
                 imp.stack.set_visible_child(&*imp.status_page_progress);
                 self.show_progress_indeterminate(false);
                 imp.progress_bar.set_show_text(true);
+                self.set_can_pop(false);
 
                 let mut ip = peer_addr.ip();
                 // We convert ipv4 mapped ipv6 addresses because the gio code can't tell if they are

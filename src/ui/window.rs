@@ -277,7 +277,7 @@ impl WarpApplicationWindow {
     }
 
     #[template_callback]
-    fn navigation_view_visible_page_notify(&self) {
+    async fn navigation_view_visible_page_notify(&self) {
         if let Some(page) = self.imp().navigation_view.visible_page() {
             if page != *self.imp().page_action_view {
                 let imp = self.imp();
@@ -285,6 +285,9 @@ impl WarpApplicationWindow {
                 imp.code_entry.set_text("");
                 self.app().uninhibit_transfer();
                 self.add_code_from_clipboard();
+                if imp.action_view.transfer_in_progress() {
+                    imp.action_view.cancel().await;
+                }
             }
         }
     }
