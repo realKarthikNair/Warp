@@ -39,14 +39,10 @@
     </screenshot>
     <screenshot>
       <image>https://gitlab.gnome.org/World/warp/raw/main/data/screenshots/screenshot4.png</image>
-      <caption>Sending File</caption>
+      <caption>Receiving File</caption>
     </screenshot>
     <screenshot type="default">
       <image>https://gitlab.gnome.org/World/warp/raw/main/data/screenshots/screenshot5.png</image>
-      <caption>Receiving File</caption>
-    </screenshot>
-    <screenshot>
-      <image>https://gitlab.gnome.org/World/warp/raw/main/data/screenshots/screenshot6.png</image>
       <caption>File Transfer Complete</caption>
     </screenshot>
   </screenshots>
