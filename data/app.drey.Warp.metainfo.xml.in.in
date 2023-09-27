@@ -62,9 +62,9 @@
   </custom>
   <content_rating type="oars-1.0" />
   <releases>
-    <release version="0.6.0-beta.1" date="2023-09-14">
+    <release version="0.6.0" date="2023-09-29">
       <description>
-        <p>This beta release contains the following changes</p>
+        <p>New release:</p>
         <ul>
           <li>Redesign code view with new QR code design</li>
           <li>Use new GNOME 45 design</li>
