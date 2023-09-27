@@ -218,7 +218,7 @@ impl WarpApplication {
 
     fn show_about_dialog(&self) {
         let dialog = adw::AboutWindow::from_appdata(
-            &format!("app/drey/Warp/{}.metainfo.xml", globals::APP_ID),
+            &format!("app/drey/Warp/metainfo.xml"),
             Some(globals::VERSION),
         );
 
