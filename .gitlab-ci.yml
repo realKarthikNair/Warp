@@ -6,7 +6,8 @@ stages:
 variables:
   MANIFEST_PATH: "build-aux/app.drey.Warp.Devel.json"
   FLATPAK_MODULE: "warp"
-  RUNTIME: "master"
+  RUNTIME: "45"
+  WINDOWS_RUNTIME: "45"
 
 flatpak:
   image: 'quay.io/gnome_infrastructure/gnome-runtime-images:gnome-$RUNTIME'
@@ -78,7 +79,7 @@ pages:
 #    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
 
 windows:
-  image: 'ghcr.io/felinira/gtk4-cross-win:gtk-nightly'
+  image: 'ghcr.io/felinira/gtk4-cross-win:gnome-$WINDOWS_RUNTIME'
   stage: test
   allow_failure: true
   variables:

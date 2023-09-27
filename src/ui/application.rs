@@ -218,7 +218,7 @@ impl WarpApplication {
 
     fn show_about_dialog(&self) {
         let dialog =
-            adw::AboutWindow::from_appdata(&"app/drey/Warp/metainfo.xml", Some(globals::VERSION));
+            adw::AboutWindow::from_appdata("app/drey/Warp/metainfo.xml", Some(globals::VERSION));
 
         dialog.set_developers(&[&gettext("Fina Wilke")]);
         dialog.set_artists(&[&gettext("Tobias Bernard"), &gettext("Sophie Herold")]);
