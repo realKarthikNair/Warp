@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: warp main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
-"POT-Creation-Date: 2023-05-03 19:34+0000\n"
-"PO-Revision-Date: 2023-05-17 09:16+0000\n"
+"POT-Creation-Date: 2023-09-27 20:11+0000\n"
+"PO-Revision-Date: 2023-09-28 09:27+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic\n"
 "Language: is\n"
@@ -19,15 +19,15 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n % 100 != 1 && n % 100 != 21 && n % 100 !="
 " 31 && n % 100 != 41 && n % 100 != 51 && n % 100 != 61 && n % 100 != 71 && n "
 "% 100 != 81 && n % 100 != 91);\n"
-"X-Generator: Lokalize 21.12.3\n"
+"X-Generator: Lokalize 22.04.3\n"
 
-#: data/app.drey.Warp.desktop.in.in:3 data/app.drey.Warp.metainfo.xml.in.in:7
-#: src/main.rs:116 src/ui/application.rs:212
+#: data/app.drey.Warp.desktop.in.in:3 data/app.drey.Warp.metainfo.xml.in.in:6
+#: src/main.rs:122 src/ui/window.ui:80
 msgid "Warp"
 msgstr "Warp"
 
-#: data/app.drey.Warp.desktop.in.in:4 data/app.drey.Warp.metainfo.xml.in.in:8
-#: src/ui/welcome_window.ui:35
+#: data/app.drey.Warp.desktop.in.in:4 data/app.drey.Warp.metainfo.xml.in.in:7
+#: src/ui/welcome_window.ui:27
 msgid "Fast and secure file transfer"
 msgstr "Hraður og öruggur skráaflutningur"
 
@@ -35,82 +35,75 @@ msgstr "Hraður og öruggur skráaflutningur"
 msgid "Gnome;GTK;Wormhole;Magic-Wormhole;"
 msgstr "Gnome;GTK;Wormhole;Magic-Wormhole;"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:10
+#: data/app.drey.Warp.metainfo.xml.in.in:9
 msgid ""
 "Warp allows you to securely send files to each other via the internet or "
 "local network by exchanging a word-based code."
 msgstr ""
-"Með Warp getur fólk sent skrár milli hvors annars á  öruggan hátt yfir"
-" internetið eða á innra neti með því að skiptast á orðakóða."
+"Með Warp getur fólk sent skrár milli hvors annars á öruggan hátt yfir "
+"internetið eða á innra neti með því að skiptast á orðakóða. "
 
-#: data/app.drey.Warp.metainfo.xml.in.in:14
+#: data/app.drey.Warp.metainfo.xml.in.in:13
 msgid ""
 "The best transfer method will be determined using the “Magic Wormhole” "
 "protocol which includes local network transfer if possible."
 msgstr ""
-"Besta flutninsaðferðin ákvarðast af \"Magic Wormhole” samskiptamátanum "
-"sem getur notast við sendingar á innra neti ef hægt er."
+"Besta fluttninsaðferðin ákvarðast af \"Magic Wormhole” samskiptamátanum sem "
+"getur notast við sendingar á innra neti ef hægt er."
 
-#: data/app.drey.Warp.metainfo.xml.in.in:18
+#: data/app.drey.Warp.metainfo.xml.in.in:17
 msgid "Features"
 msgstr "Eiginleikar"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:20
+#: data/app.drey.Warp.metainfo.xml.in.in:19
 msgid "Send files between multiple devices"
 msgstr "Senda skrár milli margra tækja"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:21
+#: data/app.drey.Warp.metainfo.xml.in.in:20
 msgid "Every file transfer is encrypted"
 msgstr "Allur skráaflutningur er dulritaður"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:22
+#: data/app.drey.Warp.metainfo.xml.in.in:21
 msgid "Directly transfer files on the local network if possible"
 msgstr "Senda skrár beint á milli á innra neti ef hægt er"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:23
+#: data/app.drey.Warp.metainfo.xml.in.in:22
 msgid "An internet connection is required"
 msgstr "Internettenging er nauðsynleg"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:24
+#: data/app.drey.Warp.metainfo.xml.in.in:23
 msgid "QR Code support"
 msgstr "Stuðningur við QR kóða"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:25
+#: data/app.drey.Warp.metainfo.xml.in.in:24
 msgid ""
 "Compatibility with the Magic Wormhole command line client and all other "
 "compatible apps"
 msgstr ""
 "Samhæfni við skipanalínu Magic Wormhole og annarra sambærilegra forrita"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:31
+#: data/app.drey.Warp.metainfo.xml.in.in:30
 msgid "Main Window"
 msgstr "Aðalgluggi"
 
 #. Translators: Entry placeholder; This is a noun
-#: data/app.drey.Warp.metainfo.xml.in.in:35 src/ui/window.ui:200
+#: data/app.drey.Warp.metainfo.xml.in.in:34 src/ui/window.ui:198
 msgid "Transmit Code"
 msgstr "Sendingakóði"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:39
+#: data/app.drey.Warp.metainfo.xml.in.in:38
 msgid "Accept File Transfer"
 msgstr "Samþykkja skráaflutning"
 
-#. Translators: Title
-#: data/app.drey.Warp.metainfo.xml.in.in:43 src/ui/action_view.rs:611
-msgid "Sending File"
-msgstr "Sendi skrá"
-
-#. Translators: Title
-#: data/app.drey.Warp.metainfo.xml.in.in:47 src/ui/action_view.rs:615
+#: data/app.drey.Warp.metainfo.xml.in.in:42 src/ui/action_view.rs:625
 msgid "Receiving File"
 msgstr "Tek við skrá"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:51 src/ui/action_view.rs:632
+#: data/app.drey.Warp.metainfo.xml.in.in:46 src/ui/action_view.rs:634
 msgid "File Transfer Complete"
 msgstr "Skráaflutningi lokið"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:222 src/ui/application.rs:219
-#: src/ui/application.rs:220
+#: data/app.drey.Warp.metainfo.xml.in.in:227 src/ui/application.rs:223
 msgid "Fina Wilke"
 msgstr "Fina Wilke"
 
@@ -200,64 +193,59 @@ msgid "{0} — {1}"
 msgstr "{0} - {1}"
 
 #. Translators: Notification when clicking on "Copy Code to Clipboard" button
-#: src/ui/action_view.rs:254
+#: src/ui/action_view.rs:255
 msgid "Copied Code to Clipboard"
 msgstr "Afritaði kóða á klippispjald"
 
 #. Translators: Notification when clicking on "Copy Link to Clipboard" button
-#: src/ui/action_view.rs:275
+#: src/ui/action_view.rs:276
 msgid "Copied Link to Clipboard"
 msgstr "Afritaði tengil á klippispjald"
 
-#: src/ui/action_view.rs:289
+#: src/ui/action_view.rs:290
 msgid "Copied Error to Clipboard"
 msgstr "Afritaði villuboð á klippispjald"
 
-#: src/ui/action_view.rs:291
+#: src/ui/action_view.rs:292
 msgid "No error available"
 msgstr "Engin villa tiltæk"
 
-#. Translators: Title
-#: src/ui/action_view.rs:433
+#: src/ui/action_view.rs:439
 msgid "Creating Archive"
 msgstr "Bý til skráasafn"
 
-#: src/ui/action_view.rs:437
+#: src/ui/action_view.rs:443
 msgid "Compressing folder “{}”"
 msgstr "Þjappa möppu “{}”"
 
 #. Translators: Title
-#: src/ui/action_view.rs:452 src/ui/action_view.rs:507
+#: src/ui/action_view.rs:459 src/ui/action_view.rs:517
 msgid "Connecting"
 msgstr "Tengist"
 
 #. Translators: Description, Filename
-#: src/ui/action_view.rs:455
+#: src/ui/action_view.rs:462
 msgid "Requesting file transfer"
 msgstr "Bið um skráaflutning"
 
-#. Translators: Title, this is a noun
-#: src/ui/action_view.rs:466
-msgid "Your Transmit Code"
-msgstr "Sendingakóðinn þinn"
-
-#: src/ui/action_view.rs:479
+#. Translators: Description, argument is filename
+#: src/ui/action_view.rs:483
 msgid "Ready to send “{}”."
 msgstr "Tilbúið að senda “{}”."
 
-#. Translators: Description line 2, Code words and QR code visible,
-#: src/ui/action_view.rs:482
+#. Translators: Help dialog line 1, Code words and QR code visible,
+#: src/ui/action_view.rs:488
 msgid ""
 "The receiver needs to enter or scan this code to begin the file transfer."
 msgstr ""
 "Viðtakandi þarf að færa inn eða skanna þennan kóða til að hefja "
 "skráaflutning."
 
-#: src/ui/action_view.rs:486
+#: src/ui/action_view.rs:492
 msgid "The QR code is compatible with the following apps: {}."
 msgstr "QR-kóðinn er samhæfður við eftirfarandi forrit: {}."
 
-#: src/ui/action_view.rs:494
+#: src/ui/action_view.rs:500
 msgid ""
 "You have entered a custom rendezvous server URL in preferences. Please "
 "verify the receiver also uses the same rendezvous server."
@@ -265,223 +253,222 @@ msgstr ""
 "Þú hefur sett inn sérsniðið netfang rendezvous-netþjóns í kjörstillingum. "
 "Gakktu úr skugga um að móttakandinn noti sama rendezvous-netþjón."
 
+#: src/ui/action_view.rs:505
+msgid "Click the QR code to copy the link to the clipboard."
+msgstr "Smelltu á QR kóðann til að afrita hann á klippispjaldið."
+
 #. Translators: Description, Transfer Code
-#: src/ui/action_view.rs:510
+#: src/ui/action_view.rs:520
 msgid "Connecting to peer with code “{}”"
 msgstr "Tengist jafningja með kóða “{}”"
 
-#: src/ui/action_view.rs:520
+#: src/ui/action_view.rs:530
 msgid "Connected to Peer"
 msgstr "Tengdur jafningja"
 
 #. Translators: Description
-#: src/ui/action_view.rs:531
+#: src/ui/action_view.rs:539
 msgid "Preparing to send file"
 msgstr "Undirbý sendingu skráar"
 
 #. Translators: Description
-#: src/ui/action_view.rs:537
+#: src/ui/action_view.rs:546
 msgid "Preparing to receive file"
 msgstr "Undirbý móttöku skráar"
 
-#: src/ui/action_view.rs:549
-msgid "Accept File Transfer?"
-msgstr "Taka við skráaflutningi?"
-
 #. Translators: File receive confirmation message dialog; Filename, File size
-#: src/ui/action_view.rs:552
+#: src/ui/action_view.rs:560
 msgid ""
 "Your peer wants to send you “{0}” (Size: {1}).\n"
 "Do you want to download this file? The default action will save the file to "
 "your Downloads folder."
 msgstr ""
 "Jafningi þinn vill senda þér skrá “{0}” (stærð: {1}).\n"
-"Vilt þú sækja þessa skrá? Sjálfgefið vistast hún í niðurhalsmöppuna "
-"þína"
+"Vilt þú sækja þessa skrá? Sjálfgefið vistast hún í niðurhalsmöppuna þína"
 
-#: src/ui/action_view.rs:557
+#: src/ui/action_view.rs:565
 msgid "Ready to Receive File"
 msgstr "Tilbúið að taka við skrá"
 
-#: src/ui/action_view.rs:559
+#: src/ui/action_view.rs:567
 msgid ""
 "A file is ready to be transferred. The transfer needs to be acknowledged."
 msgstr "Skrá er tilbúin til flutnings. Flutninginn þarf að samþykkja."
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:588
+#: src/ui/action_view.rs:596
 msgid "File “{}” via local network direct transfer"
 msgstr "Skrá \"{}” flutt beint um innra net"
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:591
+#: src/ui/action_view.rs:599
 msgid "File “{}” via direct transfer"
 msgstr "Skrá \"{}” með beinni skráasendingu"
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:597
+#: src/ui/action_view.rs:605
 msgid "File “{0}” via relay {1}"
 msgstr "Skrá “{0}” gegnum endurvarpa {1}"
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:600
+#: src/ui/action_view.rs:608
 msgid "File “{}” via relay"
 msgstr "Skrá “{}” gegnum endurvarpa"
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:604
+#: src/ui/action_view.rs:612
 msgid "File “{}” via Unknown connection method"
 msgstr "Skrá “{}” gegnum óþekkta tengiaðferð"
 
 #. Translators: Title
-#: src/ui/action_view.rs:623
-msgid "File Transfer Successful"
-msgstr "Skráaflutningur heppnaðist"
+#: src/ui/action_view.rs:619
+msgid "Sending File"
+msgstr "Sendi skrá"
 
 #. Translators: Description, Filename
-#: src/ui/action_view.rs:640
+#: src/ui/action_view.rs:642
 msgid "Successfully sent file “{}”"
 msgstr "Tókst að senda skrá “{}”"
 
 #. Translators: Filename
-#: src/ui/action_view.rs:656
+#: src/ui/action_view.rs:660
 msgid "File has been saved to the selected folder as “{}”"
 msgstr "Skráin var vistuð í tilgreinda möppu sem “{}”"
 
 #. Translators: Filename
-#: src/ui/action_view.rs:663
+#: src/ui/action_view.rs:667
 msgid "File has been saved to the Downloads folder as “{}”"
 msgstr "Skráin  var vistuð í niðurhalsmöppuna sem “{}”"
 
 #. Translators: Title
-#: src/ui/action_view.rs:687 src/ui/action_view.rs:700
+#: src/ui/action_view.rs:693 src/ui/action_view.ui:275
 msgid "File Transfer Failed"
 msgstr "Skráaflutningur misheppnaðist"
 
-#: src/ui/action_view.rs:702
+#: src/ui/action_view.rs:695
 msgid "The file transfer failed: {}"
 msgstr "Skráaflutningurinn misheppnaðist: {}"
 
 #. Translators: When opening a file
-#: src/ui/action_view.rs:822
+#: src/ui/action_view.rs:815
 msgid "Specified file / directory does not exist"
 msgstr "Tilgreind skrá / mappa er ekki til"
 
-#: src/ui/action_view.rs:840
+#: src/ui/action_view.rs:833
 msgid ""
 "Error parsing rendezvous server URL. An invalid URL was entered in the "
 "settings."
 msgstr ""
-"Villa við þáttun slóðar rendezvous-netþjóns . Ógild slóð var sett inn í"
-" stillingarnar."
+"Villa við þáttun slóðar rendezvous-netþjóns . Ógild slóð var sett inn í "
+"stillingarnar."
 
-#: src/ui/action_view.rs:847
+#: src/ui/action_view.rs:840
 msgid "Error parsing transit URL. An invalid URL was entered in the settings."
 msgstr ""
 "Villa við þáttun millifærsluslóðar . Ógild slóð var sett inn í stillingarnar."
 
-#: src/ui/action_view.rs:934
+#: src/ui/action_view.rs:927
 msgid "Invalid path selected: {}"
 msgstr "Ógild slóð valin: {}"
 
 #. Translators: Above progress bar for creating an archive to send as a folder
-#: src/ui/action_view.rs:1180
+#: src/ui/action_view.rs:1172
 msgid "{} File - Size: {}"
 msgid_plural "{} Files - Size: {}"
 msgstr[0] "{} Skrá - Stærð: {}"
 msgstr[1] "{} Skrár - Stærð: {}"
 
-#. Translators: Button
-#: src/ui/action_view.ui:4 src/ui/action_view.ui:158
+#: src/ui/action_view.ui:4
 msgid "Save As"
 msgstr "Vista sem"
 
-#: src/ui/action_view.ui:6
-msgid "Save"
-msgstr "Vista"
-
-#. Translators: Button
-#: src/ui/action_view.ui:7 src/ui/action_view.ui:26 src/ui/window.ui:31
-#: src/ui/window.ui:39
-msgid "Cancel"
-msgstr "Hætta við"
-
-#. Translators: Button
-#: src/ui/action_view.ui:34 src/ui/welcome_window.ui:54
-msgid "Back"
-msgstr "Til baka"
-
 #. Translators: Button; Transmit Link is a noun
-#: src/ui/action_view.ui:84
+#: src/ui/action_view.ui:95
 msgid "Copy Transmit Link"
 msgstr "A_frita millifærslutengil"
 
+#: src/ui/action_view.ui:120
+msgid "Your Transmit Code"
+msgstr "Sendingakóðinn þinn"
+
 #. Translators: Button; Transmit Code is a noun
-#: src/ui/action_view.ui:92
+#: src/ui/action_view.ui:168
 msgid "Copy Transmit Code"
 msgstr "Afrita sendingarkóða"
 
-#. Translators: Button
-#: src/ui/action_view.ui:107 src/ui/action_view.ui:109
-msgid "Open File"
-msgstr "Opna skrá"
+#. Translators: Title
+#: src/ui/action_view.ui:185
+msgid "Accept File Transfer?"
+msgstr "Taka við skráaflutningi?"
+
+#: src/ui/action_view.ui:194
+msgid "Save to Downloads Folder"
+msgstr "Vista í niðurhalsmöppuna"
 
 #. Translators: Button
-#: src/ui/action_view.ui:121 src/ui/action_view.ui:123
-msgid "Show in Folder"
-msgstr "Sýna í möppu"
-
-#: src/ui/action_view.ui:142
-msgid "Accept File Transfer and save to Downloads folder"
-msgstr "Samþykkja skráaflutning og vista í niðurhalsmöppuna"
+#: src/ui/action_view.ui:196
+msgid "_Accept"
+msgstr "T_aka við"
 
 #. Translators: Button
-#: src/ui/action_view.ui:144
-msgid "Accept"
-msgstr "Taka við"
+#: src/ui/action_view.ui:210
+msgid "Sa_ve As…"
+msgstr "Vista sem..."
 
-#: src/ui/action_view.ui:156
-msgid "Select Save Location"
-msgstr "Velja stað til að vista"
-
-#: src/ui/action_view.ui:171
-msgid "Copy a detailed message for reporting an issue"
-msgstr "Afrita nákvæma villumeldingu fyrir bilanaskýrslu"
+#. Translators: Title
+#: src/ui/action_view.ui:230
+msgid "File Transfer Successful"
+msgstr "Skráaflutningur heppnaðist"
 
 #. Translators: Button
-#: src/ui/action_view.ui:174
-msgid "Copy Error Message"
-msgstr "Afrita villuboð"
+#: src/ui/action_view.ui:239
+msgid "_Open File"
+msgstr "_Opna skrá"
 
-#: src/ui/application.rs:62
+#. Translators: Button
+#: src/ui/action_view.ui:254 src/ui/window.ui:57
+msgid "_Show in Folder"
+msgstr "_Birta í möppu"
+
+#. Translators: Button
+#: src/ui/action_view.ui:280
+msgid "Co_py Error Message"
+msgstr "_Afrita villuboð"
+
+#. Translators: Button
+#: src/ui/action_view.ui:296
+msgid "_Cancel"
+msgstr "_Hætta við"
+
+#: src/ui/application.rs:63
 msgid "Unable to use transfer link: another transfer already in progress"
 msgstr "Ekki hægt að nota flutningstengil: annar flutningur þegar í gangi"
 
-#: src/ui/application.rs:218
-msgid "translator-credits"
-msgstr "Ingirafn, ingirafn at this dot is, 2023"
-
-#: src/ui/application.rs:221
+#: src/ui/application.rs:224
 msgid "Tobias Bernard"
 msgstr "Tobias Bernard"
 
-#: src/ui/application.rs:221
+#: src/ui/application.rs:224
 msgid "Sophie Herold"
 msgstr "Sophie Herold"
 
-#: src/ui/application.rs:239
+#: src/ui/application.rs:225
+msgid "translator-credits"
+msgstr "Ingirafn, ingirafn at this dot is, 2023"
+
+#: src/ui/application.rs:242
 msgid "Sending a File"
 msgstr "Sendi skrá"
 
-#: src/ui/application.rs:240
+#: src/ui/application.rs:243
 msgid "Receiving a File"
 msgstr "Tek við skrá"
 
-#: src/ui/fs.rs:23
+#: src/ui/fs.rs:16
 msgid "Downloads dir missing. Please set XDG_DOWNLOAD_DIR"
 msgstr "Niðurhalsmappa finnst ekki. Stilltu XDG_DOWNLOAD_DIR"
 
-#: src/ui/preferences.rs:97
+#: src/ui/preferences.rs:96
 msgid ""
 "Changing the rendezvous server URL needs to be done on both sides of the "
 "transfer. Only enter a server URL you can trust.\n"
@@ -490,8 +477,8 @@ msgid ""
 "Rendezvous Server: “{0}”\n"
 "Transit Server: “{1}”"
 msgstr ""
-"Báðir aðilar þurfa að breyta slóð rendezvous-netþjónsins. Notaðu einungis"
-" slóð netþjóns sem þú treystir.\n"
+"Báðir aðilar þurfa að breyta slóð rendezvous-netþjónsins. Notaðu einungis "
+"slóð netþjóns sem þú treystir.\n"
 "\n"
 "Ef engin netþjónn er valin er notuð sjálfgefin slóð forritsins:\n"
 "Rendezvous-netþjónn: “{0}”\n"
@@ -506,22 +493,10 @@ msgid "Network"
 msgstr "Netkerfi"
 
 #: src/ui/preferences.ui:15
-msgid "Server URLs"
-msgstr "Slóðir netþjóna"
-
-#: src/ui/preferences.ui:18
-msgid "Rendezvous Server URL"
-msgstr "Slóð rendezvous-netþjóns"
-
-#: src/ui/preferences.ui:25
-msgid "Transit Server URL"
-msgstr "Slóð sendi-netþjóns"
-
-#: src/ui/preferences.ui:34
 msgid "Code Words"
 msgstr "Orð kóðans"
 
-#: src/ui/preferences.ui:35
+#: src/ui/preferences.ui:16
 msgid ""
 "The code word count determines the security of the transfer.\n"
 "\n"
@@ -536,22 +511,34 @@ msgstr ""
 "eru líkurnar mjög litlar jafnvel fyrir stutta kóða. Fjögura stafa kóði er "
 "mjög öruggur."
 
-#: src/ui/preferences.ui:40
+#: src/ui/preferences.ui:21
 msgid "Code Word Count"
 msgstr "Fjöldi orða í kóða"
 
-#: src/ui/welcome_window.ui:5
+#: src/ui/preferences.ui:34
+msgid "Server URLs"
+msgstr "Slóðir netþjóna"
+
+#: src/ui/preferences.ui:37
+msgid "Rendezvous Server URL"
+msgstr "Slóð rendezvous-netþjóns"
+
+#: src/ui/preferences.ui:44
+msgid "Transit Server URL"
+msgstr "Slóð sendi-netþjóns"
+
+#: src/ui/welcome_window.ui:13
 msgid "Welcome"
 msgstr "Velkomin"
 
-#. Translators: Button
-#: src/ui/welcome_window.ui:23
-msgid "Next"
-msgstr "Næsta"
-
-#: src/ui/welcome_window.ui:34
+#: src/ui/welcome_window.ui:26
 msgid "Welcome to Warp"
 msgstr "Velkomin í Warp"
+
+#. Translators: Button
+#: src/ui/welcome_window.ui:34
+msgid "Next"
+msgstr "Næsta"
 
 #: src/ui/welcome_window.ui:82
 msgid "Introduction"
@@ -570,15 +557,16 @@ msgid ""
 "\n"
 "For more information about Warp, open the Help section from the Main Menu."
 msgstr ""
-"Warp auðveldar skráaflutning. Í fyrstu þurfa báðir aðilar að setja upp "
-"Warp á tölvurnar sínar.\n"
+"Warp auðveldar skráaflutning. Í fyrstu þurfa báðir aðilar að setja upp Warp "
+"á tölvurnar sínar.\n"
 "\n"
 "Eftir að hafa valið skrá til að senda, þarf sendandinn að senda móttakanda "
 "gefin sendingarkóða. Helst í gegnum öruggan samskiptamáta.\n"
 "\n"
 "Þegar móttakandi setur inn kóðann, getur skráaflutningurinn hafist.\n"
 "\n"
-"Til að sjá ítarlegri upplýsingar um Warp, skaltu opna Hjálp í aðalvalmyndinni."
+"Til að sjá ítarlegri upplýsingar um Warp, skaltu opna Hjálp í "
+"aðalvalmyndinni."
 
 #. Translators: Big button to finish welcome screen
 #: src/ui/welcome_window.ui:106
@@ -593,15 +581,23 @@ msgstr ""
 "Villa við að hlaða inn stillingaskrá “{0}”, nota sjálfgefnar stillingar .\n"
 "Villa: {1}"
 
-#: src/ui/window.rs:237
+#: src/ui/window.rs:210
 msgid "Error saving configuration file: {}"
 msgstr "Villa við að vista stillingaskrá: {}"
 
-#: src/ui/window.rs:352
+#: src/ui/window.rs:304
+msgid "Select File to Send"
+msgstr "Veldu skrá til að senda"
+
+#: src/ui/window.rs:312
+msgid "Select Folder to Send"
+msgstr "Veldu möppu til að senda"
+
+#: src/ui/window.rs:363
 msgid "“{}” appears to be an invalid Transmit Code. Please try again."
 msgstr "“{}” virðist vera rangur sendigakóði. Prófaðu aftur."
 
-#: src/ui/window.rs:472
+#: src/ui/window.rs:474
 msgid "Sending files with a preconfigured code is not yet supported"
 msgstr "Að senda skrá með fyrirfram tilbúnum kóða er enn ekki hægt"
 
@@ -625,127 +621,113 @@ msgstr "_Hjálp"
 msgid "_About Warp"
 msgstr "_Um Warp"
 
-#: src/ui/window.ui:28
-msgid "Select file to send"
-msgstr "Veldu skrá til að senda"
-
-#: src/ui/window.ui:30
-msgid "Open"
-msgstr "Opna"
-
-#: src/ui/window.ui:36
-msgid "Select folder to send"
-msgstr "Veldu möppu til að senda"
-
-#: src/ui/window.ui:38
-msgid "Open Folder"
-msgstr "Opna möppu"
-
 #. Translators: Notification when code was automatically detected in clipboard and inserted into code entry on receive page
-#: src/ui/window.ui:46
+#: src/ui/window.ui:33
 msgid "Inserted code from clipboard"
 msgstr "Setti inn kóða af klippispjaldi"
 
 #. Translators: File receive confirmation message dialog title
-#: src/ui/window.ui:51
+#: src/ui/window.ui:38
 msgid "Abort File Transfer?"
-msgstr "Hætta við skráaflutning? "
+msgstr "Hætta við skráaflutning?"
 
-#: src/ui/window.ui:52
+#: src/ui/window.ui:39
 msgid "Do you want to abort the current file transfer?"
 msgstr "Vilt þú hætta við þennan skráaflutning?"
 
-#: src/ui/window.ui:58
+#: src/ui/window.ui:45
 msgid "_Continue"
 msgstr "_Halda áfram"
 
-#: src/ui/window.ui:59
+#: src/ui/window.ui:46
 msgid "_Abort"
 msgstr "_Hætta við"
 
 #. Translators: Error dialog title
-#: src/ui/window.ui:64
+#: src/ui/window.ui:51
 msgid "Unable to Open File"
 msgstr "Gat ekki opnað skrá"
 
-#: src/ui/window.ui:69 src/util/error.rs:176
+#: src/ui/window.ui:56 src/util/error.rs:176
 msgid "_Close"
 msgstr "_Loka"
 
-#: src/ui/window.ui:70
-msgid "_Show in Folder"
-msgstr "_Birta í möppu"
-
-#: src/ui/window.ui:104
+#: src/ui/window.ui:97
 msgid "Main Menu"
 msgstr "Aðalvalmynd"
 
-#: src/ui/window.ui:118
+#: src/ui/window.ui:116
 msgid "_Send"
 msgstr "_Senda"
 
-#: src/ui/window.ui:130
+#: src/ui/window.ui:128
 msgid "Send File"
 msgstr "Senda skrá"
 
-#: src/ui/window.ui:131
+#: src/ui/window.ui:129
 msgid "Select or drop the file or directory to send"
 msgstr "Veldu eða slepptu skrá / möppu til að senda"
 
 #. Translators: Button
-#: src/ui/window.ui:142
+#: src/ui/window.ui:140
 msgid "Select _File…"
 msgstr "V_elja skrá…"
 
 #. Translators: Button
-#: src/ui/window.ui:156
+#: src/ui/window.ui:154
 msgid "Select F_older…"
 msgstr "Velja _möppu..."
 
-#: src/ui/window.ui:176
+#: src/ui/window.ui:174
 msgid "_Receive"
 msgstr "_Taka við"
 
-#: src/ui/window.ui:185
+#: src/ui/window.ui:183
 msgid "Receive File"
 msgstr "Taka við skrá"
 
 #. Translators: Text above code input box, transmit code is a noun
-#: src/ui/window.ui:187
+#: src/ui/window.ui:185
 msgid "Enter the transmit code from the sender"
 msgstr "Færið inn sendingakóðann frá sendanda"
 
 #. Translators: Button
-#: src/ui/window.ui:221
+#: src/ui/window.ui:219
 msgid "Receive _File"
 msgstr "Taka við _skrá"
 
-#: src/util.rs:32 src/util.rs:51
+#: src/ui/window.ui:245
+#| msgctxt "shortcut window"
+#| msgid "File Transfer"
+msgid "File Transfer"
+msgstr "Skráaflutningur"
+
+#: src/util.rs:33 src/util.rs:38
 msgid "Failed to open downloads folder."
 msgstr "Tókst ekki að opna niðurhalsmöppuna."
 
-#: src/util.rs:192 src/util.rs:265
+#: src/util.rs:198 src/util.rs:271
 msgid "The URI format is invalid"
 msgstr "URI-sniðið er ógilt"
 
-#: src/util.rs:196 src/util.rs:200
+#: src/util.rs:202 src/util.rs:206
 msgid "The code does not match the required format"
 msgstr "Kóðinn passar ekki við umbeðið snið"
 
-#: src/util.rs:215 src/util.rs:221
+#: src/util.rs:221 src/util.rs:227
 msgid "Unknown URI version: {}"
 msgstr "Óþekkt URI útgáfa: {}"
 
-#: src/util.rs:230
+#: src/util.rs:236
 msgid "The URI parameter “rendezvous” contains an invalid URL: “{}”"
 msgstr "URI-sniðið “rendezvous” inniheldur ógilda slóð: “{}”"
 
-#: src/util.rs:242
+#: src/util.rs:248
 msgid "The URI parameter “role” must be “follower” or “leader” (was: “{}”)"
 msgstr ""
 "URI-breytan \"role\" verður að vera \"follower\" eða \"leader\" (var: “{}”)"
 
-#: src/util.rs:249
+#: src/util.rs:255
 msgid "Unknown URI parameter “{}”"
 msgstr "Óþekkt URI-breyta “{}”"
 
@@ -762,8 +744,8 @@ msgid ""
 "The rendezvous server will not allow further connections for this code. A "
 "new code needs to be generated."
 msgstr ""
-"Rendezvous-netþjónninn leyfir ekki fleiri tengingar fyrir þennan kóða. Það"
-" þarf að búa til nýjan kóða."
+"Rendezvous-netþjónninn leyfir ekki fleiri tengingar fyrir þennan kóða. Það "
+"þarf að búa til nýjan kóða."
 
 #: src/util/error.rs:194
 msgid ""
@@ -802,9 +784,9 @@ msgid ""
 "code, this is a sign of an attacker guessing passwords. Please try again "
 "some time later."
 msgstr ""
-"Tókst ekki að staðfesta dulritunarlykil. Ef mótaðili þinn setti ekki"
-" aðgangsorðið rangt inn, getur það bent það til að nethrappur sé að reyna að"
-" giska á aðgangsorðið. Reyndu aftur síðar."
+"Tókst ekki að staðfesta dulritunarlykil. Ef mótaðili þinn setti ekki "
+"aðgangsorðið rangt inn, getur það bent það til að nethrappur sé að reyna að "
+"giska á aðgangsorðið. Reyndu aftur síðar."
 
 #: src/util/error.rs:207
 msgid "Cannot decrypt a received message"
@@ -859,7 +841,6 @@ msgid "Unknown file transfer error"
 msgstr "Óþekkt villa við flutning"
 
 #: src/util/error.rs:270
-#| msgid "An unknown error occurred"
 msgid "An unknown error occurred while creating a zip file: {}"
 msgstr "Óþekkt villa átti sér stað við að búa til zip-skrá: {}"
 
@@ -867,3 +848,27 @@ msgstr "Óþekkt villa átti sér stað við að búa til zip-skrá: {}"
 msgid ""
 "An unexpected error occurred. Please report an issue with the error message."
 msgstr "Óvænt villa átti sér stað. Tilkynntu vandamálið með villumeldinguni."
+
+#~ msgid "Save"
+#~ msgstr "Vista"
+
+#~ msgid "Back"
+#~ msgstr "Til baka"
+
+#~ msgid "Show in Folder"
+#~ msgstr "Sýna í möppu"
+
+#~ msgid "Accept File Transfer and save to Downloads folder"
+#~ msgstr "Samþykkja skráaflutning og vista í niðurhalsmöppuna"
+
+#~ msgid "Select Save Location"
+#~ msgstr "Velja stað til að vista"
+
+#~ msgid "Copy a detailed message for reporting an issue"
+#~ msgstr "Afrita nákvæma villumeldingu fyrir bilanaskýrslu"
+
+#~ msgid "Open"
+#~ msgstr "Opna"
+
+#~ msgid "Open Folder"
+#~ msgstr "Opna möppu"
