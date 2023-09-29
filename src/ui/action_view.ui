@@ -163,7 +163,7 @@
                                 <signal name="notify::selection-bound" handler="code_entry_select_all"/>
                                 <property name="editable">False</property>
                                 <property name="halign">center</property>
-                                <property name="secondary-icon-name">copy-symbolic</property>
+                                <property name="secondary-icon-name">edit-copy-symbolic</property>
                                 <!-- Translators: Button; Transmit Code is a noun -->
                                 <property name="secondary-icon-tooltip-text" translatable="yes">Copy Transmit Code</property>
                                 <signal name="icon-release" handler="code_copy_button_clicked" swapped="true"/>

@@ -1,7 +1,7 @@
 {
   "id": "app.drey.Warp.Devel",
   "runtime": "org.gnome.Platform",
-  "runtime-version": "45",
+  "runtime-version": "master",
   "sdk": "org.gnome.Sdk",
   "sdk-extensions": [
     "org.freedesktop.Sdk.Extension.rust-stable"
