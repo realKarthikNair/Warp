@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Warp Master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
-"POT-Creation-Date: 2023-08-27 13:31+0000\n"
-"PO-Revision-Date: 2023-08-28 10:21+0300\n"
+"POT-Creation-Date: 2023-09-27 15:08+0000\n"
+"PO-Revision-Date: 2023-10-02 10:02+0300\n"
 "Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
 "Language-Team: Türkçe <takim@gnome.org.tr>\n"
 "Language: tr\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.3.2\n"
 "X-POOTLE-MTIME: 1434043811.000000\n"
 
 #: data/app.drey.Warp.desktop.in.in:3 data/app.drey.Warp.metainfo.xml.in.in:6
@@ -98,20 +98,15 @@ msgstr "Aktarım Kodu"
 msgid "Accept File Transfer"
 msgstr "Dosya Aktarımını Kabul Et"
 
-#. Translators: Title
-#: data/app.drey.Warp.metainfo.xml.in.in:42 src/ui/action_view.rs:611
-msgid "Sending File"
-msgstr "Dosya Gönderiliyor"
-
-#: data/app.drey.Warp.metainfo.xml.in.in:46 src/ui/action_view.rs:617
+#: data/app.drey.Warp.metainfo.xml.in.in:42 src/ui/action_view.rs:625
 msgid "Receiving File"
 msgstr "Dosya Alınıyor"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:50 src/ui/action_view.rs:626
+#: data/app.drey.Warp.metainfo.xml.in.in:46 src/ui/action_view.rs:634
 msgid "File Transfer Complete"
 msgstr "Dosya Aktarımı Tamamlandı"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:220 src/ui/application.rs:225
+#: data/app.drey.Warp.metainfo.xml.in.in:227 src/ui/application.rs:223
 msgid "Fina Wilke"
 msgstr "Fina Wilke"
 
@@ -214,41 +209,41 @@ msgstr "Hata Panoya Kopyalandı"
 msgid "No error available"
 msgstr "Hata yok"
 
-#: src/ui/action_view.rs:433
+#: src/ui/action_view.rs:439
 msgid "Creating Archive"
 msgstr "Arşiv Oluşturuluyor"
 
-#: src/ui/action_view.rs:437
+#: src/ui/action_view.rs:443
 msgid "Compressing folder “{}”"
 msgstr "“{}” klasörü sıkıştırılıyor"
 
 #. Translators: Title
-#: src/ui/action_view.rs:453 src/ui/action_view.rs:511
+#: src/ui/action_view.rs:459 src/ui/action_view.rs:517
 msgid "Connecting"
 msgstr "Bağlanılıyor"
 
 #. Translators: Description, Filename
-#: src/ui/action_view.rs:456
+#: src/ui/action_view.rs:462
 msgid "Requesting file transfer"
 msgstr "Dosya aktarımı isteniyor"
 
 #. Translators: Description, argument is filename
-#: src/ui/action_view.rs:477
+#: src/ui/action_view.rs:483
 msgid "Ready to send “{}”."
 msgstr "“{}” gönderilmeye hazır."
 
 #. Translators: Help dialog line 1, Code words and QR code visible,
-#: src/ui/action_view.rs:482
+#: src/ui/action_view.rs:488
 msgid ""
 "The receiver needs to enter or scan this code to begin the file transfer."
 msgstr ""
 "Dosya aktarımını başlatmak için alıcı bu kodu girmeli veya taramalıdır."
 
-#: src/ui/action_view.rs:486
+#: src/ui/action_view.rs:492
 msgid "The QR code is compatible with the following apps: {}."
 msgstr "QR kod şu uygulamalarla uyumludur: {}."
 
-#: src/ui/action_view.rs:494
+#: src/ui/action_view.rs:500
 msgid ""
 "You have entered a custom rendezvous server URL in preferences. Please "
 "verify the receiver also uses the same rendezvous server."
@@ -256,31 +251,31 @@ msgstr ""
 "Tercihlerde özel randevu sunucusu URLʼsi girdiniz. Alıcının da aynı randevu "
 "sunucusunu kullandığından emin olun."
 
-#: src/ui/action_view.rs:499
+#: src/ui/action_view.rs:505
 msgid "Click the QR code to copy the link to the clipboard."
 msgstr "Bağlantıyı panoya kopyalamak için QR koduna tıklayın."
 
 #. Translators: Description, Transfer Code
-#: src/ui/action_view.rs:514
+#: src/ui/action_view.rs:520
 msgid "Connecting to peer with code “{}”"
 msgstr "“{}” koduyla eşe bağlanıyor"
 
-#: src/ui/action_view.rs:524
+#: src/ui/action_view.rs:530
 msgid "Connected to Peer"
 msgstr "Eşe Bağlandı"
 
 #. Translators: Description
-#: src/ui/action_view.rs:533
+#: src/ui/action_view.rs:539
 msgid "Preparing to send file"
 msgstr "Dosya göndermeye hazırlanıyor"
 
 #. Translators: Description
-#: src/ui/action_view.rs:540
+#: src/ui/action_view.rs:546
 msgid "Preparing to receive file"
 msgstr "Dosya almaya hazırlanıyor"
 
 #. Translators: File receive confirmation message dialog; Filename, File size
-#: src/ui/action_view.rs:553
+#: src/ui/action_view.rs:560
 msgid ""
 "Your peer wants to send you “{0}” (Size: {1}).\n"
 "Do you want to download this file? The default action will save the file to "
@@ -290,70 +285,75 @@ msgstr ""
 "Bu dosyayı indirmek istiyor musunuz? Öntanımlı eylem, dosyayı İndirilenler "
 "klasörünüze kaydeder."
 
-#: src/ui/action_view.rs:558
+#: src/ui/action_view.rs:565
 msgid "Ready to Receive File"
 msgstr "Dosya Almaya Hazır"
 
-#: src/ui/action_view.rs:560
+#: src/ui/action_view.rs:567
 msgid ""
 "A file is ready to be transferred. The transfer needs to be acknowledged."
 msgstr "Dosya aktarılmaya hazır. Aktarımın onaylanması gerekiyor."
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:588
+#: src/ui/action_view.rs:596
 msgid "File “{}” via local network direct transfer"
 msgstr "Doğrudan yerel ağdan aktarılan “{}” dosyası"
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:591
+#: src/ui/action_view.rs:599
 msgid "File “{}” via direct transfer"
 msgstr "Doğrudan aktarılan “{}” dosyası"
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:597
+#: src/ui/action_view.rs:605
 msgid "File “{0}” via relay {1}"
 msgstr "{1} rölesiyle “{0}” dosyası"
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:600
+#: src/ui/action_view.rs:608
 msgid "File “{}” via relay"
 msgstr "Röleyle “{}” dosyası"
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:604
+#: src/ui/action_view.rs:612
 msgid "File “{}” via Unknown connection method"
 msgstr "Bilinmeyen bağlantı yöntemiyle “{}” dosyası"
 
+#. Translators: Title
+#: src/ui/action_view.rs:619
+msgid "Sending File"
+msgstr "Dosya Gönderiliyor"
+
 #. Translators: Description, Filename
-#: src/ui/action_view.rs:634
+#: src/ui/action_view.rs:642
 msgid "Successfully sent file “{}”"
 msgstr "“{}” dosyası gönderimi başarılı"
 
 #. Translators: Filename
-#: src/ui/action_view.rs:652
+#: src/ui/action_view.rs:660
 msgid "File has been saved to the selected folder as “{}”"
 msgstr "Dosya, seçilen klasöre “{}” olarak kaydedildi"
 
 #. Translators: Filename
-#: src/ui/action_view.rs:659
+#: src/ui/action_view.rs:667
 msgid "File has been saved to the Downloads folder as “{}”"
 msgstr "Dosya, İndirilenler klasörüne “{}” olarak kaydedildi"
 
 #. Translators: Title
-#: src/ui/action_view.rs:686 src/ui/action_view.ui:274
+#: src/ui/action_view.rs:693 src/ui/action_view.ui:275
 msgid "File Transfer Failed"
 msgstr "Dosya Aktarımı Başarısız"
 
-#: src/ui/action_view.rs:688
+#: src/ui/action_view.rs:695
 msgid "The file transfer failed: {}"
 msgstr "Dosya aktarımı başarısız: {}"
 
 #. Translators: When opening a file
-#: src/ui/action_view.rs:808
+#: src/ui/action_view.rs:815
 msgid "Specified file / directory does not exist"
 msgstr "Belirtilen dosya / dizin yok"
 
-#: src/ui/action_view.rs:826
+#: src/ui/action_view.rs:833
 msgid ""
 "Error parsing rendezvous server URL. An invalid URL was entered in the "
 "settings."
@@ -361,18 +361,18 @@ msgstr ""
 "Randevu sunucusu URLʼsi ayrıştırılırken hata oluştu. Ayarlara geçersiz URL "
 "girilmiş."
 
-#: src/ui/action_view.rs:833
+#: src/ui/action_view.rs:840
 msgid "Error parsing transit URL. An invalid URL was entered in the settings."
 msgstr ""
 "Aktarım sunucusu URLʼsi ayrıştırılırken hata oluştu. Ayarlara geçersiz URL "
 "girilmiş."
 
-#: src/ui/action_view.rs:920
+#: src/ui/action_view.rs:927
 msgid "Invalid path selected: {}"
 msgstr "Geçersiz yol seçildi: {}"
 
 #. Translators: Above progress bar for creating an archive to send as a folder
-#: src/ui/action_view.rs:1165
+#: src/ui/action_view.rs:1172
 msgid "{} File - Size: {}"
 msgid_plural "{} Files - Size: {}"
 msgstr[0] "{} Dosya - Boyut: {}"
@@ -382,90 +382,90 @@ msgid "Save As"
 msgstr "Farklı Kaydet"
 
 #. Translators: Button; Transmit Link is a noun
-#: src/ui/action_view.ui:94
+#: src/ui/action_view.ui:95
 msgid "Copy Transmit Link"
 msgstr "Aktarım Bağlantısını Kopyala"
 
-#: src/ui/action_view.ui:119
+#: src/ui/action_view.ui:120
 msgid "Your Transmit Code"
 msgstr "Aktarım Kodunuz"
 
 #. Translators: Button; Transmit Code is a noun
-#: src/ui/action_view.ui:167
+#: src/ui/action_view.ui:168
 msgid "Copy Transmit Code"
 msgstr "Aktarım Kodunu Kopyala"
 
 #. Translators: Title
-#: src/ui/action_view.ui:184
+#: src/ui/action_view.ui:185
 msgid "Accept File Transfer?"
 msgstr "Dosya Aktarımı Kabul Edilsin Mi?"
 
-#: src/ui/action_view.ui:193
+#: src/ui/action_view.ui:194
 msgid "Save to Downloads Folder"
 msgstr "İndirilenler Klasörüne Kaydet"
 
 #. Translators: Button
-#: src/ui/action_view.ui:195
+#: src/ui/action_view.ui:196
 msgid "_Accept"
 msgstr "_Kabul Et"
 
 #. Translators: Button
-#: src/ui/action_view.ui:209
+#: src/ui/action_view.ui:210
 msgid "Sa_ve As…"
 msgstr "F_arklı Kaydet…"
 
 #. Translators: Title
-#: src/ui/action_view.ui:229
+#: src/ui/action_view.ui:230
 msgid "File Transfer Successful"
 msgstr "Dosya Aktarımı Başarılı"
 
 #. Translators: Button
-#: src/ui/action_view.ui:238
+#: src/ui/action_view.ui:239
 msgid "_Open File"
 msgstr "Dosya _Aç"
 
 #. Translators: Button
-#: src/ui/action_view.ui:253 src/ui/window.ui:57
+#: src/ui/action_view.ui:254 src/ui/window.ui:57
 msgid "_Show in Folder"
 msgstr "_Klasörde Göster"
 
 #. Translators: Button
-#: src/ui/action_view.ui:279
+#: src/ui/action_view.ui:280
 msgid "Co_py Error Message"
 msgstr "Hata İletisini Ko_pyala"
 
 #. Translators: Button
-#: src/ui/action_view.ui:295
+#: src/ui/action_view.ui:296
 msgid "_Cancel"
 msgstr "İ_ptal Et"
 
-#: src/ui/application.rs:62
+#: src/ui/application.rs:63
 msgid "Unable to use transfer link: another transfer already in progress"
 msgstr "Aktarım bağlantısı kullanılamaz: başka aktarım sürüyor"
 
-#: src/ui/application.rs:226
+#: src/ui/application.rs:224
 msgid "Tobias Bernard"
 msgstr "Tobias Bernard"
 
-#: src/ui/application.rs:226
+#: src/ui/application.rs:224
 msgid "Sophie Herold"
 msgstr "Sophie Herold"
 
-#: src/ui/application.rs:227
+#: src/ui/application.rs:225
 msgid "translator-credits"
 msgstr ""
 "Sabri Ünal <libreajans@gmail.com>\n"
 "Emin Tufan Çetin <etcetin@gmail.com>"
 
-#: src/ui/application.rs:244
+#: src/ui/application.rs:242
 msgid "Sending a File"
 msgstr "Dosya Gönderiliyor"
 
-#: src/ui/application.rs:245
+#: src/ui/application.rs:243
 msgid "Receiving a File"
 msgstr "Dosya Alınıyor"
 
-#: src/ui/fs.rs:24
+#: src/ui/fs.rs:16
 msgid "Downloads dir missing. Please set XDG_DOWNLOAD_DIR"
 msgstr ""
 "İndirilenler dizini bulunamadı. Lütfen XDG_DOWNLOADS_DIR değerini ayarlayın"
@@ -585,19 +585,19 @@ msgstr ""
 msgid "Error saving configuration file: {}"
 msgstr "Yapılandırma dosyası kaydedilirken hata: {}"
 
-#: src/ui/window.rs:301
+#: src/ui/window.rs:304
 msgid "Select File to Send"
 msgstr "Gönderilecek Dosya Seç"
 
-#: src/ui/window.rs:309
+#: src/ui/window.rs:312
 msgid "Select Folder to Send"
 msgstr "Gönderilecek Klasör Seç"
 
-#: src/ui/window.rs:360
+#: src/ui/window.rs:363
 msgid "“{}” appears to be an invalid Transmit Code. Please try again."
 msgstr "“{}” geçersiz Aktarım Kodu gibi görünüyor. Lütfen yeniden deneyin."
 
-#: src/ui/window.rs:471
+#: src/ui/window.rs:474
 msgid "Sending files with a preconfigured code is not yet supported"
 msgstr "Önceden yapılandırılmış kodla dosya gönderimi henüz desteklenmiyor"
 
@@ -696,32 +696,36 @@ msgstr "Göndericiden gelen aktarım kodunu girin"
 msgid "Receive _File"
 msgstr "_Dosya Al"
 
-#: src/util.rs:32 src/util.rs:51
+#: src/ui/window.ui:245
+msgid "File Transfer"
+msgstr "Dosya Aktarımı"
+
+#: src/util.rs:33 src/util.rs:38
 msgid "Failed to open downloads folder."
 msgstr "İndirilenler klasörü açılamadı."
 
-#: src/util.rs:193 src/util.rs:266
+#: src/util.rs:198 src/util.rs:271
 msgid "The URI format is invalid"
 msgstr "URI biçimi geçersiz"
 
-#: src/util.rs:197 src/util.rs:201
+#: src/util.rs:202 src/util.rs:206
 msgid "The code does not match the required format"
 msgstr "Kod gerekli biçimle eşleşmiyor"
 
-#: src/util.rs:216 src/util.rs:222
+#: src/util.rs:221 src/util.rs:227
 msgid "Unknown URI version: {}"
 msgstr "Bilinmeyen URI sürümü: {}"
 
-#: src/util.rs:231
+#: src/util.rs:236
 msgid "The URI parameter “rendezvous” contains an invalid URL: “{}”"
 msgstr "“rendezvous” URI parametresi geçersiz URL içeriyor: “{}”"
 
-#: src/util.rs:243
+#: src/util.rs:248
 msgid "The URI parameter “role” must be “follower” or “leader” (was: “{}”)"
 msgstr ""
 "“role” URI parametresi, “follower” veya “leader” olmalıdır (olan: “{}”)"
 
-#: src/util.rs:250
+#: src/util.rs:255
 msgid "Unknown URI parameter “{}”"
 msgstr "Bilinmeyen URI parametresi “{}”"
 
