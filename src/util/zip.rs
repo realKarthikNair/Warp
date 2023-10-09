@@ -1,7 +1,7 @@
 use std::path::{Path, PathBuf};
 
 use async_zip::{base::write::ZipFileWriter, Compression, ZipEntryBuilder};
-use futures::{AsyncReadExt, AsyncWrite, TryStreamExt};
+use futures::{AsyncReadExt, AsyncWrite, AsyncWriteExt, TryStreamExt};
 use smol::fs::File;
 
 use super::error::{AppError, UiError};
@@ -51,7 +51,9 @@ async fn handle_directory<W: AsyncWrite + Unpin + Send + 'static, F: Fn(usize, u
         callback(num_files, size);
     }
 
-    writer.close().await?;
+    let mut inner = writer.close().await?;
+    inner.flush().await?;
+    inner.close().await?;
 
     Ok(())
 }
