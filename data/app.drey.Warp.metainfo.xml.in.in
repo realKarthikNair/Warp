@@ -52,6 +52,8 @@
   <url type="homepage">@homepage@</url>
   <url type="bugtracker">@issuetracker@</url>
   <url type="contact">@contact@</url>
+  <url type="vcs-browser">@repository@</url>
+  <url type="translate">https://l10n.gnome.org/module/warp/</url>
   <custom>
     <value key="GnomeSoftware::key-colors">[(136, 101, 247), (198, 130, 255)]</value>
     <value key="Purism::form_factor">mobile</value>

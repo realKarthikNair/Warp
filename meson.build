@@ -33,6 +33,11 @@ contact = run_command(
     'package', 'metadata', 'urls', 'contact',
     check: true
 ).stdout()
+repository = run_command(
+    find_program(meson.global_source_root() / 'build-aux/meson-cargo-manifest.py'),
+    'package', 'repository',
+    check: true
+).stdout()
 
 i18n = import('i18n')
 gnome = import('gnome')

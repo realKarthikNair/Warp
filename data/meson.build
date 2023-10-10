@@ -33,6 +33,7 @@ appdata_conf.set('license', meson.project_license()[0])
 appdata_conf.set('gettext-package', gettext_package)
 appdata_conf.set('homepage', homepage)
 appdata_conf.set('issuetracker', issuetracker)
+appdata_conf.set('repository', repository)
 appdata_conf.set('contact', contact)
 appdata_file = i18n.merge_file(
   input: configure_file(
