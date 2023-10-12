@@ -60,6 +60,11 @@
   </custom>
   <content_rating type="oars-1.0" />
   <releases>
+    <release version="0.6.1" date="2023-10-12">
+      <description>
+        <p>Fixes an issue where ZIP files would sometimes be corrupt after receiving.</p>
+      </description>
+    </release>
     <release version="0.6.0" date="2023-09-28">
       <description>
         <p>New release:</p>
