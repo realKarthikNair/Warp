@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: warp main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
-"POT-Creation-Date: 2023-08-27 13:31+0000\n"
-"PO-Revision-Date: 2023-08-30 11:20+0300\n"
+"POT-Creation-Date: 2023-09-27 15:08+0000\n"
+"PO-Revision-Date: 2023-09-27 19:11+0300\n"
 "Last-Translator: Artur So <arturios2005@mail.ru>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "Language: ru\n"
@@ -95,20 +95,15 @@ msgstr "Код передачи"
 msgid "Accept File Transfer"
 msgstr "Принять передачу файлов"
 
-#. Translators: Title
-#: data/app.drey.Warp.metainfo.xml.in.in:42 src/ui/action_view.rs:611
-msgid "Sending File"
-msgstr "Отправка файла"
-
-#: data/app.drey.Warp.metainfo.xml.in.in:46 src/ui/action_view.rs:617
+#: data/app.drey.Warp.metainfo.xml.in.in:42 src/ui/action_view.rs:625
 msgid "Receiving File"
 msgstr "Получение файла"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:50 src/ui/action_view.rs:626
+#: data/app.drey.Warp.metainfo.xml.in.in:46 src/ui/action_view.rs:634
 msgid "File Transfer Complete"
 msgstr "Передача файлов завершена"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:220 src/ui/application.rs:225
+#: data/app.drey.Warp.metainfo.xml.in.in:227 src/ui/application.rs:223
 msgid "Fina Wilke"
 msgstr "Fina Wilke"
 
@@ -219,42 +214,42 @@ msgstr "Ошибка скопирована в буфер обмена"
 msgid "No error available"
 msgstr "Ошибки отсутствуют"
 
-#: src/ui/action_view.rs:433
+#: src/ui/action_view.rs:439
 msgid "Creating Archive"
 msgstr "Создание архива"
 
-#: src/ui/action_view.rs:437
+#: src/ui/action_view.rs:443
 msgid "Compressing folder “{}”"
 msgstr "Сжатие папки «{}»"
 
 #. Translators: Title
-#: src/ui/action_view.rs:453 src/ui/action_view.rs:511
+#: src/ui/action_view.rs:459 src/ui/action_view.rs:517
 msgid "Connecting"
 msgstr "Подключение"
 
 #. Translators: Description, Filename
-#: src/ui/action_view.rs:456
+#: src/ui/action_view.rs:462
 msgid "Requesting file transfer"
 msgstr "Запрос на передачу файлов"
 
 #. Translators: Description, argument is filename
-#: src/ui/action_view.rs:477
+#: src/ui/action_view.rs:483
 msgid "Ready to send “{}”."
 msgstr "Готово к отправке «{}»."
 
 #. Translators: Help dialog line 1, Code words and QR code visible,
-#: src/ui/action_view.rs:482
+#: src/ui/action_view.rs:488
 msgid ""
 "The receiver needs to enter or scan this code to begin the file transfer."
 msgstr ""
 "Получателю необходимо ввести или отсканировать этот код, чтобы начать "
 "передачу файла."
 
-#: src/ui/action_view.rs:486
+#: src/ui/action_view.rs:492
 msgid "The QR code is compatible with the following apps: {}."
 msgstr "QR-код совместим со следующими приложениями: {}."
 
-#: src/ui/action_view.rs:494
+#: src/ui/action_view.rs:500
 msgid ""
 "You have entered a custom rendezvous server URL in preferences. Please "
 "verify the receiver also uses the same rendezvous server."
@@ -262,31 +257,31 @@ msgstr ""
 "Вы ввели пользовательский URL сервера рандеву в настройках. Пожалуйста, "
 "убедитесь, что получатель также использует тот же сервер рандеву."
 
-#: src/ui/action_view.rs:499
+#: src/ui/action_view.rs:505
 msgid "Click the QR code to copy the link to the clipboard."
 msgstr "Нажмите на QR-код, чтобы скопировать ссылку в буфер обмена."
 
 #. Translators: Description, Transfer Code
-#: src/ui/action_view.rs:514
+#: src/ui/action_view.rs:520
 msgid "Connecting to peer with code “{}”"
 msgstr "Подключение к участнику сети с кодом «{}»"
 
-#: src/ui/action_view.rs:524
+#: src/ui/action_view.rs:530
 msgid "Connected to Peer"
 msgstr "Подключен к участнику сети"
 
 #. Translators: Description
-#: src/ui/action_view.rs:533
+#: src/ui/action_view.rs:539
 msgid "Preparing to send file"
 msgstr "Подготовка к отправке файла"
 
 #. Translators: Description
-#: src/ui/action_view.rs:540
+#: src/ui/action_view.rs:546
 msgid "Preparing to receive file"
 msgstr "Подготовка к получению файла"
 
 #. Translators: File receive confirmation message dialog; Filename, File size
-#: src/ui/action_view.rs:553
+#: src/ui/action_view.rs:560
 msgid ""
 "Your peer wants to send you “{0}” (Size: {1}).\n"
 "Do you want to download this file? The default action will save the file to "
@@ -296,70 +291,75 @@ msgstr ""
 "Хотите ли вы загрузить этот файл? Действие по умолчанию сохранит файл в "
 "папке «Загрузки»."
 
-#: src/ui/action_view.rs:558
+#: src/ui/action_view.rs:565
 msgid "Ready to Receive File"
 msgstr "Готов к получению файла"
 
-#: src/ui/action_view.rs:560
+#: src/ui/action_view.rs:567
 msgid ""
 "A file is ready to be transferred. The transfer needs to be acknowledged."
 msgstr "Файл готов к передаче. Необходимо подтвердить передачу."
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:588
+#: src/ui/action_view.rs:596
 msgid "File “{}” via local network direct transfer"
 msgstr "Файл «{}» через прямую передачу по локальной сети"
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:591
+#: src/ui/action_view.rs:599
 msgid "File “{}” via direct transfer"
 msgstr "Файл «{}» через прямую передачу"
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:597
+#: src/ui/action_view.rs:605
 msgid "File “{0}” via relay {1}"
 msgstr "Файл «{0}» через ретранслятор {1}"
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:600
+#: src/ui/action_view.rs:608
 msgid "File “{}” via relay"
 msgstr "Файл «{}» через ретранслятор"
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:604
+#: src/ui/action_view.rs:612
 msgid "File “{}” via Unknown connection method"
 msgstr "Файл «{}» через неизвестный способ подключения"
 
+#. Translators: Title
+#: src/ui/action_view.rs:619
+msgid "Sending File"
+msgstr "Отправка файла"
+
 #. Translators: Description, Filename
-#: src/ui/action_view.rs:634
+#: src/ui/action_view.rs:642
 msgid "Successfully sent file “{}”"
 msgstr "Файл «{}» успешно отправлен"
 
 #. Translators: Filename
-#: src/ui/action_view.rs:652
+#: src/ui/action_view.rs:660
 msgid "File has been saved to the selected folder as “{}”"
 msgstr "Файл был сохранен в выбранной папке как «{}»"
 
 #. Translators: Filename
-#: src/ui/action_view.rs:659
+#: src/ui/action_view.rs:667
 msgid "File has been saved to the Downloads folder as “{}”"
 msgstr "Файл был сохранен в папке «Загрузки» как «{}»"
 
 #. Translators: Title
-#: src/ui/action_view.rs:686 src/ui/action_view.ui:274
+#: src/ui/action_view.rs:693 src/ui/action_view.ui:275
 msgid "File Transfer Failed"
 msgstr "Передача файлов не удалась"
 
-#: src/ui/action_view.rs:688
+#: src/ui/action_view.rs:695
 msgid "The file transfer failed: {}"
 msgstr "Передача файла не удалась: {}"
 
 #. Translators: When opening a file
-#: src/ui/action_view.rs:808
+#: src/ui/action_view.rs:815
 msgid "Specified file / directory does not exist"
 msgstr "Указанный файл / папка не существует"
 
-#: src/ui/action_view.rs:826
+#: src/ui/action_view.rs:833
 msgid ""
 "Error parsing rendezvous server URL. An invalid URL was entered in the "
 "settings."
@@ -367,17 +367,17 @@ msgstr ""
 "Ошибка при разборе URL сервера рандеву. В настройках был введен недопустимый "
 "URL."
 
-#: src/ui/action_view.rs:833
+#: src/ui/action_view.rs:840
 msgid "Error parsing transit URL. An invalid URL was entered in the settings."
 msgstr ""
 "Ошибка при разборе транзитного URL. В настройках был введен недопустимый URL."
 
-#: src/ui/action_view.rs:920
+#: src/ui/action_view.rs:927
 msgid "Invalid path selected: {}"
 msgstr "Выбран неверный путь: {}"
 
 #. Translators: Above progress bar for creating an archive to send as a folder
-#: src/ui/action_view.rs:1165
+#: src/ui/action_view.rs:1172
 msgid "{} File - Size: {}"
 msgid_plural "{} Files - Size: {}"
 msgstr[0] "{} файл - размер: {}"
@@ -389,89 +389,89 @@ msgid "Save As"
 msgstr "Сохранить как"
 
 #. Translators: Button; Transmit Link is a noun
-#: src/ui/action_view.ui:94
+#: src/ui/action_view.ui:95
 msgid "Copy Transmit Link"
 msgstr "Копировать ссылку передачи"
 
-#: src/ui/action_view.ui:119
+#: src/ui/action_view.ui:120
 msgid "Your Transmit Code"
 msgstr "Ваш код передачи"
 
 #. Translators: Button; Transmit Code is a noun
-#: src/ui/action_view.ui:167
+#: src/ui/action_view.ui:168
 msgid "Copy Transmit Code"
 msgstr "Копировать код передачи"
 
 #. Translators: Title
-#: src/ui/action_view.ui:184
+#: src/ui/action_view.ui:185
 msgid "Accept File Transfer?"
 msgstr "Принять передачу файлов?"
 
-#: src/ui/action_view.ui:193
+#: src/ui/action_view.ui:194
 msgid "Save to Downloads Folder"
 msgstr "Сохранить в папку «Загрузки»"
 
 #. Translators: Button
-#: src/ui/action_view.ui:195
+#: src/ui/action_view.ui:196
 msgid "_Accept"
 msgstr "_Принять"
 
 #. Translators: Button
-#: src/ui/action_view.ui:209
+#: src/ui/action_view.ui:210
 msgid "Sa_ve As…"
 msgstr "Со_хранить как…"
 
 #. Translators: Title
-#: src/ui/action_view.ui:229
+#: src/ui/action_view.ui:230
 msgid "File Transfer Successful"
 msgstr "Передача файлов успешно выполнена"
 
 #. Translators: Button
-#: src/ui/action_view.ui:238
+#: src/ui/action_view.ui:239
 msgid "_Open File"
 msgstr "_Открыть файл"
 
 #. Translators: Button
-#: src/ui/action_view.ui:253 src/ui/window.ui:57
+#: src/ui/action_view.ui:254 src/ui/window.ui:57
 msgid "_Show in Folder"
 msgstr "_Показать в папке"
 
 #. Translators: Button
-#: src/ui/action_view.ui:279
+#: src/ui/action_view.ui:280
 msgid "Co_py Error Message"
 msgstr "Ко_пировать сообщение об ошибке"
 
 #. Translators: Button
-#: src/ui/action_view.ui:295
+#: src/ui/action_view.ui:296
 msgid "_Cancel"
 msgstr "О_тменить"
 
-#: src/ui/application.rs:62
+#: src/ui/application.rs:63
 msgid "Unable to use transfer link: another transfer already in progress"
 msgstr ""
 "Невозможно использовать ссылку на передачу: другая передача уже выполняется"
 
-#: src/ui/application.rs:226
+#: src/ui/application.rs:224
 msgid "Tobias Bernard"
 msgstr "Tobias Bernard"
 
-#: src/ui/application.rs:226
+#: src/ui/application.rs:224
 msgid "Sophie Herold"
 msgstr "Sophie Herold"
 
-#: src/ui/application.rs:227
+#: src/ui/application.rs:225
 msgid "translator-credits"
 msgstr "Aleksandr Melman <alexmelman88@gmail.com>, 2022-2023"
 
-#: src/ui/application.rs:244
+#: src/ui/application.rs:242
 msgid "Sending a File"
 msgstr "Отправка файла"
 
-#: src/ui/application.rs:245
+#: src/ui/application.rs:243
 msgid "Receiving a File"
 msgstr "Получение файла"
 
-#: src/ui/fs.rs:24
+#: src/ui/fs.rs:16
 msgid "Downloads dir missing. Please set XDG_DOWNLOAD_DIR"
 msgstr "Отсутствует папка загрузок. Пожалуйста, установите XDG_DOWNLOAD_DIR"
 
@@ -594,21 +594,21 @@ msgstr ""
 msgid "Error saving configuration file: {}"
 msgstr "Ошибка сохранения файла конфигурации: {}"
 
-#: src/ui/window.rs:301
+#: src/ui/window.rs:304
 msgid "Select File to Send"
 msgstr "Выбрать файл для отправки"
 
-#: src/ui/window.rs:309
+#: src/ui/window.rs:312
 msgid "Select Folder to Send"
 msgstr "Выбрать папку для отправки"
 
-#: src/ui/window.rs:360
+#: src/ui/window.rs:363
 msgid "“{}” appears to be an invalid Transmit Code. Please try again."
 msgstr ""
 "«{}», по-видимому, является недопустимым кодом передачи. Пожалуйста, "
 "попробуйте снова."
 
-#: src/ui/window.rs:471
+#: src/ui/window.rs:474
 msgid "Sending files with a preconfigured code is not yet supported"
 msgstr ""
 "Отправка файлов с предварительно настроенным кодом пока не поддерживается"
@@ -708,31 +708,35 @@ msgstr "Введите код передачи от отправителя"
 msgid "Receive _File"
 msgstr "Получить ф_айл"
 
-#: src/util.rs:32 src/util.rs:51
+#: src/ui/window.ui:245
+msgid "File Transfer"
+msgstr "Передача файлов"
+
+#: src/util.rs:33 src/util.rs:38
 msgid "Failed to open downloads folder."
 msgstr "Не удалось открыть папку «Загрузки»."
 
-#: src/util.rs:193 src/util.rs:266
+#: src/util.rs:198 src/util.rs:271
 msgid "The URI format is invalid"
 msgstr "Формат URI является недопустимым"
 
-#: src/util.rs:197 src/util.rs:201
+#: src/util.rs:202 src/util.rs:206
 msgid "The code does not match the required format"
 msgstr "Код не соответствует требуемому формату"
 
-#: src/util.rs:216 src/util.rs:222
+#: src/util.rs:221 src/util.rs:227
 msgid "Unknown URI version: {}"
 msgstr "Неизвестная версия URI: {}"
 
-#: src/util.rs:231
+#: src/util.rs:236
 msgid "The URI parameter “rendezvous” contains an invalid URL: “{}”"
 msgstr "Параметр URI «rendezvous» содержит недопустимый URL: «{}»"
 
-#: src/util.rs:243
+#: src/util.rs:248
 msgid "The URI parameter “role” must be “follower” or “leader” (was: “{}”)"
 msgstr "Параметр URI «role» должен быть «follower» или «leader» (было: «{}»)"
 
-#: src/util.rs:250
+#: src/util.rs:255
 msgid "Unknown URI parameter “{}”"
 msgstr "Неизвестный параметр URI «{}»"
 
