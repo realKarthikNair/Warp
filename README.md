@@ -6,7 +6,7 @@ The best transfer method will be determined using the [Magic Wormhole](https://g
 
 [<img width='240' alt='Download on Flathub' src='https://flathub.org/assets/badges/flathub-badge-en.png' />](https://flathub.org/apps/details/app.drey.Warp)
 
-[<img width='240' alt='View on apps.gnome.org' src='https://gitlab.gnome.org/World/warp/-/raw/main/data/icons/app.drey.Warp.Badge.png' />](https://apps.gnome.org/app/app.drey.Warp/)
+[<img width='240' alt='View on apps.gnome.org' src='https://gitlab.gnome.org/World/warp/-/raw/main/data/icons/app.drey.Warp.Badge.png' />](https://apps.gnome.org/Warp/)
 
 [<img width='240' alt='Part of GNOME Circle' src='https://gitlab.gnome.org/Teams/Circle/-/raw/91de93edbb3e75eb0882d56bd466e58b525135d5/assets/button/circle-button-fullcolor.svg' />](https://circle.gnome.org/)
 
