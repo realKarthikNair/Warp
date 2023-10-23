@@ -27,7 +27,7 @@ mod imp {
         pub transit_server_url_entry_row: TemplateChild<adw::EntryRow>,
 
         #[template_child]
-        pub code_length_spin_button: TemplateChild<gtk::SpinButton>,
+        pub code_length_spin_row: TemplateChild<adw::SpinRow>,
 
         #[property(get, set = Self::set_rendezvous_server_url)]
         pub rendezvous_server_url: RefCell<String>,
@@ -87,8 +87,10 @@ mod imp {
                     .unwrap_or_default(),
             );
 
-            self.code_length_spin_button
-                .set_adjustment(&gtk::Adjustment::new(4f64, 2f64, 8f64, 1f64, 0f64, 0f64));
+            self.code_length_spin_row
+                .set_adjustment(Some(&gtk::Adjustment::new(
+                    4f64, 2f64, 8f64, 1f64, 0f64, 0f64,
+                )));
 
             obj.set_code_length(window.config().code_length_or_default() as i32);
 
