@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: warp main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
-"POT-Creation-Date: 2023-10-16 11:54+0000\n"
-"PO-Revision-Date: 2023-10-18 16:00+0300\n"
+"POT-Creation-Date: 2023-10-26 07:37+0000\n"
+"PO-Revision-Date: 2023-10-28 14:51+0300\n"
 "Last-Translator: Florentina Mușat <florentina [dot] musat [dot] 28 [at] "
 "gmail [dot] com>\n"
 "Language-Team: Romanian <gnomero-list@lists.sourceforge.net>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2);\n"
-"X-Generator: Poedit 3.4\n"
+"X-Generator: Poedit 3.4.1\n"
 
 #: data/app.drey.Warp.desktop.in.in:3 data/app.drey.Warp.metainfo.xml.in.in:6
 #: src/main.rs:122 src/ui/window.ui:80
@@ -28,43 +28,50 @@ msgstr "Warp"
 #: data/app.drey.Warp.desktop.in.in:4 data/app.drey.Warp.metainfo.xml.in.in:7
 #: src/ui/welcome_window.ui:27
 msgid "Fast and secure file transfer"
-msgstr ""
+msgstr "Transfer de fișiere rapid și sigur"
 
 #: data/app.drey.Warp.desktop.in.in:9
 msgid "Gnome;GTK;Wormhole;Magic-Wormhole;"
 msgstr ""
+"Gnome;GTK;Wormhole;Magic-Wormhole;Gaură de vierme;Gaură de vierme magică;"
 
 #: data/app.drey.Warp.metainfo.xml.in.in:9
 msgid ""
 "Warp allows you to securely send files to each other via the internet or "
 "local network by exchanging a word-based code."
 msgstr ""
+"Warp vă permite să trimiteți în siguranță fișiere unul către celălalt prin "
+"intermediul internetului sau al rețelei locale prin schimbul unui cod bazat "
+"pe cuvinte."
 
 #: data/app.drey.Warp.metainfo.xml.in.in:13
 msgid ""
 "The best transfer method will be determined using the “Magic Wormhole” "
 "protocol which includes local network transfer if possible."
 msgstr ""
+"Cea mai bună metodă de transfer va fi determinată utilizând protocolul "
+"„Gaură de vierme magică”, care include transfer în rețeaua locală, dacă este "
+"posibil."
 
 #: data/app.drey.Warp.metainfo.xml.in.in:17
 msgid "Features"
-msgstr ""
+msgstr "Caracteristici"
 
 #: data/app.drey.Warp.metainfo.xml.in.in:19
 msgid "Send files between multiple devices"
-msgstr ""
+msgstr "Trimite fișiere între dispozitive multiple"
 
 #: data/app.drey.Warp.metainfo.xml.in.in:20
 msgid "Every file transfer is encrypted"
-msgstr ""
+msgstr "Fiecare transfer de fișiere este criptat"
 
 #: data/app.drey.Warp.metainfo.xml.in.in:21
 msgid "Directly transfer files on the local network if possible"
-msgstr ""
+msgstr "Transferă fișiere direct în rețeaua locală, dacă este posibil"
 
 #: data/app.drey.Warp.metainfo.xml.in.in:22
 msgid "An internet connection is required"
-msgstr ""
+msgstr "Este necesară o conexiune la internet"
 
 #: data/app.drey.Warp.metainfo.xml.in.in:23
 msgid "QR Code support"
@@ -75,6 +82,8 @@ msgid ""
 "Compatibility with the Magic Wormhole command line client and all other "
 "compatible apps"
 msgstr ""
+"Compatibilitate cu clientul în linie de comandă Gaură de vierme magică și "
+"toate celelalte aplicații compatibile"
 
 #: data/app.drey.Warp.metainfo.xml.in.in:30
 msgid "Main Window"
@@ -83,19 +92,19 @@ msgstr "Fereastră principală"
 #. Translators: Entry placeholder; This is a noun
 #: data/app.drey.Warp.metainfo.xml.in.in:34 src/ui/window.ui:198
 msgid "Transmit Code"
-msgstr ""
+msgstr "Cod de transmitere"
 
 #: data/app.drey.Warp.metainfo.xml.in.in:38
 msgid "Accept File Transfer"
-msgstr ""
+msgstr "Acceptă transferul de fișiere"
 
 #: data/app.drey.Warp.metainfo.xml.in.in:42 src/ui/action_view.rs:625
 msgid "Receiving File"
-msgstr ""
+msgstr "Se primește fișierul"
 
 #: data/app.drey.Warp.metainfo.xml.in.in:46 src/ui/action_view.rs:634
 msgid "File Transfer Complete"
-msgstr ""
+msgstr "Transfer de fișiere completat"
 
 #: data/app.drey.Warp.metainfo.xml.in.in:234 src/ui/application.rs:223
 msgid "Fina Wilke"
@@ -124,151 +133,155 @@ msgstr "Arată preferințele"
 #: data/resources/ui/help_overlay.ui:32
 msgctxt "shortcut window"
 msgid "Quit"
-msgstr "Ieși"
+msgstr "Ieșire"
 
 #: data/resources/ui/help_overlay.ui:40
 msgctxt "shortcut window"
 msgid "File Transfer"
-msgstr ""
+msgstr "Transfer de fișiere"
 
 #: data/resources/ui/help_overlay.ui:43
 msgctxt "shortcut window"
 msgid "Send File"
-msgstr ""
+msgstr "Trimite fișierul"
 
 #: data/resources/ui/help_overlay.ui:49
 msgctxt "shortcut window"
 msgid "Send Folder"
-msgstr ""
+msgstr "Trimite dosarul"
 
 #: data/resources/ui/help_overlay.ui:55
 msgctxt "shortcut window"
 msgid "Receive File"
-msgstr ""
+msgstr "Primește fișierul"
 
 #. Translators: {0} = file size transferred, {1} = total file size, Example: 17.3MB / 20.5MB
 #: src/gettext/duration.rs:11
 msgctxt "File size transferred"
 msgid "{0} / {1}"
-msgstr ""
+msgstr "{0} / {1}"
 
 #. Translators: File transfer time left
 #: src/gettext/duration.rs:18
 msgid "One second left"
 msgid_plural "{} seconds left"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "O secundă rămasă"
+msgstr[1] "{} secunde rămase"
+msgstr[2] "{} de secunde rămase"
 
 #. Translators: File transfer time left
 #: src/gettext/duration.rs:26
 msgid "One minute left"
 msgid_plural "{} minutes left"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Un minut rămas"
+msgstr[1] "{} minute rămase"
+msgstr[2] "{} de minute rămase"
 
 #. Translators: File transfer time left
 #: src/gettext/duration.rs:34
 msgid "One hour left"
 msgid_plural "{} hours left"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "O oră rămasă"
+msgstr[1] "{} ore rămase"
+msgstr[2] "{} de ore rămase"
 
 #. Translators: File transfer time left
 #: src/gettext/duration.rs:42
 msgid "One day left"
 msgid_plural "{} days left"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "O zi rămasă"
+msgstr[1] "{} zile rămase"
+msgstr[2] "{} de zile rămase"
 
 #. Translators: {0} = 11.3MB / 20.7MB, {1} = 3 seconds left
 #: src/gettext/duration.rs:52
 msgctxt "Combine bytes progress {0} and time remaining {1}"
 msgid "{0} — {1}"
-msgstr ""
+msgstr "{0} — {1}"
 
 #. Translators: Notification when clicking on "Copy Code to Clipboard" button
 #: src/ui/action_view.rs:255
 msgid "Copied Code to Clipboard"
-msgstr ""
+msgstr "Copiat codul la clipboard"
 
 #. Translators: Notification when clicking on "Copy Link to Clipboard" button
 #: src/ui/action_view.rs:276
 msgid "Copied Link to Clipboard"
-msgstr ""
+msgstr "Copiat legătura la clipboard"
 
 #: src/ui/action_view.rs:290
 msgid "Copied Error to Clipboard"
-msgstr ""
+msgstr "Copiat eroarea la clipboard"
 
 #: src/ui/action_view.rs:292
 msgid "No error available"
-msgstr ""
+msgstr "Nu există nicio eroare disponibilă"
 
 #: src/ui/action_view.rs:439
 msgid "Creating Archive"
-msgstr ""
+msgstr "Se creează arhiva"
 
 #: src/ui/action_view.rs:443
 msgid "Compressing folder “{}”"
-msgstr ""
+msgstr "Se comprimă dosarul „{}”"
 
 #. Translators: Title
 #: src/ui/action_view.rs:459 src/ui/action_view.rs:517
 msgid "Connecting"
-msgstr ""
+msgstr "Se conectează"
 
 #. Translators: Description, Filename
 #: src/ui/action_view.rs:462
 msgid "Requesting file transfer"
-msgstr ""
+msgstr "Se cere transferul de fișiere"
 
 #. Translators: Description, argument is filename
 #: src/ui/action_view.rs:483
 msgid "Ready to send “{}”."
-msgstr ""
+msgstr "Gata de trimis „{}”."
 
 #. Translators: Help dialog line 1, Code words and QR code visible,
 #: src/ui/action_view.rs:488
 msgid ""
 "The receiver needs to enter or scan this code to begin the file transfer."
 msgstr ""
+"Receptorul trebuie să introducă sau să scaneze acest cod pentru a începe "
+"transferul fișierelor."
 
 #: src/ui/action_view.rs:492
 msgid "The QR code is compatible with the following apps: {}."
-msgstr ""
+msgstr "Codul QR este compatibil cu următoarele aplicații: {}."
 
 #: src/ui/action_view.rs:500
 msgid ""
 "You have entered a custom rendezvous server URL in preferences. Please "
 "verify the receiver also uses the same rendezvous server."
 msgstr ""
+"Ați introdus un URL de server de întâlnire personalizat în preferințe. "
+"Verificați că receptorul utilizează același server de întâlnire."
 
 #: src/ui/action_view.rs:505
 msgid "Click the QR code to copy the link to the clipboard."
-msgstr ""
+msgstr "Dați clic pe codul QR pentru a copia legătura la clipboard."
 
 #. Translators: Description, Transfer Code
 #: src/ui/action_view.rs:520
 msgid "Connecting to peer with code “{}”"
-msgstr ""
+msgstr "Se conectează la partener cu codul „{}”"
 
 #: src/ui/action_view.rs:530
 msgid "Connected to Peer"
-msgstr ""
+msgstr "Conectat la partener"
 
 #. Translators: Description
 #: src/ui/action_view.rs:539
 msgid "Preparing to send file"
-msgstr ""
+msgstr "Se pregătește trimiterea fișierului"
 
 #. Translators: Description
 #: src/ui/action_view.rs:546
 msgid "Preparing to receive file"
-msgstr ""
+msgstr "Se pregătește primirea fișierului"
 
 #. Translators: File receive confirmation message dialog; Filename, File size
 #: src/ui/action_view.rs:560
@@ -277,96 +290,104 @@ msgid ""
 "Do you want to download this file? The default action will save the file to "
 "your Downloads folder."
 msgstr ""
+"Partenerul dorește să vă trimită „{0}” (Dimensiune: {1}).\n"
+"Doriți să descărcați acest fișier? Acțiunea implicită va salva fișierul în "
+"dosarul Descărcări."
 
 #: src/ui/action_view.rs:565
 msgid "Ready to Receive File"
-msgstr ""
+msgstr "Gata pentru primirea fișierului"
 
 #: src/ui/action_view.rs:567
 msgid ""
 "A file is ready to be transferred. The transfer needs to be acknowledged."
 msgstr ""
+"Un fișier este gata pentru a fi transferat. Transferul trebuie confirmat."
 
 #. Translators: Description, During transfer
 #: src/ui/action_view.rs:596
 msgid "File “{}” via local network direct transfer"
-msgstr ""
+msgstr "Fișierul „{}” prin transfer direct în rețeaua locală"
 
 #. Translators: Description, During transfer
 #: src/ui/action_view.rs:599
 msgid "File “{}” via direct transfer"
-msgstr ""
+msgstr "Fișierul „{}” prin transfer direct"
 
 #. Translators: Description, During transfer
 #: src/ui/action_view.rs:605
 msgid "File “{0}” via relay {1}"
-msgstr ""
+msgstr "Fișierul „{0}” prin releul {1}"
 
 #. Translators: Description, During transfer
 #: src/ui/action_view.rs:608
 msgid "File “{}” via relay"
-msgstr ""
+msgstr "Fișierul „{}” prin releu"
 
 #. Translators: Description, During transfer
 #: src/ui/action_view.rs:612
 msgid "File “{}” via Unknown connection method"
-msgstr ""
+msgstr "Fișierul „{}” printr-o metodă de conexiune necunoscută"
 
 #. Translators: Title
 #: src/ui/action_view.rs:619
 msgid "Sending File"
-msgstr ""
+msgstr "Se trimite fișierul"
 
 #. Translators: Description, Filename
 #: src/ui/action_view.rs:642
 msgid "Successfully sent file “{}”"
-msgstr ""
+msgstr "S-a trimis cu succes fișierul „{}”"
 
 #. Translators: Filename
 #: src/ui/action_view.rs:660
 msgid "File has been saved to the selected folder as “{}”"
-msgstr ""
+msgstr "Fișierul a fost salvat la dosarul selectat ca „{}”"
 
 #. Translators: Filename
 #: src/ui/action_view.rs:667
 msgid "File has been saved to the Downloads folder as “{}”"
-msgstr ""
+msgstr "Fișierul a fost salvat la dosarul Descărcări ca „{}”"
 
 #. Translators: Title
 #: src/ui/action_view.rs:693 src/ui/action_view.ui:275
 msgid "File Transfer Failed"
-msgstr ""
+msgstr "Transferul de fișiere a eșuat"
 
 #: src/ui/action_view.rs:695
 msgid "The file transfer failed: {}"
-msgstr ""
+msgstr "Transferul de fișiere a eșuat: {}"
 
 #. Translators: When opening a file
 #: src/ui/action_view.rs:815
 msgid "Specified file / directory does not exist"
-msgstr ""
+msgstr "Fișierul / directorul specificat nu există"
 
 #: src/ui/action_view.rs:833
 msgid ""
 "Error parsing rendezvous server URL. An invalid URL was entered in the "
 "settings."
 msgstr ""
+"Eroare la parsarea URL-ului de server de întâlnire. Un URL nevalid a fost "
+"introdus în configurări."
 
 #: src/ui/action_view.rs:840
 msgid "Error parsing transit URL. An invalid URL was entered in the settings."
 msgstr ""
+"Eroare la parsarea URL-ului de tranzit. Un URL nevalid a fost introdus în "
+"configurări."
 
 #: src/ui/action_view.rs:927
 msgid "Invalid path selected: {}"
-msgstr ""
+msgstr "Cale nevalidă selectată: {}"
 
 #. Translators: Above progress bar for creating an archive to send as a folder
 #: src/ui/action_view.rs:1172
 msgid "{} File - Size: {}"
 msgid_plural "{} Files - Size: {}"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{} fișier - dimensiune: {}"
+msgstr[1] "{} fișiere - dimensiune: {}"
+msgstr[2] "{} de fișiere - dimensiune: {}"
 
 #: src/ui/action_view.ui:4
 msgid "Save As"
@@ -375,55 +396,55 @@ msgstr "Salvează ca"
 #. Translators: Button; Transmit Link is a noun
 #: src/ui/action_view.ui:95
 msgid "Copy Transmit Link"
-msgstr ""
+msgstr "Copiază legătura de transmitere"
 
 #: src/ui/action_view.ui:120
 msgid "Your Transmit Code"
-msgstr ""
+msgstr "Codul de transmitere"
 
 #. Translators: Button; Transmit Code is a noun
 #: src/ui/action_view.ui:168
 msgid "Copy Transmit Code"
-msgstr ""
+msgstr "Copiază codul de transmitere"
 
 #. Translators: Title
 #: src/ui/action_view.ui:185
 msgid "Accept File Transfer?"
-msgstr ""
+msgstr "Acceptați transferul de fișiere?"
 
 #: src/ui/action_view.ui:194
 msgid "Save to Downloads Folder"
-msgstr ""
+msgstr "Salvează în dosarul de descărcări"
 
 #. Translators: Button
 #: src/ui/action_view.ui:196
 msgid "_Accept"
-msgstr ""
+msgstr "_Acceptă"
 
 #. Translators: Button
 #: src/ui/action_view.ui:210
 msgid "Sa_ve As…"
-msgstr ""
+msgstr "Sal_vează ca…"
 
 #. Translators: Title
 #: src/ui/action_view.ui:230
 msgid "File Transfer Successful"
-msgstr ""
+msgstr "Transfer de fișiere cu succes"
 
 #. Translators: Button
 #: src/ui/action_view.ui:239
 msgid "_Open File"
-msgstr "_Deschide un fișier"
+msgstr "D_eschide un fișier"
 
 #. Translators: Button
 #: src/ui/action_view.ui:254 src/ui/window.ui:57
 msgid "_Show in Folder"
-msgstr ""
+msgstr "_Arată în dosar"
 
 #. Translators: Button
 #: src/ui/action_view.ui:280
 msgid "Co_py Error Message"
-msgstr ""
+msgstr "Co_piază mesajul de eroare"
 
 #. Translators: Button
 #: src/ui/action_view.ui:296
@@ -433,32 +454,32 @@ msgstr "_Anulează"
 #: src/ui/application.rs:63
 msgid "Unable to use transfer link: another transfer already in progress"
 msgstr ""
+"Nu se poate utiliza legătura de transfer: un alt transfer este deja în curs"
 
 #: src/ui/application.rs:224
 msgid "Tobias Bernard"
-msgstr ""
+msgstr "Tobias Bernard"
 
 #: src/ui/application.rs:224
 msgid "Sophie Herold"
-msgstr ""
+msgstr "Sophie Herold"
 
 #: src/ui/application.rs:225
 msgid "translator-credits"
 msgstr ""
-"Florentina Mușat <florentina [dot] musat [dot] 28 [at] gmail [dot] com>, "
-"2023"
+"Florentina Mușat <florentina [dot] musat [dot] 28 [at] gmail [dot] com>, 2023"
 
 #: src/ui/application.rs:242
 msgid "Sending a File"
-msgstr ""
+msgstr "Se trimite un fișier"
 
 #: src/ui/application.rs:243
 msgid "Receiving a File"
-msgstr ""
+msgstr "Se primește un fișier"
 
 #: src/ui/fs.rs:16
 msgid "Downloads dir missing. Please set XDG_DOWNLOAD_DIR"
-msgstr ""
+msgstr "Directorul de descărcări lipsește. Stabiliți XDG_DOWNLOAD_DIR"
 
 #: src/ui/preferences.rs:96
 msgid ""
@@ -469,6 +490,13 @@ msgid ""
 "Rendezvous Server: “{0}”\n"
 "Transit Server: “{1}”"
 msgstr ""
+"Modificarea URL-ului de server de întâlnire trebuie făcută pe ambele părți "
+"ale transferului. Introduceți doar un URL de server în care puteți avea "
+"încredere.\n"
+"\n"
+"Lăsând aceste intrări goale, se vor utiliza implicitele aplicației:\n"
+"Server de întâlnire: “{0}”\n"
+"Server de tranzit: “{1}”"
 
 #: src/ui/preferences.ui:6
 msgid "Preferences"
@@ -480,7 +508,7 @@ msgstr "Rețea"
 
 #: src/ui/preferences.ui:15
 msgid "Code Words"
-msgstr ""
+msgstr "Cuvinte cod"
 
 #: src/ui/preferences.ui:16
 msgid ""
@@ -490,30 +518,36 @@ msgid ""
 "guessing the code. As a code may only be guessed once, the risk is very "
 "small even with short codes. A length of 4 is very secure."
 msgstr ""
+"Numărul de cuvinte de cod determină securitatea transferului.\n"
+"\n"
+"Un cod scurt este ușor de reținut, dar crește riscul ca altcineva să "
+"ghicească codul. Deoarece un cod poate fi ghicit doar o singură dată, riscul "
+"este foarte mic chiar și în cazul codurilor scurte. O lungime de 4 este "
+"foarte sigură."
 
 #: src/ui/preferences.ui:21
 msgid "Code Word Count"
-msgstr ""
+msgstr "Număr de cuvinte cod"
 
 #: src/ui/preferences.ui:34
 msgid "Server URLs"
-msgstr ""
+msgstr "URL-uri server"
 
 #: src/ui/preferences.ui:37
 msgid "Rendezvous Server URL"
-msgstr ""
+msgstr "URL-ul serverului de întâlnire"
 
 #: src/ui/preferences.ui:44
 msgid "Transit Server URL"
-msgstr ""
+msgstr "URL-ul serverului de tranzit"
 
 #: src/ui/welcome_window.ui:13
 msgid "Welcome"
-msgstr ""
+msgstr "Bine ați venit"
 
 #: src/ui/welcome_window.ui:26
 msgid "Welcome to Warp"
-msgstr ""
+msgstr "Bine ați venit la Warp"
 
 #. Translators: Button
 #: src/ui/welcome_window.ui:34
@@ -522,7 +556,7 @@ msgstr "Următorul"
 
 #: src/ui/welcome_window.ui:82
 msgid "Introduction"
-msgstr ""
+msgstr "Introducere"
 
 #: src/ui/welcome_window.ui:93
 msgid ""
@@ -537,37 +571,51 @@ msgid ""
 "\n"
 "For more information about Warp, open the Help section from the Main Menu."
 msgstr ""
+"Warp face transferul de fișiere simplu. Pentru a începe, ambele părți "
+"trebuie să instaleze Warp pe dispozitivele lor.\n"
+"\n"
+"După selectarea unui fișier de transmis, expeditorul trebuie să spună "
+"receptorului codul de transmitere afișat. Acest lucru se face de preferință "
+"printr-un canal de comunicare securizat.\n"
+"\n"
+"Când receptorul a introdus codul, transferul de fișiere poate începe.\n"
+"\n"
+"Pentru mai multe informații despre Warp, deschideți secțiunea Ajutor din "
+"meniul principal."
 
 #. Translators: Big button to finish welcome screen
 #: src/ui/welcome_window.ui:106
 msgid "Get Started Using Warp"
-msgstr ""
+msgstr "Începeți să utilizați Warp"
 
 #: src/ui/window.rs:103
 msgid ""
 "Error loading config file “{0}”, using default config.\n"
 "Error: {1}"
 msgstr ""
+"Eroare la încărcarea fișierului de configurare „{0}”, se utilizează "
+"configurarea implicită.\n"
+"Eroare: {1}"
 
 #: src/ui/window.rs:210
 msgid "Error saving configuration file: {}"
-msgstr ""
+msgstr "Eroare la salvarea fișierului de configurare: {}"
 
 #: src/ui/window.rs:304
 msgid "Select File to Send"
-msgstr ""
+msgstr "Selectați fișierul de trimis"
 
 #: src/ui/window.rs:312
 msgid "Select Folder to Send"
-msgstr ""
+msgstr "Selectați dosarul de trimis"
 
 #: src/ui/window.rs:363
 msgid "“{}” appears to be an invalid Transmit Code. Please try again."
-msgstr ""
+msgstr "„{}” pare a fi un cod de transmitere nevalid. Încercați din nou."
 
 #: src/ui/window.rs:474
 msgid "Sending files with a preconfigured code is not yet supported"
-msgstr ""
+msgstr "Trimiterea fișierelor cu un cod preconfigurat nu este suportată încă"
 
 #. Translators: menu item
 #: src/ui/window.ui:7
@@ -587,21 +635,21 @@ msgstr "_Ajutor"
 #. Translators: menu item
 #: src/ui/window.ui:22
 msgid "_About Warp"
-msgstr ""
+msgstr "_Despre Warp"
 
 #. Translators: Notification when code was automatically detected in clipboard and inserted into code entry on receive page
 #: src/ui/window.ui:33
 msgid "Inserted code from clipboard"
-msgstr ""
+msgstr "Cod inserat din clipboard"
 
 #. Translators: File receive confirmation message dialog title
 #: src/ui/window.ui:38
 msgid "Abort File Transfer?"
-msgstr ""
+msgstr "Întrerupeți transferul de fișiere?"
 
 #: src/ui/window.ui:39
 msgid "Do you want to abort the current file transfer?"
-msgstr ""
+msgstr "Doriți să întrerupeți transferul de fișiere curent?"
 
 #: src/ui/window.ui:45
 msgid "_Continue"
@@ -609,12 +657,12 @@ msgstr "_Continuă"
 
 #: src/ui/window.ui:46
 msgid "_Abort"
-msgstr ""
+msgstr "În_trerupe"
 
 #. Translators: Error dialog title
 #: src/ui/window.ui:51
 msgid "Unable to Open File"
-msgstr ""
+msgstr "Nu se poate deschide fișierul"
 
 #: src/ui/window.ui:56 src/util/error.rs:176
 msgid "_Close"
@@ -630,95 +678,100 @@ msgstr "_Trimite"
 
 #: src/ui/window.ui:128
 msgid "Send File"
-msgstr ""
+msgstr "Trimite fișierul"
 
 #: src/ui/window.ui:129
 msgid "Select or drop the file or directory to send"
-msgstr ""
+msgstr "Selectați sau plasați fișierul sau directorul pentru a trimite"
 
 #. Translators: Button
 #: src/ui/window.ui:140
 msgid "Select _File…"
-msgstr ""
+msgstr "Selectează un fișier…"
 
 #. Translators: Button
 #: src/ui/window.ui:154
 msgid "Select F_older…"
-msgstr ""
+msgstr "Selectează un d_osar…"
 
 #: src/ui/window.ui:174
 msgid "_Receive"
-msgstr ""
+msgstr "P_rimește"
 
 #: src/ui/window.ui:183
 msgid "Receive File"
-msgstr ""
+msgstr "Primește fișierul"
 
 #. Translators: Text above code input box, transmit code is a noun
 #: src/ui/window.ui:185
 msgid "Enter the transmit code from the sender"
-msgstr ""
+msgstr "Introduceți codul de transmitere de la expeditor"
 
 #. Translators: Button
 #: src/ui/window.ui:219
 msgid "Receive _File"
-msgstr ""
+msgstr "Primește _fișierul"
 
 #: src/ui/window.ui:245
 msgid "File Transfer"
-msgstr ""
+msgstr "Transfer de fișiere"
 
 #: src/util.rs:33 src/util.rs:38
 msgid "Failed to open downloads folder."
-msgstr ""
+msgstr "Nu s-a putut deschide dosarul de descărcări."
 
 #: src/util.rs:198 src/util.rs:271
 msgid "The URI format is invalid"
-msgstr ""
+msgstr "Formatul URI-ului nu este valid"
 
 #: src/util.rs:202 src/util.rs:206
 msgid "The code does not match the required format"
-msgstr ""
+msgstr "Codul nu se potrivește cu formatul necesar"
 
 #: src/util.rs:221 src/util.rs:227
 msgid "Unknown URI version: {}"
-msgstr ""
+msgstr "Versiune de URI necunoscută: {}"
 
 #: src/util.rs:236
 msgid "The URI parameter “rendezvous” contains an invalid URL: “{}”"
-msgstr ""
+msgstr "Parametrul URI „întâlnire” conține un URL nevalid: „{}”"
 
 #: src/util.rs:248
 msgid "The URI parameter “role” must be “follower” or “leader” (was: “{}”)"
 msgstr ""
+"Parametrul URI „rol” trebuie să fie „urmăritor” sau „lider” (a fost „{}”)"
 
 #: src/util.rs:255
 msgid "Unknown URI parameter “{}”"
-msgstr ""
+msgstr "Parametru URI necunoscut „{}”"
 
 #: src/util/error.rs:157
 msgid "An error occurred"
-msgstr ""
+msgstr "A apărut o eroare"
 
 #: src/util/error.rs:187 src/util/error.rs:252
 msgid "Corrupt or unexpected message received"
-msgstr ""
+msgstr "S-a primit un mesaj corupt sau neașteptat"
 
 #: src/util/error.rs:192
 msgid ""
 "The rendezvous server will not allow further connections for this code. A "
 "new code needs to be generated."
 msgstr ""
+"Serverul de întâlnire nu va permite conexiuni suplimentare pentru acest cod. "
+"Trebuie generat un cod nou."
 
 #: src/util/error.rs:194
 msgid ""
 "The rendezvous server removed the code due to inactivity. A new code needs "
 "to be generated."
 msgstr ""
+"Serverul de întâlnire a eliminat codul din cauza inactivității. Trebuie "
+"generat un cod nou."
 
 #: src/util/error.rs:196
 msgid "The rendezvous server responded with an unknown message: {}"
-msgstr ""
+msgstr "Serverul de întâlnire a răspuns cu un mesaj necunoscut: {}"
 
 #: src/util/error.rs:199
 msgid ""
@@ -726,12 +779,17 @@ msgid ""
 "You have entered a custom rendezvous server URL in preferences. Please "
 "verify the URL is correct and the server is working."
 msgstr ""
+"Eroare la conectarea la serverul de întâlnire.\n"
+"Ați introdus un URL de server de întâlnire personalizat în preferințe. "
+"Verificați că URL-ul este corect și că serverul funcționează."
 
 #: src/util/error.rs:201
 msgid ""
 "Error connecting to the rendezvous server.\n"
 "Please try again later / verify you are connected to the internet."
 msgstr ""
+"Eroare la conectarea la serverul de întâlnire.\n"
+"Încercați din nou mai târziu / verificați că sunteți conectat la internet."
 
 #: src/util/error.rs:205
 msgid ""
@@ -739,62 +797,68 @@ msgid ""
 "code, this is a sign of an attacker guessing passwords. Please try again "
 "some time later."
 msgstr ""
+"Confirmarea cheii de criptare a eșuat. Dacă dvs. sau partenerul nu ați "
+"tastat greșit codul, acesta este un semn că un atacator ghicește parole. "
+"Încercați din nou ceva timp mai târziu."
 
 #: src/util/error.rs:207
 msgid "Cannot decrypt a received message"
-msgstr ""
+msgstr "Nu se poate decripta un mesaj primit"
 
 #: src/util/error.rs:208 src/util/error.rs:263 src/util/error.rs:269
 msgid "An unknown error occurred"
-msgstr ""
+msgstr "A apărut o eroare necunoscută"
 
 #: src/util/error.rs:214
 msgid "File / Directory not found"
-msgstr ""
+msgstr "Fișierul / directorul nu a fost găsit"
 
 #: src/util/error.rs:215
 msgid "Permission denied"
-msgstr ""
+msgstr "Permisiune refuzată"
 
 #: src/util/error.rs:227
 msgid "Transfer was not acknowledged by peer"
-msgstr ""
+msgstr "Transferul nu a fost recunoscut de către partener"
 
 #: src/util/error.rs:229
 msgid "The received file is corrupted"
-msgstr ""
+msgstr "Fișierul primit este corupt"
 
 #: src/util/error.rs:235
 msgid ""
 "The file contained a different amount of bytes than advertised! Sent {} "
 "bytes, but should have been {}"
 msgstr ""
+"Fișierul conținea o cantitate diferită de octeți decât cea anunțată! S-au "
+"trimis {} octeți, dar ar fi trebuit să fie {}"
 
 #: src/util/error.rs:240
 msgid "The other side has cancelled the transfer"
-msgstr ""
+msgstr "Cealaltă parte a anulat transferul"
 
 #: src/util/error.rs:242
 msgid "The other side has rejected the transfer"
-msgstr ""
+msgstr "Cealaltă parte a respins transferul"
 
 #: src/util/error.rs:244
 msgid "Something went wrong on the other side: {}"
-msgstr ""
+msgstr "Ceva nu a mers bine de cealaltă parte: {}"
 
 #: src/util/error.rs:259
 msgid "Error while establishing file transfer connection"
-msgstr ""
+msgstr "Eroare la stabilirea conexiunii de transfer de fișiere"
 
 #: src/util/error.rs:261
 msgid "Unknown file transfer error"
-msgstr ""
+msgstr "Eroare de transfer de fișiere necunoscută"
 
 #: src/util/error.rs:270
 msgid "An unknown error occurred while creating a zip file: {}"
-msgstr ""
+msgstr "A apărut o eroare necunoscută în timpul creării unui fișier zip: {}"
 
 #: src/util/error.rs:271
 msgid ""
 "An unexpected error occurred. Please report an issue with the error message."
 msgstr ""
+"A apărut o eroare neașteptată. Raportați o problemă cu mesajul de eroare."
