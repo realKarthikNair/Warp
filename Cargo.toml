@@ -35,7 +35,7 @@ glib = "0.18"
 #gio = {version = "0.18", package = "gio", git = "https://github.com/gtk-rs/gtk-rs-core", features = ["v2_70"]}
 #adw = {version = "0.4", package = "libadwaita", git = "https://gitlab.gnome.org/felinira/libadwaita-rs.git", features = ["v1_4"]}
 #glib = {version = "0.18", package = "glib", git = "https://github.com/gtk-rs/gtk-rs-core"}
-async-channel = "1.6"
+async-channel = "2.1"
 wormhole = { package = "magic-wormhole", version = "0.6" }
 futures = "0.3"
 url = "2.2"
@@ -44,7 +44,7 @@ smol = "1.2"
 scopeguard = "1.1"
 serde = "1.0"
 serde_json = "1.0"
-simple_moving_average = "0.1"
+simple_moving_average = "1.0"
 chrono = "0.4"
 regex = "1.5"
 gvdb = { version = "0.5", features = ["gresource"] }
@@ -54,9 +54,9 @@ tempfile = "3.4.0"
 backtrace = "0.3"
 qrcode = "0.12"
 zbus = "3.13"
-async-broadcast = "0.5"
+async-broadcast = "0.6"
 async_zip = "0.0.15"
-memmap2 = "0.7"
+memmap2 = "0.9"
 
 [target.'cfg(windows)'.dependencies]
 win32console = "0.1"
