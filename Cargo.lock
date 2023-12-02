@@ -3085,7 +3085,7 @@ dependencies = [
 
 [[package]]
 name = "warp"
-version = "0.6.1"
+version = "0.6.2"
 dependencies = [
  "async-broadcast 0.6.0",
  "async-channel 2.1.1",
