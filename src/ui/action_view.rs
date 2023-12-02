@@ -861,10 +861,10 @@ impl ActionView {
 
         self.window().add_code(&code);
 
-        let (_welcome, connection) = spawn_async(cancelable_future(
+        let (_welcome, connection) = Box::pin(spawn_async(cancelable_future(
             wormhole::Wormhole::connect_with_code(app_cfg, code),
             self.cancel_future(),
-        ))
+        )))
         .await??;
 
         self.set_ui_state(UIState::Connected);
