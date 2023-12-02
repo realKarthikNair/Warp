@@ -16,6 +16,20 @@
       </object>
     </child>
   </object>
+  <object class="GtkSizeGroup">
+    <property name="mode">horizontal</property>
+    <widgets>
+      <widget name="accept_transfer_button" />
+      <widget name="save_as_button" />
+    </widgets>
+  </object>
+  <object class="GtkSizeGroup">
+    <property name="mode">horizontal</property>
+    <widgets>
+      <widget name="open_button" />
+      <widget name="open_dir_button" />
+    </widgets>
+  </object>
   <template class="ActionView" parent="AdwBin">
     <style>
       <class name="action-view" />
