@@ -1,0 +1,845 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
+"POT-Creation-Date: 2023-12-04 17:55+0000\n"
+"PO-Revision-Date: 2023-12-06 13:36+0000\n"
+"Last-Translator: Bruce Cowan <bruce@bcowan.me.uk>\n"
+"Language-Team: \n"
+"Language: en_GB\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.4\n"
+
+#: data/app.drey.Warp.desktop.in.in:3 data/app.drey.Warp.metainfo.xml.in.in:6
+#: src/main.rs:122 src/ui/window.ui:87
+msgid "Warp"
+msgstr "Warp"
+
+#: data/app.drey.Warp.desktop.in.in:4 data/app.drey.Warp.metainfo.xml.in.in:7
+#: src/ui/welcome_window.ui:27
+msgid "Fast and secure file transfer"
+msgstr "Fast and secure file transfer"
+
+#: data/app.drey.Warp.desktop.in.in:9
+msgid "Gnome;GTK;Wormhole;Magic-Wormhole;"
+msgstr "Gnome;GTK;Wormhole;Magic-Wormhole;"
+
+#: data/app.drey.Warp.metainfo.xml.in.in:9
+msgid ""
+"Warp allows you to securely send files to each other via the internet or "
+"local network by exchanging a word-based code."
+msgstr ""
+"Warp allows you to securely send files to each other via the internet or "
+"local network by exchanging a word-based code."
+
+#: data/app.drey.Warp.metainfo.xml.in.in:13
+msgid ""
+"The best transfer method will be determined using the “Magic Wormhole” "
+"protocol which includes local network transfer if possible."
+msgstr ""
+"The best transfer method will be determined using the “Magic Wormhole” "
+"protocol which includes local network transfer if possible."
+
+#: data/app.drey.Warp.metainfo.xml.in.in:17
+msgid "Features"
+msgstr "Features"
+
+#: data/app.drey.Warp.metainfo.xml.in.in:19
+msgid "Send files between multiple devices"
+msgstr "Send files between multiple devices"
+
+#: data/app.drey.Warp.metainfo.xml.in.in:20
+msgid "Every file transfer is encrypted"
+msgstr "Every file transfer is encrypted"
+
+#: data/app.drey.Warp.metainfo.xml.in.in:21
+msgid "Directly transfer files on the local network if possible"
+msgstr "Directly transfer files on the local network if possible"
+
+#: data/app.drey.Warp.metainfo.xml.in.in:22
+msgid "An internet connection is required"
+msgstr "An internet connection is required"
+
+#: data/app.drey.Warp.metainfo.xml.in.in:23
+msgid "QR Code support"
+msgstr "QR Code support"
+
+#: data/app.drey.Warp.metainfo.xml.in.in:24
+msgid ""
+"Compatibility with the Magic Wormhole command line client and all other "
+"compatible apps"
+msgstr ""
+"Compatibility with the Magic Wormhole command line client and all other "
+"compatible apps"
+
+#: data/app.drey.Warp.metainfo.xml.in.in:30
+msgid "Main Window"
+msgstr "Main Window"
+
+#. Translators: Entry placeholder; This is a noun
+#: data/app.drey.Warp.metainfo.xml.in.in:34 src/ui/window.ui:205
+msgid "Transmit Code"
+msgstr "Transmit Code"
+
+#: data/app.drey.Warp.metainfo.xml.in.in:38
+msgid "Accept File Transfer"
+msgstr "Accept File Transfer"
+
+#: data/app.drey.Warp.metainfo.xml.in.in:42 src/ui/action_view.rs:625
+msgid "Receiving File"
+msgstr "Receiving File"
+
+#: data/app.drey.Warp.metainfo.xml.in.in:46 src/ui/action_view.rs:634
+msgid "File Transfer Complete"
+msgstr "File Transfer Complete"
+
+#: data/app.drey.Warp.metainfo.xml.in.in:253 src/ui/application.rs:223
+msgid "Fina Wilke"
+msgstr "Fina Wilke"
+
+#: data/resources/ui/help_overlay.ui:11
+msgctxt "shortcut window"
+msgid "General"
+msgstr "General"
+
+#: data/resources/ui/help_overlay.ui:14
+msgctxt "shortcut window"
+msgid "Show Help"
+msgstr "Show Help"
+
+#: data/resources/ui/help_overlay.ui:20
+msgctxt "shortcut window"
+msgid "Show Shortcuts"
+msgstr "Show Shortcuts"
+
+#: data/resources/ui/help_overlay.ui:26
+msgctxt "shortcut window"
+msgid "Show Preferences"
+msgstr "Show Preferences"
+
+#: data/resources/ui/help_overlay.ui:32
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr "Quit"
+
+#: data/resources/ui/help_overlay.ui:40
+msgctxt "shortcut window"
+msgid "File Transfer"
+msgstr "File Transfer"
+
+#: data/resources/ui/help_overlay.ui:43
+msgctxt "shortcut window"
+msgid "Send File"
+msgstr "Send File"
+
+#: data/resources/ui/help_overlay.ui:49
+msgctxt "shortcut window"
+msgid "Send Folder"
+msgstr "Send Folder"
+
+#: data/resources/ui/help_overlay.ui:55
+msgctxt "shortcut window"
+msgid "Receive File"
+msgstr "Receive File"
+
+#. Translators: {0} = file size transferred, {1} = total file size, Example: 17.3MB / 20.5MB
+#: src/gettext/duration.rs:11
+msgctxt "File size transferred"
+msgid "{0} / {1}"
+msgstr "{0} / {1}"
+
+#. Translators: File transfer time left
+#: src/gettext/duration.rs:18
+msgid "One second left"
+msgid_plural "{} seconds left"
+msgstr[0] "One second left"
+msgstr[1] "{} seconds left"
+
+#. Translators: File transfer time left
+#: src/gettext/duration.rs:26
+msgid "One minute left"
+msgid_plural "{} minutes left"
+msgstr[0] "One minute left"
+msgstr[1] "{} minutes left"
+
+#. Translators: File transfer time left
+#: src/gettext/duration.rs:34
+msgid "One hour left"
+msgid_plural "{} hours left"
+msgstr[0] "One hour left"
+msgstr[1] "{} hours left"
+
+#. Translators: File transfer time left
+#: src/gettext/duration.rs:42
+msgid "One day left"
+msgid_plural "{} days left"
+msgstr[0] "One day left"
+msgstr[1] "{} days left"
+
+#. Translators: {0} = 11.3MB / 20.7MB, {1} = 3 seconds left
+#: src/gettext/duration.rs:52
+msgctxt "Combine bytes progress {0} and time remaining {1}"
+msgid "{0} — {1}"
+msgstr "{0} — {1}"
+
+#. Translators: Notification when clicking on "Copy Code to Clipboard" button
+#: src/ui/action_view.rs:255
+msgid "Copied Code to Clipboard"
+msgstr "Copied Code to Clipboard"
+
+#. Translators: Notification when clicking on "Copy Link to Clipboard" button
+#: src/ui/action_view.rs:276
+msgid "Copied Link to Clipboard"
+msgstr "Copied Link to Clipboard"
+
+#: src/ui/action_view.rs:290
+msgid "Copied Error to Clipboard"
+msgstr "Copied Error to Clipboard"
+
+#: src/ui/action_view.rs:292
+msgid "No error available"
+msgstr "No error available"
+
+#: src/ui/action_view.rs:439
+msgid "Creating Archive"
+msgstr "Creating Archive"
+
+#: src/ui/action_view.rs:443
+msgid "Compressing folder “{}”"
+msgstr "Compressing folder “{}”"
+
+#. Translators: Title
+#: src/ui/action_view.rs:459 src/ui/action_view.rs:517
+msgid "Connecting"
+msgstr "Connecting"
+
+#. Translators: Description, Filename
+#: src/ui/action_view.rs:462
+msgid "Requesting file transfer"
+msgstr "Requesting file transfer"
+
+#. Translators: Description, argument is filename
+#: src/ui/action_view.rs:483
+msgid "Ready to send “{}”."
+msgstr "Ready to send “{}”."
+
+#. Translators: Help dialog line 1, Code words and QR code visible,
+#: src/ui/action_view.rs:488
+msgid ""
+"The receiver needs to enter or scan this code to begin the file transfer."
+msgstr ""
+"The receiver needs to enter or scan this code to begin the file transfer."
+
+#: src/ui/action_view.rs:492
+msgid "The QR code is compatible with the following apps: {}."
+msgstr "The QR code is compatible with the following apps: {}."
+
+#: src/ui/action_view.rs:500
+msgid ""
+"You have entered a custom rendezvous server URL in preferences. Please "
+"verify the receiver also uses the same rendezvous server."
+msgstr ""
+"You have entered a custom rendezvous server URL in preferences. Please "
+"verify the receiver also uses the same rendezvous server."
+
+#: src/ui/action_view.rs:505
+msgid "Click the QR code to copy the link to the clipboard."
+msgstr "Click the QR code to copy the link to the clipboard."
+
+#. Translators: Description, Transfer Code
+#: src/ui/action_view.rs:520
+msgid "Connecting to peer with code “{}”"
+msgstr "Connecting to peer with code “{}”"
+
+#: src/ui/action_view.rs:530
+msgid "Connected to Peer"
+msgstr "Connected to Peer"
+
+#. Translators: Description
+#: src/ui/action_view.rs:539
+msgid "Preparing to send file"
+msgstr "Preparing to send file"
+
+#. Translators: Description
+#: src/ui/action_view.rs:546
+msgid "Preparing to receive file"
+msgstr "Preparing to receive file"
+
+#. Translators: File receive confirmation message dialog; Filename, File size
+#: src/ui/action_view.rs:560
+msgid ""
+"Your peer wants to send you “{0}” (Size: {1}).\n"
+"Do you want to download this file? The default action will save the file to "
+"your Downloads folder."
+msgstr ""
+"Your peer wants to send you “{0}” (Size: {1}).\n"
+"Do you want to download this file? The default action will save the file to "
+"your Downloads folder."
+
+#: src/ui/action_view.rs:565
+msgid "Ready to Receive File"
+msgstr "Ready to Receive File"
+
+#: src/ui/action_view.rs:567
+msgid ""
+"A file is ready to be transferred. The transfer needs to be acknowledged."
+msgstr ""
+"A file is ready to be transferred. The transfer needs to be acknowledged."
+
+#. Translators: Description, During transfer
+#: src/ui/action_view.rs:596
+msgid "File “{}” via local network direct transfer"
+msgstr "File “{}” via local network direct transfer"
+
+#. Translators: Description, During transfer
+#: src/ui/action_view.rs:599
+msgid "File “{}” via direct transfer"
+msgstr "File “{}” via direct transfer"
+
+#. Translators: Description, During transfer
+#: src/ui/action_view.rs:605
+msgid "File “{0}” via relay {1}"
+msgstr "File “{0}” via relay {1}"
+
+#. Translators: Description, During transfer
+#: src/ui/action_view.rs:608
+msgid "File “{}” via relay"
+msgstr "File “{}” via relay"
+
+#. Translators: Description, During transfer
+#: src/ui/action_view.rs:612
+msgid "File “{}” via Unknown connection method"
+msgstr "File “{}” via Unknown connection method"
+
+#. Translators: Title
+#: src/ui/action_view.rs:619
+msgid "Sending File"
+msgstr "Sending File"
+
+#. Translators: Description, Filename
+#: src/ui/action_view.rs:642
+msgid "Successfully sent file “{}”"
+msgstr "Successfully sent file “{}”"
+
+#. Translators: Filename
+#: src/ui/action_view.rs:660
+msgid "File has been saved to the selected folder as “{}”"
+msgstr "File has been saved to the selected folder as “{}”"
+
+#. Translators: Filename
+#: src/ui/action_view.rs:667
+msgid "File has been saved to the Downloads folder as “{}”"
+msgstr "File has been saved to the Downloads folder as “{}”"
+
+#. Translators: Title
+#: src/ui/action_view.rs:693 src/ui/action_view.ui:289
+msgid "File Transfer Failed"
+msgstr "File Transfer Failed"
+
+#: src/ui/action_view.rs:695
+msgid "The file transfer failed: {}"
+msgstr "The file transfer failed: {}"
+
+#. Translators: When opening a file
+#: src/ui/action_view.rs:815
+msgid "Specified file / directory does not exist"
+msgstr "Specified file / directory does not exist"
+
+#: src/ui/action_view.rs:833
+msgid ""
+"Error parsing rendezvous server URL. An invalid URL was entered in the "
+"settings."
+msgstr ""
+"Error parsing rendezvous server URL. An invalid URL was entered in the "
+"settings."
+
+#: src/ui/action_view.rs:840
+msgid "Error parsing transit URL. An invalid URL was entered in the settings."
+msgstr ""
+"Error parsing transit URL. An invalid URL was entered in the settings."
+
+#: src/ui/action_view.rs:927
+msgid "Invalid path selected: {}"
+msgstr "Invalid path selected: {}"
+
+#. Translators: Above progress bar for creating an archive to send as a folder
+#: src/ui/action_view.rs:1172
+msgid "{} File - Size: {}"
+msgid_plural "{} Files - Size: {}"
+msgstr[0] "{} File - Size: {}"
+msgstr[1] "{} Files - Size: {}"
+
+#: src/ui/action_view.ui:4
+msgid "Save As"
+msgstr "Save As"
+
+#. Translators: Button; Transmit Link is a noun
+#: src/ui/action_view.ui:109
+msgid "Copy Transmit Link"
+msgstr "Copy Transmit Link"
+
+#: src/ui/action_view.ui:134
+msgid "Your Transmit Code"
+msgstr "Your Transmit Code"
+
+#. Translators: Button; Transmit Code is a noun
+#: src/ui/action_view.ui:182
+msgid "Copy Transmit Code"
+msgstr "Copy Transmit Code"
+
+#. Translators: Title
+#: src/ui/action_view.ui:199
+msgid "Accept File Transfer?"
+msgstr "Accept File Transfer?"
+
+#: src/ui/action_view.ui:208
+msgid "Save to Downloads Folder"
+msgstr "Save to Downloads Folder"
+
+#. Translators: Button
+#: src/ui/action_view.ui:210
+msgid "_Accept"
+msgstr "_Accept"
+
+#. Translators: Button
+#: src/ui/action_view.ui:224
+msgid "Sa_ve As…"
+msgstr "Sa_ve As…"
+
+#. Translators: Title
+#: src/ui/action_view.ui:244
+msgid "File Transfer Successful"
+msgstr "File Transfer Successful"
+
+#. Translators: Button
+#: src/ui/action_view.ui:253
+msgid "_Open File"
+msgstr "_Open File"
+
+#. Translators: Button
+#: src/ui/action_view.ui:268 src/ui/window.ui:57
+msgid "_Show in Folder"
+msgstr "_Show in Folder"
+
+#. Translators: Button
+#: src/ui/action_view.ui:294
+msgid "Co_py Error Message"
+msgstr "Co_py Error Message"
+
+#. Translators: Button
+#: src/ui/action_view.ui:310
+msgid "_Cancel"
+msgstr "_Cancel"
+
+#: src/ui/application.rs:63
+msgid "Unable to use transfer link: another transfer already in progress"
+msgstr "Unable to use transfer link: another transfer already in progress"
+
+#: src/ui/application.rs:224
+msgid "Tobias Bernard"
+msgstr "Tobias Bernard"
+
+#: src/ui/application.rs:224
+msgid "Sophie Herold"
+msgstr "Sophie Herold"
+
+#: src/ui/application.rs:225
+msgid "translator-credits"
+msgstr "Bruce Cowan <bruce@bcowan.me.uk>"
+
+#: src/ui/application.rs:242
+msgid "Sending a File"
+msgstr "Sending a File"
+
+#: src/ui/application.rs:243
+msgid "Receiving a File"
+msgstr "Receiving a File"
+
+#: src/ui/fs.rs:16
+msgid "Downloads dir missing. Please set XDG_DOWNLOAD_DIR"
+msgstr "Downloads dir missing. Please set XDG_DOWNLOAD_DIR"
+
+#: src/ui/preferences.rs:98
+msgid ""
+"Changing the rendezvous server URL needs to be done on both sides of the "
+"transfer. Only enter a server URL you can trust.\n"
+"\n"
+"Leaving these entries empty will use the app defaults:\n"
+"Rendezvous Server: “{0}”\n"
+"Transit Server: “{1}”"
+msgstr ""
+"Changing the rendezvous server URL needs to be done on both sides of the "
+"transfer. Only enter a server URL you can trust.\n"
+"\n"
+"Leaving these entries empty will use the app defaults:\n"
+"Rendezvous Server: “{0}”\n"
+"Transit Server: “{1}”"
+
+#: src/ui/preferences.ui:6
+msgid "Preferences"
+msgstr "Preferences"
+
+#: src/ui/preferences.ui:11
+msgid "Network"
+msgstr "Network"
+
+#: src/ui/preferences.ui:15
+msgid "Code Words"
+msgstr "Code Words"
+
+#: src/ui/preferences.ui:16
+msgid ""
+"The code word count determines the security of the transfer.\n"
+"\n"
+"A short code is easy to remember but increases the risk of someone else "
+"guessing the code. As a code may only be guessed once, the risk is very "
+"small even with short codes. A length of 4 is very secure."
+msgstr ""
+"The code word count determines the security of the transfer.\n"
+"\n"
+"A short code is easy to remember but increases the risk of someone else "
+"guessing the code. As a code may only be guessed once, the risk is very "
+"small even with short codes. A length of 4 is very secure."
+
+#: src/ui/preferences.ui:21
+msgid "Code Word Count"
+msgstr "Code Word Count"
+
+#: src/ui/preferences.ui:29
+msgid "Server URLs"
+msgstr "Server URLs"
+
+#: src/ui/preferences.ui:32
+msgid "Rendezvous Server URL"
+msgstr "Rendezvous Server URL"
+
+#: src/ui/preferences.ui:39
+msgid "Transit Server URL"
+msgstr "Transit Server URL"
+
+#: src/ui/welcome_window.ui:13
+msgid "Welcome"
+msgstr "Welcome"
+
+#: src/ui/welcome_window.ui:26
+msgid "Welcome to Warp"
+msgstr "Welcome to Warp"
+
+#. Translators: Button
+#: src/ui/welcome_window.ui:34
+msgid "Next"
+msgstr "Next"
+
+#: src/ui/welcome_window.ui:82
+msgid "Introduction"
+msgstr "Introduction"
+
+#: src/ui/welcome_window.ui:93
+msgid ""
+"Warp makes file transfer simple. To get started, both parties need to "
+"install Warp on their devices.\n"
+"\n"
+"After selecting a file to transmit, the sender needs to tell the receiver "
+"the displayed transmit code. This is preferably done via a secure "
+"communication channel.\n"
+"\n"
+"When the receiver has entered the code, the file transfer can begin.\n"
+"\n"
+"For more information about Warp, open the Help section from the Main Menu."
+msgstr ""
+"Warp makes file transfer simple. To get started, both parties need to "
+"install Warp on their devices.\n"
+"\n"
+"After selecting a file to transmit, the sender needs to tell the receiver "
+"the displayed transmit code. This is preferably done via a secure "
+"communication channel.\n"
+"\n"
+"When the receiver has entered the code, the file transfer can begin.\n"
+"\n"
+"For more information about Warp, open the Help section from the Main Menu."
+
+#. Translators: Big button to finish welcome screen
+#: src/ui/welcome_window.ui:106
+msgid "Get Started Using Warp"
+msgstr "Get Started Using Warp"
+
+#: src/ui/window.rs:103
+msgid ""
+"Error loading config file “{0}”, using default config.\n"
+"Error: {1}"
+msgstr ""
+"Error loading config file “{0}”, using default config.\n"
+"Error: {1}"
+
+#: src/ui/window.rs:210
+msgid "Error saving configuration file: {}"
+msgstr "Error saving configuration file: {}"
+
+#: src/ui/window.rs:304
+msgid "Select File to Send"
+msgstr "Select File to Send"
+
+#: src/ui/window.rs:312
+msgid "Select Folder to Send"
+msgstr "Select Folder to Send"
+
+#: src/ui/window.rs:363
+msgid "“{}” appears to be an invalid Transmit Code. Please try again."
+msgstr "“{}” appears to be an invalid Transmit Code. Please try again."
+
+#: src/ui/window.rs:474
+msgid "Sending files with a preconfigured code is not yet supported"
+msgstr "Sending files with a preconfigured code is not yet supported"
+
+#. Translators: menu item
+#: src/ui/window.ui:7
+msgid "_Preferences"
+msgstr "_Preferences"
+
+#. Translators: menu item
+#: src/ui/window.ui:12
+msgid "_Keyboard Shortcuts"
+msgstr "_Keyboard Shortcuts"
+
+#. Translators: menu item
+#: src/ui/window.ui:17
+msgid "_Help"
+msgstr "_Help"
+
+#. Translators: menu item
+#: src/ui/window.ui:22
+msgid "_About Warp"
+msgstr "_About Warp"
+
+#. Translators: Notification when code was automatically detected in clipboard and inserted into code entry on receive page
+#: src/ui/window.ui:33
+msgid "Inserted code from clipboard"
+msgstr "Inserted code from clipboard"
+
+#. Translators: File receive confirmation message dialog title
+#: src/ui/window.ui:38
+msgid "Abort File Transfer?"
+msgstr "Abort File Transfer?"
+
+#: src/ui/window.ui:39
+msgid "Do you want to abort the current file transfer?"
+msgstr "Do you want to abort the current file transfer?"
+
+#: src/ui/window.ui:45
+msgid "_Continue"
+msgstr "_Continue"
+
+#: src/ui/window.ui:46
+msgid "_Abort"
+msgstr "_Abort"
+
+#. Translators: Error dialog title
+#: src/ui/window.ui:51
+msgid "Unable to Open File"
+msgstr "Unable to Open File"
+
+#: src/ui/window.ui:56 src/util/error.rs:176
+msgid "_Close"
+msgstr "_Close"
+
+#: src/ui/window.ui:104
+msgid "Main Menu"
+msgstr "Main Menu"
+
+#: src/ui/window.ui:123
+msgid "_Send"
+msgstr "_Send"
+
+#: src/ui/window.ui:135
+msgid "Send File"
+msgstr "Send File"
+
+#: src/ui/window.ui:136
+msgid "Select or drop the file or directory to send"
+msgstr "Select or drop the file or directory to send"
+
+#. Translators: Button
+#: src/ui/window.ui:147
+msgid "Select _File…"
+msgstr "Select _File…"
+
+#. Translators: Button
+#: src/ui/window.ui:161
+msgid "Select F_older…"
+msgstr "Select F_older…"
+
+#: src/ui/window.ui:181
+msgid "_Receive"
+msgstr "_Receive"
+
+#: src/ui/window.ui:190
+msgid "Receive File"
+msgstr "Receive File"
+
+#. Translators: Text above code input box, transmit code is a noun
+#: src/ui/window.ui:192
+msgid "Enter the transmit code from the sender"
+msgstr "Enter the transmit code from the sender"
+
+#. Translators: Button
+#: src/ui/window.ui:226
+msgid "Receive _File"
+msgstr "Receive _File"
+
+#: src/ui/window.ui:252
+msgid "File Transfer"
+msgstr "File Transfer"
+
+#: src/util.rs:33 src/util.rs:38
+msgid "Failed to open downloads folder."
+msgstr "Failed to open downloads folder."
+
+#: src/util.rs:198 src/util.rs:271
+msgid "The URI format is invalid"
+msgstr "The URI format is invalid"
+
+#: src/util.rs:202 src/util.rs:206
+msgid "The code does not match the required format"
+msgstr "The code does not match the required format"
+
+#: src/util.rs:221 src/util.rs:227
+msgid "Unknown URI version: {}"
+msgstr "Unknown URI version: {}"
+
+#: src/util.rs:236
+msgid "The URI parameter “rendezvous” contains an invalid URL: “{}”"
+msgstr "The URI parameter “rendezvous” contains an invalid URL: “{}”"
+
+#: src/util.rs:248
+msgid "The URI parameter “role” must be “follower” or “leader” (was: “{}”)"
+msgstr "The URI parameter “role” must be “follower” or “leader” (was: “{}”)"
+
+#: src/util.rs:255
+msgid "Unknown URI parameter “{}”"
+msgstr "Unknown URI parameter “{}”"
+
+#: src/util/error.rs:157
+msgid "An error occurred"
+msgstr "An error occurred"
+
+#: src/util/error.rs:187 src/util/error.rs:252
+msgid "Corrupt or unexpected message received"
+msgstr "Corrupt or unexpected message received"
+
+#: src/util/error.rs:192
+msgid ""
+"The rendezvous server will not allow further connections for this code. A "
+"new code needs to be generated."
+msgstr ""
+"The rendezvous server will not allow further connections for this code. A "
+"new code needs to be generated."
+
+#: src/util/error.rs:194
+msgid ""
+"The rendezvous server removed the code due to inactivity. A new code needs "
+"to be generated."
+msgstr ""
+"The rendezvous server removed the code due to inactivity. A new code needs "
+"to be generated."
+
+#: src/util/error.rs:196
+msgid "The rendezvous server responded with an unknown message: {}"
+msgstr "The rendezvous server responded with an unknown message: {}"
+
+#: src/util/error.rs:199
+msgid ""
+"Error connecting to the rendezvous server.\n"
+"You have entered a custom rendezvous server URL in preferences. Please "
+"verify the URL is correct and the server is working."
+msgstr ""
+"Error connecting to the rendezvous server.\n"
+"You have entered a custom rendezvous server URL in preferences. Please "
+"verify the URL is correct and the server is working."
+
+#: src/util/error.rs:201
+msgid ""
+"Error connecting to the rendezvous server.\n"
+"Please try again later / verify you are connected to the internet."
+msgstr ""
+"Error connecting to the rendezvous server.\n"
+"Please try again later / verify you are connected to the internet."
+
+#: src/util/error.rs:205
+msgid ""
+"Encryption key confirmation failed. If you or your peer didn't mistype the "
+"code, this is a sign of an attacker guessing passwords. Please try again "
+"some time later."
+msgstr ""
+"Encryption key confirmation failed. If you or your peer didn't mistype the "
+"code, this is a sign of an attacker guessing passwords. Please try again "
+"some time later."
+
+#: src/util/error.rs:207
+msgid "Cannot decrypt a received message"
+msgstr "Cannot decrypt a received message"
+
+#: src/util/error.rs:208 src/util/error.rs:263 src/util/error.rs:269
+msgid "An unknown error occurred"
+msgstr "An unknown error occurred"
+
+#: src/util/error.rs:214
+msgid "File / Directory not found"
+msgstr "File / Directory not found"
+
+#: src/util/error.rs:215
+msgid "Permission denied"
+msgstr "Permission denied"
+
+#: src/util/error.rs:227
+msgid "Transfer was not acknowledged by peer"
+msgstr "Transfer was not acknowledged by peer"
+
+#: src/util/error.rs:229
+msgid "The received file is corrupted"
+msgstr "The received file is corrupted"
+
+#: src/util/error.rs:235
+msgid ""
+"The file contained a different amount of bytes than advertised! Sent {} "
+"bytes, but should have been {}"
+msgstr ""
+"The file contained a different amount of bytes than advertised! Sent {} "
+"bytes, but should have been {}"
+
+#: src/util/error.rs:240
+msgid "The other side has cancelled the transfer"
+msgstr "The other side has cancelled the transfer"
+
+#: src/util/error.rs:242
+msgid "The other side has rejected the transfer"
+msgstr "The other side has rejected the transfer"
+
+#: src/util/error.rs:244
+msgid "Something went wrong on the other side: {}"
+msgstr "Something went wrong on the other side: {}"
+
+#: src/util/error.rs:259
+msgid "Error while establishing file transfer connection"
+msgstr "Error while establishing file transfer connection"
+
+#: src/util/error.rs:261
+msgid "Unknown file transfer error"
+msgstr "Unknown file transfer error"
+
+#: src/util/error.rs:270
+msgid "An unknown error occurred while creating a zip file: {}"
+msgstr "An unknown error occurred while creating a zip file: {}"
+
+#: src/util/error.rs:271
+msgid ""
+"An unexpected error occurred. Please report an issue with the error message."
+msgstr ""
+"An unexpected error occurred. Please report an issue with the error message."
