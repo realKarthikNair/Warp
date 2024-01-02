@@ -58,15 +58,6 @@
     <value key="GnomeSoftware::key-colors">[(136, 101, 247), (198, 130, 255)]</value>
     <value key="Purism::form_factor">mobile</value>
   </custom>
-  <categories>
-    <category>Utility</category>
-  </categories>
-  <keywords>
-    <keyword>Gnome</keyword>
-    <keyword>GTK</keyword>
-    <keyword>Wormhole</keyword>
-    <keyword>Magic-Wormhole</keyword>
-  </keywords>
   <content_rating type="oars-1.0" />
   <releases>
     <release version="0.6.2" date="2023-12-04">
