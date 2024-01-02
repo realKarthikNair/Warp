@@ -58,7 +58,7 @@
     <value key="GnomeSoftware::key-colors">[(136, 101, 247), (198, 130, 255)]</value>
     <value key="Purism::form_factor">mobile</value>
   </custom>
-  <content_rating type="oars-1.0" />
+  <content_rating type="oars-1.1" />
   <releases>
     <release version="0.6.2" date="2023-12-04">
       <description>
@@ -241,7 +241,11 @@
     <kudo>HiDpiIcon</kudo>
     <kudo>HighContrast</kudo>
   </kudos>
-  <developer_name>Fina Wilke</developer_name>
+  <!-- developer_name tag deprecated with Appstream 1.0 -->
+  <developer_name translatable="no">Fina Wilke</developer_name>
+  <developer id="gnome.org">
+    <name translatable="no">Fina Wilke</name>
+  </developer>
   <update_contact>finaw@gnome.org</update_contact>
   <translation type="gettext">@gettext-package@</translation>
   <launchable type="desktop-id">@app-id@.desktop</launchable>

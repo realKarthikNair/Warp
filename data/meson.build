@@ -60,7 +60,7 @@ if appstream_cli.found()
   test(
     'validate-appstreamcli', appstream_cli,
     args: [
-      'validate', '--no-color', '--no-net', appdata_file.full_path()
+      'validate', '--no-color', '--no-net', '--explain', appdata_file.full_path()
     ],
     depends: appdata_file,
   )
