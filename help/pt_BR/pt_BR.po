@@ -2,20 +2,21 @@
 # Copyright (C) 2022 warp's COPYRIGHT HOLDER
 # This file is distributed under the same license as the warp package.
 # Rafael Fontenelle <rafaelff@gnome.org>, 2022.
+# Alex Jr <alexjrsh@proton.me>, 2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: warp main\n"
-"POT-Creation-Date: 2022-06-04 17:36+0000\n"
-"PO-Revision-Date: 2022-06-04 14:58-0300\n"
-"Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
-"Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
+"POT-Creation-Date: 2023-12-04 17:55+0000\n"
+"PO-Revision-Date: 2023-12-05 11:00-0300\n"
+"Last-Translator: Alex Jr <alexjrsh@proton.me>\n"
+"Language-Team: Brazilian Portuguese <https://br.gnome.org/traducao>\n"
+"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: pt_BR\n"
 "Plural-Forms: nplurals=2; plural=(n > 1)\n"
-"X-Generator: Gtranslator 40.0\n"
+"X-Generator: Gtranslator 45.3\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
@@ -23,17 +24,17 @@ msgid "translator-credits"
 msgstr "Rafael Fontenelle <rafaelff@gnome.org>"
 
 #. (itstool) path: info/desc
-#: C/details-commandline.page:5
-msgid "Interoperability with the Magic Wormhole Commandline Application"
+#: C/details-commandline.page:11
+msgid "Interoperability with the Magic Wormhole Commandline App"
 msgstr "Interoperabilidade com o aplicativo de linha de comando Magic Wormhole"
 
 #. (itstool) path: page/title
-#: C/details-commandline.page:7
-msgid "Commandline Application"
+#: C/details-commandline.page:13
+msgid "Commandline App"
 msgstr "Aplicativo de linha de comando"
 
 #. (itstool) path: page/p
-#: C/details-commandline.page:8
+#: C/details-commandline.page:14
 msgid ""
 "You can use the <link href=\"https://github.com/magic-wormhole/magic-"
 "wormhole\">Magic Wormhole</link> commandline client to communicate with "
@@ -44,7 +45,7 @@ msgstr ""
 "diretamente com o <app>Warp</app>."
 
 #. (itstool) path: page/p
-#: C/details-commandline.page:10
+#: C/details-commandline.page:16
 msgid ""
 "To receive a file that is being sent via <app>Warp</app> use this command:"
 msgstr ""
@@ -52,29 +53,29 @@ msgstr ""
 "comando:"
 
 #. (itstool) path: page/code
-#: C/details-commandline.page:11
+#: C/details-commandline.page:17
 #, no-wrap
 msgid "wormhole receive"
 msgstr "wormhole receive"
 
 #. (itstool) path: page/p
-#: C/details-commandline.page:12
+#: C/details-commandline.page:18
 msgid "and enter the code when prompted."
 msgstr "e digite o código quando solicitado."
 
 #. (itstool) path: page/p
-#: C/details-commandline.page:13
+#: C/details-commandline.page:19
 msgid "To send a file use"
 msgstr "Para enviar um arquivo, use"
 
 #. (itstool) path: page/code
-#: C/details-commandline.page:14
+#: C/details-commandline.page:20
 #, no-wrap
 msgid "wormhole send FILENAME"
 msgstr "wormhole send NOME-DE-ARQUIVO"
 
 #. (itstool) path: page/p
-#: C/details-commandline.page:15
+#: C/details-commandline.page:21
 msgid ""
 "Your peer can then enter the code into <app>Warp</app> to receive the file."
 msgstr ""
@@ -82,12 +83,12 @@ msgstr ""
 "arquivo."
 
 #. (itstool) path: section/title
-#: C/details-commandline.page:17
+#: C/details-commandline.page:23
 msgid "Learn more"
 msgstr "Saiba mais"
 
 #. (itstool) path: section/p
-#: C/details-commandline.page:18
+#: C/details-commandline.page:24
 msgid ""
 "To learn more about the command line client you can take a look at the <link "
 "href=\"https://magic-wormhole.readthedocs.io/en/latest/\">Magic Wormhole "
@@ -98,22 +99,22 @@ msgstr ""
 "\">documentação do Magic Wormhole</link>."
 
 #. (itstool) path: info/desc
-#: C/details-glossary.page:5
+#: C/details-glossary.page:11
 msgid "Definition of terms used through this help page"
 msgstr "Definição dos termos usados nesta página de ajuda"
 
 #. (itstool) path: page/title
-#: C/details-glossary.page:7
+#: C/details-glossary.page:13
 msgid "Glossary"
 msgstr "Glossário"
 
 #. (itstool) path: section/title
-#: C/details-glossary.page:9
+#: C/details-glossary.page:15
 msgid "Rendezvous Server"
 msgstr "Servidor de encontro"
 
 #. (itstool) path: section/p
-#: C/details-glossary.page:10
+#: C/details-glossary.page:16
 msgid ""
 "This server is located on the internet and is operated by the <link "
 "href=\"https://github.com/magic-wormhole/magic-wormhole\">Magic Wormhole "
@@ -128,7 +129,7 @@ msgstr ""
 "com o servidor de encontro para se encontrarem."
 
 #. (itstool) path: section/p
-#: C/details-glossary.page:13
+#: C/details-glossary.page:19
 msgid ""
 "The rendezvous server also helps the transmitting client to generate a <link "
 "xref=\"#transmit-code\"/>"
@@ -137,7 +138,7 @@ msgstr ""
 "xref=\"#transmit-code\"/>"
 
 #. (itstool) path: section/p
-#: C/details-glossary.page:14
+#: C/details-glossary.page:20
 msgid ""
 "They will use this server to exchange cryptographic information for secure "
 "communication. Afterwards they will exchange information about how to "
@@ -148,7 +149,7 @@ msgstr ""
 "contato uns com os outros para a transferência de arquivos."
 
 #. (itstool) path: note/p
-#: C/details-glossary.page:17
+#: C/details-glossary.page:23
 msgid ""
 "No files are transferred via the rendezvous server. See <link "
 "xref=\"#transmit-relay\"/> and <link xref=\"#direct-transfer\"/>"
@@ -157,12 +158,12 @@ msgstr ""
 "xref=\"#transmit-relay\"/> e <link xref=\"#direct-transfer\"/>"
 
 #. (itstool) path: section/title
-#: C/details-glossary.page:21
+#: C/details-glossary.page:27
 msgid "Transmit Code"
 msgstr "Código de transmissão"
 
 #. (itstool) path: section/p
-#: C/details-glossary.page:22
+#: C/details-glossary.page:28
 msgid ""
 "This code will be generated by the client in cooperation with the <link "
 "xref=\"#rendezvous-server\"/>. It is used to identify and encrypt the "
@@ -172,7 +173,7 @@ msgstr ""
 "xref=\"#transmit-relay\"/> e <link xref=\"#direct-transfer\"/>"
 
 #. (itstool) path: section/p
-#: C/details-glossary.page:24
+#: C/details-glossary.page:30
 msgid ""
 "To start a transmission you need a transmit code. The transmit code then "
 "needs to be communicated to the receiver (preferably via an encrypted or "
@@ -186,19 +187,19 @@ msgstr ""
 "começar."
 
 #. (itstool) path: note/p
-#: C/details-glossary.page:28
+#: C/details-glossary.page:34
 msgid "Every transmit code can only be entered once for security reasons."
 msgstr ""
 "Cada código de transmissão só pode ser inserido uma vez por motivos de "
 "segurança."
 
 #. (itstool) path: section/title
-#: C/details-glossary.page:32
+#: C/details-glossary.page:38
 msgid "Transmit Link"
 msgstr "Link de transmissão"
 
 #. (itstool) path: section/p
-#: C/details-glossary.page:33
+#: C/details-glossary.page:39
 msgid ""
 "It is also possible to encode the <link xref=\"#transmit-code\"/> as a link. "
 "Clicking the link will automatically open Warp and start the file "
@@ -211,18 +212,18 @@ msgstr ""
 "tela de envio. Um link de transmissão se parece com isso:"
 
 #. (itstool) path: section/code
-#: C/details-glossary.page:36
+#: C/details-glossary.page:42
 #, no-wrap
 msgid "wormhole-transfer:{code}"
 msgstr "wormhole-transfer:{code}"
 
 #. (itstool) path: section/title
-#: C/details-glossary.page:39
+#: C/details-glossary.page:45
 msgid "Transmit Relay"
 msgstr "Retransmissor de transmissão"
 
 #. (itstool) path: section/p
-#: C/details-glossary.page:40
+#: C/details-glossary.page:46
 msgid ""
 "The transmit relay is also operated by the <link href=\"https://github.com/"
 "magic-wormhole/magic-wormhole\">Magic Wormhole project</link>"
@@ -231,7 +232,7 @@ msgstr ""
 "github.com/magic-wormhole/magic-wormhole\">projeto Magic Wormhole</link>"
 
 #. (itstool) path: section/p
-#: C/details-glossary.page:42
+#: C/details-glossary.page:48
 msgid ""
 "It is used if no <link xref=\"#direct-transfer\">direct communication</link> "
 "between two peers can be established. This is most commonly a problem when "
@@ -248,7 +249,7 @@ msgstr ""
 "Firewall_(computing)\">firewalls</link>."
 
 #. (itstool) path: section/p
-#: C/details-glossary.page:46
+#: C/details-glossary.page:52
 msgid ""
 "The files are transmitted via the transmit relay in an encrypted fashion. "
 "The relay will only know about the file size."
@@ -258,7 +259,7 @@ msgstr ""
 "arquivo."
 
 #. (itstool) path: section/p
-#: C/details-glossary.page:47
+#: C/details-glossary.page:53
 msgid ""
 "Transfers via the transmit relay may be slower than direct transfer, "
 "depending on relay congestion."
@@ -268,12 +269,12 @@ msgstr ""
 "retransmissor."
 
 #. (itstool) path: section/title
-#: C/details-glossary.page:50
+#: C/details-glossary.page:56
 msgid "Direct Transfer"
 msgstr "Transferência direta"
 
 #. (itstool) path: section/p
-#: C/details-glossary.page:51
+#: C/details-glossary.page:57
 msgid ""
 "If both peers can find a direct networking path between each other they will "
 "send the file directly. This is often referred to as a <link href=\"https://"
@@ -288,42 +289,80 @@ msgstr ""
 "xref=\"#transmit-relay\"/>"
 
 #. (itstool) path: info/desc
-#: C/general-intro.page:5
+#: C/details-qr.page:11
+msgid "Using QR Codes"
+msgstr "Usando códigos QR"
+
+#. (itstool) path: page/title
+#: C/details-qr.page:13
+msgid "QR Codes"
+msgstr "Códigos QR"
+
+#. (itstool) path: page/p
+#: C/details-qr.page:14
+msgid "Instead of typing the code manually it is possible to scan a QR code."
+msgstr ""
+"Em vez de digitar o código manualmente, é possível escanear um código QR."
+
+#. (itstool) path: page/p
+#: C/details-qr.page:15
+msgid ""
+"For a list of supported apps, see the <link href=\"https://gitlab.gnome.org/"
+"World/warp/-/blob/main/README.md#qr-codes\">readme file</link>."
+msgstr ""
+"Para obter uma lista dos aplicativos compatíveis, consulte o <link "
+"href=\"https://gitlab.gnome.org/World/warp/-/blob/main/README.md#qr-"
+"codes\">arquivo readme</link>."
+
+#. (itstool) path: page/p
+#: C/details-qr.page:17
+msgid ""
+"Using any other apps might lead to problems scanning the code. The QR code "
+"standard is fairly new and not all apps have updated their custom QR code "
+"format to the standardized version."
+msgstr ""
+"O uso de qualquer outro aplicativo pode causar problemas na leitura do "
+"código. O padrão de código QR é relativamente novo e nem todos os "
+"aplicativos atualizaram seu formato de código QR personalizado para a versão "
+"padronizada."
+
+#. (itstool) path: info/desc
+#: C/general-intro.page:11
 msgid "Introduction to file transfer with <app>Warp</app>"
 msgstr "Introdução à transferência de arquivo com <app>Warp</app>"
 
 #. (itstool) path: page/title
-#: C/general-intro.page:7
+#: C/general-intro.page:13
 msgid "Introduction"
 msgstr "Introdução"
 
 #. (itstool) path: page/p
-#: C/general-intro.page:8
+#: C/general-intro.page:14
 msgid ""
-"<app>Warp</app> is an application that allows you to send files from one "
-"device to another effortlessly. <app>Warp</app> uses a secure transmit code "
-"to identify and encrypt file transmissions."
+"<app>Warp</app> is an app that allows you to send files from one device to "
+"another effortlessly. <app>Warp</app> uses a secure transmit code to "
+"identify and encrypt file transmissions."
 msgstr ""
 "<app>Warp</app> é um aplicativo que permite enviar arquivos de um "
 "dispositivo para outro sem esforço. <app>Warp</app> usa um código de "
 "transmissão seguro para identificar e criptografar transmissões de arquivos."
 
 #. (itstool) path: page/p
-#: C/general-intro.page:10
+#: C/general-intro.page:16
 msgid ""
-"To use <app>Warp</app> to transfer a file, the sender needs to open the "
-"application. Select a file using the <gui>Send</gui> tab. <app>Warp</app> "
-"will now try to contact the <link xref=\"details-glossary#rendezvous-"
-"server\"/> and generate a <link xref=\"details-glossary#transmit-code\"/>."
+"To use <app>Warp</app> to transfer a file, the sender needs to open the app. "
+"Select a file using the <gui>Send</gui> tab. <app>Warp</app> will now try to "
+"contact the <link xref=\"details-glossary#rendezvous-server\"/> and generate "
+"a <link xref=\"details-glossary#transmit-code\"/>."
 msgstr ""
-"Para usar o <app>Warp</app> para transferir um arquivo, o remetente precisa "
-"abrir o aplicativo. Selecione um arquivo usando a aba <gui >Enviar</gui >. "
+"Para usar o <app>Warp</app> para transferir um arquivo, o emissor precisa "
+"abrir o aplicativo. Selecionar um arquivo usando a aba <gui >Enviar</gui >. "
 "<app>Warp</app> agora tentará entrar em contato com o <link xref=\"details-"
 "glossary#rendezvous-server\"/> e gerar um <link xref=\"details-"
 "glossary#transmit-code\"/>."
 
 #. (itstool) path: page/p
-#: C/general-intro.page:13
+#: C/general-intro.page:19
 msgid ""
 "The sender then needs to tell the receiver the transmit code of the file. "
 "(preferably via an encrypted or otherwise secure channel). After entering "
@@ -335,7 +374,7 @@ msgstr ""
 "do arquivo pode começar."
 
 #. (itstool) path: page/p
-#: C/general-intro.page:15
+#: C/general-intro.page:21
 msgid ""
 "It is also possible to copy a <link xref=\"details-glossary#transmit-"
 "link\">link</link> that will automatically open Warp with the displayed code."
@@ -344,7 +383,7 @@ msgstr ""
 "link\">link</link> que abrirá automaticamente o Warp com o código exibido."
 
 #. (itstool) path: note/p
-#: C/general-intro.page:18
+#: C/general-intro.page:24
 msgid ""
 "Every transmit code can only be entered once for security reasons. If the "
 "receiver mistypes the transmission code the file transfer will be aborted. "
@@ -356,7 +395,7 @@ msgstr ""
 "o arquivo novamente e gerar um novo código."
 
 #. (itstool) path: page/p
-#: C/general-intro.page:21
+#: C/general-intro.page:27
 msgid ""
 "A progress bar will indicate a running file transfer. Files will either be "
 "transmitted via <link xref=\"details-glossary#direct-transfer\"/> or via the "
@@ -370,21 +409,21 @@ msgstr ""
 "<gui>Cancelar</gui>."
 
 #. (itstool) path: info/desc
-#: C/index.page:4
+#: C/index.page:10
 msgid "Fast and secure file transfer."
 msgstr "Transferência de arquivo rápida e segura."
 
 #. (itstool) path: page/title
-#: C/index.page:6
+#: C/index.page:12
 msgid "Warp"
 msgstr "Warp"
 
 #. (itstool) path: section/title
-#: C/index.page:8
+#: C/index.page:14
 msgid "General"
 msgstr "Geral"
 
 #. (itstool) path: section/title
-#: C/index.page:11
+#: C/index.page:17
 msgid "Details"
 msgstr "Detalhes"
