@@ -19,7 +19,7 @@ use crate::util::{
 mod imp {
     use super::*;
     use crate::config::PersistentConfig;
-    use crate::ui::welcome_window::WelcomeWindow;
+    use crate::ui::welcome_dialog::WelcomeDialog;
     use crate::util::{error::UiError, future::main_async_local_infallible};
     use std::cell::{Cell, RefCell};
     use std::collections::HashSet;
@@ -145,10 +145,8 @@ mod imp {
             widget.load_window_size();
 
             if !self.config.borrow().welcome_window_shown {
-                let welcome_window = WelcomeWindow::new();
-                welcome_window.set_modal(true);
-                welcome_window.set_transient_for(Some(&*widget));
-                welcome_window.present();
+                let welcome_window = WelcomeDialog::new();
+                welcome_window.present(&*widget);
             }
         }
     }

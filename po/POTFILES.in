@@ -15,8 +15,8 @@ src/ui/preferences.rs
 src/ui/preferences.ui
 src/ui/pride.rs
 src/ui/progress.rs
-src/ui/welcome_window.rs
-src/ui/welcome_window.ui
+src/ui/welcome_dialog.rs
+src/ui/welcome_dialog.ui
 src/ui/window.rs
 src/ui/window.ui
 src/util.rs

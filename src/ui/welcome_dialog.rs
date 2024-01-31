@@ -8,8 +8,8 @@ mod imp {
     use gtk::CompositeTemplate;
 
     #[derive(Debug, Default, CompositeTemplate)]
-    #[template(file = "welcome_window.ui")]
-    pub struct WelcomeWindow {
+    #[template(file = "welcome_dialog.ui")]
+    pub struct WelcomeDialog {
         #[template_child]
         pub(super) navigation_view: TemplateChild<adw::NavigationView>,
         #[template_child]
@@ -23,10 +23,10 @@ mod imp {
     }
 
     #[glib::object_subclass]
-    impl ObjectSubclass for WelcomeWindow {
-        const NAME: &'static str = "WelcomeWindow";
-        type Type = super::WelcomeWindow;
-        type ParentType = adw::Window;
+    impl ObjectSubclass for WelcomeDialog {
+        const NAME: &'static str = "WelcomeDialog";
+        type Type = super::WelcomeDialog;
+        type ParentType = adw::Dialog;
 
         fn class_init(klass: &mut Self::Class) {
             klass.bind_template();
@@ -39,25 +39,24 @@ mod imp {
         }
     }
 
-    impl ObjectImpl for WelcomeWindow {
+    impl ObjectImpl for WelcomeDialog {
         fn constructed(&self) {
             self.parent_constructed();
             self.status_page.set_icon_name(Some(globals::APP_ID));
         }
     }
 
-    impl WidgetImpl for WelcomeWindow {}
-    impl WindowImpl for WelcomeWindow {}
-    impl AdwWindowImpl for WelcomeWindow {}
+    impl WidgetImpl for WelcomeDialog {}
+    impl AdwDialogImpl for WelcomeDialog {}
 }
 
 glib::wrapper! {
-    pub struct WelcomeWindow(ObjectSubclass<imp::WelcomeWindow>)
-        @extends gtk::Widget, gtk::Window, adw::Window;
+    pub struct WelcomeDialog(ObjectSubclass<imp::WelcomeDialog>)
+        @extends gtk::Widget, adw::Dialog;
 }
 
 #[gtk::template_callbacks]
-impl WelcomeWindow {
+impl WelcomeDialog {
     pub fn new() -> Self {
         glib::Object::new()
     }
@@ -78,7 +77,7 @@ impl WelcomeWindow {
     }
 }
 
-impl Default for WelcomeWindow {
+impl Default for WelcomeDialog {
     fn default() -> Self {
         Self::new()
     }
