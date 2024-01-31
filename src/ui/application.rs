@@ -1,5 +1,5 @@
 use crate::globals;
-use crate::ui::preferences::WarpPreferencesWindow;
+use crate::ui::preferences::WarpPreferencesDialog;
 use crate::ui::window::WarpApplicationWindow;
 use crate::util::future::main_async_local;
 use crate::util::{show_dir, TransferDirection};
@@ -170,7 +170,7 @@ impl WarpApplication {
         // Preferences
         let action_preferences = gio::SimpleAction::new("preferences", None);
         action_preferences.connect_activate(clone!(@weak self as app => move |_, _| {
-            WarpPreferencesWindow::new().present();
+            WarpPreferencesDialog::new().present(&app.main_window());
         }));
         self.add_action(&action_preferences);
 

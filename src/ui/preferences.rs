@@ -14,9 +14,9 @@ mod imp {
     use std::cell::{Cell, RefCell};
 
     #[derive(Properties, Debug, Default, gtk::CompositeTemplate)]
-    #[properties(wrapper_type = super::WarpPreferencesWindow)]
+    #[properties(wrapper_type = super::WarpPreferencesDialog)]
     #[template(file = "preferences.ui")]
-    pub struct WarpPreferencesWindow {
+    pub struct WarpPreferencesDialog {
         #[template_child]
         pub preferences_group: TemplateChild<adw::PreferencesGroup>,
 
@@ -38,10 +38,10 @@ mod imp {
     }
 
     #[glib::object_subclass]
-    impl ObjectSubclass for WarpPreferencesWindow {
-        const NAME: &'static str = "WarpPreferencesWindow";
-        type Type = super::WarpPreferencesWindow;
-        type ParentType = adw::PreferencesWindow;
+    impl ObjectSubclass for WarpPreferencesDialog {
+        const NAME: &'static str = "WarpPreferencesDialog";
+        type Type = super::WarpPreferencesDialog;
+        type ParentType = adw::PreferencesDialog;
 
         fn class_init(klass: &mut Self::Class) {
             Self::bind_template(klass);
@@ -53,7 +53,7 @@ mod imp {
         }
     }
 
-    impl ObjectImpl for WarpPreferencesWindow {
+    impl ObjectImpl for WarpPreferencesDialog {
         fn properties() -> &'static [glib::ParamSpec] {
             Self::derived_properties()
         }
@@ -71,7 +71,6 @@ mod imp {
             let obj = self.obj();
 
             let window = self.app().main_window();
-            obj.set_transient_for(Some(&window));
             obj.set_rendezvous_server_url(
                 window
                     .config()
@@ -109,9 +108,10 @@ Transit Server: “{1}”",
         }
     }
 
-    impl WidgetImpl for WarpPreferencesWindow {}
-    impl WindowImpl for WarpPreferencesWindow {
-        fn close_request(&self) -> glib::Propagation {
+    impl WidgetImpl for WarpPreferencesDialog {}
+
+    impl AdwDialogImpl for WarpPreferencesDialog {
+        fn closed(&self) {
             let window = self.app().main_window();
 
             let rendezvous_url = &*self.rendezvous_server_url.borrow();
@@ -126,15 +126,11 @@ Transit Server: “{1}”",
             window.config().code_length = Some(code_length as usize);
 
             window.save_config();
-
-            glib::Propagation::Proceed
         }
     }
+    impl PreferencesDialogImpl for WarpPreferencesDialog {}
 
-    impl AdwWindowImpl for WarpPreferencesWindow {}
-    impl PreferencesWindowImpl for WarpPreferencesWindow {}
-
-    impl WarpPreferencesWindow {
+    impl WarpPreferencesDialog {
         fn app(&self) -> WarpApplication {
             WarpApplication::default()
         }
@@ -187,17 +183,17 @@ Transit Server: “{1}”",
 }
 
 glib::wrapper! {
-    pub struct WarpPreferencesWindow(ObjectSubclass<imp::WarpPreferencesWindow>)
-        @extends gtk::Widget, gtk::Window, adw::Window, adw::PreferencesWindow;
+    pub struct WarpPreferencesDialog(ObjectSubclass<imp::WarpPreferencesDialog>)
+        @extends gtk::Widget, adw::Dialog, adw::PreferencesDialog;
 }
 
-impl WarpPreferencesWindow {
+impl WarpPreferencesDialog {
     pub fn new() -> Self {
         glib::Object::new()
     }
 }
 
-impl Default for WarpPreferencesWindow {
+impl Default for WarpPreferencesDialog {
     fn default() -> Self {
         Self::new()
     }
