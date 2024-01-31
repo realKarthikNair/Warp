@@ -323,11 +323,14 @@ mod imp {
                     let res = gio::AppInfo::launch_default_for_uri(&uri, none);
                     if let Err(err) = res {
                         log::error!("Error opening file: {}", err);
-                        let dialog = self
+                        let window = self.obj().window();
+
+                        let answer = self
                             .obj()
                             .window()
-                            .no_registered_application_error_dialog(err.message());
-                        let answer = dialog.choose_future().await;
+                            .no_registered_application_error_dialog(err.message())
+                            .choose_future(&window)
+                            .await;
 
                         if answer == "show-in-folder" {
                             if let Err(err) = show_dir(&filename).await {
@@ -726,8 +729,7 @@ impl ActionView {
             return true;
         }
 
-        let dialog = self.window().ask_abort_dialog();
-        let response = dialog.choose_future().await;
+        let response = self.window().ask_abort_dialog().choose_future(self).await;
 
         if response == "abort" {
             self.cancel().await;

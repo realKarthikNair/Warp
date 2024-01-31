@@ -56,9 +56,9 @@ mod imp {
         #[template_child]
         pub inserted_code_toast: TemplateChild<adw::Toast>,
         #[template_child]
-        pub ask_abort_dialog: TemplateChild<adw::MessageDialog>,
+        pub ask_abort_dialog: TemplateChild<adw::AlertDialog>,
         #[template_child]
-        pub no_registered_application_error_dialog: TemplateChild<adw::MessageDialog>,
+        pub no_registered_application_error_dialog: TemplateChild<adw::AlertDialog>,
 
         pub action_view_showing: Cell<bool>,
         pub config: RefCell<PersistentConfig>,
@@ -452,11 +452,11 @@ impl WarpApplicationWindow {
         self.imp().page_action_view.clone()
     }
 
-    pub fn ask_abort_dialog(&self) -> adw::MessageDialog {
+    pub fn ask_abort_dialog(&self) -> adw::AlertDialog {
         self.imp().ask_abort_dialog.clone()
     }
 
-    pub fn no_registered_application_error_dialog(&self, msg: &str) -> adw::MessageDialog {
+    pub fn no_registered_application_error_dialog(&self, msg: &str) -> adw::AlertDialog {
         let dialog = self.imp().no_registered_application_error_dialog.clone();
         dialog.set_body(msg);
         dialog
