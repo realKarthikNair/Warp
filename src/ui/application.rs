@@ -218,15 +218,13 @@ impl WarpApplication {
 
     fn show_about_dialog(&self) {
         let dialog =
-            adw::AboutWindow::from_appdata("app/drey/Warp/metainfo.xml", Some(globals::VERSION));
+            adw::AboutDialog::from_appdata("app/drey/Warp/metainfo.xml", Some(globals::VERSION));
 
         dialog.set_developers(&[&gettext("Fina Wilke")]);
         dialog.set_artists(&[&gettext("Tobias Bernard"), &gettext("Sophie Herold")]);
         dialog.set_translator_credits(&gettext("translator-credits"));
-        dialog.set_transient_for(Some(&self.main_window()));
-        dialog.set_modal(true);
 
-        dialog.present();
+        dialog.present(&self.main_window());
     }
 
     pub fn run(&self) {
