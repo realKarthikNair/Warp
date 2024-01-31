@@ -132,7 +132,7 @@ impl AppError {
                     Ok(app) => {
                         let windows = app.windows();
                         windows
-                            .get(0)
+                            .first()
                             .cloned()
                             .and_then(|window| window.downcast().ok())
                     }
