@@ -6,7 +6,7 @@ use crate::util::{show_dir, TransferDirection};
 use adw::prelude::*;
 use adw::subclass::prelude::*;
 use gettextrs::gettext;
-use glib::{clone, FromVariant};
+use glib::clone;
 use std::path::PathBuf;
 
 mod imp {

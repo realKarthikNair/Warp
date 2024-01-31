@@ -1,16 +1,13 @@
 {
   "id": "app.drey.Warp.Devel",
   "runtime": "org.gnome.Platform",
-  "runtime-version": "45",
+  "runtime-version": "master",
   "sdk": "org.gnome.Sdk",
   "sdk-extensions": [
     "org.freedesktop.Sdk.Extension.rust-stable"
   ],
   "build-options": {
-    "append-path": "/usr/lib/sdk/rust-stable/bin",
-    "env": {
-      "CARGO_REGISTRIES_CRATES_IO_PROTOCOL": "sparse"
-    }
+    "append-path": "/usr/lib/sdk/rust-stable/bin"
   },
   "command": "warp",
   "finish-args": [

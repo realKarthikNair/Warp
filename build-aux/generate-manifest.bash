@@ -8,7 +8,7 @@ builtin type -P yq &> /dev/null || (echo "yq not found, skipping manifest genera
 yq -o json '
 .["id"] += ".Devel" |
 .["finish-args"] += ["--env=RUST_LOG=warp=debug", "--env=G_MESSAGES_DEBUG=none", "--env=RUST_BACKTRACE=1"] |
-.["runtime-version"] = "45" |
+.["runtime-version"] = "master" |
 .modules[] |= (
     with(select(.name == "warp");
         .["sources"][0] = {

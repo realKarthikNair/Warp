@@ -1,14 +1,12 @@
 ---
 id: app.drey.Warp
 runtime: org.gnome.Platform
-runtime-version: '45'
+runtime-version: "46"
 sdk: org.gnome.Sdk
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.rust-stable
 build-options:
   append-path: /usr/lib/sdk/rust-stable/bin
-  env:
-    CARGO_REGISTRIES_CRATES_IO_PROTOCOL: "sparse"
 command: warp
 finish-args:
   # X11 and Wayland
