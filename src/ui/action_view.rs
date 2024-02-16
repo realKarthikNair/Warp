@@ -187,7 +187,7 @@ mod imp {
     impl ObjectSubclass for ActionView {
         const NAME: &'static str = "ActionView";
         type Type = super::ActionView;
-        type ParentType = adw::Bin;
+        type ParentType = adw::NavigationPage;
 
         fn class_init(klass: &mut Self::Class) {
             klass.bind_template();
@@ -203,7 +203,7 @@ mod imp {
     impl ObjectImpl for ActionView {}
 
     impl WidgetImpl for ActionView {}
-    impl BinImpl for ActionView {}
+    impl NavigationPageImpl for ActionView {}
 
     #[gtk::template_callbacks]
     impl ActionView {
@@ -365,7 +365,8 @@ mod imp {
 
 glib::wrapper! {
     pub struct ActionView(ObjectSubclass<imp::ActionView>)
-        @extends gtk::Widget, adw::Bin;
+        @extends gtk::Widget, adw::NavigationPage,
+        @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
 }
 
 impl ActionView {
@@ -405,9 +406,7 @@ impl ActionView {
         self.imp().cancel_button.set_sensitive(!can_pop);
         self.imp().cancel_button.set_visible(!can_pop);
 
-        self.window()
-            .navigation_page_action_view()
-            .set_can_pop(can_pop);
+        adw::NavigationPage::set_can_pop(self.upcast_ref(), can_pop);
 
         if can_pop {
             self.remove_css_class("cancel-button-visible");
