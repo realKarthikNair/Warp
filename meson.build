@@ -51,7 +51,6 @@ dependency('libadwaita-1', version: '>= 1.5.alpha')
 
 glib_compile_schemas = find_program('glib-compile-schemas', required: true)
 desktop_file_validate = find_program('desktop-file-validate', required: false)
-appstream_util = find_program('appstream-util', required: false)
 appstream_cli = find_program('appstreamcli', required: false)
 cargo = find_program('cargo', required: true)
 

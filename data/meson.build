@@ -47,15 +47,6 @@ appdata_file = i18n.merge_file(
   install_dir: datadir / 'metainfo'
 )
 # Validate Appdata
-if appstream_util.found()
-  test(
-    'validate-appdata', appstream_util,
-    args: [
-      'validate', '--nonet', appdata_file.full_path()
-    ],
-    depends: appdata_file,
-  )
-endif
 if appstream_cli.found()
   test(
     'validate-appstreamcli', appstream_cli,
