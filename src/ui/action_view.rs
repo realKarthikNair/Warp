@@ -209,7 +209,7 @@ mod imp {
     impl ActionView {
         #[template_callback]
         fn back_button_clicked(&self) {
-            self.obj().window().navigate_back();
+            self.obj().window().navigate_home();
         }
 
         #[template_callback]
@@ -760,7 +760,7 @@ impl ActionView {
         let cancel_sender = imp.context.borrow().cancel_sender.clone();
         cancel_sender.broadcast(()).await.unwrap();
         self.wait_for_cancellation_future().await;
-        self.window().navigate_back();
+        self.window().navigate_home();
     }
 
     fn show_progress_indeterminate(&self, pulse: bool) {

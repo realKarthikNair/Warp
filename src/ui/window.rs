@@ -389,7 +389,7 @@ impl WarpApplicationWindow {
         }
     }
 
-    pub fn navigate_back(&self) {
+    pub fn navigate_home(&self) {
         self.imp().navigation_view.pop();
     }
 
