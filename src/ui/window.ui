@@ -77,7 +77,7 @@
           <object class="AdwNavigationView" id="navigation_view">
             <signal name="notify::visible-page" handler="navigation_view_visible_page_notify" swapped="true"/>
             <child>
-              <object class="AdwNavigationPage">
+              <object class="AdwNavigationPage" id="page_root">
                 <property name="title" translatable="yes">Warp</property>
                 <property name="child">
                   <object class="AdwToolbarView">

@@ -28,6 +28,8 @@ mod imp {
     #[template(file = "window.ui")]
     pub struct WarpApplicationWindow {
         #[template_child]
+        pub page_root: TemplateChild<adw::NavigationPage>,
+        #[template_child]
         pub stack: TemplateChild<adw::ViewStack>,
         #[template_child]
         pub send_status_page: TemplateChild<adw::StatusPage>,
@@ -390,7 +392,10 @@ impl WarpApplicationWindow {
     }
 
     pub fn navigate_home(&self) {
-        self.imp().navigation_view.pop();
+        log::debug!("Navigating back to main screen");
+        self.imp()
+            .navigation_view
+            .pop_to_page(&*self.imp().page_root);
     }
 
     pub fn add_code(&self, code: &wormhole::Code) {
