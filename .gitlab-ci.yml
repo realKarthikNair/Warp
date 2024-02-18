@@ -85,15 +85,9 @@ windows:
   variables:
     BUNDLE: "warp-nightly-windows"
   script:
-    # Install dependencies
-    - |
-      dnf install wget yelp-tools librsvg2-tools ImageMagick -y
-      dnf clean all -y
-
-      . ~/.cargo/env
-
     # Build
     - |
+      . ~/.cargo/env
       export PKG_CONFIG_PATH=/usr/lib64/pkgconfig:/usr/share/pkgconfig:/usr/x86_64-w64-mingw32/sys-root/mingw/lib/pkgconfig/:/usr/x86_64-w64-mingw32/lib/pkgconfig/
       # export CARGO_BUILD_TARGET="x86_64-pc-windows-gnu"
 
