@@ -10,7 +10,7 @@ project(
     'package', 'version',
     check: true
   ).stdout(),
-  meson_version: '>= 0.59',
+  meson_version: '>= 0.60',
   license: run_command(
     find_program(meson.global_source_root() / 'build-aux/meson-cargo-manifest.py'),
     'package', 'license',
