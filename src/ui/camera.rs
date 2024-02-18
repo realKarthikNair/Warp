@@ -26,11 +26,11 @@ mod imp {
         #[template_child]
         pub stack: TemplateChild<gtk::Stack>,
         #[template_child]
+        pub error_page: TemplateChild<adw::StatusPage>,
+        #[template_child]
         pub viewfinder_bin: TemplateChild<adw::Bin>,
         #[template_child]
         pub spinner: TemplateChild<gtk::Spinner>,
-        #[template_child]
-        pub screenshot: TemplateChild<gtk::Button>,
         #[template_child]
         pub selection_button: TemplateChild<gtk::MenuButton>,
         pub selection: gtk::SingleSelection,
@@ -139,10 +139,13 @@ mod imp {
         }
 
         fn showing(&self) {
-            let camera = self.obj().clone();
-            main_async_local(|err| err.handle(), async move {
-                camera.scan_from_camera().await
-            });
+            let camera = self.obj();
+            main_async_local(
+                glib::clone!(@strong camera => move |err| camera.imp().handle_error(&err)),
+                glib::clone!(@strong camera => async move {
+                    camera.scan_from_camera().await
+                }),
+            );
         }
     }
 
@@ -151,6 +154,23 @@ mod imp {
         #[template_callback]
         fn on_troubleshooting_clicked(&self) {
             WarpApplication::default().activate_action("help", None);
+        }
+
+        fn handle_error(&self, error: &AppError) {
+            let description = if let AppError::Ashpd {
+                source: ashpd::Error::Portal(ashpd::PortalError::NotAllowed(..)),
+            } = error
+            {
+                gettextf(
+                    "Camera access denied. Open Settings and allow Warp to access the camera.",
+                    &[&error.gettext_error()],
+                )
+            } else {
+                gettextf("Failed to start the camera: {}", &[&error.gettext_error()])
+            };
+
+            self.error_page.set_description(Some(&description));
+            self.stack.set_visible_child_name("error");
         }
     }
 }
@@ -176,12 +196,13 @@ impl Camera {
         )
     }
 
-    pub async fn scan_from_camera(&self) -> Result<(), AppError> {
+    async fn scan_from_camera(&self) -> Result<(), AppError> {
+        static INIT: Once = Once::new();
+
         self.imp()
             .viewfinder_bin
             .set_child(Some(&self.imp().viewfinder));
 
-        static INIT: Once = Once::new();
         if INIT.is_completed() {
             return Ok(());
         }
@@ -208,11 +229,7 @@ impl Camera {
                     Ok(())
                 }
             }
-            Err(err) => Err(UiError::new(&gettextf(
-                "Failed to start the camera portal: {}",
-                &[&err],
-            ))
-            .into()),
+            Err(err) => Err(err),
         }
     }
 

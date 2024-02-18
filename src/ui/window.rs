@@ -372,9 +372,9 @@ impl WarpApplicationWindow {
     }
 
     #[template_callback]
-    async fn scan_qr_code_button_clicked(&self) {
+    fn scan_qr_code_button_clicked(&self) {
         #[cfg(feature = "qr_code_scanning")]
-        self.show_camera().await;
+        self.imp().navigation_view.push(&self.imp().page_camera);
     }
 
     #[template_callback]
@@ -443,12 +443,6 @@ impl WarpApplicationWindow {
         if imp.inserted_code_toast_showing.get() {
             imp.inserted_code_toast.get().dismiss();
         }
-    }
-
-    #[cfg(feature = "qr_code_scanning")]
-    pub async fn show_camera(&self) {
-        let imp = self.imp();
-        imp.navigation_view.push(&imp.page_camera);
     }
 
     pub fn navigate_home(&self) {

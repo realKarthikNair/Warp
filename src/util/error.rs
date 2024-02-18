@@ -232,6 +232,18 @@ impl AppError {
         }
     }
 
+    fn gettext_error_ashpd(error: &ashpd::Error) -> String {
+        match error {
+            ashpd::Error::Response(ashpd::desktop::ResponseError::Cancelled) => gettext("Canceled"),
+            ashpd::Error::Portal(ashpd::PortalError::NotAllowed(_)) => {
+                gettext("Portal error: Permission denied")
+            }
+            ashpd::Error::Portal(ashpd::PortalError::Failed) => gettext("Portal Error: Failed"),
+            ashpd::Error::Portal(err) => gettextf("Portal Error: {}", &[err]),
+            _ => gettextf("Portal error: {}", &[&error]),
+        }
+    }
+
     pub fn gettext_error(&self) -> String {
         match self {
             AppError::Canceled => "canceled".to_owned(),
@@ -285,7 +297,7 @@ impl AppError {
             AppError::Zip { source } => gettextf("An unknown error occurred while creating a zip file: {}", &[source]),
             AppError::Panic { .. } => gettext("An unexpected error occurred. Please report an issue with the error message."),
             AppError::Glib { source } => source.to_string(),
-            AppError::Ashpd { source } => source.to_string(),
+            AppError::Ashpd { source } => Self::gettext_error_ashpd(source),
         }
     }
 }

@@ -35,7 +35,31 @@
                     <property name="title" translatable="yes">No Camera Found</property>
                     <property name="description" translatable="yes">Connect a camera to scan QR codes</property>
                     <property name="child">
-                      <object class="GtkButton" id="screenshot">
+                      <object class="GtkButton">
+                        <property name="label" translatable="yes">_Troubleshooting</property>
+                        <property name="halign">center</property>
+                        <property name="margin-top">24</property>
+                        <property name="use-underline">True</property>
+                        <signal name="clicked" handler="on_troubleshooting_clicked" swapped="true" />
+                        <style>
+                          <class name="pill" />
+                        </style>
+                      </object>
+                    </property>
+                  </object>
+                </property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkStackPage">
+                <property name="name">error</property>
+                <property name="child">
+                  <object class="AdwStatusPage" id="error_page">
+                    <property name="vexpand">True</property>
+                    <property name="icon-name">camera-hardware-disabled-symbolic</property>
+                    <property name="title" translatable="yes">Error</property>
+                    <property name="child">
+                      <object class="GtkButton">
                         <property name="label" translatable="yes">_Troubleshooting</property>
                         <property name="halign">center</property>
                         <property name="margin-top">24</property>
