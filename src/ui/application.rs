@@ -256,20 +256,6 @@ impl WarpApplication {
         }
     }
 
-    pub fn send_notification_if_background(
-        &self,
-        id: Option<&str>,
-        notification: &gio::Notification,
-    ) {
-        if let Some(window) = self.active_window() {
-            if window.is_active() {
-                return;
-            }
-        }
-
-        self.send_notification(id, notification);
-    }
-
     pub fn is_flatpak() -> bool {
         if let Ok(var) = std::env::var("FLATPAK_ID") {
             var == globals::APP_ID

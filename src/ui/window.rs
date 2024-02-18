@@ -282,7 +282,11 @@ impl WarpApplicationWindow {
                 let imp = self.imp();
                 imp.action_view_showing.set(false);
                 imp.code_entry.set_text("");
-                self.app().uninhibit_transfer();
+
+                if let Some(app) = self.app() {
+                    app.uninhibit_transfer();
+                }
+
                 self.add_code_from_clipboard();
                 if imp.action_view.transfer_in_progress() {
                     imp.action_view.cancel().await;
@@ -475,10 +479,7 @@ impl WarpApplicationWindow {
         }
     }
 
-    pub fn app(&self) -> WarpApplication {
-        self.application()
-            .expect("Window should have an application")
-            .downcast()
-            .expect("Application must be of type WarpApplicationWindow")
+    pub fn app(&self) -> Option<WarpApplication> {
+        self.application().and_downcast()
     }
 }

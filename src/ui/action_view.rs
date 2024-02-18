@@ -361,6 +361,22 @@ mod imp {
                 }
             };
         }
+
+        pub fn send_notification_if_background(
+            &self,
+            id: Option<&str>,
+            notification: &gio::Notification,
+        ) {
+            if let Some(app) = self.obj().app() {
+                if let Some(window) = app.active_window() {
+                    if window.is_active() {
+                        return;
+                    }
+                }
+
+                app.send_notification(id, notification);
+            }
+        }
     }
 }
 
@@ -382,7 +398,7 @@ impl ActionView {
             .expect("ActionView may only be situated in WarpApplicationWindow")
     }
 
-    fn app(&self) -> WarpApplication {
+    fn app(&self) -> Option<WarpApplication> {
         self.window().app()
     }
 
@@ -571,7 +587,8 @@ impl ActionView {
                 )));
                 notification.set_priority(gio::NotificationPriority::Urgent);
                 notification.set_category(Some("transfer"));
-                self.app()
+
+                self.imp()
                     .send_notification_if_background(Some("receive-ready"), &notification);
             }
             UIState::Transmitting(filename, info, peer_addr) => {
@@ -684,7 +701,7 @@ impl ActionView {
                     );
                 }
 
-                self.app()
+                self.imp()
                     .send_notification_if_background(Some("transfer-complete"), &notification);
             }
             UIState::Error(error) => {
@@ -700,7 +717,8 @@ impl ActionView {
                 )));
                 notification.set_priority(gio::NotificationPriority::High);
                 notification.set_category(Some("transfer.error"));
-                self.app()
+
+                self.imp()
                     .send_notification_if_background(Some("transfer-error"), &notification);
 
                 let peer_canceled = if let AppError::Transfer {
@@ -816,7 +834,11 @@ impl ActionView {
 
     fn prepare_transmit(&self, direction: TransferDirection) -> Result<(), AppError> {
         self.reset();
-        self.app().inhibit_transfer(direction);
+
+        if let Some(app) = self.app() {
+            app.inhibit_transfer(direction);
+        }
+
         self.set_transfer_direction(direction);
         self.set_ui_state(UIState::Initial);
 
@@ -915,7 +937,9 @@ impl ActionView {
 
         self.set_ui_state(UIState::Connected);
 
-        self.app().withdraw_notification("receive-ready");
+        if let Some(app) = self.app() {
+            app.withdraw_notification("receive-ready");
+        }
 
         let download_file_name =
             PathBuf::from(download_file_path.file_name().ok_or_else(|| {
@@ -1185,7 +1209,10 @@ impl ActionView {
     /// Any post-transfer cleanup operations that are shared between success and failure states
     pub fn transmit_cleanup(&self) {
         log::debug!("Transmit cleanup");
-        self.app().uninhibit_transfer();
+
+        if let Some(app) = self.app() {
+            app.uninhibit_transfer();
+        }
 
         if self.imp().context.borrow().canceled {
             // Send the cancellation complete message
