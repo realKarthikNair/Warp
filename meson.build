@@ -44,8 +44,8 @@ gnome = import('gnome')
 
 base_id = 'app.drey.Warp'
 
-dependency('glib-2.0', version: '>= 2.79')
-dependency('gio-2.0', version: '>= 2.79')
+dependency('glib-2.0', version: '>= 2.76.0')
+dependency('gio-2.0', version: '>= 2.76.0')
 dependency('gtk4', version: '>= 4.13.0')
 dependency('libadwaita-1', version: '>= 1.5.alpha')
 
