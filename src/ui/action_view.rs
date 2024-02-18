@@ -1232,11 +1232,11 @@ impl ActionView {
     }
 
     pub fn transmit_error(&self, error: AppError) {
-        log::debug!("Transmit error");
-
         if *self.ui_state() == UIState::Initial {
+            log::debug!("Transmit error, handle with dialog");
             error.handle();
         } else if !error.is_user_canceled() {
+            log::debug!("Transmit error, show error page");
             self.set_ui_state(UIState::Error(error));
         }
 
