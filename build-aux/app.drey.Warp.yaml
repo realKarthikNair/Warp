@@ -68,6 +68,7 @@ modules:
     buildsystem: meson
     config-opts:
       - -Dprofile=default
+      - -Dqr-code-scanning=enabled
     sources:
       - type: git
         url: https://gitlab.gnome.org/World/warp.git

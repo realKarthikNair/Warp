@@ -16,7 +16,7 @@ option(
 )
 option(
   'qr-code-scanning',
-  type: 'boolean',
-  value: true,
+  type: 'feature',
+  value: 'auto',
   description: 'Enable qr-code scanning. Requires zbar and gstreamer'
 )

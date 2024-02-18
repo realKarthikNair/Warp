@@ -318,6 +318,7 @@ impl WarpApplicationWindow {
                     app.uninhibit_transfer();
                 }
 
+                #[cfg(feature = "qr_code_scanning")]
                 self.imp().page_camera.stop();
                 self.add_code_from_clipboard();
                 if imp.action_view.transfer_in_progress() {

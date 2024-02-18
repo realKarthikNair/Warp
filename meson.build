@@ -51,13 +51,21 @@ dependency('libadwaita-1', version: '>= 1.5.alpha')
 
 # QR Code scanning
 
-if get_option('qr-code-scanning')
-  dependency('zbar', version: '>= 0.20')
-  dependency('gstreamer-1.0', version: '>= 1.18')
-  dependency('gstreamer-base-1.0', version: '>= 1.18')
-  dependency('gstreamer-plugins-base-1.0', version: '>= 1.18')
-  dependency('gstreamer-plugins-bad-1.0', version: '>= 1.18')
-endif
+linux = get_option('target') == '' or get_option('target').contains('linux')
+qr_code_scanning_feat = get_option('qr-code-scanning').disable_if(not linux)
+
+qr_code_deps = [
+  dependency('zbar', version: '>= 0.20', required: qr_code_scanning_feat),
+  dependency('gstreamer-1.0', version: '>= 1.18', required: qr_code_scanning_feat),
+  dependency('gstreamer-base-1.0', version: '>= 1.18', required: qr_code_scanning_feat),
+  dependency('gstreamer-plugins-base-1.0', version: '>= 1.18', required: qr_code_scanning_feat),
+  dependency('gstreamer-plugins-bad-1.0', version: '>= 1.18', required: qr_code_scanning_feat)
+]
+
+qr_code_scanning = qr_code_scanning_feat.allowed()
+foreach dep : qr_code_deps
+  qr_code_scanning = qr_code_scanning and dep.found()
+endforeach
 
 glib_compile_schemas = find_program('glib-compile-schemas', required: true)
 desktop_file_validate = find_program('desktop-file-validate', required: false)

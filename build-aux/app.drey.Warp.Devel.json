@@ -84,6 +84,7 @@
       "name": "warp",
       "buildsystem": "meson",
       "config-opts": [
+        "-Dqr-code-scanning=enabled",
         "-Dprofile=development"
       ],
       "sources": [

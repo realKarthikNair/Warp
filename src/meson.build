@@ -20,7 +20,7 @@ else
   message('Building in debug mode')
 endif
 
-if get_option('qr-code-scanning')
+if qr_code_scanning
   cargo_features += [ 'qr_code_scanning' ]
 endif
 
