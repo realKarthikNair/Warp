@@ -118,8 +118,12 @@ impl AppError {
         Ok(res)
     }
 
+    pub fn is_user_canceled(&self) -> bool {
+        matches!(self, AppError::Canceled)
+    }
+
     pub fn handle(self) {
-        if let AppError::Canceled = self {
+        if self.is_user_canceled() {
             // Don't do anything here, the user canceled the operation
             return;
         }

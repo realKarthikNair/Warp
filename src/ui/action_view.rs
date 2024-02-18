@@ -712,7 +712,7 @@ impl ActionView {
                     false
                 };
 
-                if !matches!(error, AppError::Canceled) && !peer_canceled {
+                if !error.is_user_canceled() && !peer_canceled {
                     imp.copy_error_button.set_visible(true);
                 }
             }
@@ -1236,7 +1236,7 @@ impl ActionView {
 
         if *self.ui_state() == UIState::Initial {
             error.handle();
-        } else if !matches!(error, AppError::Canceled) {
+        } else if !error.is_user_canceled() {
             self.set_ui_state(UIState::Error(error));
         }
 
