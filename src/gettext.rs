@@ -1,4 +1,4 @@
-use gettextrs::*;
+pub use gettextrs::*;
 use std::fmt::Display;
 
 pub mod duration;

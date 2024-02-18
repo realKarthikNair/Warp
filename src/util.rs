@@ -1,9 +1,9 @@
 use crate::error::{AppError, UiError};
 use crate::gettext::gettextf;
+use crate::gettext::*;
 use crate::globals;
 use crate::globals::{TRANSMIT_CODE_FIND_REGEX, TRANSMIT_URI_FIND_REGEX};
 use crate::ui::application::WarpApplication;
-use gettextrs::gettext;
 use gio::prelude::*;
 use std::ffi::OsString;
 use std::str::FromStr;

@@ -1,10 +1,10 @@
 use crate::config::PersistentConfig;
 use crate::gettext::gettextf;
+use crate::gettext::*;
 use crate::globals;
 use crate::ui::action_view::ActionView;
 use adw::prelude::*;
 use adw::subclass::prelude::*;
-use gettextrs::*;
 use glib::clone;
 use std::cell::RefMut;
 use std::str::FromStr;

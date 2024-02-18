@@ -1,3 +1,4 @@
+use crate::gettext::*;
 use crate::globals;
 use crate::ui::preferences::WarpPreferencesDialog;
 use crate::ui::window::WarpApplicationWindow;
@@ -5,7 +6,6 @@ use crate::util::future::main_async_local;
 use crate::util::{show_dir, TransferDirection};
 use adw::prelude::*;
 use adw::subclass::prelude::*;
-use gettextrs::gettext;
 use glib::clone;
 use std::path::PathBuf;
 

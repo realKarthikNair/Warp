@@ -9,7 +9,6 @@ use crate::util::{show_dir, TransferDirection, WormholeTransferURI};
 use crate::{globals, WarpApplication};
 use adw::prelude::*;
 use adw::subclass::prelude::*;
-use gettextrs::*;
 use glib::clone;
 use std::ffi::OsString;
 use std::fmt::Debug;

@@ -1,10 +1,10 @@
 use crate::gettext::gettextf;
+use crate::gettext::*;
 use crate::globals;
 use crate::ui::application::WarpApplication;
 use crate::ui::window::WarpApplicationWindow;
 use adw::prelude::*;
 use async_zip::error::ZipError;
-use gettextrs::gettext;
 use std::fmt::{Debug, Display, Formatter, Write};
 use std::sync::atomic::{AtomicBool, Ordering};
 use wormhole::rendezvous::RendezvousError;
