@@ -403,7 +403,7 @@ impl ActionView {
         self.imp().context.borrow().direction
     }
 
-    fn set_can_pop(&self, can_pop: bool) {
+    fn enable_back_button(&self, can_pop: bool) {
         self.imp().cancel_button.set_sensitive(!can_pop);
         self.imp().cancel_button.set_visible(!can_pop);
 
@@ -429,7 +429,7 @@ impl ActionView {
                 imp.progress_bar.set_show_text(false);
 
                 super::pride::apply_seasonal_style(&*imp.progress_bar);
-                self.set_can_pop(false);
+                self.enable_back_button(false);
                 self.show_progress_indeterminate(true);
             }
             UIState::Archive(filename) => match direction {
@@ -556,7 +556,7 @@ impl ActionView {
                 imp.stack
                     .set_visible_child(&*imp.status_page_ask_confirmation);
                 self.show_progress_indeterminate(false);
-                self.set_can_pop(true);
+                self.enable_back_button(true);
 
                 imp.status_page_ask_confirmation.set_description(Some(&gettextf(
                     // Translators: File receive confirmation message dialog; Filename, File size
@@ -578,7 +578,7 @@ impl ActionView {
                 imp.stack.set_visible_child(&*imp.status_page_progress);
                 self.show_progress_indeterminate(false);
                 imp.progress_bar.set_show_text(true);
-                self.set_can_pop(false);
+                self.enable_back_button(false);
 
                 let mut ip = peer_addr.ip();
                 // We convert ipv4 mapped ipv6 addresses because the gio code can't tell if they are
@@ -632,7 +632,7 @@ impl ActionView {
             }
             UIState::Done(filename) => {
                 imp.stack.set_visible_child(&*imp.status_page_success);
-                self.set_can_pop(true);
+                self.enable_back_button(true);
 
                 let notification = gio::Notification::new(&gettext("File Transfer Complete"));
 
@@ -691,7 +691,7 @@ impl ActionView {
                 imp.stack.set_visible_child(&*imp.status_page_error);
                 imp.status_page_error
                     .set_description(Some(&error.gettext_error()));
-                self.set_can_pop(true);
+                self.enable_back_button(true);
 
                 let notification = gio::Notification::new(&gettext("File Transfer Failed"));
                 notification.set_body(Some(&gettextf(
