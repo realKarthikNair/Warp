@@ -213,7 +213,9 @@ mod imp {
 
         #[template_callback]
         async fn cancel_button_clicked(&self) {
-            self.obj().cancel_request().await;
+            if self.obj().cancel_request().await {
+                self.obj().cancel().await;
+            }
         }
 
         #[template_callback]
@@ -723,18 +725,12 @@ impl ActionView {
             &*self.imp().context.borrow().ui_state,
             UIState::AskConfirmation(..) | UIState::Done(..) | UIState::Error(..)
         ) {
-            self.cancel().await;
             return true;
         }
 
         let response = self.window().ask_abort_dialog().choose_future(self).await;
 
-        if response == "abort" {
-            self.cancel().await;
-            true
-        } else {
-            false
-        }
+        response == "abort"
     }
 
     async fn wait_for_cancellation_future(&self) {

@@ -164,6 +164,7 @@ mod imp {
             {
                 main_async_local_infallible(clone!(@strong window => async move {
                     if window.action_view().cancel_request().await {
+                        window.action_view().cancel().await;
                         window.close();
                     } else {
                         window.imp().close_in_progress.set(false);
