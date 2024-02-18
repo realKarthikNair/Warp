@@ -92,7 +92,7 @@ windows:
       # export CARGO_BUILD_TARGET="x86_64-pc-windows-gnu"
 
       mkdir -p package
-      meson build -Dprefix="$PWD/package" -Dtarget="x86_64-pc-windows-gnu"
+      meson setup build -Dprefix="$PWD/package" -Dtarget="x86_64-pc-windows-gnu"
       ninja -C "build"
       ninja -C "build" install
 
