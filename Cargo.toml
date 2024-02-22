@@ -58,20 +58,20 @@ serde_json = "1.0"
 simple_moving_average = "1.0"
 chrono = "0.4"
 regex = "1.5"
-gvdb = { version = "0.5", features = ["gresource"] }
+gvdb = { version = "0.6", features = ["gresource"] }
 gvdb-macros = { version = "0.1" }
 thiserror = "1.0"
 tempfile = "3.4.0"
 backtrace = "0.3"
 qrcode = "0.13"
-zbus = "3.1"
+zbus = "4.1"
 async-broadcast = "0.7"
 async_zip = "0.0.16"
 memmap2 = "0.9"
-aperture = { version = "0.5", optional = true }
+aperture = { version = "0.6", optional = true }
 
 [target.'cfg(unix)'.dependencies]
-ashpd = { version = "0.7", features = ["gtk4"] }
+ashpd = { version = "0.8", features = ["gtk4"] }
 
 [target.'cfg(windows)'.dependencies]
 win32console = "0.1"

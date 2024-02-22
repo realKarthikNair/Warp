@@ -238,7 +238,9 @@ impl AppError {
             ashpd::Error::Portal(ashpd::PortalError::NotAllowed(_)) => {
                 gettext("Portal error: Permission denied")
             }
-            ashpd::Error::Portal(ashpd::PortalError::Failed) => gettext("Portal Error: Failed"),
+            ashpd::Error::Portal(ashpd::PortalError::Failed(err)) => {
+                gettextf("Portal Error: Failed: {}", &[err])
+            }
             ashpd::Error::Portal(err) => gettextf("Portal Error: {}", &[err]),
             _ => gettextf("Portal error: {}", &[&error]),
         }

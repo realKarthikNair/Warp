@@ -1,4 +1,5 @@
-use std::{os::fd::RawFd, sync::Once};
+use std::os::fd::OwnedFd;
+use std::sync::Once;
 
 use adw::prelude::*;
 use adw::subclass::prelude::*;
@@ -278,7 +279,7 @@ impl Default for Camera {
     }
 }
 
-async fn stream() -> ashpd::Result<RawFd> {
+async fn stream() -> ashpd::Result<OwnedFd> {
     let proxy = ashpd::desktop::camera::Camera::new().await?;
     proxy.request_access().await?;
 
