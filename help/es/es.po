@@ -1,0 +1,269 @@
+# Spanish translation for warp.
+# Copyright (C) 2022 warp's COPYRIGHT HOLDER
+# This file is distributed under the same license as the warp package.
+# David Moreno <d.m.anton@protonmail.com>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: warp main\n"
+"POT-Creation-Date: 2024-01-31 02:04+0000\n"
+"PO-Revision-Date: 2024-02-11 22:36+0000\n"
+"Last-Translator: David Moreno <d.m.anton@protonmail.com>\n"
+"Language-Team: Spanish - Spain <gnome-es-list@gnome.org>\n"
+"Language: es_ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
+msgctxt "_"
+msgid "translator-credits"
+msgstr "Créditos de traducción"
+
+#. (itstool) path: info/desc
+#: C/details-commandline.page:11
+msgid "Interoperability with the Magic Wormhole Commandline App"
+msgstr "Interoperabilidad con la aplicación de línea de comandos Magic Wormhole"
+
+#. (itstool) path: page/title
+#: C/details-commandline.page:13
+msgid "Commandline App"
+msgstr "Aplicación de línea de comandos"
+
+#. (itstool) path: page/p
+#: C/details-commandline.page:14
+msgid "You can use the <link href=\"https://github.com/magic-wormhole/magic-wormhole\">Magic Wormhole</link> commandline client to communicate with <app>Warp</app> directly."
+msgstr "Puedes usar el cliente de línea de comandos <link href=\"https://github.com/magic-wormhole/magic-wormhole\">Magic Wormhole</link> para comunicarte con <app>Warp</app> directamente."
+
+#. (itstool) path: page/p
+#: C/details-commandline.page:16
+msgid "To receive a file that is being sent via <app>Warp</app> use this command:"
+msgstr "Para recibir un archivo que se está enviando a través de <app>Warp</app> utilice este comando:"
+
+#. (itstool) path: page/code
+#: C/details-commandline.page:17
+#, no-wrap
+msgid "wormhole receive"
+msgstr "wormhole receive"
+
+#. (itstool) path: page/p
+#: C/details-commandline.page:18
+msgid "and enter the code when prompted."
+msgstr "e introduzca el código cuando se le solicite."
+
+#. (itstool) path: page/p
+#: C/details-commandline.page:19
+msgid "To send a file use"
+msgstr "Para enviar un archivo utilice"
+
+#. (itstool) path: page/code
+#: C/details-commandline.page:20
+#, no-wrap
+msgid "wormhole send FILENAME"
+msgstr "wormhole send NOMBRE-DEL-ARCHIVO"
+
+#. (itstool) path: page/p
+#: C/details-commandline.page:21
+msgid "Your peer can then enter the code into <app>Warp</app> to receive the file."
+msgstr "Su par puede introducir el código en <app>Warp</app> para recibir el archivo."
+
+#. (itstool) path: section/title
+#: C/details-commandline.page:23
+msgid "Learn more"
+msgstr "Más información"
+
+#. (itstool) path: section/p
+#: C/details-commandline.page:24
+msgid "To learn more about the command line client you can take a look at the <link href=\"https://magic-wormhole.readthedocs.io/en/latest/\">Magic Wormhole documentation</link>."
+msgstr "Para saber más sobre el cliente de línea de comandos puedes echar un vistazo a la <link href=\"https://magic-wormhole.readthedocs.io/en/latest/\">Documentación de Magic Wormhole</link>."
+
+#. (itstool) path: info/desc
+#: C/details-glossary.page:11
+msgid "Definition of terms used through this help page"
+msgstr "Definición de los términos utilizados en esta página de ayuda"
+
+#. (itstool) path: page/title
+#: C/details-glossary.page:13
+msgid "Glossary"
+msgstr "Glosario"
+
+#. (itstool) path: section/title
+#: C/details-glossary.page:15
+msgid "Rendezvous Server"
+msgstr "Servidor Rendezvous"
+
+#. (itstool) path: section/p
+#: C/details-glossary.page:16
+msgid "This server is located on the internet and is operated by the <link href=\"https://github.com/magic-wormhole/magic-wormhole\">Magic Wormhole project</link>. It is used to find peers to share files with. When starting a transmission, both parties will contact the rendezvous server to find each other."
+msgstr "Este servidor se encuentra en internet y está gestionado por el proyecto <link href=\"https://github.com/magic-wormhole/magic-wormhole\">Magic Wormhole</link>. Se utiliza para encontrar compañeros con los que compartir archivos. Al iniciar una transmisión, ambas partes se pondrán en contacto con el servidor rendezvous para encontrarse."
+
+#. (itstool) path: section/p
+#: C/details-glossary.page:19
+msgid "The rendezvous server also helps the transmitting client to generate a <link xref=\"#transmit-code\"/>"
+msgstr "El servidor rendezvous también ayuda al cliente transmisor a generar un <link xref=\"#transmit-code\"/>"
+
+#. (itstool) path: section/p
+#: C/details-glossary.page:20
+msgid "They will use this server to exchange cryptographic information for secure communication. Afterwards they will exchange information about how to contact each other for file transfer."
+msgstr "Utilizarán este servidor para intercambiar información criptográfica para una comunicación segura. Después intercambiarán información sobre cómo ponerse en contacto para la transferencia de archivos."
+
+#. (itstool) path: note/p
+#: C/details-glossary.page:23
+msgid "No files are transferred via the rendezvous server. See <link xref=\"#transmit-relay\"/> and <link xref=\"#direct-transfer\"/>"
+msgstr "No se transfieren archivos a través del servidor de rendezvous. Véase <link xref=\"#transmit-relay\"/> y <link xref=\"#direct-transfer\"/>."
+
+#. (itstool) path: section/title
+#: C/details-glossary.page:27
+msgid "Transmit Code"
+msgstr "Código de transmisión"
+
+#. (itstool) path: section/p
+#: C/details-glossary.page:28
+msgid "This code will be generated by the client in cooperation with the <link xref=\"#rendezvous-server\"/>. It is used to identify and encrypt the transmission of messages and files."
+msgstr "Este código será generado por el cliente en colaboración con el <link xref=\"#rendezvous-server\"/>. Se utiliza para identificar y cifrar la transmisión de mensajes y archivos."
+
+#. (itstool) path: section/p
+#: C/details-glossary.page:30
+msgid "To start a transmission you need a transmit code. The transmit code then needs to be communicated to the receiver (preferably via an encrypted or otherwise secure channel). After entering the transmit code at the receiver side the file transmission can begin."
+msgstr "Para iniciar una transmisión se necesita un código de transmisión. El código de transmisión debe comunicarse al receptor (preferiblemente a través de un canal cifrado o seguro). Tras introducir el código de transmisión en el receptor, puede comenzar la transmisión del archivo."
+
+#. (itstool) path: note/p
+#: C/details-glossary.page:34
+msgid "Every transmit code can only be entered once for security reasons."
+msgstr "Por razones de seguridad, cada código de transmisión sólo puede introducirse una vez."
+
+#. (itstool) path: section/title
+#: C/details-glossary.page:38
+msgid "Transmit Link"
+msgstr "Link de transmisión"
+
+#. (itstool) path: section/p
+#: C/details-glossary.page:39
+msgid "It is also possible to encode the <link xref=\"#transmit-code\"/> as a link. Clicking the link will automatically open Warp and start the file transmission. A <gui>Copy Transmit Link</gui> button is available in the send screen. A transmit link looks like this:"
+msgstr "También es posible codificar el <link xref=\"#transmit-code\"/> como un enlace. Al hacer clic en el enlace se abrirá automáticamente Warp e iniciará la transmisión del archivo. En la pantalla de envío hay un botón <gui>Copiar enlace de transmisión</gui>. Un enlace de transmisión tiene el siguiente aspecto:"
+
+#. (itstool) path: section/code
+#: C/details-glossary.page:42
+#, no-wrap
+msgid "wormhole-transfer:{code}"
+msgstr "wormhole-transfer:{code}"
+
+#. (itstool) path: section/title
+#: C/details-glossary.page:45
+msgid "Transmit Relay"
+msgstr "Relé de transmisión"
+
+#. (itstool) path: section/p
+#: C/details-glossary.page:46
+msgid "The transmit relay is also operated by the <link href=\"https://github.com/magic-wormhole/magic-wormhole\">Magic Wormhole project</link>"
+msgstr "El relé de transmisión también es operado por el <link href=\"https://github.com/magic-wormhole/magic-wormhole\">proyecto Magic Wormhole</link>"
+
+#. (itstool) path: section/p
+#: C/details-glossary.page:48
+msgid "It is used if no <link xref=\"#direct-transfer\">direct communication</link> between two peers can be established. This is most commonly a problem when both parties are located in different home networks with <link href=\"https://en.wikipedia.org/wiki/Network_address_translation\">NAT</link> or restrictive <link href=\"https://en.wikipedia.org/wiki/Firewall_(computing)\">firewalls</link>."
+msgstr "Se utiliza si no se puede establecer una <link xref=\"#direct-transfer\">comunicación directa</link> entre dos pares. Esto suele ser un problema cuando ambas partes están ubicadas en diferentes redes domésticas con <link href=\"https://en.wikipedia.org/wiki/Network_address_translation\">NAT</link> o un <link href=\"https://en.wikipedia.org/wiki/Firewall_(computing)\">cortafuegos</link> restrictivo."
+
+#. (itstool) path: section/p
+#: C/details-glossary.page:52
+msgid "The files are transmitted via the transmit relay in an encrypted fashion. The relay will only know about the file size."
+msgstr "Los archivos se transmiten a través del relé de transmisión de forma encriptada. El relé sólo conocerá el tamaño del archivo."
+
+#. (itstool) path: section/p
+#: C/details-glossary.page:53
+msgid "Transfers via the transmit relay may be slower than direct transfer, depending on relay congestion."
+msgstr "Las transferencias a través del relé de transmisión pueden ser más lentas que las transferencias directas, dependiendo de la congestión del relé."
+
+#. (itstool) path: section/title
+#: C/details-glossary.page:56
+msgid "Direct Transfer"
+msgstr "Transferencia directa"
+
+#. (itstool) path: section/p
+#: C/details-glossary.page:57
+msgid "If both peers can find a direct networking path between each other they will send the file directly. This is often referred to as a <link href=\"https://en.wikipedia.org/wiki/Peer-to-peer\">Peer-to-Peer</link> connection. This type of connection is typically faster than a connection via the <link xref=\"#transmit-relay\"/>"
+msgstr "Si ambos pares pueden encontrar una ruta de red directa entre sí, enviarán el archivo directamente. Esto se conoce a menudo como una conexión <link href=\"https://en.wikipedia.org/wiki/Peer-to-peer\">Peer-to-Peer</link>. Este tipo de conexión suele ser más rápida que una conexión a través del <link xref=\"#transmit-relay\"/>."
+
+#. (itstool) path: info/desc
+#: C/details-qr.page:11
+msgid "Using QR Codes"
+msgstr "Uso de códigos QR"
+
+#. (itstool) path: page/title
+#: C/details-qr.page:13
+msgid "QR Codes"
+msgstr "Códigos QR"
+
+#. (itstool) path: page/p
+#: C/details-qr.page:14
+msgid "Instead of typing the code manually it is possible to scan a QR code."
+msgstr "En lugar de teclear el código manualmente, es posible escanear un código QR."
+
+#. (itstool) path: page/p
+#: C/details-qr.page:15
+msgid "For a list of supported apps, see the <link href=\"https://gitlab.gnome.org/World/warp/-/blob/main/README.md#qr-codes\">readme file</link>."
+msgstr "Para obtener una lista de las aplicaciones compatibles, consulte el archivo <link href=\"https://gitlab.gnome.org/World/warp/-/blob/main/README.md#qr-codes\">readme</link>."
+
+#. (itstool) path: page/p
+#: C/details-qr.page:17
+msgid "Using any other apps might lead to problems scanning the code. The QR code standard is fairly new and not all apps have updated their custom QR code format to the standardized version."
+msgstr "El uso de otras aplicaciones puede causar problemas al escanear el código. El estándar de código QR es bastante nuevo y no todas las aplicaciones han actualizado su formato de código QR personalizado a la versión estandarizada."
+
+#. (itstool) path: info/desc
+#: C/general-intro.page:11
+msgid "Introduction to file transfer with <app>Warp</app>"
+msgstr "Introducción a la transferencia de archivos con <app>Warp</app>"
+
+#. (itstool) path: page/title
+#: C/general-intro.page:13
+msgid "Introduction"
+msgstr "Introducción"
+
+#. (itstool) path: page/p
+#: C/general-intro.page:14
+msgid "<app>Warp</app> is an app that allows you to send files from one device to another effortlessly. <app>Warp</app> uses a secure transmit code to identify and encrypt file transmissions."
+msgstr "<app>Warp</app> es una app que permite enviar archivos de un dispositivo a otro sin esfuerzo. <app>Warp</app> utiliza un código de transmisión seguro para identificar y cifrar las transmisiones de archivos."
+
+#. (itstool) path: page/p
+#: C/general-intro.page:16
+msgid "To use <app>Warp</app> to transfer a file, the sender needs to open the app. Select a file using the <gui>Send</gui> tab. <app>Warp</app> will now try to contact the <link xref=\"details-glossary#rendezvous-server\"/> and generate a <link xref=\"details-glossary#transmit-code\"/>."
+msgstr "Para utilizar <app>Warp</app> para transferir un archivo, el remitente debe abrir la aplicación. Seleccione un archivo utilizando la pestaña <gui>Enviar</gui>. <app>Warp</app> intentará ponerse en contacto con el <link xref=\"details-glossary#rendezvous-server\"/> y generará un <link xref=\"details-glossary#transmit-code\"/>."
+
+#. (itstool) path: page/p
+#: C/general-intro.page:19
+msgid "The sender then needs to tell the receiver the transmit code of the file. (preferably via an encrypted or otherwise secure channel). After entering the transmit code at the receiver side the file transmission can begin."
+msgstr "A continuación, el remitente debe comunicar al receptor el código de transmisión del archivo. (preferiblemente a través de un canal cifrado o seguro). Tras introducir el código de transmisión en el receptor, puede comenzar la transmisión del archivo."
+
+#. (itstool) path: page/p
+#: C/general-intro.page:21
+msgid "It is also possible to copy a <link xref=\"details-glossary#transmit-link\">link</link> that will automatically open Warp with the displayed code."
+msgstr "También es posible copiar un <link xref=\"details-glossary#transmit-link\">link</link> que abrirá automáticamente Warp con el código mostrado."
+
+#. (itstool) path: note/p
+#: C/general-intro.page:24
+msgid "Every transmit code can only be entered once for security reasons. If the receiver mistypes the transmission code the file transfer will be aborted. The sender then needs to select the file again and generate a new code."
+msgstr "Por razones de seguridad, cada código de transmisión sólo puede introducirse una vez. Si el receptor teclea mal el código de transmisión, la transferencia del archivo se interrumpirá. El remitente deberá seleccionar de nuevo el archivo y generar un nuevo código."
+
+#. (itstool) path: page/p
+#: C/general-intro.page:27
+msgid "A progress bar will indicate a running file transfer. Files will either be transmitted via <link xref=\"details-glossary#direct-transfer\"/> or via the <link xref=\"details-glossary#transmit-relay\"/>. The transfer can be aborted at any time using the <gui>Cancel</gui> button."
+msgstr "Una barra de progreso indicará una transferencia de archivos en curso. Los archivos se transmitirán a través de <link xref=\"details-glossary#direct-transfer\"/> o a través de <link xref=\"details-glossary#transmit-relay\"/>. La transferencia puede interrumpirse en cualquier momento mediante el botón <gui>Cancelar</gui>."
+
+#. (itstool) path: info/desc
+#: C/index.page:10
+msgid "Fast and secure file transfer."
+msgstr "Transferencia de archivos rápida y segura."
+
+#. (itstool) path: page/title
+#: C/index.page:12
+msgid "Warp"
+msgstr "Warp"
+
+#. (itstool) path: section/title
+#: C/index.page:14
+msgid "General"
+msgstr "General"
+
+#. (itstool) path: section/title
+#: C/index.page:17
+msgid "Details"
+msgstr "Detalles"
