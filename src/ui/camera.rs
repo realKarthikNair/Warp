@@ -1,17 +1,19 @@
 use std::os::fd::OwnedFd;
-use std::sync::{Once, OnceLock};
+use std::pin::pin;
+use std::sync::Once;
 
 use adw::prelude::*;
 use adw::subclass::prelude::*;
+use futures::FutureExt;
 use gtk::glib::{self, clone};
 use once_cell::sync::Lazy;
 
 use crate::gettext::*;
 use crate::ui::camera_row::CameraRow;
-use crate::util::{error::*, future::spawn_async};
+use crate::util::error::*;
 
 mod imp {
-    use std::cell::OnceCell;
+    use std::cell::{OnceCell, RefCell};
 
     use glib::subclass::{InitializingObject, Signal};
 
@@ -36,6 +38,8 @@ mod imp {
         pub selection_button: TemplateChild<gtk::MenuButton>,
         pub selection: gtk::SingleSelection,
         pub viewfinder: OnceCell<aperture::Viewfinder>,
+
+        pub portal_cancellable: RefCell<Option<gio::Cancellable>>,
     }
 
     #[glib::object_subclass]
@@ -209,6 +213,36 @@ mod imp {
             self.error_page.set_description(Some(&description));
             self.stack.set_visible_child_name("error");
         }
+
+        pub(super) async fn request_permission(&self) -> Result<OwnedFd, AppError> {
+            log::debug!("Requesting access to the camera");
+            if let Some(cancellable) = self.portal_cancellable.take() {
+                log::debug!("Canceling last operation");
+                cancellable.cancel();
+            }
+
+            let cancellable = gio::Cancellable::new();
+            self.portal_cancellable.replace(Some(cancellable.clone()));
+
+            let proxy = ashpd::desktop::camera::Camera::new().await?;
+
+            let cancel_fut = pin!(cancellable.future());
+            let mut cancel = cancel_fut.fuse();
+            let request = pin!(proxy.request_access());
+            let mut access_request = request.fuse();
+            futures::select! {
+                () = cancel => {
+                    log::debug!("Canceled");
+                    Err(AppError::Canceled)
+                },
+                res = access_request => Ok(res?)
+            }?;
+
+            self.portal_cancellable.take();
+
+            log::debug!("Open PipeWire remote");
+            Ok(proxy.open_pipe_wire_remote().await?)
+        }
     }
 }
 
@@ -248,9 +282,13 @@ impl Camera {
         }
 
         log::debug!("Initializing camera");
+        let obj = self.clone();
         let provider = aperture::DeviceProvider::instance();
-        match spawn_async(stream()).await {
-            Ok(fd) => {
+        match glib::MainContext::default()
+            .spawn_local(async move { obj.imp().request_permission().await })
+            .await
+        {
+            Ok(Ok(fd)) => {
                 if let Err(err) = provider.set_fd(fd) {
                     Err(
                         UiError::new(&gettextf("Could not use the camera portal: {}", &[&err]))
@@ -270,7 +308,8 @@ impl Camera {
                     Ok(())
                 }
             }
-            Err(err) => Err(err),
+            Ok(Err(err)) => Err(err),
+            Err(glib::JoinError { .. }) => Ok(()),
         }
     }
 
@@ -323,29 +362,4 @@ impl Default for Camera {
     fn default() -> Self {
         glib::Object::new()
     }
-}
-
-async fn stream() -> ashpd::Result<OwnedFd> {
-    static MUTEX: smol::lock::Mutex<()> = smol::lock::Mutex::new(());
-    static PROXY: OnceLock<ashpd::desktop::camera::Camera<'static>> = OnceLock::new();
-
-    log::debug!("Requesting access to the camera");
-
-    // This convoluted code acts as a replacement for an async OnceCell
-    let proxy = if let Some(proxy) = PROXY.get() {
-        proxy
-    } else {
-        let _lock = MUTEX.lock().await;
-        // Check again after locking, someone else might have put it in there
-        if let Some(proxy) = PROXY.get() {
-            proxy
-        } else {
-            let proxy = ashpd::desktop::camera::Camera::new().await?;
-            PROXY.get_or_init(move || proxy)
-        }
-    };
-
-    proxy.request_access().await?;
-    log::debug!("Open PipeWire remote");
-    proxy.open_pipe_wire_remote().await
 }

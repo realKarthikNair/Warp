@@ -236,11 +236,21 @@ impl AppError {
         match error {
             ashpd::Error::Response(ashpd::desktop::ResponseError::Cancelled) => gettext("Canceled"),
             ashpd::Error::Portal(ashpd::PortalError::NotAllowed(_)) => {
-                gettext("Portal error: Permission denied")
+                gettext("Error communicating with the portal service: Permission denied")
             }
-            ashpd::Error::Portal(ashpd::PortalError::Failed(err)) => {
-                gettextf("Portal Error: Failed: {}", &[err])
+            ashpd::Error::Portal(ashpd::PortalError::Failed(err)) => gettextf(
+                "The portal service has failed: {}",
+                &[err],
+            ),
+            ashpd::Error::Portal(ashpd::PortalError::ZBus(zbus::Error::InputOutput(io))) => {
+                gettextf(
+                    "Error communicating with the portal service. This might be a known bug in xdg-dbus-proxy. To workaround this issue, please restart the app and try again. Full error message: {}", &[io]
+                )
             }
+            ashpd::Error::Portal(ashpd::PortalError::ZBus(zbus)) => gettextf(
+                "Error communicating with the portal service via zbus: {}",
+                &[&format!("{zbus:?}")],
+            ),
             ashpd::Error::Portal(err) => gettextf("Portal Error: {}", &[err]),
             _ => gettextf("Portal error: {}", &[&error]),
         }
