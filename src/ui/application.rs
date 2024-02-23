@@ -83,9 +83,6 @@ mod imp {
             let app = self.obj();
             self.parent_startup();
 
-            #[cfg(feature = "qr_code_scanning")]
-            aperture::init(globals::APP_ID);
-
             // Set icons for shell
             gtk::Window::set_default_icon_name(globals::APP_ID);
 
@@ -132,41 +129,47 @@ impl WarpApplication {
         }
     }
 
+    pub fn open_help(&self, page: Option<&str>) {
+        /* `help:` URIs are a Linux specific thing and won't work on Windows. There, we'll just open the path to the
+         * respective HTML files and hope that it launches a browser …
+         */
+        let help_uri = if cfg!(not(windows)) {
+            format!("help:warp/{}", page.unwrap_or_default())
+        } else {
+            let file = page.unwrap_or("index");
+            let mut uri = globals::WINDOWS_BASE_PATH.clone();
+            /* Hardcode the "C" language for now, so no translated help files *sigh*
+             *
+             * The problem is that gettext is a mess and does not provide us with a good way
+             * to query the currenty used language. In theory it can do that, but the values
+             * it returned on Windows did not work as they should.
+             */
+            uri.push(format!("share\\help\\C\\warp\\{file}.html"));
+            /* People with non-UTF-8 paths will at least get a good error message */
+            let mut uri = uri.to_string_lossy().into_owned();
+            uri.insert_str(0, "file:///");
+            uri
+        };
+
+        log::debug!("Opening '{}' to show help", help_uri);
+        let context = self
+            .active_window()
+            .map(|w| gtk::prelude::WidgetExt::display(&w).app_launch_context());
+
+        glib::MainContext::default().spawn_local(async move {
+            if let Err(err) =
+                gio::AppInfo::launch_default_for_uri_future(&help_uri, context.as_ref()).await
+            {
+                log::error!("Error launching help: {err:?}");
+            }
+        });
+    }
+
     fn setup_gactions(&self) {
         // Help
         let action_help = gio::SimpleAction::new("help", None);
         action_help.connect_activate(clone!(@weak self as app => move |_, _| {
-            /* `help:` URIs are a Linux specific thing and won't work on Windows. There, we'll just open the path to the
-             * respective HTML files and hope that it launches a browser …
-             */
-            let help_uri = if cfg!(not(windows)) {
-                "help:warp".into()
-            } else {
-                let mut uri = globals::WINDOWS_BASE_PATH.clone();
-                /* Hardcode the "C" language for now, so no translated help files *sigh*
-                 *
-                 * The problem is that gettext is a mess and does not provide us with a good way
-                 * to query the currenty used language. In theory it can do that, but the values
-                 * it returned on Windows did not work as they should.
-                 */
-                uri.push("share\\help\\C\\warp\\index.html");
-                /* People with non-UTF-8 paths will at least get a good error message */
-                let mut uri = uri.to_string_lossy().into_owned();
-                uri.insert_str(0, "file:///");
-                uri
-            };
-
-            log::debug!("Opening '{}' to show help", help_uri);
-            let context = app
-                .active_window()
-                .map(|w| gtk::prelude::WidgetExt::display(&w).app_launch_context());
-
-            glib::MainContext::default().spawn_local(async move {
-                if let Err(err) = gio::AppInfo::launch_default_for_uri_future(&help_uri, context.as_ref()).await
-                {
-                    log::error!("Error launching help: {err:?}");
-                }
-            });
+            app.open_help(None);
         }));
         self.add_action(&action_help);
 
