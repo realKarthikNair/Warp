@@ -60,6 +60,16 @@
   </custom>
   <content_rating type="oars-1.1" />
   <releases>
+    <release version="0.7.0-beta.1" date="2024-02-23">
+      <description>
+        <p>Beta release for 0.7</p>
+        <ul>
+          <li>Add QR code scanning support via aperture, the library behind GNOME Camera</li>
+          <li>Port dialogs to AdwDialog</li>
+          <li>Translation Updates</li>
+        </ul>
+      </description>
+    </release>
     <release version="0.6.2" date="2023-12-04">
       <description>
         <p>This release contains:</p>
@@ -242,10 +252,7 @@
     <kudo>HighContrast</kudo>
   </kudos>
   <!-- developer_name tag deprecated with Appstream 1.0 -->
-  <developer_name translatable="no">Fina Wilke</developer_name>
-  <developer id="gnome.org">
-    <name translatable="no">Fina Wilke</name>
-  </developer>
+  <developer_name>Fina Wilke</developer_name>
   <update_contact>finaw@gnome.org</update_contact>
   <translation type="gettext">@gettext-package@</translation>
   <launchable type="desktop-id">@app-id@.desktop</launchable>
