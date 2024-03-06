@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: warp main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
-"POT-Creation-Date: 2024-02-23 00:07+0000\n"
-"PO-Revision-Date: 2024-02-23 09:43+0200\n"
+"POT-Creation-Date: 2024-03-06 16:57+0000\n"
+"PO-Revision-Date: 2024-03-06 21:26+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -454,68 +454,77 @@ msgstr ""
 "Не вдалося скористатися посиланням для передавання: вже виконується інше "
 "передавання"
 
-#: src/ui/application.rs:230
+#: src/ui/application.rs:233
 msgid "Fina Wilke"
 msgstr "Фіна Вільке (Fina Wilke)"
 
-#: src/ui/application.rs:231
+#: src/ui/application.rs:234
 msgid "Tobias Bernard"
 msgstr "Tobias Bernard"
 
-#: src/ui/application.rs:231
+#: src/ui/application.rs:234
 msgid "Sophie Herold"
 msgstr "Софі Герольд"
 
-#: src/ui/application.rs:232
+#: src/ui/application.rs:235
 msgid "translator-credits"
 msgstr "Юрій Чорноіван <yurchor@ukr.net>, 2022"
 
-#: src/ui/application.rs:247
+#: src/ui/application.rs:250
 msgid "Sending a File"
 msgstr "Надсилання файла"
 
-#: src/ui/application.rs:248
+#: src/ui/application.rs:251
 msgid "Receiving a File"
 msgstr "Отримання файла"
 
-#: src/ui/camera.rs:166
+#: src/ui/camera.rs:211 src/ui/camera.rs:328
 msgid ""
 "Camera access denied. Open Settings and allow Warp to access the camera."
 msgstr ""
-"У доступі до камери відмовлено. Відкрийте «Параметри» і надайте Warp доступ"
-" до камери."
+"У доступі до камери відмовлено. Відкрийте «Параметри» і надайте Warp доступ "
+"до камери."
 
-#: src/ui/camera.rs:170
+#: src/ui/camera.rs:215
 msgid "Failed to start the camera: {}"
 msgstr "Не вдалося запустити камеру: {}"
 
-#: src/ui/camera.rs:216
+#: src/ui/camera.rs:218
+msgid "Error"
+msgstr "Помилка"
+
+#: src/ui/camera.rs:229
+#| msgid "Could not use the camera portal: {}"
+msgid "Error talking to the camera portal"
+msgstr "Помилка під час обміну даними з порталом камери"
+
+#: src/ui/camera.rs:458
 msgid "Could not use the camera portal: {}"
 msgstr "Не вдалося скористатися порталом камери: {}"
 
-#: src/ui/camera.rs:223
+#: src/ui/camera.rs:465
 msgid "Could not start the device provider: {}"
 msgstr "Не вдалося запустити засіб надання даних пристрою: {}"
 
-#: src/ui/camera.ui:4 src/ui/window.rs:105
-msgid "Scan QR Code"
-msgstr "Сканувати QR-код"
-
-#: src/ui/camera.ui:35
+#: src/ui/camera.rs:496
 msgid "No Camera Found"
 msgstr "Не знайдено камери"
 
-#: src/ui/camera.ui:36
+#: src/ui/camera.rs:498
 msgid "Connect a camera to scan QR codes"
 msgstr "З'єднайте камеру, щоб виконати сканування QR-кодів"
 
-#: src/ui/camera.ui:39 src/ui/camera.ui:63
-msgid "_Troubleshooting"
-msgstr "_Усування проблем"
+#: src/ui/camera.ui:11 src/ui/window.rs:105
+msgid "Scan QR Code"
+msgstr "Сканувати QR-код"
+
+#: src/ui/camera.ui:49
+msgid "_Retry"
+msgstr "П_овторити"
 
 #: src/ui/camera.ui:60
-msgid "Error"
-msgstr "Помилка"
+msgid "_Troubleshooting"
+msgstr "_Усування проблем"
 
 #: src/ui/fs.rs:16
 msgid "Downloads dir missing. Please set XDG_DOWNLOAD_DIR"
@@ -793,7 +802,7 @@ msgstr "Невідомий параметр адреси «{}»"
 msgid "An error occurred"
 msgstr "Сталася помилка"
 
-#: src/util/error.rs:202 src/util/error.rs:281
+#: src/util/error.rs:202 src/util/error.rs:285
 msgid "Corrupt or unexpected message received"
 msgstr "Отримано пошкоджене або неочікуване повідомлення"
 
@@ -849,7 +858,7 @@ msgstr ""
 msgid "Cannot decrypt a received message"
 msgstr "Не вдалося розшифрувати отримане повідомлення"
 
-#: src/util/error.rs:223 src/util/error.rs:292 src/util/error.rs:298
+#: src/util/error.rs:223 src/util/error.rs:296 src/util/error.rs:302
 msgid "An unknown error occurred"
 msgstr "Сталася невідома помилка"
 
@@ -862,36 +871,40 @@ msgid "Permission denied"
 msgstr "Відмовлено у доступі"
 
 #: src/util/error.rs:237
-#| msgid "_Cancel"
 msgid "Canceled"
 msgstr "Скасовано"
 
 #: src/util/error.rs:239
-#| msgid "Permission denied"
-msgid "Portal error: Permission denied"
-msgstr "Помилка порталу: відмовлено у доступі"
+#| msgid "Portal error: Permission denied"
+msgid "Portal service response: Permission denied"
+msgstr "Відповідь служби порталу: відмовлено у доступі"
 
 #: src/util/error.rs:242
-msgid "Portal Error: Failed: {}"
-msgstr "Помилка порталу: не вдалося: {}"
+#| msgid "The file transfer failed: {}"
+msgid "The portal service has failed: {}"
+msgstr "Помилка служби порталу: {}"
 
-#: src/util/error.rs:244
+#: src/util/error.rs:245
+msgid "Error communicating with the portal service via zbus: {}"
+msgstr "Помилка обміну даними із службою порталів за допомогою zbus: {}"
+
+#: src/util/error.rs:248
 msgid "Portal Error: {}"
 msgstr "Помилка порталу: {}"
 
-#: src/util/error.rs:245
+#: src/util/error.rs:249
 msgid "Portal error: {}"
 msgstr "Помилка порталу: {}"
 
-#: src/util/error.rs:256
+#: src/util/error.rs:260
 msgid "Transfer was not acknowledged by peer"
 msgstr "Передавання не підтверджено зовнішнім вузлом"
 
-#: src/util/error.rs:258
+#: src/util/error.rs:262
 msgid "The received file is corrupted"
 msgstr "Отриманий файл пошкоджено"
 
-#: src/util/error.rs:264
+#: src/util/error.rs:268
 msgid ""
 "The file contained a different amount of bytes than advertised! Sent {} "
 "bytes, but should have been {}"
@@ -899,36 +912,39 @@ msgstr ""
 "У файлі міститься інша кількість байтів, ніж оголошено! Надіслано {} байтів, "
 "а мало бути {}"
 
-#: src/util/error.rs:269
+#: src/util/error.rs:273
 msgid "The other side has cancelled the transfer"
 msgstr "Передавання скасовано на іншому боці"
 
-#: src/util/error.rs:271
+#: src/util/error.rs:275
 msgid "The other side has rejected the transfer"
 msgstr "У передаванні відмовлено на іншому боці"
 
-#: src/util/error.rs:273
+#: src/util/error.rs:277
 msgid "Something went wrong on the other side: {}"
 msgstr "Щось пішло не так на іншому боці: {}"
 
-#: src/util/error.rs:288
+#: src/util/error.rs:292
 msgid "Error while establishing file transfer connection"
 msgstr "Помилка під час встановлення з'єднання з передавання файлів"
 
-#: src/util/error.rs:290
+#: src/util/error.rs:294
 msgid "Unknown file transfer error"
 msgstr "Невідомий файл — помилка передавання"
 
-#: src/util/error.rs:299
+#: src/util/error.rs:303
 msgid "An unknown error occurred while creating a zip file: {}"
 msgstr "Під час спроби створення файла zip сталася помилка: {}"
 
-#: src/util/error.rs:300
+#: src/util/error.rs:304
 msgid ""
 "An unexpected error occurred. Please report an issue with the error message."
 msgstr ""
 "Сталася неочікувана помилка. Будь ласка, повідомте про цю ваду, навівши "
 "повідомлення про помилку."
+
+#~ msgid "Portal Error: Failed: {}"
+#~ msgstr "Помилка порталу: не вдалося: {}"
 
 #~ msgid "Accept File Transfer and save to Downloads folder"
 #~ msgstr "Прийняти перенесений файл і зберегти його до теки «Завантаження»"
