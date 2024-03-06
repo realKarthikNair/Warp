@@ -13,7 +13,12 @@ use crate::ui::camera_row::CameraRow;
 use crate::util::error::*;
 
 mod imp {
-    use std::cell::{OnceCell, RefCell};
+    use std::{
+        cell::{Cell, OnceCell, RefCell},
+        collections::HashMap,
+        os::fd::FromRawFd,
+        sync::atomic::AtomicU32,
+    };
 
     use glib::subclass::{InitializingObject, Signal};
 
@@ -40,6 +45,7 @@ mod imp {
         pub viewfinder: OnceCell<aperture::Viewfinder>,
 
         pub portal_cancellable: RefCell<Option<gio::Cancellable>>,
+        pub use_hack: Cell<bool>,
     }
 
     #[glib::object_subclass]
@@ -214,8 +220,143 @@ mod imp {
             self.stack.set_visible_child_name("error");
         }
 
-        pub(super) async fn request_permission(&self) -> Result<OwnedFd, AppError> {
-            log::debug!("Requesting access to the camera");
+        /// This is *really* bad code. We only use it as a last resort if the ashpd zbus connection
+        /// is permanently broken beyond repair due to https://github.com/flatpak/xdg-dbus-proxy/issues/46
+        async fn request_permission_hack(&self) -> Result<OwnedFd, AppError> {
+            static REQUEST_ID: AtomicU32 = AtomicU32::new(1);
+
+            let generic_err =
+                || AppError::from(UiError::new(&gettext("Error talking to the camera portal")));
+
+            log::warn!("Resorting to fallback portal code");
+
+            // Create desktop proxy
+            let proxy = gio::DBusProxy::for_bus_future(
+                gio::BusType::Session,
+                gio::DBusProxyFlags::NONE,
+                None,
+                "org.freedesktop.portal.Desktop",
+                "/org/freedesktop/portal/desktop",
+                "org.freedesktop.portal.Camera",
+            )
+            .await?;
+
+            // Create new request token
+            let sender = proxy
+                .connection()
+                .unique_name()
+                .map(|name| String::from(&name.as_str()[1..].replace('.', "_")))
+                .ok_or_else(generic_err)?;
+            let token = format!(
+                "warpportalhack{}",
+                REQUEST_ID.fetch_add(1, std::sync::atomic::Ordering::SeqCst)
+            );
+
+            // The path to subscribe to for responses
+            let request_path = format!("/org/freedesktop/portal/desktop/request/{sender}/{token}");
+
+            // Response signal
+            let (response_sender, response_receiver) = async_channel::bounded::<u32>(1);
+
+            // Subscribe to the response signal
+            let connection = proxy.connection();
+            let response_subscription = connection.signal_subscribe(
+                None,
+                Some("org.freedesktop.portal.Request"),
+                Some("Response"),
+                Some(&request_path),
+                None,
+                gio::DBusSignalFlags::NO_MATCH_RULE,
+                move |_connection, _sender, _path, _interface, _signal, params| {
+                    let response = if let Some((response, _data)) =
+                        params.get::<(u32, HashMap<String, glib::Variant>)>()
+                    {
+                        response
+                    } else {
+                        u32::MAX
+                    };
+
+                    // Send the response
+                    if let Err(err) = response_sender.try_send(response) {
+                        log::error!("{}", err);
+                    }
+                },
+            );
+
+            // Send portal request
+            log::debug!("Call AccessCamera portal");
+
+            // Send the token that we listen to above
+            let mut options = HashMap::<&str, glib::Variant>::new();
+            options.insert("handle_token", token.to_variant());
+            let request_handle = proxy
+                .call_future(
+                    "AccessCamera",
+                    Some(&(options,).to_variant()),
+                    gio::DBusCallFlags::NONE,
+                    -1,
+                )
+                .await?;
+
+            // Compare the handle with what we precomputed
+            if let Ok((request_handle,)) = request_handle.try_get::<(glib::variant::ObjectPath,)>()
+            {
+                log::debug!("Got handle {:?}", request_handle);
+                if request_handle.as_str() != request_path {
+                    log::error!(
+                        "Expected handle {}, got {}",
+                        request_path,
+                        request_handle.as_str()
+                    );
+                    return Err(generic_err());
+                }
+            } else {
+                log::error!("Got {:?}", request_handle);
+                return Err(generic_err());
+            }
+
+            // Request sent. Now we wait for a response for the provided token
+            let response = response_receiver.recv().await?;
+            connection.signal_unsubscribe(response_subscription);
+            log::debug!("AccessCamera portal response: {}", response);
+
+            if response != 0 {
+                log::error!(
+                    "Portal request responded with non-zero resopnse code. No camera for us :("
+                );
+                return Err(UiError::new(&gettext(
+                    "Camera access denied. Open Settings and allow Warp to access the camera.",
+                ))
+                .into());
+            }
+
+            log::debug!("Portal request succeeded :)");
+
+            // We are allowed to request an FD now
+            log::debug!("Call OpenPipeWireRemote");
+
+            let (result, fd_list) = proxy
+                .call_with_unix_fd_list_future(
+                    "OpenPipeWireRemote",
+                    Some(&(HashMap::<&str, glib::Variant>::new(),).to_variant()),
+                    gio::DBusCallFlags::NONE,
+                    -1,
+                    None::<&gio::UnixFDList>,
+                )
+                .await?;
+
+            if let Ok((handle,)) = result.try_get::<(glib::variant::Handle,)>() {
+                // The handle is an index into the fd list
+                let fd = fd_list.get(handle.0)?;
+                // Safety: For better or for worse, we trust the camera portal
+                Ok(unsafe { std::os::fd::OwnedFd::from_raw_fd(fd) })
+            } else {
+                log::error!("Error getting pipewire FD. Got {:?} instead of (h)", result);
+                Err(generic_err())
+            }
+        }
+
+        pub(super) async fn request_permission_zbus(&self) -> Result<OwnedFd, AppError> {
             if let Some(cancellable) = self.portal_cancellable.take() {
                 log::debug!("Canceling last operation");
                 cancellable.cancel();
@@ -233,6 +374,7 @@ mod imp {
             futures::select! {
                 () = cancel => {
                     log::debug!("Canceled");
+                    self.portal_cancellable.take();
                     Err(AppError::Canceled)
                 },
                 res = access_request => Ok(res?)
@@ -242,6 +384,28 @@ mod imp {
 
             log::debug!("Open PipeWire remote");
             Ok(proxy.open_pipe_wire_remote().await?)
+        }
+
+        pub(super) async fn request_permission(&self) -> Result<OwnedFd, AppError> {
+            log::debug!("Requesting access to the camera");
+
+            if self.use_hack.get() {
+                self.request_permission_hack().await
+            } else {
+                match self.request_permission_zbus().await {
+                    Ok(fd) => Ok(fd),
+                    Err(AppError::Ashpd {
+                        source:
+                            ashpd::Error::Portal(ashpd::PortalError::ZBus(zbus::Error::InputOutput(
+                                _io,
+                            ))),
+                    }) => {
+                        self.use_hack.set(true);
+                        self.request_permission_hack().await
+                    }
+                    Err(err) => Err(err),
+                }
+            }
         }
     }
 }
