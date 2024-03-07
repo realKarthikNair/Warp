@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: warp main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
-"POT-Creation-Date: 2024-02-23 00:07+0000\n"
-"PO-Revision-Date: 2024-02-25 17:50+0100\n"
+"POT-Creation-Date: 2024-03-06 16:57+0000\n"
+"PO-Revision-Date: 2024-03-06 18:55+0100\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -437,19 +437,19 @@ msgstr "A_vbryt"
 msgid "Unable to use transfer link: another transfer already in progress"
 msgstr "Kunde inte använda överföringslänk: en annan överföring pågår redan"
 
-#: src/ui/application.rs:230
+#: src/ui/application.rs:233
 msgid "Fina Wilke"
 msgstr "Fina Wilke"
 
-#: src/ui/application.rs:231
+#: src/ui/application.rs:234
 msgid "Tobias Bernard"
 msgstr "Tobias Bernard"
 
-#: src/ui/application.rs:231
+#: src/ui/application.rs:234
 msgid "Sophie Herold"
 msgstr "Sophie Herold"
 
-#: src/ui/application.rs:232
+#: src/ui/application.rs:235
 msgid "translator-credits"
 msgstr ""
 "Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
@@ -457,52 +457,60 @@ msgstr ""
 "Skicka synpunkter på översättningen till\n"
 "<tp-sv@listor.tp-sv.se>."
 
-#: src/ui/application.rs:247
+#: src/ui/application.rs:250
 msgid "Sending a File"
 msgstr "Skickar en fil"
 
-#: src/ui/application.rs:248
+#: src/ui/application.rs:251
 msgid "Receiving a File"
 msgstr "Tar emot en fil"
 
-#: src/ui/camera.rs:166
+#: src/ui/camera.rs:211 src/ui/camera.rs:328
 msgid ""
 "Camera access denied. Open Settings and allow Warp to access the camera."
 msgstr ""
 "Kameraåtkomst nekad. Öppna Inställningar och tillåt Warp att komma åt "
 "kameran."
 
-#: src/ui/camera.rs:170
+#: src/ui/camera.rs:215
 msgid "Failed to start the camera: {}"
 msgstr "Misslyckades med att starta kameran: {}"
 
-#: src/ui/camera.rs:216
+#: src/ui/camera.rs:218
+msgid "Error"
+msgstr "Fel"
+
+#: src/ui/camera.rs:229
+msgid "Error talking to the camera portal"
+msgstr "Fel vid kommunikation med kameraportalen"
+
+#: src/ui/camera.rs:458
 msgid "Could not use the camera portal: {}"
 msgstr "Kunde inte använda kameraportalen: {}"
 
-#: src/ui/camera.rs:223
+#: src/ui/camera.rs:465
 msgid "Could not start the device provider: {}"
 msgstr "Kunde inte starta enhetsleverantören: {}"
 
-#: src/ui/camera.ui:4 src/ui/window.rs:105
-msgid "Scan QR Code"
-msgstr "Läs av QR-kod"
-
-#: src/ui/camera.ui:35
+#: src/ui/camera.rs:496
 msgid "No Camera Found"
 msgstr "Ingen kamera hittades"
 
-#: src/ui/camera.ui:36
+#: src/ui/camera.rs:498
 msgid "Connect a camera to scan QR codes"
 msgstr "Anslut en kamera för att läsa av QR-koder"
 
-#: src/ui/camera.ui:39 src/ui/camera.ui:63
-msgid "_Troubleshooting"
-msgstr "_Problemlösning"
+#: src/ui/camera.ui:11 src/ui/window.rs:105
+msgid "Scan QR Code"
+msgstr "Läs av QR-kod"
+
+#: src/ui/camera.ui:49
+msgid "_Retry"
+msgstr "_Försök igen"
 
 #: src/ui/camera.ui:60
-msgid "Error"
-msgstr "Fel"
+msgid "_Troubleshooting"
+msgstr "_Problemlösning"
 
 #: src/ui/fs.rs:16
 msgid "Downloads dir missing. Please set XDG_DOWNLOAD_DIR"
@@ -773,7 +781,7 @@ msgstr "Okänd URI-parameter ”{}”"
 msgid "An error occurred"
 msgstr "Ett fel inträffade"
 
-#: src/util/error.rs:202 src/util/error.rs:281
+#: src/util/error.rs:202 src/util/error.rs:285
 msgid "Corrupt or unexpected message received"
 msgstr "Felaktigt eller oväntat meddelande mottogs"
 
@@ -829,7 +837,7 @@ msgstr ""
 msgid "Cannot decrypt a received message"
 msgstr "Det går inte att dekryptera ett mottaget meddelande"
 
-#: src/util/error.rs:223 src/util/error.rs:292 src/util/error.rs:298
+#: src/util/error.rs:223 src/util/error.rs:296 src/util/error.rs:302
 msgid "An unknown error occurred"
 msgstr "Ett okänt fel inträffade"
 
@@ -846,30 +854,34 @@ msgid "Canceled"
 msgstr "Avbröts"
 
 #: src/util/error.rs:239
-msgid "Portal error: Permission denied"
-msgstr "Portalfel: Åtkomst nekad"
+msgid "Portal service response: Permission denied"
+msgstr "Portaltjänstsvar: Åtkomst nekad"
 
 #: src/util/error.rs:242
-msgid "Portal Error: Failed: {}"
-msgstr "Portalfel: Misslyckades: {}"
+msgid "The portal service has failed: {}"
+msgstr "Portaltjänsten har misslyckats: {}"
 
-#: src/util/error.rs:244
+#: src/util/error.rs:245
+msgid "Error communicating with the portal service via zbus: {}"
+msgstr "Fel vid kommunikation med portaltjänsten via zbus: {}"
+
+#: src/util/error.rs:248
 msgid "Portal Error: {}"
 msgstr "Portalfel: {}"
 
-#: src/util/error.rs:245
+#: src/util/error.rs:249
 msgid "Portal error: {}"
 msgstr "Portalfel: {}"
 
-#: src/util/error.rs:256
+#: src/util/error.rs:260
 msgid "Transfer was not acknowledged by peer"
 msgstr "Överföringen godkändes inte av motparten"
 
-#: src/util/error.rs:258
+#: src/util/error.rs:262
 msgid "The received file is corrupted"
 msgstr "Den mottagna filen är skadad"
 
-#: src/util/error.rs:264
+#: src/util/error.rs:268
 msgid ""
 "The file contained a different amount of bytes than advertised! Sent {} "
 "bytes, but should have been {}"
@@ -877,35 +889,38 @@ msgstr ""
 "Filen innehöll ett annat antal byte än utlovat! Skickade {} byte, men borde "
 "ha varit {}"
 
-#: src/util/error.rs:269
+#: src/util/error.rs:273
 msgid "The other side has cancelled the transfer"
 msgstr "Den andra sidan har avbrutit överföringen"
 
-#: src/util/error.rs:271
+#: src/util/error.rs:275
 msgid "The other side has rejected the transfer"
 msgstr "Den andra sidan har nekat överföringen"
 
-#: src/util/error.rs:273
+#: src/util/error.rs:277
 msgid "Something went wrong on the other side: {}"
 msgstr "Något gick fel på den andra sidan: {}"
 
-#: src/util/error.rs:288
+#: src/util/error.rs:292
 msgid "Error while establishing file transfer connection"
 msgstr "Fel vid upprättande av anslutning för filöverföring"
 
-#: src/util/error.rs:290
+#: src/util/error.rs:294
 msgid "Unknown file transfer error"
 msgstr "Okänt filöverföringsfel"
 
-#: src/util/error.rs:299
+#: src/util/error.rs:303
 msgid "An unknown error occurred while creating a zip file: {}"
 msgstr "Ett okänt fel inträffade vid skapande av zip-fil: {}"
 
-#: src/util/error.rs:300
+#: src/util/error.rs:304
 msgid ""
 "An unexpected error occurred. Please report an issue with the error message."
 msgstr ""
 "Ett oväntat fel inträffade. Rapportera ett fel där du bifogar felmeddelandet."
+
+#~ msgid "Portal Error: Failed: {}"
+#~ msgstr "Portalfel: Misslyckades: {}"
 
 #~ msgid "Accept File Transfer and save to Downloads folder"
 #~ msgstr "Acceptera filöverföring och spara i hämtningsmapp"
