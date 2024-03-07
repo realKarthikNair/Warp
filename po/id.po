@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: warp main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
-"POT-Creation-Date: 2024-02-23 00:07+0000\n"
-"PO-Revision-Date: 2024-02-27 21:12+0700\n"
+"POT-Creation-Date: 2024-03-06 16:57+0000\n"
+"PO-Revision-Date: 2024-03-07 17:23+0700\n"
 "Last-Translator: Kukuh Syafaat <kukuhsyafaat@gnome.org>\n"
 "Language-Team: Indonesian <gnome-l10n-id@googlegroups.com>\n"
 "Language: id\n"
@@ -436,69 +436,77 @@ msgid "Unable to use transfer link: another transfer already in progress"
 msgstr ""
 "Tidak dapat menggunakan tautan transfer: transfer lain sudah berlangsung"
 
-#: src/ui/application.rs:230
+#: src/ui/application.rs:233
 msgid "Fina Wilke"
 msgstr "Fina Wilke"
 
-#: src/ui/application.rs:231
+#: src/ui/application.rs:234
 msgid "Tobias Bernard"
 msgstr "Tobias Bernard"
 
-#: src/ui/application.rs:231
+#: src/ui/application.rs:234
 msgid "Sophie Herold"
 msgstr "Sophie Herold"
 
-#: src/ui/application.rs:232
+#: src/ui/application.rs:235
 msgid "translator-credits"
 msgstr ""
 "Kukuh Syafaat <kukuhsyafaat@gnome.org>, 2022-2024.\n"
 "Andika Triwidada <andika@gmail.com>, 2022."
 
-#: src/ui/application.rs:247
+#: src/ui/application.rs:250
 msgid "Sending a File"
 msgstr "Mengirim Berkas"
 
-#: src/ui/application.rs:248
+#: src/ui/application.rs:251
 msgid "Receiving a File"
 msgstr "Menerima Berkas"
 
-#: src/ui/camera.rs:166
+#: src/ui/camera.rs:211 src/ui/camera.rs:328
 msgid ""
 "Camera access denied. Open Settings and allow Warp to access the camera."
 msgstr ""
 "Akses kamera ditolak. Buka Pengaturan dan izinkan Warp mengakses kamera."
 
-#: src/ui/camera.rs:170
+#: src/ui/camera.rs:215
 msgid "Failed to start the camera: {}"
 msgstr "Gagal memulai kamera: {}"
 
-#: src/ui/camera.rs:216
+#: src/ui/camera.rs:218
+msgid "Error"
+msgstr "Galat"
+
+#: src/ui/camera.rs:229
+msgid "Error talking to the camera portal"
+msgstr "Galat saat berbicara dengan portal kamera"
+
+#: src/ui/camera.rs:458
 msgid "Could not use the camera portal: {}"
 msgstr "Tidak dapat menggunakan portal kamera: {}"
 
-#: src/ui/camera.rs:223
+#: src/ui/camera.rs:465
 msgid "Could not start the device provider: {}"
 msgstr "Tidak dapat memulai penyedia perangkat: {}"
 
-#: src/ui/camera.ui:4 src/ui/window.rs:105
-msgid "Scan QR Code"
-msgstr "Pindai Kode QR"
-
-#: src/ui/camera.ui:35
+#: src/ui/camera.rs:496
 msgid "No Camera Found"
 msgstr "Tidak Ada Kamera yang Ditemukan"
 
-#: src/ui/camera.ui:36
+#: src/ui/camera.rs:498
 msgid "Connect a camera to scan QR codes"
 msgstr "Menghubungkan kamera untuk memindai kode QR"
 
-#: src/ui/camera.ui:39 src/ui/camera.ui:63
-msgid "_Troubleshooting"
-msgstr "_Penyelesaian Masalah"
+#: src/ui/camera.ui:11 src/ui/window.rs:105
+msgid "Scan QR Code"
+msgstr "Pindai Kode QR"
+
+#: src/ui/camera.ui:49
+msgid "_Retry"
+msgstr "_Ulangi"
 
 #: src/ui/camera.ui:60
-msgid "Error"
-msgstr "Galat"
+msgid "_Troubleshooting"
+msgstr "_Penyelesaian Masalah"
 
 #: src/ui/fs.rs:16
 msgid "Downloads dir missing. Please set XDG_DOWNLOAD_DIR"
@@ -772,7 +780,7 @@ msgstr "Parameter URI tidak diketahui \"{}\""
 msgid "An error occurred"
 msgstr "Terjadi galat"
 
-#: src/util/error.rs:202 src/util/error.rs:281
+#: src/util/error.rs:202 src/util/error.rs:285
 msgid "Corrupt or unexpected message received"
 msgstr "Pesan rusak atau tidak terduga yang diterima"
 
@@ -827,7 +835,7 @@ msgstr ""
 msgid "Cannot decrypt a received message"
 msgstr "Tidak dapat mendekripsi pesan yang diterima"
 
-#: src/util/error.rs:223 src/util/error.rs:292 src/util/error.rs:298
+#: src/util/error.rs:223 src/util/error.rs:296 src/util/error.rs:302
 msgid "An unknown error occurred"
 msgstr "Terjadi galat yang tak dikenal"
 
@@ -844,30 +852,34 @@ msgid "Canceled"
 msgstr "Dibatalkan"
 
 #: src/util/error.rs:239
-msgid "Portal error: Permission denied"
-msgstr "Galat portal: Akses ditolak"
+msgid "Portal service response: Permission denied"
+msgstr "Respons layanan portal: Izin ditolak"
 
 #: src/util/error.rs:242
-msgid "Portal Error: Failed: {}"
-msgstr "Galat Portal: Gagal: {}"
+msgid "The portal service has failed: {}"
+msgstr "Layanan portal gagal: {}"
 
-#: src/util/error.rs:244
+#: src/util/error.rs:245
+msgid "Error communicating with the portal service via zbus: {}"
+msgstr "Galat berkomunikasi dengan layanan portal melalui zbus: {}"
+
+#: src/util/error.rs:248
 msgid "Portal Error: {}"
 msgstr "Galat Portal:"
 
-#: src/util/error.rs:245
+#: src/util/error.rs:249
 msgid "Portal error: {}"
 msgstr "Galat portal:"
 
-#: src/util/error.rs:256
+#: src/util/error.rs:260
 msgid "Transfer was not acknowledged by peer"
 msgstr "Transfer tidak diakui oleh peer"
 
-#: src/util/error.rs:258
+#: src/util/error.rs:262
 msgid "The received file is corrupted"
 msgstr "Berkas yang diterima rusak"
 
-#: src/util/error.rs:264
+#: src/util/error.rs:268
 msgid ""
 "The file contained a different amount of bytes than advertised! Sent {} "
 "bytes, but should have been {}"
@@ -875,34 +887,37 @@ msgstr ""
 "Berkas tersebut berisi jumlah bita yang berbeda dari yang dinyatakan! "
 "Dikirim {} bita, tetapi seharusnya {}"
 
-#: src/util/error.rs:269
+#: src/util/error.rs:273
 msgid "The other side has cancelled the transfer"
 msgstr "Pihak lain telah membatalkan transfer"
 
-#: src/util/error.rs:271
+#: src/util/error.rs:275
 msgid "The other side has rejected the transfer"
 msgstr "Pihak lain telah menolak transfer tersebut"
 
-#: src/util/error.rs:273
+#: src/util/error.rs:277
 msgid "Something went wrong on the other side: {}"
 msgstr "Ada yang tidak beres di sisi lain: {}"
 
-#: src/util/error.rs:288
+#: src/util/error.rs:292
 msgid "Error while establishing file transfer connection"
 msgstr "Galat saat membuat koneksi transfer berkas"
 
-#: src/util/error.rs:290
+#: src/util/error.rs:294
 msgid "Unknown file transfer error"
 msgstr "Galat transfer berkas tidak diketahui"
 
-#: src/util/error.rs:299
+#: src/util/error.rs:303
 msgid "An unknown error occurred while creating a zip file: {}"
 msgstr "Terjadi galat yang tidak diketahui saat membuat berkas zip: {}"
 
-#: src/util/error.rs:300
+#: src/util/error.rs:304
 msgid ""
 "An unexpected error occurred. Please report an issue with the error message."
 msgstr "Terjadi galat tak terduga. Laporkan masalah dengan pesan galat."
+
+#~ msgid "Portal Error: Failed: {}"
+#~ msgstr "Galat Portal: Gagal: {}"
 
 #~ msgid "Accept File Transfer and save to Downloads folder"
 #~ msgstr "Terima Transfer Berkas dan simpan ke folder Unduhan"
