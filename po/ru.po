@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: warp main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
-"POT-Creation-Date: 2024-02-23 00:07+0000\n"
-"PO-Revision-Date: 2024-02-23 11:21+0300\n"
+"POT-Creation-Date: 2024-03-06 16:57+0000\n"
+"PO-Revision-Date: 2024-03-06 20:15+0300\n"
 "Last-Translator: Artur So <arturios2005@mail.ru>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "Language: ru\n"
@@ -447,67 +447,76 @@ msgid "Unable to use transfer link: another transfer already in progress"
 msgstr ""
 "Невозможно использовать ссылку на передачу: другая передача уже выполняется"
 
-#: src/ui/application.rs:230
+#: src/ui/application.rs:233
 msgid "Fina Wilke"
 msgstr "Fina Wilke"
 
-#: src/ui/application.rs:231
+#: src/ui/application.rs:234
 msgid "Tobias Bernard"
 msgstr "Tobias Bernard"
 
-#: src/ui/application.rs:231
+#: src/ui/application.rs:234
 msgid "Sophie Herold"
 msgstr "Sophie Herold"
 
-#: src/ui/application.rs:232
+#: src/ui/application.rs:235
 msgid "translator-credits"
 msgstr "Aleksandr Melman <alexmelman88@gmail.com>, 2022-2023"
 
-#: src/ui/application.rs:247
+#: src/ui/application.rs:250
 msgid "Sending a File"
 msgstr "Отправка файла"
 
-#: src/ui/application.rs:248
+#: src/ui/application.rs:251
 msgid "Receiving a File"
 msgstr "Получение файла"
 
-#: src/ui/camera.rs:166
+#: src/ui/camera.rs:211 src/ui/camera.rs:328
 msgid ""
 "Camera access denied. Open Settings and allow Warp to access the camera."
 msgstr ""
-"Доступ к камере запрещен. Откройте Настройки и разрешите Warp доступ к камере."
+"Доступ к камере запрещен. Откройте Настройки и разрешите Warp доступ к "
+"камере."
 
-#: src/ui/camera.rs:170
+#: src/ui/camera.rs:215
 msgid "Failed to start the camera: {}"
 msgstr "Не удалось запустить камеру: {}"
 
-#: src/ui/camera.rs:216
+#: src/ui/camera.rs:218
+msgid "Error"
+msgstr "Ошибка"
+
+#: src/ui/camera.rs:229
+msgid "Error talking to the camera portal"
+msgstr "Ошибка при обращении к порталу камеры"
+
+#: src/ui/camera.rs:458
 msgid "Could not use the camera portal: {}"
 msgstr "Не удалось использовать портал камеры: {}"
 
-#: src/ui/camera.rs:223
+#: src/ui/camera.rs:465
 msgid "Could not start the device provider: {}"
 msgstr "Не удалось запустить провайдера устройства: {}"
 
-#: src/ui/camera.ui:4 src/ui/window.rs:105
-msgid "Scan QR Code"
-msgstr "Сканировать QR-код"
-
-#: src/ui/camera.ui:35
+#: src/ui/camera.rs:496
 msgid "No Camera Found"
 msgstr "Камера не найдена"
 
-#: src/ui/camera.ui:36
+#: src/ui/camera.rs:498
 msgid "Connect a camera to scan QR codes"
 msgstr "Подключите камеру для сканирования QR-кодов"
 
-#: src/ui/camera.ui:39 src/ui/camera.ui:63
-msgid "_Troubleshooting"
-msgstr "_Устранение неполадок"
+#: src/ui/camera.ui:11 src/ui/window.rs:105
+msgid "Scan QR Code"
+msgstr "Сканировать QR-код"
+
+#: src/ui/camera.ui:49
+msgid "_Retry"
+msgstr "_Повторить"
 
 #: src/ui/camera.ui:60
-msgid "Error"
-msgstr "Ошибка"
+msgid "_Troubleshooting"
+msgstr "_Устранение неполадок"
 
 #: src/ui/fs.rs:16
 msgid "Downloads dir missing. Please set XDG_DOWNLOAD_DIR"
@@ -782,7 +791,7 @@ msgstr "Неизвестный параметр URI «{}»"
 msgid "An error occurred"
 msgstr "Произошла ошибка"
 
-#: src/util/error.rs:202 src/util/error.rs:281
+#: src/util/error.rs:202 src/util/error.rs:285
 msgid "Corrupt or unexpected message received"
 msgstr "Получено поврежденное или неожиданное сообщение"
 
@@ -839,7 +848,7 @@ msgstr ""
 msgid "Cannot decrypt a received message"
 msgstr "Не удается расшифровать полученное сообщение"
 
-#: src/util/error.rs:223 src/util/error.rs:292 src/util/error.rs:298
+#: src/util/error.rs:223 src/util/error.rs:296 src/util/error.rs:302
 msgid "An unknown error occurred"
 msgstr "Произошла неизвестная ошибка"
 
@@ -856,30 +865,34 @@ msgid "Canceled"
 msgstr "Отменено"
 
 #: src/util/error.rs:239
-msgid "Portal error: Permission denied"
-msgstr "Ошибка портала: В доступе отказано"
+msgid "Portal service response: Permission denied"
+msgstr "Ответ службы портала: В доступе отказано"
 
 #: src/util/error.rs:242
-msgid "Portal Error: Failed: {}"
-msgstr "Ошибка портала: Не удалось: {}"
+msgid "The portal service has failed: {}"
+msgstr "Служба портала завершилась неудачно: {}"
 
-#: src/util/error.rs:244
+#: src/util/error.rs:245
+msgid "Error communicating with the portal service via zbus: {}"
+msgstr "Ошибка при взаимодействии со службой портала через zbus: {}"
+
+#: src/util/error.rs:248
 msgid "Portal Error: {}"
 msgstr "Ошибка портала: {}"
 
-#: src/util/error.rs:245
+#: src/util/error.rs:249
 msgid "Portal error: {}"
 msgstr "Ошибка портала: {}"
 
-#: src/util/error.rs:256
+#: src/util/error.rs:260
 msgid "Transfer was not acknowledged by peer"
 msgstr "Передача не была подтверждена участником сети"
 
-#: src/util/error.rs:258
+#: src/util/error.rs:262
 msgid "The received file is corrupted"
 msgstr "Полученный файл поврежден"
 
-#: src/util/error.rs:264
+#: src/util/error.rs:268
 msgid ""
 "The file contained a different amount of bytes than advertised! Sent {} "
 "bytes, but should have been {}"
@@ -887,36 +900,39 @@ msgstr ""
 "Файл содержал другое количество байт, чем было объявлено! Отправлено {} "
 "байт, но должно было быть {}"
 
-#: src/util/error.rs:269
+#: src/util/error.rs:273
 msgid "The other side has cancelled the transfer"
 msgstr "Другая сторона отменила передачу"
 
-#: src/util/error.rs:271
+#: src/util/error.rs:275
 msgid "The other side has rejected the transfer"
 msgstr "Другая сторона отклонила передачу"
 
-#: src/util/error.rs:273
+#: src/util/error.rs:277
 msgid "Something went wrong on the other side: {}"
 msgstr "Что-то пошло не так с другой стороны: {}"
 
-#: src/util/error.rs:288
+#: src/util/error.rs:292
 msgid "Error while establishing file transfer connection"
 msgstr "Ошибка при установлении подключения для передачи файлов"
 
-#: src/util/error.rs:290
+#: src/util/error.rs:294
 msgid "Unknown file transfer error"
 msgstr "Неизвестная ошибка передачи файла"
 
-#: src/util/error.rs:299
+#: src/util/error.rs:303
 msgid "An unknown error occurred while creating a zip file: {}"
 msgstr "При создании zip-файла произошла неизвестная ошибка: {}"
 
-#: src/util/error.rs:300
+#: src/util/error.rs:304
 msgid ""
 "An unexpected error occurred. Please report an issue with the error message."
 msgstr ""
 "Произошла непредвиденная ошибка. Пожалуйста, уведомите о проблеме с "
 "сообщением об ошибке."
+
+#~ msgid "Portal Error: Failed: {}"
+#~ msgstr "Ошибка портала: Не удалось: {}"
 
 #~ msgid "Accept File Transfer and save to Downloads folder"
 #~ msgstr "Принять передачу файла и сохранить в папке «Загрузки»"
