@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: warp main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
-"POT-Creation-Date: 2024-02-23 00:07+0000\n"
-"PO-Revision-Date: 2024-02-29 09:50+0200\n"
+"POT-Creation-Date: 2024-03-06 16:57+0000\n"
+"PO-Revision-Date: 2024-03-14 15:29+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <yoseforb@gmail.com>\n"
 "Language: he\n"
@@ -443,69 +443,77 @@ msgstr "_ביטול"
 msgid "Unable to use transfer link: another transfer already in progress"
 msgstr "לא ניתן להשתמש בקישור העברה: מתבצעת העברה נוספת"
 
-#: src/ui/application.rs:230
+#: src/ui/application.rs:233
 msgid "Fina Wilke"
 msgstr "פינה וילקה"
 
-#: src/ui/application.rs:231
+#: src/ui/application.rs:234
 msgid "Tobias Bernard"
 msgstr "טוביאס ברנרד"
 
-#: src/ui/application.rs:231
+#: src/ui/application.rs:234
 msgid "Sophie Herold"
 msgstr "סופי הרולד"
 
-#: src/ui/application.rs:232
+#: src/ui/application.rs:235
 msgid "translator-credits"
 msgstr ""
 "ירון שהרבני <sh.yaron@gmail.com>\n"
 "יוסף אור בוצ׳קו <yoseforb@gmail.com>\n"
 "מיזם תרגום GNOME לעברית https://l10n.gnome.org/teams/he/"
 
-#: src/ui/application.rs:247
+#: src/ui/application.rs:250
 msgid "Sending a File"
 msgstr "נשלח קובץ"
 
-#: src/ui/application.rs:248
+#: src/ui/application.rs:251
 msgid "Receiving a File"
 msgstr "מתקבל קובץ"
 
-#: src/ui/camera.rs:166
+#: src/ui/camera.rs:211 src/ui/camera.rs:328
 msgid ""
 "Camera access denied. Open Settings and allow Warp to access the camera."
 msgstr "הגישה למצלמה נדחתה. יש לפתוח את ההגדרות ולאפשר ל־Warp לגשת למצלמה."
 
-#: src/ui/camera.rs:170
+#: src/ui/camera.rs:215
 msgid "Failed to start the camera: {}"
 msgstr "הפעלת המצלמה נכשלה: {}"
 
-#: src/ui/camera.rs:216
+#: src/ui/camera.rs:218
+msgid "Error"
+msgstr "שגיאה"
+
+#: src/ui/camera.rs:229
+msgid "Error talking to the camera portal"
+msgstr "שגיאה בתקשורת מול שער המצלמה"
+
+#: src/ui/camera.rs:458
 msgid "Could not use the camera portal: {}"
 msgstr "לא ניתן להשתמש בשער המצלמה: {}"
 
-#: src/ui/camera.rs:223
+#: src/ui/camera.rs:465
 msgid "Could not start the device provider: {}"
 msgstr "לא ניתן להפעיל את ספק ההתקן: {}"
 
-#: src/ui/camera.ui:4 src/ui/window.rs:105
-msgid "Scan QR Code"
-msgstr "סריקת קוד QR"
-
-#: src/ui/camera.ui:35
+#: src/ui/camera.rs:496
 msgid "No Camera Found"
 msgstr "לא נמצאה מצלמה"
 
-#: src/ui/camera.ui:36
+#: src/ui/camera.rs:498
 msgid "Connect a camera to scan QR codes"
 msgstr "יש לחבר מצלמה כדי לסרוק קודים של QR"
 
-#: src/ui/camera.ui:39 src/ui/camera.ui:63
-msgid "_Troubleshooting"
-msgstr "_פתרון תקלות"
+#: src/ui/camera.ui:11 src/ui/window.rs:105
+msgid "Scan QR Code"
+msgstr "סריקת קוד QR"
+
+#: src/ui/camera.ui:49
+msgid "_Retry"
+msgstr "ניסיון _חוזר"
 
 #: src/ui/camera.ui:60
-msgid "Error"
-msgstr "שגיאה"
+msgid "_Troubleshooting"
+msgstr "_פתרון תקלות"
 
 #: src/ui/fs.rs:16
 msgid "Downloads dir missing. Please set XDG_DOWNLOAD_DIR"
@@ -775,7 +783,7 @@ msgstr "משתנה לא ידוע בכתובת משאב „{}”"
 msgid "An error occurred"
 msgstr "אירעה שגיאה"
 
-#: src/util/error.rs:202 src/util/error.rs:281
+#: src/util/error.rs:202 src/util/error.rs:285
 msgid "Corrupt or unexpected message received"
 msgstr "התקבלה הודעה שגויה או בלתי צפויה"
 
@@ -825,7 +833,7 @@ msgstr ""
 msgid "Cannot decrypt a received message"
 msgstr "לא ניתן לפענח את ההודעה שהתקבלה"
 
-#: src/util/error.rs:223 src/util/error.rs:292 src/util/error.rs:298
+#: src/util/error.rs:223 src/util/error.rs:296 src/util/error.rs:302
 msgid "An unknown error occurred"
 msgstr "אירעה שגיאה לא ידועה"
 
@@ -842,30 +850,34 @@ msgid "Canceled"
 msgstr "בוטל"
 
 #: src/util/error.rs:239
-msgid "Portal error: Permission denied"
-msgstr "שגיאת שער: ההרשאה נדחתה"
+msgid "Portal service response: Permission denied"
+msgstr "תגובת שירות השערים: ההרשאה נדחתה"
 
 #: src/util/error.rs:242
-msgid "Portal Error: Failed: {}"
-msgstr "שגיאת שער: נכשל: {}"
+msgid "The portal service has failed: {}"
+msgstr "שירות השערים נכשל: {}"
 
-#: src/util/error.rs:244
+#: src/util/error.rs:245
+msgid "Error communicating with the portal service via zbus: {}"
+msgstr "שגיאה בהתקשרות מול שירות השער דרך zbus‏: {}"
+
+#: src/util/error.rs:248
 msgid "Portal Error: {}"
 msgstr "שגיאת שער: {}"
 
-#: src/util/error.rs:245
+#: src/util/error.rs:249
 msgid "Portal error: {}"
 msgstr "שגיאת שער: {}"
 
-#: src/util/error.rs:256
+#: src/util/error.rs:260
 msgid "Transfer was not acknowledged by peer"
 msgstr "ההעברה לא אושרה על ידי הצד השני"
 
-#: src/util/error.rs:258
+#: src/util/error.rs:262
 msgid "The received file is corrupted"
 msgstr "הקובץ שהתקבל פגום"
 
-#: src/util/error.rs:264
+#: src/util/error.rs:268
 msgid ""
 "The file contained a different amount of bytes than advertised! Sent {} "
 "bytes, but should have been {}"
@@ -873,34 +885,37 @@ msgstr ""
 "הקובץ מכיל כמות שונה של בתים מכפי שפורסם! נשלחו {} בתים אך היו אמורים להישלח "
 "{}"
 
-#: src/util/error.rs:269
+#: src/util/error.rs:273
 msgid "The other side has cancelled the transfer"
 msgstr "הצד השני ביטל את ההעברה"
 
-#: src/util/error.rs:271
+#: src/util/error.rs:275
 msgid "The other side has rejected the transfer"
 msgstr "הצד השני דחה את ההעברה"
 
-#: src/util/error.rs:273
+#: src/util/error.rs:277
 msgid "Something went wrong on the other side: {}"
 msgstr "משהו השתבש בצד השני: {}"
 
-#: src/util/error.rs:288
+#: src/util/error.rs:292
 msgid "Error while establishing file transfer connection"
 msgstr "שגיאה בהקמת חיבור העברת קבצים"
 
-#: src/util/error.rs:290
+#: src/util/error.rs:294
 msgid "Unknown file transfer error"
 msgstr "שגיאת העברת קבצים לא ידועה"
 
-#: src/util/error.rs:299
+#: src/util/error.rs:303
 msgid "An unknown error occurred while creating a zip file: {}"
 msgstr "אירעה שגיאה בזמן יצירת קובץ zip: ‏‏{}"
 
-#: src/util/error.rs:300
+#: src/util/error.rs:304
 msgid ""
 "An unexpected error occurred. Please report an issue with the error message."
 msgstr "אירעה שגיאה לא ידועה. נא לדווח על התקלה בצירוף הודעת השגיאה."
+
+#~ msgid "Portal Error: Failed: {}"
+#~ msgstr "שגיאת שער: נכשל: {}"
 
 #~ msgid "Accept File Transfer and save to Downloads folder"
 #~ msgstr "אישור העברת הקובץ ושמירה לתיקיית ההורדות"
