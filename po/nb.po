@@ -1,0 +1,914 @@
+# Norwegian Bokmål translation for warp.
+# Copyright (C) 2024 warp's COPYRIGHT HOLDER
+# This file is distributed under the same license as the warp package.
+# Brage Fuglseth <bragefuglseth@gnome.org>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: warp main\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
+"POT-Creation-Date: 2024-03-16 15:12+0000\n"
+"PO-Revision-Date: 2024-03-17 16:20+0100\n"
+"Last-Translator: Brage <bragefuglseth@gnome.org>\n"
+"Language-Team: Norwegian Bokmål <nb@li.org>\n"
+"Language: nb\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#: data/app.drey.Warp.desktop.in.in:3 data/app.drey.Warp.metainfo.xml.in.in:6
+#: src/main.rs:122 src/ui/window.ui:81
+msgid "Warp"
+msgstr "Warp"
+
+#: data/app.drey.Warp.desktop.in.in:4 data/app.drey.Warp.metainfo.xml.in.in:7
+#: src/ui/welcome_dialog.ui:24
+msgid "Fast and secure file transfer"
+msgstr "Overfør filer raskt og sikkert"
+
+#: data/app.drey.Warp.desktop.in.in:9
+msgid "Gnome;GTK;Wormhole;Magic-Wormhole;"
+msgstr ""
+"Warp;Magic-Wormhole;Filoverføring;Deling;Sende;Dele;Deling;Overføre;"
+"Overføring;Filer;Destiny;Fildeling;Airdrop;"
+
+#: data/app.drey.Warp.metainfo.xml.in.in:9
+msgid ""
+"Warp allows you to securely send files to each other via the internet or "
+"local network by exchanging a word-based code."
+msgstr ""
+"Å overføre filer mellom enheter kan være strevsomt, men med Warp er det "
+"gjort på et blunk. Send filer til enheten ved siden av deg, eller til den "
+"andre siden av kloden, på en lettvint og trygg måte."
+
+#: data/app.drey.Warp.metainfo.xml.in.in:13
+msgid ""
+"The best transfer method will be determined using the “Magic Wormhole” "
+"protocol which includes local network transfer if possible."
+msgstr ""
+"Warp bruker «Magic Wormhole»-protokollen til å overføre filer, og fungerer "
+"med alt som støtter den."
+
+#: data/app.drey.Warp.metainfo.xml.in.in:17
+msgid "Features"
+msgstr ""
+"Uansett om du skal flytte store mengder med data eller bare sende et par "
+"bilder, kan Warp gjøre livet ditt enklere:"
+
+#: data/app.drey.Warp.metainfo.xml.in.in:19
+msgid "Send files between multiple devices"
+msgstr "Overføring av filer mellom flere enheter"
+
+#: data/app.drey.Warp.metainfo.xml.in.in:20
+msgid "Every file transfer is encrypted"
+msgstr "Automatisk kryptering av forsendelser"
+
+#: data/app.drey.Warp.metainfo.xml.in.in:21
+msgid "Directly transfer files on the local network if possible"
+msgstr "Bruk av det lokale nettverket om mulig"
+
+#: data/app.drey.Warp.metainfo.xml.in.in:22
+msgid "An internet connection is required"
+msgstr "Krever kun at avsender og mottaker er koblet til internett"
+
+#: data/app.drey.Warp.metainfo.xml.in.in:23
+msgid "QR Code support"
+msgstr "Støtte for QR-koder"
+
+#: data/app.drey.Warp.metainfo.xml.in.in:24
+msgid ""
+"Compatibility with the Magic Wormhole command line client and all other "
+"compatible apps"
+msgstr "Kompatibilitet med alle tjenester basert på «Magic Wormhole»"
+
+#: data/app.drey.Warp.metainfo.xml.in.in:30
+msgid "Main Window"
+msgstr "Hovedvindu"
+
+#. Translators: Entry placeholder; This is a noun
+#: data/app.drey.Warp.metainfo.xml.in.in:34 src/ui/window.ui:199
+msgid "Transmit Code"
+msgstr "Overføringskode"
+
+#: data/app.drey.Warp.metainfo.xml.in.in:38
+msgid "Accept File Transfer"
+msgstr "Godta overføring"
+
+#: data/app.drey.Warp.metainfo.xml.in.in:42 src/ui/action_view.rs:645
+msgid "Receiving File"
+msgstr "Mottar fil"
+
+#: data/app.drey.Warp.metainfo.xml.in.in:46 src/ui/action_view.rs:654
+msgid "File Transfer Complete"
+msgstr "Overføring fullført"
+
+#. developer_name tag deprecated with Appstream 1.0
+#: data/app.drey.Warp.metainfo.xml.in.in:255 src/ui/application.rs:233
+msgid "Fina Wilke"
+msgstr "Fina Wilke"
+
+#: data/resources/ui/help_overlay.ui:11
+msgctxt "shortcut window"
+msgid "General"
+msgstr "Generelt"
+
+#: data/resources/ui/help_overlay.ui:14
+msgctxt "shortcut window"
+msgid "Show Help"
+msgstr "Vis hjelp"
+
+#: data/resources/ui/help_overlay.ui:20
+msgctxt "shortcut window"
+msgid "Show Shortcuts"
+msgstr "Vis tastatursnarveier"
+
+#: data/resources/ui/help_overlay.ui:26
+msgctxt "shortcut window"
+msgid "Show Preferences"
+msgstr "Vis innstillinger"
+
+#: data/resources/ui/help_overlay.ui:32
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr "Avslutt"
+
+#: data/resources/ui/help_overlay.ui:40
+msgctxt "shortcut window"
+msgid "File Transfer"
+msgstr "Overføring"
+
+#: data/resources/ui/help_overlay.ui:43
+msgctxt "shortcut window"
+msgid "Send File"
+msgstr "Send fil"
+
+#: data/resources/ui/help_overlay.ui:49
+msgctxt "shortcut window"
+msgid "Send Folder"
+msgstr "Send mappe"
+
+#: data/resources/ui/help_overlay.ui:55
+msgctxt "shortcut window"
+msgid "Receive File"
+msgstr "Motta fil"
+
+#. Translators: {0} = file size transferred, {1} = total file size, Example: 17.3MB / 20.5MB
+#: src/gettext/duration.rs:11
+msgctxt "File size transferred"
+msgid "{0} / {1}"
+msgstr "{0} / {1}"
+
+#. Translators: File transfer time left
+#: src/gettext/duration.rs:18
+msgid "One second left"
+msgid_plural "{} seconds left"
+msgstr[0] "1 sekund igjen"
+msgstr[1] "{} sekunder igjen"
+
+#. Translators: File transfer time left
+#: src/gettext/duration.rs:26
+msgid "One minute left"
+msgid_plural "{} minutes left"
+msgstr[0] "1 minutt igjen"
+msgstr[1] "{} minutter igjen"
+
+#. Translators: File transfer time left
+#: src/gettext/duration.rs:34
+msgid "One hour left"
+msgid_plural "{} hours left"
+msgstr[0] "1 time igjen"
+msgstr[1] "{} timer igjen"
+
+#. Translators: File transfer time left
+#: src/gettext/duration.rs:42
+msgid "One day left"
+msgid_plural "{} days left"
+msgstr[0] "1 dag igjen"
+msgstr[1] "{} dager igjen"
+
+#. Translators: {0} = 11.3MB / 20.7MB, {1} = 3 seconds left
+#: src/gettext/duration.rs:52
+msgctxt "Combine bytes progress {0} and time remaining {1}"
+msgid "{0} — {1}"
+msgstr "{0} – {1}"
+
+#. Translators: Notification when clicking on "Copy Code to Clipboard" button
+#: src/ui/action_view.rs:256
+msgid "Copied Code to Clipboard"
+msgstr "Kode kopiert til utklippstavlen"
+
+#. Translators: Notification when clicking on "Copy Link to Clipboard" button
+#: src/ui/action_view.rs:277
+msgid "Copied Link to Clipboard"
+msgstr "Lenke kopiert til utklippstavlen"
+
+#: src/ui/action_view.rs:291
+msgid "Copied Error to Clipboard"
+msgstr "Feilmelding kopiert til utklippstavlen"
+
+#: src/ui/action_view.rs:293
+msgid "No error available"
+msgstr "Fant ingen feilmelding"
+
+#: src/ui/action_view.rs:458
+msgid "Creating Archive"
+msgstr "Oppretter arkiv"
+
+#: src/ui/action_view.rs:462
+msgid "Compressing folder “{}”"
+msgstr "Komprimerer «{}»"
+
+#. Translators: Title
+#: src/ui/action_view.rs:478 src/ui/action_view.rs:536
+msgid "Connecting"
+msgstr "Kobler til"
+
+#. Translators: Description, Filename
+#: src/ui/action_view.rs:481
+msgid "Requesting file transfer"
+msgstr "Setter opp overføring"
+
+#. Translators: Description, argument is filename
+#: src/ui/action_view.rs:502
+msgid "Ready to send “{}”."
+msgstr "«{}» er klar til å sendes."
+
+#. Translators: Help dialog line 1, Code words and QR code visible,
+#: src/ui/action_view.rs:507
+msgid ""
+"The receiver needs to enter or scan this code to begin the file transfer."
+msgstr ""
+"Mottakeren må skanne eller skrive inn denne koden for å starte overføringen."
+
+#: src/ui/action_view.rs:511
+msgid "The QR code is compatible with the following apps: {}."
+msgstr "QR-koden er kompatibel med disse appene: {}."
+
+#: src/ui/action_view.rs:519
+msgid ""
+"You have entered a custom rendezvous server URL in preferences. Please "
+"verify the receiver also uses the same rendezvous server."
+msgstr ""
+"Du har oppgitt en egen paringstjener i innstillingene. Pass på at "
+"mottakeren bruker samme paringstjener."
+
+#: src/ui/action_view.rs:524
+msgid "Click the QR code to copy the link to the clipboard."
+msgstr "Trykk på QR-koden for å kopiere lenken til utklippstavlen."
+
+#. Translators: Description, Transfer Code
+#: src/ui/action_view.rs:539
+msgid "Connecting to peer with code “{}”"
+msgstr "Kobler til med kode «{}»"
+
+#: src/ui/action_view.rs:549
+msgid "Connected to Peer"
+msgstr "Tilkoblet"
+
+#. Translators: Description
+#: src/ui/action_view.rs:558
+msgid "Preparing to send file"
+msgstr "Forbereder overføring"
+
+#. Translators: Description
+#: src/ui/action_view.rs:565
+msgid "Preparing to receive file"
+msgstr "Forbereder mottak"
+
+#. Translators: File receive confirmation message dialog; Filename, File size
+#: src/ui/action_view.rs:579
+msgid ""
+"Your peer wants to send you “{0}” (Size: {1}).\n"
+"Do you want to download this file? The default action will save the file to "
+"your Downloads folder."
+msgstr ""
+"Partneren ønsker å sende deg «{0}» ({1}).\n"
+"Ønsker du å motta denne filen? Den vil lagres i nedlastingsmappen din."
+
+#: src/ui/action_view.rs:584
+msgid "Ready to Receive File"
+msgstr "Klar til mottak"
+
+#: src/ui/action_view.rs:586
+msgid ""
+"A file is ready to be transferred. The transfer needs to be acknowledged."
+msgstr "En fil er klar til overføring. Overføringen må godtas."
+
+#. Translators: Description, During transfer
+#: src/ui/action_view.rs:616
+msgid "File “{}” via local network direct transfer"
+msgstr "«{}» gjennom lokalt nettverk"
+
+#. Translators: Description, During transfer
+#: src/ui/action_view.rs:619
+msgid "File “{}” via direct transfer"
+msgstr "«{}» gjennom direkte overføring"
+
+#. Translators: Description, During transfer
+#: src/ui/action_view.rs:625
+msgid "File “{0}” via relay {1}"
+msgstr "«{0}» gjennom mellomledd {1}"
+
+#. Translators: Description, During transfer
+#: src/ui/action_view.rs:628
+msgid "File “{}” via relay"
+msgstr "«{}» gjennom mellomledd"
+
+#. Translators: Description, During transfer
+#: src/ui/action_view.rs:632
+msgid "File “{}” via Unknown connection method"
+msgstr "«{}» gjennom ukjent metode"
+
+#. Translators: Title
+#: src/ui/action_view.rs:639
+msgid "Sending File"
+msgstr "Sender fil"
+
+#. Translators: Description, Filename
+#: src/ui/action_view.rs:662
+msgid "Successfully sent file “{}”"
+msgstr "«{}» sendt"
+
+#. Translators: Filename
+#: src/ui/action_view.rs:680
+msgid "File has been saved to the selected folder as “{}”"
+msgstr "Filen har blitt lagret i den valgte mappen som «{}»"
+
+#. Translators: Filename
+#: src/ui/action_view.rs:687
+msgid "File has been saved to the Downloads folder as “{}”"
+msgstr "Filen har blitt lagret i nedlastingsmappen som «{}»"
+
+#. Translators: Title
+#: src/ui/action_view.rs:713 src/ui/action_view.ui:288
+msgid "File Transfer Failed"
+msgstr "Overføring mislyktes"
+
+#: src/ui/action_view.rs:715
+msgid "The file transfer failed: {}"
+msgstr "Noe gikk galt: {}"
+
+#. Translators: When opening a file
+#: src/ui/action_view.rs:829
+msgid "Specified file / directory does not exist"
+msgstr "Plasseringen finnes ikke"
+
+#: src/ui/action_view.rs:851
+msgid ""
+"Error parsing rendezvous server URL. An invalid URL was entered in the "
+"settings."
+msgstr ""
+"Lenken til paringstjeneren er ugyldig. Gå til innstillingene for å endre "
+"den."
+
+#: src/ui/action_view.rs:858
+msgid "Error parsing transit URL. An invalid URL was entered in the settings."
+msgstr "Overføringslenken er ugyldig. Gå til innstillingene for å endre den."
+
+#: src/ui/action_view.rs:947
+msgid "Invalid path selected: {}"
+msgstr "Ugyldig plassering: {}"
+
+#. Translators: Above progress bar for creating an archive to send as a folder
+#: src/ui/action_view.rs:1192
+msgid "{} File - Size: {}"
+msgid_plural "{} Files - Size: {}"
+msgstr[0] "{} fil – Størrelse: {}"
+msgstr[1] "{} filer – Størrelse: {}"
+
+#: src/ui/action_view.ui:4
+msgid "Save As"
+msgstr "Lagre som…"
+
+#. Translators: Button; Transmit Link is a noun
+#: src/ui/action_view.ui:108
+msgid "Copy Transmit Link"
+msgstr "Kopier overføringslenke"
+
+#: src/ui/action_view.ui:133
+msgid "Your Transmit Code"
+msgstr "Overføringskode"
+
+#. Translators: Button; Transmit Code is a noun
+#: src/ui/action_view.ui:181
+msgid "Copy Transmit Code"
+msgstr "Kopier overføringskode"
+
+#. Translators: Title
+#: src/ui/action_view.ui:198
+msgid "Accept File Transfer?"
+msgstr "Godta overføring?"
+
+#: src/ui/action_view.ui:207
+msgid "Save to Downloads Folder"
+msgstr "Lagre til nedlastingsmappe"
+
+#. Translators: Button
+#: src/ui/action_view.ui:209
+msgid "_Accept"
+msgstr "_Godta"
+
+#. Translators: Button
+#: src/ui/action_view.ui:223
+msgid "Sa_ve As…"
+msgstr "_Lagre som…"
+
+#. Translators: Title
+#: src/ui/action_view.ui:243
+msgid "File Transfer Successful"
+msgstr "Overføring fullført"
+
+#. Translators: Button
+#: src/ui/action_view.ui:252
+msgid "_Open File"
+msgstr "_Åpne fil"
+
+#. Translators: Button
+#: src/ui/action_view.ui:267 src/ui/window.ui:51
+msgid "_Show in Folder"
+msgstr "_Vis i mappe"
+
+#. Translators: Button
+#: src/ui/action_view.ui:293
+msgid "Co_py Error Message"
+msgstr "_Kopier feilmelding"
+
+#. Translators: Button
+#: src/ui/action_view.ui:309
+msgid "_Cancel"
+msgstr "_Avbryt"
+
+#: src/ui/application.rs:63
+msgid "Unable to use transfer link: another transfer already in progress"
+msgstr "Kan ikke bruke overføringslenke: Det pågår allerede en overføring"
+
+#: src/ui/application.rs:234
+msgid "Tobias Bernard"
+msgstr "Tobias Bernard"
+
+#: src/ui/application.rs:234
+msgid "Sophie Herold"
+msgstr "Sophie Herold"
+
+#: src/ui/application.rs:235
+msgid "translator-credits"
+msgstr "Brage Fuglseth https://bragefuglseth.dev"
+
+#: src/ui/application.rs:250
+msgid "Sending a File"
+msgstr "Sender fil"
+
+#: src/ui/application.rs:251
+msgid "Receiving a File"
+msgstr "Mottar fil"
+
+#: src/ui/camera.rs:211 src/ui/camera.rs:328
+msgid ""
+"Camera access denied. Open Settings and allow Warp to access the camera."
+msgstr ""
+"Kameratilgang ikke gitt. Åpne Innstillinger og gi Warp tilgang til kameraet."
+
+#: src/ui/camera.rs:215
+msgid "Failed to start the camera: {}"
+msgstr "Oppstart av kamera mislyktes: {}"
+
+#: src/ui/camera.rs:218
+msgid "Error"
+msgstr "Feil"
+
+#: src/ui/camera.rs:229
+msgid "Error talking to the camera portal"
+msgstr "Kommunisering med kameraportalen mislyktes"
+
+#: src/ui/camera.rs:458
+msgid "Could not use the camera portal: {}"
+msgstr "Kommunisering med kameraportalen mislyktes: {}"
+
+#: src/ui/camera.rs:465
+msgid "Could not start the device provider: {}"
+msgstr "Oppstart av enhetstjeneste mislyktes: {}"
+
+#: src/ui/camera.rs:496
+msgid "No Camera Found"
+msgstr "Fant ikke kamera"
+
+#: src/ui/camera.rs:498
+msgid "Connect a camera to scan QR codes"
+msgstr "Koble til et kamera for å for å skanne QR-koder"
+
+#: src/ui/camera.ui:11 src/ui/window.rs:105
+msgid "Scan QR Code"
+msgstr "Skann QR-kode"
+
+#: src/ui/camera.ui:49
+msgid "_Retry"
+msgstr "_Prøv igjen"
+
+#: src/ui/camera.ui:60
+msgid "_Troubleshooting"
+msgstr "_Feilsøking"
+
+#: src/ui/fs.rs:16
+msgid "Downloads dir missing. Please set XDG_DOWNLOAD_DIR"
+msgstr "Fant ikke nedlastingsmappe. Angi en med variabelen XDG_DOWNLOAD_DIR"
+
+#: src/ui/preferences.rs:97
+msgid ""
+"Changing the rendezvous server URL needs to be done on both sides of the "
+"transfer. Only enter a server URL you can trust.\n"
+"\n"
+"Leaving these entries empty will use the app defaults:\n"
+"Rendezvous Server: “{0}”\n"
+"Transit Server: “{1}”"
+msgstr ""
+"Å endre lenken til paringstjeneren må gjøres av begge parter i "
+"overføringen. Bruk bare paringstjenere du stoler på. Hvis feltene er tomme, "
+"vil Warp bruke standardtjenerne.\n"
+"\n"
+"Standard paringstjener: «{0}»\n"
+"Standard underveistjener: «{1}»"
+
+#: src/ui/preferences.ui:4
+msgid "Preferences"
+msgstr "Innstillinger"
+
+#: src/ui/preferences.ui:8
+msgid "Network"
+msgstr "Nettverk"
+
+#: src/ui/preferences.ui:12
+msgid "Code Words"
+msgstr "Overføringskode"
+
+#: src/ui/preferences.ui:13
+msgid ""
+"The code word count determines the security of the transfer.\n"
+"\n"
+"A short code is easy to remember but increases the risk of someone else "
+"guessing the code. As a code may only be guessed once, the risk is very "
+"small even with short codes. A length of 4 is very secure."
+msgstr ""
+"Antallet ord i overføringskoden påvirker sikkerhetsnivået.\n"
+"\n"
+"En kort overføringskode er lettere å huske, men har samtidig høyere risiko "
+"for at noen andre gjetter den. Siden en kode kun kan gjettes én gang, er "
+"det svært liten fare for at dette skjer, selv hvis den er kort. En kode på "
+"4 ord er veldig sikker."
+
+#: src/ui/preferences.ui:18
+msgid "Code Word Count"
+msgstr "Antall ord"
+
+#: src/ui/preferences.ui:26
+msgid "Server URLs"
+msgstr "Tjenere"
+
+#: src/ui/preferences.ui:29
+msgid "Rendezvous Server URL"
+msgstr "Paringstjener"
+
+#: src/ui/preferences.ui:36
+msgid "Transit Server URL"
+msgstr "Underveistjener"
+
+#: src/ui/welcome_dialog.ui:10
+msgid "Welcome"
+msgstr "Velkommen"
+
+#: src/ui/welcome_dialog.ui:23
+msgid "Welcome to Warp"
+msgstr "Velkommen til Warp"
+
+#. Translators: Button
+#: src/ui/welcome_dialog.ui:31
+msgid "Next"
+msgstr "Neste"
+
+#: src/ui/welcome_dialog.ui:79
+msgid "Introduction"
+msgstr "Slik funker det"
+
+#: src/ui/welcome_dialog.ui:90
+msgid ""
+"Warp makes file transfer simple. To get started, both parties need to "
+"install Warp on their devices.\n"
+"\n"
+"After selecting a file to transmit, the sender needs to tell the receiver "
+"the displayed transmit code. This is preferably done via a secure "
+"communication channel.\n"
+"\n"
+"When the receiver has entered the code, the file transfer can begin.\n"
+"\n"
+"For more information about Warp, open the Help section from the Main Menu."
+msgstr ""
+"Warp gjør det lett å overføre filer. For å komme i gang, må begge parter "
+"installere Warp på enhetene sine.\n"
+"\n"
+"Etter å ha valgt noe å overføre, vil avsenderen få en overføringskode som "
+"må gis til mottakeren.\n"
+"\n"
+"Når mottakeren har skrevet inn koden hos seg, vil overføringen begynne.\n"
+"\n"
+"For å lære mer om Warp, gå til hjelpesiden fra hovedmenyen."
+
+#. Translators: Big button to finish welcome screen
+#: src/ui/welcome_dialog.ui:103
+msgid "Get Started Using Warp"
+msgstr "Kom i gang"
+
+#: src/ui/window.rs:128
+msgid ""
+"Error loading config file “{0}”, using default config.\n"
+"Error: {1}"
+msgstr ""
+"Innlasting av «{0}» mislyktes, bruker standardoppsett.\n"
+"Feil: {1}"
+
+#: src/ui/window.rs:234
+msgid "Error saving configuration file: {}"
+msgstr "Lagring av oppsettsfil mislyktes: {}"
+
+#: src/ui/window.rs:340
+msgid "Select File to Send"
+msgstr "Velg fil"
+
+#: src/ui/window.rs:348
+msgid "Select Folder to Send"
+msgstr "Velg mappe"
+
+#: src/ui/window.rs:405
+msgid "“{}” appears to be an invalid Transmit Code. Please try again."
+msgstr "«{}» er ikke en gyldig overføringskode. Prøv igjen."
+
+#: src/ui/window.rs:526
+msgid "Sending files with a preconfigured code is not yet supported"
+msgstr "Å sende filer med en forhåndsvalgt kode støttes ikke ennå"
+
+#. Translators: menu item
+#: src/ui/window.ui:7
+msgid "_Preferences"
+msgstr "_Innstillinger"
+
+#. Translators: menu item
+#: src/ui/window.ui:12
+msgid "_Keyboard Shortcuts"
+msgstr "_Tastatursnarveier"
+
+#. Translators: menu item
+#: src/ui/window.ui:17
+msgid "_Help"
+msgstr "_Hjelp"
+
+#. Translators: menu item
+#: src/ui/window.ui:22
+msgid "_About Warp"
+msgstr "_Om Warp"
+
+#. Translators: Notification when code was automatically detected in clipboard and inserted into code entry on receive page
+#: src/ui/window.ui:33
+msgid "Inserted code from clipboard"
+msgstr "Kode limt inn fra utklippstavlen"
+
+#. Translators: File receive confirmation message dialog title
+#: src/ui/window.ui:38
+msgid "Abort File Transfer?"
+msgstr "Stanse overføring?"
+
+#: src/ui/window.ui:39
+msgid "Do you want to abort the current file transfer?"
+msgstr "Er du sikker på at du ønsker å stanse overføringen?"
+
+#: src/ui/window.ui:42
+msgid "_Continue"
+msgstr "_Avbryt"
+
+#: src/ui/window.ui:43
+msgid "_Abort"
+msgstr "_Stans"
+
+#. Translators: Error dialog title
+#: src/ui/window.ui:48
+msgid "Unable to Open File"
+msgstr "Åpning av fil mislyktes"
+
+#: src/ui/window.ui:50 src/util/error.rs:191
+msgid "_Close"
+msgstr "_Lukk"
+
+#: src/ui/window.ui:98
+msgid "Main Menu"
+msgstr "Hovedmeny"
+
+#: src/ui/window.ui:117
+msgid "_Send"
+msgstr "_Send"
+
+#: src/ui/window.ui:129
+msgid "Send File"
+msgstr "Send fil"
+
+#: src/ui/window.ui:130
+msgid "Select or drop the file or directory to send"
+msgstr "Velg eller dra og slipp en fil for å sende den"
+
+#. Translators: Button
+#: src/ui/window.ui:141
+msgid "Select _File…"
+msgstr "Velg _fil…"
+
+#. Translators: Button
+#: src/ui/window.ui:155
+msgid "Select F_older…"
+msgstr "Velg _mappe…"
+
+#: src/ui/window.ui:175
+msgid "_Receive"
+msgstr "_Motta"
+
+#: src/ui/window.ui:184
+msgid "Receive File"
+msgstr "Motta fil"
+
+#. Translators: Text above code input box, transmit code is a noun
+#: src/ui/window.ui:186
+msgid "Enter the transmit code from the sender"
+msgstr "Oppgi kode fra avsender for å motta fil"
+
+#. Translators: Button
+#: src/ui/window.ui:221
+msgid "Receive _File"
+msgstr "Motta _fil"
+
+#: src/ui/window.ui:247
+msgid "File Transfer"
+msgstr "Overføring"
+
+#: src/util.rs:33 src/util.rs:38
+msgid "Failed to open downloads folder."
+msgstr "Åpning av nedlastingsmappe mislyktes."
+
+#: src/util.rs:198 src/util.rs:271
+msgid "The URI format is invalid"
+msgstr "Ugyldig lenke"
+
+#: src/util.rs:202 src/util.rs:206
+msgid "The code does not match the required format"
+msgstr "Ugyldig overføringskode"
+
+#: src/util.rs:221 src/util.rs:227
+msgid "Unknown URI version: {}"
+msgstr "Ugyldig lenkeversjon: {}"
+
+#: src/util.rs:236
+msgid "The URI parameter “rendezvous” contains an invalid URL: “{}”"
+msgstr "Ugyldig paringstjener: «{}»"
+
+#: src/util.rs:248
+msgid "The URI parameter “role” must be “follower” or “leader” (was: “{}”)"
+msgstr "Parameteret «role» er «{}», men må være «follower» eller «leader»"
+
+#: src/util.rs:255
+msgid "Unknown URI parameter “{}”"
+msgstr "Ukjent parameter: «{}»"
+
+#: src/util/error.rs:172
+msgid "An error occurred"
+msgstr "Noe gikk galt"
+
+#: src/util/error.rs:202 src/util/error.rs:285
+msgid "Corrupt or unexpected message received"
+msgstr "Ugyldig eller uventet melding mottatt"
+
+#: src/util/error.rs:207
+msgid ""
+"The rendezvous server will not allow further connections for this code. A "
+"new code needs to be generated."
+msgstr ""
+"Paringstjeneren tillater ikke flere tilkoblinger med denne "
+"overføringskoden. Det må genereres en ny."
+
+#: src/util/error.rs:209
+msgid ""
+"The rendezvous server removed the code due to inactivity. A new code needs "
+"to be generated."
+msgstr ""
+"Paringstjeneren fjernet overføringskoden på grunn av inaktivitet. Det må "
+"genereres en ny."
+
+#: src/util/error.rs:211
+msgid "The rendezvous server responded with an unknown message: {}"
+msgstr "Paringstjeneren sendte en ukjent melding: {}"
+
+#: src/util/error.rs:214
+msgid ""
+"Error connecting to the rendezvous server.\n"
+"You have entered a custom rendezvous server URL in preferences. Please "
+"verify the URL is correct and the server is working."
+msgstr ""
+"Kobling til paringstjeneren mislyktes.\n"
+"Du har oppgitt en egen lenke til paringstjeneren i innstillingene. Pass på "
+"at lenken er korrekt og tjeneren virker."
+
+#: src/util/error.rs:216
+msgid ""
+"Error connecting to the rendezvous server.\n"
+"Please try again later / verify you are connected to the internet."
+msgstr ""
+"Kobling til paringstjeneren mislyktes.\n"
+"Pass på at du er koblet til internett, eller prøv igjen senere."
+
+#: src/util/error.rs:220
+msgid ""
+"Encryption key confirmation failed. If you or your peer didn't mistype the "
+"code, this is a sign of an attacker guessing passwords. Please try again "
+"some time later."
+msgstr ""
+"Bekrefting av krypteringsnøkkel mislyktes. Hvis ikke du eller partneren din "
+"skrev inn feil kode, er dette et tegn på at noen andre prøver å gjette "
+"passordet. Prøv igjen senere."
+
+#: src/util/error.rs:222
+msgid "Cannot decrypt a received message"
+msgstr "Kryptering av mottatt melding mislyktes"
+
+#: src/util/error.rs:223 src/util/error.rs:296 src/util/error.rs:302
+msgid "An unknown error occurred"
+msgstr "Noe gikk galt"
+
+#: src/util/error.rs:229
+msgid "File / Directory not found"
+msgstr "Fil eller mappe ikke funnet"
+
+#: src/util/error.rs:230
+msgid "Permission denied"
+msgstr "Tillatelse ikke gitt"
+
+#: src/util/error.rs:237
+msgid "Canceled"
+msgstr "Avbrutt"
+
+#: src/util/error.rs:239
+msgid "Portal service response: Permission denied"
+msgstr "Melding fra portaltjeneste: Tillatelse ikke gitt"
+
+#: src/util/error.rs:242
+msgid "The portal service has failed: {}"
+msgstr "Portaltjeneste mislyktes: {}"
+
+#: src/util/error.rs:245
+msgid "Error communicating with the portal service via zbus: {}"
+msgstr "Kommunikasjon med portaltjeneste via zbus mislyktes: {}"
+
+#: src/util/error.rs:248
+msgid "Portal Error: {}"
+msgstr "Portalfeil: {}"
+
+#: src/util/error.rs:249
+msgid "Portal error: {}"
+msgstr "Portalfeil: {}"
+
+#: src/util/error.rs:260
+msgid "Transfer was not acknowledged by peer"
+msgstr "Overføring ikke godtatt av partner"
+
+#: src/util/error.rs:262
+msgid "The received file is corrupted"
+msgstr "Mottatt fil er ødelagt"
+
+#: src/util/error.rs:268
+msgid ""
+"The file contained a different amount of bytes than advertised! Sent {} "
+"bytes, but should have been {}"
+msgstr ""
+"Filen har en annen størrelse enn oppgitt. {} B ble sendt, forventet {} B."
+
+#: src/util/error.rs:273
+msgid "The other side has cancelled the transfer"
+msgstr "Partneren har avbrutt overføringen"
+
+#: src/util/error.rs:275
+msgid "The other side has rejected the transfer"
+msgstr "Partneren har avvist overføringen"
+
+#: src/util/error.rs:277
+msgid "Something went wrong on the other side: {}"
+msgstr "Noe gikk galt hos partneren: {}"
+
+#: src/util/error.rs:292
+msgid "Error while establishing file transfer connection"
+msgstr "Noe gikk galt med tilkoblingen"
+
+#: src/util/error.rs:294
+msgid "Unknown file transfer error"
+msgstr "Ukjent overføringsfeil"
+
+#: src/util/error.rs:303
+msgid "An unknown error occurred while creating a zip file: {}"
+msgstr "Noe gikk galt under oppretting av zip-fil: {}"
+
+#: src/util/error.rs:304
+msgid ""
+"An unexpected error occurred. Please report an issue with the error message."
+msgstr "Noe gikk galt. Åpne en sak og legg ved feilmeldingen."
