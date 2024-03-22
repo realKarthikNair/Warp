@@ -245,7 +245,7 @@ impl AppError {
                 "Error communicating with the portal service via zbus: {}",
                 &[&format!("{zbus:?}")],
             ),
-            ashpd::Error::Portal(err) => gettextf("Portal Error: {}", &[err]),
+            ashpd::Error::Portal(err) => gettextf("Portal error: {}", &[err]),
             _ => gettextf("Portal error: {}", &[&error]),
         }
     }
