@@ -1,10 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
   <id>@app-id@</id>
-  <metadata_license>CC0</metadata_license>
-  <project_license>@license@</project_license>
   <name>Warp</name>
   <summary>Fast and secure file transfer</summary>
+  <metadata_license>CC0</metadata_license>
+  <project_license>@license@</project_license>
+  <!-- developer_name tag deprecated with Appstream 1.0 -->
+  <developer_name>Fina Wilke</developer_name>
+  <update_contact>finaw@gnome.org</update_contact>
+  <url type="homepage">@homepage@</url>
+  <url type="bugtracker">@issuetracker@</url>
+  <url type="contact">@contact@</url>
+  <url type="vcs-browser">@repository@</url>
+  <url type="translate">https://l10n.gnome.org/module/warp/</url>
+
+  <translation type="gettext">@gettext-package@</translation>
+  <launchable type="desktop-id">@app-id@.desktop</launchable>
+
+  <requires>
+    <display_length compare="ge">360</display_length>
+  </requires>
+  <recommends>
+    <control>pointing</control>
+    <control>keyboard</control>
+    <control>touch</control>
+  </recommends>
+  <provides>
+    <binary>warp</binary>
+  </provides>
+
+  <branding>
+    <color type="primary" scheme_preference="light">#c682ff</color>
+    <color type="primary" scheme_preference="dark">#8865f7</color>
+  </branding>
+  <custom>
+    <value key="GnomeSoftware::key-colors">[(136, 101, 247), (198, 130, 255)]</value>
+    <value key="Purism::form_factor">mobile</value>
+  </custom>
+
+  <content_rating type="oars-1.1" />
   <description>
     <p>
       Warp allows you to securely send files to each other via the internet or local network by
@@ -46,23 +80,11 @@
       <caption>File Transfer Complete</caption>
     </screenshot>
   </screenshots>
-  <provides>
-    <binary>warp</binary>
-  </provides>
-  <url type="homepage">@homepage@</url>
-  <url type="bugtracker">@issuetracker@</url>
-  <url type="contact">@contact@</url>
-  <url type="vcs-browser">@repository@</url>
-  <url type="translate">https://l10n.gnome.org/module/warp/</url>
-  <custom>
-    <value key="GnomeSoftware::key-colors">[(136, 101, 247), (198, 130, 255)]</value>
-    <value key="Purism::form_factor">mobile</value>
-  </custom>
-  <content_rating type="oars-1.1" />
+
   <releases>
-    <release version="0.7.0-beta.1" date="2024-02-23">
+    <release version="0.7.0" date="2024-03-23">
       <description>
-        <p>Beta release for 0.7</p>
+        <p>Version 0.7</p>
         <ul>
           <li>Add QR code scanning support via aperture, the library behind GNOME Camera</li>
           <li>Port dialogs to AdwDialog</li>
@@ -242,26 +264,4 @@
       </description>
     </release>
   </releases>
-  <kudos>
-    <!--
-       GNOME Software kudos:
-    https://gitlab.gnome.org/GNOME/gnome-software/blob/main/doc/kudos.md
-     -->
-    <kudo>ModernToolkit</kudo>
-    <kudo>HiDpiIcon</kudo>
-    <kudo>HighContrast</kudo>
-  </kudos>
-  <!-- developer_name tag deprecated with Appstream 1.0 -->
-  <developer_name>Fina Wilke</developer_name>
-  <update_contact>finaw@gnome.org</update_contact>
-  <translation type="gettext">@gettext-package@</translation>
-  <launchable type="desktop-id">@app-id@.desktop</launchable>
-  <requires>
-    <display_length compare="ge">360</display_length>
-  </requires>
-  <recommends>
-    <control>pointing</control>
-    <control>keyboard</control>
-    <control>touch</control>
-  </recommends>
 </component>
