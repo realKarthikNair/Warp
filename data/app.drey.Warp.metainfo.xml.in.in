@@ -30,8 +30,8 @@
   </provides>
 
   <branding>
-    <color type="primary" scheme_preference="light">#c682ff</color>
-    <color type="primary" scheme_preference="dark">#8865f7</color>
+    <color type="primary" scheme_preference="light">#ce9eff</color>
+    <color type="primary" scheme_preference="dark">#2a1179</color>
   </branding>
   <custom>
     <value key="GnomeSoftware::key-colors">[(136, 101, 247), (198, 130, 255)]</value>
