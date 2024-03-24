@@ -161,11 +161,14 @@ mod imp {
 
                 self.selection.connect_selected_item_notify(
                     glib::clone!(@weak obj, @weak popover => move |selection| {
-                        if let Some(selected_item) = selection.selected_item() {
-                            let camera = selected_item.downcast_ref::<aperture::Camera>();
-                            obj.imp().viewfinder.get().unwrap().set_camera(camera);
-                        }
                         popover.popdown();
+
+                        let Some(viewfinder) = obj.imp().viewfinder.get() else { return; };
+
+                        let camera = selection.selected_item().and_downcast::<aperture::Camera>();
+                        if matches!(viewfinder.state(), aperture::ViewfinderState::Ready | aperture::ViewfinderState::Error) {
+                            viewfinder.set_camera(camera);
+                        }
                     }),
                 );
 
