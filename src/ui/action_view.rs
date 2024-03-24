@@ -139,8 +139,6 @@ mod imp {
     use gtk::gdk::AppLaunchContext;
     use std::cell::RefCell;
 
-    use crate::util::WormholeTransferURI;
-
     #[derive(Debug, Default, gtk::CompositeTemplate)]
     #[template(file = "action_view.ui")]
     pub struct ActionView {
@@ -246,11 +244,14 @@ mod imp {
 
         #[template_callback]
         fn code_copy_button_clicked(&self) {
-            let code = self.code_entry.text();
+            let UIState::HasCode(uri) = &*self.obj().ui_state() else {
+                return;
+            };
+
             let window = self.obj().window();
             let clipboard = window.clipboard();
 
-            clipboard.set_text(&code);
+            clipboard.set_text(uri.code.as_str());
 
             // Translators: Notification when clicking on "Copy Code to Clipboard" button
             let toast = adw::Toast::new(&gettext("Copied Code to Clipboard"));
@@ -261,16 +262,12 @@ mod imp {
 
         #[template_callback]
         fn link_copy_button_clicked(&self) {
-            let code = self.code_entry.text();
+            let UIState::HasCode(uri) = &*self.obj().ui_state() else {
+                return;
+            };
+
             let window = self.obj().window();
             let clipboard = window.clipboard();
-
-            let uri = WormholeTransferURI {
-                code: wormhole::Code(code.to_string()),
-                version: 0,
-                rendezvous_server: self.context.borrow().rendezvous_url.clone(),
-                direction: TransferDirection::Receive,
-            };
             clipboard.set_text(&uri.create_uri());
 
             // Translators: Notification when clicking on "Copy Link to Clipboard" button
@@ -525,8 +522,13 @@ impl ActionView {
 
                         imp.code_detail_label.set_label(&description);
 
+                        #[cfg(not(feature = "demo"))]
                         imp.code_entry.set_text(uri.code.as_ref());
-                        imp.code_entry.set_max_width_chars(uri.code.len() as i32);
+                        #[cfg(feature = "demo")]
+                        imp.code_entry.set_text("0-code-words");
+
+                        imp.code_entry
+                            .set_max_width_chars(imp.code_entry.text().len() as i32);
                     }
                     TransferDirection::Receive => {
                         imp.stack.set_visible_child(&*imp.status_page_progress);
@@ -1163,20 +1165,22 @@ impl ActionView {
             }
 
             let mut update_progress = false;
-            let progress_str = imp
-                .context
-                .borrow_mut()
-                .progress
-                .as_mut()
-                .and_then(|progress| {
+            let Some((fraction, progress_str)) =
+                imp.context.borrow_mut().progress.as_mut().map(|progress| {
                     update_progress = progress.set_progress(sent as usize);
-                    progress.get_pretty_time_remaining()
+                    (
+                        progress.progress_fraction(),
+                        progress.pretty_time_remaining(),
+                    )
                 })
-                .unwrap_or_default();
+            else {
+                return;
+            };
 
             if update_progress {
-                imp.progress_bar.set_fraction(sent as f64 / total as f64);
-                imp.progress_bar.set_text(Some(&progress_str));
+                imp.progress_bar.set_fraction(fraction);
+                imp.progress_bar
+                    .set_text(Some(&progress_str.unwrap_or_default()));
             }
         });
     }

@@ -173,7 +173,14 @@ impl WormholeTransferURI {
     }
 
     pub fn to_paintable_qr(&self) -> gdk::Paintable {
-        let qr = qrcode::QrCode::new(self.create_uri()).unwrap();
+        let uri = if cfg!(feature = "demo") {
+            "https://apps.gnome.org/Warp".to_owned()
+        } else {
+            self.create_uri()
+        };
+
+        let qr = qrcode::QrCode::new(uri).unwrap();
+
         let svg = qr
             .render::<qrcode::render::svg::Color>()
             .min_dimensions(800, 800)

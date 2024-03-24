@@ -93,6 +93,7 @@ mod imp {
             let obj = self.obj();
 
             // Devel Profile
+            #[cfg(not(feature = "demo"))]
             if globals::DEBUG_BUILD {
                 obj.add_css_class("devel");
             }

@@ -78,5 +78,6 @@ win32console = "0.1"
 
 [features]
 default = ["qr_code_scanning"]
+demo = []
 meson = []
 qr_code_scanning = ["dep:aperture"]

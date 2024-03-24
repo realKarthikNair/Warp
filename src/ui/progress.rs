@@ -67,22 +67,30 @@ impl FileTransferProgress {
         (self.avg.get_num_samples() >= SAMPLES_PER_SECOND).then(|| self.avg.get_average())
     }
 
-    pub fn get_bytes_s(&self) -> Option<usize> {
-        self.bytes_per_sample_size()
-            .map(|avg| avg * SAMPLES_PER_SECOND)
+    pub fn bytes_s(&self) -> Option<usize> {
+        if cfg!(feature = "demo") {
+            Some(100_000_000)
+        } else {
+            self.bytes_per_sample_size()
+                .map(|avg| avg * SAMPLES_PER_SECOND)
+        }
     }
 
-    pub fn get_pretty_bytes_per_s_string(&self) -> Option<String> {
-        self.get_bytes_s().map(|bytes_s| {
-            let mut bytes_str = glib::format_size(bytes_s as u64).to_string();
-            bytes_str.push_str(" / s");
-            bytes_str
-        })
+    pub fn total_bytes(&self) -> usize {
+        self.total_bytes
+    }
+
+    pub fn done_bytes(&self) -> usize {
+        if cfg!(feature = "demo") {
+            self.total_bytes / 3
+        } else {
+            self.done_bytes
+        }
     }
 
     pub fn get_time_remaining(&self) -> Option<Duration> {
-        self.get_bytes_s().and_then(|bytes_s| {
-            self.total_bytes.checked_sub(self.done_bytes).map_or(
+        self.bytes_s().and_then(|bytes_s| {
+            self.total_bytes().checked_sub(self.done_bytes()).map_or(
                 Some(Duration::ZERO),
                 |remaining_bytes| {
                     let secs = remaining_bytes as f64 / bytes_s as f64;
@@ -92,9 +100,13 @@ impl FileTransferProgress {
         })
     }
 
-    pub fn get_pretty_time_remaining(&self) -> Option<String> {
+    pub fn pretty_time_remaining(&self) -> Option<String> {
         self.get_time_remaining()
             .and_then(|duration| chrono::Duration::from_std(duration).ok())
-            .map(|d| duration::left(self.done_bytes, self.total_bytes, &d))
+            .map(|d| duration::left(self.done_bytes(), self.total_bytes(), &d))
+    }
+
+    pub fn progress_fraction(&self) -> f64 {
+        self.done_bytes() as f64 / self.total_bytes() as f64
     }
 }
