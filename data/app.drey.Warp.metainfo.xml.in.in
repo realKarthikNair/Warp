@@ -59,24 +59,44 @@
     </ul>
   </description>
   <screenshots>
-    <screenshot>
-      <image>https://gitlab.gnome.org/World/warp/raw/main/data/screenshots/screenshot1.png</image>
+    <screenshot type="default" environment="gnome">
+      <image>https://gitlab.gnome.org/World/warp/raw/main/data/screenshots/screenshot1-light.png</image>
       <caption>Main Window</caption>
     </screenshot>
-    <screenshot>
-      <image>https://gitlab.gnome.org/World/warp/raw/main/data/screenshots/screenshot2.png</image>
+    <screenshot environment="gnome">
+      <image>https://gitlab.gnome.org/World/warp/raw/main/data/screenshots/screenshot2-light.png</image>
       <caption>Transmit Code</caption>
     </screenshot>
-    <screenshot>
-      <image>https://gitlab.gnome.org/World/warp/raw/main/data/screenshots/screenshot3.png</image>
+    <screenshot environment="gnome">
+      <image>https://gitlab.gnome.org/World/warp/raw/main/data/screenshots/screenshot3-light.png</image>
       <caption>Accept File Transfer</caption>
     </screenshot>
-    <screenshot>
-      <image>https://gitlab.gnome.org/World/warp/raw/main/data/screenshots/screenshot4.png</image>
+    <screenshot environment="gnome">
+      <image>https://gitlab.gnome.org/World/warp/raw/main/data/screenshots/screenshot4-light.png</image>
       <caption>Receiving File</caption>
     </screenshot>
-    <screenshot type="default">
-      <image>https://gitlab.gnome.org/World/warp/raw/main/data/screenshots/screenshot5.png</image>
+    <screenshot environment="gnome">
+      <image>https://gitlab.gnome.org/World/warp/raw/main/data/screenshots/screenshot5-light.png</image>
+      <caption>File Transfer Complete</caption>
+    </screenshot>
+    <screenshot environment="gnome:dark">
+      <image>https://gitlab.gnome.org/World/warp/raw/main/data/screenshots/screenshot1-dark.png</image>
+      <caption>Main Window</caption>
+    </screenshot>
+    <screenshot environment="gnome:dark">
+      <image>https://gitlab.gnome.org/World/warp/raw/main/data/screenshots/screenshot2-dark.png</image>
+      <caption>Transmit Code</caption>
+    </screenshot>
+    <screenshot environment="gnome:dark">
+      <image>https://gitlab.gnome.org/World/warp/raw/main/data/screenshots/screenshot3-dark.png</image>
+      <caption>Accept File Transfer</caption>
+    </screenshot>
+    <screenshot environment="gnome:dark">
+      <image>https://gitlab.gnome.org/World/warp/raw/main/data/screenshots/screenshot4-dark.png</image>
+      <caption>Receiving File</caption>
+    </screenshot>
+    <screenshot environment="gnome:dark">
+      <image>https://gitlab.gnome.org/World/warp/raw/main/data/screenshots/screenshot5-dark.png</image>
       <caption>File Transfer Complete</caption>
     </screenshot>
   </screenshots>
