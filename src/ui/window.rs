@@ -51,7 +51,9 @@ mod imp {
         #[template_child]
         pub receive_button: TemplateChild<gtk::Button>,
         #[template_child]
-        pub code_entry: TemplateChild<gtk::Entry>,
+        pub code_entry: TemplateChild<adw::EntryRow>,
+        #[template_child]
+        pub scan_qr_code_button: TemplateChild<gtk::Button>,
         #[template_child]
         pub action_view: TemplateChild<ActionView>,
         #[template_child]
@@ -100,11 +102,7 @@ mod imp {
 
             #[cfg(feature = "qr_code_scanning")]
             {
-                self.code_entry
-                    .set_secondary_icon_name(Some("qr-code-symbolic"));
-                self.code_entry
-                    .set_secondary_icon_tooltip_text(Some(&gettext("Scan QR Code")));
-
+                self.scan_qr_code_button.set_visible(true);
                 self.navigation_view.add(&self.page_camera);
                 let obj = self.obj().clone();
                 self.page_camera.connect_code_detected(

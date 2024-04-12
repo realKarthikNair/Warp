@@ -193,20 +193,32 @@
                                             <child>
                                               <object class="AdwClamp">
                                                 <child>
-                                                  <object class="GtkEntry" id="code_entry">
-                                                    <signal name="activate" handler="receive_button_clicked" swapped="true"/>
-                                                    <!-- Translators: Entry placeholder; This is a noun -->
-                                                    <property name="placeholder-text" translatable="yes">Transmit Code</property>
-                                                    <property name="hexpand">False</property>
-                                                    <property name="buffer">
-                                                      <object class="GtkEntryBuffer">
-                                                        <signal name="notify::text" handler="code_entry_changed" swapped="true"/>
-                                                      </object>
-                                                    </property>
-                                                    <signal name="icon-release" handler="scan_qr_code_button_clicked" swapped="true"/>                    
+                                                  <object class="GtkListBox">
                                                     <style>
-                                                      <class name="card"/>
+                                                      <class name="boxed-list"/>
                                                     </style>
+                                                    <child>
+                                                      <object class="AdwEntryRow" id="code_entry">
+                                                        <property name="input-hints">private</property>
+                                                        <signal name="entry-activated" handler="receive_button_clicked" swapped="true"/>
+                                                        <!-- Translators: Entry placeholder; This is a noun -->
+                                                        <property name="title" translatable="yes">Transmit Code</property>
+                                                        <property name="hexpand">False</property>
+                                                        <signal name="notify::changed" handler="code_entry_changed" swapped="true"/>
+                                                        <child type="suffix">
+                                                          <object class="GtkButton" id="scan_qr_code_button">
+                                                            <property name="visible">False</property>
+                                                            <property name="valign">center</property>
+                                                            <property name="icon-name">qr-code-symbolic</property>
+                                                            <property name="tooltip-text" translatable="yes">Scan QR Code</property>
+                                                            <signal name="clicked" handler="scan_qr_code_button_clicked" swapped="true"/>
+                                                            <style>
+                                                              <class name="flat"/>
+                                                            </style>
+                                                          </object>
+                                                        </child>
+                                                      </object>
+                                                    </child>
                                                   </object>
                                                 </child>
                                               </object>
