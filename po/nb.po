@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: warp main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
-"POT-Creation-Date: 2024-03-16 15:12+0000\n"
-"PO-Revision-Date: 2024-03-17 16:20+0100\n"
+"POT-Creation-Date: 2024-03-22 01:55+0000\n"
+"PO-Revision-Date: 2024-06-24 01:14+0200\n"
 "Last-Translator: Brage <bragefuglseth@gnome.org>\n"
 "Language-Team: Norwegian Bokmål <nb@li.org>\n"
 "Language: nb\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.4.4\n"
 
 #: data/app.drey.Warp.desktop.in.in:3 data/app.drey.Warp.metainfo.xml.in.in:6
 #: src/main.rs:122 src/ui/window.ui:81
@@ -251,8 +251,8 @@ msgid ""
 "You have entered a custom rendezvous server URL in preferences. Please "
 "verify the receiver also uses the same rendezvous server."
 msgstr ""
-"Du har oppgitt en egen paringstjener i innstillingene. Pass på at "
-"mottakeren bruker samme paringstjener."
+"Du har oppgitt en egen paringstjener i innstillingene. Pass på at mottakeren "
+"bruker samme paringstjener."
 
 #: src/ui/action_view.rs:524
 msgid "Click the QR code to copy the link to the clipboard."
@@ -299,7 +299,7 @@ msgstr "En fil er klar til overføring. Overføringen må godtas."
 #. Translators: Description, During transfer
 #: src/ui/action_view.rs:616
 msgid "File “{}” via local network direct transfer"
-msgstr "«{}» gjennom lokalt nettverk"
+msgstr "«{}» over lokalt nettverk"
 
 #. Translators: Description, During transfer
 #: src/ui/action_view.rs:619
@@ -360,8 +360,7 @@ msgid ""
 "Error parsing rendezvous server URL. An invalid URL was entered in the "
 "settings."
 msgstr ""
-"Lenken til paringstjeneren er ugyldig. Gå til innstillingene for å endre "
-"den."
+"Lenken til paringstjeneren er ugyldig. Gå til innstillingene for å endre den."
 
 #: src/ui/action_view.rs:858
 msgid "Error parsing transit URL. An invalid URL was entered in the settings."
@@ -523,9 +522,9 @@ msgid ""
 "Rendezvous Server: “{0}”\n"
 "Transit Server: “{1}”"
 msgstr ""
-"Å endre lenken til paringstjeneren må gjøres av begge parter i "
-"overføringen. Bruk bare paringstjenere du stoler på. Hvis feltene er tomme, "
-"vil Warp bruke standardtjenerne.\n"
+"Å endre lenken til paringstjeneren må gjøres av begge parter i overføringen. "
+"Bruk bare paringstjenere du stoler på. Hvis feltene er tomme, vil Warp bruke "
+"standardtjenerne.\n"
 "\n"
 "Standard paringstjener: «{0}»\n"
 "Standard underveistjener: «{1}»"
@@ -553,9 +552,9 @@ msgstr ""
 "Antallet ord i overføringskoden påvirker sikkerhetsnivået.\n"
 "\n"
 "En kort overføringskode er lettere å huske, men har samtidig høyere risiko "
-"for at noen andre gjetter den. Siden en kode kun kan gjettes én gang, er "
-"det svært liten fare for at dette skjer, selv hvis den er kort. En kode på "
-"4 ord er veldig sikker."
+"for at noen andre gjetter den. Siden en kode kun kan gjettes én gang, er det "
+"svært liten fare for at dette skjer, selv hvis den er kort. En kode på 4 ord "
+"er veldig sikker."
 
 #: src/ui/preferences.ui:18
 msgid "Code Word Count"
@@ -606,8 +605,8 @@ msgstr ""
 "Warp gjør det lett å overføre filer. For å komme i gang, må begge parter "
 "installere Warp på enhetene sine.\n"
 "\n"
-"Etter å ha valgt noe å overføre, vil avsenderen få en overføringskode som "
-"må gis til mottakeren.\n"
+"Etter å ha valgt noe å overføre, vil avsenderen få en overføringskode som må "
+"gis til mottakeren.\n"
 "\n"
 "Når mottakeren har skrevet inn koden hos seg, vil overføringen begynne.\n"
 "\n"
@@ -786,8 +785,8 @@ msgid ""
 "The rendezvous server will not allow further connections for this code. A "
 "new code needs to be generated."
 msgstr ""
-"Paringstjeneren tillater ikke flere tilkoblinger med denne "
-"overføringskoden. Det må genereres en ny."
+"Paringstjeneren tillater ikke flere tilkoblinger med denne overføringskoden. "
+"Det må genereres en ny."
 
 #: src/util/error.rs:209
 msgid ""
@@ -861,11 +860,7 @@ msgstr "Portaltjeneste mislyktes: {}"
 msgid "Error communicating with the portal service via zbus: {}"
 msgstr "Kommunikasjon med portaltjeneste via zbus mislyktes: {}"
 
-#: src/util/error.rs:248
-msgid "Portal Error: {}"
-msgstr "Portalfeil: {}"
-
-#: src/util/error.rs:249
+#: src/util/error.rs:248 src/util/error.rs:249
 msgid "Portal error: {}"
 msgstr "Portalfeil: {}"
 
@@ -912,3 +907,6 @@ msgstr "Noe gikk galt under oppretting av zip-fil: {}"
 msgid ""
 "An unexpected error occurred. Please report an issue with the error message."
 msgstr "Noe gikk galt. Åpne en sak og legg ved feilmeldingen."
+
+#~ msgid "Portal Error: {}"
+#~ msgstr "Portalfeil: {}"
