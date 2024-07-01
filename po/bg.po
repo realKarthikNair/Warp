@@ -1,0 +1,929 @@
+# Bulgarian translation of warp po-file.
+# Copyright (C) 2024 warp's COPYRIGHT HOLDER
+# This file is distributed under the same license as the warp package.
+# twlvnn kraftwerk <kraft_werk@tutanota.com>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: warp main\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
+"POT-Creation-Date: 2024-07-01 07:05+0000\n"
+"PO-Revision-Date: 2024-07-01 18:36+0200\n"
+"Last-Translator: twlvnn kraftwerk <kraft_werk@tutanota.com>\n"
+"Language-Team: Bulgarian <dict-notifications@fsa-bg.org>\n"
+"Language: bg\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"X-Generator: Gtranslator 46.1\n"
+
+#: data/app.drey.Warp.desktop.in.in:3 data/app.drey.Warp.metainfo.xml.in.in:4
+#: src/main.rs:122 src/ui/window.ui:81
+msgid "Warp"
+msgstr "Warp"
+
+#: data/app.drey.Warp.desktop.in.in:4 data/app.drey.Warp.metainfo.xml.in.in:5
+#: src/ui/welcome_dialog.ui:24
+msgid "Fast and secure file transfer"
+msgstr "Бързо и сигурно прехвърляне на файлове"
+
+#: data/app.drey.Warp.desktop.in.in:9
+msgid "Gnome;GTK;Wormhole;Magic-Wormhole;"
+msgstr ""
+"гном;гтк;червей;черна;бяла;дупка;прехвърляне;файл;gnome;gtk;wormhole;magic-"
+"wormhole;"
+
+#. developer_name tag deprecated with Appstream 1.0
+#: data/app.drey.Warp.metainfo.xml.in.in:9 src/ui/application.rs:233
+msgid "Fina Wilke"
+msgstr "Fina Wilke"
+
+#: data/app.drey.Warp.metainfo.xml.in.in:43
+msgid ""
+"Warp allows you to securely send files to each other via the internet or "
+"local network by exchanging a word-based code."
+msgstr ""
+"„Warp“ ви позволява да изпращате и получавате файлове към и от други хора "
+"чрез Интернет или локална мрежа, като обменяте код със думи. Това е надежден "
+"метод със защита."
+
+#: data/app.drey.Warp.metainfo.xml.in.in:47
+msgid ""
+"The best transfer method will be determined using the “Magic Wormhole” "
+"protocol which includes local network transfer if possible."
+msgstr ""
+"Най-добрият метод за прехвърляне ще бъде определен с помощта на протокола "
+"„Magic Wormhole“, който включва прехвърляне в локална мрежа, ако е възможно."
+
+#: data/app.drey.Warp.metainfo.xml.in.in:51
+msgid "Features"
+msgstr "Функции"
+
+#: data/app.drey.Warp.metainfo.xml.in.in:53
+msgid "Send files between multiple devices"
+msgstr "Изпращане на файлове между множество устройства"
+
+#: data/app.drey.Warp.metainfo.xml.in.in:54
+msgid "Every file transfer is encrypted"
+msgstr "Всякo прехвърляне на файлове е шифрирано"
+
+#: data/app.drey.Warp.metainfo.xml.in.in:55
+msgid "Directly transfer files on the local network if possible"
+msgstr "Директно прехвърляне на файлове в локалната мрежа, ако е възможно"
+
+#: data/app.drey.Warp.metainfo.xml.in.in:56
+msgid "An internet connection is required"
+msgstr "Необходима е Интернет връзка"
+
+#: data/app.drey.Warp.metainfo.xml.in.in:57
+msgid "QR Code support"
+msgstr "Работа с QR код"
+
+#: data/app.drey.Warp.metainfo.xml.in.in:58
+msgid ""
+"Compatibility with the Magic Wormhole command line client and all other "
+"compatible apps"
+msgstr ""
+"Съвместим с клиента за Magic Wormhole на командния ред и всички други "
+"съвместими приложения"
+
+#: data/app.drey.Warp.metainfo.xml.in.in:64
+#: data/app.drey.Warp.metainfo.xml.in.in:84
+msgid "Main Window"
+msgstr "Основен прозорец"
+
+#. Translators: Entry placeholder; This is a noun
+#: data/app.drey.Warp.metainfo.xml.in.in:68
+#: data/app.drey.Warp.metainfo.xml.in.in:88 src/ui/window.ui:205
+msgid "Transmit Code"
+msgstr "Код за изпращане"
+
+#: data/app.drey.Warp.metainfo.xml.in.in:72
+#: data/app.drey.Warp.metainfo.xml.in.in:92
+msgid "Accept File Transfer"
+msgstr "Одобряване на прехвърлянето на файлове"
+
+#: data/app.drey.Warp.metainfo.xml.in.in:76
+#: data/app.drey.Warp.metainfo.xml.in.in:96 src/ui/action_view.rs:647
+msgid "Receiving File"
+msgstr "Получаване на файл"
+
+#: data/app.drey.Warp.metainfo.xml.in.in:80
+#: data/app.drey.Warp.metainfo.xml.in.in:100 src/ui/action_view.rs:656
+msgid "File Transfer Complete"
+msgstr "Прехвърлянето на файлове е завършено"
+
+#: data/resources/ui/help_overlay.ui:11
+msgctxt "shortcut window"
+msgid "General"
+msgstr "Общи"
+
+#: data/resources/ui/help_overlay.ui:14
+msgctxt "shortcut window"
+msgid "Show Help"
+msgstr "Показване на помощта"
+
+#: data/resources/ui/help_overlay.ui:20
+msgctxt "shortcut window"
+msgid "Show Shortcuts"
+msgstr "Показване на клавишните комбинации"
+
+#: data/resources/ui/help_overlay.ui:26
+msgctxt "shortcut window"
+msgid "Show Preferences"
+msgstr "Показване на настройките"
+
+#: data/resources/ui/help_overlay.ui:32
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr "Спиране на програмата"
+
+#: data/resources/ui/help_overlay.ui:40
+msgctxt "shortcut window"
+msgid "File Transfer"
+msgstr "Прехвърляне на файл"
+
+#: data/resources/ui/help_overlay.ui:43
+msgctxt "shortcut window"
+msgid "Send File"
+msgstr "Изпращане на файл"
+
+#: data/resources/ui/help_overlay.ui:49
+msgctxt "shortcut window"
+msgid "Send Folder"
+msgstr "Изпращане на папка"
+
+#: data/resources/ui/help_overlay.ui:55
+msgctxt "shortcut window"
+msgid "Receive File"
+msgstr "Получаване на файл"
+
+#. Translators: {0} = file size transferred, {1} = total file size, Example: 17.3MB / 20.5MB
+#: src/gettext/duration.rs:11
+msgctxt "File size transferred"
+msgid "{0} / {1}"
+msgstr "{0}/{1}"
+
+#. Translators: File transfer time left
+#: src/gettext/duration.rs:18
+msgid "One second left"
+msgid_plural "{} seconds left"
+msgstr[0] "Остава една секунда"
+msgstr[1] "Остават {} секунди"
+
+#. Translators: File transfer time left
+#: src/gettext/duration.rs:26
+msgid "One minute left"
+msgid_plural "{} minutes left"
+msgstr[0] "Остава една минута"
+msgstr[1] "Остават {} минути"
+
+#. Translators: File transfer time left
+#: src/gettext/duration.rs:34
+msgid "One hour left"
+msgid_plural "{} hours left"
+msgstr[0] "Остава един час"
+msgstr[1] "Остават {} часа"
+
+#. Translators: File transfer time left
+#: src/gettext/duration.rs:42
+msgid "One day left"
+msgid_plural "{} days left"
+msgstr[0] "Остава един ден"
+msgstr[1] "Остават {} дена"
+
+#. Translators: {0} = 11.3MB / 20.7MB, {1} = 3 seconds left
+#: src/gettext/duration.rs:52
+msgctxt "Combine bytes progress {0} and time remaining {1}"
+msgid "{0} — {1}"
+msgstr "{0} — {1}"
+
+#. Translators: Notification when clicking on "Copy Code to Clipboard" button
+#: src/ui/action_view.rs:257
+msgid "Copied Code to Clipboard"
+msgstr "Кодът е копиран в буфера за обмен"
+
+#. Translators: Notification when clicking on "Copy Link to Clipboard" button
+#: src/ui/action_view.rs:274
+msgid "Copied Link to Clipboard"
+msgstr "Връзката е копирана в буфера за обмен"
+
+#: src/ui/action_view.rs:288
+msgid "Copied Error to Clipboard"
+msgstr "Грешката е копирана в буфера за обмен"
+
+#: src/ui/action_view.rs:290
+msgid "No error available"
+msgstr "Няма налична грешка"
+
+#: src/ui/action_view.rs:455
+msgid "Creating Archive"
+msgstr "Създаване на архив"
+
+#: src/ui/action_view.rs:459
+msgid "Compressing folder “{}”"
+msgstr "Компресиране на папката „{}“"
+
+#. Translators: Title
+#: src/ui/action_view.rs:475 src/ui/action_view.rs:538
+msgid "Connecting"
+msgstr "Свързване"
+
+#. Translators: Description, Filename
+#: src/ui/action_view.rs:478
+msgid "Requesting file transfer"
+msgstr "Запитване за прехвърляне на файлове"
+
+#. Translators: Description, argument is filename
+#: src/ui/action_view.rs:499
+msgid "Ready to send “{}”."
+msgstr "Готовност за изпращане на „{}“."
+
+#. Translators: Help dialog line 1, Code words and QR code visible,
+#: src/ui/action_view.rs:504
+msgid ""
+"The receiver needs to enter or scan this code to begin the file transfer."
+msgstr ""
+"Получателят трябва да въведе или сканира този код, за да започне "
+"прехвърлянето на файла."
+
+#: src/ui/action_view.rs:508
+msgid "The QR code is compatible with the following apps: {}."
+msgstr "QR кодът е съвместим със следните приложения: {}."
+
+#: src/ui/action_view.rs:516
+msgid ""
+"You have entered a custom rendezvous server URL in preferences. Please "
+"verify the receiver also uses the same rendezvous server."
+msgstr ""
+"Въведохте друг адрес на междинен сървър в настройките. Потвърдете, че "
+"получателят използва същия междинен сървър."
+
+#: src/ui/action_view.rs:521
+msgid "Click the QR code to copy the link to the clipboard."
+msgstr "Натиснете върху QR кода, за да копирате връзката в буфера за обмен."
+
+#. Translators: Description, Transfer Code
+#: src/ui/action_view.rs:541
+msgid "Connecting to peer with code “{}”"
+msgstr "Свързване с потребител с код „{}“"
+
+#: src/ui/action_view.rs:551
+msgid "Connected to Peer"
+msgstr "Свързан с потребител"
+
+#. Translators: Description
+#: src/ui/action_view.rs:560
+msgid "Preparing to send file"
+msgstr "Подготвяне за изпращане на файл"
+
+#. Translators: Description
+#: src/ui/action_view.rs:567
+msgid "Preparing to receive file"
+msgstr "Подготвяне за получаване на файл"
+
+#. Translators: File receive confirmation message dialog; Filename, File size
+#: src/ui/action_view.rs:581
+msgid ""
+"Your peer wants to send you “{0}” (Size: {1}).\n"
+"Do you want to download this file? The default action will save the file to "
+"your Downloads folder."
+msgstr ""
+"Вашият потребител иска да ви изпрати „{0}” (размер: {1}).\n"
+"Искате ли да изтеглите този файл? Действието по подразбиране ще запази файла "
+"в папката „Свалени“."
+
+#: src/ui/action_view.rs:586
+msgid "Ready to Receive File"
+msgstr "Готовност за получаване на файл"
+
+#: src/ui/action_view.rs:588
+msgid ""
+"A file is ready to be transferred. The transfer needs to be acknowledged."
+msgstr "Файл е готов за прехвърляне. Прехвърлянето трябва да бъде потвърдено."
+
+#. Translators: Description, During transfer
+#: src/ui/action_view.rs:618
+msgid "File “{}” via local network direct transfer"
+msgstr "Файл „{}“ чрез директно прехвърляне в локална мрежа"
+
+#. Translators: Description, During transfer
+#: src/ui/action_view.rs:621
+msgid "File “{}” via direct transfer"
+msgstr "Файл „{}“ чрез директно прехвърляне"
+
+#. Translators: Description, During transfer
+#: src/ui/action_view.rs:627
+msgid "File “{0}” via relay {1}"
+msgstr "Файл „{}“ чрез междинен сървър {1}"
+
+#. Translators: Description, During transfer
+#: src/ui/action_view.rs:630
+msgid "File “{}” via relay"
+msgstr "Файл „{}“ чрез междинен сървър"
+
+#. Translators: Description, During transfer
+#: src/ui/action_view.rs:634
+msgid "File “{}” via Unknown connection method"
+msgstr "Файл „{}“ чрез непознат метод за връзка"
+
+#. Translators: Title
+#: src/ui/action_view.rs:641
+msgid "Sending File"
+msgstr "Изпращане на файл"
+
+#. Translators: Description, Filename
+#: src/ui/action_view.rs:664
+msgid "Successfully sent file “{}”"
+msgstr "Файлът “{}” е изпратен успешно"
+
+#. Translators: Filename
+#: src/ui/action_view.rs:682
+msgid "File has been saved to the selected folder as “{}”"
+msgstr "Файлът е запазен в избраната папка като „{}“"
+
+#. Translators: Filename
+#: src/ui/action_view.rs:689
+msgid "File has been saved to the Downloads folder as “{}”"
+msgstr "Файлът е запазен в папката „Свалени“ като „{}“"
+
+#. Translators: Title
+#: src/ui/action_view.rs:715 src/ui/action_view.ui:288
+msgid "File Transfer Failed"
+msgstr "Неуспешно прехвърляне на файлове"
+
+#: src/ui/action_view.rs:717
+msgid "The file transfer failed: {}"
+msgstr "Неуспешно прехвърляне на файлове: {}"
+
+#. Translators: When opening a file
+#: src/ui/action_view.rs:831
+msgid "Specified file / directory does not exist"
+msgstr "Указаният файл/директория не съществува"
+
+#: src/ui/action_view.rs:853
+msgid ""
+"Error parsing rendezvous server URL. An invalid URL was entered in the "
+"settings."
+msgstr ""
+"Грешка при анализа на адреса на междинния сървър. Въведен е неправилен адрес "
+"в настройките."
+
+#: src/ui/action_view.rs:860
+msgid "Error parsing transit URL. An invalid URL was entered in the settings."
+msgstr ""
+"Грешка при разчитането на адреса на сървъра за прехвърляне. Въведен е "
+"неправилен адрес в настройките."
+
+#: src/ui/action_view.rs:949
+msgid "Invalid path selected: {}"
+msgstr "Избран е неправилен път: {}"
+
+#. Translators: Above progress bar for creating an archive to send as a folder
+#: src/ui/action_view.rs:1196
+msgid "{} File - Size: {}"
+msgid_plural "{} Files - Size: {}"
+msgstr[0] "{} файл  — размер: {}"
+msgstr[1] "{} файла — размер: {}"
+
+#: src/ui/action_view.ui:4
+msgid "Save As"
+msgstr "Запазване като"
+
+#. Translators: Button; Transmit Link is a noun
+#: src/ui/action_view.ui:108
+msgid "Copy Transmit Link"
+msgstr "Копиране на връзката за изпращане"
+
+#: src/ui/action_view.ui:133
+msgid "Your Transmit Code"
+msgstr "Кодът ви за изпращане"
+
+#. Translators: Button; Transmit Code is a noun
+#: src/ui/action_view.ui:181
+msgid "Copy Transmit Code"
+msgstr "Копиране на кода за изпращане"
+
+#. Translators: Title
+#: src/ui/action_view.ui:198
+msgid "Accept File Transfer?"
+msgstr "Искате ли да приемете прехвърлянето на файлове?"
+
+#: src/ui/action_view.ui:207
+msgid "Save to Downloads Folder"
+msgstr "Запазване в папката „Свалени“"
+
+#. Translators: Button
+#: src/ui/action_view.ui:209
+msgid "_Accept"
+msgstr "_Приемане"
+
+#. Translators: Button
+#: src/ui/action_view.ui:223
+msgid "Sa_ve As…"
+msgstr "_Запазване като…"
+
+#. Translators: Title
+#: src/ui/action_view.ui:243
+msgid "File Transfer Successful"
+msgstr "Успешно прехвърляне на файлове"
+
+#. Translators: Button
+#: src/ui/action_view.ui:252
+msgid "_Open File"
+msgstr "_Отваряне на файл"
+
+#. Translators: Button
+#: src/ui/action_view.ui:267 src/ui/window.ui:51
+msgid "_Show in Folder"
+msgstr "_Показване във „Файлове“"
+
+#. Translators: Button
+#: src/ui/action_view.ui:293
+msgid "Co_py Error Message"
+msgstr "Копиране на съобщението за грешка"
+
+#. Translators: Button
+#: src/ui/action_view.ui:309
+msgid "_Cancel"
+msgstr "_Отказване"
+
+#: src/ui/application.rs:63
+msgid "Unable to use transfer link: another transfer already in progress"
+msgstr ""
+"Не може да се използва връзката за прехвърляне: друго прехвърляне вече е в "
+"ход"
+
+#: src/ui/application.rs:234
+msgid "Tobias Bernard"
+msgstr "Tobias Bernard"
+
+#: src/ui/application.rs:234
+msgid "Sophie Herold"
+msgstr "Sophie Herold"
+
+#: src/ui/application.rs:235
+msgid "translator-credits"
+msgstr "twlvnn kraftwerk <kraft_werk@tutanota.com>"
+
+#: src/ui/application.rs:250
+msgid "Sending a File"
+msgstr "Изпращане на файл"
+
+#: src/ui/application.rs:251
+msgid "Receiving a File"
+msgstr "Получаване на файл"
+
+#: src/ui/camera.rs:214 src/ui/camera.rs:331
+msgid ""
+"Camera access denied. Open Settings and allow Warp to access the camera."
+msgstr ""
+"Достъпът до камерата е отказан. Отворете „Настройки“ и позволете на „Warp“ "
+"да има достъп до камерата."
+
+#: src/ui/camera.rs:218
+msgid "Failed to start the camera: {}"
+msgstr "Камерата не може да бъде пусната: {}"
+
+#: src/ui/camera.rs:221
+msgid "Error"
+msgstr "Грешка"
+
+#: src/ui/camera.rs:232
+msgid "Error talking to the camera portal"
+msgstr "Грешка при връзката с портала на камерата"
+
+#: src/ui/camera.rs:461
+msgid "Could not use the camera portal: {}"
+msgstr "Порталът на камерата не може да се използва: {}"
+
+#: src/ui/camera.rs:468
+msgid "Could not start the device provider: {}"
+msgstr "Доставчикът на устройството не може да стартира: {}"
+
+#: src/ui/camera.rs:499
+msgid "No Camera Found"
+msgstr "Няма намерена камера"
+
+#: src/ui/camera.rs:501
+msgid "Connect a camera to scan QR codes"
+msgstr "Свържете камера, за да сканирате QR кодове"
+
+#: src/ui/camera.ui:11 src/ui/window.ui:213
+msgid "Scan QR Code"
+msgstr "Сканиране на QR код"
+
+#: src/ui/camera.ui:49
+msgid "_Retry"
+msgstr "_Повтаряне"
+
+#: src/ui/camera.ui:60
+msgid "_Troubleshooting"
+msgstr "_Отстраняване на грешки"
+
+#: src/ui/fs.rs:16
+msgid "Downloads dir missing. Please set XDG_DOWNLOAD_DIR"
+msgstr "Липсва папка за изтегляния. Задайте XDG_DOWNLOAD_DIR"
+
+#: src/ui/preferences.rs:97
+msgid ""
+"Changing the rendezvous server URL needs to be done on both sides of the "
+"transfer. Only enter a server URL you can trust.\n"
+"\n"
+"Leaving these entries empty will use the app defaults:\n"
+"Rendezvous Server: “{0}”\n"
+"Transit Server: “{1}”"
+msgstr ""
+"Промяната на адреса на междинния сървър трябва да се извърши и от двете "
+"страни на прехвърлянето. Въведете само адрес на сървър, на който можете да "
+"се доверите.\n"
+"\n"
+"Оставянето на тези полета празни ще използва по подразбиране:\n"
+"Междинен сървър: „{0}“\n"
+"Сървър за прехвърляне: „{1}“"
+
+#: src/ui/preferences.ui:4
+msgid "Preferences"
+msgstr "Настройки"
+
+#: src/ui/preferences.ui:8
+msgid "Network"
+msgstr "Мрежа"
+
+#: src/ui/preferences.ui:12
+msgid "Code Words"
+msgstr "Кодови думи"
+
+#: src/ui/preferences.ui:13
+msgid ""
+"The code word count determines the security of the transfer.\n"
+"\n"
+"A short code is easy to remember but increases the risk of someone else "
+"guessing the code. As a code may only be guessed once, the risk is very "
+"small even with short codes. A length of 4 is very secure."
+msgstr ""
+"Броят на кодовите думи определя сигурността на прехвърлянето.\n"
+"\n"
+"Краткият код е лесен за запомняне, но увеличава риска някой друг да отгатне "
+"кода. Тъй като кодът може да се предположи само веднъж, рискът е много малък "
+"дори при кратки кодове. Дължина от 4 е много сигурна."
+
+#: src/ui/preferences.ui:18
+msgid "Code Word Count"
+msgstr "Брой кодови думи"
+
+#: src/ui/preferences.ui:26
+msgid "Server URLs"
+msgstr "Адреси на сървъри"
+
+#: src/ui/preferences.ui:29
+msgid "Rendezvous Server URL"
+msgstr "Адрес на междинен сървър"
+
+#: src/ui/preferences.ui:36
+msgid "Transit Server URL"
+msgstr "Адрес на сървър за прехвърляне"
+
+#: src/ui/welcome_dialog.ui:10
+msgid "Welcome"
+msgstr "Добре дошли"
+
+#: src/ui/welcome_dialog.ui:23
+msgid "Welcome to Warp"
+msgstr "Добре дошли в „Warp“"
+
+#. Translators: Button
+#: src/ui/welcome_dialog.ui:31
+msgid "Next"
+msgstr "Нататък"
+
+#: src/ui/welcome_dialog.ui:79
+msgid "Introduction"
+msgstr "Въведение"
+
+#: src/ui/welcome_dialog.ui:90
+msgid ""
+"Warp makes file transfer simple. To get started, both parties need to "
+"install Warp on their devices.\n"
+"\n"
+"After selecting a file to transmit, the sender needs to tell the receiver "
+"the displayed transmit code. This is preferably done via a secure "
+"communication channel.\n"
+"\n"
+"When the receiver has entered the code, the file transfer can begin.\n"
+"\n"
+"For more information about Warp, open the Help section from the Main Menu."
+msgstr ""
+"„Warp“ улеснява прехвърлянето на файлове. За да започнете, и двете страни "
+"трябва да инсталират „Warp“ на своите устройства.\n"
+"\n"
+"След като избере файл за прехвърляне, подателят трябва да каже на получателя "
+"показания код за изпращане. Това за предпочитане се прави чрез сигурен канал "
+"за комуникация.\n"
+"\n"
+"Когато получателят е въвел кода, прехвърлянето на файлове може да започне.\n"
+"\n"
+"За повече информация относно „Warp“ отворете раздела за помощ от основното "
+"меню."
+
+#. Translators: Big button to finish welcome screen
+#: src/ui/welcome_dialog.ui:103
+msgid "Get Started Using Warp"
+msgstr "Започнете да използвате „Warp“"
+
+#: src/ui/window.rs:127
+msgid ""
+"Error loading config file “{0}”, using default config.\n"
+"Error: {1}"
+msgstr ""
+"Грешка при зареждането на конфигурационния файл „{0}“, използват се "
+"стандартни настройки.\n"
+"Грешка: {1}"
+
+#: src/ui/window.rs:233
+msgid "Error saving configuration file: {}"
+msgstr "Грешка при запазването на конфигурационния файл: {}"
+
+#: src/ui/window.rs:339
+msgid "Select File to Send"
+msgstr "Изберете файл за изпращане"
+
+#: src/ui/window.rs:347
+msgid "Select Folder to Send"
+msgstr "Изберете папка за изпращане"
+
+#: src/ui/window.rs:404
+msgid "“{}” appears to be an invalid Transmit Code. Please try again."
+msgstr "„{}“ не е правилен код за изпращане. Опитайте отново."
+
+#: src/ui/window.rs:525
+msgid "Sending files with a preconfigured code is not yet supported"
+msgstr ""
+"Изпращането на файлове с предварително конфигуриран код все още не се "
+"поддържа"
+
+#. Translators: menu item
+#: src/ui/window.ui:7
+msgid "_Preferences"
+msgstr "_Настройки"
+
+#. Translators: menu item
+#: src/ui/window.ui:12
+msgid "_Keyboard Shortcuts"
+msgstr "_Клавишни комбинации"
+
+#. Translators: menu item
+#: src/ui/window.ui:17
+msgid "_Help"
+msgstr "_Помощ"
+
+#. Translators: menu item
+#: src/ui/window.ui:22
+msgid "_About Warp"
+msgstr "_Относно „Warp“"
+
+#. Translators: Notification when code was automatically detected in clipboard and inserted into code entry on receive page
+#: src/ui/window.ui:33
+msgid "Inserted code from clipboard"
+msgstr "Кодът от буфера за обмен е вмъкнат"
+
+#. Translators: File receive confirmation message dialog title
+#: src/ui/window.ui:38
+msgid "Abort File Transfer?"
+msgstr "Да се прекрати ли прехвърлянето?"
+
+#: src/ui/window.ui:39
+msgid "Do you want to abort the current file transfer?"
+msgstr "Искате ли да прекратите текущото прехвърляне на файлове?"
+
+#: src/ui/window.ui:42
+msgid "_Continue"
+msgstr "_Продължаване"
+
+#: src/ui/window.ui:43
+msgid "_Abort"
+msgstr "_Прекратяване"
+
+#. Translators: Error dialog title
+#: src/ui/window.ui:48
+msgid "Unable to Open File"
+msgstr "Файлът не може да бъде отворен"
+
+#: src/ui/window.ui:50 src/util/error.rs:191
+msgid "_Close"
+msgstr "_Затваряне"
+
+#: src/ui/window.ui:98
+msgid "Main Menu"
+msgstr "Основно меню"
+
+#: src/ui/window.ui:117
+msgid "_Send"
+msgstr "_Изпращане"
+
+#: src/ui/window.ui:129
+msgid "Send File"
+msgstr "Изпращане на файл"
+
+#: src/ui/window.ui:130
+msgid "Select or drop the file or directory to send"
+msgstr "Изберете или пуснете файла или папката, за да изпратите"
+
+#. Translators: Button
+#: src/ui/window.ui:141
+msgid "Select _File…"
+msgstr "_Избиране на файл…"
+
+#. Translators: Button
+#: src/ui/window.ui:155
+msgid "Select F_older…"
+msgstr "_Избиране на папка…"
+
+#: src/ui/window.ui:175
+msgid "_Receive"
+msgstr "_Получаване"
+
+#: src/ui/window.ui:184
+msgid "Receive File"
+msgstr "Получаване на файл"
+
+#. Translators: Text above code input box, transmit code is a noun
+#: src/ui/window.ui:186
+msgid "Enter the transmit code from the sender"
+msgstr "Въведете кода за изпращане от подателя"
+
+#. Translators: Button
+#: src/ui/window.ui:233
+msgid "Receive _File"
+msgstr "Получаване на _файл"
+
+#: src/ui/window.ui:259
+msgid "File Transfer"
+msgstr "Прехвърляне на файлове"
+
+#: src/util.rs:33 src/util.rs:38
+msgid "Failed to open downloads folder."
+msgstr "Не може да се отвори папката „Свалени“."
+
+#: src/util.rs:205 src/util.rs:278
+msgid "The URI format is invalid"
+msgstr "Неправилен формат на адрес"
+
+#: src/util.rs:209 src/util.rs:213
+msgid "The code does not match the required format"
+msgstr "Кодът не отговаря на изисквания формат"
+
+#: src/util.rs:228 src/util.rs:234
+msgid "Unknown URI version: {}"
+msgstr "Непозната версия на адрес: {}"
+
+#: src/util.rs:243
+msgid "The URI parameter “rendezvous” contains an invalid URL: “{}”"
+msgstr "Параметърът „rendezvous“ съдържа неправилен адрес: „{}“"
+
+#: src/util.rs:255
+msgid "The URI parameter “role” must be “follower” or “leader” (was: “{}”)"
+msgstr ""
+"Параметърът „role“ трябва да бъде „follower“ или „leader“ ( а не: „{}“)"
+
+#: src/util.rs:262
+msgid "Unknown URI parameter “{}”"
+msgstr "Непознат параметър за адрес „{}“"
+
+#: src/util/error.rs:172
+msgid "An error occurred"
+msgstr "Възникна грешка"
+
+#: src/util/error.rs:202 src/util/error.rs:285
+msgid "Corrupt or unexpected message received"
+msgstr "Получено е повредено или неочаквано съобщение"
+
+#: src/util/error.rs:207
+msgid ""
+"The rendezvous server will not allow further connections for this code. A "
+"new code needs to be generated."
+msgstr ""
+"Междинният сървър не позволява допълнителни връзки с този код. Генерирайте "
+"нов код."
+
+#: src/util/error.rs:209
+msgid ""
+"The rendezvous server removed the code due to inactivity. A new code needs "
+"to be generated."
+msgstr ""
+"Междинният сървър премахна кода поради неактивност. Генерирайте нов код."
+
+#: src/util/error.rs:211
+msgid "The rendezvous server responded with an unknown message: {}"
+msgstr "Междинният сървър отговори с непознато съобщение: {}"
+
+#: src/util/error.rs:214
+msgid ""
+"Error connecting to the rendezvous server.\n"
+"You have entered a custom rendezvous server URL in preferences. Please "
+"verify the URL is correct and the server is working."
+msgstr ""
+"Грешка при свързването с междинния сървър.\n"
+"Въведохте друг адрес на междинен сървър в настройките. Потвърдете, че "
+"адресът е правилен и сървърът работи."
+
+#: src/util/error.rs:216
+msgid ""
+"Error connecting to the rendezvous server.\n"
+"Please try again later / verify you are connected to the internet."
+msgstr ""
+"Грешка при свързването с междинния сървър.\n"
+"Опитайте пак по-късно или проверете дали сте свързани към Интернет."
+
+#: src/util/error.rs:220
+msgid ""
+"Encryption key confirmation failed. If you or your peer didn't mistype the "
+"code, this is a sign of an attacker guessing passwords. Please try again "
+"some time later."
+msgstr ""
+"Неуспешно потвърждаване на ключа за шифриране. Ако вие или другата страна не "
+"сте сгрешили кода, това е знак, че нападател отгатва паролите. Опитайте "
+"отново по-късно."
+
+#: src/util/error.rs:222
+msgid "Cannot decrypt a received message"
+msgstr "Не може да се дешифрира получено съобщение"
+
+#: src/util/error.rs:223 src/util/error.rs:296 src/util/error.rs:302
+msgid "An unknown error occurred"
+msgstr "Възникна непозната грешка"
+
+#: src/util/error.rs:229
+msgid "File / Directory not found"
+msgstr "Файлът/папката не са намерени"
+
+#: src/util/error.rs:230
+msgid "Permission denied"
+msgstr "Отказан достъп"
+
+#: src/util/error.rs:237
+msgid "Canceled"
+msgstr "Отказано"
+
+#: src/util/error.rs:239
+msgid "Portal service response: Permission denied"
+msgstr "Отговор на услугата за портала: отказан достъп"
+
+#: src/util/error.rs:242
+msgid "The portal service has failed: {}"
+msgstr "Грешка в услугата за портала: {}"
+
+#: src/util/error.rs:245
+msgid "Error communicating with the portal service via zbus: {}"
+msgstr "Грешка при връзката с услугата за портала чрез zbus: {}"
+
+#: src/util/error.rs:248 src/util/error.rs:249
+msgid "Portal error: {}"
+msgstr "Грешка в портала: {}"
+
+#: src/util/error.rs:260
+msgid "Transfer was not acknowledged by peer"
+msgstr "Прехвърлянето не е потвърдено от потребителя"
+
+#: src/util/error.rs:262
+msgid "The received file is corrupted"
+msgstr "Полученият файл е повреден"
+
+#: src/util/error.rs:268
+msgid ""
+"The file contained a different amount of bytes than advertised! Sent {} "
+"bytes, but should have been {}"
+msgstr ""
+"Файлът съдържа различно количество байтове от очакваното! Изпратени са {} "
+"байтове, но трябваше да са {}"
+
+#: src/util/error.rs:273
+msgid "The other side has cancelled the transfer"
+msgstr "Другата страна е прекратила прехвърлянето"
+
+#: src/util/error.rs:275
+msgid "The other side has rejected the transfer"
+msgstr "Другата страна е отхвърлила прехвърлянето"
+
+#: src/util/error.rs:277
+msgid "Something went wrong on the other side: {}"
+msgstr "Възникна грешка от другата страна: {}"
+
+#: src/util/error.rs:292
+msgid "Error while establishing file transfer connection"
+msgstr "Грешка при установяването на връзка за прехвърляне на файлове"
+
+#: src/util/error.rs:294
+msgid "Unknown file transfer error"
+msgstr "Непозната грешка в прехвърлянето на файлове"
+
+#: src/util/error.rs:303
+msgid "An unknown error occurred while creating a zip file: {}"
+msgstr "Възникна непозната грешка по време на създаването на zip файл: {}"
+
+#: src/util/error.rs:304
+msgid ""
+"An unexpected error occurred. Please report an issue with the error message."
+msgstr ""
+"Възникна непозната грешка. Докладвайте за грешка със съобщението за грешката."
