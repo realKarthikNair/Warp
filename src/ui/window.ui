@@ -204,7 +204,7 @@
                                                         <!-- Translators: Entry placeholder; This is a noun -->
                                                         <property name="title" translatable="yes">Transmit Code</property>
                                                         <property name="hexpand">False</property>
-                                                        <signal name="notify::changed" handler="code_entry_changed" swapped="true"/>
+                                                        <signal name="changed" handler="code_entry_changed" swapped="true"/>
                                                         <child type="suffix">
                                                           <object class="GtkButton" id="scan_qr_code_button">
                                                             <property name="visible">False</property>
