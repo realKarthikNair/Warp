@@ -180,17 +180,15 @@ impl AppError {
         );
 
         if res.is_ok() {
-            let dialog = adw::MessageDialog::builder()
+            let dialog = adw::AlertDialog::builder()
                 .heading(msg1)
                 .body(msg2)
                 .close_response("close")
-                .transient_for(window)
-                .modal(true)
                 .build();
 
             dialog.add_response("close", &gettext("_Close"));
 
-            dialog.choose(gio::Cancellable::NONE, |_response| {
+            dialog.choose(window, gio::Cancellable::NONE, |_response| {
                 ERROR_DIALOG_ALREADY_SHOWING.store(false, Ordering::SeqCst);
             });
         }
