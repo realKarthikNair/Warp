@@ -13,7 +13,7 @@ use glib::clone;
 use std::ffi::OsString;
 use std::fmt::Debug;
 use std::future::Future;
-use std::net::{IpAddr, SocketAddr};
+use std::net::IpAddr;
 use std::path::{Path, PathBuf};
 use std::rc::Rc;
 use std::time::Duration;
@@ -29,7 +29,7 @@ pub enum UIState {
     HasCode(WormholeTransferURI),
     Connected,
     AskConfirmation(String, u64),
-    Transmitting(String, wormhole::transit::TransitInfo, SocketAddr),
+    Transmitting(String, wormhole::transit::TransitInfo),
     Done(OsString),
     Error(AppError),
 }
@@ -131,8 +131,7 @@ impl Default for UIContext {
     }
 }
 
-static TRANSIT_ABILITIES: wormhole::transit::Abilities =
-    wormhole::transit::Abilities::ALL_ABILITIES;
+static TRANSIT_ABILITIES: wormhole::transit::Abilities = wormhole::transit::Abilities::ALL;
 
 mod imp {
     use super::*;
@@ -593,13 +592,13 @@ impl ActionView {
                 self.imp()
                     .send_notification_if_background(Some("receive-ready"), &notification);
             }
-            UIState::Transmitting(filename, info, peer_addr) => {
+            UIState::Transmitting(filename, info) => {
                 imp.stack.set_visible_child(&*imp.status_page_progress);
                 self.show_progress_indeterminate(false);
                 imp.progress_bar.set_show_text(true);
                 self.enable_back_button(false);
 
-                let mut ip = peer_addr.ip();
+                let mut ip = info.peer_addr.ip();
                 // We convert ipv4 mapped ipv6 addresses because the gio code can't tell if they are
                 // local or not
                 if let IpAddr::V6(ipv6) = ip {
@@ -611,8 +610,8 @@ impl ActionView {
                 let gio_addr = gio::InetAddress::from(ip);
                 let is_site_local = gio_addr.is_site_local();
 
-                let description = match info {
-                    wormhole::transit::TransitInfo::Direct => {
+                let description = match &info.conn_type {
+                    wormhole::transit::ConnectionType::Direct => {
                         if is_site_local {
                             // Translators: Description, During transfer
                             gettextf("File “{}” via local network direct transfer", &[&filename])
@@ -621,7 +620,7 @@ impl ActionView {
                             gettextf("File “{}” via direct transfer", &[&filename])
                         }
                     }
-                    wormhole::transit::TransitInfo::Relay { name } => {
+                    wormhole::transit::ConnectionType::Relay { name } => {
                         if let Some(name) = name {
                             // Translators: Description, During transfer
                             gettextf("File “{0}” via relay {1}", &[&filename, &name])
@@ -881,8 +880,14 @@ impl ActionView {
 
         self.window().add_code(&code);
 
-        let (_welcome, connection) = Box::pin(spawn_async(cancelable_future(
-            wormhole::Wormhole::connect_with_code(app_cfg, code),
+        let connection = Box::pin(spawn_async(cancelable_future(
+            wormhole::MailboxConnection::connect(app_cfg, code, false),
+            self.cancel_future(),
+        )))
+        .await??;
+
+        let wormhole = Box::pin(spawn_async(cancelable_future(
+            wormhole::Wormhole::connect(connection),
             self.cancel_future(),
         )))
         .await??;
@@ -892,7 +897,7 @@ impl ActionView {
         let relay_url = self.imp().context.borrow().relay_hints.clone();
 
         let request = spawn_async(wormhole::transfer::request_file(
-            connection,
+            wormhole,
             relay_url,
             TRANSIT_ABILITIES,
             self.cancel_future(),
@@ -902,22 +907,23 @@ impl ActionView {
 
         // Only use the last filename component otherwise the other side can overwrite
         // files in different directories
-        let offer_filename = if let Some(file_name) = request.filename.file_name() {
-            PathBuf::from(file_name)
-        } else {
+        let offer_filename = request.file_name();
+        let offer_filename = if offer_filename.is_empty() {
             // This shouldn't happen realistically
-            PathBuf::from("Unknown Filename.bin")
+            "Unknown Filename.bin".to_string()
+        } else {
+            offer_filename
         };
 
         self.set_ui_state(UIState::AskConfirmation(
-            offer_filename.to_string_lossy().to_string(),
-            request.filesize,
+            offer_filename.clone(),
+            request.file_size(),
         ));
 
         // Continue or cancel
         self.imp()
             .save_as_file_dialog
-            .set_initial_name(Some(&offer_filename.to_string_lossy()));
+            .set_initial_name(Some(&offer_filename));
         let res = self.ask_confirmation_future().await;
         let selected_download_file_path = match res {
             Ok(selected_path) => selected_path,
@@ -1032,28 +1038,26 @@ impl ActionView {
         self.imp().context.borrow_mut().file_name = Some(filename.clone());
         let code_length = window.config().code_length_or_default();
 
-        let res = spawn_async(cancelable_future(
-            wormhole::Wormhole::connect_without_code(app_cfg.clone(), code_length),
+        let connection = spawn_async(cancelable_future(
+            wormhole::MailboxConnection::create(app_cfg.clone(), code_length),
             self.cancel_future(),
         ))
-        .await?;
+        .await??;
 
-        let (welcome, connection) = match res {
-            Ok(tuple) => tuple,
-            Err(err) => {
-                return Err(err.into());
-            }
-        };
-
-        window.add_code(&welcome.code);
+        window.add_code(connection.code());
         let uri = WormholeTransferURI::from_app_cfg_with_code_direction(
             &app_cfg,
-            &welcome.code,
+            connection.code(),
             TransferDirection::Receive,
         );
         self.set_ui_state(UIState::HasCode(uri));
 
-        let connection = spawn_async(cancelable_future(connection, self.cancel_future())).await??;
+        let wormhole = spawn_async(cancelable_future(
+            wormhole::Wormhole::connect(connection),
+            self.cancel_future(),
+        ))
+        .await??;
+
         self.set_ui_state(UIState::Connected);
 
         self.imp().context.borrow_mut().file_path = Some(path);
@@ -1064,10 +1068,10 @@ impl ActionView {
         cancelable_future(
             spawn_async(async move {
                 Box::pin(wormhole::transfer::send_file(
-                    connection,
+                    wormhole,
                     transit_url,
                     &mut file,
-                    &filename,
+                    filename.to_string_lossy(),
                     metadata.len(),
                     TRANSIT_ABILITIES,
                     Self::transit_handler_main,
@@ -1137,7 +1141,7 @@ impl ActionView {
     }
 
     /// Callback with information about the currently running transfer
-    fn transit_handler_main(info: wormhole::transit::TransitInfo, peer_ip: SocketAddr) {
+    fn transit_handler_main(info: wormhole::transit::TransitInfo) {
         invoke_main_with_app(move |app| {
             let obj = app.main_window().action_view();
             let imp = obj.imp();
@@ -1149,7 +1153,7 @@ impl ActionView {
                 .as_ref()
                 .map_or_else(|| "?".to_owned(), |s| s.to_string_lossy().to_string());
 
-            obj.set_ui_state(UIState::Transmitting(filename, info, peer_ip));
+            obj.set_ui_state(UIState::Transmitting(filename, info));
         });
     }
 
