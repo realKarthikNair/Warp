@@ -38,8 +38,6 @@ mod imp {
         #[template_child]
         pub viewfinder_bin: TemplateChild<adw::Bin>,
         #[template_child]
-        pub spinner: TemplateChild<gtk::Spinner>,
-        #[template_child]
         pub selection_button: TemplateChild<gtk::MenuButton>,
         pub selection: gtk::SingleSelection,
         pub viewfinder: OnceCell<aperture::Viewfinder>,
@@ -515,12 +513,6 @@ impl Camera {
             self.imp().toolbar_view.add_css_class("extended");
         } else {
             self.imp().toolbar_view.remove_css_class("extended");
-        }
-
-        if matches!(state, aperture::ViewfinderState::Loading) {
-            imp.spinner.start();
-        } else {
-            imp.spinner.stop();
         }
     }
 }

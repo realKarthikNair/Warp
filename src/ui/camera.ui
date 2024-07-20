@@ -22,9 +22,8 @@
               <object class="GtkStackPage">
                 <property name="name">loading</property>
                 <property name="child">
-                  <object class="GtkSpinner" id="spinner">
+                  <object class="AdwSpinner">
                     <property name="halign">center</property>
-                    <property name="vexpand">True</property>
                     <property name="valign">center</property>
                     <property name="width-request">48</property>
                     <property name="height-request">48</property>
