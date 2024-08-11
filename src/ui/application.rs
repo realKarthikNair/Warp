@@ -176,7 +176,7 @@ impl WarpApplication {
         // Preferences
         let action_preferences = gio::SimpleAction::new("preferences", None);
         action_preferences.connect_activate(clone!(@weak self as app => move |_, _| {
-            WarpPreferencesDialog::new().present(&app.main_window());
+            WarpPreferencesDialog::new().present(Some(&app.main_window()));
         }));
         self.add_action(&action_preferences);
 
@@ -234,7 +234,7 @@ impl WarpApplication {
         dialog.set_artists(&[&gettext("Tobias Bernard"), &gettext("Sophie Herold")]);
         dialog.set_translator_credits(&gettext("translator-credits"));
 
-        dialog.present(&self.main_window());
+        dialog.present(Some(&self.main_window()));
     }
 
     pub fn run(&self) {
