@@ -6,6 +6,7 @@ use crate::globals::{TRANSMIT_CODE_FIND_REGEX, TRANSMIT_URI_FIND_REGEX};
 use crate::ui::application::WarpApplication;
 use gio::prelude::*;
 use std::ffi::OsString;
+use std::fmt::Display;
 use std::str::FromStr;
 
 pub mod error;
@@ -85,9 +86,9 @@ impl Default for TransferDirection {
 #[derive(Debug)]
 pub struct WormholeURIParseError(String);
 
-impl ToString for WormholeURIParseError {
-    fn to_string(&self) -> String {
-        self.0.clone()
+impl Display for WormholeURIParseError {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        self.0.fmt(f)
     }
 }
 

@@ -910,7 +910,7 @@ impl ActionView {
         let offer_filename = request.file_name();
         let offer_filename = if offer_filename.is_empty() {
             // This shouldn't happen realistically
-            "Unknown Filename.bin".to_string()
+            "Unknown Filename.bin".to_owned()
         } else {
             offer_filename
         };
