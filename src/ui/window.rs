@@ -104,9 +104,10 @@ mod imp {
             {
                 self.scan_qr_code_button.set_visible(true);
                 self.navigation_view.add(&self.page_camera);
-                let obj = self.obj().clone();
-                self.page_camera.connect_code_detected(
-                    glib::clone!(@weak obj => move |_camera, data| {
+                self.page_camera.connect_code_detected(glib::clone!(
+                    #[weak(rename_to = obj)]
+                    self.obj(),
+                    move |_camera, data| {
                         let Ok(uri) = data.parse::<WormholeTransferURI>() else {
                             return;
                         };
@@ -114,13 +115,13 @@ mod imp {
                         if !obj.imp().action_view_showing.get() {
                             obj.open_code_from_uri(uri);
                         };
-                    }),
-                );
+                    }
+                ));
             }
 
             self.config
                 .replace(PersistentConfig::from_file().unwrap_or_else(
-                clone!(@strong obj => move |err| {
+                clone!(#[strong(rename_to = obj)] self.obj(), move |err| {
                     obj.connect_visible_notify(move |window| {
                         if window.is_visible() {
                             UiError::new(&gettextf(
@@ -145,8 +146,12 @@ mod imp {
             let drop_type = gio::File::static_type();
             let drag_action = gdk::DragAction::COPY;
             let drop_target = gtk::DropTarget::new(drop_type, drag_action);
-            drop_target.connect_drop(
-                clone!(@weak obj => @default-return false, move |_target, value, _x, _y| {
+            drop_target.connect_drop(clone!(
+                #[weak(rename_to = obj)]
+                self.obj(),
+                #[upgrade_or]
+                false,
+                move |_target, value, _x, _y| {
                     if let Ok(file) = value.get::<gio::File>() {
                         if let Some(path) = file.path() {
                             obj.action_view().send_file(path, obj.config().app_cfg());
@@ -155,8 +160,8 @@ mod imp {
                     }
 
                     false
-                }),
-            );
+                }
+            ));
             self.send_box.add_controller(drop_target);
         }
     }
@@ -186,14 +191,18 @@ mod imp {
                 && window.action_view().transfer_in_progress()
                 && !self.close_in_progress.get()
             {
-                main_async_local_infallible(clone!(@strong window => async move {
-                    if window.action_view().cancel_request().await {
-                        window.action_view().cancel().await;
-                        window.close();
-                    } else {
-                        window.imp().close_in_progress.set(false);
-                    };
-                }));
+                main_async_local_infallible(clone!(
+                    #[strong]
+                    window,
+                    async move {
+                        if window.action_view().cancel_request().await {
+                            window.action_view().cancel().await;
+                            window.close();
+                        } else {
+                            window.imp().close_in_progress.set(false);
+                        };
+                    }
+                ));
 
                 // When close button is clicked a second time we will just close the window
                 self.close_in_progress.set(true);
@@ -248,36 +257,48 @@ impl WarpApplicationWindow {
     fn setup_gactions(&self) {
         // Open folder
         let action_open_folder = gio::SimpleAction::new("open-folder", None);
-        action_open_folder.connect_activate(clone!(@weak self as obj => move |_, _| {
-            if !obj.action_view_showing() {
-                obj.imp().stack.set_visible_child_name("send");
-                glib::MainContext::default().spawn_local(async move {
-                    obj.select_folder().await;
-                });
+        action_open_folder.connect_activate(clone!(
+            #[weak(rename_to = obj)]
+            self,
+            move |_, _| {
+                if !obj.action_view_showing() {
+                    obj.imp().stack.set_visible_child_name("send");
+                    glib::MainContext::default().spawn_local(async move {
+                        obj.select_folder().await;
+                    });
+                }
             }
-        }));
+        ));
         self.add_action(&action_open_folder);
 
         // Open (send) file
         let action_send = gio::SimpleAction::new("open-file", None);
-        action_send.connect_activate(clone!(@weak self as obj => move |_, _| {
-            if !obj.action_view_showing() {
-                obj.imp().stack.set_visible_child_name("send");
-                glib::MainContext::default().spawn_local(async move {
-                    obj.select_file().await;
-                });
-            }
-        }));
+        action_send.connect_activate(clone!(
+            #[weak(rename_to = obj)]
+            self,
+            move |_, _| {
+                if !obj.action_view_showing() {
+                    obj.imp().stack.set_visible_child_name("send");
+                    glib::MainContext::default().spawn_local(async move {
+                        obj.select_file().await;
+                    });
+                }
+            },
+        ));
         self.add_action(&action_send);
 
         // Receive file
         let action_send = gio::SimpleAction::new("receive-file", None);
-        action_send.connect_activate(clone!(@weak self as obj => move |_, _| {
-            if !obj.action_view_showing() {
-                obj.imp().stack.set_visible_child_name("receive");
-                obj.imp().code_entry.grab_focus();
+        action_send.connect_activate(clone!(
+            #[weak(rename_to = obj)]
+            self,
+            move |_, _| {
+                if !obj.action_view_showing() {
+                    obj.imp().stack.set_visible_child_name("receive");
+                    obj.imp().code_entry.grab_focus();
+                }
             }
-        }));
+        ));
         self.add_action(&action_send);
     }
 

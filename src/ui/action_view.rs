@@ -787,11 +787,15 @@ impl ActionView {
             // 50 ms was mainly chosen for performance of the progress bar
             imp.context.borrow_mut().progress_timeout_source_id = Some(glib::timeout_add_local(
                 Duration::from_millis(50),
-                clone!(@strong self as obj => move || {
-                    obj.imp().progress_bar.pulse();
+                clone!(
+                    #[strong(rename_to = obj)]
+                    self,
+                    move || {
+                        obj.imp().progress_bar.pulse();
 
-                    glib::ControlFlow::Continue
-                }),
+                        glib::ControlFlow::Continue
+                    }
+                ),
             ));
         }
     }

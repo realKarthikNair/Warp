@@ -168,45 +168,63 @@ impl WarpApplication {
     fn setup_gactions(&self) {
         // Help
         let action_help = gio::SimpleAction::new("help", None);
-        action_help.connect_activate(clone!(@weak self as app => move |_, _| {
-            app.open_help(None);
-        }));
+        action_help.connect_activate(clone!(
+            #[weak(rename_to = app)]
+            self,
+            move |_, _| {
+                app.open_help(None);
+            }
+        ));
         self.add_action(&action_help);
 
         // Preferences
         let action_preferences = gio::SimpleAction::new("preferences", None);
-        action_preferences.connect_activate(clone!(@weak self as app => move |_, _| {
-            WarpPreferencesDialog::new().present(Some(&app.main_window()));
-        }));
+        action_preferences.connect_activate(clone!(
+            #[weak(rename_to = app)]
+            self,
+            move |_, _| {
+                WarpPreferencesDialog::new().present(Some(&app.main_window()));
+            }
+        ));
         self.add_action(&action_preferences);
 
         // Quit
         let action_quit = gio::SimpleAction::new("quit", None);
-        action_quit.connect_activate(clone!(@weak self as app => move |_, _| {
-            // This is needed to trigger the delete event and saving the window state
-            app.main_window().close();
-            app.quit();
-        }));
+        action_quit.connect_activate(clone!(
+            #[weak(rename_to = app)]
+            self,
+            move |_, _| {
+                // This is needed to trigger the delete event and saving the window state
+                app.main_window().close();
+                app.quit();
+            }
+        ));
         self.add_action(&action_quit);
 
         // About
         let action_about = gio::SimpleAction::new("about", None);
-        action_about.connect_activate(clone!(@weak self as app => move |_, _| {
-            app.show_about_dialog();
-        }));
+        action_about.connect_activate(clone!(
+            #[weak(rename_to = app)]
+            self,
+            move |_, _| {
+                app.show_about_dialog();
+            }
+        ));
         self.add_action(&action_about);
 
         // Show received file in file browser (called from notification)
         let action_show_file =
             gio::SimpleAction::new("show-file", Some(&PathBuf::static_variant_type()));
-        action_show_file.connect_activate(clone!(@weak self as app => move |_action, data| {
+        action_show_file.connect_activate(move |_action, data| {
             if let Some(data) = data {
                 let path = PathBuf::from_variant(data);
                 if let Some(filename) = path {
-                    main_async_local(crate::util::error::AppError::handle, async move {show_dir(&filename).await});
+                    main_async_local(crate::util::error::AppError::handle, async move {
+                        show_dir(&filename).await
+                    });
                 }
             }
-        }));
+        });
 
         self.add_action(&action_show_file);
     }

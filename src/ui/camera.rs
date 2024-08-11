@@ -89,10 +89,16 @@ mod imp {
 
             let camera = self.obj();
             main_async_local(
-                glib::clone!(@weak camera => move |err| camera.imp().handle_error(&err)),
-                glib::clone!(@strong camera => async move {
-                    camera.scan_from_camera().await
-                }),
+                glib::clone!(
+                    #[weak]
+                    camera,
+                    move |err| camera.imp().handle_error(&err)
+                ),
+                glib::clone!(
+                    #[strong]
+                    camera,
+                    async move { camera.scan_from_camera().await }
+                ),
             );
         }
     }
@@ -112,16 +118,24 @@ mod imp {
                 let viewfinder = self.viewfinder.get_or_init(aperture::Viewfinder::new);
                 viewfinder.set_detect_codes(true);
 
-                viewfinder.connect_state_notify(glib::clone!(@weak obj => move |viewfinder| {
-                    obj.update_viewfinder_state(viewfinder);
-                }));
+                viewfinder.connect_state_notify(glib::clone!(
+                    #[weak]
+                    obj,
+                    move |viewfinder| {
+                        obj.update_viewfinder_state(viewfinder);
+                    }
+                ));
                 obj.update_viewfinder_state(viewfinder);
 
-                viewfinder.connect_code_detected(glib::clone!(@weak obj => move|_, code_type, code| {
-                    if matches!(code_type, aperture::CodeType::Qr) {
-                        obj.emit_by_name::<()>("code-detected", &[&code]);
+                viewfinder.connect_code_detected(glib::clone!(
+                    #[weak]
+                    obj,
+                    move |_, code_type, code| {
+                        if matches!(code_type, aperture::CodeType::Qr) {
+                            obj.emit_by_name::<()>("code-detected", &[&code]);
+                        }
                     }
-                }));
+                ));
 
                 let popover = gtk::Popover::new();
                 popover.add_css_class("menu");
@@ -138,37 +152,56 @@ mod imp {
                         .set_child(Some(&camera_row));
                 });
                 let selection = &self.selection;
-                factory.connect_bind(glib::clone!(@weak selection => move |_, item| {
-                    let item = item.downcast_ref::<gtk::ListItem>().unwrap();
-                    let child = item.child().unwrap();
-                    let row = child.downcast_ref::<CameraRow>().unwrap();
+                factory.connect_bind(glib::clone!(
+                    #[weak]
+                    selection,
+                    move |_, item| {
+                        let item = item.downcast_ref::<gtk::ListItem>().unwrap();
+                        let child = item.child().unwrap();
+                        let row = child.downcast_ref::<CameraRow>().unwrap();
 
-                    let item = item.item().and_downcast::<aperture::Camera>().unwrap();
-                    row.set_label(&item.display_name());
+                        let item = item.item().and_downcast::<aperture::Camera>().unwrap();
+                        row.set_label(&item.display_name());
 
-                    selection.connect_selected_item_notify(glib::clone!(@weak row, @weak item => move |selection| {
-                        if let Some(selected_item) = selection.selected_item() {
-                            row.set_selected(selected_item == item);
-                        } else {
-                            row.set_selected(false);
-                        }
-                    }));
-                }));
+                        selection.connect_selected_item_notify(glib::clone!(
+                            #[weak]
+                            row,
+                            #[weak]
+                            item,
+                            move |selection| {
+                                if let Some(selected_item) = selection.selected_item() {
+                                    row.set_selected(selected_item == item);
+                                } else {
+                                    row.set_selected(false);
+                                }
+                            }
+                        ));
+                    }
+                ));
                 let list_view = gtk::ListView::new(Some(self.selection.clone()), Some(factory));
                 popover.set_child(Some(&list_view));
 
-                self.selection.connect_selected_item_notify(
-                    glib::clone!(@weak obj, @weak popover => move |selection| {
+                self.selection.connect_selected_item_notify(glib::clone!(
+                    #[weak]
+                    obj,
+                    #[weak]
+                    popover,
+                    move |selection| {
                         popover.popdown();
 
-                        let Some(viewfinder) = obj.imp().viewfinder.get() else { return; };
+                        let Some(viewfinder) = obj.imp().viewfinder.get() else {
+                            return;
+                        };
 
                         let camera = selection.selected_item().and_downcast::<aperture::Camera>();
-                        if matches!(viewfinder.state(), aperture::ViewfinderState::Ready | aperture::ViewfinderState::Error) {
+                        if matches!(
+                            viewfinder.state(),
+                            aperture::ViewfinderState::Ready | aperture::ViewfinderState::Error
+                        ) {
                             viewfinder.set_camera(camera);
                         }
-                    }),
-                );
+                    }
+                ));
 
                 self.selection_button.set_popover(Some(&popover));
 
@@ -183,10 +216,16 @@ mod imp {
         fn on_retry_clicked(&self) {
             let camera = self.obj();
             main_async_local(
-                glib::clone!(@weak camera => move |err| camera.imp().handle_error(&err)),
-                glib::clone!(@strong camera => async move {
-                    camera.scan_from_camera().await
-                }),
+                glib::clone!(
+                    #[weak]
+                    camera,
+                    move |err| camera.imp().handle_error(&err)
+                ),
+                glib::clone!(
+                    #[strong]
+                    camera,
+                    async move { camera.scan_from_camera().await }
+                ),
             );
         }
 
@@ -424,11 +463,16 @@ impl Camera {
         self.connect_local(
             "code-detected",
             false,
-            clone!(@weak self as camera => @default-return None, move |args| {
-                let code = args[1].get::<String>().unwrap();
-                callback(&camera, code);
-                None
-            }),
+            clone!(
+                #[weak(rename_to = camera)]
+                self,
+                #[upgrade_or_default]
+                move |args| {
+                    let code = args[1].get::<String>().unwrap();
+                    callback(&camera, code);
+                    None
+                }
+            ),
         )
     }
 
