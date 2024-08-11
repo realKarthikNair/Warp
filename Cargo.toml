@@ -18,30 +18,14 @@ codegen-units = 1
 strip = false
 
 [dependencies]
-gtk = { version = "0.8", package = "gtk4", features = [
+gtk = { version = "0.9", package = "gtk4", features = [
     "xml_validation",
     "v4_14",
 ] }
-gdk = { version = "0.8", package = "gdk4", features = ["v4_14"] }
-gio = { version = "0.19", package = "gio", features = ["v2_76"] }
-adw = { version = "0.6", package = "libadwaita", features = ["v1_5"] }
-glib = "0.19"
-# glib = { version = "0.19", package = "glib", git = "https://github.com/gtk-rs/gtk-rs-core" }
-# gtk = { version = "0.8", package = "gtk4", git = "https://github.com/gtk-rs/gtk4-rs", features = [
-#     "v4_14",
-# ] }
-# gdk = { version = "0.8", package = "gdk4", git = "https://github.com/gtk-rs/gtk4-rs", features = [
-#     "v4_14",
-# ] }
-# gio = { version = "0.19", package = "gio", git = "https://github.com/gtk-rs/gtk-rs-core", features = [
-#     "v2_80",
-# ] }
-# adw = { version = "0.6", package = "libadwaita", git = "https://gitlab.gnome.org/msandova/libadwaita-rs.git", branch = "adw-dialog-2", features = [
-#     "v1_5",
-# ] }
-# cairo-rs = { version = "0.19", package = "cairo-rs", git = "https://github.com/gtk-rs/gtk-rs-core", features = [
-#     "v1_18",
-# ] }
+gdk = { version = "0.9", package = "gdk4", features = ["v4_14"] }
+gio = { version = "0.20", package = "gio", features = ["v2_76"] }
+adw = { version = "0.7", package = "libadwaita", features = ["v1_5"] }
+glib = "0.20"
 log = "0.4"
 pretty_env_logger = "0.5"
 gettext-rs = { version = "0.7", features = ["gettext-system"] }
@@ -58,20 +42,20 @@ serde_json = "1.0"
 simple_moving_average = "1.0"
 chrono = "0.4"
 regex = "1.5"
-gvdb = { version = "0.6", features = ["gresource"] }
+gvdb = { version = "0.7", features = ["gresource"] }
 gvdb-macros = { version = "0.1" }
 thiserror = "1.0"
 tempfile = "3.4.0"
 backtrace = "0.3"
-qrcode = "0.13"
+qrcode = "0.14"
 zbus = "4.1"
 async-broadcast = "0.7"
-async_zip = "0.0.16"
+async_zip = "0.0.17"
 memmap2 = "0.9"
-aperture = { version = "0.6", optional = true }
+aperture = { version = "0.7", optional = true }
 
 [target.'cfg(unix)'.dependencies]
-ashpd = { version = "0.8", features = ["gtk4"] }
+ashpd = { version = "0.9", features = ["gtk4"] }
 
 [target.'cfg(windows)'.dependencies]
 win32console = "0.1"

@@ -170,7 +170,7 @@ mod imp {
 
             if !self.config.borrow().welcome_window_shown {
                 let welcome_window = WelcomeDialog::new();
-                welcome_window.present(&*widget);
+                welcome_window.present(Some(&*widget));
             }
         }
     }
