@@ -46,7 +46,7 @@ fn setup_gresources() {
     #[cfg(all(debug_assertions, not(feature = "meson")))]
     let data = {
         log::info!("Loading GResource data from directory 'data/resources'");
-        gvdb::gresource::GResourceBuilder::from_directory(
+        gvdb::gresource::BundleBuilder::from_directory(
             "/app/drey/Warp",
             &std::path::PathBuf::from("data/resources"),
             true,
