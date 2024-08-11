@@ -340,7 +340,7 @@ pub fn error_for_panic() -> AppError {
     backtrace_info.clear();
 
     if msg.is_empty() {
-        msg = "Unknown panic cause".to_owned();
+        "Unknown panic cause".clone_into(&mut msg);
     }
 
     AppError::Panic { msg }
