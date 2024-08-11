@@ -1808,9 +1808,9 @@ dependencies = [
 
 [[package]]
 name = "gvdb"
-version = "0.7.0"
+version = "0.7.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "460df32231689fc638dec14fd337a83b6bbd421f70d767a23e4a27b90174f6b6"
+checksum = "d5469af05ff2285b41c9e79a2c7f825cb59dff3b22791befe1aec0c8ab987791"
 dependencies = [
  "flate2",
  "quick-xml",
@@ -1818,7 +1818,6 @@ dependencies = [
  "serde_json",
  "walkdir",
  "zerocopy",
- "zerocopy-derive",
  "zvariant",
 ]
 
