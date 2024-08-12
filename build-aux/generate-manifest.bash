@@ -44,4 +44,7 @@ if [[ $? -eq 0 ]]; then
   rm build-aux/app.drey.Warp.Devel.json.new
 else
   mv build-aux/app.drey.Warp.Devel.json.new build-aux/app.drey.Warp.Devel.json
+
+  # If the manifest has changed, cargp-about output has probably changed as well
+  build-aux/generate-licenses.bash
 fi

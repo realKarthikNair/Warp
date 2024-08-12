@@ -2459,6 +2459,19 @@
     {
         "type": "archive",
         "archive-type": "tar-gzip",
+        "url": "https://static.crates.io/crates/license/license-3.4.0+3.24.0.crate",
+        "sha256": "a7da1e0d845faf299a9fe5f201a918a0dc0d5fc22c7b9580a6a23fed3a912b37",
+        "dest": "cargo/vendor/license-3.4.0+3.24.0"
+    },
+    {
+        "type": "inline",
+        "contents": "{\"package\": \"a7da1e0d845faf299a9fe5f201a918a0dc0d5fc22c7b9580a6a23fed3a912b37\", \"files\": {}}",
+        "dest": "cargo/vendor/license-3.4.0+3.24.0",
+        "dest-filename": ".cargo-checksum.json"
+    },
+    {
+        "type": "archive",
+        "archive-type": "tar-gzip",
         "url": "https://static.crates.io/crates/linux-raw-sys/linux-raw-sys-0.3.8.crate",
         "sha256": "ef53942eb7bf7ff43a617b3e2c1c4a5ecf5944a7c1bc12d7ee39bbb15e5c1519",
         "dest": "cargo/vendor/linux-raw-sys-0.3.8"
@@ -3278,6 +3291,19 @@
     {
         "type": "archive",
         "archive-type": "tar-gzip",
+        "url": "https://static.crates.io/crates/reword/reword-7.0.0.crate",
+        "sha256": "fe272098dce9ed76b479995953f748d1851261390b08f8a0ff619c885a1f0765",
+        "dest": "cargo/vendor/reword-7.0.0"
+    },
+    {
+        "type": "inline",
+        "contents": "{\"package\": \"fe272098dce9ed76b479995953f748d1851261390b08f8a0ff619c885a1f0765\", \"files\": {}}",
+        "dest": "cargo/vendor/reword-7.0.0",
+        "dest-filename": ".cargo-checksum.json"
+    },
+    {
+        "type": "archive",
+        "archive-type": "tar-gzip",
         "url": "https://static.crates.io/crates/rmp/rmp-0.8.14.crate",
         "sha256": "228ed7c16fa39782c3b3468e974aec2795e9089153cd08ee2e9aefb3613334c4",
         "dest": "cargo/vendor/rmp-0.8.14"
@@ -4079,6 +4105,19 @@
         "type": "inline",
         "contents": "{\"package\": \"a56d1686db2308d901306f92a263857ef59ea39678a5458e7cb17f01415101f5\", \"files\": {}}",
         "dest": "cargo/vendor/unicode-normalization-0.1.23",
+        "dest-filename": ".cargo-checksum.json"
+    },
+    {
+        "type": "archive",
+        "archive-type": "tar-gzip",
+        "url": "https://static.crates.io/crates/unicode-segmentation/unicode-segmentation-1.11.0.crate",
+        "sha256": "d4c87d22b6e3f4a18d4d40ef354e97c90fcb14dd91d7dc0aa9d8a1172ebf7202",
+        "dest": "cargo/vendor/unicode-segmentation-1.11.0"
+    },
+    {
+        "type": "inline",
+        "contents": "{\"package\": \"d4c87d22b6e3f4a18d4d40ef354e97c90fcb14dd91d7dc0aa9d8a1172ebf7202\", \"files\": {}}",
+        "dest": "cargo/vendor/unicode-segmentation-1.11.0",
         "dest-filename": ".cargo-checksum.json"
     },
     {

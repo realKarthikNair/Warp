@@ -1,6 +1,7 @@
 mod action_view;
 pub mod application;
 mod fs;
+mod licenses;
 mod preferences;
 mod pride;
 mod progress;

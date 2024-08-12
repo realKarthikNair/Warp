@@ -241,16 +241,21 @@ impl WarpApplication {
     }
 
     fn show_about_dialog(&self) {
-        // TODO: Fix when libadwaita-rs has merged !80
-        #[cfg(not(target_os = "windows"))]
         let dialog =
             adw::AboutDialog::from_appdata("app/drey/Warp/metainfo.xml", Some(globals::VERSION));
-        #[cfg(target_os = "windows")]
-        let dialog = adw::AboutDialog::new();
 
         dialog.set_developers(&[&gettext("Fina Wilke")]);
         dialog.set_artists(&[&gettext("Tobias Bernard"), &gettext("Sophie Herold")]);
         dialog.set_translator_credits(&gettext("translator-credits"));
+
+        for legal in crate::ui::licenses::about_sections() {
+            dialog.add_legal_section(
+                &legal.title,
+                legal.copyright.as_deref(),
+                legal.license_type,
+                legal.license.as_deref(),
+            );
+        }
 
         dialog.present(Some(&self.main_window()));
     }

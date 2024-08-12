@@ -57,4 +57,7 @@ if appstream_cli.found()
   )
 endif
 
+# Licenses metadata
+install_data('licenses.json', install_dir: datadir / meson.project_name())
+
 subdir('resources')

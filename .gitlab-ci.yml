@@ -62,6 +62,17 @@ cargo-deny:
     - cargo install cargo-deny
     - cargo deny check
 
+cargo-about:
+  interruptible: true
+  allow_failure: true
+  image: rust:bookworm
+  script:
+    - apt update
+    - apt install -y jq
+    - cargo install cargo-about
+    - cargo about -L error generate --all-features --fail --format json | jq > data/licenses.json
+    - git diff --exit-code data/licenses.json
+
 pages:
   image: quay.io/gnome_infrastructure/gnome-runtime-images:gnome-$RUNTIME
   tags:

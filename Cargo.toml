@@ -53,6 +53,7 @@ async-broadcast = "0.7"
 async_zip = "0.0.17"
 memmap2 = "0.9"
 aperture = { version = "0.7", optional = true }
+license = { version = "3.4.0", features = ["offline"] }
 
 [target.'cfg(unix)'.dependencies]
 ashpd = { version = "0.9", features = ["gtk4"] }
