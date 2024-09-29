@@ -120,23 +120,21 @@ impl AboutLicense {
     }
 
     fn parse_extra_text(license: Option<&dyn license::License>, text: &str) -> Option<String> {
-        let need_text = match license.map(|l| l.id()) {
-            Some("Apache-2.0")
-            | Some("GPL-3.0")
-            | Some("GPL-3.0-or-later")
-            | Some("EUPL-1.0")
-            | Some("EUPL-1.1")
-            | Some("EUPL-1.2")
-            | Some("MPL-2.0")
-            | Some("Unicode-DFS-2016") => false,
-            _ => true,
-        };
+        let need_text = matches!(
+            license.map(license::License::id),
+            Some(
+                "Apache-2.0"
+                    | "GPL-3.0"
+                    | "GPL-3.0-or-later"
+                    | "EUPL-1.0"
+                    | "EUPL-1.1"
+                    | "EUPL-1.2"
+                    | "MPL-2.0"
+                    | "Unicode-DFS-2016",
+            ),
+        );
 
-        if need_text {
-            Some(glib::markup_escape_text(text.trim()).to_string())
-        } else {
-            None
-        }
+        need_text.then(|| glib::markup_escape_text(text.trim()).to_string())
     }
 }
 
@@ -157,9 +155,9 @@ impl std::fmt::Display for AboutLicense {
         };
 
         if let Some(text) = &self.escaped_text {
-            write!(f, "{}\n\n{}", info, text)
+            write!(f, "{info}\n\n{text}")
         } else {
-            write!(f, "{}", info)
+            write!(f, "{info}")
         }
     }
 }
@@ -275,14 +273,17 @@ impl AboutDialogLicenseExt for adw::AboutDialog {
         let (sender, receiver) = oneshot::channel();
 
         gio::spawn_blocking(glib::clone!(move || {
-            let _ = sender.send(crate::ui::licenses::about_sections());
+            let res = sender.send(crate::ui::licenses::about_sections());
+            if res.is_err() {
+                log::error!("channel is closed");
+            }
         }));
 
         let Ok(about_sections) = receiver.await else {
             return;
         };
 
-        let mut peekable = about_sections.into_iter().peekable();
+        let mut peekable = about_sections.iter().peekable();
         let mut titles = Vec::with_capacity(10);
 
         // Add legal sections asynchronously, layouting them takes quite a bit of time
