@@ -1,5 +1,6 @@
 use crate::gettext::*;
 use crate::globals;
+use crate::ui::licenses::AboutDialogLicenseExt;
 use crate::ui::preferences::WarpPreferencesDialog;
 use crate::ui::window::WarpApplicationWindow;
 use crate::util::future::main_async_local;
@@ -247,15 +248,11 @@ impl WarpApplication {
         dialog.set_developers(&[&gettext("Fina Wilke")]);
         dialog.set_artists(&[&gettext("Tobias Bernard"), &gettext("Sophie Herold")]);
         dialog.set_translator_credits(&gettext("translator-credits"));
-
-        for legal in crate::ui::licenses::about_sections() {
-            dialog.add_legal_section(
-                &legal.title,
-                legal.copyright.as_deref(),
-                legal.license_type,
-                legal.license.as_deref(),
-            );
-        }
+        glib::spawn_future_local(glib::clone!(
+            #[weak]
+            dialog,
+            async move { dialog.add_embedded_license_information().await }
+        ));
 
         dialog.present(Some(&self.main_window()));
     }

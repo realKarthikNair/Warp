@@ -8,5 +8,6 @@ cargo about -L error generate --all-features --fail --format json |\
         .licenses[].text,
         .licenses[].used_by[].crate.name,
         .licenses[].used_by[].crate.authors,
-        .licenses[].used_by[].crate.version
+        .licenses[].used_by[].crate.version,
+        .licenses[].used_by[].crate.license
     )' > data/licenses.json

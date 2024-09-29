@@ -1,9 +1,11 @@
 use std::{
-    collections::{BTreeSet, HashMap, HashSet},
+    collections::{BTreeMap, BTreeSet, HashMap, HashSet},
     hash::Hash,
+    rc::Rc,
     sync::OnceLock,
 };
 
+use futures::channel::oneshot;
 use glib::GString;
 use serde::Deserialize;
 
@@ -14,6 +16,7 @@ struct Crate {
     name: String,
     version: String,
     authors: Vec<String>,
+    license: String,
 }
 
 #[derive(Clone, Debug, Deserialize)]
@@ -123,7 +126,9 @@ impl AboutLicense {
             | Some("GPL-3.0-or-later")
             | Some("EUPL-1.0")
             | Some("EUPL-1.1")
-            | Some("EUPL-1.2") => false,
+            | Some("EUPL-1.2")
+            | Some("MPL-2.0")
+            | Some("Unicode-DFS-2016") => false,
             _ => true,
         };
 
@@ -190,7 +195,12 @@ fn license_info() -> Vec<License> {
 #[derive(Debug, Hash, PartialEq, Eq)]
 struct SectionKey {
     authors: Vec<String>,
-    license: AboutLicense,
+    spdx: String,
+}
+
+#[derive(Debug, Default)]
+struct SectionValue {
+    crates: BTreeMap<String, HashSet<Rc<AboutLicense>>>,
 }
 
 pub fn about_sections() -> &'static BTreeSet<LegalSection> {
@@ -198,41 +208,112 @@ pub fn about_sections() -> &'static BTreeSet<LegalSection> {
 
     SECTIONS.get_or_init(|| {
         // Collect the license info into a hashmap to deduplicate authors + licenses
-        let mut licenses: HashMap<SectionKey, HashSet<String>> = HashMap::new();
+        let mut licenses: HashMap<SectionKey, SectionValue> = HashMap::new();
         for license in license_info() {
+            let about_license = Rc::new(AboutLicense::from_spdx(
+                &license.id,
+                &license.name,
+                &license.text,
+            ));
+
             for used in &license.used_by {
-                licenses
+                let entry = licenses
                     .entry(SectionKey {
                         authors: used.c.authors.clone(),
-                        license: AboutLicense::from_spdx(&license.id, &license.name, &license.text),
+                        spdx: used.c.license.clone(),
                     })
+                    .or_default();
+
+                entry
+                    .crates
+                    .entry(format!("{} {}", used.c.name, used.c.version))
                     .or_default()
-                    .insert(format!("{} {}", used.c.name, used.c.version));
+                    .insert(about_license.clone());
             }
         }
 
         licenses
             .into_iter()
-            .map(|(key, crates)| {
-                let crates = crates
-                    .into_iter()
-                    .enumerate()
-                    .map(|(i, c)| if i > 0 { format!(", {c}") } else { c })
-                    .collect::<String>();
+            .flat_map(|(key, value)| {
+                value.crates.into_iter().map(move |(c, licenses)| {
+                    let licenses = licenses
+                        .into_iter()
+                        .enumerate()
+                        .map(|(i, c)| {
+                            if i > 0 {
+                                format!("\n\n{c}")
+                            } else {
+                                c.to_string()
+                            }
+                        })
+                        .collect::<String>();
 
-                let copyright = if key.authors.is_empty() {
-                    None
-                } else {
-                    Some(glib::markup_escape_text(&key.authors.join("\n")).to_string())
-                };
+                    let copyright = if key.authors.is_empty() {
+                        None
+                    } else {
+                        Some(glib::markup_escape_text(&key.authors.join("\n")).to_string())
+                    };
 
-                LegalSection {
-                    title: glib::markup_escape_text(&crates),
-                    copyright,
-                    license_type: gtk::License::Custom,
-                    license: Some(key.license.to_string()),
-                }
+                    LegalSection {
+                        title: glib::markup_escape_text(&c),
+                        copyright,
+                        license_type: gtk::License::Custom,
+                        license: Some(licenses),
+                    }
+                })
             })
             .collect::<BTreeSet<_>>()
     })
+}
+
+pub trait AboutDialogLicenseExt {
+    async fn add_embedded_license_information(&self);
+}
+
+impl AboutDialogLicenseExt for adw::AboutDialog {
+    async fn add_embedded_license_information(&self) {
+        let (sender, receiver) = oneshot::channel();
+
+        gio::spawn_blocking(glib::clone!(move || {
+            let _ = sender.send(crate::ui::licenses::about_sections());
+        }));
+
+        let Ok(about_sections) = receiver.await else {
+            return;
+        };
+
+        let mut peekable = about_sections.into_iter().peekable();
+        let mut titles = Vec::with_capacity(10);
+
+        // Add legal sections asynchronously, layouting them takes quite a bit of time
+        glib::idle_add_local(glib::clone!(
+            #[weak(rename_to = dialog)]
+            self,
+            #[upgrade_or]
+            glib::ControlFlow::Break,
+            move || {
+                if let Some(legal) = peekable.next() {
+                    titles.push(legal.title.as_str());
+
+                    if !peekable.peek().is_some_and(|peek| {
+                        peek.copyright == legal.copyright
+                            && peek.license_type == legal.license_type
+                            && peek.license == legal.license
+                    }) {
+                        dialog.add_legal_section(
+                            &titles.join(", "),
+                            legal.copyright.as_deref(),
+                            legal.license_type,
+                            legal.license.as_deref(),
+                        );
+                        titles.clear();
+                    }
+
+                    glib::ControlFlow::Continue
+                } else {
+                    glib::ControlFlow::Break
+                }
+            }
+        ));
+    }
 }
