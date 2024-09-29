@@ -1318,7 +1318,10 @@ impl ActionView {
 
     pub fn transfer_in_progress(&self) -> bool {
         !self.imp().context.borrow().canceled
-            && !matches!(&*self.ui_state(), UIState::Done(..) | UIState::Error(..))
+            && !matches!(
+                &*self.ui_state(),
+                UIState::Initial | UIState::Done(..) | UIState::Error(..)
+            )
     }
 
     pub fn should_handle_error_inline(&self) -> bool {
