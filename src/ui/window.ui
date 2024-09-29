@@ -137,6 +137,7 @@
                                             <child>
                                               <object class="GtkButton" id="send_select_file_button">
                                                 <signal name="clicked" handler="select_file" swapped="true"/>
+                                                <property name="can-shrink">True</property>
                                                 <!-- Translators: Button -->
                                                 <property name="label" translatable="yes">Select _File…</property>
                                                 <property name="use-underline">True</property>
@@ -151,6 +152,7 @@
                                             <child>
                                               <object class="GtkButton" id="send_select_folder_button">
                                                 <signal name="clicked" handler="select_folder" swapped="true"/>
+                                                <property name="can-shrink">True</property>
                                                 <!-- Translators: Button -->
                                                 <property name="label" translatable="yes">Select F_older…</property>
                                                 <property name="use-underline">True</property>
@@ -208,6 +210,7 @@
                                                         <child type="suffix">
                                                           <object class="GtkButton" id="scan_qr_code_button">
                                                             <property name="visible">False</property>
+                                                            <property name="can-shrink">True</property>
                                                             <property name="valign">center</property>
                                                             <property name="icon-name">qr-code-symbolic</property>
                                                             <property name="tooltip-text" translatable="yes">Scan QR Code</property>
@@ -226,6 +229,7 @@
                                             <child>
                                               <object class="GtkButton" id="receive_button">
                                                 <signal name="clicked" handler="receive_button_clicked" swapped="true"/>
+                                                <property name="can-shrink">True</property>
                                                 <property name="halign">center</property>
                                                 <property name="width-request">150</property>
                                                 <property name="sensitive">False</property>
