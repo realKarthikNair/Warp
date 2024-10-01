@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: warp main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
 "POT-Creation-Date: 2024-09-29 15:03+0000\n"
-"PO-Revision-Date: 2024-10-01 11:05+0200\n"
+"PO-Revision-Date: 2024-10-01 11:06+0200\n"
 "Last-Translator: Brage <bragefuglseth@gnome.org>\n"
 "Language-Team: Norwegian Bokmål <nb@li.org>\n"
 "Language: nb\n"
@@ -520,12 +520,12 @@ msgstr "Fant ikke nedlastingsmappe. Angi en med variabelen XDG_DOWNLOAD_DIR"
 
 #: src/ui/licenses.rs:149
 msgid "Licensed under the <a href=\"{}\">{}</a>."
-msgstr "Utgitt under <a href=\"{}\">{}</a>."
+msgstr "Utgitt under lisensen <a href=\"{}\">{}</a>."
 
 #. Translators: License information without a link to the software license
 #: src/ui/licenses.rs:154
 msgid "Licensed under the {}."
-msgstr "Utgitt under {}."
+msgstr "Utgitt under lisensen {}."
 
 #: src/ui/preferences.rs:97
 msgid ""
