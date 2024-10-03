@@ -134,7 +134,7 @@ impl WarpApplication {
         /* `help:` URIs are a Linux specific thing and won't work on Windows. There, we'll just open the path to the
          * respective HTML files and hope that it launches a browser …
          */
-        let help_uri = if cfg!(not(windows)) {
+        let help_uri = if cfg!(target_os = "linux") {
             format!("help:warp/{}", page.unwrap_or_default())
         } else {
             let file = page.unwrap_or("index");

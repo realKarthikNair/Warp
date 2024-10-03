@@ -3,9 +3,7 @@ use crate::gettext::gettextf;
 use crate::gettext::*;
 use crate::globals;
 use crate::globals::{TRANSMIT_CODE_FIND_REGEX, TRANSMIT_URI_FIND_REGEX};
-use crate::ui::application::WarpApplication;
 use gio::prelude::*;
-use std::ffi::OsString;
 use std::fmt::Display;
 use std::str::FromStr;
 
@@ -14,16 +12,20 @@ pub mod future;
 pub mod zip;
 
 pub async fn show_dir(path: &std::path::Path) -> Result<(), AppError> {
-    if cfg!(windows) {
-        show_dir_windows(path)
-    } else {
+    #[cfg(target_os = "linux")]
+    {
         show_dir_dbus(path).await
+    }
+    #[cfg(target_os = "windows")]
+    {
+        show_dir_windows(path)
     }
 }
 
+#[cfg(target_os = "windows")]
 fn show_dir_windows(path: &std::path::Path) -> Result<(), AppError> {
     let cmd = "explorer.exe";
-    let mut arg = OsString::from("/select,");
+    let mut arg = std::ffi::OsString::from("/select,");
     arg.push(path.as_os_str());
 
     log::debug!("Running command '{} {}'", cmd, arg.to_string_lossy(),);
@@ -35,11 +37,12 @@ fn show_dir_windows(path: &std::path::Path) -> Result<(), AppError> {
     Ok(())
 }
 
+#[cfg(target_os = "linux")]
 async fn show_dir_dbus(path: &std::path::Path) -> Result<(), AppError> {
     let err_msg = gettext("Failed to open downloads folder.");
 
     let file = gio::File::for_path(path);
-    let window = WarpApplication::default().main_window();
+    let window = crate::ui::application::WarpApplication::default().main_window();
 
     if smol::fs::metadata(path).await?.is_dir() {
         // If this is a directory, we can open it with `FileLauncher::launch`, as the default file handler for

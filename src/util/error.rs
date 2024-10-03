@@ -82,6 +82,7 @@ pub enum AppError {
         #[from]
         source: glib::Error,
     },
+    #[cfg(target_os = "linux")]
     Ashpd {
         #[from]
         source: ashpd::Error,
@@ -109,6 +110,7 @@ impl Display for AppError {
             AppError::Zip { source } => write!(f, "ZipError: {source}"),
             AppError::Panic { msg } => write!(f, "Panic: {msg}"),
             AppError::Glib { source } => write!(f, "Glib: {source}"),
+            #[cfg(target_os = "linux")]
             AppError::Ashpd { source } => write!(f, "Ashpd: {source}"),
         }
     }
@@ -124,13 +126,20 @@ impl AppError {
     }
 
     pub fn is_user_canceled(&self) -> bool {
-        matches!(
-            self,
-            AppError::Canceled
-                | AppError::Ashpd {
-                    source: ashpd::Error::Response(ashpd::desktop::ResponseError::Cancelled)
-                }
-        )
+        #[cfg(target_os = "linux")]
+        {
+            matches!(
+                self,
+                AppError::Canceled
+                    | AppError::Ashpd {
+                        source: ashpd::Error::Response(ashpd::desktop::ResponseError::Cancelled)
+                    }
+            )
+        }
+        #[cfg(not(target_os = "linux"))]
+        {
+            matches!(self, AppError::Canceled)
+        }
     }
 
     pub fn handle(self) {
@@ -230,6 +239,7 @@ impl AppError {
         }
     }
 
+    #[cfg(target_os = "linux")]
     fn gettext_error_ashpd(error: &ashpd::Error) -> String {
         match error {
             ashpd::Error::Response(ashpd::desktop::ResponseError::Cancelled) => gettext("Canceled"),
@@ -301,6 +311,7 @@ impl AppError {
             AppError::Zip { source } => gettextf("An unknown error occurred while creating a zip file: {}", &[source]),
             AppError::Panic { .. } => gettext("An unexpected error occurred. Please report an issue with the error message."),
             AppError::Glib { source } => source.to_string(),
+            #[cfg(target_os = "linux")]
             AppError::Ashpd { source } => Self::gettext_error_ashpd(source),
         }
     }

@@ -28,7 +28,7 @@
     clippy::new_without_default
 )]
 // Hide the console on Windows
-#![windows_subsystem = "windows"]
+#![cfg_attr(target_os = "windows", windows_subsystem = "windows")]
 
 mod config;
 #[allow(dead_code)]
@@ -37,6 +37,8 @@ mod gettext;
 mod globals;
 mod ui;
 mod util;
+
+use std::path::PathBuf;
 
 use crate::ui::application::WarpApplication;
 use crate::util::error;
@@ -72,7 +74,7 @@ fn setup_gresources() {
     gio::resources_register(&resource);
 }
 
-#[cfg(windows)]
+#[cfg(target_os = "windows")]
 /// Workarounds and hacks for Windows
 fn windows_hacks() {
     // stdout support with hidden console
@@ -89,20 +91,29 @@ fn main() {
 
     error::install_panic_hook();
 
-    #[cfg(windows)]
+    #[cfg(target_os = "windows")]
     windows_hacks();
 
     // Prepare i18n
     gettextrs::setlocale(gettextrs::LocaleCategory::LcAll, "");
 
-    let localedir = if cfg!(not(windows)) {
-        option_env!("LOCALEDIR")
-            .unwrap_or(globals::DEFAULT_LOCALEDIR_LINUX)
-            .into()
-    } else {
-        let mut base_dir = globals::WINDOWS_BASE_PATH.clone();
-        base_dir.push("share\\locale");
-        base_dir
+    let localedir: PathBuf = {
+        #[cfg(target_os = "linux")]
+        {
+            option_env!("LOCALEDIR")
+                .unwrap_or(globals::DEFAULT_LOCALEDIR_LINUX)
+                .into()
+        }
+        #[cfg(target_os = "windows")]
+        {
+            let mut base_dir = globals::WINDOWS_BASE_PATH.clone();
+            base_dir.push("share\\locale");
+            base_dir
+        }
+        #[cfg(not(any(target_os = "linux", target_os = "windows")))]
+        {
+            compile_error!("Missing platform support");
+        }
     };
 
     match gettextrs::bindtextdomain(globals::GETTEXT_PACKAGE, localedir) {
