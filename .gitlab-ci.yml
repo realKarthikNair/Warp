@@ -7,8 +7,8 @@ stages:
 variables:
   MANIFEST_PATH: "build-aux/app.drey.Warp.Devel.json"
   FLATPAK_MODULE: "warp"
-  RUNTIME: "master"
-  WINDOWS_RUNTIME: "nightly"
+  RUNTIME: "47"
+  WINDOWS_RUNTIME: "47"
   PACKAGE_REGISTRY_URL: "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/release/"
 
 flatpak:
@@ -70,7 +70,7 @@ cargo-about:
     - apt update
     - apt install -y jq
     - cargo install cargo-about
-    - cargo about -L error generate --all-features --fail --format json | jq > data/licenses.json
+    - bash ./build-aux/generate-licenses.bash
     - git diff --exit-code data/licenses.json
 
 pages:
