@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
-"POT-Creation-Date: 2024-03-06 16:57+0000\n"
-"PO-Revision-Date: 2024-03-20 21:03+0100\n"
+"POT-Creation-Date: 2024-09-29 15:03+0000\n"
+"PO-Revision-Date: 2024-09-29 21:05+0200\n"
 "Last-Translator: Jürgen Benvenuti <gastornis@posteo.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "Language: de\n"
@@ -18,14 +18,14 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.4.4\n"
 
-#: data/app.drey.Warp.desktop.in.in:3 data/app.drey.Warp.metainfo.xml.in.in:6
+#: data/app.drey.Warp.desktop.in.in:3 data/app.drey.Warp.metainfo.xml.in.in:4
 #: src/main.rs:122 src/ui/window.ui:81
 msgid "Warp"
 msgstr "Warp"
 
-#: data/app.drey.Warp.desktop.in.in:4 data/app.drey.Warp.metainfo.xml.in.in:7
+#: data/app.drey.Warp.desktop.in.in:4 data/app.drey.Warp.metainfo.xml.in.in:5
 #: src/ui/welcome_dialog.ui:24
 msgid "Fast and secure file transfer"
 msgstr "Schnelle und sichere Dateiübertragung"
@@ -34,7 +34,12 @@ msgstr "Schnelle und sichere Dateiübertragung"
 msgid "Gnome;GTK;Wormhole;Magic-Wormhole;"
 msgstr "Gnome;GTK;Wormhole;Magic-Wormhole;Wurmloch;"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:9
+#. developer_name tag deprecated with Appstream 1.0
+#: data/app.drey.Warp.metainfo.xml.in.in:9 src/ui/application.rs:248
+msgid "Fina Wilke"
+msgstr "Fina Wilke"
+
+#: data/app.drey.Warp.metainfo.xml.in.in:43
 msgid ""
 "Warp allows you to securely send files to each other via the internet or "
 "local network by exchanging a word-based code."
@@ -42,7 +47,7 @@ msgstr ""
 "Warp ermöglicht es Ihnen, Dateien über das Internet oder über ein lokales "
 "Netzwerk sicher zu versenden, indem ein wortbasierter Code ausgetauscht wird."
 
-#: data/app.drey.Warp.metainfo.xml.in.in:13
+#: data/app.drey.Warp.metainfo.xml.in.in:47
 msgid ""
 "The best transfer method will be determined using the “Magic Wormhole” "
 "protocol which includes local network transfer if possible."
@@ -50,31 +55,31 @@ msgstr ""
 "Die beste Dateiübertragungsmethode wird mit dem »Magic Wormhole«-Protokoll "
 "ermittelt. Wenn möglich, wird lokale Netzwerkübertragung verwendet."
 
-#: data/app.drey.Warp.metainfo.xml.in.in:17
+#: data/app.drey.Warp.metainfo.xml.in.in:51
 msgid "Features"
 msgstr "Funktionen"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:19
+#: data/app.drey.Warp.metainfo.xml.in.in:53
 msgid "Send files between multiple devices"
 msgstr "Dateien zwischen mehreren Geräten versenden"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:20
+#: data/app.drey.Warp.metainfo.xml.in.in:54
 msgid "Every file transfer is encrypted"
 msgstr "Jede Dateiübertragung ist verschlüsselt"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:21
+#: data/app.drey.Warp.metainfo.xml.in.in:55
 msgid "Directly transfer files on the local network if possible"
 msgstr "Wenn möglich, Dateien direkt über das lokale Netzwerk versenden"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:22
+#: data/app.drey.Warp.metainfo.xml.in.in:56
 msgid "An internet connection is required"
 msgstr "Eine Internetverbindung wird benötigt"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:23
+#: data/app.drey.Warp.metainfo.xml.in.in:57
 msgid "QR Code support"
 msgstr "QR-Code-Unterstützung"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:24
+#: data/app.drey.Warp.metainfo.xml.in.in:58
 msgid ""
 "Compatibility with the Magic Wormhole command line client and all other "
 "compatible apps"
@@ -82,24 +87,29 @@ msgstr ""
 "Kompatibilität mit dem »Magic Wormhole«-Kommandozeilenprogramm und allen "
 "anderen kompatiblen Anwendungen"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:30
+#: data/app.drey.Warp.metainfo.xml.in.in:64
+#: data/app.drey.Warp.metainfo.xml.in.in:84
 msgid "Main Window"
 msgstr "Hauptfenster"
 
 #. Translators: Entry placeholder; This is a noun
-#: data/app.drey.Warp.metainfo.xml.in.in:34 src/ui/window.ui:199
+#: data/app.drey.Warp.metainfo.xml.in.in:68
+#: data/app.drey.Warp.metainfo.xml.in.in:88 src/ui/window.ui:205
 msgid "Transmit Code"
 msgstr "Übertragungscode"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:38
+#: data/app.drey.Warp.metainfo.xml.in.in:72
+#: data/app.drey.Warp.metainfo.xml.in.in:92
 msgid "Accept File Transfer"
 msgstr "Dateiübertragung akzeptieren"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:42 src/ui/action_view.rs:645
+#: data/app.drey.Warp.metainfo.xml.in.in:76
+#: data/app.drey.Warp.metainfo.xml.in.in:96 src/ui/action_view.rs:646
 msgid "Receiving File"
 msgstr "Datei empfangen"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:46 src/ui/action_view.rs:654
+#: data/app.drey.Warp.metainfo.xml.in.in:80
+#: data/app.drey.Warp.metainfo.xml.in.in:100 src/ui/action_view.rs:655
 msgid "File Transfer Complete"
 msgstr "Dateiübertragung abgeschlossen"
 
@@ -194,54 +204,54 @@ msgid "Copied Code to Clipboard"
 msgstr "Code in die Zwischenablage kopiert"
 
 #. Translators: Notification when clicking on "Copy Link to Clipboard" button
-#: src/ui/action_view.rs:277
+#: src/ui/action_view.rs:273
 msgid "Copied Link to Clipboard"
 msgstr "Link in die Zwischenablage kopiert"
 
-#: src/ui/action_view.rs:291
+#: src/ui/action_view.rs:287
 msgid "Copied Error to Clipboard"
 msgstr "Fehler in die Zwischenablage kopiert"
 
-#: src/ui/action_view.rs:293
+#: src/ui/action_view.rs:289
 msgid "No error available"
 msgstr "Kein Fehler verfügbar"
 
-#: src/ui/action_view.rs:458
+#: src/ui/action_view.rs:454
 msgid "Creating Archive"
 msgstr "Archiv erstellen"
 
-#: src/ui/action_view.rs:462
+#: src/ui/action_view.rs:458
 msgid "Compressing folder “{}”"
 msgstr "Ordner »{}« wird komprimiert"
 
 #. Translators: Title
-#: src/ui/action_view.rs:478 src/ui/action_view.rs:536
+#: src/ui/action_view.rs:474 src/ui/action_view.rs:537
 msgid "Connecting"
 msgstr "Verbinden"
 
 #. Translators: Description, Filename
-#: src/ui/action_view.rs:481
+#: src/ui/action_view.rs:477
 msgid "Requesting file transfer"
 msgstr "Dateiübertragung wird angefordert"
 
 #. Translators: Description, argument is filename
-#: src/ui/action_view.rs:502
+#: src/ui/action_view.rs:498
 msgid "Ready to send “{}”."
 msgstr "Bereit zum Senden von »{}«."
 
 #. Translators: Help dialog line 1, Code words and QR code visible,
-#: src/ui/action_view.rs:507
+#: src/ui/action_view.rs:503
 msgid ""
 "The receiver needs to enter or scan this code to begin the file transfer."
 msgstr ""
 "Die empfangende Person muss diesen Code eingeben oder scannen, um die "
 "Dateiübertragung zu beginnen."
 
-#: src/ui/action_view.rs:511
+#: src/ui/action_view.rs:507
 msgid "The QR code is compatible with the following apps: {}."
 msgstr "Der QR-Code ist kompatibel mit den folgenden Anwendungen: {}."
 
-#: src/ui/action_view.rs:519
+#: src/ui/action_view.rs:515
 msgid ""
 "You have entered a custom rendezvous server URL in preferences. Please "
 "verify the receiver also uses the same rendezvous server."
@@ -250,32 +260,32 @@ msgstr ""
 "hinterlegt. Bitte stellen Sie sicher, dass die empfangende Person den "
 "gleichen Rendezvous-Server nutzt."
 
-#: src/ui/action_view.rs:524
+#: src/ui/action_view.rs:520
 msgid "Click the QR code to copy the link to the clipboard."
 msgstr ""
 "Klicken Sie auf den QR-Code, um den Link in die Zwischenablage zu kopieren."
 
 #. Translators: Description, Transfer Code
-#: src/ui/action_view.rs:539
+#: src/ui/action_view.rs:540
 msgid "Connecting to peer with code “{}”"
 msgstr "Verbindungsaufbau mit Gegenüber. Code: »{}«"
 
-#: src/ui/action_view.rs:549
+#: src/ui/action_view.rs:550
 msgid "Connected to Peer"
 msgstr "Mit Gegenüber verbunden"
 
 #. Translators: Description
-#: src/ui/action_view.rs:558
+#: src/ui/action_view.rs:559
 msgid "Preparing to send file"
 msgstr "Versenden der Datei wird vorbereitet"
 
 #. Translators: Description
-#: src/ui/action_view.rs:565
+#: src/ui/action_view.rs:566
 msgid "Preparing to receive file"
 msgstr "Empfangen der Datei wird vorbereitet"
 
 #. Translators: File receive confirmation message dialog; Filename, File size
-#: src/ui/action_view.rs:579
+#: src/ui/action_view.rs:580
 msgid ""
 "Your peer wants to send you “{0}” (Size: {1}).\n"
 "Do you want to download this file? The default action will save the file to "
@@ -285,11 +295,11 @@ msgstr ""
 "Möchten Sie diese Datei herunterladen? Standardmäßig wird die Datei in Ihren "
 "»Downloads«-Ordner gespeichert."
 
-#: src/ui/action_view.rs:584
+#: src/ui/action_view.rs:585
 msgid "Ready to Receive File"
 msgstr "Bereit zum Empfangen von Dateien"
 
-#: src/ui/action_view.rs:586
+#: src/ui/action_view.rs:587
 msgid ""
 "A file is ready to be transferred. The transfer needs to be acknowledged."
 msgstr ""
@@ -297,66 +307,66 @@ msgstr ""
 "werden."
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:616
+#: src/ui/action_view.rs:617
 msgid "File “{}” via local network direct transfer"
 msgstr "Datei »{}« über Direktübertragung im lokalen Netzwerk"
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:619
+#: src/ui/action_view.rs:620
 msgid "File “{}” via direct transfer"
 msgstr "Datei »{}« über Direktübertragung"
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:625
+#: src/ui/action_view.rs:626
 msgid "File “{0}” via relay {1}"
 msgstr "Datei »{0}« über Relay {1}"
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:628
+#: src/ui/action_view.rs:629
 msgid "File “{}” via relay"
 msgstr "Datei »{}« über Relay"
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:632
+#: src/ui/action_view.rs:633
 msgid "File “{}” via Unknown connection method"
 msgstr "Datei »{}« über unbekannte Verbindungsmethode"
 
 #. Translators: Title
-#: src/ui/action_view.rs:639
+#: src/ui/action_view.rs:640
 msgid "Sending File"
 msgstr "Datei senden"
 
 #. Translators: Description, Filename
-#: src/ui/action_view.rs:662
+#: src/ui/action_view.rs:663
 msgid "Successfully sent file “{}”"
 msgstr "Datei »{}« erfolgreich gesendet"
 
 #. Translators: Filename
-#: src/ui/action_view.rs:680
+#: src/ui/action_view.rs:681
 msgid "File has been saved to the selected folder as “{}”"
 msgstr "Datei wurde als »{}« in den ausgewählten Ordner gespeichert"
 
 #. Translators: Filename
-#: src/ui/action_view.rs:687
+#: src/ui/action_view.rs:688
 msgid "File has been saved to the Downloads folder as “{}”"
 msgstr "Datei wurde als »{}« in den »Downloads«-Ordner gespeichert"
 
 #. Translators: Title
-#: src/ui/action_view.rs:713 src/ui/action_view.ui:288
+#: src/ui/action_view.rs:714 src/ui/action_view.ui:288
 msgid "File Transfer Failed"
 msgstr "Dateiübertragung fehlgeschlagen"
 
-#: src/ui/action_view.rs:715
+#: src/ui/action_view.rs:716
 msgid "The file transfer failed: {}"
 msgstr "Die Dateiübertragung ist fehlgeschlagen: {}"
 
 # Variante: Angegebene Datei / angegebenes Verzeichnis existiert nicht - jb
 #. Translators: When opening a file
-#: src/ui/action_view.rs:829
+#: src/ui/action_view.rs:834
 msgid "Specified file / directory does not exist"
 msgstr "Angegebene(s) Datei / Verzeichnis existiert nicht"
 
-#: src/ui/action_view.rs:851
+#: src/ui/action_view.rs:856
 msgid ""
 "Error parsing rendezvous server URL. An invalid URL was entered in the "
 "settings."
@@ -364,18 +374,18 @@ msgstr ""
 "Verarbeiten der Adresse des Rendezvous-Servers fehlgeschlagen. In den "
 "Einstellungen wurde eine ungültige Adresse eingegeben."
 
-#: src/ui/action_view.rs:858
+#: src/ui/action_view.rs:863
 msgid "Error parsing transit URL. An invalid URL was entered in the settings."
 msgstr ""
 "Verarbeiten der Transit-Adresse fehlgeschlagen. In den Einstellungen wurde "
 "eine ungültige Adresse angegeben."
 
-#: src/ui/action_view.rs:947
+#: src/ui/action_view.rs:959
 msgid "Invalid path selected: {}"
 msgstr "Ungültiger Pfad ausgewählt: {}"
 
 #. Translators: Above progress bar for creating an archive to send as a folder
-#: src/ui/action_view.rs:1192
+#: src/ui/action_view.rs:1204
 msgid "{} File - Size: {}"
 msgid_plural "{} Files - Size: {}"
 msgstr[0] "{} Datei - Größe: {}"
@@ -439,92 +449,97 @@ msgid "Co_py Error Message"
 msgstr "Fehlermeldung ko_pieren"
 
 #. Translators: Button
-#: src/ui/action_view.ui:309
+#: src/ui/action_view.ui:310
 msgid "_Cancel"
 msgstr "A_bbrechen"
 
-#: src/ui/application.rs:63
+#: src/ui/application.rs:64
 msgid "Unable to use transfer link: another transfer already in progress"
 msgstr ""
 "Übertragungslink konnte nicht verwendet werden: Eine andere Übertragung "
 "läuft bereits"
 
-#: src/ui/application.rs:233
-msgid "Fina Wilke"
-msgstr "Fina Wilke"
-
-#: src/ui/application.rs:234
+#: src/ui/application.rs:249
 msgid "Tobias Bernard"
 msgstr "Tobias Bernard"
 
-#: src/ui/application.rs:234
+#: src/ui/application.rs:249
 msgid "Sophie Herold"
 msgstr "Sophie Herold"
 
-#: src/ui/application.rs:235
+#: src/ui/application.rs:250
 msgid "translator-credits"
 msgstr ""
 "Philipp Kiemle <philipp.kiemle@gmail.com>\n"
 "Jürgen Benvenuti <gastornis@posteo.org>"
 
-#: src/ui/application.rs:250
+#: src/ui/application.rs:270
 msgid "Sending a File"
 msgstr "Sende Datei"
 
-#: src/ui/application.rs:251
+#: src/ui/application.rs:271
 msgid "Receiving a File"
 msgstr "Eine Datei empfangen"
 
-#: src/ui/camera.rs:211 src/ui/camera.rs:328
+#: src/ui/camera.rs:251 src/ui/camera.rs:368
 msgid ""
 "Camera access denied. Open Settings and allow Warp to access the camera."
 msgstr ""
 "Kamerazugriff verweigert. Öffnen Sie die Einstellungen und erlauben Sie Warp "
 "den Kamerazugriff."
 
-#: src/ui/camera.rs:215
+#: src/ui/camera.rs:255
 msgid "Failed to start the camera: {}"
 msgstr "Starten der Kamera fehlgeschlagen: {}"
 
-#: src/ui/camera.rs:218
+#: src/ui/camera.rs:258
 msgid "Error"
 msgstr "Fehler"
 
-#: src/ui/camera.rs:229
+#: src/ui/camera.rs:269
 msgid "Error talking to the camera portal"
 msgstr "Fehler bei der Kommunikation mit dem Kameraportal"
 
-#: src/ui/camera.rs:458
+#: src/ui/camera.rs:503
 msgid "Could not use the camera portal: {}"
 msgstr "Das Kameraportal konnte nicht verwendet werden: {}"
 
-#: src/ui/camera.rs:465
+#: src/ui/camera.rs:510
 msgid "Could not start the device provider: {}"
 msgstr "Der Geräteanbieter konnte nicht gestartet werden: {}"
 
-#: src/ui/camera.rs:496
+#: src/ui/camera.rs:541
 msgid "No Camera Found"
 msgstr "Keine Kamera gefunden"
 
-#: src/ui/camera.rs:498
+#: src/ui/camera.rs:543
 msgid "Connect a camera to scan QR codes"
 msgstr "Verbinden Sie eine Kamera, um QR-Codes zu scannen"
 
-#: src/ui/camera.ui:11 src/ui/window.rs:105
+#: src/ui/camera.ui:11 src/ui/window.ui:213
 msgid "Scan QR Code"
 msgstr "QR-Code scannen"
 
-#: src/ui/camera.ui:49
+#: src/ui/camera.ui:48
 msgid "_Retry"
 msgstr "_Wiederholen"
 
-#: src/ui/camera.ui:60
+#: src/ui/camera.ui:59
 msgid "_Troubleshooting"
 msgstr "_Fehlerbehandlung"
 
 #: src/ui/fs.rs:16
 msgid "Downloads dir missing. Please set XDG_DOWNLOAD_DIR"
 msgstr "Downloads-Verzeichnis fehlt. Bitte setzen Sie XDG_DOWNLOAD_DIR"
+
+#: src/ui/licenses.rs:149
+msgid "Licensed under the <a href=\"{}\">{}</a>."
+msgstr "Lizenziert unter der <a href=\"{}\">{}</a>."
+
+#. Translators: License information without a link to the software license
+#: src/ui/licenses.rs:154
+msgid "Licensed under the {}."
+msgstr "Lizenziert unter der {}."
 
 #: src/ui/preferences.rs:97
 msgid ""
@@ -644,25 +659,25 @@ msgstr ""
 "wird verwendet.\n"
 "Fehler: {1}"
 
-#: src/ui/window.rs:234
+#: src/ui/window.rs:242
 msgid "Error saving configuration file: {}"
 msgstr "Speichern der Konfigurationsdatei fehlgeschlagen: {}"
 
-#: src/ui/window.rs:340
+#: src/ui/window.rs:360
 msgid "Select File to Send"
 msgstr "Eine Datei zum Versenden auswählen"
 
-#: src/ui/window.rs:348
+#: src/ui/window.rs:368
 msgid "Select Folder to Send"
 msgstr "Einen Ordner zum Versenden auswählen"
 
-#: src/ui/window.rs:405
+#: src/ui/window.rs:425
 msgid "“{}” appears to be an invalid Transmit Code. Please try again."
 msgstr ""
 "»{}« scheint ein ungültiger Übertragungscode zu sein. Bitte versuchen Sie es "
 "erneut."
 
-#: src/ui/window.rs:526
+#: src/ui/window.rs:546
 msgid "Sending files with a preconfigured code is not yet supported"
 msgstr ""
 "Das Senden von Dateien mittels eines vordefinierten Codes wird noch nicht "
@@ -715,7 +730,7 @@ msgstr "_Abbrechen"
 msgid "Unable to Open File"
 msgstr "Datei kann nicht geöffnet werden"
 
-#: src/ui/window.ui:50 src/util/error.rs:191
+#: src/ui/window.ui:50 src/util/error.rs:189
 msgid "_Close"
 msgstr "_Schließen"
 
@@ -761,41 +776,41 @@ msgid "Enter the transmit code from the sender"
 msgstr "Den Übertragungscode der sendenden Person eingeben"
 
 #. Translators: Button
-#: src/ui/window.ui:221
+#: src/ui/window.ui:233
 msgid "Receive _File"
 msgstr "_Datei empfangen"
 
-#: src/ui/window.ui:247
+#: src/ui/window.ui:259
 msgid "File Transfer"
 msgstr "Dateiübertragung"
 
-#: src/util.rs:33 src/util.rs:38
+#: src/util.rs:34 src/util.rs:39
 msgid "Failed to open downloads folder."
 msgstr "Downloads-Ordner konnte nicht geöffnet werden."
 
-#: src/util.rs:198 src/util.rs:271
+#: src/util.rs:206 src/util.rs:279
 msgid "The URI format is invalid"
 msgstr "Das URI-Format ist ungültig"
 
-#: src/util.rs:202 src/util.rs:206
+#: src/util.rs:210 src/util.rs:214
 msgid "The code does not match the required format"
 msgstr "Der Code stimmt nicht mit dem erforderlichen Format überein"
 
-#: src/util.rs:221 src/util.rs:227
+#: src/util.rs:229 src/util.rs:235
 msgid "Unknown URI version: {}"
 msgstr "Unbekannte URI-Version: {}"
 
-#: src/util.rs:236
+#: src/util.rs:244
 msgid "The URI parameter “rendezvous” contains an invalid URL: “{}”"
 msgstr "Der URI-Parameter »rendezvous« enthält eine ungültige Adresse: »{}«"
 
-#: src/util.rs:248
+#: src/util.rs:256
 msgid "The URI parameter “role” must be “follower” or “leader” (was: “{}”)"
 msgstr ""
 "Der URI-Parameter »role« muss entweder »follower« oder »leader« sein (war: "
 "»{}«)"
 
-#: src/util.rs:255
+#: src/util.rs:263
 msgid "Unknown URI parameter “{}”"
 msgstr "Unbekannter URI-Parameter »{}«"
 
@@ -803,11 +818,11 @@ msgstr "Unbekannter URI-Parameter »{}«"
 msgid "An error occurred"
 msgstr "Ein Fehler ist aufgetreten"
 
-#: src/util/error.rs:202 src/util/error.rs:285
+#: src/util/error.rs:200 src/util/error.rs:283
 msgid "Corrupt or unexpected message received"
 msgstr "Beschädigte oder unerwartete Nachricht erhalten"
 
-#: src/util/error.rs:207
+#: src/util/error.rs:205
 msgid ""
 "The rendezvous server will not allow further connections for this code. A "
 "new code needs to be generated."
@@ -815,7 +830,7 @@ msgstr ""
 "Der Rendezvous-Server nimmt keine weiteren Verbindungen für diesen Code an. "
 "Ein neuer Code muss erzeugt werden."
 
-#: src/util/error.rs:209
+#: src/util/error.rs:207
 msgid ""
 "The rendezvous server removed the code due to inactivity. A new code needs "
 "to be generated."
@@ -823,12 +838,12 @@ msgstr ""
 "Der Rendezvous-Server hat den Code aufgrund von Inaktivität entfernt. Ein "
 "neuer Code muss erzeugt werden."
 
-#: src/util/error.rs:211
+#: src/util/error.rs:209
 msgid "The rendezvous server responded with an unknown message: {}"
 msgstr ""
 "Der Rendezvous-Server hat mit einer unbekannten Nachricht geantwortet: {}"
 
-#: src/util/error.rs:214
+#: src/util/error.rs:212
 msgid ""
 "Error connecting to the rendezvous server.\n"
 "You have entered a custom rendezvous server URL in preferences. Please "
@@ -839,7 +854,7 @@ msgstr ""
 "eingegeben. Bitte überprüfen Sie, ob die Adresse korrekt eingegeben wurde "
 "und ob der Server funktioniert."
 
-#: src/util/error.rs:216
+#: src/util/error.rs:214
 msgid ""
 "Error connecting to the rendezvous server.\n"
 "Please try again later / verify you are connected to the internet."
@@ -848,7 +863,7 @@ msgstr ""
 "Bitte versuchen Sie es später erneut und überprüfen Sie Ihre "
 "Internetverbindung."
 
-#: src/util/error.rs:220
+#: src/util/error.rs:218
 msgid ""
 "Encryption key confirmation failed. If you or your peer didn't mistype the "
 "code, this is a sign of an attacker guessing passwords. Please try again "
@@ -858,55 +873,51 @@ msgstr ""
 "der Code falsch eingegeben, oder ein Angreifer versucht gerade, Passwörter "
 "zu erraten. Bitte versuchen Sie es später noch einmal."
 
-#: src/util/error.rs:222
+#: src/util/error.rs:220
 msgid "Cannot decrypt a received message"
 msgstr "Eine empfangene Nachricht konnte nicht entschlüsselt werden"
 
-#: src/util/error.rs:223 src/util/error.rs:296 src/util/error.rs:302
+#: src/util/error.rs:221 src/util/error.rs:294 src/util/error.rs:300
 msgid "An unknown error occurred"
 msgstr "Ein unbekannter Fehler ist aufgetreten"
 
-#: src/util/error.rs:229
+#: src/util/error.rs:227
 msgid "File / Directory not found"
 msgstr "Datei / Ordner nicht gefunden"
 
-#: src/util/error.rs:230
+#: src/util/error.rs:228
 msgid "Permission denied"
 msgstr "Zugriff verweigert"
 
-#: src/util/error.rs:237
+#: src/util/error.rs:235
 msgid "Canceled"
 msgstr "Abgebrochen"
 
-#: src/util/error.rs:239
+#: src/util/error.rs:237
 msgid "Portal service response: Permission denied"
 msgstr "Portaldienst-Fehler: Zugriff verweigert"
 
-#: src/util/error.rs:242
+#: src/util/error.rs:240
 msgid "The portal service has failed: {}"
 msgstr "Der Portaldienst ist fehlgeschlagen: {}"
 
-#: src/util/error.rs:245
+#: src/util/error.rs:243
 msgid "Error communicating with the portal service via zbus: {}"
 msgstr "Fehler bei der Kommunikation mit dem Portaldienst über zbus: {}"
 
-#: src/util/error.rs:248
-msgid "Portal Error: {}"
-msgstr "Portalfehler: {}"
-
-#: src/util/error.rs:249
+#: src/util/error.rs:246 src/util/error.rs:247
 msgid "Portal error: {}"
 msgstr "Portalfehler: {}"
 
-#: src/util/error.rs:260
+#: src/util/error.rs:258
 msgid "Transfer was not acknowledged by peer"
 msgstr "Übertragung wurde vom Gegenüber nicht bestätigt"
 
-#: src/util/error.rs:262
+#: src/util/error.rs:260
 msgid "The received file is corrupted"
 msgstr "Die empfangene Datei ist beschädigt"
 
-#: src/util/error.rs:268
+#: src/util/error.rs:266
 msgid ""
 "The file contained a different amount of bytes than advertised! Sent {} "
 "bytes, but should have been {}"
@@ -914,37 +925,40 @@ msgstr ""
 "Die empfangene Datei hat eine andere Dateigröße als erwartet! Es wurden {} "
 "Bytes empfangen, aber es hätten {} Bytes sein sollen"
 
-#: src/util/error.rs:273
+#: src/util/error.rs:271
 msgid "The other side has cancelled the transfer"
 msgstr "Die andere Seite hat die Dateiübertragung abgebrochen"
 
-#: src/util/error.rs:275
+#: src/util/error.rs:273
 msgid "The other side has rejected the transfer"
 msgstr "Die andere Seite hat die Dateiübertragung abgelehnt"
 
-#: src/util/error.rs:277
+#: src/util/error.rs:275
 msgid "Something went wrong on the other side: {}"
 msgstr "Auf der anderen Seite ist ein Fehler aufgetreten: {}"
 
-#: src/util/error.rs:292
+#: src/util/error.rs:290
 msgid "Error while establishing file transfer connection"
 msgstr "Aufbau einer Verbindung zur Dateiübertragung fehlgeschlagen"
 
-#: src/util/error.rs:294
+#: src/util/error.rs:292
 msgid "Unknown file transfer error"
 msgstr "Unbekannter Dateiübertragungsfehler"
 
-#: src/util/error.rs:303
+#: src/util/error.rs:301
 msgid "An unknown error occurred while creating a zip file: {}"
 msgstr ""
 "Beim Erstellen einer zip-Datei ist ein unbekannter Fehler aufgetreten: {}"
 
-#: src/util/error.rs:304
+#: src/util/error.rs:302
 msgid ""
 "An unexpected error occurred. Please report an issue with the error message."
 msgstr ""
 "Ein unerwarteter Fehler ist aufgetreten. Bitte melden Sie diesen Fehler mit "
 "der Fehlermeldung."
+
+#~ msgid "Portal Error: {}"
+#~ msgstr "Portalfehler: {}"
 
 #~ msgid "Portal Error: Failed: {}"
 #~ msgstr "Portalfehler: Fehlgeschlagen: {}"
