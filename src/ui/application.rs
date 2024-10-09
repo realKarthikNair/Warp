@@ -1,14 +1,10 @@
 use crate::gettext::*;
 use crate::globals;
-use crate::ui::licenses::AboutDialogLicenseExt;
-use crate::ui::preferences::WarpPreferencesDialog;
 use crate::ui::window::WarpApplicationWindow;
-use crate::util::future::main_async_local;
-use crate::util::{show_dir, TransferDirection};
+use crate::util::TransferDirection;
 use adw::prelude::*;
 use adw::subclass::prelude::*;
 use glib::clone;
-use std::path::PathBuf;
 
 mod imp {
     use super::*;
@@ -91,6 +87,8 @@ mod imp {
             app.setup_gactions();
             app.setup_accels();
         }
+
+        fn shutdown(&self) {}
     }
 
     impl GtkApplicationImpl for WarpApplication {}
@@ -178,17 +176,6 @@ impl WarpApplication {
         ));
         self.add_action(&action_help);
 
-        // Preferences
-        let action_preferences = gio::SimpleAction::new("preferences", None);
-        action_preferences.connect_activate(clone!(
-            #[weak(rename_to = app)]
-            self,
-            move |_, _| {
-                WarpPreferencesDialog::new().present(Some(&app.main_window()));
-            }
-        ));
-        self.add_action(&action_preferences);
-
         // Quit
         let action_quit = gio::SimpleAction::new("quit", None);
         action_quit.connect_activate(clone!(
@@ -201,60 +188,12 @@ impl WarpApplication {
             }
         ));
         self.add_action(&action_quit);
-
-        // About
-        let action_about = gio::SimpleAction::new("about", None);
-        action_about.connect_activate(clone!(
-            #[weak(rename_to = app)]
-            self,
-            move |_, _| {
-                app.show_about_dialog();
-            }
-        ));
-        self.add_action(&action_about);
-
-        // Show received file in file browser (called from notification)
-        let action_show_file =
-            gio::SimpleAction::new("show-file", Some(&PathBuf::static_variant_type()));
-        action_show_file.connect_activate(move |_action, data| {
-            if let Some(data) = data {
-                let path = PathBuf::from_variant(data);
-                if let Some(filename) = path {
-                    main_async_local(crate::util::error::AppError::handle, async move {
-                        show_dir(&filename).await
-                    });
-                }
-            }
-        });
-
-        self.add_action(&action_show_file);
     }
 
     // Sets up keyboard shortcuts
     fn setup_accels(&self) {
         self.set_accels_for_action("app.help", &["F1"]);
-        self.set_accels_for_action("win.show-help-overlay", &["<Control>question"]);
         self.set_accels_for_action("app.quit", &["<Control>q"]);
-        self.set_accels_for_action("win.open-file", &["<Control>o"]);
-        self.set_accels_for_action("win.open-folder", &["<Control>d"]);
-        self.set_accels_for_action("win.receive-file", &["<Control>r"]);
-        self.set_accels_for_action("app.preferences", &["<Control>comma"]);
-    }
-
-    fn show_about_dialog(&self) {
-        let dialog =
-            adw::AboutDialog::from_appdata("app/drey/Warp/metainfo.xml", Some(globals::VERSION));
-
-        dialog.set_developers(&[&gettext("Fina Wilke")]);
-        dialog.set_artists(&[&gettext("Tobias Bernard"), &gettext("Sophie Herold")]);
-        dialog.set_translator_credits(&gettext("translator-credits"));
-        glib::spawn_future_local(glib::clone!(
-            #[weak]
-            dialog,
-            async move { dialog.add_embedded_license_information().await }
-        ));
-
-        dialog.present(Some(&self.main_window()));
     }
 
     pub fn run(&self) {

@@ -697,7 +697,7 @@ impl ActionView {
                     imp.open_button.set_visible(true);
                     imp.open_dir_button.set_visible(true);
                     notification.set_default_action_and_target_value(
-                        "app.show-file",
+                        crate::ui::window::Action::ShowFile.as_ref(),
                         Some(&path.to_variant()),
                     );
                 }

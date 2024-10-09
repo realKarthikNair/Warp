@@ -23,6 +23,7 @@ src/ui/welcome_dialog.rs
 src/ui/welcome_dialog.ui
 src/ui/window.rs
 src/ui/window.ui
+src/ui/window/actions.rs
 src/util.rs
 src/util/error.rs
 src/util/future.rs

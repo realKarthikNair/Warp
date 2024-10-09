@@ -1,3 +1,7 @@
+mod actions;
+
+pub use actions::Action;
+
 use crate::config::PersistentConfig;
 use crate::gettext::gettextf;
 use crate::gettext::*;
@@ -15,6 +19,8 @@ use crate::util::{
     error::UiError, extract_transmit_code, extract_transmit_uri,
     future::main_async_local_infallible, TransferDirection, WormholeTransferURI,
 };
+
+use super::licenses::AboutDialogLicenseExt;
 
 mod imp {
     use super::*;
@@ -81,6 +87,7 @@ mod imp {
         fn class_init(klass: &mut Self::Class) {
             Self::bind_template(klass);
             klass.bind_template_instance_callbacks();
+            actions::Action::install(klass);
         }
 
         // You must call `Widget`'s `init_template()` within `instance_init()`.
@@ -141,7 +148,6 @@ mod imp {
             ));
 
             obj.setup_help_overlay();
-            obj.setup_gactions();
 
             let drop_type = gio::File::static_type();
             let drag_action = gdk::DragAction::COPY;
@@ -216,6 +222,42 @@ mod imp {
 
     impl ApplicationWindowImpl for WarpApplicationWindow {}
     impl AdwApplicationWindowImpl for WarpApplicationWindow {}
+
+    impl WarpApplicationWindow {
+        pub fn open_help(&self, page: Option<&str>) {
+            /* `help:` URIs are a Linux specific thing and won't work on Windows. There, we'll just open the path to the
+             * respective HTML files and hope that it launches a browser …
+             */
+            let help_uri = if cfg!(target_os = "linux") {
+                format!("help:warp/{}", page.unwrap_or_default())
+            } else {
+                let file = page.unwrap_or("index");
+                let mut uri = globals::WINDOWS_BASE_PATH.clone();
+                /* Hardcode the "C" language for now, so no translated help files *sigh*
+                 *
+                 * The problem is that gettext is a mess and does not provide us with a good way
+                 * to query the currenty used language. In theory it can do that, but the values
+                 * it returned on Windows did not work as they should.
+                 */
+                uri.push(format!("share\\help\\C\\warp\\{file}.html"));
+                /* People with non-UTF-8 paths will at least get a good error message */
+                let mut uri = uri.to_string_lossy().into_owned();
+                uri.insert_str(0, "file:///");
+                uri
+            };
+
+            log::debug!("Opening '{}' to show help", help_uri);
+            let context = gtk::prelude::WidgetExt::display(&*self.obj()).app_launch_context();
+
+            glib::MainContext::default().spawn_local(async move {
+                if let Err(err) =
+                    gio::AppInfo::launch_default_for_uri_future(&help_uri, Some(&context)).await
+                {
+                    log::error!("Error launching help: {err:?}");
+                }
+            });
+        }
+    }
 }
 
 glib::wrapper! {
@@ -254,52 +296,20 @@ impl WarpApplicationWindow {
         self.set_help_overlay(shortcuts.as_ref());
     }
 
-    fn setup_gactions(&self) {
-        // Open folder
-        let action_open_folder = gio::SimpleAction::new("open-folder", None);
-        action_open_folder.connect_activate(clone!(
-            #[weak(rename_to = obj)]
-            self,
-            move |_, _| {
-                if !obj.action_view_showing() {
-                    obj.imp().stack.set_visible_child_name("send");
-                    glib::MainContext::default().spawn_local(async move {
-                        obj.select_folder().await;
-                    });
-                }
-            }
-        ));
-        self.add_action(&action_open_folder);
+    pub fn show_about_dialog(&self) {
+        let dialog =
+            adw::AboutDialog::from_appdata("app/drey/Warp/metainfo.xml", Some(globals::VERSION));
 
-        // Open (send) file
-        let action_send = gio::SimpleAction::new("open-file", None);
-        action_send.connect_activate(clone!(
-            #[weak(rename_to = obj)]
-            self,
-            move |_, _| {
-                if !obj.action_view_showing() {
-                    obj.imp().stack.set_visible_child_name("send");
-                    glib::MainContext::default().spawn_local(async move {
-                        obj.select_file().await;
-                    });
-                }
-            },
+        dialog.set_developers(&[&gettext("Fina Wilke")]);
+        dialog.set_artists(&[&gettext("Tobias Bernard"), &gettext("Sophie Herold")]);
+        dialog.set_translator_credits(&gettext("translator-credits"));
+        glib::spawn_future_local(glib::clone!(
+            #[weak]
+            dialog,
+            async move { dialog.add_embedded_license_information().await }
         ));
-        self.add_action(&action_send);
 
-        // Receive file
-        let action_send = gio::SimpleAction::new("receive-file", None);
-        action_send.connect_activate(clone!(
-            #[weak(rename_to = obj)]
-            self,
-            move |_, _| {
-                if !obj.action_view_showing() {
-                    obj.imp().stack.set_visible_child_name("receive");
-                    obj.imp().code_entry.grab_focus();
-                }
-            }
-        ));
-        self.add_action(&action_send);
+        dialog.present(Some(self));
     }
 
     fn save_window_size(&self) {

@@ -18,13 +18,13 @@
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="title" translatable="yes" context="shortcut window">Show Shortcuts</property>
-                <property name="action-name">win.show-help-overlay</property>
+                <property name="accelerator">&lt;Ctrl&gt;question</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="title" translatable="yes" context="shortcut window">Show Preferences</property>
-                <property name="action-name">app.preferences</property>
+                <property name="accelerator">&lt;Ctrl&gt;comma</property>
               </object>
             </child>
             <child>
@@ -41,19 +41,19 @@
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="title" translatable="yes" context="shortcut window">Send File</property>
-                <property name="action-name">win.open-file</property>
+                <property name="accelerator">&lt;Ctrl&gt;O</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="title" translatable="yes" context="shortcut window">Send Folder</property>
-                <property name="action-name">win.open-folder</property>
+                <property name="accelerator">&lt;Ctrl&gt;D</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="title" translatable="yes" context="shortcut window">Receive File</property>
-                <property name="action-name">win.receive-file</property>
+                <property name="accelerator">&lt;Ctrl&gt;R</property>
               </object>
             </child>
           </object>
