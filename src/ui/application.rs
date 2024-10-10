@@ -87,8 +87,6 @@ mod imp {
             app.setup_gactions();
             app.setup_accels();
         }
-
-        fn shutdown(&self) {}
     }
 
     impl GtkApplicationImpl for WarpApplication {}
