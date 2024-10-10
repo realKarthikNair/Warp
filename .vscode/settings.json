@@ -2,14 +2,18 @@
     "files.watcherExclude": {
         "**/.git/objects/**": true,
         "**/.git/subtree-cache/**": true,
-        "**/node_modules/*/**": true,
         "**/.hg/store/**": true,
+        "**/node_modules/*/**": true,
         ".flatpak/**": true,
         "_build/**": true
     },
     "lldb.displayFormat": "auto",
     "lldb.dereferencePointers": true,
     "lldb.consoleMode": "commands",
+    "mesonbuild.configureOnOpen": false,
+    "mesonbuild.buildFolder": "_build",
+    "mesonbuild.mesonPath": "${workspaceFolder}/.flatpak/meson.sh",
+    "rust-analyzer.server.path": "${workspaceFolder}/.flatpak/rust-analyzer.sh",
     "rust-analyzer.runnables.command": "${workspaceFolder}/.flatpak/cargo.sh",
     "rust-analyzer.files.excludeDirs": [
         ".flatpak",
@@ -17,9 +21,5 @@
         "_build",
         "build",
         "builddir"
-    ],
-    "rust-analyzer.server.path": "${workspaceFolder}/.flatpak/rust-analyzer.sh",
-    "mesonbuild.configureOnOpen": false,
-    "mesonbuild.buildFolder": "_build",
-    "mesonbuild.mesonPath": "${workspaceFolder}/.flatpak/meson.sh"
+    ]
 }

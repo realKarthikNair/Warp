@@ -63,7 +63,7 @@ modules:
       - type: git
         disable-submodules: true
         url: https://gitlab.freedesktop.org/gstreamer/gstreamer.git
-        tag: "1.22.11"
+        tag: "1.24.8"
   - name: warp
     buildsystem: meson
     config-opts:
