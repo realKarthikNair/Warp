@@ -81,8 +81,6 @@ fn windows_hacks() {
     let _ = win32console::console::WinConsole::free_console();
     // ATTACH_PARENT_PROCESS = 0xFFFFFFFF
     let _ = win32console::console::WinConsole::attach_console(0xFFFFFFFF);
-
-    std::env::set_var("GDK_DEBUG", "gl-gles");
 }
 
 fn main() {
