@@ -6,6 +6,7 @@ use crate::globals::{TRANSMIT_CODE_FIND_REGEX, TRANSMIT_URI_FIND_REGEX};
 use gio::prelude::*;
 use std::fmt::Display;
 use std::str::FromStr;
+use wormhole::Code;
 
 pub mod error;
 pub mod future;
@@ -68,10 +69,10 @@ pub fn extract_transmit_uri(str: &str) -> Option<String> {
         .map(|m| m.as_str().to_owned())
 }
 
-pub fn extract_transmit_code(str: &str) -> Option<String> {
+pub fn extract_transmit_code(str: &str) -> Option<Code> {
     TRANSMIT_CODE_FIND_REGEX
         .find(str)
-        .map(|m| m.as_str().to_owned())
+        .and_then(|m| m.as_str().parse().ok())
 }
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
@@ -92,6 +93,12 @@ pub struct WormholeURIParseError(String);
 impl Display for WormholeURIParseError {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         self.0.fmt(f)
+    }
+}
+
+impl From<wormhole::ParseCodeError> for WormholeURIParseError {
+    fn from(value: wormhole::ParseCodeError) -> Self {
+        Self(AppError::from(value).gettext_error())
     }
 }
 
@@ -124,7 +131,7 @@ impl WormholeTransferURI {
     pub fn create_uri(&self) -> String {
         let mut uri = url::Url::parse(&format!(
             "wormhole-transfer:{}",
-            urlencoding::encode(&self.code)
+            urlencoding::encode(self.code.as_ref())
         ))
         .unwrap();
 
@@ -153,12 +160,12 @@ impl WormholeTransferURI {
     /// This assumes the rendezvous server URI inside the `AppConfig` is a valid URI
     pub fn from_app_cfg_with_code_direction(
         app_cfg: &wormhole::AppConfig<wormhole::transfer::AppVersion>,
-        code: &str,
+        code: wormhole::Code,
         direction: TransferDirection,
     ) -> Self {
         let rendezvous_server = url::Url::parse(&app_cfg.rendezvous_url).unwrap();
         Self {
-            code: wormhole::Code(code.to_owned()),
+            code,
             version: 0,
             rendezvous_server,
             direction,
@@ -218,8 +225,10 @@ impl TryFrom<url::Url> for WormholeTransferURI {
             )));
         }
 
+        let code: wormhole::Code = code.as_ref().parse()?;
+
         let mut this = WormholeTransferURI::new(
-            wormhole::Code(code.to_string()),
+            code,
             globals::WORMHOLE_DEFAULT_RENDEZVOUS_SERVER.clone(),
             TransferDirection::Receive,
         );
@@ -292,7 +301,7 @@ mod test {
     #[test]
     fn test_create_uri() {
         let params1 = WormholeTransferURI::new(
-            wormhole::Code("4-hurricane-equipment".to_owned()),
+            "4-hurricane-equipment".parse().unwrap(),
             globals::WORMHOLE_DEFAULT_RENDEZVOUS_SERVER.clone(),
             TransferDirection::Receive,
         );
@@ -302,7 +311,7 @@ mod test {
         );
 
         let params2 = WormholeTransferURI::new(
-            wormhole::Code("8-🙈-🙉-🙊".to_owned()),
+            "8-🙈-🙉-🙊".parse().unwrap(),
             globals::WORMHOLE_DEFAULT_RENDEZVOUS_SERVER.clone(),
             TransferDirection::Receive,
         );
@@ -312,7 +321,7 @@ mod test {
         );
 
         let mut params3 = WormholeTransferURI::new(
-            wormhole::Code("8-🙈-🙉-🙊".to_owned()),
+            "8-🙈-🙉-🙊".parse().unwrap(),
             url::Url::parse("ws://localhost:4000").unwrap(),
             TransferDirection::Send,
         );

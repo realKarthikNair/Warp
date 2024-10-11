@@ -250,7 +250,7 @@ mod imp {
             let window = self.obj().window();
             let clipboard = window.clipboard();
 
-            clipboard.set_text(uri.code.as_str());
+            clipboard.set_text(uri.code.as_ref());
 
             // Translators: Notification when clicking on "Copy Code to Clipboard" button
             let toast = adw::Toast::new(&gettext("Copied Code to Clipboard"));
@@ -877,7 +877,7 @@ impl ActionView {
         self.prepare_transmit(TransferDirection::Receive)?;
         let uri = WormholeTransferURI::from_app_cfg_with_code_direction(
             &app_cfg,
-            &code,
+            code.clone(),
             TransferDirection::Send,
         );
         self.set_ui_state(UIState::HasCode(uri));
@@ -1051,7 +1051,7 @@ impl ActionView {
         window.add_code(connection.code());
         let uri = WormholeTransferURI::from_app_cfg_with_code_direction(
             &app_cfg,
-            connection.code(),
+            connection.code().to_owned(),
             TransferDirection::Receive,
         );
         self.set_ui_state(UIState::HasCode(uri));

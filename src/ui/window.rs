@@ -424,12 +424,18 @@ impl WarpApplicationWindow {
         let text = self.imp().code_entry.text();
         let uri = extract_transmit_uri(&text).and_then(|s| WormholeTransferURI::from_str(&s).ok());
         let code = if globals::TRANSMIT_CODE_MATCH_REGEX.is_match(&text) {
-            wormhole::Code(text.to_string())
+            match text.parse() {
+                Ok(code) => code,
+                Err(err) => {
+                    AppError::from(err).handle();
+                    return;
+                }
+            }
         } else if let Some(uri) = uri {
             self.open_code_from_uri(uri);
             return;
         } else if let Some(code) = extract_transmit_code(&text) {
-            wormhole::Code(code)
+            code
         } else {
             UiError::new(&gettextf(
                 "“{}” appears to be an invalid Transmit Code. Please try again.",
@@ -510,12 +516,15 @@ impl WarpApplicationWindow {
                             None
                         }
                     } else {
-                        extract_transmit_code(&text).map(|text| (text.clone(), text))
+                        extract_transmit_code(&text).map(|code| (code.as_ref().to_string(), code))
                     };
 
                     if let Some((extracted_text, code)) = extracted_data {
                         if imp.code_entry.text() != extracted_text
-                            && !imp.generated_transmit_codes.borrow().contains(&code)
+                            && !imp
+                                .generated_transmit_codes
+                                .borrow()
+                                .contains(code.as_ref())
                         {
                             let imp = obj.imp();
                             imp.code_entry.set_text(&extracted_text);
