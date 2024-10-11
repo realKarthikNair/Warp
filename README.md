@@ -55,7 +55,7 @@ flatpak install warp-nightly.flatpak
 
 ### Windows
 
-Download the latest Windows build from gitlab CI. Extract the archive to a directory of your choice and run `warp.exe` inside `warp-windows-nightly`. The [releases page](https://gitlab.gnome.org/World/warp/-/releases) includes the latest Windows release.
+Extract the archive to a directory of your choice and run `warp.exe`. The [0.6.2 release](https://gitlab.gnome.org/World/warp/-/releases/v0.6.2) is the latest Windows release.
 
 ### Build
 
