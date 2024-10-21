@@ -102,6 +102,17 @@
   </screenshots>
 
   <releases>
+    <release version="0.8.0" date="2024-10-21">
+      <description>
+        <p>Version 0.8</p>
+        <ul>
+          <li>Update to the latest GNOME runtime to support accent colors</li>
+          <li>Better mobile support with bottom sheets and adaptive dialogs</li>
+          <li>Translation Updates</li>
+          <li>Misc fixes</li>
+        </ul>
+      </description>
+    </release>
     <release version="0.7.0" date="2024-03-23">
       <description>
         <p>Version 0.7</p>

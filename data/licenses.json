@@ -30,7 +30,7 @@
           "crate": {
             "name": "pin-project-internal",
             "authors": [],
-            "version": "1.1.5",
+            "version": "1.1.6",
             "license": "Apache-2.0 OR MIT"
           }
         },
@@ -46,7 +46,7 @@
           "crate": {
             "name": "pin-project",
             "authors": [],
-            "version": "1.1.5",
+            "version": "1.1.6",
             "license": "Apache-2.0 OR MIT"
           }
         }
@@ -561,7 +561,7 @@
               "David Tolnay <dtolnay@gmail.com>",
               "Alex Crichton <alex@alexcrichton.com>"
             ],
-            "version": "1.0.86",
+            "version": "1.0.87",
             "license": "MIT OR Apache-2.0"
           }
         },
@@ -709,7 +709,7 @@
           "crate": {
             "name": "futures-channel",
             "authors": [],
-            "version": "0.3.30",
+            "version": "0.3.31",
             "license": "MIT OR Apache-2.0"
           }
         },
@@ -717,7 +717,7 @@
           "crate": {
             "name": "futures-core",
             "authors": [],
-            "version": "0.3.30",
+            "version": "0.3.31",
             "license": "MIT OR Apache-2.0"
           }
         },
@@ -725,7 +725,7 @@
           "crate": {
             "name": "futures-executor",
             "authors": [],
-            "version": "0.3.30",
+            "version": "0.3.31",
             "license": "MIT OR Apache-2.0"
           }
         },
@@ -733,7 +733,7 @@
           "crate": {
             "name": "futures-io",
             "authors": [],
-            "version": "0.3.30",
+            "version": "0.3.31",
             "license": "MIT OR Apache-2.0"
           }
         },
@@ -741,7 +741,7 @@
           "crate": {
             "name": "futures-macro",
             "authors": [],
-            "version": "0.3.30",
+            "version": "0.3.31",
             "license": "MIT OR Apache-2.0"
           }
         },
@@ -749,7 +749,7 @@
           "crate": {
             "name": "futures-sink",
             "authors": [],
-            "version": "0.3.30",
+            "version": "0.3.31",
             "license": "MIT OR Apache-2.0"
           }
         },
@@ -757,7 +757,7 @@
           "crate": {
             "name": "futures-task",
             "authors": [],
-            "version": "0.3.30",
+            "version": "0.3.31",
             "license": "MIT OR Apache-2.0"
           }
         },
@@ -765,7 +765,7 @@
           "crate": {
             "name": "futures-util",
             "authors": [],
-            "version": "0.3.30",
+            "version": "0.3.31",
             "license": "MIT OR Apache-2.0"
           }
         },
@@ -773,7 +773,7 @@
           "crate": {
             "name": "futures",
             "authors": [],
-            "version": "0.3.30",
+            "version": "0.3.31",
             "license": "MIT OR Apache-2.0"
           }
         }
@@ -913,7 +913,7 @@
           "crate": {
             "name": "addr2line",
             "authors": [],
-            "version": "0.24.1",
+            "version": "0.24.2",
             "license": "Apache-2.0 OR MIT"
           }
         },
@@ -1265,7 +1265,7 @@
           "crate": {
             "name": "gimli",
             "authors": [],
-            "version": "0.31.0",
+            "version": "0.31.1",
             "license": "MIT OR Apache-2.0"
           }
         },
@@ -1379,7 +1379,7 @@
             "authors": [
               "Amanieu d'Antras <amanieu@gmail.com>"
             ],
-            "version": "0.14.5",
+            "version": "0.15.0",
             "license": "MIT OR Apache-2.0"
           }
         },
@@ -1397,7 +1397,7 @@
             "authors": [
               "Sean McArthur <sean@seanmonstar.com>"
             ],
-            "version": "1.9.4",
+            "version": "1.9.5",
             "license": "MIT OR Apache-2.0"
           }
         },
@@ -1415,7 +1415,7 @@
           "crate": {
             "name": "indexmap",
             "authors": [],
-            "version": "2.5.0",
+            "version": "2.6.0",
             "license": "Apache-2.0 OR MIT"
           }
         },
@@ -1493,7 +1493,7 @@
           "crate": {
             "name": "object",
             "authors": [],
-            "version": "0.36.4",
+            "version": "0.36.5",
             "license": "Apache-2.0 OR MIT"
           }
         },
@@ -1503,7 +1503,7 @@
             "authors": [
               "Aleksey Kladov <aleksey.kladov@gmail.com>"
             ],
-            "version": "1.20.1",
+            "version": "1.20.2",
             "license": "MIT OR Apache-2.0"
           }
         },
@@ -1727,7 +1727,7 @@
               "Alexey Galakhov",
               "Daniel Abramov"
             ],
-            "version": "0.23.0",
+            "version": "0.24.0",
             "license": "MIT OR Apache-2.0"
           }
         },
@@ -1737,7 +1737,7 @@
             "authors": [
               "The Servo Project Developers"
             ],
-            "version": "0.3.15",
+            "version": "0.3.17",
             "license": "MIT OR Apache-2.0"
           }
         },
@@ -1749,6 +1749,18 @@
               "Manish Goregaokar <manishsmail@gmail.com>"
             ],
             "version": "0.1.24",
+            "license": "MIT OR Apache-2.0"
+          }
+        },
+        {
+          "crate": {
+            "name": "unicode-xid",
+            "authors": [
+              "erick.tryzelaar <erick.tryzelaar@gmail.com>",
+              "kwantam <kwantam@gmail.com>",
+              "Manish Goregaokar <manishsmail@gmail.com>"
+            ],
+            "version": "0.2.6",
             "license": "MIT OR Apache-2.0"
           }
         },
@@ -2287,6 +2299,18 @@
             "version": "0.1.24",
             "license": "MIT OR Apache-2.0"
           }
+        },
+        {
+          "crate": {
+            "name": "unicode-xid",
+            "authors": [
+              "erick.tryzelaar <erick.tryzelaar@gmail.com>",
+              "kwantam <kwantam@gmail.com>",
+              "Manish Goregaokar <manishsmail@gmail.com>"
+            ],
+            "version": "0.2.6",
+            "license": "MIT OR Apache-2.0"
+          }
         }
       ]
     },
@@ -2381,23 +2405,6 @@
     {
       "name": "BSD 3-Clause \"New\" or \"Revised\" License",
       "id": "BSD-3-Clause",
-      "text": "Copyright (c) 2019, Sébastien Crozet\r\nAll rights reserved.\r\n\r\nRedistribution and use in source and binary forms, with or without\r\nmodification, are permitted provided that the following conditions are met:\r\n\r\n1. Redistributions of source code must retain the above copyright notice, this\r\n   list of conditions and the following disclaimer.\r\n\r\n2. Redistributions in binary form must reproduce the above copyright notice,\r\n   this list of conditions and the following disclaimer in the documentation\r\n   and/or other materials provided with the distribution.\r\n\r\n3. Neither the name of the author nor the names of its contributors may be used\r\n   to endorse or promote products derived from this software without specific\r\n   prior written permission.\r\n\r\nTHIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS \"AS IS\" AND\r\nANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED\r\nWARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE\r\nDISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE\r\nFOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL\r\nDAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR\r\nSERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER\r\nCAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,\r\nOR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE\r\nOF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\r\n",
-      "used_by": [
-        {
-          "crate": {
-            "name": "instant",
-            "authors": [
-              "sebcrozet <developer@crozet.re>"
-            ],
-            "version": "0.1.13",
-            "license": "BSD-3-Clause"
-          }
-        }
-      ]
-    },
-    {
-      "name": "BSD 3-Clause \"New\" or \"Revised\" License",
-      "id": "BSD-3-Clause",
       "text": "Copyright 2018 MaidSafe.net limited.\nCopyright 2020 messense\n\nRedistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:\n\n1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.\n\n2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.\n\n3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.\n\nTHIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS \"AS IS\" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\n",
       "used_by": [
         {
@@ -2426,7 +2433,7 @@
               "piegames <info@piegames.de>",
               "Brian Warner <warner@lothar.com>"
             ],
-            "version": "0.7.0",
+            "version": "0.7.2",
             "license": "EUPL-1.2"
           }
         }
@@ -2443,7 +2450,7 @@
             "authors": [
               "Fina Wilke <finaw@gnome.org>"
             ],
-            "version": "0.7.0",
+            "version": "0.8.0",
             "license": "GPL-3.0"
           }
         }
@@ -2495,7 +2502,7 @@
             "authors": [
               "Sebastian Dröge <sebastian@centricular.com>"
             ],
-            "version": "0.27.0",
+            "version": "0.28.0",
             "license": "MIT"
           }
         }
@@ -2723,7 +2730,7 @@
             "authors": [
               "Bilal Elmoussaoui <bil.elmoussaoui@gmail.com>"
             ],
-            "version": "0.9.1",
+            "version": "0.9.2",
             "license": "MIT"
           }
         }
@@ -3423,11 +3430,21 @@
       "used_by": [
         {
           "crate": {
+            "name": "derive_more-impl",
+            "authors": [
+              "Jelte Fennema <github-tech@jeltef.nl>"
+            ],
+            "version": "1.0.0",
+            "license": "MIT"
+          }
+        },
+        {
+          "crate": {
             "name": "derive_more",
             "authors": [
               "Jelte Fennema <github-tech@jeltef.nl>"
             ],
-            "version": "0.99.18",
+            "version": "1.0.0",
             "license": "MIT"
           }
         }
@@ -3445,7 +3462,7 @@
               "Konstantin Salikhov <koka58@yandex.ru>",
               "Alexander Batischev <eual.jp@gmail.com>"
             ],
-            "version": "0.7.1",
+            "version": "0.7.2",
             "license": "MIT"
           }
         },
@@ -3456,7 +3473,7 @@
               "Brian Olsen <brian@maven-group.org>",
               "Alexander Batischev <eual.jp@gmail.com>"
             ],
-            "version": "0.21.4",
+            "version": "0.22.5",
             "license": "MIT"
           }
         }
