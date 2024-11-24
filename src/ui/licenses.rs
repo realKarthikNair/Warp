@@ -120,7 +120,7 @@ impl AboutLicense {
     }
 
     fn parse_extra_text(license: Option<&dyn license::License>, text: &str) -> Option<String> {
-        let need_text = matches!(
+        let need_text = !matches!(
             license.map(license::License::id),
             Some(
                 "Apache-2.0"
@@ -130,7 +130,8 @@ impl AboutLicense {
                     | "EUPL-1.1"
                     | "EUPL-1.2"
                     | "MPL-2.0"
-                    | "Unicode-DFS-2016",
+                    | "Unicode-DFS-2016"
+                    | "Unicode-3.0",
             ),
         );
 
@@ -287,34 +288,38 @@ impl AboutDialogLicenseExt for adw::AboutDialog {
         let mut titles = Vec::with_capacity(10);
 
         // Add legal sections asynchronously, layouting them takes quite a bit of time
-        glib::idle_add_local(glib::clone!(
-            #[weak(rename_to = dialog)]
-            self,
-            #[upgrade_or]
-            glib::ControlFlow::Break,
-            move || {
-                if let Some(legal) = peekable.next() {
-                    titles.push(legal.title.as_str());
+        glib::idle_add_local_full(
+            glib::Priority::LOW,
+            glib::clone!(
+                #[weak(rename_to = dialog)]
+                self,
+                #[upgrade_or]
+                glib::ControlFlow::Break,
+                move || {
+                    if let Some(legal) = peekable.next() {
+                        titles.push(legal.title.as_str());
 
-                    if !peekable.peek().is_some_and(|peek| {
-                        peek.copyright == legal.copyright
-                            && peek.license_type == legal.license_type
-                            && peek.license == legal.license
-                    }) {
-                        dialog.add_legal_section(
-                            &titles.join(", "),
-                            legal.copyright.as_deref(),
-                            legal.license_type,
-                            legal.license.as_deref(),
-                        );
-                        titles.clear();
+                        if !peekable.peek().is_some_and(|peek| {
+                            peek.copyright == legal.copyright
+                                && peek.license_type == legal.license_type
+                                && peek.license == legal.license
+                        }) {
+                            dialog.add_legal_section(
+                                &titles.join(", "),
+                                legal.copyright.as_deref(),
+                                legal.license_type,
+                                legal.license.as_deref(),
+                            );
+                            titles.clear();
+                        }
+
+                        glib::ControlFlow::Continue
+                    } else {
+                        log::debug!("Finished adding legal sections to about dialog");
+                        glib::ControlFlow::Break
                     }
-
-                    glib::ControlFlow::Continue
-                } else {
-                    glib::ControlFlow::Break
                 }
-            }
-        ));
+            ),
+        );
     }
 }
