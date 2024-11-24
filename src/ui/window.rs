@@ -511,12 +511,12 @@ impl WarpApplicationWindow {
                 if let Ok(Some(text)) = text {
                     let extracted_data = if let Some(uri_str) = extract_transmit_uri(&text) {
                         if let Ok(uri) = WormholeTransferURI::from_str(&uri_str) {
-                            Some((uri_str, uri.code.into()))
+                            Some((uri_str, uri.code))
                         } else {
                             None
                         }
                     } else {
-                        extract_transmit_code(&text).map(|code| (code.as_ref().to_string(), code))
+                        extract_transmit_code(&text).map(|code| (code.as_ref().to_owned(), code))
                     };
 
                     if let Some((extracted_text, code)) = extracted_data {
