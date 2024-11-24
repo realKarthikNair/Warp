@@ -242,7 +242,7 @@ impl AppError {
 
     fn gettext_error_wormhole_parse_code(error: &ParseCodeError) -> String {
         match error {
-            // Translators: magic-wormhole codes usually look like n-word-word... where n MUST be an arabic number (unlimited digits). The first '-' is mandatory. This error occurs when a code was entered that does not contain any '-'.
+            // Translators: magic-wormhole codes usually look like n-word-word... where n MUST be an arabic number (unlimited digits). The first '-' is mandatory. This error occurs when an empty code was entered.
             ParseCodeError::Empty => gettext("The specified code must not be empty"),
             // Translators: magic-wormhole codes usually look like n-word-word... where n MUST be an arabic number (unlimited digits). The first '-' is mandatory. This error occurs when a code was entered that does not contain any '-'.
             ParseCodeError::SeparatorMissing => gettext("The code must contain at least one “-”"),
