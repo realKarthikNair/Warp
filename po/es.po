@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
-"POT-Creation-Date: 2024-10-10 15:35+0000\n"
-"PO-Revision-Date: 2024-10-12 17:33+0200\n"
+"POT-Creation-Date: 2024-11-24 02:55+0000\n"
+"PO-Revision-Date: 2024-12-08 13:41+0100\n"
 "Last-Translator: Julián Villodre <jvillodrede@gmail.com>\n"
 "Language-Team: Spanish - Spain <gnome-es-list@gnome.org>\n"
 "Language: es\n"
@@ -18,10 +18,10 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"X-Generator: Gtranslator 47.0\n"
+"X-Generator: Gtranslator 47.1\n"
 
 #: data/app.drey.Warp.desktop.in.in:3 data/app.drey.Warp.metainfo.xml.in.in:4
-#: src/main.rs:133 src/ui/window.ui:81
+#: src/main.rs:131 src/ui/window.ui:81
 msgid "Warp"
 msgstr "Warp"
 
@@ -663,12 +663,12 @@ msgstr "Seleccionar archivo para enviar"
 msgid "Select Folder to Send"
 msgstr "Seleccionar carpeta para enviar"
 
-#: src/ui/window.rs:435
+#: src/ui/window.rs:441
 msgid "“{}” appears to be an invalid Transmit Code. Please try again."
 msgstr ""
 "«{}» parece ser un código de transmisión no válido. Inténtelo de nuevo."
 
-#: src/ui/window.rs:556
+#: src/ui/window.rs:565
 msgid "Sending files with a preconfigured code is not yet supported"
 msgstr "Enviar archivos con un código preconfigurado todavía no está soportado"
 
@@ -719,7 +719,7 @@ msgstr "_Abortar"
 msgid "Unable to Open File"
 msgstr "No se pudo abrir archivo"
 
-#: src/ui/window.ui:50 src/util/error.rs:198
+#: src/ui/window.ui:50 src/util/error.rs:207
 msgid "_Close"
 msgstr "_Cerrar"
 
@@ -771,43 +771,43 @@ msgstr "Recibir a_rchivo"
 msgid "File Transfer"
 msgstr "Transferencia de archivos"
 
-#: src/util.rs:36 src/util.rs:42
+#: src/util.rs:37 src/util.rs:43
 msgid "Failed to open downloads folder."
 msgstr "Falló al abrir la carpeta de descargas."
 
-#: src/util.rs:209 src/util.rs:282
+#: src/util.rs:216 src/util.rs:291
 msgid "The URI format is invalid"
 msgstr "El formato de URI no es válido"
 
-#: src/util.rs:213 src/util.rs:217
+#: src/util.rs:220 src/util.rs:224
 msgid "The code does not match the required format"
 msgstr "El código no tiene el formato requerido"
 
-#: src/util.rs:232 src/util.rs:238
+#: src/util.rs:241 src/util.rs:247
 msgid "Unknown URI version: {}"
 msgstr "Versión de URI desconocida: {}"
 
-#: src/util.rs:247
+#: src/util.rs:256
 msgid "The URI parameter “rendezvous” contains an invalid URL: “{}”"
 msgstr "El parámetro de URI «rendezvous» contiene un URL no válido: «{}»"
 
-#: src/util.rs:259
+#: src/util.rs:268
 msgid "The URI parameter “role” must be “follower” or “leader” (was: “{}”)"
 msgstr "El parámetro «role» del URI debe ser «follower» o «leader» (era: «{}»)"
 
-#: src/util.rs:266
+#: src/util.rs:275
 msgid "Unknown URI parameter “{}”"
 msgstr "Parámetro de URI desconocido «{}»"
 
-#: src/util/error.rs:181
+#: src/util/error.rs:190
 msgid "An error occurred"
 msgstr "Ha ocurrido un error"
 
-#: src/util/error.rs:209 src/util/error.rs:293
+#: src/util/error.rs:218 src/util/error.rs:333
 msgid "Corrupt or unexpected message received"
 msgstr "Se recibió un mensaje corrupto o inesperado"
 
-#: src/util/error.rs:214
+#: src/util/error.rs:223
 msgid ""
 "The rendezvous server will not allow further connections for this code. A "
 "new code needs to be generated."
@@ -815,7 +815,7 @@ msgstr ""
 "El servidor intermedio no permitirá más conexiones para este código. Se debe "
 "generar un nuevo código."
 
-#: src/util/error.rs:216
+#: src/util/error.rs:225
 msgid ""
 "The rendezvous server removed the code due to inactivity. A new code needs "
 "to be generated."
@@ -823,11 +823,11 @@ msgstr ""
 "El servidor intermedio eliminó el código debido a la inactividad. Se debe "
 "generar un nuevo código."
 
-#: src/util/error.rs:218
+#: src/util/error.rs:227
 msgid "The rendezvous server responded with an unknown message: {}"
 msgstr "El servidor intermedio respondió con un mensaje desconocido: {}"
 
-#: src/util/error.rs:221
+#: src/util/error.rs:230
 msgid ""
 "Error connecting to the rendezvous server.\n"
 "You have entered a custom rendezvous server URL in preferences. Please "
@@ -838,7 +838,7 @@ msgstr ""
 "preferencias. Verifique que el URL es correcto y que el servidor está "
 "funcionando."
 
-#: src/util/error.rs:223
+#: src/util/error.rs:232
 msgid ""
 "Error connecting to the rendezvous server.\n"
 "Please try again later / verify you are connected to the internet."
@@ -846,7 +846,7 @@ msgstr ""
 "Error al conectarse al servidor intermedio.\n"
 "Inténtelo nuevamente más tarde / verifique su conexión a Internet."
 
-#: src/util/error.rs:227
+#: src/util/error.rs:236
 msgid ""
 "Encryption key confirmation failed. If you or your peer didn't mistype the "
 "code, this is a sign of an attacker guessing passwords. Please try again "
@@ -856,51 +856,92 @@ msgstr ""
 "correctamente los códigos, esto es una señal de un atacante intentando "
 "adivinar la clave. Inténtelo de nuevo más tarde."
 
-#: src/util/error.rs:229
+#: src/util/error.rs:238
 msgid "Cannot decrypt a received message"
 msgstr "No se puede descifrar un mensaje recibido"
 
-#: src/util/error.rs:230 src/util/error.rs:304 src/util/error.rs:310
+#: src/util/error.rs:239 src/util/error.rs:344 src/util/error.rs:351
 msgid "An unknown error occurred"
 msgstr "Ocurrió un error desconocido"
 
-#: src/util/error.rs:236
+#. Translators: magic-wormhole codes usually look like n-word-word... where n MUST be an arabic number (unlimited digits). The first '-' is mandatory. This error occurs when a code was entered that does not contain any '-'.
+#: src/util/error.rs:246
+msgid "The specified code must not be empty"
+msgstr "El código especificado no debe estar vacío"
+
+#. Translators: magic-wormhole codes usually look like n-word-word... where n MUST be an arabic number (unlimited digits). The first '-' is mandatory. This error occurs when a code was entered that does not contain any '-'.
+#: src/util/error.rs:248
+msgid "The code must contain at least one “-”"
+msgstr "El código debe contener al menos un «-»"
+
+#. Translators: magic-wormhole codes usually look like n-word-word... where n MUST be an arabic number (unlimited digits). This error occurs when a code was entered that does not contain a number before the '-'.
+#: src/util/error.rs:250
+msgid "The first segment of a code must be a number"
+msgstr "El primer segmento de un código debe ser un número"
+
+#: src/util/error.rs:254
+msgid "Code too weak. It can be guessed with an average of {} try."
+msgid_plural "Code too weak. It can be guessed with an average of {} tries."
+msgstr[0] ""
+"El código es demasiado débil. Se puede adivinar con un promedio de {} "
+"intento."
+msgstr[1] ""
+"El código es demasiado débil. Se puede adivinar con un promedio de {} "
+"intentos."
+
+#: src/util/error.rs:262
+msgid ""
+"Code too short. The text after the “-” must be at least {} character long."
+msgid_plural ""
+"Code too short. The text after the “-” must be at least {} characters long."
+msgstr[0] ""
+"El código es demasiado corto. El texto después del «-» debe tener al menos "
+"{} carácter."
+msgstr[1] ""
+"El código es demasiado corto. El texto después del «-» debe tener al menos "
+"{} caracteres."
+
+#: src/util/error.rs:269
+msgid "Code too weak"
+msgstr "El código es demasiado débil"
+
+#: src/util/error.rs:276
 msgid "File / Directory not found"
 msgstr "Archivo / carpeta no encontrada"
 
-#: src/util/error.rs:237
+#: src/util/error.rs:277
 msgid "Permission denied"
 msgstr "Permiso denegado"
 
-#: src/util/error.rs:245
+#: src/util/error.rs:285
 msgid "Canceled"
 msgstr "Cancelado"
 
-#: src/util/error.rs:247
+#: src/util/error.rs:287
 msgid "Portal service response: Permission denied"
 msgstr "Respuesta del servicio del portal: permiso denegado"
 
-#: src/util/error.rs:250
+#: src/util/error.rs:290
 msgid "The portal service has failed: {}"
 msgstr "Falló el servicio del portal: {}"
 
-#: src/util/error.rs:253
+#: src/util/error.rs:293
 msgid "Error communicating with the portal service via zbus: {}"
 msgstr "Falló al comunicarse con el servicio del portal vía zbus: {}"
 
-#: src/util/error.rs:256 src/util/error.rs:257
+#: src/util/error.rs:296 src/util/error.rs:297
 msgid "Portal error: {}"
 msgstr "Fallo del portal: {}"
 
-#: src/util/error.rs:268
+#: src/util/error.rs:308
 msgid "Transfer was not acknowledged by peer"
 msgstr "El par no ha reconocido la transferencia"
 
-#: src/util/error.rs:270
+#: src/util/error.rs:310
 msgid "The received file is corrupted"
 msgstr "El archivo recibido está corrupto"
 
-#: src/util/error.rs:276
+#: src/util/error.rs:316
 msgid ""
 "The file contained a different amount of bytes than advertised! Sent {} "
 "bytes, but should have been {}"
@@ -908,31 +949,31 @@ msgstr ""
 "El archivo contenía una cantidad diferente de bytes de la estipulada. Se "
 "enviaron {} bytes, pero deberían haber sido {}"
 
-#: src/util/error.rs:281
+#: src/util/error.rs:321
 msgid "The other side has cancelled the transfer"
 msgstr "El par ha cancelado la transferencia"
 
-#: src/util/error.rs:283
+#: src/util/error.rs:323
 msgid "The other side has rejected the transfer"
 msgstr "El par ha rechazado la transferencia"
 
-#: src/util/error.rs:285
+#: src/util/error.rs:325
 msgid "Something went wrong on the other side: {}"
 msgstr "Algo salió mal del otro lado: {}"
 
-#: src/util/error.rs:300
+#: src/util/error.rs:340
 msgid "Error while establishing file transfer connection"
 msgstr "Error al establecer la conexión de transferencia de archivos"
 
-#: src/util/error.rs:302
+#: src/util/error.rs:342
 msgid "Unknown file transfer error"
 msgstr "Error de transferencia desconocido"
 
-#: src/util/error.rs:311
+#: src/util/error.rs:352
 msgid "An unknown error occurred while creating a zip file: {}"
 msgstr "Ocurrió un error desconocido al crear el archivo zip: {}"
 
-#: src/util/error.rs:312
+#: src/util/error.rs:353
 msgid ""
 "An unexpected error occurred. Please report an issue with the error message."
 msgstr ""
