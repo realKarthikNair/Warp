@@ -102,12 +102,21 @@
   </screenshots>
 
   <releases>
+    <release version="0.8.1" date="2024-01-10">
+      <description>
+        <p>Version 0.8.1</p>
+        <ul>
+          <li>Layout and performance fixes</li>
+          <li>About Window: Fix license display issues</li>
+          <li>Translation Updates</li>
+        </ul>
+      </description>
+    </release>
     <release version="0.8.0" date="2024-10-21">
       <description>
         <p>Version 0.8</p>
         <ul>
           <li>Update to the latest GNOME runtime to support accent colors</li>
-          <li>Better mobile support with bottom sheets and adaptive dialogs</li>
           <li>Translation Updates</li>
           <li>Misc fixes</li>
         </ul>
