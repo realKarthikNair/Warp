@@ -1,0 +1,502 @@
+# Slovenian translation for warp.
+# Copyright (C) 2025 warp's COPYRIGHT HOLDER
+# This file is distributed under the same license as the warp package.
+# Martin <miles@filmsi.net>,  2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: warp main\n"
+"POT-Creation-Date: 2025-02-13 05:53+0000\n"
+"PO-Revision-Date: 2025-02-16 18:27+0100\n"
+"Last-Translator: Martin Srebotnjak <miles@filmsi.net>\n"
+"Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
+"Language: sl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100>=3 && "
+"n%100<=4 ? 2 : 3);\n"
+"X-Generator: Poedit 3.4.2\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
+#. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
+msgctxt "_"
+msgid "translator-credits"
+msgstr "Martin Srebotnjak <miles@filmsi.net>"
+
+#. (itstool) path: info/desc
+#: C/details-commandline.page:11
+#, fuzzy
+msgid "Interoperability with the Magic Wormhole Commandline App"
+msgstr "Medopravilnost s programom ukazne vrstice Magic Wormhole"
+
+#. (itstool) path: page/title
+#: C/details-commandline.page:13
+#, fuzzy
+msgid "Commandline App"
+msgstr "Program ukazne vrstice"
+
+#. (itstool) path: page/p
+#: C/details-commandline.page:14
+#, fuzzy
+msgid ""
+"You can use the <link href=\"https://github.com/magic-wormhole/magic-"
+"wormhole\">Magic Wormhole</link> commandline client to communicate with "
+"<app>Warp</app> directly."
+msgstr ""
+"Odjemalca ukazne vrstice Magic Wormhole lahko uporabite <link href=\"https://"
+"github.com/magic-wormhole/magic-wormhole\">za neposredno komunikacijo z "
+"<app>Warpom</app>."
+
+#. (itstool) path: page/p
+#: C/details-commandline.page:16
+#, fuzzy
+msgid ""
+"To receive a file that is being sent via <app>Warp</app> use this command:"
+msgstr ""
+"Če želite prejeti datoteko, ki je poslana prek <app>Warpa</app>, uporabite "
+"ta ukaz:"
+
+#. (itstool) path: page/code
+#: C/details-commandline.page:17
+#, fuzzy, no-wrap
+msgid "wormhole receive"
+msgstr "prejemanje črvine"
+
+#. (itstool) path: page/p
+#: C/details-commandline.page:18
+#, fuzzy
+msgid "and enter the code when prompted."
+msgstr "in vnesite kodo, ko boste pozvani."
+
+#. (itstool) path: page/p
+#: C/details-commandline.page:19
+#, fuzzy
+msgid "To send a file use"
+msgstr "Pošiljanje datoteke, uporabite"
+
+#. (itstool) path: page/code
+#: C/details-commandline.page:20
+#, fuzzy, no-wrap
+msgid "wormhole send FILENAME"
+msgstr "Črvina pošlji FILENAME"
+
+#. (itstool) path: page/p
+#: C/details-commandline.page:21
+#, fuzzy
+msgid ""
+"Your peer can then enter the code into <app>Warp</app> to receive the file."
+msgstr ""
+"Vaš vrstnik lahko nato vnese kodo v <app>Warp</app> , da prejme datoteko."
+
+#. (itstool) path: section/title
+#: C/details-commandline.page:23
+msgid "Learn more"
+msgstr "Več o tem"
+
+#. (itstool) path: section/p
+#: C/details-commandline.page:24
+#, fuzzy
+msgid ""
+"To learn more about the command line client you can take a look at the <link "
+"href=\"https://magic-wormhole.readthedocs.io/en/latest/\">Magic Wormhole "
+"documentation</link>."
+msgstr ""
+"Če želite izvedeti več o odjemalcu ukazne vrstice, si lahko ogledate "
+"dokumentacijo <link href=\"https://magic-wormhole.readthedocs.io/en/latest/"
+"\">Magic Wormhole."
+
+#. (itstool) path: info/desc
+#: C/details-glossary.page:11
+msgid "Definition of terms used through this help page"
+msgstr "Opredelitev izrazov, uporabljenih na tej strani za pomoč"
+
+#. (itstool) path: page/title
+#: C/details-glossary.page:13
+msgid "Glossary"
+msgstr "Splošni slovarček"
+
+#. (itstool) path: section/title
+#: C/details-glossary.page:15
+msgid "Rendezvous Server"
+msgstr "Strežnik Rendezvous"
+
+#. (itstool) path: section/p
+#: C/details-glossary.page:16
+#, fuzzy
+msgid ""
+"This server is located on the internet and is operated by the <link "
+"href=\"https://github.com/magic-wormhole/magic-wormhole\">Magic Wormhole "
+"project</link>. It is used to find peers to share files with. When starting "
+"a transmission, both parties will contact the rendezvous server to find each "
+"other."
+msgstr ""
+"Ta strežnik se nahaja na internetu in ga upravlja <link href=\"https://"
+"github.com/magic-wormhole/magic-wormhole\">projekt Magic Wormhole. Uporablja "
+"se za iskanje vrstnikov za skupno rabo datotek. Ko začneta prenos, bosta obe "
+"strani stopili v stik s strežnikom srečanja, da bi našli drug drugega."
+
+#. (itstool) path: section/p
+#: C/details-glossary.page:19
+#, fuzzy
+msgid ""
+"The rendezvous server also helps the transmitting client to generate a <link "
+"xref=\"#transmit-code\"/>"
+msgstr ""
+"Strežnik za srečanje pomaga tudi oddajnemu odjemalcu, da ustvari <link "
+"xref=\"#transmit-code\"/>"
+
+#. (itstool) path: section/p
+#: C/details-glossary.page:20
+#, fuzzy
+msgid ""
+"They will use this server to exchange cryptographic information for secure "
+"communication. Afterwards they will exchange information about how to "
+"contact each other for file transfer."
+msgstr ""
+"Ta strežnik bodo uporabljali za izmenjavo kriptografskih informacij za varno "
+"komunikacijo. Nato si bosta izmenjala informacije o tem, kako stopiti v stik "
+"drug z drugim za prenos datotek."
+
+#. (itstool) path: note/p
+#: C/details-glossary.page:23
+#, fuzzy
+msgid ""
+"No files are transferred via the rendezvous server. See <link "
+"xref=\"#transmit-relay\"/> and <link xref=\"#direct-transfer\"/>"
+msgstr ""
+"Prek strežnika za srečanje se ne prenesejo nobene datoteke. Glej <link "
+"xref=\"#transmit-relay\"/> in <link xref=\"#direct-transfer\"/>"
+
+#. (itstool) path: section/title
+#: C/details-glossary.page:27
+#, fuzzy
+msgid "Transmit Code"
+msgstr "Koda za prenos"
+
+#. (itstool) path: section/p
+#: C/details-glossary.page:28
+#, fuzzy
+msgid ""
+"This code will be generated by the client in cooperation with the <link "
+"xref=\"#rendezvous-server\"/>. It is used to identify and encrypt the "
+"transmission of messages and files."
+msgstr ""
+"To kodo bo ustvarila stranka v sodelovanju z . <link xref=\"#rendezvous-"
+"server\"/> Uporablja se za prepoznavanje in šifriranje prenosa sporočil in "
+"datotek."
+
+#. (itstool) path: section/p
+#: C/details-glossary.page:30
+#, fuzzy
+msgid ""
+"To start a transmission you need a transmit code. The transmit code then "
+"needs to be communicated to the receiver (preferably via an encrypted or "
+"otherwise secure channel). After entering the transmit code at the receiver "
+"side the file transmission can begin."
+msgstr ""
+"Za začetek prenosa potrebujete kodo za prenos. Oddajno kodo je nato treba "
+"sporočiti sprejemniku (po možnosti prek šifriranega ali drugače varnega "
+"kanala). Po vnosu kode za oddajanje na strani sprejemnika se lahko začne "
+"prenos datoteke."
+
+#. (itstool) path: note/p
+#: C/details-glossary.page:34
+#, fuzzy
+msgid "Every transmit code can only be entered once for security reasons."
+msgstr ""
+"Vsako kodo za prenos je iz varnostnih razlogov mogoče vnesti samo enkrat."
+
+#. (itstool) path: section/title
+#: C/details-glossary.page:38
+#, fuzzy
+msgid "Transmit Link"
+msgstr "Povezava za prenos"
+
+#. (itstool) path: section/p
+#: C/details-glossary.page:39
+#, fuzzy
+msgid ""
+"It is also possible to encode the <link xref=\"#transmit-code\"/> as a link. "
+"Clicking the link will automatically open Warp and start the file "
+"transmission. A <gui>Copy Transmit Link</gui> button is available in the "
+"send screen. A transmit link looks like this:"
+msgstr ""
+"Prav tako je mogoče kodirati <link xref=\"#transmit-code\"/> kot povezavo. S "
+"klikom na povezavo se bo samodejno odprla Warp in se začel prenos datoteke. "
+"Na zaslonu za pošiljanje je na voljo gumb <gui>Kopiraj povezavo za prenos.</"
+"gui> Povezava za prenos je videti takole:"
+
+#. (itstool) path: section/code
+#: C/details-glossary.page:42
+#, fuzzy, no-wrap
+msgid "wormhole-transfer:{code}"
+msgstr "Prenos črvine: {code}"
+
+#. (itstool) path: section/title
+#: C/details-glossary.page:45
+#, fuzzy
+msgid "Transmit Relay"
+msgstr "Oddajni relej"
+
+#. (itstool) path: section/p
+#: C/details-glossary.page:46
+#, fuzzy
+msgid ""
+"The transmit relay is also operated by the <link href=\"https://github.com/"
+"magic-wormhole/magic-wormhole\">Magic Wormhole project</link>"
+msgstr ""
+"Oddajni relej upravlja tudi projekt Magic Wormhole <link href=\"https://"
+"github.com/magic-wormhole/magic-wormhole\">"
+
+#. (itstool) path: section/p
+#: C/details-glossary.page:48
+#, fuzzy
+msgid ""
+"It is used if no <link xref=\"#direct-transfer\">direct communication</link> "
+"between two peers can be established. This is most commonly a problem when "
+"both parties are located in different home networks with <link "
+"href=\"https://en.wikipedia.org/wiki/Network_address_translation\">NAT</"
+"link> or restrictive <link href=\"https://en.wikipedia.org/wiki/"
+"Firewall_(computing)\">firewalls</link>."
+msgstr ""
+"Uporablja se, če <link xref=\"#direct-transfer\">ni mogoče vzpostaviti "
+"neposredne komunikacije med dvema vrstnikoma. To je najpogosteje težava, ko "
+"sta obe strani v različnih domačih omrežjih z <link href=\"https://en."
+"wikipedia.org/wiki/Network_address_translation\">NAT ali omejevalnimi <link "
+"href=\"https://en.wikipedia.org/wiki/Firewall_(computing)\">požarnimi zidovi."
+
+#. (itstool) path: section/p
+#: C/details-glossary.page:52
+#, fuzzy
+msgid ""
+"The files are transmitted via the transmit relay in an encrypted fashion. "
+"The relay will only know about the file size."
+msgstr ""
+"Datoteke se prenašajo prek prenosnega releja na šifriran način. Relej bo "
+"vedel samo za velikost datoteke."
+
+#. (itstool) path: section/p
+#: C/details-glossary.page:53
+#, fuzzy
+msgid ""
+"Transfers via the transmit relay may be slower than direct transfer, "
+"depending on relay congestion."
+msgstr ""
+"Prenosi prek oddajnega releja so lahko počasnejši od neposrednega prenosa, "
+"odvisno od preobremenjenosti releja."
+
+#. (itstool) path: section/title
+#: C/details-glossary.page:56
+msgid "Direct Transfer"
+msgstr "Neposreden prenos"
+
+#. (itstool) path: section/p
+#: C/details-glossary.page:57
+#, fuzzy
+msgid ""
+"If both peers can find a direct networking path between each other they will "
+"send the file directly. This is often referred to as a <link href=\"https://"
+"en.wikipedia.org/wiki/Peer-to-peer\">Peer-to-Peer</link> connection. This "
+"type of connection is typically faster than a connection via the <link "
+"xref=\"#transmit-relay\"/>"
+msgstr ""
+"Če oba vrstnika najdeta neposredno omrežno pot med seboj, bosta datoteko "
+"poslala neposredno. To se pogosto imenuje povezava <link href=\"https://en."
+"wikipedia.org/wiki/Peer-to-peer\">Peer-to-Peer. Ta vrsta povezave je "
+"običajno hitrejša od povezave prek<link xref=\"#transmit-relay\"/>"
+
+#. (itstool) path: info/desc
+#: C/details-qr.page:11
+msgid "Using QR Codes"
+msgstr "Uporaba QR-kod"
+
+#. (itstool) path: page/title
+#: C/details-qr.page:13
+msgid "QR Codes"
+msgstr "QR-kode"
+
+#. (itstool) path: page/p
+#: C/details-qr.page:14
+#, fuzzy
+msgid "Instead of typing the code manually it is possible to scan a QR code."
+msgstr "Namesto ročnega vnašanja kode je mogoče optično prebrati kodo QR."
+
+#. (itstool) path: page/p
+#: C/details-qr.page:15
+#, fuzzy
+msgid ""
+"For a list of supported apps, see the <link href=\"https://gitlab.gnome.org/"
+"World/warp/-/blob/main/README.md#qr-codes\">readme file</link>."
+msgstr ""
+"Če si želite ogledati seznam podprtih aplikacij, glejte datoteko <link "
+"href=\"https://gitlab.gnome.org/World/warp/-/blob/main/README.md#qr-"
+"codes\">Berme."
+
+#. (itstool) path: page/p
+#: C/details-qr.page:17
+#, fuzzy
+msgid ""
+"Using any other apps might lead to problems scanning the code. The QR code "
+"standard is fairly new and not all apps have updated their custom QR code "
+"format to the standardized version."
+msgstr ""
+"Uporaba drugih aplikacij lahko povzroči težave pri pregledovanju kode. "
+"Standard QR kode je dokaj nov in vse aplikacije niso posodobile svoje oblike "
+"QR kode po meri na standardizirano različico."
+
+#. (itstool) path: section/title
+#: C/details-qr.page:20
+msgid "Scan QR Codes"
+msgstr "Optično preberite kode QR"
+
+#. (itstool) path: section/p
+#: C/details-qr.page:21
+#, fuzzy
+msgid ""
+"To scan a QR code generated by another app, a QR code button is available on "
+"the <gui>Receive</gui> page. Successfully scanning a code will open up the "
+"transfer dialog."
+msgstr ""
+"Če želite optično prebrati kodo QR, ki jo je ustvarila druga aplikacija, je "
+"na strani <gui>Prejemanje</gui> na voljo gumb kode QR. Uspešno optično "
+"branje kode bo odprlo pogovorno okno za prenos."
+
+#. (itstool) path: note/p
+#: C/details-qr.page:24
+#, fuzzy
+msgid ""
+"Inverted QR codes (white on black background) are currently not supported."
+msgstr "Obrnjene QR kode (bele na črnem ozadju) trenutno niso podprte."
+
+#. (itstool) path: section/p
+#: C/details-qr.page:26
+#, fuzzy
+msgid ""
+"This functionality uses <link href=\"https://www.pipewire.org/\">PipeWire</"
+"link>, via the same mechanism as <link href=\"https://apps.gnome.org/"
+"Snapshot/\">GNOME Camera</link>."
+msgstr ""
+"Ta funkcija uporablja <link href=\"https://www.pipewire.org/\">PipeWire prek "
+"istega mehanizma kot <link href=\"https://apps.gnome.org/Snapshot/\">kamera "
+"GNOME."
+
+#. (itstool) path: section/p
+#: C/details-qr.page:28
+#, fuzzy
+msgid ""
+"For troubleshooting instructions see <link href=\"https://gitlab.gnome.org/"
+"GNOME/snapshot/-/blob/main/TROUBLESHOOTING.md?ref_type=heads\">GNOME Camera "
+"on GNOME GitLab</link>."
+msgstr ""
+"Za navodila za odpravljanje težav glejte <link href=\"https://gitlab.gnome."
+"org/GNOME/snapshot/-/blob/main/TROUBLESHOOTING.md?ref_type=heads\">Kamera "
+"GNOME na GitLabu GNOME."
+
+#. (itstool) path: info/desc
+#: C/general-intro.page:11
+#, fuzzy
+msgid "Introduction to file transfer with <app>Warp</app>"
+msgstr "Uvod v prenos datotek z <app>Warpom</app>"
+
+#. (itstool) path: page/title
+#: C/general-intro.page:13
+msgid "Introduction"
+msgstr "Uvod"
+
+#. (itstool) path: page/p
+#: C/general-intro.page:14
+#, fuzzy
+msgid ""
+"<app>Warp</app> is an app that allows you to send files from one device to "
+"another effortlessly. <app>Warp</app> uses a secure transmit code to "
+"identify and encrypt file transmissions."
+msgstr ""
+"<app>Warp</app> je aplikacija, ki vam omogoča enostavno pošiljanje datotek "
+"iz ene naprave v drugo. <app>Warp</app> uporablja varno kodo za prenos za "
+"prepoznavanje in šifriranje prenosov datotek."
+
+#. (itstool) path: page/p
+#: C/general-intro.page:16
+#, fuzzy
+msgid ""
+"To use <app>Warp</app> to transfer a file, the sender needs to open the app. "
+"Select a file using the <gui>Send</gui> tab. <app>Warp</app> will now try to "
+"contact the <link xref=\"details-glossary#rendezvous-server\"/> and generate "
+"a <link xref=\"details-glossary#transmit-code\"/>."
+msgstr ""
+"Če želite uporabiti <app>Warp</app> za prenos datoteke, mora pošiljatelj "
+"odpreti aplikacijo. Izberite datoteko na zavihku <gui>Pošlji</gui>. "
+"<app>Warp</app> bo zdaj poskušal stopiti v stik in <link xref=\"details-"
+"glossary#rendezvous-server\"/> ustvariti .<link xref=\"details-"
+"glossary#transmit-code\"/>"
+
+#. (itstool) path: page/p
+#: C/general-intro.page:19
+#, fuzzy
+msgid ""
+"The sender then needs to tell the receiver the transmit code of the file. "
+"(preferably via an encrypted or otherwise secure channel). After entering "
+"the transmit code at the receiver side the file transmission can begin."
+msgstr ""
+"Pošiljatelj mora nato prejemniku sporočiti kodo za prenos datoteke. (po "
+"možnosti prek šifriranega ali drugače varnega kanala). Po vnosu kode za "
+"oddajanje na strani sprejemnika se lahko začne prenos datoteke."
+
+#. (itstool) path: page/p
+#: C/general-intro.page:21
+#, fuzzy
+msgid ""
+"It is also possible to copy a <link xref=\"details-glossary#transmit-"
+"link\">link</link> that will automatically open Warp with the displayed code."
+msgstr ""
+"Prav tako je mogoče kopirati povezavo<link xref=\"details-glossary#transmit-"
+"link\">, ki bo samodejno odprla Warp s prikazano kodo."
+
+#. (itstool) path: note/p
+#: C/general-intro.page:24
+#, fuzzy
+msgid ""
+"Every transmit code can only be entered once for security reasons. If the "
+"receiver mistypes the transmission code the file transfer will be aborted. "
+"The sender then needs to select the file again and generate a new code."
+msgstr ""
+"Vsako kodo za prenos je iz varnostnih razlogov mogoče vnesti samo enkrat. Če "
+"sprejemnik napačno vnese kodo prenosa, bo prenos datoteke prekinjen. "
+"Pošiljatelj mora nato znova izbrati datoteko in ustvariti novo kodo."
+
+#. (itstool) path: page/p
+#: C/general-intro.page:27
+#, fuzzy
+msgid ""
+"A progress bar will indicate a running file transfer. Files will either be "
+"transmitted via <link xref=\"details-glossary#direct-transfer\"/> or via the "
+"<link xref=\"details-glossary#transmit-relay\"/>. The transfer can be "
+"aborted at any time using the <gui>Cancel</gui> button."
+msgstr ""
+"Vrstica napredka bo prikazala tekoči prenos datoteke. Datoteke se bodo "
+"prenašale prek <link xref=\"details-glossary#direct-transfer\"/> ali prek . "
+"<link xref=\"details-glossary#transmit-relay\"/> Prenos lahko kadarkoli "
+"prekinete z gumbom <gui>Prekliči</gui> ."
+
+#. (itstool) path: info/desc
+#: C/index.page:10
+#, fuzzy
+msgid "Fast and secure file transfer."
+msgstr "Hiter in varen prenos datotek."
+
+#. (itstool) path: page/title
+#: C/index.page:12
+#, fuzzy
+msgid "Warp"
+msgstr "Ukrivi"
+
+#. (itstool) path: section/title
+#: C/index.page:14
+msgid "General"
+msgstr "Splošno"
+
+#. (itstool) path: section/title
+#: C/index.page:17
+msgid "Details"
+msgstr "Podrobnosti"
