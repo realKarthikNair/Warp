@@ -115,7 +115,11 @@ mod imp {
                     #[weak(rename_to = obj)]
                     self.obj(),
                     move |_camera, data| {
-                        let Ok(uri) = data.parse::<WormholeTransferURI>() else {
+                        let Ok(utf8) = std::str::from_utf8(&data) else {
+                            return;
+                        };
+
+                        let Ok(uri) = utf8.parse::<WormholeTransferURI>() else {
                             return;
                         };
 

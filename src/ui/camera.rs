@@ -61,7 +61,7 @@ mod imp {
         fn signals() -> &'static [Signal] {
             static SIGNALS: Lazy<Vec<Signal>> = Lazy::new(|| {
                 vec![Signal::builder("code-detected")
-                    .param_types([String::static_type()])
+                    .param_types([glib::Bytes::static_type()])
                     .run_first()
                     .build()]
             });
@@ -124,10 +124,8 @@ mod imp {
                 viewfinder.connect_code_detected(glib::clone!(
                     #[weak]
                     obj,
-                    move |_, code_type, code| {
-                        if matches!(code_type, aperture::CodeType::Qr) {
-                            obj.emit_by_name::<()>("code-detected", &[&code]);
-                        }
+                    move |_, code| {
+                        obj.emit_by_name::<()>("code-detected", &[&code]);
                     }
                 ));
 
@@ -296,7 +294,7 @@ glib::wrapper! {
 impl Camera {
     pub fn connect_code_detected<F>(&self, callback: F) -> glib::SignalHandlerId
     where
-        F: Fn(&Self, String) + 'static,
+        F: Fn(&Self, glib::Bytes) + 'static,
     {
         self.connect_local(
             "code-detected",
@@ -306,7 +304,7 @@ impl Camera {
                 self,
                 #[upgrade_or_default]
                 move |args| {
-                    let code = args[1].get::<String>().unwrap();
+                    let code = args[1].get::<glib::Bytes>().unwrap();
                     callback(&camera, code);
                     None
                 }

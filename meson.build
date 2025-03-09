@@ -1,42 +1,53 @@
 project(
   run_command(
     find_program(meson.global_source_root() / 'build-aux/meson-cargo-manifest.py'),
-    'package', 'name',
-    check: true
+    'package',
+    'name',
+    check: true,
   ).stdout(),
   'rust',
   version: run_command(
     find_program(meson.global_source_root() / 'build-aux/meson-cargo-manifest.py'),
-    'package', 'version',
-    check: true
+    'package',
+    'version',
+    check: true,
   ).stdout(),
   meson_version: '>= 1.1.0',
   license: run_command(
     find_program(meson.global_source_root() / 'build-aux/meson-cargo-manifest.py'),
-    'package', 'license',
-    check: true
+    'package',
+    'license',
+    check: true,
   ).stdout(),
 )
 
 homepage = run_command(
-    find_program(meson.global_source_root() / 'build-aux/meson-cargo-manifest.py'),
-    'package', 'homepage',
-    check: true
+  find_program(meson.global_source_root() / 'build-aux/meson-cargo-manifest.py'),
+  'package',
+  'homepage',
+  check: true,
 ).stdout()
 issuetracker = run_command(
-    find_program(meson.global_source_root() / 'build-aux/meson-cargo-manifest.py'),
-    'package', 'metadata', 'urls', 'issuetracker',
-    check: true
+  find_program(meson.global_source_root() / 'build-aux/meson-cargo-manifest.py'),
+  'package',
+  'metadata',
+  'urls',
+  'issuetracker',
+  check: true,
 ).stdout()
 contact = run_command(
-    find_program(meson.global_source_root() / 'build-aux/meson-cargo-manifest.py'),
-    'package', 'metadata', 'urls', 'contact',
-    check: true
+  find_program(meson.global_source_root() / 'build-aux/meson-cargo-manifest.py'),
+  'package',
+  'metadata',
+  'urls',
+  'contact',
+  check: true,
 ).stdout()
 repository = run_command(
-    find_program(meson.global_source_root() / 'build-aux/meson-cargo-manifest.py'),
-    'package', 'repository',
-    check: true
+  find_program(meson.global_source_root() / 'build-aux/meson-cargo-manifest.py'),
+  'package',
+  'repository',
+  check: true,
 ).stdout()
 
 i18n = import('i18n')
@@ -46,8 +57,8 @@ base_id = 'app.drey.Warp'
 
 dependency('glib-2.0', version: '>= 2.76.0')
 dependency('gio-2.0', version: '>= 2.76.0')
-dependency('gtk4', version: '>= 4.13.0')
-dependency('libadwaita-1', version: '>= 1.6.beta')
+dependency('gtk4', version: '>= 4.14.0')
+dependency('libadwaita-1', version: '>= 1.6')
 
 # QR Code scanning
 
@@ -55,11 +66,18 @@ linux = get_option('target') == '' or get_option('target').contains('linux')
 qr_code_scanning_feat = get_option('qr-code-scanning').disable_if(not linux)
 
 qr_code_deps = [
-  dependency('zbar', version: '>= 0.20', required: qr_code_scanning_feat),
-  dependency('gstreamer-1.0', version: '>= 1.18', required: qr_code_scanning_feat),
-  dependency('gstreamer-base-1.0', version: '>= 1.18', required: qr_code_scanning_feat),
-  dependency('gstreamer-plugins-base-1.0', version: '>= 1.18', required: qr_code_scanning_feat),
-  dependency('gstreamer-plugins-bad-1.0', version: '>= 1.18', required: qr_code_scanning_feat)
+  dependency('gstreamer-1.0', version: '>= 1.20', required: qr_code_scanning_feat),
+  dependency('gstreamer-base-1.0', version: '>= 1.20', required: qr_code_scanning_feat),
+  dependency(
+    'gstreamer-plugins-base-1.0',
+    version: '>= 1.20',
+    required: qr_code_scanning_feat,
+  ),
+  dependency(
+    'gstreamer-plugins-bad-1.0',
+    version: '>= 1.20',
+    required: qr_code_scanning_feat,
+  ),
 ]
 
 qr_code_scanning = qr_code_scanning_feat.allowed()
@@ -101,8 +119,10 @@ endif
 
 meson.add_dist_script(
   'build-aux/dist-vendor.sh',
-  meson.project_build_root() / 'meson-dist' / meson.project_name() + '-' + version,
-  meson.project_source_root()
+  meson.project_build_root() / 'meson-dist' / meson.project_name()
+  + '-'
+  + version,
+  meson.project_source_root(),
 )
 
 if get_option('profile') != 'release'
