@@ -307,6 +307,13 @@ impl WarpApplicationWindow {
         dialog.set_developers(&[&gettext("Fina Wilke")]);
         dialog.set_artists(&[&gettext("Tobias Bernard"), &gettext("Sophie Herold")]);
         dialog.set_translator_credits(&gettext("translator-credits"));
+        dialog.add_other_app(
+            "org.gnome.World.PikaBackup",
+            // Translators: This is a promotion and should match the app name as seen at https://apps.gnome.org/PikaBackup/
+            &gettext("Pika Backup"),
+            // Translators: This is a promotion and should match the short app summary as seen at https://apps.gnome.org/PikaBackup/
+            &gettext("Keep your data safe"),
+        );
         glib::spawn_future_local(glib::clone!(
             #[weak]
             dialog,

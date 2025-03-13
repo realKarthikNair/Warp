@@ -7,8 +7,8 @@ stages:
 variables:
   MANIFEST_PATH: "build-aux/app.drey.Warp.Devel.json"
   FLATPAK_MODULE: "warp"
-  RUNTIME: "47"
-  WINDOWS_RUNTIME: "47"
+  RUNTIME: "master"
+  WINDOWS_RUNTIME: "nightly"
   PACKAGE_REGISTRY_URL: "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/release/"
 
 flatpak:

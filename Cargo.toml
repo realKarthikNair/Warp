@@ -25,7 +25,7 @@ gtk = { version = "0.9", package = "gtk4", features = [
 ] }
 gdk = { version = "0.9", package = "gdk4", features = ["v4_14"] }
 gio = { version = "0.20", package = "gio", features = ["v2_76"] }
-adw = { version = "0.7", package = "libadwaita", features = ["v1_5"] }
+adw = { version = "0.7", package = "libadwaita", features = ["v1_7"] }
 glib = "0.20"
 log = "0.4"
 pretty_env_logger = "0.5"
