@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: warp main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
-"POT-Creation-Date: 2024-11-24 02:55+0000\n"
-"PO-Revision-Date: 2024-11-24 09:51+0100\n"
+"POT-Creation-Date: 2025-03-13 23:29+0000\n"
+"PO-Revision-Date: 2025-03-14 08:43+0100\n"
 "Last-Translator: Martin Srebotnjak <miles@filmsi.net>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
@@ -37,7 +37,7 @@ msgid "Gnome;GTK;Wormhole;Magic-Wormhole;"
 msgstr "Gnome;GTK;Wormhole;Magic-Wormhole;Prenos;Transfer;Pošiljanje;"
 
 #. developer_name tag deprecated with Appstream 1.0
-#: data/app.drey.Warp.metainfo.xml.in.in:9 src/ui/window.rs:303
+#: data/app.drey.Warp.metainfo.xml.in.in:9 src/ui/window.rs:307
 msgid "Fina Wilke"
 msgstr "Fina Wilke"
 
@@ -358,7 +358,7 @@ msgid "File has been saved to the Downloads folder as “{}”"
 msgstr "Datoteka je bila shranjena v mapo prenosov kot »{}«"
 
 #. Translators: Title
-#: src/ui/action_view.rs:714 src/ui/action_view.ui:292
+#: src/ui/action_view.rs:714 src/ui/action_view.ui:290
 msgid "File Transfer Failed"
 msgstr "Prenos datotek je spodletel"
 
@@ -403,60 +403,60 @@ msgid "Save As"
 msgstr "Shrani kot"
 
 #. Translators: Button; Transmit Link is a noun
-#: src/ui/action_view.ui:108
+#: src/ui/action_view.ui:106
 msgid "Copy Transmit Link"
 msgstr "Kopiraj povezavo za prenos"
 
-#: src/ui/action_view.ui:133
+#: src/ui/action_view.ui:131
 msgid "Your Transmit Code"
 msgstr "Vaša koda za pošiljanje"
 
 #. Translators: Button; Transmit Code is a noun
-#: src/ui/action_view.ui:181
+#: src/ui/action_view.ui:179
 msgid "Copy Transmit Code"
 msgstr "Kopiraj kodo za prenos"
 
 #. Translators: Title
-#: src/ui/action_view.ui:198
+#: src/ui/action_view.ui:196
 msgid "Accept File Transfer?"
 msgstr "Ali želite sprejeti prenos datotek?"
 
-#: src/ui/action_view.ui:208
+#: src/ui/action_view.ui:206
 msgid "Save to Downloads Folder"
 msgstr "Shrani v mapo prenosov"
 
 #. Translators: Button
-#: src/ui/action_view.ui:210
+#: src/ui/action_view.ui:208
 msgid "_Accept"
 msgstr "_Sprejmi"
 
 #. Translators: Button
-#: src/ui/action_view.ui:225
+#: src/ui/action_view.ui:223
 msgid "Sa_ve As…"
 msgstr "Shra_ni kot …"
 
 #. Translators: Title
-#: src/ui/action_view.ui:245
+#: src/ui/action_view.ui:243
 msgid "File Transfer Successful"
 msgstr "Prenos datotek je uspešno končan"
 
 #. Translators: Button
-#: src/ui/action_view.ui:255
+#: src/ui/action_view.ui:253
 msgid "_Open File"
 msgstr "_Odpri datoteko"
 
 #. Translators: Button
-#: src/ui/action_view.ui:271 src/ui/window.ui:51
+#: src/ui/action_view.ui:269 src/ui/window.ui:51
 msgid "_Show in Folder"
 msgstr "_Pokaži v mapi"
 
 #. Translators: Button
-#: src/ui/action_view.ui:298
+#: src/ui/action_view.ui:296
 msgid "Co_py Error Message"
 msgstr "Ko_piraj sporočilo o napaki"
 
 #. Translators: Button
-#: src/ui/action_view.ui:316
+#: src/ui/action_view.ui:314
 msgid "_Cancel"
 msgstr "Pre_kliči"
 
@@ -472,34 +472,34 @@ msgstr "Pošiljanje datoteke"
 msgid "Receiving a File"
 msgstr "Prejemanje datoteke"
 
-#: src/ui/camera.rs:245
+#: src/ui/camera.rs:243
 msgid ""
 "Camera access denied. Open Settings and allow Warp to access the camera."
 msgstr ""
 "Dostop do kamere je zavrnjen. Odprite Nastavitve in dovolite Warpu dostop do "
 "kamere."
 
-#: src/ui/camera.rs:249
+#: src/ui/camera.rs:247
 msgid "Failed to start the camera: {}"
 msgstr "Kamere ni bilo mogoče zagnati: {}"
 
-#: src/ui/camera.rs:252
+#: src/ui/camera.rs:250
 msgid "Error"
 msgstr "Napaka"
 
-#: src/ui/camera.rs:341
+#: src/ui/camera.rs:339
 msgid "Could not use the camera portal: {}"
 msgstr "Portala kamere ni bilo mogoče uporabljati: {}"
 
-#: src/ui/camera.rs:348
+#: src/ui/camera.rs:346
 msgid "Could not start the device provider: {}"
 msgstr "Ponudnika naprave ni bilo mogoče zagnati: {}"
 
-#: src/ui/camera.rs:379
+#: src/ui/camera.rs:377
 msgid "No Camera Found"
 msgstr "Ni zaznane kamere"
 
-#: src/ui/camera.rs:381
+#: src/ui/camera.rs:379
 msgid "Connect a camera to scan QR codes"
 msgstr "Priključite kamero za optično branje kod QR"
 
@@ -519,12 +519,12 @@ msgstr "_Odpravljanje težav"
 msgid "Downloads dir missing. Please set XDG_DOWNLOAD_DIR"
 msgstr "Mapa prenosov manjka. Prosimo, nastavite XDG_DOWNLOAD_DIR"
 
-#: src/ui/licenses.rs:149
+#: src/ui/licenses.rs:150
 msgid "Licensed under the <a href=\"{}\">{}</a>."
 msgstr "Izdano pod dovoljenjem <a href=\"{}\">{}</a>."
 
 #. Translators: License information without a link to the software license
-#: src/ui/licenses.rs:154
+#: src/ui/licenses.rs:155
 msgid "Licensed under the {}."
 msgstr "Izdano pod dovoljenjem {}."
 
@@ -633,7 +633,7 @@ msgstr ""
 msgid "Get Started Using Warp"
 msgstr "Uvod v uporabo Warpa"
 
-#: src/ui/window.rs:135
+#: src/ui/window.rs:139
 msgid ""
 "Error loading config file “{0}”, using default config.\n"
 "Error: {1}"
@@ -642,37 +642,47 @@ msgstr ""
 "prilagoditve.\n"
 "Napaka: {1}"
 
-#: src/ui/window.rs:284
+#: src/ui/window.rs:288
 msgid "Error saving configuration file: {}"
 msgstr "Napaka pri shranjevanju prilagoditvene datoteke: {}"
 
-#: src/ui/window.rs:304
+#: src/ui/window.rs:308
 msgid "Tobias Bernard"
 msgstr "Tobias Bernard"
 
-#: src/ui/window.rs:304
+#: src/ui/window.rs:308
 msgid "Sophie Herold"
 msgstr "Sophie Herold"
 
-#: src/ui/window.rs:305
+#: src/ui/window.rs:309
 msgid "translator-credits"
 msgstr ""
 "Matej Urbančič <mateju@svn.gnome.org>\n"
 "Martin Srebotnjak <miles@filmsi.net>"
 
-#: src/ui/window.rs:370
+#. Translators: This is a promotion and should match the app name as seen at https://apps.gnome.org/PikaBackup/
+#: src/ui/window.rs:313
+msgid "Pika Backup"
+msgstr "Varnostno kopiranje Pika"
+
+#. Translators: This is a promotion and should match the short app summary as seen at https://apps.gnome.org/PikaBackup/
+#: src/ui/window.rs:315
+msgid "Keep your data safe"
+msgstr "Varno hranite svoje podatke"
+
+#: src/ui/window.rs:381
 msgid "Select File to Send"
 msgstr "Izberite datoteko, ki jo želite poslati"
 
-#: src/ui/window.rs:378
+#: src/ui/window.rs:389
 msgid "Select Folder to Send"
 msgstr "Izberite mapo, ki jo želite poslati"
 
-#: src/ui/window.rs:441
+#: src/ui/window.rs:452
 msgid "“{}” appears to be an invalid Transmit Code. Please try again."
 msgstr "»{}« je neveljavna koda za prenos. Poskusite znova."
 
-#: src/ui/window.rs:565
+#: src/ui/window.rs:576
 msgid "Sending files with a preconfigured code is not yet supported"
 msgstr "Pošiljanje datotek s vnaprej prilagojeno kodo še ni podprto"
 
@@ -869,7 +879,7 @@ msgstr "Prejetega sporočila ni mogoče dešifrirati"
 msgid "An unknown error occurred"
 msgstr "Prišlo je do neznane napake."
 
-#. Translators: magic-wormhole codes usually look like n-word-word... where n MUST be an arabic number (unlimited digits). The first '-' is mandatory. This error occurs when a code was entered that does not contain any '-'.
+#. Translators: magic-wormhole codes usually look like n-word-word... where n MUST be an arabic number (unlimited digits). The first '-' is mandatory. This error occurs when an empty code was entered.
 #: src/util/error.rs:246
 msgid "The specified code must not be empty"
 msgstr "Navedena koda ne sme biti prazna"
