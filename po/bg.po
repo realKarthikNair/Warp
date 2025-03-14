@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: warp main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
-"POT-Creation-Date: 2025-01-13 05:36+0000\n"
-"PO-Revision-Date: 2025-01-11 16:39+0200\n"
+"POT-Creation-Date: 2025-03-14 07:44+0000\n"
+"PO-Revision-Date: 2025-03-14 10:42+0100\n"
 "Last-Translator: twlvnn kraftwerk <kraft_werk@tutanota.com>\n"
 "Language-Team: Bulgarian <dict-notifications@fsa-bg.org>\n"
 "Language: bg\n"
@@ -35,7 +35,7 @@ msgstr ""
 "wormhole;"
 
 #. developer_name tag deprecated with Appstream 1.0
-#: data/app.drey.Warp.metainfo.xml.in.in:9 src/ui/window.rs:303
+#: data/app.drey.Warp.metainfo.xml.in.in:9 src/ui/window.rs:307
 msgid "Fina Wilke"
 msgstr "Fina Wilke"
 
@@ -463,34 +463,34 @@ msgstr "Изпращане на файл"
 msgid "Receiving a File"
 msgstr "Получаване на файл"
 
-#: src/ui/camera.rs:245
+#: src/ui/camera.rs:243
 msgid ""
 "Camera access denied. Open Settings and allow Warp to access the camera."
 msgstr ""
 "Достъпът до камерата е отказан. Отворете „Настройки“ и позволете на „Warp“ "
 "да има достъп до камерата."
 
-#: src/ui/camera.rs:249
+#: src/ui/camera.rs:247
 msgid "Failed to start the camera: {}"
 msgstr "Камерата не може да бъде пусната: {}"
 
-#: src/ui/camera.rs:252
+#: src/ui/camera.rs:250
 msgid "Error"
 msgstr "Грешка"
 
-#: src/ui/camera.rs:341
+#: src/ui/camera.rs:339
 msgid "Could not use the camera portal: {}"
 msgstr "Порталът на камерата не може да се използва: {}"
 
-#: src/ui/camera.rs:348
+#: src/ui/camera.rs:346
 msgid "Could not start the device provider: {}"
 msgstr "Доставчикът на устройството не може да стартира: {}"
 
-#: src/ui/camera.rs:379
+#: src/ui/camera.rs:377
 msgid "No Camera Found"
 msgstr "Няма намерена камера"
 
-#: src/ui/camera.rs:381
+#: src/ui/camera.rs:379
 msgid "Connect a camera to scan QR codes"
 msgstr "Свържете камера, за да сканирате QR кодове"
 
@@ -625,7 +625,7 @@ msgstr ""
 msgid "Get Started Using Warp"
 msgstr "Започнете да използвате „Warp“"
 
-#: src/ui/window.rs:135
+#: src/ui/window.rs:139
 msgid ""
 "Error loading config file “{0}”, using default config.\n"
 "Error: {1}"
@@ -634,35 +634,45 @@ msgstr ""
 "стандартни настройки.\n"
 "Грешка: {1}"
 
-#: src/ui/window.rs:284
+#: src/ui/window.rs:288
 msgid "Error saving configuration file: {}"
 msgstr "Грешка при запазването на конфигурационния файл: {}"
 
-#: src/ui/window.rs:304
+#: src/ui/window.rs:308
 msgid "Tobias Bernard"
 msgstr "Tobias Bernard"
 
-#: src/ui/window.rs:304
+#: src/ui/window.rs:308
 msgid "Sophie Herold"
 msgstr "Sophie Herold"
 
-#: src/ui/window.rs:305
+#: src/ui/window.rs:309
 msgid "translator-credits"
 msgstr "twlvnn kraftwerk <kraft_werk@tutanota.com>"
 
-#: src/ui/window.rs:370
+#. Translators: This is a promotion and should match the app name as seen at https://apps.gnome.org/PikaBackup/
+#: src/ui/window.rs:313
+msgid "Pika Backup"
+msgstr "Резервни копия с Pika"
+
+#. Translators: This is a promotion and should match the short app summary as seen at https://apps.gnome.org/PikaBackup/
+#: src/ui/window.rs:315
+msgid "Keep your data safe"
+msgstr "За надеждно съхраняване на данни"
+
+#: src/ui/window.rs:381
 msgid "Select File to Send"
 msgstr "Изберете файл за изпращане"
 
-#: src/ui/window.rs:378
+#: src/ui/window.rs:389
 msgid "Select Folder to Send"
 msgstr "Изберете папка за изпращане"
 
-#: src/ui/window.rs:441
+#: src/ui/window.rs:452
 msgid "“{}” appears to be an invalid Transmit Code. Please try again."
 msgstr "„{}“ не е правилен код за изпращане. Опитайте отново."
 
-#: src/ui/window.rs:565
+#: src/ui/window.rs:576
 msgid "Sending files with a preconfigured code is not yet supported"
 msgstr ""
 "Изпращането на файлове с предварително конфигуриран код все още не се "
