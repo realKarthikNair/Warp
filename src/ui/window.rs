@@ -395,17 +395,21 @@ impl WarpApplicationWindow {
         );
     }
 
+    pub fn send_file(&self, file: &gio::File) {
+        if let Some(path) = file.path() {
+            log::debug!("Selected file: {}", path.display());
+            self.imp()
+                .action_view
+                .send_file(path, self.config().app_cfg());
+        } else {
+            log::error!("Can't send file: path is None");
+        }
+    }
+
     fn select_file_result(&self, result: Result<gio::File, glib::Error>) {
         match result {
             Ok(file) => {
-                if let Some(path) = file.path() {
-                    log::debug!("Picked file: {}", path.display());
-                    self.imp()
-                        .action_view
-                        .send_file(path, self.config().app_cfg());
-                } else {
-                    log::error!("File chooser has file but path is None");
-                }
+                self.send_file(&file);
             }
             Err(err) => {
                 log::debug!("File chooser error: {:?}", err);

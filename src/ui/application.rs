@@ -54,24 +54,33 @@ mod imp {
             self.activate();
             let app = self.obj();
 
-            if !files.is_empty() {
-                if app.main_window().transfer_in_progress() {
-                    let err: AppError = UiError::new(&gettext(
-                        "Unable to use transfer link: another transfer already in progress",
-                    ))
-                    .into();
-                    err.show_error_dialog(&app.main_window());
-                } else {
-                    match files[0].uri().parse::<WormholeTransferURI>() {
-                        Ok(uri) => {
-                            app.main_window().open_code_from_uri(uri);
-                        }
-                        Err(err) => {
-                            let err: AppError = UiError::new(&err.to_string()).into();
-                            err.show_error_dialog(&app.main_window());
-                        }
+            let Some(first) = files.first() else {
+                return;
+            };
+
+            if app.main_window().transfer_in_progress() {
+                let err: AppError = UiError::new(&gettext(
+                    "Unable to use transfer link: another transfer already in progress",
+                ))
+                .into();
+                err.show_error_dialog(&app.main_window());
+                return;
+            }
+
+            if first.uri_scheme().as_deref() == Some("wormhole-transfer") {
+                match files[0].uri().parse::<WormholeTransferURI>() {
+                    Ok(uri) => {
+                        app.main_window().open_code_from_uri(uri);
+                    }
+                    Err(err) => {
+                        let err: AppError = UiError::new(&err.to_string()).into();
+                        err.show_error_dialog(&app.main_window());
                     }
                 }
+            } else {
+                // Regular file / file list
+                let window = app.main_window();
+                window.send_file(first);
             }
         }
 
