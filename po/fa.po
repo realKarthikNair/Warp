@@ -2,14 +2,14 @@
 # Copyright (C) 2022 warp's COPYRIGHT HOLDER
 # This file is distributed under the same license as the warp package.
 # eshagh shahidani <eshagh094@gmail.com>, 2022.
-# Danial Behzadi <dani.behzi@ubuntu.com>, 2023-2024.
+# Danial Behzadi <dani.behzi@ubuntu.com>, 2023-2025.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: warp main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
-"POT-Creation-Date: 2024-11-24 02:55+0000\n"
-"PO-Revision-Date: 2024-11-24 14:28+0330\n"
+"POT-Creation-Date: 2025-03-13 23:29+0000\n"
+"PO-Revision-Date: 2025-03-15 03:54+0330\n"
 "Last-Translator: Danial Behzadi <dani.behzi@ubuntu.com>\n"
 "Language-Team: Persian <fa@li.org>\n"
 "Language: fa\n"
@@ -34,7 +34,7 @@ msgid "Gnome;GTK;Wormhole;Magic-Wormhole;"
 msgstr "Gnome;GTK;Wormhole;Magic-Wormhole;گنوم;کرمچاله;انتقال;پرونده;"
 
 #. developer_name tag deprecated with Appstream 1.0
-#: data/app.drey.Warp.metainfo.xml.in.in:9 src/ui/window.rs:303
+#: data/app.drey.Warp.metainfo.xml.in.in:9 src/ui/window.rs:307
 msgid "Fina Wilke"
 msgstr "فینا ویلکه"
 
@@ -340,7 +340,7 @@ msgid "File has been saved to the Downloads folder as “{}”"
 msgstr "پرونده به عنوان «{}» در شاخهٔ بارگیری‌ها ذخیره شد"
 
 #. Translators: Title
-#: src/ui/action_view.rs:714 src/ui/action_view.ui:292
+#: src/ui/action_view.rs:714 src/ui/action_view.ui:290
 msgid "File Transfer Failed"
 msgstr "انتقال پرونده شکست خورد"
 
@@ -378,60 +378,60 @@ msgid "Save As"
 msgstr "ذخیره به شکل"
 
 #. Translators: Button; Transmit Link is a noun
-#: src/ui/action_view.ui:108
+#: src/ui/action_view.ui:106
 msgid "Copy Transmit Link"
 msgstr "رونوشت پیوند انتقال"
 
-#: src/ui/action_view.ui:133
+#: src/ui/action_view.ui:131
 msgid "Your Transmit Code"
 msgstr "کد انتقالتان"
 
 #. Translators: Button; Transmit Code is a noun
-#: src/ui/action_view.ui:181
+#: src/ui/action_view.ui:179
 msgid "Copy Transmit Code"
 msgstr "رونوشت کد انتقال"
 
 #. Translators: Title
-#: src/ui/action_view.ui:198
+#: src/ui/action_view.ui:196
 msgid "Accept File Transfer?"
 msgstr "پذیرش انتقال پرونده؟"
 
-#: src/ui/action_view.ui:208
+#: src/ui/action_view.ui:206
 msgid "Save to Downloads Folder"
 msgstr "ذخیره در شاخهٔ بارگیری‌ها"
 
 #. Translators: Button
-#: src/ui/action_view.ui:210
+#: src/ui/action_view.ui:208
 msgid "_Accept"
 msgstr "_پذیرش"
 
 #. Translators: Button
-#: src/ui/action_view.ui:225
+#: src/ui/action_view.ui:223
 msgid "Sa_ve As…"
 msgstr "ذخیره به _شکل…"
 
 #. Translators: Title
-#: src/ui/action_view.ui:245
+#: src/ui/action_view.ui:243
 msgid "File Transfer Successful"
 msgstr "انتقال پرونده موفّقیت آمیز بود"
 
 #. Translators: Button
-#: src/ui/action_view.ui:255
+#: src/ui/action_view.ui:253
 msgid "_Open File"
 msgstr "_گشودن پرونده"
 
 #. Translators: Button
-#: src/ui/action_view.ui:271 src/ui/window.ui:51
+#: src/ui/action_view.ui:269 src/ui/window.ui:51
 msgid "_Show in Folder"
 msgstr "_نمایش در شاخه"
 
 #. Translators: Button
-#: src/ui/action_view.ui:298
+#: src/ui/action_view.ui:296
 msgid "Co_py Error Message"
 msgstr "_رونوشت پیام خطا"
 
 #. Translators: Button
-#: src/ui/action_view.ui:316
+#: src/ui/action_view.ui:314
 msgid "_Cancel"
 msgstr "_لغو"
 
@@ -447,32 +447,32 @@ msgstr "فرستادن پرونده"
 msgid "Receiving a File"
 msgstr "گرفتن پرونده"
 
-#: src/ui/camera.rs:245
+#: src/ui/camera.rs:243
 msgid "Camera access denied. Open Settings and allow Warp to access the camera."
 msgstr ""
 "دسترسی دوربین رد شد. گشودن تنظیمات و اجازه به پیچ‌وتاب برای دسترسی به دوربین."
 
-#: src/ui/camera.rs:249
+#: src/ui/camera.rs:247
 msgid "Failed to start the camera: {}"
 msgstr "شکست در آغاز دوربین: {}"
 
-#: src/ui/camera.rs:252
+#: src/ui/camera.rs:250
 msgid "Error"
 msgstr "خطا"
 
-#: src/ui/camera.rs:341
+#: src/ui/camera.rs:339
 msgid "Could not use the camera portal: {}"
 msgstr "نتوانست از درگاه دوربین استفاده کند« {}"
 
-#: src/ui/camera.rs:348
+#: src/ui/camera.rs:346
 msgid "Could not start the device provider: {}"
 msgstr "نتوانست فراهمگر افزاره را آغاز کند: {}"
 
-#: src/ui/camera.rs:379
+#: src/ui/camera.rs:377
 msgid "No Camera Found"
 msgstr "هیچ دوربینی پیدا نشد"
 
-#: src/ui/camera.rs:381
+#: src/ui/camera.rs:379
 msgid "Connect a camera to scan QR codes"
 msgstr "وصل کردن دوربین برای پویش کدهای پاس"
 
@@ -492,12 +492,12 @@ msgstr "_رفع اشکال"
 msgid "Downloads dir missing. Please set XDG_DOWNLOAD_DIR"
 msgstr "شاخهٔ بارگیری‌ها موجود نیست. لطفاً XDG_DOWNLOAD_DIR را تنظیم کنید"
 
-#: src/ui/licenses.rs:149
+#: src/ui/licenses.rs:150
 msgid "Licensed under the <a href=\"{}\">{}</a>."
 msgstr "پروانه شده با <a href=\"{}\">{}</a>."
 
 #. Translators: License information without a link to the software license
-#: src/ui/licenses.rs:154
+#: src/ui/licenses.rs:155
 msgid "Licensed under the {}."
 msgstr "پروانه شده با {}."
 
@@ -604,7 +604,7 @@ msgstr ""
 msgid "Get Started Using Warp"
 msgstr "شروع به استفاده از پیچ‌وتاب"
 
-#: src/ui/window.rs:135
+#: src/ui/window.rs:139
 msgid ""
 "Error loading config file “{0}”, using default config.\n"
 "Error: {1}"
@@ -612,37 +612,47 @@ msgstr ""
 "خطار در بار کردن پروندهٔ پیکربندی «{0}». استفاده از پیکربندی پیش‌گزیده.\n"
 "خطا: {1}"
 
-#: src/ui/window.rs:284
+#: src/ui/window.rs:288
 msgid "Error saving configuration file: {}"
 msgstr "خطا در ذخیرهٔ پروندهٔ پیکربندی: {}"
 
-#: src/ui/window.rs:304
+#: src/ui/window.rs:308
 msgid "Tobias Bernard"
 msgstr "توبیاس برنارد"
 
-#: src/ui/window.rs:304
+#: src/ui/window.rs:308
 msgid "Sophie Herold"
 msgstr "سوفی هرلود"
 
-#: src/ui/window.rs:305
+#: src/ui/window.rs:309
 msgid "translator-credits"
 msgstr ""
 "سید اسحاق مقیم شهیدانی <eshagh094@gmail.com>\n"
 "دانیال بهزادی <dani.behzi@ubuntu.com>"
 
-#: src/ui/window.rs:370
+#. Translators: This is a promotion and should match the app name as seen at https://apps.gnome.org/PikaBackup/
+#: src/ui/window.rs:313
+msgid "Pika Backup"
+msgstr "پشتیبان گیری پیکا"
+
+#. Translators: This is a promotion and should match the short app summary as seen at https://apps.gnome.org/PikaBackup/
+#: src/ui/window.rs:315
+msgid "Keep your data safe"
+msgstr "امن نگه داشتن داده‌هایتان"
+
+#: src/ui/window.rs:381
 msgid "Select File to Send"
 msgstr "گزینش پرونده برای فرستادن"
 
-#: src/ui/window.rs:378
+#: src/ui/window.rs:389
 msgid "Select Folder to Send"
 msgstr "گزینش شاخه برای فرستادن"
 
-#: src/ui/window.rs:441
+#: src/ui/window.rs:452
 msgid "“{}” appears to be an invalid Transmit Code. Please try again."
 msgstr "به نظر «{}» کد جابه‌جایی نامعتبریست. لطفاً دوباره تلاش کنید."
 
-#: src/ui/window.rs:565
+#: src/ui/window.rs:576
 msgid "Sending files with a preconfigured code is not yet supported"
 msgstr "فرستادن پرونده‌ها با کدی از پیش پیکربندی شده هنوز پشتیبانی نمی‌شود"
 
@@ -832,7 +842,7 @@ msgstr "نمی‌توان پیام رسیده را رمزگشایی کرد"
 msgid "An unknown error occurred"
 msgstr "خطایی ناشناخته رخ داد"
 
-#. Translators: magic-wormhole codes usually look like n-word-word... where n MUST be an arabic number (unlimited digits). The first '-' is mandatory. This error occurs when a code was entered that does not contain any '-'.
+#. Translators: magic-wormhole codes usually look like n-word-word... where n MUST be an arabic number (unlimited digits). The first '-' is mandatory. This error occurs when an empty code was entered.
 #: src/util/error.rs:246
 msgid "The specified code must not be empty"
 msgstr "کد مشخّص شده نباید خالی باشد"
