@@ -60,7 +60,10 @@ license = { version = "3", features = ["offline"] }
 strum = { version = "0.27", features = ["derive", "strum_macros"] }
 
 [target.'cfg(unix)'.dependencies]
-ashpd = { version = "0.11", features = ["gtk4"] }
+ashpd = { version = "0.11", features = [
+    "gtk4",
+    "async-std",
+], default-features = false }
 
 [target.'cfg(windows)'.dependencies]
 win32console = "0.1"
