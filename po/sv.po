@@ -1,14 +1,14 @@
 # Swedish translation for warp.
-# Copyright © 2022-2024 warp's COPYRIGHT HOLDER
+# Copyright © 2022-2025 warp's COPYRIGHT HOLDER
 # This file is distributed under the same license as the warp package.
-# Anders Jonsson <anders.jonsson@norsjovallen.se>, 2022, 2023, 2024.
+# Anders Jonsson <anders.jonsson@norsjovallen.se>, 2022, 2023, 2024, 2025.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: warp main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
-"POT-Creation-Date: 2024-11-24 07:24+0000\n"
-"PO-Revision-Date: 2024-12-25 22:01+0100\n"
+"POT-Creation-Date: 2025-03-15 15:34+0000\n"
+"PO-Revision-Date: 2025-03-21 23:21+0100\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -33,7 +33,7 @@ msgid "Gnome;GTK;Wormhole;Magic-Wormhole;"
 msgstr "Gnome;GTK;Wormhole;Magic-Wormhole;"
 
 #. developer_name tag deprecated with Appstream 1.0
-#: data/app.drey.Warp.metainfo.xml.in.in:9 src/ui/window.rs:303
+#: data/app.drey.Warp.metainfo.xml.in.in:9 src/ui/window.rs:307
 msgid "Fina Wilke"
 msgstr "Fina Wilke"
 
@@ -443,46 +443,46 @@ msgstr "Ko_piera felmeddelande"
 msgid "_Cancel"
 msgstr "A_vbryt"
 
-#: src/ui/application.rs:60
+#: src/ui/application.rs:63
 msgid "Unable to use transfer link: another transfer already in progress"
 msgstr "Kunde inte använda överföringslänk: en annan överföring pågår redan"
 
-#: src/ui/application.rs:207
+#: src/ui/application.rs:216
 msgid "Sending a File"
 msgstr "Skickar en fil"
 
-#: src/ui/application.rs:208
+#: src/ui/application.rs:217
 msgid "Receiving a File"
 msgstr "Tar emot en fil"
 
-#: src/ui/camera.rs:245
+#: src/ui/camera.rs:243
 msgid ""
 "Camera access denied. Open Settings and allow Warp to access the camera."
 msgstr ""
 "Kameraåtkomst nekad. Öppna Inställningar och tillåt Warp att komma åt "
 "kameran."
 
-#: src/ui/camera.rs:249
+#: src/ui/camera.rs:247
 msgid "Failed to start the camera: {}"
 msgstr "Misslyckades med att starta kameran: {}"
 
-#: src/ui/camera.rs:252
+#: src/ui/camera.rs:250
 msgid "Error"
 msgstr "Fel"
 
-#: src/ui/camera.rs:341
+#: src/ui/camera.rs:339
 msgid "Could not use the camera portal: {}"
 msgstr "Kunde inte använda kameraportalen: {}"
 
-#: src/ui/camera.rs:348
+#: src/ui/camera.rs:346
 msgid "Could not start the device provider: {}"
 msgstr "Kunde inte starta enhetsleverantören: {}"
 
-#: src/ui/camera.rs:379
+#: src/ui/camera.rs:377
 msgid "No Camera Found"
 msgstr "Ingen kamera hittades"
 
-#: src/ui/camera.rs:381
+#: src/ui/camera.rs:379
 msgid "Connect a camera to scan QR codes"
 msgstr "Anslut en kamera för att läsa av QR-koder"
 
@@ -615,7 +615,7 @@ msgstr ""
 msgid "Get Started Using Warp"
 msgstr "Kom igång med Warp"
 
-#: src/ui/window.rs:135
+#: src/ui/window.rs:139
 msgid ""
 "Error loading config file “{0}”, using default config.\n"
 "Error: {1}"
@@ -624,19 +624,19 @@ msgstr ""
 "standardkonfiguration.\n"
 "Fel: {1}"
 
-#: src/ui/window.rs:284
+#: src/ui/window.rs:288
 msgid "Error saving configuration file: {}"
 msgstr "Fel vid sparande av konfigurationsfil: {}"
 
-#: src/ui/window.rs:304
+#: src/ui/window.rs:308
 msgid "Tobias Bernard"
 msgstr "Tobias Bernard"
 
-#: src/ui/window.rs:304
+#: src/ui/window.rs:308
 msgid "Sophie Herold"
 msgstr "Sophie Herold"
 
-#: src/ui/window.rs:305
+#: src/ui/window.rs:309
 msgid "translator-credits"
 msgstr ""
 "Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
@@ -644,19 +644,29 @@ msgstr ""
 "Skicka synpunkter på översättningen till\n"
 "<tp-sv@listor.tp-sv.se>."
 
-#: src/ui/window.rs:370
+#. Translators: This is a promotion and should match the app name as seen at https://apps.gnome.org/PikaBackup/
+#: src/ui/window.rs:313
+msgid "Pika Backup"
+msgstr "Pika Backup"
+
+#. Translators: This is a promotion and should match the short app summary as seen at https://apps.gnome.org/PikaBackup/
+#: src/ui/window.rs:315
+msgid "Keep your data safe"
+msgstr "Behåll dina data säkra"
+
+#: src/ui/window.rs:381
 msgid "Select File to Send"
 msgstr "Välj fil att skicka"
 
-#: src/ui/window.rs:378
+#: src/ui/window.rs:389
 msgid "Select Folder to Send"
 msgstr "Välj mapp att skicka"
 
-#: src/ui/window.rs:441
+#: src/ui/window.rs:456
 msgid "“{}” appears to be an invalid Transmit Code. Please try again."
 msgstr "”{}” verkar vara en ogiltig överföringskod. Försök igen."
 
-#: src/ui/window.rs:565
+#: src/ui/window.rs:580
 msgid "Sending files with a preconfigured code is not yet supported"
 msgstr ""
 "Det finns ännu inte stöd för att skicka filer med en förkonfigurerad kod"
