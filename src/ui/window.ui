@@ -196,6 +196,7 @@
                                               <object class="AdwClamp">
                                                 <child>
                                                   <object class="GtkListBox">
+                                                    <property name="selection-mode">none</property>
                                                     <style>
                                                       <class name="boxed-list"/>
                                                     </style>
