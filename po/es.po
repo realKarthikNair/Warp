@@ -3,22 +3,22 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # Daniel Mustieles <daniel.mustieles@gmail.com>, 2022-2023.
-# Julián Villodre <jvillodrede@gmail.com>, 2024.
+# Julián Villodre <jvillodrede@gmail.com>, 2024-2025.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
-"POT-Creation-Date: 2024-11-24 02:55+0000\n"
-"PO-Revision-Date: 2024-12-08 13:41+0100\n"
+"POT-Creation-Date: 2025-03-26 14:48+0000\n"
+"PO-Revision-Date: 2025-03-29 22:04+0100\n"
 "Last-Translator: Julián Villodre <jvillodrede@gmail.com>\n"
-"Language-Team: Spanish - Spain <gnome-es-list@gnome.org>\n"
-"Language: es\n"
+"Language-Team: es_ES\n"
+"Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"X-Generator: Gtranslator 47.1\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Gtranslator 48.0\n"
 
 #: data/app.drey.Warp.desktop.in.in:3 data/app.drey.Warp.metainfo.xml.in.in:4
 #: src/main.rs:131 src/ui/window.ui:81
@@ -35,7 +35,7 @@ msgid "Gnome;GTK;Wormhole;Magic-Wormhole;"
 msgstr "Gnome;GTK;Agujero de gusano;mágico;"
 
 #. developer_name tag deprecated with Appstream 1.0
-#: data/app.drey.Warp.metainfo.xml.in.in:9 src/ui/window.rs:303
+#: data/app.drey.Warp.metainfo.xml.in.in:9 src/ui/window.rs:307
 msgid "Fina Wilke"
 msgstr "Fina Wilke"
 
@@ -94,7 +94,7 @@ msgstr "Ventana principal"
 
 #. Translators: Entry placeholder; This is a noun
 #: data/app.drey.Warp.metainfo.xml.in.in:68
-#: data/app.drey.Warp.metainfo.xml.in.in:88 src/ui/window.ui:207
+#: data/app.drey.Warp.metainfo.xml.in.in:88 src/ui/window.ui:208
 msgid "Transmit Code"
 msgstr "Código de transmisión"
 
@@ -349,7 +349,7 @@ msgid "File has been saved to the Downloads folder as “{}”"
 msgstr "El archivo se ha guardado en la carpeta de Descargas como «{}»"
 
 #. Translators: Title
-#: src/ui/action_view.rs:714 src/ui/action_view.ui:292
+#: src/ui/action_view.rs:714 src/ui/action_view.ui:290
 msgid "File Transfer Failed"
 msgstr "Transferencia de archivo fallida"
 
@@ -392,107 +392,107 @@ msgid "Save As"
 msgstr "Guardar como"
 
 #. Translators: Button; Transmit Link is a noun
-#: src/ui/action_view.ui:108
+#: src/ui/action_view.ui:106
 msgid "Copy Transmit Link"
 msgstr "Copiar enlace de transmisión"
 
-#: src/ui/action_view.ui:133
+#: src/ui/action_view.ui:131
 msgid "Your Transmit Code"
 msgstr "Su código de transmisión"
 
 #. Translators: Button; Transmit Code is a noun
-#: src/ui/action_view.ui:181
+#: src/ui/action_view.ui:179
 msgid "Copy Transmit Code"
 msgstr "Copiar código de transmisión"
 
 #. Translators: Title
-#: src/ui/action_view.ui:198
+#: src/ui/action_view.ui:196
 msgid "Accept File Transfer?"
 msgstr "¿Aceptar la transferencia del archivo?"
 
-#: src/ui/action_view.ui:208
+#: src/ui/action_view.ui:206
 msgid "Save to Downloads Folder"
 msgstr "Guardar en la carpeta de descargas."
 
 #. Translators: Button
-#: src/ui/action_view.ui:210
+#: src/ui/action_view.ui:208
 msgid "_Accept"
 msgstr "_Aceptar"
 
 #. Translators: Button
-#: src/ui/action_view.ui:225
+#: src/ui/action_view.ui:223
 msgid "Sa_ve As…"
 msgstr "_Guardar como…"
 
 #. Translators: Title
-#: src/ui/action_view.ui:245
+#: src/ui/action_view.ui:243
 msgid "File Transfer Successful"
 msgstr "Transmisión de archivo correcta"
 
 #. Translators: Button
-#: src/ui/action_view.ui:255
+#: src/ui/action_view.ui:253
 msgid "_Open File"
 msgstr "Abrir archiv_o"
 
 #. Translators: Button
-#: src/ui/action_view.ui:271 src/ui/window.ui:51
+#: src/ui/action_view.ui:269 src/ui/window.ui:51
 msgid "_Show in Folder"
 msgstr "Mo_strar en la carpeta"
 
 #. Translators: Button
-#: src/ui/action_view.ui:298
+#: src/ui/action_view.ui:296
 msgid "Co_py Error Message"
 msgstr "Co_piar mensaje de error"
 
 #. Translators: Button
-#: src/ui/action_view.ui:316
+#: src/ui/action_view.ui:314
 msgid "_Cancel"
 msgstr "_Cancelar"
 
-#: src/ui/application.rs:60
+#: src/ui/application.rs:63
 msgid "Unable to use transfer link: another transfer already in progress"
 msgstr "No se pudo usar el enlace: hay otra transferencia en progreso"
 
-#: src/ui/application.rs:207
+#: src/ui/application.rs:216
 msgid "Sending a File"
 msgstr "Enviando un archivo"
 
-#: src/ui/application.rs:208
+#: src/ui/application.rs:217
 msgid "Receiving a File"
 msgstr "Recibiendo un archivo"
 
-#: src/ui/camera.rs:245
+#: src/ui/camera.rs:243
 msgid ""
 "Camera access denied. Open Settings and allow Warp to access the camera."
 msgstr ""
 "Se denegó el acceso a la cámara. Abra la configuración y permita que Warp "
 "acceda a la cámara."
 
-#: src/ui/camera.rs:249
+#: src/ui/camera.rs:247
 msgid "Failed to start the camera: {}"
 msgstr "Falló al iniciar la cámara: {}"
 
-#: src/ui/camera.rs:252
+#: src/ui/camera.rs:250
 msgid "Error"
 msgstr "Error"
 
-#: src/ui/camera.rs:341
+#: src/ui/camera.rs:339
 msgid "Could not use the camera portal: {}"
 msgstr "No se pudo utilizar el portal de la cámara: {}"
 
-#: src/ui/camera.rs:348
+#: src/ui/camera.rs:346
 msgid "Could not start the device provider: {}"
 msgstr "No se pudo iniciar el proveedor del dispositivo: {}"
 
-#: src/ui/camera.rs:379
+#: src/ui/camera.rs:377
 msgid "No Camera Found"
 msgstr "No se encontró ninguna cámara"
 
-#: src/ui/camera.rs:381
+#: src/ui/camera.rs:379
 msgid "Connect a camera to scan QR codes"
 msgstr "Conecte una cámara para escanear códigos QR"
 
-#: src/ui/camera.ui:11 src/ui/window.ui:216
+#: src/ui/camera.ui:11 src/ui/window.ui:217
 msgid "Scan QR Code"
 msgstr "Escanee un código QR"
 
@@ -510,12 +510,12 @@ msgstr ""
 "No se encontró la carpeta de Descargas. Asegúrate de establecer la variable "
 "XDG_DOWNLOAD_DIR"
 
-#: src/ui/licenses.rs:149
+#: src/ui/licenses.rs:150
 msgid "Licensed under the <a href=\"{}\">{}</a>."
 msgstr "Bajo una licencia <a href=\"{}\">{}</a>."
 
 #. Translators: License information without a link to the software license
-#: src/ui/licenses.rs:154
+#: src/ui/licenses.rs:155
 msgid "Licensed under the {}."
 msgstr "Bajo una licencia {}."
 
@@ -627,7 +627,7 @@ msgstr ""
 msgid "Get Started Using Warp"
 msgstr "Comenzar a usar Warp"
 
-#: src/ui/window.rs:135
+#: src/ui/window.rs:139
 msgid ""
 "Error loading config file “{0}”, using default config.\n"
 "Error: {1}"
@@ -636,39 +636,49 @@ msgstr ""
 "predeterminada.\n"
 "Error: {1}"
 
-#: src/ui/window.rs:284
+#: src/ui/window.rs:288
 msgid "Error saving configuration file: {}"
 msgstr "Error al guardar el archivo de configuración: {}"
 
-#: src/ui/window.rs:304
+#: src/ui/window.rs:308
 msgid "Tobias Bernard"
 msgstr "Tobias Bernard"
 
-#: src/ui/window.rs:304
+#: src/ui/window.rs:308
 msgid "Sophie Herold"
 msgstr "Sophie Herold"
 
-#: src/ui/window.rs:305
+#: src/ui/window.rs:309
 msgid "translator-credits"
 msgstr ""
 "Julián Villodre <jvillodrede@gmail.com>, 2024\n"
 "Daniel Mustieles <daniel.mustieles@gmail.com>, 2022\n"
 "Lautaro Garavano <lgaravano28@gmail.com>, 2022"
 
-#: src/ui/window.rs:370
+#. Translators: This is a promotion and should match the app name as seen at https://apps.gnome.org/PikaBackup/
+#: src/ui/window.rs:313
+msgid "Pika Backup"
+msgstr "Copia de respaldo Pika"
+
+#. Translators: This is a promotion and should match the short app summary as seen at https://apps.gnome.org/PikaBackup/
+#: src/ui/window.rs:315
+msgid "Keep your data safe"
+msgstr "Mantenga sus datos a salvo"
+
+#: src/ui/window.rs:381
 msgid "Select File to Send"
 msgstr "Seleccionar archivo para enviar"
 
-#: src/ui/window.rs:378
+#: src/ui/window.rs:389
 msgid "Select Folder to Send"
 msgstr "Seleccionar carpeta para enviar"
 
-#: src/ui/window.rs:441
+#: src/ui/window.rs:456
 msgid "“{}” appears to be an invalid Transmit Code. Please try again."
 msgstr ""
 "«{}» parece ser un código de transmisión no válido. Inténtelo de nuevo."
 
-#: src/ui/window.rs:565
+#: src/ui/window.rs:580
 msgid "Sending files with a preconfigured code is not yet supported"
 msgstr "Enviar archivos con un código preconfigurado todavía no está soportado"
 
@@ -763,11 +773,11 @@ msgid "Enter the transmit code from the sender"
 msgstr "Introduzca el código de transmisión del emisor"
 
 #. Translators: Button
-#: src/ui/window.ui:237
+#: src/ui/window.ui:238
 msgid "Receive _File"
 msgstr "Recibir a_rchivo"
 
-#: src/ui/window.ui:263
+#: src/ui/window.ui:264
 msgid "File Transfer"
 msgstr "Transferencia de archivos"
 
@@ -864,7 +874,7 @@ msgstr "No se puede descifrar un mensaje recibido"
 msgid "An unknown error occurred"
 msgstr "Ocurrió un error desconocido"
 
-#. Translators: magic-wormhole codes usually look like n-word-word... where n MUST be an arabic number (unlimited digits). The first '-' is mandatory. This error occurs when a code was entered that does not contain any '-'.
+#. Translators: magic-wormhole codes usually look like n-word-word... where n MUST be an arabic number (unlimited digits). The first '-' is mandatory. This error occurs when an empty code was entered.
 #: src/util/error.rs:246
 msgid "The specified code must not be empty"
 msgstr "El código especificado no debe estar vacío"
