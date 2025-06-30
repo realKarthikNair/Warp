@@ -1,14 +1,14 @@
 # Basque translation for warp.
 # Copyright (C) 2022 warp's COPYRIGHT HOLDER
 # This file is distributed under the same license as the warp package.
-# Asier Sarasua Garmendia <asiersarasua@ni.eus>, 2022, 2023, 2024.
+# Asier Saratsua Garmendia <asiersarasua@ni.eus>, 2022, 2023, 2024 2025.
 #
 msgid ""
 msgstr "Project-Id-Version: warp main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
-"POT-Creation-Date: 2024-03-22 01:55+0000\n"
-"PO-Revision-Date: 2024-04-06 20:28+0000\n"
-"Last-Translator: Asier Sarasua Garmendia <asiersarasua@ni.eus>\n"
+"POT-Creation-Date: 2025-03-26 14:48+0000\n"
+"PO-Revision-Date: 2025-06-30 20:28+0000\n"
+"Last-Translator: Asier Saratsua Garmendia <asiersarasua@ni.eus>\n"
 "Language-Team: Basque <librezale@librezale.eus>\n"
 "Language: eu\n"
 "MIME-Version: 1.0\n"
@@ -16,12 +16,12 @@ msgstr "Project-Id-Version: warp main\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: data/app.drey.Warp.desktop.in.in:3 data/app.drey.Warp.metainfo.xml.in.in:6
-#: src/main.rs:122 src/ui/window.ui:81
+#: data/app.drey.Warp.desktop.in.in:3 data/app.drey.Warp.metainfo.xml.in.in:4
+#: src/main.rs:131 src/ui/window.ui:81
 msgid "Warp"
 msgstr "Warp"
 
-#: data/app.drey.Warp.desktop.in.in:4 data/app.drey.Warp.metainfo.xml.in.in:7
+#: data/app.drey.Warp.desktop.in.in:4 data/app.drey.Warp.metainfo.xml.in.in:5
 #: src/ui/welcome_dialog.ui:24
 msgid "Fast and secure file transfer"
 msgstr "Fitxategien transferentzia azkar eta segurua"
@@ -30,73 +30,78 @@ msgstr "Fitxategien transferentzia azkar eta segurua"
 msgid "Gnome;GTK;Wormhole;Magic-Wormhole;"
 msgstr "Gnome;GTK;Wormhole;Magic-Wormhole;"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:9
+#. developer_name tag deprecated with Appstream 1.0
+#: data/app.drey.Warp.metainfo.xml.in.in:9 src/ui/window.rs:307
+msgid "Fina Wilke"
+msgstr "Fina Wilke"
+
+#: data/app.drey.Warp.metainfo.xml.in.in:43
 msgid ""
 "Warp allows you to securely send files to each other via the internet or "
 "local network by exchanging a word-based code."
 msgstr "Warp bidez, fitxategiak bidaltzeko modu segurua aurkitu duzu. Hitzetan oinarritutako kode bat trukatuta transferitzen da informazioa, bai interneten bai sare lokaletan."
 
-#: data/app.drey.Warp.metainfo.xml.in.in:13
+#: data/app.drey.Warp.metainfo.xml.in.in:47
 msgid ""
 "The best transfer method will be determined using the “Magic Wormhole” "
 "protocol which includes local network transfer if possible."
 msgstr "Transferentzia-metodorik onena “Magic Wormhole” protokoloaren bidez zehazten da. Protokolo horrek sare lokaleko transferentzia erabiltzen du, posible bada."
 
-#: data/app.drey.Warp.metainfo.xml.in.in:17
+#: data/app.drey.Warp.metainfo.xml.in.in:51
 msgid "Features"
 msgstr "Eginbideak"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:19
+#: data/app.drey.Warp.metainfo.xml.in.in:53
 msgid "Send files between multiple devices"
 msgstr "Trukatu fitxategiak gailu anitzen artean"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:20
+#: data/app.drey.Warp.metainfo.xml.in.in:54
 msgid "Every file transfer is encrypted"
 msgstr "Fitxategi-transferentzia bakoitza zifratuta dago"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:21
+#: data/app.drey.Warp.metainfo.xml.in.in:55
 msgid "Directly transfer files on the local network if possible"
 msgstr "Transferitu fitxategiak sare lokalean, posible bada"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:22
+#: data/app.drey.Warp.metainfo.xml.in.in:56
 msgid "An internet connection is required"
 msgstr "Interneteko konexioa behar da"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:23
+#: data/app.drey.Warp.metainfo.xml.in.in:57
 msgid "QR Code support"
 msgstr "QR kodeen euskarria"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:24
+#: data/app.drey.Warp.metainfo.xml.in.in:58
 msgid ""
 "Compatibility with the Magic Wormhole command line client and all other "
 "compatible apps"
 msgstr "“Magic Wormhole” komando-lerroko bezeroarekin eta beste aplikazio bateragarri batzuekin bateragarria"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:30
+#: data/app.drey.Warp.metainfo.xml.in.in:64
+#: data/app.drey.Warp.metainfo.xml.in.in:84
 msgid "Main Window"
 msgstr "Leiho nagusia"
 
 #. Translators: Entry placeholder; This is a noun
-#: data/app.drey.Warp.metainfo.xml.in.in:34 src/ui/window.ui:199
+#: data/app.drey.Warp.metainfo.xml.in.in:68
+#: data/app.drey.Warp.metainfo.xml.in.in:88 src/ui/window.ui:208
 msgid "Transmit Code"
 msgstr "Transmisio-kodea"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:38
+#: data/app.drey.Warp.metainfo.xml.in.in:72
+#: data/app.drey.Warp.metainfo.xml.in.in:92
 msgid "Accept File Transfer"
 msgstr "Onartu fitxategi-transferentzia"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:42 src/ui/action_view.rs:645
+#: data/app.drey.Warp.metainfo.xml.in.in:76
+#: data/app.drey.Warp.metainfo.xml.in.in:96 src/ui/action_view.rs:646
 msgid "Receiving File"
 msgstr "Fitxategia jasotzen"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:46 src/ui/action_view.rs:654
+#: data/app.drey.Warp.metainfo.xml.in.in:80
+#: data/app.drey.Warp.metainfo.xml.in.in:100 src/ui/action_view.rs:655
 msgid "File Transfer Complete"
 msgstr "Fitxategi-transferentzia osatu da"
-
-#. developer_name tag deprecated with Appstream 1.0
-#: data/app.drey.Warp.metainfo.xml.in.in:255 src/ui/application.rs:233
-msgid "Fina Wilke"
-msgstr "Fina Wilke"
 
 #: data/resources/ui/help_overlay.ui:11
 msgctxt "shortcut window"
@@ -189,82 +194,82 @@ msgid "Copied Code to Clipboard"
 msgstr "Kodea arbelean kopiatu da"
 
 #. Translators: Notification when clicking on "Copy Link to Clipboard" button
-#: src/ui/action_view.rs:277
+#: src/ui/action_view.rs:273
 msgid "Copied Link to Clipboard"
 msgstr "Esteka arbelean kopiatu da"
 
-#: src/ui/action_view.rs:291
+#: src/ui/action_view.rs:287
 msgid "Copied Error to Clipboard"
 msgstr "Errorea arbelean kopiatu da"
 
-#: src/ui/action_view.rs:293
+#: src/ui/action_view.rs:289
 msgid "No error available"
 msgstr "Ez dago errorerik erabilgarri"
 
-#: src/ui/action_view.rs:458
+#: src/ui/action_view.rs:454
 msgid "Creating Archive"
 msgstr "Artxiboa sortzen"
 
-#: src/ui/action_view.rs:462
+#: src/ui/action_view.rs:458
 msgid "Compressing folder “{}”"
 msgstr "“{}” karpeta konprimatzen"
 
 #. Translators: Title
-#: src/ui/action_view.rs:478 src/ui/action_view.rs:536
+#: src/ui/action_view.rs:474 src/ui/action_view.rs:537
 msgid "Connecting"
 msgstr "Konektatzen"
 
 #. Translators: Description, Filename
-#: src/ui/action_view.rs:481
+#: src/ui/action_view.rs:477
 msgid "Requesting file transfer"
 msgstr "Fitxategi-transferentzia eskatzen"
 
 #. Translators: Description, argument is filename
-#: src/ui/action_view.rs:502
+#: src/ui/action_view.rs:498
 msgid "Ready to send “{}”."
 msgstr "Prest “{}” bidaltzeko."
 
 #. Translators: Help dialog line 1, Code words and QR code visible,
-#: src/ui/action_view.rs:507
+#: src/ui/action_view.rs:503
 msgid ""
 "The receiver needs to enter or scan this code to begin the file transfer."
 msgstr "Hartzaileak kode hau sartu edo eskaneatu behar du fitxategiaren transferentziari ekiteko."
 
-#: src/ui/action_view.rs:511
+#: src/ui/action_view.rs:507
 msgid "The QR code is compatible with the following apps: {}."
 msgstr "QR kodea honako aplikazioekin da bateragarria: {}."
 
-#: src/ui/action_view.rs:519
+#: src/ui/action_view.rs:515
 msgid ""
 "You have entered a custom rendezvous server URL in preferences. Please "
 "verify the receiver also uses the same rendezvous server."
 msgstr "Elkartze-zerbitzariaren URL pertsonalizatua sartu duzu hobespenetan. Egiaztatu hartzaileak elkartze-zerbitzari bera erabiltzen duela."
 
-#: src/ui/action_view.rs:524
+#: src/ui/action_view.rs:520
 msgid "Click the QR code to copy the link to the clipboard."
 msgstr "Egin klik QR kodean esteka arbelean kopiatzeko."
 
 #. Translators: Description, Transfer Code
-#: src/ui/action_view.rs:539
+#: src/ui/action_view.rs:540
 msgid "Connecting to peer with code “{}”"
 msgstr "Parekoarekin konektatzen “{}” kodearen bidez"
 
-#: src/ui/action_view.rs:549
+#: src/ui/action_view.rs:550
 msgid "Connected to Peer"
 msgstr "Parekoarekin konektatuta"
 
 #. Translators: Description
-#: src/ui/action_view.rs:558
+#: src/ui/action_view.rs:559
 msgid "Preparing to send file"
 msgstr "Fitxategia bidaltzeko prestatzen"
 
 #. Translators: Description
-#: src/ui/action_view.rs:565
+#: src/ui/action_view.rs:566
 msgid "Preparing to receive file"
 msgstr "Fitxategia jasotzeko prestatzen"
 
 #. Translators: File receive confirmation message dialog; Filename, File size
-#: src/ui/action_view.rs:579
+#: src/ui/action_view.rs:580
 msgid ""
 "Your peer wants to send you “{0}” (Size: {1}).\n"
 "Do you want to download this file? The default action will save the file to "
@@ -272,90 +277,90 @@ msgid ""
 msgstr "Zure parekoak “{0}” (tamaina: {1}) bidali nahi dizu.\n"
 "Fitxategi hori zure deskargatu nahi al duzu? Ekintza lehenetsia 'Deskargak' karpetara deskargatzea da."
 
-#: src/ui/action_view.rs:584
+#: src/ui/action_view.rs:585
 msgid "Ready to Receive File"
 msgstr "Fitxategia jasotzeko prest"
 
-#: src/ui/action_view.rs:586
+#: src/ui/action_view.rs:587
 msgid ""
 "A file is ready to be transferred. The transfer needs to be acknowledged."
 msgstr "Fitxategi bat transferitzeko prest dago. Transferentzia onartu behar da."
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:616
+#: src/ui/action_view.rs:617
 msgid "File “{}” via local network direct transfer"
 msgstr "“{}” fitxategia sare lokaleko transferentzia zuzen bidez"
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:619
+#: src/ui/action_view.rs:620
 msgid "File “{}” via direct transfer"
 msgstr "“{}” fitxategia transferentzia zuzen bidez"
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:625
+#: src/ui/action_view.rs:626
 msgid "File “{0}” via relay {1}"
 msgstr "“{0}” fitxategia {1} berriketa bidez"
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:628
+#: src/ui/action_view.rs:629
 msgid "File “{}” via relay"
 msgstr "“{}” fitxategia berriketa bidez"
 
 #. Translators: Description, During transfer
-#: src/ui/action_view.rs:632
+#: src/ui/action_view.rs:633
 msgid "File “{}” via Unknown connection method"
 msgstr "“{}” fitxategia konexio-metodo ezezagunaren bidez"
 
 #. Translators: Title
-#: src/ui/action_view.rs:639
+#: src/ui/action_view.rs:640
 msgid "Sending File"
 msgstr "Fitxategia bidaltzen"
 
 #. Translators: Description, Filename
-#: src/ui/action_view.rs:662
+#: src/ui/action_view.rs:663
 msgid "Successfully sent file “{}”"
 msgstr "“{}” fitxategia ongi bidali da"
 
 #. Translators: Filename
-#: src/ui/action_view.rs:680
+#: src/ui/action_view.rs:681
 msgid "File has been saved to the selected folder as “{}”"
 msgstr "Fitxategia hautatutako karpetan gorde da honela: “{}”"
 
 #. Translators: Filename
-#: src/ui/action_view.rs:687
+#: src/ui/action_view.rs:688
 msgid "File has been saved to the Downloads folder as “{}”"
 msgstr "Fitxategia 'Deskargak' karpetan gorde da honela: “{}”"
 
 #. Translators: Title
-#: src/ui/action_view.rs:713 src/ui/action_view.ui:288
+#: src/ui/action_view.rs:714 src/ui/action_view.ui:290
 msgid "File Transfer Failed"
 msgstr "Fitxategi-transferentziak huts egin du"
 
-#: src/ui/action_view.rs:715
+#: src/ui/action_view.rs:716
 msgid "The file transfer failed: {}"
 msgstr "Fitxategi-transferentziak huts egin du: {}"
 
 #. Translators: When opening a file
-#: src/ui/action_view.rs:829
+#: src/ui/action_view.rs:834
 msgid "Specified file / directory does not exist"
 msgstr "Adierazitako fitxategia / direktorioa ez da existitzen"
 
-#: src/ui/action_view.rs:851
+#: src/ui/action_view.rs:856
 msgid ""
 "Error parsing rendezvous server URL. An invalid URL was entered in the "
 "settings."
 msgstr "Errorea elkartze-zerbitzariaren URLa analizatzean. URL baliogabea sartu da ezarpenetan."
 
-#: src/ui/action_view.rs:858
+#: src/ui/action_view.rs:863
 msgid "Error parsing transit URL. An invalid URL was entered in the settings."
 msgstr "Errorea igarotze-zerbitzariaren URLa analizatzean. URL baliogabea sartu da ezarpenetan."
 
-#: src/ui/action_view.rs:947
+#: src/ui/action_view.rs:959
 msgid "Invalid path selected: {}"
 msgstr "Bide-izen baliogabea hautatu da: {}"
 
 #. Translators: Above progress bar for creating an archive to send as a folder
-#: src/ui/action_view.rs:1192
+#: src/ui/action_view.rs:1204
 msgid "{} File - Size: {}"
 msgid_plural "{} Files - Size: {}"
 msgstr[0] "Fitxategi {} - Tamaina: {}"
@@ -366,30 +371,30 @@ msgid "Save As"
 msgstr "Gorde honela"
 
 #. Translators: Button; Transmit Link is a noun
-#: src/ui/action_view.ui:108
+#: src/ui/action_view.ui:106
 msgid "Copy Transmit Link"
 msgstr "Kopiatu transmisio-esteka"
 
-#: src/ui/action_view.ui:133
+#: src/ui/action_view.ui:131
 msgid "Your Transmit Code"
 msgstr "Zure transmisio-kodea"
 
 #. Translators: Button; Transmit Code is a noun
-#: src/ui/action_view.ui:181
+#: src/ui/action_view.ui:179
 msgid "Copy Transmit Code"
 msgstr "Kopiatu transmisio-kodea"
 
 #. Translators: Title
-#: src/ui/action_view.ui:198
+#: src/ui/action_view.ui:196
 msgid "Accept File Transfer?"
 msgstr "Onartu fitxategi-transferentzia?"
 
-#: src/ui/action_view.ui:207
+#: src/ui/action_view.ui:206
 msgid "Save to Downloads Folder"
 msgstr "Gorde deskargen karpetan"
 
 #. Translators: Button
-#: src/ui/action_view.ui:209
+#: src/ui/action_view.ui:208
 msgid "_Accept"
 msgstr "_Onartu"
 
@@ -404,22 +409,22 @@ msgid "File Transfer Successful"
 msgstr "Fitxategi-transferentzia ongi gauzatu da"
 
 #. Translators: Button
-#: src/ui/action_view.ui:252
+#: src/ui/action_view.ui:253
 msgid "_Open File"
 msgstr "_Ireki fitxategia"
 
 #. Translators: Button
-#: src/ui/action_view.ui:267 src/ui/window.ui:51
+#: src/ui/action_view.ui:269 src/ui/window.ui:51
 msgid "_Show in Folder"
 msgstr "_Erakutsi karpetan"
 
 #. Translators: Button
-#: src/ui/action_view.ui:293
+#: src/ui/action_view.ui:296
 msgid "Co_py Error Message"
 msgstr "_Kopiatu errore-mezua"
 
 #. Translators: Button
-#: src/ui/action_view.ui:309
+#: src/ui/action_view.ui:314
 msgid "_Cancel"
 msgstr "_Utzi"
 
@@ -427,74 +432,67 @@ msgstr "_Utzi"
 msgid "Unable to use transfer link: another transfer already in progress"
 msgstr "Ezin da transferentzia-esteka erabili: beste transferentzia bat abian dago"
 
-#: src/ui/application.rs:234
-msgid "Tobias Bernard"
-msgstr "Tobias Bernard"
-
-#: src/ui/application.rs:234
-msgid "Sophie Herold"
-msgstr "Sophie Herold"
-
-#: src/ui/application.rs:235
-msgid "translator-credits"
-msgstr "translator-credits"
-
-#: src/ui/application.rs:250
+#: src/ui/application.rs:216
 msgid "Sending a File"
 msgstr "Fitxategi bat bidaltzen"
 
-#: src/ui/application.rs:251
+#: src/ui/application.rs:217
 msgid "Receiving a File"
 msgstr "Fitxategi bat jasotzen"
 
-#: src/ui/camera.rs:211 src/ui/camera.rs:328
+#: src/ui/camera.rs:243
 msgid ""
 "Camera access denied. Open Settings and allow Warp to access the camera."
 msgstr "Kamera atzitzea ukatu da. Ireki ezarpenak eta onartu Warp aplikazioak kamera atzitu dezan."
 
-#: src/ui/camera.rs:215
+#: src/ui/camera.rs:247
 msgid "Failed to start the camera: {}"
 msgstr "Huts egin du kamera abiarazteak: {}"
 
-#: src/ui/camera.rs:218
+#: src/ui/camera.rs:250
 msgid "Error"
 msgstr "Errorea"
 
-#: src/ui/camera.rs:229
-msgid "Error talking to the camera portal"
-msgstr "Errorea kamera-atariarekin hitz egitean"
-
-#: src/ui/camera.rs:458
+#: src/ui/camera.rs:339
 msgid "Could not use the camera portal: {}"
 msgstr "Ezin da kamera-ataria erabili: {}"
 
-#: src/ui/camera.rs:465
+#: src/ui/camera.rs:346
 msgid "Could not start the device provider: {}"
 msgstr "Ezin da gailu-hornitzailea abiarazi: {}"
 
-#: src/ui/camera.rs:496
+#: src/ui/camera.rs:377
 msgid "No Camera Found"
 msgstr "Ez da kamerarik aurkitu"
 
-#: src/ui/camera.rs:498
+#: src/ui/camera.rs:379
 msgid "Connect a camera to scan QR codes"
 msgstr "Konektatu kamera bat QR kodeak eskaneatzeko"
 
-#: src/ui/camera.ui:11 src/ui/window.rs:105
+#: src/ui/camera.ui:11 src/ui/window.ui:217
 msgid "Scan QR Code"
 msgstr "Eskaneatu QR kodea"
 
-#: src/ui/camera.ui:49
+#: src/ui/camera.ui:48
 msgid "_Retry"
 msgstr "S_aiatu berriro"
 
-#: src/ui/camera.ui:60
+#: src/ui/camera.ui:59
 msgid "_Troubleshooting"
 msgstr "_Arazoen ebazpena"
 
 #: src/ui/fs.rs:16
 msgid "Downloads dir missing. Please set XDG_DOWNLOAD_DIR"
 msgstr "Deskargen direktoriorik ez dago. Ezarri XDG_DOWNLOAD_DIR"
+
+#: src/ui/licenses.rs:150
+msgid "Licensed under the <a href=\"{}\">{}</a>."
+msgstr "Lizentzia: <a href=\"{}\">{}</a>."
+
+#. Translators: License information without a link to the software license
+#: src/ui/licenses.rs:155
+msgid "Licensed under the {}."
+msgstr "Lizentzia: {}."
 
 #: src/ui/preferences.rs:97
 msgid ""
@@ -589,30 +587,52 @@ msgstr "Warp bidez, fitxategien transferentzia erraza da. Hasteko, bi aldeek edu
 msgid "Get Started Using Warp"
 msgstr "Hasi Warp erabiltzen"
 
-#: src/ui/window.rs:128
+#: src/ui/window.rs:139
 msgid ""
 "Error loading config file “{0}”, using default config.\n"
 "Error: {1}"
 msgstr "Errorea “{0}” konfigurazio-fitxategia kargatzean, konfigurazio lehenetsia erabiliko da.\n"
 "Errorea: {1}"
 
-#: src/ui/window.rs:234
+#: src/ui/window.rs:288
 msgid "Error saving configuration file: {}"
 msgstr "Errorea konfigurazio-fitxategia gordetzean: {}"
 
-#: src/ui/window.rs:340
+#: src/ui/window.rs:308
+msgid "Tobias Bernard"
+msgstr "Tobias Bernard"
+
+#: src/ui/window.rs:308
+msgid "Sophie Herold"
+msgstr "Sophie Herold"
+
+#: src/ui/window.rs:309
+msgid "translator-credits"
+msgstr "translator-credits"
+
+#. Translators: This is a promotion and should match the app name as seen at https://apps.gnome.org/PikaBackup/
+#: src/ui/window.rs:313
+msgid "Pika Backup"
+msgstr "Pika Backup"
+
+#. Translators: This is a promotion and should match the short app summary as seen at https://apps.gnome.org/PikaBackup/
+#: src/ui/window.rs:315
+msgid "Keep your data safe"
+msgstr "Gorde zure datuak seguru"
+
+#: src/ui/window.rs:381
 msgid "Select File to Send"
 msgstr "Hautatu bidaliko den fitxategia"
 
-#: src/ui/window.rs:348
+#: src/ui/window.rs:389
 msgid "Select Folder to Send"
 msgstr "Hautatu bidaliko den karpeta"
 
-#: src/ui/window.rs:405
+#: src/ui/window.rs:456
 msgid "“{}” appears to be an invalid Transmit Code. Please try again."
 msgstr "Badirudi “{}” transmisio-kode baliogabea dela. Saiatu berriro."
 
-#: src/ui/window.rs:526
+#: src/ui/window.rs:580
 msgid "Sending files with a preconfigured code is not yet supported"
 msgstr "Aurrekonfiguratutako kodea duten fitxategiak bidaltzea ez da oraindik onartzen"
 
@@ -663,7 +683,7 @@ msgstr "_Abortatu"
 msgid "Unable to Open File"
 msgstr "Ezin da fitxategia ireki"
 
-#: src/ui/window.ui:50 src/util/error.rs:191
+#: src/ui/window.ui:50 src/util/error.rs:207
 msgid "_Close"
 msgstr "It_xi"
 
@@ -684,90 +704,90 @@ msgid "Select or drop the file or directory to send"
 msgstr "Hautatu edo jaregin bidaliko den fitxategia edo direktorioa"
 
 #. Translators: Button
-#: src/ui/window.ui:141
+#: src/ui/window.ui:142
 msgid "Select _File…"
 msgstr "Hautatu _fitxategia…"
 
 #. Translators: Button
-#: src/ui/window.ui:155
+#: src/ui/window.ui:157
 msgid "Select F_older…"
 msgstr "Hautatu _karpeta…"
 
-#: src/ui/window.ui:175
+#: src/ui/window.ui:177
 msgid "_Receive"
 msgstr "_Jaso"
 
-#: src/ui/window.ui:184
+#: src/ui/window.ui:186
 msgid "Receive File"
 msgstr "Jaso fitxategia"
 
 #. Translators: Text above code input box, transmit code is a noun
-#: src/ui/window.ui:186
+#: src/ui/window.ui:188
 msgid "Enter the transmit code from the sender"
 msgstr "Sartu bidaltzailearen transmisio-kodea"
 
 #. Translators: Button
-#: src/ui/window.ui:221
+#: src/ui/window.ui:238
 msgid "Receive _File"
 msgstr "Jaso _fitxategia"
 
-#: src/ui/window.ui:247
+#: src/ui/window.ui:264
 msgid "File Transfer"
 msgstr "Fitxategi-transferentzia"
 
-#: src/util.rs:33 src/util.rs:38
+#: src/util.rs:37 src/util.rs:43
 msgid "Failed to open downloads folder."
 msgstr "Huts egin du deskargen karpeta irekitzeak."
 
-#: src/util.rs:198 src/util.rs:271
+#: src/util.rs:216 src/util.rs:291
 msgid "The URI format is invalid"
 msgstr "URIaren formatua baliogabea da"
 
-#: src/util.rs:202 src/util.rs:206
+#: src/util.rs:220 src/util.rs:224
 msgid "The code does not match the required format"
 msgstr "Kodea ez dator bat beharrezkoa den formatuarekin"
 
-#: src/util.rs:221 src/util.rs:227
+#: src/util.rs:241 src/util.rs:247
 msgid "Unknown URI version: {}"
 msgstr "URI bertsio ezezaguna: {}"
 
-#: src/util.rs:236
+#: src/util.rs:256
 msgid "The URI parameter “rendezvous” contains an invalid URL: “{}”"
 msgstr "“rendezvous” URI parametroak URL baliogabea du: “{}”"
 
-#: src/util.rs:248
+#: src/util.rs:268
 msgid "The URI parameter “role” must be “follower” or “leader” (was: “{}”)"
 msgstr "“role” URI parametroak “follower” edo “leader” izan behar du (“{}” zen)"
 
-#: src/util.rs:255
+#: src/util.rs:275
 msgid "Unknown URI parameter “{}”"
 msgstr "“{}” URI parametro ezezaguna"
 
-#: src/util/error.rs:172
+#: src/util/error.rs:190
 msgid "An error occurred"
 msgstr "Errorea gertatu da"
 
-#: src/util/error.rs:202 src/util/error.rs:285
+#: src/util/error.rs:218 src/util/error.rs:333
 msgid "Corrupt or unexpected message received"
 msgstr "Mezu hondatua edo espero ez zena jaso da"
 
-#: src/util/error.rs:207
+#: src/util/error.rs:223
 msgid ""
 "The rendezvous server will not allow further connections for this code. A "
 "new code needs to be generated."
 msgstr "Elkartze-zerbitzariak ez ditu konexio gehiago onartuko kode horrekin. Kode berria sortu behar da."
 
-#: src/util/error.rs:209
+#: src/util/error.rs:225
 msgid ""
 "The rendezvous server removed the code due to inactivity. A new code needs "
 "to be generated."
 msgstr "Elkartze-zerbitzariak kodea kendu du jarduerarik ez dagoelako. Kode berria sortu behar da."
 
-#: src/util/error.rs:211
+#: src/util/error.rs:227
 msgid "The rendezvous server responded with an unknown message: {}"
 msgstr "Elkartze-zerbitzariak mezu ezezagunarekin erantzun du: {}"
 
-#: src/util/error.rs:214
+#: src/util/error.rs:230
 msgid ""
 "Error connecting to the rendezvous server.\n"
 "You have entered a custom rendezvous server URL in preferences. Please "
@@ -775,98 +795,134 @@ msgid ""
 msgstr "Errorea elkartze-zerbitzariarekin konektatzean.\n"
 "Elkartze-zerbitzariaren URL pertsonalizatua sartu duzu hobespenetan. Egiaztatu URLa zuzena dela eta zerbitzaria lanean ari dela."
 
-#: src/util/error.rs:216
+#: src/util/error.rs:232
 msgid ""
 "Error connecting to the rendezvous server.\n"
 "Please try again later / verify you are connected to the internet."
 msgstr "Errorea elkartze-zerbitzariarekin konektatzean.\n"
 "Sakatu berriro geroago / egiaztatu internetera konektatuta zaudela."
 
-#: src/util/error.rs:220
+#: src/util/error.rs:236
 msgid ""
 "Encryption key confirmation failed. If you or your peer didn't mistype the "
 "code, this is a sign of an attacker guessing passwords. Please try again "
 "some time later."
 msgstr "Zifratze-gakoaren berrespenak huts egin du. Zuk edo zure parekoak ez baduzue kodea gaizki idatzi, agian erasotzaile bat dago pasahitzak asmatzen saiatzen. Saiatu berriro geroago."
 
-#: src/util/error.rs:222
+#: src/util/error.rs:238
 msgid "Cannot decrypt a received message"
 msgstr "Ezin da deszifratu jasotako mezu bat"
 
-#: src/util/error.rs:223 src/util/error.rs:296 src/util/error.rs:302
+#: src/util/error.rs:239 src/util/error.rs:344 src/util/error.rs:351
 msgid "An unknown error occurred"
 msgstr "Errore ezezaguna gertatu da"
 
-#: src/util/error.rs:229
+#. Translators: magic-wormhole codes usually look like n-word-word... where n MUST be an arabic number (unlimited digits). The first '-' is mandatory. This error occurs when an empty code was entered.
+#: src/util/error.rs:246
+msgid "The specified code must not be empty"
+msgstr "Zehaztutako kodeak ez du hutsik egon behar"
+
+#. Translators: magic-wormhole codes usually look like n-word-word... where n MUST be an arabic number (unlimited digits). The first '-' is mandatory. This error occurs when a code was entered that does not contain any '-'.
+#: src/util/error.rs:248
+msgid "The code must contain at least one “-”"
+msgstr "Kodeak gutxientez “-” bat izan behar du"
+
+#. Translators: magic-wormhole codes usually look like n-word-word... where n MUST be an arabic number (unlimited digits). This error occurs when a code was entered that does not contain a number before the '-'.
+#: src/util/error.rs:250
+msgid "The first segment of a code must be a number"
+msgstr "Kodearen lehen segmentuak zenbaki bat izan behar du"
+
+#: src/util/error.rs:254
+msgid "Code too weak. It can be guessed with an average of {} try."
+msgid_plural "Code too weak. It can be guessed with an average of {} tries."
+msgstr[0] "Kodea ahulegia da. Batez beste saiakera {} erabiliz asmatu daiteke."
+msgstr[1] "Kodea ahulegia da. Batez beste {} saiakera erabiliz asmatu daiteke."
+
+#: src/util/error.rs:262
+msgid ""
+"Code too short. The text after the “-” must be at least {} character long."
+msgid_plural ""
+"Code too short. The text after the “-” must be at least {} characters long."
+msgstr[0] "Kodea laburregia da. “-” ikurraren ondoren dagoen testuak gutxienez karaktere {} luze izan behar du."
+msgstr[1] "Kodea laburregia da. “-” ikurraren ondoren dagoen testuak gutxienez {} karaktere luze izan behar du."
+
+#: src/util/error.rs:269
+msgid "Code too weak"
+msgstr "Kodea ahulegia da"
+
+#: src/util/error.rs:276
 msgid "File / Directory not found"
 msgstr "Fitxategia / direktorioa ez da aurkitu"
 
-#: src/util/error.rs:230
+#: src/util/error.rs:277
 msgid "Permission denied"
 msgstr "Baimena ukatu da"
 
-#: src/util/error.rs:237
+#: src/util/error.rs:285
 msgid "Canceled"
 msgstr "Bertan behera utzita"
 
-#: src/util/error.rs:239
+#: src/util/error.rs:287
 msgid "Portal service response: Permission denied"
 msgstr "Atari-zerbitzuaren erantzuna: Baimena ukatu da"
 
-#: src/util/error.rs:242
+#: src/util/error.rs:290
 msgid "The portal service has failed: {}"
 msgstr "Atari-zerbitzuak huts egin du: {}"
 
-#: src/util/error.rs:245
+#: src/util/error.rs:293
 msgid "Error communicating with the portal service via zbus: {}"
 msgstr "Errorea atari-zerbitzuarekin zbus bidez komunikatzean: {}"
 
-#: src/util/error.rs:248 src/util/error.rs:249
+#: src/util/error.rs:296 src/util/error.rs:297
 msgid "Portal error: {}"
 msgstr "Atariaren errorea: {}"
 
-#: src/util/error.rs:260
+#: src/util/error.rs:308
 msgid "Transfer was not acknowledged by peer"
 msgstr "Transferentzia ez du onartu parekoak"
 
-#: src/util/error.rs:262
+#: src/util/error.rs:310
 msgid "The received file is corrupted"
 msgstr "Jasotako fitxategia hondatuta dago"
 
-#: src/util/error.rs:268
+#: src/util/error.rs:316
 msgid ""
 "The file contained a different amount of bytes than advertised! Sent {} "
 "bytes, but should have been {}"
 msgstr "Fitxategiak espero zen byte kopurua ez den beste byte kopuru bat du. {} byte bidali dira, baina {} izan behar zuten."
 
-#: src/util/error.rs:273
+#: src/util/error.rs:321
 msgid "The other side has cancelled the transfer"
 msgstr "Beste aldeak transferentzia bertan behera utzi du"
 
-#: src/util/error.rs:275
+#: src/util/error.rs:323
 msgid "The other side has rejected the transfer"
 msgstr "Beste aldeak transferentzia baztertu du"
 
-#: src/util/error.rs:277
+#: src/util/error.rs:325
 msgid "Something went wrong on the other side: {}"
 msgstr "Zerbait gaizki joan da beste aldean: {}"
 
-#: src/util/error.rs:292
+#: src/util/error.rs:340
 msgid "Error while establishing file transfer connection"
 msgstr "Errorea fitxategi-transferentziarako konexioa ezartzean"
 
-#: src/util/error.rs:294
+#: src/util/error.rs:342
 msgid "Unknown file transfer error"
 msgstr "Fitxategi-transferentziaren errore ezezaguna"
 
-#: src/util/error.rs:303
+#: src/util/error.rs:352
 msgid "An unknown error occurred while creating a zip file: {}"
 msgstr "Errorea gertatu da ZIP fitxategia sortzean: {}"
 
-#: src/util/error.rs:304
+#: src/util/error.rs:353
 msgid ""
 "An unexpected error occurred. Please report an issue with the error message."
 msgstr "Espero ez zen errorea gertatu da. Bidali akatsaren txostena errore-mezuarekin."
+
+#~ msgid "Error talking to the camera portal"
+#~ msgstr "Errorea kamera-atariarekin hitz egitean"
 
 #~ msgid "Portal Error: Failed: {}"
 #~ msgstr "Atariaren errorea: Hutsegitea: {}"
