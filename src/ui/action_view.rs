@@ -280,14 +280,14 @@ mod imp {
         fn copy_error_button_clicked(&self) {
             let window = self.obj().window();
 
-            let toast = if let UIState::Error(error) = &*self.context.borrow().ui_state {
+            let toast = match &*self.context.borrow().ui_state { UIState::Error(error) => {
                 let msg = format!("{error}");
                 window.clipboard().set_text(&msg);
 
                 adw::Toast::new(&gettext("Copied Error to Clipboard"))
-            } else {
+            } _ => {
                 adw::Toast::new(&gettext("No error available"))
-            };
+            }};
 
             toast.set_timeout(3);
             toast.set_priority(adw::ToastPriority::Normal);
@@ -668,9 +668,8 @@ impl ActionView {
                     notification.set_body(Some(&description));
                     imp.open_button.set_visible(false);
                     imp.open_dir_button.set_visible(false);
-                } else if let Some(path) =
-                    imp.context.borrow().file_path_received_successfully.clone()
-                {
+                } else { match imp.context.borrow().file_path_received_successfully.clone()
+                { Some(path) => {
                     let description = super::fs::default_download_dir()
                         .ok()
                         .filter(|download_dir| path.parent() == Some(download_dir))
@@ -700,7 +699,7 @@ impl ActionView {
                         crate::ui::window::Action::ShowFile.as_ref(),
                         Some(&path.to_variant()),
                     );
-                }
+                } _ => {}}}
 
                 self.imp()
                     .send_notification_if_background(Some("transfer-complete"), &notification);
@@ -1116,7 +1115,7 @@ impl ActionView {
     }
 
     /// This future will finish when a message is received in the cancellation channel
-    fn cancel_future(&self) -> impl Future<Output = ()> {
+    fn cancel_future(&self) -> impl Future<Output = ()> + use<> {
         let cancel_receiver = self.imp().context.borrow().cancel_receiver.clone();
         Self::receiver_future("cancel", cancel_receiver)
     }

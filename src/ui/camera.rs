@@ -161,11 +161,11 @@ mod imp {
                             #[weak]
                             item,
                             move |selection| {
-                                if let Some(selected_item) = selection.selected_item() {
+                                match selection.selected_item() { Some(selected_item) => {
                                     row.set_selected(selected_item == item);
-                                } else {
+                                } _ => {
                                     row.set_selected(false);
-                                }
+                                }}
                             }
                         ));
                     }

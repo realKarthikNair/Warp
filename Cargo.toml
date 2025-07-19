@@ -5,9 +5,9 @@ version = "0.9.2"
 authors = ["Fina Wilke <finaw@gnome.org>"]
 homepage = "https://apps.gnome.org/Warp/"
 repository = "https://gitlab.gnome.org/World/warp/"
-edition = "2021"
+edition = "2024"
 default-run = "warp"
-rust-version = "1.82"
+rust-version = "1.85"
 
 [package.metadata.urls]
 issuetracker = "https://gitlab.gnome.org/World/warp/issues"
