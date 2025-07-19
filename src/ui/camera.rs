@@ -60,10 +60,12 @@ mod imp {
     impl ObjectImpl for Camera {
         fn signals() -> &'static [Signal] {
             static SIGNALS: Lazy<Vec<Signal>> = Lazy::new(|| {
-                vec![Signal::builder("code-detected")
-                    .param_types([glib::Bytes::static_type()])
-                    .run_first()
-                    .build()]
+                vec![
+                    Signal::builder("code-detected")
+                        .param_types([glib::Bytes::static_type()])
+                        .run_first()
+                        .build(),
+                ]
             });
             SIGNALS.as_ref()
         }
@@ -161,11 +163,14 @@ mod imp {
                             #[weak]
                             item,
                             move |selection| {
-                                match selection.selected_item() { Some(selected_item) => {
-                                    row.set_selected(selected_item == item);
-                                } _ => {
-                                    row.set_selected(false);
-                                }}
+                                match selection.selected_item() {
+                                    Some(selected_item) => {
+                                        row.set_selected(selected_item == item);
+                                    }
+                                    _ => {
+                                        row.set_selected(false);
+                                    }
+                                }
                             }
                         ));
                     }

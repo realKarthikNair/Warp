@@ -1,7 +1,7 @@
 use crate::error;
 use crate::ui::application::WarpApplication;
 use crate::util::error::AppError;
-use futures::{pin_mut, select, FutureExt};
+use futures::{FutureExt, pin_mut, select};
 use std::future::Future;
 
 /// Spawn a future on an async task

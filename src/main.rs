@@ -120,7 +120,8 @@ fn main() {
     }
     if let Err(err) = gettextrs::bind_textdomain_codeset(globals::GETTEXT_PACKAGE, "UTF-8") {
         log::error!(
-            "Error while setting locale formatting: {}. This shouldn't be a problem—except on Windows", err
+            "Error while setting locale formatting: {}. This shouldn't be a problem—except on Windows",
+            err
         );
     }
 

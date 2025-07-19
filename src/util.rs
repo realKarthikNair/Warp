@@ -274,7 +274,7 @@ impl TryFrom<url::Url> for WormholeTransferURI {
                     return Err(WormholeURIParseError(gettextf(
                         "Unknown URI parameter “{}”",
                         &[&field],
-                    )))
+                    )));
                 }
             }
         }

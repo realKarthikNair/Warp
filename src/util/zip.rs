@@ -1,6 +1,6 @@
 use std::path::{Path, PathBuf};
 
-use async_zip::{base::write::ZipFileWriter, Compression, ZipEntryBuilder};
+use async_zip::{Compression, ZipEntryBuilder, base::write::ZipFileWriter};
 use futures::{AsyncReadExt, AsyncWrite, AsyncWriteExt, TryStreamExt};
 use smol::fs::File;
 

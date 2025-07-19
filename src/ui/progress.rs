@@ -1,5 +1,5 @@
 use crate::gettext::duration;
-use simple_moving_average::{SingleSumSMA, SMA};
+use simple_moving_average::{SMA, SingleSumSMA};
 use std::fmt::{Debug, Formatter};
 use std::ops::Add;
 use std::time::{Duration, Instant};

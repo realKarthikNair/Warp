@@ -16,8 +16,8 @@ use std::str::FromStr;
 use crate::ui::application::WarpApplication;
 use crate::util::error::AppError;
 use crate::util::{
-    error::UiError, extract_transmit_code, extract_transmit_uri,
-    future::main_async_local_infallible, TransferDirection, WormholeTransferURI,
+    TransferDirection, WormholeTransferURI, error::UiError, extract_transmit_code,
+    extract_transmit_uri, future::main_async_local_infallible,
 };
 
 use super::licenses::AboutDialogLicenseExt;

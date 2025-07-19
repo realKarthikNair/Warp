@@ -5,8 +5,8 @@ use crate::ui::fs::safe_persist_tempfile;
 use crate::ui::window::WarpApplicationWindow;
 use crate::util::error::*;
 use crate::util::future::*;
-use crate::util::{show_dir, TransferDirection, WormholeTransferURI};
-use crate::{globals, WarpApplication};
+use crate::util::{TransferDirection, WormholeTransferURI, show_dir};
+use crate::{WarpApplication, globals};
 use adw::prelude::*;
 use adw::subclass::prelude::*;
 use glib::clone;
@@ -280,14 +280,15 @@ mod imp {
         fn copy_error_button_clicked(&self) {
             let window = self.obj().window();
 
-            let toast = match &*self.context.borrow().ui_state { UIState::Error(error) => {
-                let msg = format!("{error}");
-                window.clipboard().set_text(&msg);
+            let toast = match &*self.context.borrow().ui_state {
+                UIState::Error(error) => {
+                    let msg = format!("{error}");
+                    window.clipboard().set_text(&msg);
 
-                adw::Toast::new(&gettext("Copied Error to Clipboard"))
-            } _ => {
-                adw::Toast::new(&gettext("No error available"))
-            }};
+                    adw::Toast::new(&gettext("Copied Error to Clipboard"))
+                }
+                _ => adw::Toast::new(&gettext("No error available")),
+            };
 
             toast.set_timeout(3);
             toast.set_priority(adw::ToastPriority::Normal);
@@ -500,7 +501,9 @@ impl ActionView {
                         ));
 
                         // Translators: Help dialog line 1, Code words and QR code visible,
-                        let mut description = gettext("The receiver needs to enter or scan this code to begin the file transfer.");
+                        let mut description = gettext(
+                            "The receiver needs to enter or scan this code to begin the file transfer.",
+                        );
                         description += "\n\n";
                         // Translators: Help dialog line 2, Argument is a list of apps that support the QR code standard.
                         description += &gettextf(
@@ -512,7 +515,9 @@ impl ActionView {
                             != *globals::WORMHOLE_DEFAULT_RENDEZVOUS_SERVER
                         {
                             description += "\n";
-                            description += &gettext("You have entered a custom rendezvous server URL in preferences. Please verify the receiver also uses the same rendezvous server.");
+                            description += &gettext(
+                                "You have entered a custom rendezvous server URL in preferences. Please verify the receiver also uses the same rendezvous server.",
+                            );
                         }
 
                         description += "\n\n";
@@ -668,38 +673,42 @@ impl ActionView {
                     notification.set_body(Some(&description));
                     imp.open_button.set_visible(false);
                     imp.open_dir_button.set_visible(false);
-                } else { match imp.context.borrow().file_path_received_successfully.clone()
-                { Some(path) => {
-                    let description = super::fs::default_download_dir()
-                        .ok()
-                        .filter(|download_dir| path.parent() == Some(download_dir))
-                        .map_or_else(
-                            || {
-                                gettextf(
-                                    // Translators: Filename
-                                    "File has been saved to the selected folder as “{}”",
-                                    &[&filename.to_string_lossy()],
-                                )
-                            },
-                            |_dir| {
-                                gettextf(
-                                    // Translators: Filename
-                                    "File has been saved to the Downloads folder as “{}”",
-                                    &[&filename.to_string_lossy()],
-                                )
-                            },
-                        );
+                } else {
+                    match imp.context.borrow().file_path_received_successfully.clone() {
+                        Some(path) => {
+                            let description = super::fs::default_download_dir()
+                                .ok()
+                                .filter(|download_dir| path.parent() == Some(download_dir))
+                                .map_or_else(
+                                    || {
+                                        gettextf(
+                                            // Translators: Filename
+                                            "File has been saved to the selected folder as “{}”",
+                                            &[&filename.to_string_lossy()],
+                                        )
+                                    },
+                                    |_dir| {
+                                        gettextf(
+                                            // Translators: Filename
+                                            "File has been saved to the Downloads folder as “{}”",
+                                            &[&filename.to_string_lossy()],
+                                        )
+                                    },
+                                );
 
-                    imp.status_page_success.set_description(Some(&description));
-                    notification.set_body(Some(&description));
+                            imp.status_page_success.set_description(Some(&description));
+                            notification.set_body(Some(&description));
 
-                    imp.open_button.set_visible(true);
-                    imp.open_dir_button.set_visible(true);
-                    notification.set_default_action_and_target_value(
-                        crate::ui::window::Action::ShowFile.as_ref(),
-                        Some(&path.to_variant()),
-                    );
-                } _ => {}}}
+                            imp.open_button.set_visible(true);
+                            imp.open_dir_button.set_visible(true);
+                            notification.set_default_action_and_target_value(
+                                crate::ui::window::Action::ShowFile.as_ref(),
+                                Some(&path.to_variant()),
+                            );
+                        }
+                        _ => {}
+                    }
+                }
 
                 self.imp()
                     .send_notification_if_background(Some("transfer-complete"), &notification);

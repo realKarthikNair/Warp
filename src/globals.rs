@@ -10,11 +10,13 @@ pub static WORMHOLE_DEFAULT_RENDEZVOUS_SERVER: Lazy<url::Url> =
 pub static WORMHOLE_DEFAULT_TRANSIT_RELAY_URL_STR: &str = "tcp://transit.magic-wormhole.io:4001";
 pub static WORMHOLE_DEFAULT_TRANSIT_RELAY_HINTS: Lazy<Vec<wormhole::transit::RelayHint>> =
     Lazy::new(|| {
-        vec![wormhole::transit::RelayHint::from_urls(
-            None,
-            [WORMHOLE_DEFAULT_TRANSIT_RELAY_URL_STR.parse().unwrap()],
-        )
-        .unwrap()]
+        vec![
+            wormhole::transit::RelayHint::from_urls(
+                None,
+                [WORMHOLE_DEFAULT_TRANSIT_RELAY_URL_STR.parse().unwrap()],
+            )
+            .unwrap(),
+        ]
     });
 
 pub const WORMHOLE_DEFAULT_APPID_STR: &str = "lothar.com/wormhole/text-or-file-xfer";
