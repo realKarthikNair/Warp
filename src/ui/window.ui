@@ -10,7 +10,7 @@
       <item>
         <!-- Translators: menu item -->
         <attribute name="label" translatable="yes">_Keyboard Shortcuts</attribute>
-        <attribute name="action">win.show-help-overlay</attribute>
+        <attribute name="action">app.shortcuts</attribute>
       </item>
       <item>
         <!-- Translators: menu item -->

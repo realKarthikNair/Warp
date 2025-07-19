@@ -1,6 +1,6 @@
 data/app.drey.Warp.desktop.in.in
 data/app.drey.Warp.metainfo.xml.in.in
-data/resources/ui/help_overlay.ui
+data/resources/shortcuts-dialog.ui
 src/config.rs
 src/gettext.rs
 src/gettext/duration.rs
