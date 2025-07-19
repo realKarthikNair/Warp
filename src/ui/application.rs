@@ -11,8 +11,8 @@ mod imp {
     use crate::util::WormholeTransferURI;
     use crate::util::error::{AppError, UiError};
     use glib::WeakRef;
-    use once_cell::sync::OnceCell;
     use std::cell::Cell;
+    use std::cell::OnceCell;
 
     #[derive(Debug, Default)]
     pub struct WarpApplication {

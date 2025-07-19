@@ -3500,7 +3500,6 @@ dependencies = [
  "log",
  "magic-wormhole",
  "memmap2",
- "once_cell",
  "pretty_env_logger",
  "qrcode",
  "regex",

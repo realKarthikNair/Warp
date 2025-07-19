@@ -6,7 +6,7 @@ use adw::prelude::*;
 use adw::subclass::prelude::*;
 use futures::FutureExt;
 use gtk::glib::{self, clone};
-use once_cell::sync::Lazy;
+use std::sync::LazyLock;
 
 use crate::gettext::*;
 use crate::ui::camera_row::CameraRow;
@@ -59,7 +59,7 @@ mod imp {
 
     impl ObjectImpl for Camera {
         fn signals() -> &'static [Signal] {
-            static SIGNALS: Lazy<Vec<Signal>> = Lazy::new(|| {
+            static SIGNALS: LazyLock<Vec<Signal>> = LazyLock::new(|| {
                 vec![
                     Signal::builder("code-detected")
                         .param_types([glib::Bytes::static_type()])
