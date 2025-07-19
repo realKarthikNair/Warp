@@ -22,7 +22,8 @@ async fn handle_directory<W: AsyncWrite + Unpin + Send + 'static, F: Fn(usize, u
         .as_os_str()
         .to_str()
         .ok_or(UiError::new(&format!(
-            "Input path {input_path:#?} not valid UTF-8."
+            "Input path \"{}\" not valid UTF-8.",
+            input_path.display()
         )))?;
 
     for entry_path_buf in entries {
@@ -31,12 +32,13 @@ async fn handle_directory<W: AsyncWrite + Unpin + Send + 'static, F: Fn(usize, u
             .as_os_str()
             .to_str()
             .ok_or(UiError::new(&format!(
-                "Directory file path {entry_path:#?} not valid UTF-8."
+                "Directory file path \"{}\" not valid UTF-8.",
+                entry_path.display()
             )))?;
 
         if !entry_str.starts_with(input_dir_str) {
             return Err(UiError::new(&format!(
-                "Directory file path {entry_str:#?} does not start with base input directory path."
+                "Directory file path \"{entry_str}\" does not start with base input directory path."
             ))
             .into());
         }

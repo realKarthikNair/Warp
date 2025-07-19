@@ -125,7 +125,7 @@ mod imp {
 
                         if !obj.imp().action_view_showing.get() {
                             obj.open_code_from_uri(uri);
-                        };
+                        }
                     }
                 ));
             }
@@ -210,7 +210,7 @@ mod imp {
                             window.close();
                         } else {
                             window.imp().close_in_progress.set(false);
-                        };
+                        }
                     }
                 ));
 
@@ -414,7 +414,7 @@ impl WarpApplicationWindow {
             Err(err) => {
                 log::debug!("File chooser error: {:?}", err);
             }
-        };
+        }
     }
 
     #[template_callback]

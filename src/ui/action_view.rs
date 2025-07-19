@@ -233,7 +233,7 @@ mod imp {
                         log::debug!("Selected path: '{}'", path.display());
                         let continue_sender = self.context.borrow().continue_sender.clone();
                         continue_sender.broadcast(Some(path)).await.unwrap();
-                    };
+                    }
                 }
                 Err(err) => {
                     log::debug!("Save As file chooser error: {:?}", err);
