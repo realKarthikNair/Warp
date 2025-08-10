@@ -52,7 +52,7 @@ backtrace = "0.3"
 qrcode = "0.14"
 zbus = "5"
 async-broadcast = "0.7"
-async_zip = "0.0.17"
+async_zip = "0.0"
 memmap2 = "0.9"
 aperture = { version = "0.11", optional = true }
 license = { version = "3", features = ["offline"] }
