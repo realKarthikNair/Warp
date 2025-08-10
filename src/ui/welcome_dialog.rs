@@ -52,7 +52,8 @@ mod imp {
 
 glib::wrapper! {
     pub struct WelcomeDialog(ObjectSubclass<imp::WelcomeDialog>)
-        @extends gtk::Widget, adw::Dialog;
+        @extends gtk::Widget, adw::Dialog,
+        @implements gtk::Accessible, gtk::ConstraintTarget, gtk::Buildable;
 }
 
 #[gtk::template_callbacks]

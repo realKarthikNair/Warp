@@ -19,14 +19,14 @@ codegen-units = 1
 strip = false
 
 [dependencies]
-gtk = { version = "0.9", package = "gtk4", features = [
+gtk = { version = "0.10", package = "gtk4", features = [
     "xml_validation",
     "v4_14",
 ] }
-gdk = { version = "0.9", package = "gdk4", features = ["v4_14"] }
-gio = { version = "0.20", package = "gio", features = ["v2_76"] }
-adw = { version = "0.7", package = "libadwaita", features = ["v1_7"] }
-glib = "0.20"
+gdk = { version = "0.10", package = "gdk4", features = ["v4_14"] }
+gio = { version = "0.21", package = "gio", features = ["v2_76"] }
+adw = { version = "0.8", package = "libadwaita", features = ["v1_7"] }
+glib = "0.21"
 log = "0.4"
 pretty_env_logger = "0.5"
 gettext-rs = { version = "0.7", features = ["gettext-system"] }
@@ -44,7 +44,7 @@ serde_json = "1.0"
 simple_moving_average = "1.0"
 chrono = "0.4"
 regex = "1"
-gvdb = { version = "0.8", features = ["gresource"] }
+gvdb = { version = "0.9", features = ["gresource"] }
 gvdb-macros = { version = "0.1" }
 thiserror = "2"
 tempfile = "3.4.0"
@@ -54,7 +54,7 @@ zbus = "5"
 async-broadcast = "0.7"
 async_zip = "0.0.17"
 memmap2 = "0.9"
-aperture = { version = "0.9", optional = true }
+aperture = { version = "0.11", optional = true }
 license = { version = "3", features = ["offline"] }
 strum = { version = "0.27", features = ["derive", "strum_macros"] }
 
@@ -72,3 +72,6 @@ default = ["qr_code_scanning"]
 demo = []
 meson = []
 qr_code_scanning = ["dep:aperture"]
+
+[patch.crates-io]
+ashpd = { git = "https://github.com/bilelmoussaoui/ashpd" }
