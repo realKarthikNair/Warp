@@ -403,14 +403,14 @@
     {
         "type": "archive",
         "archive-type": "tar-gzip",
-        "url": "https://static.crates.io/crates/async_zip/async_zip-0.0.17.crate",
-        "sha256": "00b9f7252833d5ed4b00aa9604b563529dd5e11de9c23615de2dcdf91eb87b52",
-        "dest": "cargo/vendor/async_zip-0.0.17"
+        "url": "https://static.crates.io/crates/async_zip/async_zip-0.0.18.crate",
+        "sha256": "0d8c50d65ce1b0e0cb65a785ff615f78860d7754290647d3b983208daa4f85e6",
+        "dest": "cargo/vendor/async_zip-0.0.18"
     },
     {
         "type": "inline",
-        "contents": "{\"package\": \"00b9f7252833d5ed4b00aa9604b563529dd5e11de9c23615de2dcdf91eb87b52\", \"files\": {}}",
-        "dest": "cargo/vendor/async_zip-0.0.17",
+        "contents": "{\"package\": \"0d8c50d65ce1b0e0cb65a785ff615f78860d7754290647d3b983208daa4f85e6\", \"files\": {}}",
+        "dest": "cargo/vendor/async_zip-0.0.18",
         "dest-filename": ".cargo-checksum.json"
     },
     {

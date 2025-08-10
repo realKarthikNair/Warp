@@ -151,8 +151,6 @@ mod imp {
                 }),
             ));
 
-            obj.setup_help_overlay();
-
             let drop_type = gio::File::static_type();
             let drag_action = gdk::DragAction::COPY;
             let drop_target = gtk::DropTarget::new(drop_type, drag_action);
@@ -293,12 +291,6 @@ impl WarpApplicationWindow {
     pub fn set_welcome_window_shown(&self, shown: bool) {
         self.imp().config.borrow_mut().welcome_window_shown = shown;
         self.save_config();
-    }
-
-    fn setup_help_overlay(&self) {
-        let builder = gtk::Builder::from_resource("/app/drey/Warp/ui/help_overlay.ui");
-        let shortcuts: Option<gtk::ShortcutsWindow> = builder.object("help_overlay");
-        self.set_help_overlay(shortcuts.as_ref());
     }
 
     pub fn show_about_dialog(&self) {
