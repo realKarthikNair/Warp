@@ -1,3 +1,6 @@
+[advisories]
+unmaintained = "workspace"
+
 [licenses]
 version = 2
 allow = [
@@ -7,8 +10,8 @@ allow = [
     "EUPL-1.2",
     "GPL-3.0",
     "MIT",
-    "MPL-2.0",
     "Unicode-3.0",
     "Unlicense",
     "Zlib",
+    "ISC",
 ]

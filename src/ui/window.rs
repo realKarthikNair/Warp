@@ -267,7 +267,8 @@ mod imp {
 glib::wrapper! {
     pub struct WarpApplicationWindow(ObjectSubclass<imp::WarpApplicationWindow>)
         @extends gtk::Widget, gtk::Window, gtk::ApplicationWindow, adw::ApplicationWindow,
-        @implements gio::ActionMap, gio::ActionGroup, gtk::Root;
+        @implements gio::ActionMap, gio::ActionGroup, gtk::Root, gtk::Native, gtk::Accessible,
+        gtk::Buildable, gtk::ConstraintTarget, gtk::ShortcutManager;
 }
 
 #[gtk::template_callbacks]
@@ -279,7 +280,7 @@ impl WarpApplicationWindow {
             .build()
     }
 
-    pub fn config(&self) -> RefMut<PersistentConfig> {
+    pub fn config(&self) -> RefMut<'_, PersistentConfig> {
         self.imp().config.borrow_mut()
     }
 

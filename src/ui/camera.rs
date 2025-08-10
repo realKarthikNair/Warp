@@ -293,7 +293,8 @@ mod imp {
 
 glib::wrapper! {
     pub struct Camera(ObjectSubclass<imp::Camera>)
-        @extends gtk::Widget, adw::NavigationPage;
+        @extends gtk::Widget, adw::NavigationPage,
+        @implements gtk::Accessible, gtk::ConstraintTarget, gtk::Buildable;
 }
 
 impl Camera {

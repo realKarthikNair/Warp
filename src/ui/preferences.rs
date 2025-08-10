@@ -184,7 +184,8 @@ Transit Server: “{1}”",
 
 glib::wrapper! {
     pub struct WarpPreferencesDialog(ObjectSubclass<imp::WarpPreferencesDialog>)
-        @extends gtk::Widget, adw::Dialog, adw::PreferencesDialog;
+        @extends gtk::Widget, adw::Dialog, adw::PreferencesDialog,
+        @implements gtk::Accessible, gtk::ConstraintTarget, gtk::Buildable;
 }
 
 impl WarpPreferencesDialog {
