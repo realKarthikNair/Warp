@@ -1,0 +1,466 @@
+# Bulgarian translation for warp.
+# Copyright (C) 2024 warp's COPYRIGHT HOLDER
+# This file is distributed under the same license as the warp package.
+# twlvnn kraftwerk <kraft_werk@tutanota.com>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: warp main\n"
+"POT-Creation-Date: 2024-07-10 16:34+0000\n"
+"PO-Revision-Date: 2024-07-27 12:46+0200\n"
+"Last-Translator: twlvnn kraftwerk <kraft_werk@tutanota.com>\n"
+"Language-Team: Bulgarian <dict-notifications@fsa-bg.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: bg\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"X-Generator: Gtranslator 46.1\n"
+
+#. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
+msgctxt "_"
+msgid "translator-credits"
+msgstr "twlvnn kraftwerk <kraft_werk@tutanota.com>wa"
+
+#. (itstool) path: info/desc
+#: C/details-commandline.page:11
+msgid "Interoperability with the Magic Wormhole Commandline App"
+msgstr "Съвместимост с „Magic Wormhole“ програмата с команден ред"
+
+#. (itstool) path: page/title
+#: C/details-commandline.page:13
+msgid "Commandline App"
+msgstr "Програма с команден рен"
+
+#. (itstool) path: page/p
+#: C/details-commandline.page:14
+msgid ""
+"You can use the <link href=\"https://github.com/magic-wormhole/magic-"
+"wormhole\">Magic Wormhole</link> commandline client to communicate with "
+"<app>Warp</app> directly."
+msgstr ""
+"Може да използвате <link href=\"https://github.com/magic-wormhole/magic-"
+"wormhole\">„Magic Wormhole“</link> клиента с команден ред, за да се свържете "
+"с „<app>Warp</app>“ директно."
+
+#. (itstool) path: page/p
+#: C/details-commandline.page:16
+msgid ""
+"To receive a file that is being sent via <app>Warp</app> use this command:"
+msgstr ""
+"За да получите файл, изпратен чрез „<app>Warp</app>“, използвайте тази "
+"команда:"
+
+#. (itstool) path: page/code
+#: C/details-commandline.page:17
+#, no-wrap
+msgid "wormhole receive"
+msgstr "wormhole receive"
+
+#. (itstool) path: page/p
+#: C/details-commandline.page:18
+msgid "and enter the code when prompted."
+msgstr "и въведете кода, когато бъдете подканени."
+
+#. (itstool) path: page/p
+#: C/details-commandline.page:19
+msgid "To send a file use"
+msgstr "За да изпратите файл, използвайте"
+
+#. (itstool) path: page/code
+#: C/details-commandline.page:20
+#, no-wrap
+msgid "wormhole send FILENAME"
+msgstr "wormhole send ИМЕНАФАЙЛ"
+
+#. (itstool) path: page/p
+#: C/details-commandline.page:21
+msgid ""
+"Your peer can then enter the code into <app>Warp</app> to receive the file."
+msgstr ""
+"След това вашият връстник може да въведе кода в „<app>Warp</app>“, за да "
+"получи файла."
+
+#. (itstool) path: section/title
+#: C/details-commandline.page:23
+msgid "Learn more"
+msgstr "Научете повече"
+
+#. (itstool) path: section/p
+#: C/details-commandline.page:24
+msgid ""
+"To learn more about the command line client you can take a look at the <link "
+"href=\"https://magic-wormhole.readthedocs.io/en/latest/\">Magic Wormhole "
+"documentation</link>."
+msgstr ""
+"За да научите повече за клиента за командния ред, може да разгледате <link "
+"href=\"https://magic-wormhole.readthedocs.io/en/latest/\">документацията на "
+"Magic Wormhole</link>."
+
+#. (itstool) path: info/desc
+#: C/details-glossary.page:11
+msgid "Definition of terms used through this help page"
+msgstr "Определение на термините, използвани в тази помощна страница"
+
+#. (itstool) path: page/title
+#: C/details-glossary.page:13
+msgid "Glossary"
+msgstr "Речник"
+
+#. (itstool) path: section/title
+#: C/details-glossary.page:15
+msgid "Rendezvous Server"
+msgstr "Междинен сървър"
+
+#. (itstool) path: section/p
+#: C/details-glossary.page:16
+msgid ""
+"This server is located on the internet and is operated by the <link "
+"href=\"https://github.com/magic-wormhole/magic-wormhole\">Magic Wormhole "
+"project</link>. It is used to find peers to share files with. When starting "
+"a transmission, both parties will contact the rendezvous server to find each "
+"other."
+msgstr ""
+"Този сървър се намира в интернет и се управлява от проекта <link "
+"href=\"https://github.com/magic-wormhole/magic-wormhole\">Magic Wormhole</"
+"link>. Той се използва за намиране на потребители, с които да споделяте "
+"файлове. При започване на предаване и двете страни ще се свържат със "
+"междинния сървър, за да се намерят взаимно."
+
+#. (itstool) path: section/p
+#: C/details-glossary.page:19
+msgid ""
+"The rendezvous server also helps the transmitting client to generate a <link "
+"xref=\"#transmit-code\"/>"
+msgstr ""
+"Междинният сървър също така помага на клиента за предаване да генерира <link "
+"xref=\"#transmit-code\"/>"
+
+#. (itstool) path: section/p
+#: C/details-glossary.page:20
+msgid ""
+"They will use this server to exchange cryptographic information for secure "
+"communication. Afterwards they will exchange information about how to "
+"contact each other for file transfer."
+msgstr ""
+"Те ще използват този сървър за обмен на криптографска информация за сигурна "
+"комуникация. След това те ще обменят информация за това как да се свържат "
+"помежду си за прехвърляне на файлове."
+
+#. (itstool) path: note/p
+#: C/details-glossary.page:23
+msgid ""
+"No files are transferred via the rendezvous server. See <link "
+"xref=\"#transmit-relay\"/> and <link xref=\"#direct-transfer\"/>"
+msgstr ""
+"Чрез междинния сървър не се прехвърлят файлове. Вижте <link xref=\"#transmit-"
+"relay\"/> и <link xref=\"#direct-transfer\"/>."
+
+#. (itstool) path: section/title
+#: C/details-glossary.page:27
+msgid "Transmit Code"
+msgstr "Код за изпращане"
+
+#. (itstool) path: section/p
+#: C/details-glossary.page:28
+msgid ""
+"This code will be generated by the client in cooperation with the <link "
+"xref=\"#rendezvous-server\"/>. It is used to identify and encrypt the "
+"transmission of messages and files."
+msgstr ""
+"Този код ще бъде генериран от клиента в сътрудничество с <link "
+"xref=\"#rendezvous-server\"/>. Той се използва за идентифициране и шифриране "
+"на предаването на съобщения и файлове."
+
+#. (itstool) path: section/p
+#: C/details-glossary.page:30
+msgid ""
+"To start a transmission you need a transmit code. The transmit code then "
+"needs to be communicated to the receiver (preferably via an encrypted or "
+"otherwise secure channel). After entering the transmit code at the receiver "
+"side the file transmission can begin."
+msgstr ""
+"За да започнете предаване, ви е необходим код за предаване. След това кодът "
+"за предаване трябва да бъде съобщен на получателя (за предпочитане по "
+"шифриран или друг сигурен канал). След въвеждане на кода за предаване от "
+"страна на получателя предаването на файла може да започне."
+
+#. (itstool) path: note/p
+#: C/details-glossary.page:34
+msgid "Every transmit code can only be entered once for security reasons."
+msgstr ""
+"Всеки код за предаване може да бъде въведен само веднъж за по-добра "
+"сигурност."
+
+#. (itstool) path: section/title
+#: C/details-glossary.page:38
+msgid "Transmit Link"
+msgstr "Връзка за изпращане"
+
+#. (itstool) path: section/p
+#: C/details-glossary.page:39
+msgid ""
+"It is also possible to encode the <link xref=\"#transmit-code\"/> as a link. "
+"Clicking the link will automatically open Warp and start the file "
+"transmission. A <gui>Copy Transmit Link</gui> button is available in the "
+"send screen. A transmit link looks like this:"
+msgstr ""
+"Възможно е също така да кодирате <link xref=\"#transmit-code\"/> като "
+"връзка. Натискането върху връзката автоматично ще отвори „Warp“ и ще започне "
+"предаването на файла. В екрана за изпращане е наличен бутон <gui>Копиране на "
+"връзката за предаване</gui>. Връзката за предаване изглежда по следния начин:"
+
+#. (itstool) path: section/code
+#: C/details-glossary.page:42
+#, no-wrap
+msgid "wormhole-transfer:{code}"
+msgstr "wormhole-transfer:{code}"
+
+#. (itstool) path: section/title
+#: C/details-glossary.page:45
+msgid "Transmit Relay"
+msgstr "Междинен сървър за предаване"
+
+#. (itstool) path: section/p
+#: C/details-glossary.page:46
+msgid ""
+"The transmit relay is also operated by the <link href=\"https://github.com/"
+"magic-wormhole/magic-wormhole\">Magic Wormhole project</link>"
+msgstr ""
+"Междинен сървър за предаване се управлява и от проекта <link href=\"https://"
+"github.com/magic-wormhole/magic-wormhole\">„Magic Wormhole“</link>"
+
+#. (itstool) path: section/p
+#: C/details-glossary.page:48
+msgid ""
+"It is used if no <link xref=\"#direct-transfer\">direct communication</link> "
+"between two peers can be established. This is most commonly a problem when "
+"both parties are located in different home networks with <link "
+"href=\"https://en.wikipedia.org/wiki/Network_address_translation\">NAT</"
+"link> or restrictive <link href=\"https://en.wikipedia.org/wiki/"
+"Firewall_(computing)\">firewalls</link>."
+msgstr ""
+"Използва се, ако не може да бъде установена <link xref=\"#direct-"
+"transfer\">директна комуникация</link> между двама потребителя. Това най-"
+"често е проблем, когато двете страни се намират в различни домашни мрежи с "
+"<link href=\"https://en.wikipedia.org/wiki/"
+"Network_address_translation\">NAT</link> или ограничителни <link "
+"href=\"https://en.wikipedia.org/wiki/Firewall_(computing)\">защитни стени</"
+"link>."
+
+#. (itstool) path: section/p
+#: C/details-glossary.page:52
+msgid ""
+"The files are transmitted via the transmit relay in an encrypted fashion. "
+"The relay will only know about the file size."
+msgstr ""
+"Файловете се предават по шифриран начин чрез междинен сървър. Междинният "
+"сървър ще знае само размера на файла."
+
+#. (itstool) path: section/p
+#: C/details-glossary.page:53
+msgid ""
+"Transfers via the transmit relay may be slower than direct transfer, "
+"depending on relay congestion."
+msgstr ""
+"Предаването чрез междинния сървър може да бъде по-бавно от директното "
+"предаване, в зависимост от претоварването на сървъра."
+
+#. (itstool) path: section/title
+#: C/details-glossary.page:56
+msgid "Direct Transfer"
+msgstr "Директно прехвърляне"
+
+#. (itstool) path: section/p
+#: C/details-glossary.page:57
+msgid ""
+"If both peers can find a direct networking path between each other they will "
+"send the file directly. This is often referred to as a <link href=\"https://"
+"en.wikipedia.org/wiki/Peer-to-peer\">Peer-to-Peer</link> connection. This "
+"type of connection is typically faster than a connection via the <link "
+"xref=\"#transmit-relay\"/>"
+msgstr ""
+"Ако двата потребителя могат да намерят директен път по мрежата помежду си, "
+"те ще изпратят файла директно. Това често се нарича <link href=\"https://en."
+"wikipedia.org/wiki/Peer-to-peer\">равноправна</link> връзка."
+
+#. (itstool) path: info/desc
+#: C/details-qr.page:11
+msgid "Using QR Codes"
+msgstr "Използване на QR кодове"
+
+#. (itstool) path: page/title
+#: C/details-qr.page:13
+msgid "QR Codes"
+msgstr "QR кодове"
+
+#. (itstool) path: page/p
+#: C/details-qr.page:14
+msgid "Instead of typing the code manually it is possible to scan a QR code."
+msgstr "Вместо да въвеждате кода ръчно, е възможно да сканирате QR код."
+
+#. (itstool) path: page/p
+#: C/details-qr.page:15
+msgid ""
+"For a list of supported apps, see the <link href=\"https://gitlab.gnome.org/"
+"World/warp/-/blob/main/README.md#qr-codes\">readme file</link>."
+msgstr ""
+"За списък на поддържаните приложения вижте <link href=\"https://gitlab.gnome."
+"org/World/warp/-/blob/main/README.md#qr-codes\">readme файла</link>"
+
+#. (itstool) path: page/p
+#: C/details-qr.page:17
+msgid ""
+"Using any other apps might lead to problems scanning the code. The QR code "
+"standard is fairly new and not all apps have updated their custom QR code "
+"format to the standardized version."
+msgstr ""
+"Използването на други приложения може да доведе до проблеми при сканирането "
+"на кода. Стандартът за QR кодове е сравнително нов и не всички приложения са "
+"обновили своя формат за QR кодове до стандартизираната версия."
+
+#. (itstool) path: section/title
+#: C/details-qr.page:20
+msgid "Scan QR Codes"
+msgstr "Сканиране на QR кодове"
+
+#. (itstool) path: section/p
+#: C/details-qr.page:21
+msgid ""
+"To scan a QR code generated by another app, a QR code button is available on "
+"the <gui>Receive</gui> page. Successfully scanning a code will open up the "
+"transfer dialog."
+msgstr ""
+"За сканиране на QR код, генериран от друго приложение, на страницата "
+"<gui>Получаване</gui> е наличен QR код бутон. Успешното сканиране на кода ще "
+"отвори прозореца за прехвърляне."
+
+#. (itstool) path: note/p
+#: C/details-qr.page:24
+msgid ""
+"Inverted QR codes (white on black background) are currently not supported."
+msgstr "Обърнати QR кодове (бяло на черен фон) не се поддържат."
+
+#. (itstool) path: section/p
+#: C/details-qr.page:26
+msgid ""
+"This functionality uses <link href=\"https://www.pipewire.org/\">PipeWire</"
+"link>, via the same mechanism as <link href=\"https://apps.gnome.org/"
+"Snapshot/\">GNOME Camera</link>."
+msgstr ""
+"Тази функционалност използва <link href=„https://www.pipewire."
+"org/“>PipeWire</link>, на същия принцип като <link href=„https://apps.gnome."
+"org/Snapshot/“>GNOME Camera</link>."
+
+#. (itstool) path: section/p
+#: C/details-qr.page:28
+msgid ""
+"For troubleshooting instructions see <link href=\"https://gitlab.gnome.org/"
+"GNOME/snapshot/-/blob/main/TROUBLESHOOTING.md?ref_type=heads\">GNOME Camera "
+"on GNOME GitLab</link>."
+msgstr ""
+"За инструкции за отстраняване на грешки вижте <link href=\"https://gitlab."
+"gnome.org/GNOME/snapshot/-/blob/main/TROUBLESHOOTING.md?"
+"ref_type=heads\">GNOME Camera в GNOME GitLab</link>."
+
+#. (itstool) path: info/desc
+#: C/general-intro.page:11
+msgid "Introduction to file transfer with <app>Warp</app>"
+msgstr "Въведение в прехвърлянето на файлове с „<app>Warp</app>“"
+
+#. (itstool) path: page/title
+#: C/general-intro.page:13
+msgid "Introduction"
+msgstr "Въведение"
+
+#. (itstool) path: page/p
+#: C/general-intro.page:14
+msgid ""
+"<app>Warp</app> is an app that allows you to send files from one device to "
+"another effortlessly. <app>Warp</app> uses a secure transmit code to "
+"identify and encrypt file transmissions."
+msgstr ""
+"„<app>Warp</app>“ е приложение, което ви позволява безпроблемно да изпращате "
+"файлове от едно устройство на друго. „<app>Warp</app>“ използва защитен код "
+"за предаване, за да идентифицира и шифрира предаването на файлове."
+
+#. (itstool) path: page/p
+#: C/general-intro.page:16
+msgid ""
+"To use <app>Warp</app> to transfer a file, the sender needs to open the app. "
+"Select a file using the <gui>Send</gui> tab. <app>Warp</app> will now try to "
+"contact the <link xref=\"details-glossary#rendezvous-server\"/> and generate "
+"a <link xref=\"details-glossary#transmit-code\"/>."
+msgstr ""
+"За да използвате „<app>Warp</app>“ за прехвърляне на файл, подателят трябва "
+"да отвори приложението. Избере файл, като използва раздела <gui>Изпращане</"
+"gui>. Сега „<app>Warp</app>“ ще се опита да се свърже с <link xref=\"details-"
+"glossary#rendezvous-server\"/> и ще генерира <link xref=\"details-"
+"glossary#transmit-code\"/>."
+
+#. (itstool) path: page/p
+#: C/general-intro.page:19
+msgid ""
+"The sender then needs to tell the receiver the transmit code of the file. "
+"(preferably via an encrypted or otherwise secure channel). After entering "
+"the transmit code at the receiver side the file transmission can begin."
+msgstr ""
+"След това подателят трябва да съобщи на получателя кода за предаване на "
+"файла. (за предпочитане чрез шифриран или по друг защитен канал). След "
+"въвеждане на кода за предаване от страна на получателя предаването на файла "
+"може да започне."
+
+#. (itstool) path: page/p
+#: C/general-intro.page:21
+msgid ""
+"It is also possible to copy a <link xref=\"details-glossary#transmit-"
+"link\">link</link> that will automatically open Warp with the displayed code."
+msgstr ""
+"Възможно е също така да копирате <link xref=\"details-glossary#transmit-"
+"link\">връзка</link>, която автоматично ще отвори „Warp“ с показания код."
+
+#. (itstool) path: note/p
+#: C/general-intro.page:24
+msgid ""
+"Every transmit code can only be entered once for security reasons. If the "
+"receiver mistypes the transmission code the file transfer will be aborted. "
+"The sender then needs to select the file again and generate a new code."
+msgstr ""
+"Всеки код за предаване може да бъде въведен само веднъж за по-добра "
+"сигурност. Ако получателят въведе погрешно кода за предаване, прехвърлянето "
+"на файла ще бъде прекъснато. Тогава подателят трябва да избере файла отново "
+"и да генерира нов код."
+
+#. (itstool) path: page/p
+#: C/general-intro.page:27
+msgid ""
+"A progress bar will indicate a running file transfer. Files will either be "
+"transmitted via <link xref=\"details-glossary#direct-transfer\"/> or via the "
+"<link xref=\"details-glossary#transmit-relay\"/>. The transfer can be "
+"aborted at any time using the <gui>Cancel</gui> button."
+msgstr ""
+"Лентата за напредъка ще покаже, че прехвърлянето на файлове е в ход. "
+"Файловете ще се предават или чрез <link xref=\"details-glossary#direct-"
+"transfer\"/>, или чрез <link xref=\"details-glossary#transmit-relay\"/>. "
+"Прехвърлянето може да бъде прекъснато по всяко време с помощта на бутона "
+"<gui>Отказване</gui>."
+
+#. (itstool) path: info/desc
+#: C/index.page:10
+msgid "Fast and secure file transfer."
+msgstr "Бързо и сигурно прехвърляне на файлове."
+
+#. (itstool) path: page/title
+#: C/index.page:12
+msgid "Warp"
+msgstr "Warp"
+
+#. (itstool) path: section/title
+#: C/index.page:14
+msgid "General"
+msgstr "Общи"
+
+#. (itstool) path: section/title
+#: C/index.page:17
+msgid "Details"
+msgstr "Подробности"
