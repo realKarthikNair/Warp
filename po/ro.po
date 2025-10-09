@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: warp main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
-"POT-Creation-Date: 2025-08-12 10:22+0000\n"
-"PO-Revision-Date: 2025-08-13 19:48+0200\n"
+"POT-Creation-Date: 2025-10-08 13:51+0000\n"
+"PO-Revision-Date: 2025-10-09 15:23+0200\n"
 "Last-Translator: Antonio Marin <gnmer.6qxyg@slmail.me>\n"
 "Language-Team: Romanian <gnomero-list@lists.sourceforge.net>\n"
 "Language: ro\n"
@@ -287,7 +287,7 @@ msgid ""
 msgstr ""
 "Partenerul vrea să trimită „{0}” (Mărime: {1}).\n"
 "Se descarcă acest fișier? Ca acțiune prestabilită, fișierul va fi salvat în "
-"dosarul Descărcări."
+"dosarul Descărcate."
 
 #: src/ui/action_view.rs:590
 msgid "Ready to Receive File"
@@ -342,7 +342,7 @@ msgstr "Fișierul a fost salvat în dosarul ales ca „{}”"
 #. Translators: Filename
 #: src/ui/action_view.rs:693
 msgid "File has been saved to the Downloads folder as “{}”"
-msgstr "Fișierul a fost salvat în dosarul Descărcări ca „{}”"
+msgstr "Fișierul a fost salvat în dosarul Descărcate ca „{}”"
 
 #. Translators: Title
 #: src/ui/action_view.rs:722 src/ui/action_view.ui:290
@@ -409,7 +409,7 @@ msgstr "Se acceptă transferul de fișiere?"
 
 #: src/ui/action_view.ui:206
 msgid "Save to Downloads Folder"
-msgstr "Salvează în dosarul Descărcări"
+msgstr "Salvează în dosarul Descărcate"
 
 #. Translators: Button
 #: src/ui/action_view.ui:208
