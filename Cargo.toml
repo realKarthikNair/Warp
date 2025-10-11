@@ -59,7 +59,7 @@ license = { version = "3", features = ["offline"] }
 strum = { version = "0.27", features = ["derive", "strum_macros"] }
 
 [target.'cfg(unix)'.dependencies]
-ashpd = { version = "0.11", features = [
+ashpd = { version = "0.12", features = [
     "gtk4",
     "async-std",
 ], default-features = false }
@@ -72,6 +72,3 @@ default = ["qr_code_scanning"]
 demo = []
 meson = []
 qr_code_scanning = ["dep:aperture"]
-
-[patch.crates-io]
-ashpd = { git = "https://github.com/bilelmoussaoui/ashpd" }
