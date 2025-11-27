@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: warp main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
-"POT-Creation-Date: 2022-07-12 22:10+0000\n"
-"PO-Revision-Date: 2022-07-16 11:24+0200\n"
+"POT-Creation-Date: 2025-11-08 20:44+0000\n"
+"PO-Revision-Date: 2025-11-23 20:02+0100\n"
 "Last-Translator: maite guix <maite.guix@me.com>\n"
 "Language-Team: Catalan <gnome@llistes.softcatala.org>\n"
 "Language: ca\n"
@@ -16,23 +16,28 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.6\n"
 
-#: data/app.drey.Warp.desktop.in.in:3 data/app.drey.Warp.metainfo.xml.in.in:7
-#: src/main.rs:94
+#: data/app.drey.Warp.desktop.in.in:2 data/app.drey.Warp.metainfo.xml.in.in:4
+#: src/main.rs:132 src/ui/window.ui:81
 msgid "Warp"
 msgstr "Warp"
 
-#: data/app.drey.Warp.desktop.in.in:4 data/app.drey.Warp.metainfo.xml.in.in:8
-#: data/resources/ui/welcome_window.ui:40
+#: data/app.drey.Warp.desktop.in.in:3 data/app.drey.Warp.metainfo.xml.in.in:5
+#: src/ui/welcome_dialog.ui:24
 msgid "Fast and secure file transfer"
 msgstr "Transferència ràpida i segura de fitxers"
 
-#: data/app.drey.Warp.desktop.in.in:9
+#: data/app.drey.Warp.desktop.in.in:8
 msgid "Gnome;GTK;Wormhole;Magic-Wormhole;"
-msgstr "Gnome;GTK;Wormhole;Magic-Wormhole;"
+msgstr "Gnome;GTK;Forat de cuc;Forat de cuc màgic;Wormhole;Magic-Wormhole;"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:10
+#. developer_name tag deprecated with Appstream 1.0
+#: data/app.drey.Warp.metainfo.xml.in.in:9 src/ui/window.rs:300
+msgid "Fina Wilke"
+msgstr "Fina Wilke"
+
+#: data/app.drey.Warp.metainfo.xml.in.in:43
 msgid ""
 "Warp allows you to securely send files to each other via the internet or "
 "local network by exchanging a word-based code."
@@ -40,7 +45,7 @@ msgstr ""
 "Warp us permet enviar fitxers de manera segura entre si a través d'Internet "
 "o xarxa local mitjançant l'intercanvi d'un codi basat en paraules."
 
-#: data/app.drey.Warp.metainfo.xml.in.in:13
+#: data/app.drey.Warp.metainfo.xml.in.in:47
 msgid ""
 "The best transfer method will be determined using the “Magic Wormhole” "
 "protocol which includes local network transfer if possible."
@@ -48,182 +53,493 @@ msgstr ""
 "El millor mètode de transferència es determinarà utilitzant el protocol "
 "«Magic Wormhole» que inclou la transferència per xarxa local si és possible."
 
-#: data/app.drey.Warp.metainfo.xml.in.in:16
+#: data/app.drey.Warp.metainfo.xml.in.in:51
 msgid "Features"
 msgstr "Funcionalitats"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:18
+#: data/app.drey.Warp.metainfo.xml.in.in:53
 msgid "Send files between multiple devices"
 msgstr "Envia fitxers entre diversos dispositius"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:19
+#: data/app.drey.Warp.metainfo.xml.in.in:54
 msgid "Every file transfer is encrypted"
 msgstr "Cada transferència de fitxers està xifrada"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:20
+#: data/app.drey.Warp.metainfo.xml.in.in:55
 msgid "Directly transfer files on the local network if possible"
 msgstr "Transferir directament fitxers a la xarxa local si és possible"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:21
+#: data/app.drey.Warp.metainfo.xml.in.in:56
 msgid "An internet connection is required"
 msgstr "Cal connexió a Internet"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:22
-msgid "Compatibility with the “Magic Wormhole” command line client"
-msgstr "Compatibilitat amb el client de la línia d'ordres «Magic Wormhole»"
+#: data/app.drey.Warp.metainfo.xml.in.in:57
+msgid "QR Code support"
+msgstr "Suport per a codis QR"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:28
+#: data/app.drey.Warp.metainfo.xml.in.in:58
+msgid ""
+"Compatibility with the Magic Wormhole command line client and all other "
+"compatible apps"
+msgstr ""
+"Compatibilitat amb el client de la línia d'ordres «Magic Wormhole» i la "
+"resta d'aplicacions compatibles"
+
+#: data/app.drey.Warp.metainfo.xml.in.in:64
+#: data/app.drey.Warp.metainfo.xml.in.in:84
 msgid "Main Window"
 msgstr "Finestra principal"
 
 #. Translators: Entry placeholder; This is a noun
-#: data/app.drey.Warp.metainfo.xml.in.in:32 data/resources/ui/window.ui:161
+#: data/app.drey.Warp.metainfo.xml.in.in:68
+#: data/app.drey.Warp.metainfo.xml.in.in:88 src/ui/window.ui:208
 msgid "Transmit Code"
 msgstr "Codi de transmissió"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:36
-#: data/resources/ui/action_view.ui:119
+#: data/app.drey.Warp.metainfo.xml.in.in:72
+#: data/app.drey.Warp.metainfo.xml.in.in:92
 msgid "Accept File Transfer"
 msgstr "Accepta la transferència de fitxers"
 
-#. Translators: Title
-#: data/app.drey.Warp.metainfo.xml.in.in:40 src/ui/action_view.rs:558
-msgid "Sending File"
-msgstr "S'està enviant el fitxer"
-
-#. Translators: Title
-#: data/app.drey.Warp.metainfo.xml.in.in:44 src/ui/action_view.rs:562
+#: data/app.drey.Warp.metainfo.xml.in.in:76
+#: data/app.drey.Warp.metainfo.xml.in.in:96 src/ui/action_view.rs:651
 msgid "Receiving File"
 msgstr "S'està rebent el fitxer"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:48 src/ui/action_view.rs:579
+#: data/app.drey.Warp.metainfo.xml.in.in:80
+#: data/app.drey.Warp.metainfo.xml.in.in:100 src/ui/action_view.rs:660
 msgid "File Transfer Complete"
 msgstr "S'ha completat la transferència de fitxers"
 
-#: data/app.drey.Warp.metainfo.xml.in.in:119
-msgid "Fina Wilke"
-msgstr "Fina Wilke"
-
-#. Translators: Button
-#: data/resources/ui/action_view.ui:17 data/resources/ui/window.ui:31
-#: data/resources/ui/window.ui:37
-msgid "Cancel"
-msgstr "Cancel·la"
-
-#. Translators: Button
-#: data/resources/ui/action_view.ui:27 data/resources/ui/welcome_window.ui:58
-msgid "Back"
-msgstr "Enrere"
-
-#. Translators: Button; Transmit Link is a noun
-#: data/resources/ui/action_view.ui:71
-msgid "Copy Transmit Link"
-msgstr "Copia l'enllaç de transmissió"
-
-#. Translators: Button; Transmit Code is a noun
-#: data/resources/ui/action_view.ui:78
-msgid "Copy Transmit Code"
-msgstr "Copia el codi de transmissió"
-
-#. Translators: Button
-#: data/resources/ui/action_view.ui:92 data/resources/ui/action_view.ui:94
-msgid "Open File"
-msgstr "Obre el fitxer"
-
-#. Translators: Button
-#: data/resources/ui/action_view.ui:105 data/resources/ui/action_view.ui:107
-#: src/ui/action_view.rs:1110
-msgid "Show in Folder"
-msgstr "Mostra a la carpeta"
-
-#. Translators: Button
-#: data/resources/ui/action_view.ui:122
-msgid "Accept"
-msgstr "Accepta"
-
-#: data/resources/ui/action_view.ui:133
-msgid "Copy a detailed message for reporting an issue"
-msgstr "Copiar un missatge detallat per a informar d'un problema"
-
-#. Translators: Button
-#: data/resources/ui/action_view.ui:136
-msgid "Copy Error Message"
-msgstr "Copia el missatge d'error"
-
-#: data/resources/ui/help_overlay.ui:11
-msgctxt "shortcut window"
+#: data/resources/shortcuts-dialog.ui:6
 msgid "General"
 msgstr "General"
 
-#: data/resources/ui/help_overlay.ui:14
-msgctxt "shortcut window"
-msgid "Show Shortcuts"
-msgstr "Mostra les dreceres"
+#: data/resources/shortcuts-dialog.ui:9
+msgid "Show Help"
+msgstr "Mostra l'ajuda"
 
-#: data/resources/ui/help_overlay.ui:20
-msgctxt "shortcut window"
+#: data/resources/shortcuts-dialog.ui:15
+msgid "Show Shortcuts"
+msgstr "Mostra les dreceres de teclat"
+
+#: data/resources/shortcuts-dialog.ui:21
+msgid "Show Preferences"
+msgstr "Mostra els paràmetres"
+
+#: data/resources/shortcuts-dialog.ui:27
 msgid "Quit"
 msgstr "Surt"
 
-#: data/resources/ui/help_overlay.ui:28
-msgctxt "shortcut window"
+#: data/resources/shortcuts-dialog.ui:35 src/ui/window.ui:264
 msgid "File Transfer"
 msgstr "Transferència de fitxers"
 
-#: data/resources/ui/help_overlay.ui:31
-msgctxt "shortcut window"
+#: data/resources/shortcuts-dialog.ui:38 src/ui/window.ui:129
 msgid "Send File"
 msgstr "Envia el fitxer"
 
-#: data/resources/ui/help_overlay.ui:37
-msgctxt "shortcut window"
+#: data/resources/shortcuts-dialog.ui:44
 msgid "Send Folder"
-msgstr "Envia una carpeta"
+msgstr "Envia la carpeta"
 
-#: data/resources/ui/help_overlay.ui:43
-msgctxt "shortcut window"
+#: data/resources/shortcuts-dialog.ui:50 src/ui/window.ui:186
 msgid "Receive File"
 msgstr "Rebre el fitxer"
 
-#: data/resources/ui/preferences.ui:12
+#. Translators: {0} = file size transferred, {1} = total file size, Example: 17.3MB / 20.5MB
+#: src/gettext/duration.rs:11
+msgctxt "File size transferred"
+msgid "{0} / {1}"
+msgstr "{0} de {1}"
+
+#. Translators: File transfer time left
+#: src/gettext/duration.rs:18
+msgid "One second left"
+msgid_plural "{} seconds left"
+msgstr[0] "Queda un segon"
+msgstr[1] "{} segons queden"
+
+#. Translators: File transfer time left
+#: src/gettext/duration.rs:26
+msgid "One minute left"
+msgid_plural "{} minutes left"
+msgstr[0] "Queda un minut"
+msgstr[1] "{} minuts restants"
+
+#. Translators: File transfer time left
+#: src/gettext/duration.rs:34
+msgid "One hour left"
+msgid_plural "{} hours left"
+msgstr[0] "Queda una hora"
+msgstr[1] "{} hores restants"
+
+#. Translators: File transfer time left
+#: src/gettext/duration.rs:42
+msgid "One day left"
+msgid_plural "{} days left"
+msgstr[0] "Queda un dia"
+msgstr[1] "{} dies restants"
+
+#. Translators: {0} = 11.3MB / 20.7MB, {1} = 3 seconds left
+#: src/gettext/duration.rs:52
+msgctxt "Combine bytes progress {0} and time remaining {1}"
+msgid "{0} — {1}"
+msgstr "{0} — {1}"
+
+#. Translators: Notification when clicking on "Copy Code to Clipboard" button
+#: src/ui/action_view.rs:256
+msgid "Copied Code to Clipboard"
+msgstr "S'ha copiat el codi al porta-retalls"
+
+#. Translators: Notification when clicking on "Copy Link to Clipboard" button
+#: src/ui/action_view.rs:273
+msgid "Copied Link to Clipboard"
+msgstr "S'ha copiat l'enllaç al porta-retalls"
+
+#: src/ui/action_view.rs:288
+msgid "Copied Error to Clipboard"
+msgstr "S'ha copiat l'error al porta-retalls"
+
+#: src/ui/action_view.rs:290
+msgid "No error available"
+msgstr "No hi ha cap error disponible"
+
+#: src/ui/action_view.rs:455
+msgid "Creating Archive"
+msgstr "S'està creant l'arxiu"
+
+#: src/ui/action_view.rs:459
+msgid "Compressing folder “{}”"
+msgstr "S'està comprimint la carpeta «{}»"
+
+#. Translators: Title
+#: src/ui/action_view.rs:475 src/ui/action_view.rs:542
+msgid "Connecting"
+msgstr "S'està connectant"
+
+#. Translators: Description, Filename
+#: src/ui/action_view.rs:478
+msgid "Requesting file transfer"
+msgstr "Sol·licitud de transferència de fitxers"
+
+#. Translators: Description, argument is filename
+#: src/ui/action_view.rs:499
+msgid "Ready to send “{}”."
+msgstr "Preparat per enviar «{}»."
+
+#: src/ui/action_view.rs:505
+msgid ""
+"The receiver needs to enter or scan this code to begin the file transfer."
+msgstr ""
+"El receptor ha d'introduir o escanejar aquest codi per a iniciar la "
+"transferència de fitxers."
+
+#: src/ui/action_view.rs:510
+msgid "The QR code is compatible with the following apps: {}."
+msgstr "El codi QR és compatible amb les aplicacions següents: {}."
+
+#: src/ui/action_view.rs:519
+msgid ""
+"You have entered a custom rendezvous server URL in preferences. Please "
+"verify the receiver also uses the same rendezvous server."
+msgstr ""
+"Heu introduït un URL de servidor de trobada personalitzat a les "
+"preferències. Verifiqueu que el receptor també utilitza el mateix servidor "
+"de trobada."
+
+#: src/ui/action_view.rs:525
+msgid "Click the QR code to copy the link to the clipboard."
+msgstr "Feu clic al codi QR per a copiar l'enllaç al porta-retalls."
+
+#. Translators: Description, Transfer Code
+#: src/ui/action_view.rs:545
+msgid "Connecting to peer with code “{}”"
+msgstr "Connectant amb l'homòleg de codi «{}»"
+
+#: src/ui/action_view.rs:555
+msgid "Connected to Peer"
+msgstr "Connectat a l'homòleg"
+
+#. Translators: Description
+#: src/ui/action_view.rs:564
+msgid "Preparing to send file"
+msgstr "S'està preparant per a enviar el fitxer"
+
+#. Translators: Description
+#: src/ui/action_view.rs:571
+msgid "Preparing to receive file"
+msgstr "S'està preparant per a rebre el fitxer"
+
+#. Translators: File receive confirmation message dialog; Filename, File size
+#: src/ui/action_view.rs:585
+msgid ""
+"Your peer wants to send you “{0}” (Size: {1}).\n"
+"Do you want to download this file? The default action will save the file to "
+"your Downloads folder."
+msgstr ""
+"El vostre homòleg vol enviar-vos «{0}» (Mida: {1}).\n"
+"Voleu baixar-vos aquest fitxer? L'acció predeterminada desarà el fitxer a la "
+"carpeta Baixades."
+
+#: src/ui/action_view.rs:590
+msgid "Ready to Receive File"
+msgstr "A punt per a rebre el fitxer"
+
+#: src/ui/action_view.rs:592
+msgid ""
+"A file is ready to be transferred. The transfer needs to be acknowledged."
+msgstr ""
+"Un fitxer està a punt per a ser transferit. La transferència ha d'estar "
+"reconeguda."
+
+#. Translators: Description, During transfer
+#: src/ui/action_view.rs:622
+msgid "File “{}” via local network direct transfer"
+msgstr "Fitxer «{}» mitjançant transferència directa per xarxa local"
+
+#. Translators: Description, During transfer
+#: src/ui/action_view.rs:625
+msgid "File “{}” via direct transfer"
+msgstr "Fitxer «{}» mitjançant transferència directa"
+
+#. Translators: Description, During transfer
+#: src/ui/action_view.rs:631
+msgid "File “{0}” via relay {1}"
+msgstr "Fitxer «{0}» via repetidor {1}"
+
+#. Translators: Description, During transfer
+#: src/ui/action_view.rs:634
+msgid "File “{}” via relay"
+msgstr "Fitxer «{}» via repetidor"
+
+#. Translators: Description, During transfer
+#: src/ui/action_view.rs:638
+msgid "File “{}” via Unknown connection method"
+msgstr "Fitxer «{}» mitjançant mètode de connexió desconegut"
+
+#. Translators: Title
+#: src/ui/action_view.rs:645
+msgid "Sending File"
+msgstr "S'està enviant el fitxer"
+
+#. Translators: Description, Filename
+#: src/ui/action_view.rs:668
+msgid "Successfully sent file “{}”"
+msgstr "S'ha enviat correctament el fitxer «{}»"
+
+#. Translators: Filename
+#: src/ui/action_view.rs:686
+msgid "File has been saved to the selected folder as “{}”"
+msgstr "El fitxer s'ha desat a la carpeta seleccionada com a «{}»"
+
+#. Translators: Filename
+#: src/ui/action_view.rs:693
+msgid "File has been saved to the Downloads folder as “{}”"
+msgstr "El fitxer s'ha desat a la carpeta Baixades com a «{}»"
+
+#. Translators: Title
+#: src/ui/action_view.rs:722 src/ui/action_view.ui:290
+msgid "File Transfer Failed"
+msgstr "No s'ha pogut transferir el fitxer"
+
+#: src/ui/action_view.rs:724
+msgid "The file transfer failed: {}"
+msgstr "La transferència de fitxers ha fallat: {}"
+
+#. Translators: When opening a file
+#: src/ui/action_view.rs:842
+msgid "Specified file / directory does not exist"
+msgstr "El fitxer / directori especificat no existeix"
+
+#: src/ui/action_view.rs:864
+msgid ""
+"Error parsing rendezvous server URL. An invalid URL was entered in the "
+"settings."
+msgstr ""
+"S'ha produït un error en analitzar l'adreça URL del servidor de trobada. "
+"S'ha introduït una adreça URL no vàlida a la configuració."
+
+#: src/ui/action_view.rs:871
+msgid "Error parsing transit URL. An invalid URL was entered in the settings."
+msgstr ""
+"S'ha produït un error en analitzar l'adreça URL del trànsit. S'ha introduït "
+"una adreça URL no vàlida a la configuració."
+
+#: src/ui/action_view.rs:967
+msgid "Invalid path selected: {}"
+msgstr "Camí seleccionat no vàlid: {}"
+
+#. Translators: Above progress bar for creating an archive to send as a folder
+#: src/ui/action_view.rs:1212
+msgid "{} File - Size: {}"
+msgid_plural "{} Files - Size: {}"
+msgstr[0] "{} Fitxer - Mida: {}"
+msgstr[1] "{} Fitxers - Mida: {}"
+
+#: src/ui/action_view.ui:4
+msgid "Save As"
+msgstr "Desa com a"
+
+#. Translators: Button; Transmit Link is a noun
+#: src/ui/action_view.ui:106
+msgid "Copy Transmit Link"
+msgstr "Copia l'enllaç de transmissió"
+
+#: src/ui/action_view.ui:131
+msgid "Your Transmit Code"
+msgstr "El teu codi de transmissió"
+
+#. Translators: Button; Transmit Code is a noun
+#: src/ui/action_view.ui:179
+msgid "Copy Transmit Code"
+msgstr "Copia el codi de transmissió"
+
+#. Translators: Title
+#: src/ui/action_view.ui:196
+msgid "Accept File Transfer?"
+msgstr "Voleu acceptar la transferència de fitxers?"
+
+#: src/ui/action_view.ui:206
+msgid "Save to Downloads Folder"
+msgstr "Desa a la carpeta de Baixades"
+
+#. Translators: Button
+#: src/ui/action_view.ui:208
+msgid "_Accept"
+msgstr "_Accepta"
+
+#. Translators: Button
+#: src/ui/action_view.ui:223
+msgid "Sa_ve As…"
+msgstr "_Desa com a…"
+
+#. Translators: Title
+#: src/ui/action_view.ui:243
+msgid "File Transfer Successful"
+msgstr "La transferència de fitxers s'ha realitzat correctament"
+
+#. Translators: Button
+#: src/ui/action_view.ui:253
+msgid "_Open File"
+msgstr "_Obre el fitxer"
+
+#. Translators: Button
+#: src/ui/action_view.ui:269 src/ui/window.ui:51
+msgid "_Show in Folder"
+msgstr "_Mostra a la carpeta"
+
+#. Translators: Button
+#: src/ui/action_view.ui:296
+msgid "Co_py Error Message"
+msgstr "Co_pia el missatge d'error"
+
+#. Translators: Button
+#: src/ui/action_view.ui:314
+msgid "_Cancel"
+msgstr "_Cancel·la"
+
+#: src/ui/application.rs:63
+msgid "Unable to use transfer link: another transfer already in progress"
+msgstr ""
+"No es pot utilitzar l'enllaç de transferència: ja hi ha una altra "
+"transferència en curs"
+
+#: src/ui/application.rs:216
+msgid "Sending a File"
+msgstr "S'està enviant un fitxer"
+
+#: src/ui/application.rs:217
+msgid "Receiving a File"
+msgstr "S'està rebent un fitxer"
+
+#: src/ui/camera.rs:248
+msgid ""
+"Camera access denied. Open Settings and allow Warp to access the camera."
+msgstr ""
+"S'ha denegat l'accés a la càmera. Obriu la configuració i permeteu que el "
+"Warp accedeixi a la càmera."
+
+#: src/ui/camera.rs:252
+msgid "Failed to start the camera: {}"
+msgstr "No s'ha pogut iniciar la càmera: {}"
+
+#: src/ui/camera.rs:255
+msgid "Error"
+msgstr "Error"
+
+#: src/ui/camera.rs:345
+msgid "Could not use the camera portal: {}"
+msgstr "No s'ha pogut utilitzar el portal de la càmera: {}"
+
+#: src/ui/camera.rs:352
+msgid "Could not start the device provider: {}"
+msgstr "No s'ha pogut iniciar el proveïdor del dispositiu: {}"
+
+#: src/ui/camera.rs:383
+msgid "No Camera Found"
+msgstr "No s'ha trobat cap càmera"
+
+#: src/ui/camera.rs:385
+msgid "Connect a camera to scan QR codes"
+msgstr "Connecteu una càmera per escanejar codis QR"
+
+#: src/ui/camera.ui:11 src/ui/window.ui:217
+msgid "Scan QR Code"
+msgstr "Escanegeu el codi QR"
+
+#: src/ui/camera.ui:48
+msgid "_Retry"
+msgstr "_Torna-ho a intentar"
+
+#: src/ui/camera.ui:59
+msgid "_Troubleshooting"
+msgstr "_Resolució de problemes"
+
+#: src/ui/fs.rs:16
+msgid "Downloads dir missing. Please set XDG_DOWNLOAD_DIR"
+msgstr "Falten les baixades de dir. Si us plau, establiu XDG_DOWNLOAD_DIR"
+
+#: src/ui/licenses.rs:150
+msgid "Licensed under the <a href=\"{}\">{}</a>."
+msgstr "Llicenciat sota la <a href=\"{}\">{}</a>."
+
+#. Translators: License information without a link to the software license
+#: src/ui/licenses.rs:155
+msgid "Licensed under the {}."
+msgstr "Llicenciat sota la {}."
+
+#: src/ui/preferences.rs:97
+msgid ""
+"Changing the rendezvous server URL needs to be done on both sides of the "
+"transfer. Only enter a server URL you can trust.\n"
+"\n"
+"Leaving these entries empty will use the app defaults:\n"
+"Rendezvous Server: “{0}”\n"
+"Transit Server: “{1}”"
+msgstr ""
+"El canvi de l'adreça URL del servidor de trobada s'ha de fer a banda i banda "
+"de la transferència. Introduïu només una adreça URL del servidor en què "
+"pugueu confiar.\n"
+"\n"
+"Si deixeu aquestes entrades buides, s'utilitzaran els valors predeterminats "
+"de l'aplicació:\n"
+"Servidor de trobada: «{0}»\n"
+"Servidor de trànsit: «{1}»"
+
+#: src/ui/preferences.ui:4
 msgid "Preferences"
 msgstr "Preferències"
 
-#: data/resources/ui/preferences.ui:17
+#: src/ui/preferences.ui:8
 msgid "Network"
 msgstr "Xarxa"
 
-#: data/resources/ui/preferences.ui:21
-msgid "Server URLs"
-msgstr "URL del servidor"
-
-#: data/resources/ui/preferences.ui:22
-msgid ""
-"Changing the rendezvous server URL has to be done on both sides of the "
-"transfer. Only enter a server URL you can trust.\n"
-"\n"
-"Leaving these entries empty will use the application defaults."
-msgstr ""
-"El canvi de l'adreça URL del servidor de trobada s'ha de fer a banda i "
-"banda de la transferència. Introduïu només una adreça URL del servidor en "
-"què pugueu confiar.\n"
-"\n"
-"Si deixeu aquestes entrades buides, s'utilitzaran els valors per defecte de "
-"l'aplicació."
-
-#: data/resources/ui/preferences.ui:27
-msgid "Rendezvous Server URL"
-msgstr "URL del servidor de trobada"
-
-#: data/resources/ui/preferences.ui:43
-msgid "Transit Server URL"
-msgstr "URL del servidor de trànsit"
-
-#: data/resources/ui/preferences.ui:61
+#: src/ui/preferences.ui:12
 msgid "Code Words"
 msgstr "Paraules de codi"
 
-#: data/resources/ui/preferences.ui:62
+#: src/ui/preferences.ui:13
 msgid ""
 "The code word count determines the security of the transfer.\n"
 "\n"
@@ -231,41 +547,47 @@ msgid ""
 "guessing the code. As a code may only be guessed once, the risk is very "
 "small even with short codes. A length of 4 is very secure."
 msgstr ""
-"El recompte de paraules de codi determina la seguretat de la "
-"transferència.\n"
+"El recompte de paraules de codi determina la seguretat de la transferència.\n"
 "\n"
 "Un codi curt és fàcil de recordar, però augmenta el risc que una altra "
-"persona endevini el codi. Com que un codi només es pot endevinar una "
-"vegada, el risc és molt petit fins i tot amb codis curts. Una longitud de 4 "
-"és molt segura."
+"persona endevini el codi. Com que un codi només es pot endevinar una vegada, "
+"el risc és molt petit fins i tot amb codis curts. Una longitud de 4 és molt "
+"segura."
 
-#: data/resources/ui/preferences.ui:67
+#: src/ui/preferences.ui:18
 msgid "Code Word Count"
 msgstr "Recompte de paraules de codi"
 
-#: data/resources/ui/welcome_window.ui:5
+#: src/ui/preferences.ui:26
+msgid "Server URLs"
+msgstr "URL del servidor"
+
+#: src/ui/preferences.ui:29
+msgid "Rendezvous Server URL"
+msgstr "URL del servidor de trobada"
+
+#: src/ui/preferences.ui:36
+msgid "Transit Server URL"
+msgstr "URL del servidor de trànsit"
+
+#: src/ui/welcome_dialog.ui:10
 msgid "Welcome"
 msgstr "Us donem la benvinguda"
 
-#. Translators: Button
-#: data/resources/ui/welcome_window.ui:22 src/ui/action_view.rs:1109
-msgid "Close"
-msgstr "Tanca"
-
-#. Translators: Button
-#: data/resources/ui/welcome_window.ui:28
-msgid "Next"
-msgstr "Següent"
-
-#: data/resources/ui/welcome_window.ui:39
+#: src/ui/welcome_dialog.ui:23
 msgid "Welcome to Warp"
 msgstr "Benvinguts a Warp"
 
-#: data/resources/ui/welcome_window.ui:86
+#. Translators: Button
+#: src/ui/welcome_dialog.ui:31
+msgid "Next"
+msgstr "Següent"
+
+#: src/ui/welcome_dialog.ui:79
 msgid "Introduction"
 msgstr "Introducció"
 
-#: data/resources/ui/welcome_window.ui:97
+#: src/ui/welcome_dialog.ui:90
 msgid ""
 "Warp makes file transfer simple. To get started, both parties need to "
 "install Warp on their devices.\n"
@@ -276,371 +598,26 @@ msgid ""
 "\n"
 "When the receiver has entered the code, the file transfer can begin.\n"
 "\n"
-"For more information about Warp, open the Help pages from the menu."
+"For more information about Warp, open the Help section from the Main Menu."
 msgstr ""
-"Warp fa que la transferència de fitxers sigui senzilla. Per a començar, "
-"ambdues parts han d'instal·lar Warp als seus dispositius.\n"
+"El Warp fa que la transferència de fitxers sigui senzilla. Per a començar, "
+"ambdues parts han d'instal·lar el Warp als seus dispositius.\n"
 "\n"
 "Després de seleccionar el fitxer a transmetre, el remitent ha de dir-li al "
 "receptor el codi de transmissió mostrat. Això es fa preferentment a través "
 "d'un canal de comunicació segur.\n"
 "\n"
-"Quan el receptor ha introduït el codi, la transferència de fitxers "
-"comença.\n"
+"Quan el receptor ha introduït el codi, la transferència de fitxers comença.\n"
 "\n"
-"Per a més informació sobre Warp, obriu les pàgines d'ajuda del menú."
+"Per a més informació sobre el Warp, obriu les pàgines d'ajuda del menú "
+"principal."
 
 #. Translators: Big button to finish welcome screen
-#: data/resources/ui/welcome_window.ui:109
+#: src/ui/welcome_dialog.ui:103
 msgid "Get Started Using Warp"
 msgstr "Començar a utilitzar Warp"
 
-#. Translators: menu item
-#: data/resources/ui/window.ui:7
-msgid "_Preferences"
-msgstr "_Preferències"
-
-#. Translators: menu item
-#: data/resources/ui/window.ui:12
-msgid "_Keyboard Shortcuts"
-msgstr "_Dreceres de teclat"
-
-#. Translators: menu item
-#: data/resources/ui/window.ui:17
-msgid "_Help"
-msgstr "A_juda"
-
-#. Translators: menu item
-#: data/resources/ui/window.ui:22
-msgid "_About Warp"
-msgstr "_Quant a Warp"
-
-#: data/resources/ui/window.ui:28
-msgid "Select file to send"
-msgstr "Seleccioneu el fitxer que voleu enviar"
-
-#: data/resources/ui/window.ui:30
-msgid "Open"
-msgstr "Obrir"
-
-#: data/resources/ui/window.ui:34
-msgid "Select folder to send"
-msgstr "Seleccioneu la carpeta que voleu enviar"
-
-#: data/resources/ui/window.ui:36
-msgid "Open Folder"
-msgstr "Obre la carpeta"
-
-#. Translators: Notification when code was automatically detected in clipboard and inserted into code entry on receive page
-#: data/resources/ui/window.ui:41
-msgid "Inserted code from clipboard"
-msgstr "Codi inserit des del porta-retalls"
-
-#: data/resources/ui/window.ui:86
-msgid "Send"
-msgstr "Envia"
-
-#: data/resources/ui/window.ui:97
-msgid "Send File"
-msgstr "Envia el fitxer"
-
-#: data/resources/ui/window.ui:98
-msgid "Select or drop the file or directory to send"
-msgstr "Seleccioneu o deixeu anar el fitxer o el directori que voleu enviar"
-
-#. Translators: Button
-#: data/resources/ui/window.ui:108
-msgid "Select File"
-msgstr "Seleccioneu un fitxer"
-
-#. Translators: Button
-#: data/resources/ui/window.ui:120
-msgid "Select Folder"
-msgstr "Seleccioneu una carpeta"
-
-#: data/resources/ui/window.ui:139
-msgid "Receive"
-msgstr "Rebre"
-
-#. Translators: Button
-#: data/resources/ui/window.ui:147 data/resources/ui/window.ui:172
-msgid "Receive File"
-msgstr "Rebre el fitxer"
-
-#. Translators: Text above code input box, transmit code is a noun
-#: data/resources/ui/window.ui:149
-msgid "Enter the transmit code from the sender"
-msgstr "Introduïu el codi de transmissió des del remitent"
-
-#. Translators: {0} = file size transferred, {1} = total file size, Example: 17.3MB / 20.5MB
-#: src/gettext/duration.rs:12
-msgctxt "File size transferred"
-msgid "{0} / {1}"
-msgstr "{0} / {1}"
-
-#. Translators: File transfer time left
-#: src/gettext/duration.rs:19
-msgid "One second left"
-msgid_plural "{} seconds left"
-msgstr[0] "Queda un segon"
-msgstr[1] "{} segons queden"
-
-#. Translators: File transfer time left
-#: src/gettext/duration.rs:27
-msgid "One minute left"
-msgid_plural "{} minutes left"
-msgstr[0] "Queda un minut"
-msgstr[1] "{} minuts restants"
-
-#. Translators: File transfer time left
-#: src/gettext/duration.rs:35
-msgid "One hour left"
-msgid_plural "{} hours left"
-msgstr[0] "Queda una hora"
-msgstr[1] "{} hores restants"
-
-#. Translators: File transfer time left
-#: src/gettext/duration.rs:43
-msgid "One day left"
-msgid_plural "{} days left"
-msgstr[0] "Queda un dia"
-msgstr[1] "{} dies restants"
-
-#. Translators: {0} = 11.3MB / 20.7MB, {1} = 3 seconds left
-#: src/gettext/duration.rs:53
-msgctxt "Combine bytes progress {0} and time remaining {1}"
-msgid "{0} — {1}"
-msgstr "{0} — {1}"
-
-#. Translators: Notification when clicking on "Copy Code to Clipboard" button
-#: src/ui/action_view.rs:239
-msgid "Copied Code to Clipboard"
-msgstr "Codi copiat al Porta-retalls"
-
-#. Translators: Notification when clicking on "Copy Link to Clipboard" button
-#: src/ui/action_view.rs:260
-msgid "Copied Link to Clipboard"
-msgstr "Enllaç copiat al Porta-retalls"
-
-#: src/ui/action_view.rs:276
-msgid "No error available"
-msgstr "No hi ha cap error disponible"
-
-#. Translators: Title
-#: src/ui/action_view.rs:395
-msgid "Creating Archive"
-msgstr "S'està creant l'arxiu"
-
-#: src/ui/action_view.rs:399
-msgid "Compressing folder “{}”"
-msgstr "S'està comprimint la carpeta «{}»"
-
-#. Translators: Title
-#: src/ui/action_view.rs:412 src/ui/action_view.rs:457
-msgid "Connecting"
-msgstr "S'està connectant"
-
-#. Translators: Description, Filename
-#: src/ui/action_view.rs:415
-msgid "Requesting file transfer"
-msgstr "Sol·licitud de transferència de fitxers"
-
-#. Translators: Title, this is a noun
-#: src/ui/action_view.rs:423
-msgid "Your Transmit Code"
-msgstr "El teu codi de transmissió"
-
-#. Translators: Description, Code in box below, argument is filename
-#: src/ui/action_view.rs:439
-msgid ""
-"Ready to send “{}”\n"
-"The receiver needs to enter this code to begin the file transfer."
-msgstr ""
-"Preparats per a enviar «{}»\n"
-"El receptor ha d'introduir aquest codi per a iniciar la transferència de "
-"fitxers."
-
-#. Translators: Description, Code in box below, argument is filename
-#: src/ui/action_view.rs:445
-msgid ""
-"Ready to send “{}”\n"
-"The receiver needs to enter this code to begin the file transfer.\n"
-"\n"
-"You have entered a custom rendezvous server URL in preferences. Please "
-"verify the receiver also uses the same rendezvous server."
-msgstr ""
-"Preparats per enviar «{}»\n"
-"El receptor ha d'introduir aquest codi per a iniciar la transferència de "
-"fitxers.\n"
-"\n"
-"Heu introduït un URL de servidor de trobada personalitzat a les "
-"preferències. Verifiqueu que el receptor també utilitza el mateix servidor "
-"de trobada."
-
-#. Translators: Description, Transfer Code
-#: src/ui/action_view.rs:460
-msgid "Connecting to peer with code “{}”"
-msgstr "Connectant amb l'homòleg de codi «{}»"
-
-#: src/ui/action_view.rs:469
-msgid "Connected to Peer"
-msgstr "Connectat a l'homòleg"
-
-#. Translators: Description
-#: src/ui/action_view.rs:478
-msgid "Preparing to send file"
-msgstr "S'està preparant per a enviar el fitxer"
-
-#. Translators: Description
-#: src/ui/action_view.rs:484
-msgid "Preparing to receive file"
-msgstr "S'està preparant per a rebre el fitxer"
-
-#: src/ui/action_view.rs:496
-msgid "Accept File Transfer?"
-msgstr "Voleu acceptar la transferència de fitxers?"
-
-#. Translators: File receive confirmation message dialog; Filename, File size
-#: src/ui/action_view.rs:499
-msgid ""
-"Your peer wants to send you “{0}” (Size: {1}).\n"
-"Do you want to download this file to your Downloads folder?"
-msgstr ""
-"El teu homòleg vol enviar-te «{0}» (Mida: {1}).\n"
-"Voleu baixar aquest fitxer a la carpeta Baixades?"
-
-#: src/ui/action_view.rs:504
-msgid "Ready to Receive File"
-msgstr "A punt per a rebre el fitxer"
-
-#: src/ui/action_view.rs:506
-msgid ""
-"A file is ready to be transferred. The transfer needs to be acknowledged."
-msgstr ""
-"Un fitxer està a punt per a ser transferit. La transferència ha d'estar "
-"reconeguda."
-
-#. Translators: Description, During transfer
-#: src/ui/action_view.rs:535
-msgid "File “{}” via local network direct transfer"
-msgstr "Fitxer «{}» mitjançant transferència directa per xarxa local"
-
-#. Translators: Description, During transfer
-#: src/ui/action_view.rs:538
-msgid "File “{}” via direct transfer"
-msgstr "Fitxer «{}» mitjançant transferència directa"
-
-#. Translators: Description, During transfer
-#: src/ui/action_view.rs:544
-msgid "File “{0}” via relay {1}"
-msgstr "Fitxer «{0}» via repetidor {1}"
-
-#. Translators: Description, During transfer
-#: src/ui/action_view.rs:547
-msgid "File “{}” via relay"
-msgstr "Fitxer «{}» via repetidor"
-
-#. Translators: Description, During transfer
-#: src/ui/action_view.rs:551
-msgid "File “{}” via Unknown connection method"
-msgstr "Fitxer «{}» mitjançant mètode de connexió desconegut"
-
-#. Translators: Title
-#: src/ui/action_view.rs:570
-msgid "File Transfer Successful"
-msgstr "La transferència de fitxers s'ha realitzat correctament"
-
-#. Translators: Description, Filename
-#: src/ui/action_view.rs:587
-msgid "Successfully sent file “{}”"
-msgstr "S'ha enviat correctament el fitxer «{}»"
-
-#. Translators: Description, Filename
-#: src/ui/action_view.rs:596
-msgid "File has been saved to the Downloads folder as “{}”"
-msgstr "El fitxer s'ha desat a la carpeta Baixades com a «{}»"
-
-#. Translators: Title
-#: src/ui/action_view.rs:611 src/ui/action_view.rs:624
-msgid "File Transfer Failed"
-msgstr "No s'ha pogut transferir el fitxer"
-
-#: src/ui/action_view.rs:626
-msgid "The file transfer failed: {}"
-msgstr "La transferència de fitxers ha fallat: {}"
-
-#. Translators: When opening a file
-#: src/ui/action_view.rs:741
-msgid "Specified file / directory does not exist"
-msgstr "El fitxer / directori especificat no existeix"
-
-#: src/ui/action_view.rs:758
-msgid ""
-"Error parsing rendezvous server URL. An invalid URL was entered in the "
-"settings."
-msgstr ""
-"S'ha produït un error en analitzar l'adreça URL del servidor de trobada. "
-"S'ha introduït una adreça URL no vàlida a la configuració."
-
-#: src/ui/action_view.rs:768
-msgid "Error parsing transit URL. An invalid URL was entered in the settings."
-msgstr ""
-"S'ha produït un error en analitzar l'adreça URL del trànsit. S'ha introduït "
-"una adreça URL no vàlida a la configuració."
-
-#. Translators: File receive confirmation message dialog title
-#: src/ui/action_view.rs:1086
-msgid "Abort file transfer?"
-msgstr "Voleu interrompre la transferència de fitxers?"
-
-#: src/ui/action_view.rs:1087
-msgid "Do you want to abort the current file transfer?"
-msgstr "Voleu avortar la transferència de fitxers actual?"
-
-#: src/ui/action_view.rs:1093
-msgid "Continue"
-msgstr "Segueix"
-
-#: src/ui/action_view.rs:1094
-msgid "Abort"
-msgstr "Interromp"
-
-#. Translators: File receive confirmation message dialog title
-#: src/ui/action_view.rs:1102
-msgid "Unable to Open File"
-msgstr "No es pot obrir el fitxer"
-
-#: src/ui/action_view.rs:1208
-msgid "Downloads dir missing. Please set XDG_DOWNLOAD_DIR"
-msgstr "Falten les baixades de dir. Si us plau, establiu XDG_DOWNLOAD_DIR"
-
-#: src/ui/application.rs:79
-msgid "Unable to use transfer link: another transfer already in progress"
-msgstr ""
-"No es pot utilitzar l'enllaç de transferència: ja hi ha una altra "
-"transferència en curs"
-
-#: src/ui/application.rs:206
-msgid "translator-credits"
-msgstr "Maite Guix <maite.guix@gmail.com>, 2022"
-
-#: src/ui/application.rs:209
-msgid "Tobias Bernard"
-msgstr "Tobias Bernard"
-
-#: src/ui/application.rs:209
-msgid "Sophie Herold"
-msgstr "Sophie Herold"
-
-#: src/ui/application.rs:225
-msgid "Sending a File"
-msgstr "S'està enviant un fitxer"
-
-#: src/ui/application.rs:226
-msgid "Receiving a File"
-msgstr "S'està rebent un fitxer"
-
-#: src/ui/window.rs:104
+#: src/ui/window.rs:139
 msgid ""
 "Error loading config file “{0}”, using default config.\n"
 "Error: {1}"
@@ -649,68 +626,183 @@ msgstr ""
 "utilitzant la configuració per defecte.\n"
 "Error: {1}"
 
-#: src/ui/window.rs:223
-msgid "Select the file or directory to send"
-msgstr "Seleccioneu el fitxer o el directori que voleu enviar"
-
-#: src/ui/window.rs:321
+#: src/ui/window.rs:287
 msgid "Error saving configuration file: {}"
 msgstr "S'ha produït un error en desar el fitxer de configuració: {}"
 
-#: src/ui/window.rs:366
+#: src/ui/window.rs:301
+msgid "Tobias Bernard"
+msgstr "Tobias Bernard"
+
+#: src/ui/window.rs:301
+msgid "Sophie Herold"
+msgstr "Sophie Herold"
+
+#: src/ui/window.rs:302
+msgid "translator-credits"
+msgstr ""
+"Maite Guix <maite.guix@gmail.com>, 2022\n"
+"Victor Dargallo <victordargallo@disroot.org>"
+
+#. Translators: This is a promotion and should match the app name as seen at https://apps.gnome.org/PikaBackup/
+#: src/ui/window.rs:306
+msgid "Pika Backup"
+msgstr "Pika Backup"
+
+#. Translators: This is a promotion and should match the short app summary as seen at https://apps.gnome.org/PikaBackup/
+#: src/ui/window.rs:308
+msgid "Keep your data safe"
+msgstr "Mantingueu les dades segures"
+
+#: src/ui/window.rs:374
+msgid "Select File to Send"
+msgstr "Seleccioneu el fitxer a enviar"
+
+#: src/ui/window.rs:382
+msgid "Select Folder to Send"
+msgstr "Seleccioneu la carpeta a enviar"
+
+#: src/ui/window.rs:449
 msgid "“{}” appears to be an invalid Transmit Code. Please try again."
 msgstr "«{}» sembla ser un codi de transmissió no vàlid. Torneu-ho a provar."
 
-#: src/ui/window.rs:477
+#: src/ui/window.rs:573
 msgid "Sending files with a preconfigured code is not yet supported"
 msgstr ""
 "L'enviament de fitxers amb un codi preconfigurat encara no és compatible"
 
-#: src/util.rs:32
+#. Translators: menu item
+#: src/ui/window.ui:7
+msgid "_Preferences"
+msgstr "_Preferències"
+
+#. Translators: menu item
+#: src/ui/window.ui:12
+msgid "_Keyboard Shortcuts"
+msgstr "_Dreceres de teclat"
+
+#. Translators: menu item
+#: src/ui/window.ui:17
+msgid "_Help"
+msgstr "A_juda"
+
+#. Translators: menu item
+#: src/ui/window.ui:22
+msgid "_About Warp"
+msgstr "_Quant a Warp"
+
+#. Translators: Notification when code was automatically detected in clipboard and inserted into code entry on receive page
+#: src/ui/window.ui:33
+msgid "Inserted code from clipboard"
+msgstr "Codi inserit des del porta-retalls"
+
+#. Translators: File receive confirmation message dialog title
+#: src/ui/window.ui:38
+msgid "Abort File Transfer?"
+msgstr "Voleu interrompre la transferència de fitxers?"
+
+#: src/ui/window.ui:39
+msgid "Do you want to abort the current file transfer?"
+msgstr "Voleu avortar la transferència de fitxers actual?"
+
+#: src/ui/window.ui:42
+msgid "_Continue"
+msgstr "_Continua"
+
+#: src/ui/window.ui:43
+msgid "_Abort"
+msgstr "_Interromp"
+
+#. Translators: Error dialog title
+#: src/ui/window.ui:48
+msgid "Unable to Open File"
+msgstr "No es pot obrir el fitxer"
+
+#: src/ui/window.ui:50 src/util/error.rs:207
+msgid "_Close"
+msgstr "_Tanca"
+
+#: src/ui/window.ui:98
+msgid "Main Menu"
+msgstr "Menú principal"
+
+#: src/ui/window.ui:117
+msgid "_Send"
+msgstr "_Envia"
+
+#: src/ui/window.ui:130
+msgid "Select or drop the file or directory to send"
+msgstr "Seleccioneu o deixeu anar el fitxer o el directori que voleu enviar"
+
+#. Translators: Button
+#: src/ui/window.ui:142
+msgid "Select _File…"
+msgstr "Selecciona un _fitxer…"
+
+#. Translators: Button
+#: src/ui/window.ui:157
+msgid "Select F_older…"
+msgstr "Selecciona una _carpeta…"
+
+#: src/ui/window.ui:177
+msgid "_Receive"
+msgstr "_Rebre"
+
+#. Translators: Text above code input box, transmit code is a noun
+#: src/ui/window.ui:188
+msgid "Enter the transmit code from the sender"
+msgstr "Introduïu el codi de transmissió des del remitent"
+
+#. Translators: Button
+#: src/ui/window.ui:238
+msgid "Receive _File"
+msgstr "Rebre el _fitxer"
+
+#: src/util.rs:37 src/util.rs:43
 msgid "Failed to open downloads folder."
 msgstr "No s'ha pogut obrir la carpeta de baixades."
 
-#: src/util.rs:168 src/util.rs:241
+#: src/util.rs:216 src/util.rs:291
 msgid "The URI format is invalid"
 msgstr "El format URI no és vàlid"
 
-#: src/util.rs:172 src/util.rs:176
+#: src/util.rs:220 src/util.rs:224
 msgid "The code does not match the required format"
 msgstr "El codi no coincideix amb el format requerit"
 
-#: src/util.rs:191 src/util.rs:197
+#: src/util.rs:241 src/util.rs:247
 msgid "Unknown URI version: {}"
 msgstr "Versió URI desconeguda: {}"
 
-#: src/util.rs:206
+#: src/util.rs:256
 msgid "The URI parameter “rendezvous” contains an invalid URL: “{}”"
 msgstr "El paràmetre URI de «trobada» conté una URL no vàlida: «{}»"
 
-#: src/util.rs:218
+#: src/util.rs:268
 msgid "The URI parameter “role” must be “follower” or “leader” (was: “{}”)"
 msgstr "El paràmetre URI «rol» ha de ser «seguidor» o «líder» (era: «{}»)"
 
-#: src/util.rs:225
+#: src/util.rs:275
 msgid "Unknown URI parameter “{}”"
 msgstr "Paràmetre URI desconegut «{}»"
 
-#: src/util/error.rs:142
+#: src/util/error.rs:190
 msgid "An error occurred"
 msgstr "S'ha produït un error"
 
-#: src/util/error.rs:172 src/util/error.rs:237
+#: src/util/error.rs:218 src/util/error.rs:349
 msgid "Corrupt or unexpected message received"
 msgstr "Rebut missatge malmès o inesperat"
 
-#: src/util/error.rs:177
+#: src/util/error.rs:224
 msgid ""
 "The rendezvous server will not allow further connections for this code. A "
 "new code needs to be generated."
 msgstr ""
-"El servidor de trobada no permetrà més connexions per a aquest codi. S'ha "
-"de generar un codi nou."
+"El servidor de trobada no permetrà més connexions per a aquest codi. S'ha de "
+"generar un codi nou."
 
-#: src/util/error.rs:179
+#: src/util/error.rs:228
 msgid ""
 "The rendezvous server removed the code due to inactivity. A new code needs "
 "to be generated."
@@ -718,11 +810,11 @@ msgstr ""
 "El servidor de la trobada ha suprimit el codi a causa de la inactivitat. "
 "S'ha de generar un codi nou."
 
-#: src/util/error.rs:181
+#: src/util/error.rs:232
 msgid "The rendezvous server responded with an unknown message: {}"
 msgstr "El servidor de la trobada ha respost amb un missatge desconegut: {}"
 
-#: src/util/error.rs:184
+#: src/util/error.rs:243
 msgid ""
 "Error connecting to the rendezvous server.\n"
 "You have entered a custom rendezvous server URL in preferences. Please "
@@ -733,7 +825,7 @@ msgstr ""
 "preferències. Verifiqueu que l'adreça URL és correcta i que el servidor "
 "funcioni."
 
-#: src/util/error.rs:186
+#: src/util/error.rs:247
 msgid ""
 "Error connecting to the rendezvous server.\n"
 "Please try again later / verify you are connected to the internet."
@@ -741,7 +833,7 @@ msgstr ""
 "S'ha produït un error en connectar-se al servidor de trobada.\n"
 "Torneu-ho a provar més tard / verifiqueu que esteu connectat a Internet."
 
-#: src/util/error.rs:190
+#: src/util/error.rs:252
 msgid ""
 "Encryption key confirmation failed. If you or your peer didn't mistype the "
 "code, this is a sign of an attacker guessing passwords. Please try again "
@@ -751,32 +843,88 @@ msgstr ""
 "no han escrit malament el codi, això és un signe d'un atacant que endevina "
 "contrasenyes. Torneu-ho a provar més tard."
 
-#: src/util/error.rs:192
+#: src/util/error.rs:254
 msgid "Cannot decrypt a received message"
 msgstr "No es pot desxifrar un missatge rebut"
 
-#: src/util/error.rs:193 src/util/error.rs:248 src/util/error.rs:253
-#: src/util/error.rs:256
+#: src/util/error.rs:255 src/util/error.rs:360 src/util/error.rs:370
 msgid "An unknown error occurred"
 msgstr "S'ha produït un error desconegut"
 
-#: src/util/error.rs:199
-msgid "File / Directory not found"
-msgstr "No s'ha trobat el fitxer / directori"
+#. Translators: magic-wormhole codes usually look like n-word-word... where n MUST be an arabic number (unlimited digits). The first '-' is mandatory. This error occurs when an empty code was entered.
+#: src/util/error.rs:262
+msgid "The specified code must not be empty"
+msgstr "El codi especificat no pot estar buit"
 
-#: src/util/error.rs:200
+#. Translators: magic-wormhole codes usually look like n-word-word... where n MUST be an arabic number (unlimited digits). The first '-' is mandatory. This error occurs when a code was entered that does not contain any '-'.
+#: src/util/error.rs:264
+msgid "The code must contain at least one “-”"
+msgstr "El codi ha de contenir almenys un «-»"
+
+#. Translators: magic-wormhole codes usually look like n-word-word... where n MUST be an arabic number (unlimited digits). This error occurs when a code was entered that does not contain a number before the '-'.
+#: src/util/error.rs:266
+msgid "The first segment of a code must be a number"
+msgstr "El primer segment del codi ha de ser un nombre"
+
+#: src/util/error.rs:270
+msgid "Code too weak. It can be guessed with an average of {} try."
+msgid_plural "Code too weak. It can be guessed with an average of {} tries."
+msgstr[0] "Codi massa feble. Es pot endevinar amb una mitjana de {} intent."
+msgstr[1] "Codi massa feble. Es pot endevinar amb una mitjana de {} intents."
+
+#: src/util/error.rs:278
+msgid ""
+"Code too short. The text after the “-” must be at least {} character long."
+msgid_plural ""
+"Code too short. The text after the “-” must be at least {} characters long."
+msgstr[0] ""
+"Codi massa curt. El text després de la «-» ha de tenir almenys {} caràcter."
+msgstr[1] ""
+"Codi massa curt. El text després de la «-» ha de tenir almenys {} caràcters."
+
+#: src/util/error.rs:285
+msgid "Code too weak"
+msgstr "El codi és massa feble"
+
+#: src/util/error.rs:292
+msgid "File / Directory not found"
+msgstr "No s'ha trobat el fitxer o directori"
+
+#: src/util/error.rs:293
 msgid "Permission denied"
 msgstr "S'ha denegat el permís"
 
-#: src/util/error.rs:212
+#: src/util/error.rs:301
+msgid "Canceled"
+msgstr "S'ha cancel·lat"
+
+#: src/util/error.rs:303
+msgid "Portal service response: Permission denied"
+msgstr "Resposta al servei del portal: Permís denegat"
+
+#: src/util/error.rs:306
+msgid "The portal service has failed: {}"
+msgstr "El servei del portal ha fallat: {}"
+
+#: src/util/error.rs:309
+msgid "Error communicating with the portal service via zbus: {}"
+msgstr ""
+"S'ha produït un error en comunicar-se amb el servei del portal a través del "
+"zbus: {}"
+
+#: src/util/error.rs:312 src/util/error.rs:313
+msgid "Portal error: {}"
+msgstr "Error del portal: {}"
+
+#: src/util/error.rs:324
 msgid "Transfer was not acknowledged by peer"
 msgstr "La transferència no ha estat reconeguda per l'homòleg"
 
-#: src/util/error.rs:214
+#: src/util/error.rs:326
 msgid "The received file is corrupted"
 msgstr "El fitxer rebut està malmès"
 
-#: src/util/error.rs:220
+#: src/util/error.rs:332
 msgid ""
 "The file contained a different amount of bytes than advertised! Sent {} "
 "bytes, but should have been {}"
@@ -784,30 +932,57 @@ msgstr ""
 "El fitxer contenia una quantitat diferent de bytes dels anunciats! S'han "
 "enviat {} bytes, però s'haurien d'haver estat {}"
 
-#: src/util/error.rs:225
+#: src/util/error.rs:337
 msgid "The other side has cancelled the transfer"
 msgstr "L'altra part ha cancel·lat la transferència"
 
-#: src/util/error.rs:227
+#: src/util/error.rs:339
 msgid "The other side has rejected the transfer"
 msgstr "L'altra part ha rebutjat la transferència"
 
-#: src/util/error.rs:229
+#: src/util/error.rs:341
 msgid "Something went wrong on the other side: {}"
 msgstr "Alguna cosa ha fallat a l'altra banda: {}"
 
-#: src/util/error.rs:244
+#: src/util/error.rs:356
 msgid "Error while establishing file transfer connection"
 msgstr ""
 "S'ha produït un error en establir la connexió de transferència de fitxers"
 
-#: src/util/error.rs:246
+#: src/util/error.rs:358
 msgid "Unknown file transfer error"
 msgstr "Error de transferència de fitxers desconegut"
 
-#: src/util/error.rs:258
+#: src/util/error.rs:373
+msgid "An unknown error occurred while creating a zip file: {}"
+msgstr "S'ha produït un error desconegut en crear el fitxer zip: {}"
+
+#: src/util/error.rs:377
 msgid ""
 "An unexpected error occurred. Please report an issue with the error message."
 msgstr ""
 "S'ha produït un error inesperat. Informeu del problema amb el missatge "
 "d'error."
+
+#~ msgid "Back"
+#~ msgstr "Enrere"
+
+#~ msgid "Copy a detailed message for reporting an issue"
+#~ msgstr "Copiar un missatge detallat per a informar d'un problema"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Send File"
+#~ msgstr "Envia el fitxer"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Receive File"
+#~ msgstr "Rebre el fitxer"
+
+#~ msgid "Open"
+#~ msgstr "Obrir"
+
+#~ msgid "Open Folder"
+#~ msgstr "Obre la carpeta"
+
+#~ msgid "Select the file or directory to send"
+#~ msgstr "Seleccioneu el fitxer o el directori que voleu enviar"
