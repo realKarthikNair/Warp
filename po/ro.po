@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: warp main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/warp/issues\n"
-"POT-Creation-Date: 2025-10-08 13:51+0000\n"
-"PO-Revision-Date: 2025-10-09 15:23+0200\n"
+"POT-Creation-Date: 2025-11-27 19:40+0000\n"
+"PO-Revision-Date: 2025-12-04 16:26+0100\n"
 "Last-Translator: Antonio Marin <gnmer.6qxyg@slmail.me>\n"
 "Language-Team: Romanian <gnomero-list@lists.sourceforge.net>\n"
 "Language: ro\n"
@@ -504,7 +504,7 @@ msgstr "_Depanare"
 
 #: src/ui/fs.rs:16
 msgid "Downloads dir missing. Please set XDG_DOWNLOAD_DIR"
-msgstr "Dosarul de descărcări lipsește. Stabilește XDG_DOWNLOAD_DIR"
+msgstr "Lipsește dosarul Descărcate. Stabilește XDG_DOWNLOAD_DIR"
 
 #: src/ui/licenses.rs:150
 msgid "Licensed under the <a href=\"{}\">{}</a>."
@@ -765,7 +765,7 @@ msgstr "Primește _fișierul"
 
 #: src/util.rs:37 src/util.rs:43
 msgid "Failed to open downloads folder."
-msgstr "Nu s-a putut deschide dosarul de descărcări."
+msgstr "Nu s-a putut deschide dosarul cu descărcate."
 
 #: src/util.rs:216 src/util.rs:291
 msgid "The URI format is invalid"
